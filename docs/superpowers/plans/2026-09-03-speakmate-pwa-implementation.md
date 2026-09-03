@@ -206,7 +206,7 @@ git commit -m "build: scaffold SpeakMate PWA foundation"
 - Consumes: `CefrLevel`, `SceneDefinition`, and `LevelContent` from the approved spec.
 - Produces: `SCENE_CATALOG`, `getSceneBySlug(slug)`, `getPublishedScenes()`, and `adaptScene(scene, level)`.
 
-- [ ] **Step 1: Write catalog and adaptation tests**
+- [x] **Step 1: Write catalog and adaptation tests**
 
 ```ts
 expect(SCENE_CATALOG).toHaveLength(42)
@@ -216,16 +216,16 @@ expect(adaptScene(hotelCheckIn, 'A1').constraints.maxAiWords).toBe(9)
 expect(adaptScene(hotelCheckIn, 'C1').constraints.strategy).toContain('implicit intent')
 ```
 
-- [ ] **Step 2: Run the focused tests**
+- [x] **Step 2: Run the focused tests**
 
 Run: `pnpm test -- src/domain/scenes/adapt-scene.test.ts src/content/scenes/catalog.test.ts`  
 Expected: FAIL because the catalog and adapter are absent.
 
-- [ ] **Step 3: Implement typed scene definitions and seven six-scene modules**
+- [x] **Step 3: Implement typed scene definitions and seven six-scene modules**
 
 Each scene receives a stable ID, slug, version, bilingual title, task summary, learner and AI roles, estimated minutes, recommended turns, three measurable goals, per-level keywords/examples/opening lines, level constraints, image key, and published status. Health/emergency scenes include the non-advice safety note.
 
-- [ ] **Step 4: Implement level adaptation**
+- [x] **Step 4: Implement level adaptation**
 
 ```ts
 export function adaptScene(
@@ -243,12 +243,12 @@ export function adaptScene(
 }
 ```
 
-- [ ] **Step 5: Verify content invariants**
+- [x] **Step 5: Verify content invariants**
 
 Run: `pnpm test -- src/domain/scenes/adapt-scene.test.ts src/content/scenes/catalog.test.ts`  
 Expected: PASS with exactly 42 unique IDs and slugs, 7 categories, and complete A1–C1 mappings.
 
-- [ ] **Step 6: Commit the content model**
+- [x] **Step 6: Commit the content model**
 
 ```bash
 git add src/domain/scenes src/content/scenes
