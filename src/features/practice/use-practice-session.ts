@@ -19,6 +19,8 @@ import {
 } from '@/infrastructure/audio/browser-recorder'
 import { createIndexedDbRepositories } from '@/infrastructure/persistence/repositories'
 
+import { submitTurn as submitTurnToApi } from './turn-api-client'
+
 interface SpeechRecognitionResultEventLike {
   results: ArrayLike<{ 0: { transcript: string }; isFinal: boolean }>
 }
@@ -64,6 +66,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
   const elapsedTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const finishingRef = useRef(false)
   const sessionRef = useRef<PracticeSession | null>(null)
+  const idempotencyRef = useRef<{ fingerprint: string; key: string } | null>(null)
 
   const clearElapsedTimer = useCallback(() => {
     if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current)
@@ -196,16 +199,38 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     setMachine((current) => transitionPractice(current, { type: 'SUBMIT' }))
     setMachine((current) => transitionPractice(current, { type: 'SUBMISSION_ACCEPTED' }))
     try {
-      const result = await localCoach.nextTurn({
-        scene,
-        learnerText,
-        history: turns.flatMap((turn) => [
+      const history = turns.flatMap((turn) => [
           { speaker: 'learner' as const, text: turn.learnerText },
           { speaker: 'ai' as const, text: turn.aiText },
-        ]).slice(-8),
-        completedGoalIds: sessionRef.current?.completedGoals ?? [],
-        turnIndex,
-      })
+        ]).slice(-8)
+      const completedGoalIds = sessionRef.current?.completedGoals ?? []
+      const fingerprint = `${sessionId}:${turnIndex}:${learnerText}`
+      if (idempotencyRef.current?.fingerprint !== fingerprint) {
+        idempotencyRef.current = {
+          fingerprint,
+          key: globalThis.crypto?.randomUUID?.() ?? '00000000-0000-4000-8000-000000000000',
+        }
+      }
+      let result: ConversationResult
+      try {
+        result = await submitTurnToApi({
+          scene,
+          transcript: learnerText,
+          audio: audio?.blob,
+          turnIndex,
+          history,
+          completedGoalIds,
+          idempotencyKey: idempotencyRef.current.key,
+        })
+      } catch {
+        result = await localCoach.nextTurn({
+          scene,
+          learnerText,
+          history,
+          completedGoalIds,
+          turnIndex,
+        })
+      }
       const now = new Date().toISOString()
       const turn: PracticeTurn = {
         id: createId('turn'),
@@ -236,12 +261,13 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       setAiReply(result.reply.text)
       setAiHint(result.reply.hintZh)
       setAudio(null)
+      idempotencyRef.current = null
       setMachine((current) => transitionPractice(current, { type: 'RESULT_RECEIVED' }))
       void browserTts.speak(result.reply.text).catch(() => undefined)
     } catch {
       setMachine((current) => transitionPractice(current, { type: 'FAIL', code: 'AI_UNAVAILABLE', message: '这一轮暂时没有处理成功，请重试或修改文字。' }))
     }
-  }, [machine.draftTranscript, machine.turnIndex, scene, sessionId, turns])
+  }, [audio, machine.draftTranscript, machine.turnIndex, scene, sessionId, turns])
 
   const completeSession = useCallback(async () => {
     setMachine((current) => transitionPractice(current, { type: 'COMPLETE' }))

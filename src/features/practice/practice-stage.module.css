@@ -16,6 +16,8 @@
 .dialogue, .stage > .sheet, .firstHint, .review, .error, .processing, .completeButton { margin-right: 18px; margin-left: 18px; }
 .dialogue { padding: 24px 0 20px; }
 .speakerLine { display: flex; align-items: center; justify-content: space-between; color: var(--color-atlantic-700); font-size: .7rem; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }
+.speakerLine > div { display: flex; gap: 8px; align-items: center; }
+.speakerLine em { border-radius: var(--radius-pill); padding: 6px 9px; background: var(--color-sky-50); color: var(--color-atlantic-700); font-size: .62rem; font-style: normal; letter-spacing: .02em; text-transform: none; }
 .speakerLine button { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid var(--color-border); border-radius: 50%; background: var(--color-white); color: var(--color-atlantic-800); cursor: pointer; }
 .dialogue blockquote { margin: 12px 0 14px; color: var(--color-atlantic-950); font-family: var(--font-display); font-size: clamp(2.05rem, 9.4vw, 3.2rem); font-weight: 700; line-height: .98; letter-spacing: -.035em; }
 .hint { margin: 0; color: var(--color-ink-500); font-size: .86rem; line-height: 1.65; }

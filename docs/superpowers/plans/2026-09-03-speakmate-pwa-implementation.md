@@ -565,7 +565,7 @@ git commit -m "feat: complete local speaking practice loop"
 - Consumes: `ConversationInput`, `ConversationResult`, local coach, session context, and audio Blob.
 - Produces: `createConversationProvider(env)`, `transcribeWithCloudflare()`, `generateWithCloudflare()`, three `/api/v1` endpoints, and `submitTurn()`.
 
-- [ ] **Step 1: Write cost-guard and route contract tests**
+- [x] **Step 1: Write cost-guard and route contract tests**
 
 ```ts
 expect(createConversationProvider({ AI_MODE: 'auto' }).kind).toBe('local')
@@ -576,33 +576,33 @@ expect((await postTurn(overTwoMegabytes)).status).toBe(413)
 expect((await postTurn(validTextOnly)).provider).toBe('local')
 ```
 
-- [ ] **Step 2: Confirm red state**
+- [x] **Step 2: Confirm red state**
 
 Run: `pnpm test -- src/infrastructure/ai/provider-factory.test.ts src/app/api/v1/turns/route.test.ts`  
 Expected: FAIL because providers and routes are absent.
 
-- [ ] **Step 3: Implement strict environment parsing and model whitelist**
+- [x] **Step 3: Implement strict environment parsing and model whitelist**
 
 Allow only `@cf/openai/whisper`, `@cf/openai/whisper-large-v3-turbo`, and `@cf/zai-org/glm-4.7-flash`. Missing credentials select local mode. Never accept a model identifier from the browser.
 
-- [ ] **Step 4: Implement Cloudflare ASR and LLM calls**
+- [x] **Step 4: Implement Cloudflare ASR and LLM calls**
 
 Send binary audio to the ASR endpoint and structured messages to the LLM endpoint. Abort ASR after 12 seconds and LLM after 15 seconds. Limit history to eight turns, transcript to 500 characters, completion to 420 tokens, and repair invalid structured output once.
 
-- [ ] **Step 5: Implement Route Handlers and fallback semantics**
+- [x] **Step 5: Implement Route Handlers and fallback semantics**
 
 Validate multipart input with Zod, generate `requestId`, enforce 2 MB, support text-only requests, and return the common error structure. In `auto`, treat 429, capacity errors, timeouts, 5xx, and malformed output as local-fallback triggers.
 
-- [ ] **Step 6: Connect the practice UI**
+- [x] **Step 6: Connect the practice UI**
 
 The UI displays `基础反馈模式` only when `degraded=true`; it does not expose vendor names. Retrying reuses the same idempotency key until success or a changed learner input.
 
-- [ ] **Step 7: Verify cloud and local contracts**
+- [x] **Step 7: Verify cloud and local contracts**
 
 Run: `pnpm test -- src/infrastructure/ai/provider-factory.test.ts src/app/api/v1/turns/route.test.ts && pnpm typecheck && pnpm build`  
 Expected: PASS with mocked Cloudflare success, 429, timeout, invalid JSON, and missing-secret cases; build succeeds without secrets.
 
-- [ ] **Step 8: Commit the optional real-AI path**
+- [x] **Step 8: Commit the optional real-AI path**
 
 ```bash
 git add src/infrastructure/ai src/app/api src/features/practice .env.example

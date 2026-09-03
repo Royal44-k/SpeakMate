@@ -55,7 +55,7 @@ export function PracticeStage({
       </section>
 
       <section className={styles.dialogue} aria-live="polite">
-        <div className={styles.speakerLine}><span>AI · {scene.aiRole}</span><button type="button" aria-label="播放 AI 回复" onClick={() => void practice.speakReply().catch(() => undefined)}><Headphones aria-hidden size={21} /></button></div>
+        <div className={styles.speakerLine}><span>AI · {scene.aiRole}</span><div>{practice.latestResult?.degraded ? <em>基础反馈模式</em> : null}<button type="button" aria-label="播放 AI 回复" onClick={() => void practice.speakReply().catch(() => undefined)}><Headphones aria-hidden size={21} /></button></div></div>
         <blockquote>“{practice.aiReply}”</blockquote>
         <p className={styles.hint}>{practice.aiHint}</p>
       </section>
