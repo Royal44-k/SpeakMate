@@ -750,38 +750,40 @@ git commit -m "test: verify mobile PWA experience and design fidelity"
 - Consumes: verified production build and a user-authenticated Vercel Hobby account.
 - Produces: one public `.vercel.app` deployment URL and a deployment guide that cannot enable billing accidentally.
 
-- [ ] **Step 1: Add explicit zero-billing deployment configuration**
+- [x] **Step 1: Add explicit zero-billing deployment configuration**
 
 Configure Node.js runtime, security headers, service-worker no-cache headers, and a single nearby function region when supported by Hobby. Do not configure analytics, speed insights, cron, paid storage, marketplace integrations, or custom domains.
 
-- [ ] **Step 2: Write deployment guard documentation**
+- [x] **Step 2: Write deployment guard documentation**
 
 `DEPLOYMENT.md` must require verifying the account says `Hobby`, declining Pro trials, leaving paid integrations disabled, setting no payment method, and deploying first with no environment variables. It must explain that Cloudflare/Supabase Free credentials are optional and entered only in Vercel Dashboard.
 
-- [ ] **Step 3: Run the release build locally**
+- [x] **Step 3: Run the release build locally**
 
 Run: `pnpm verify && pnpm test:e2e`  
 Expected: PASS from a clean production build with no secrets.
 
-- [ ] **Step 4: Inspect Vercel CLI authentication and deploy a preview**
+- [x] **Step 4: Inspect Vercel CLI authentication and deploy a preview**
 
 Run: `vercel whoami`  
 Expected: an authenticated personal Hobby account. Then run `vercel --yes` only after confirming the linked scope is not a paid team.
 
-- [ ] **Step 5: Verify the preview deployment**
+- [x] **Step 5: Verify the preview deployment**
 
 Check HTTPS, `/api/v1/health`, `/manifest.webmanifest`, `/sw.js`, app icons, first-session local fallback, refresh recovery, console errors, mobile viewport, and install page. A failed online check blocks production promotion.
 
-- [ ] **Step 6: Promote the verified deployment without enabling paid resources**
+- [x] **Step 6: Promote the verified deployment without enabling paid resources**
+
+  Note: Vercel assigned the first CLI deployment directly to Production, so no separate promotion was required.
 
 Run: `vercel --prod --yes`  
 Expected: a `.vercel.app` production URL on the same Hobby scope. Do not purchase or attach a domain.
 
-- [ ] **Step 7: Re-run online smoke tests and record evidence**
+- [x] **Step 7: Re-run online smoke tests and record evidence**
 
 Run Playwright against `PLAYWRIGHT_BASE_URL=<production-url>` for the first-session and PWA specs. Record the final URL, deployment timestamp, git SHA, Vercel plan, AI mode, and known China-network limitation in `DEPLOYMENT.md`.
 
-- [ ] **Step 8: Commit deployment documentation**
+- [x] **Step 8: Commit deployment documentation**
 
 ```bash
 git add vercel.json DEPLOYMENT.md README.md

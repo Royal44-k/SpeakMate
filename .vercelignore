@@ -1,0 +1,9 @@
+docs/
+design-system/
+scripts/
+tests/
+design-qa.md
+APP_SPEC.md
+playwright-report/
+test-results/
+coverage/
