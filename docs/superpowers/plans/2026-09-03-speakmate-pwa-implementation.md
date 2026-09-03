@@ -119,33 +119,12 @@ SpeakMate/
 - Create: `src/app/globals.css`
 
 **Interfaces:**
-- Consumes: Node.js 22 and pnpm 10.
+- Consumes: Node.js 22 and pnpm 11.
 - Produces: `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`, and aggregate `pnpm verify` commands.
 
-- [ ] **Step 1: Write the configuration smoke test**
+- [x] **Step 1: Add configuration-only bootstrap files**
 
-```ts
-// src/app/app-config.test.ts
-import { describe, expect, it } from 'vitest'
-import packageJson from '../../package.json'
-
-describe('application configuration', () => {
-  it('exposes the full verification command', () => {
-    expect(packageJson.scripts.verify).toBe(
-      'pnpm lint && pnpm typecheck && pnpm test && pnpm build',
-    )
-  })
-})
-```
-
-- [ ] **Step 2: Run the test and confirm the red state**
-
-Run: `pnpm test -- src/app/app-config.test.ts`  
-Expected: FAIL because the project scripts and Vitest configuration do not exist.
-
-- [ ] **Step 3: Add the application manifests and minimal root layout**
-
-Create a private package with exact script names, TypeScript strict mode, the `@/*` alias, Next image formats AVIF/WebP, security response headers, and a root layout that sets `lang="zh-CN"`, viewport safe-area support, metadata title, and the service-worker registration component.
+Create `package.json`, TypeScript, Vitest, ESLint, Prettier, Next.js, environment-example, and ignore configuration. Configuration is bootstrap infrastructure rather than product behavior; the first application behavior remains test-first.
 
 ```json
 {
@@ -164,17 +143,43 @@ Create a private package with exact script names, TypeScript strict mode, the `@
 }
 ```
 
-- [ ] **Step 4: Install dependencies without enabling paid services**
+- [x] **Step 2: Install dependencies without enabling paid services**
 
 Run: `pnpm install`  
 Expected: lockfile is created and no install script requests cloud credentials.
 
-- [ ] **Step 5: Run the foundation checks**
+- [x] **Step 3: Write the first page behavior test**
 
-Run: `pnpm test -- src/app/app-config.test.ts && pnpm typecheck && pnpm build`  
+```tsx
+// src/app/page.test.tsx
+import { render, screen } from '@testing-library/react'
+import HomePage from './page'
+
+it('routes a new visitor toward the guest onboarding flow', () => {
+  render(<HomePage />)
+  expect(screen.getByRole('heading', { name: '随时开口，练真实英语' })).toBeVisible()
+  expect(screen.getByRole('link', { name: '开始免费练习' })).toHaveAttribute(
+    'href',
+    '/welcome',
+  )
+})
+```
+
+- [x] **Step 4: Run the page test and confirm the red state**
+
+Run: `pnpm test -- src/app/page.test.tsx`
+Expected: FAIL because `src/app/page.tsx` does not exist.
+
+- [x] **Step 5: Add the minimal root layout and welcome page**
+
+Create a root layout that sets `lang="zh-CN"`, viewport safe-area support and SpeakMate metadata. Create the tested heading and onboarding link in `page.tsx`. Configure Next image formats AVIF/WebP and baseline security response headers.
+
+- [x] **Step 6: Run the foundation checks**
+
+Run: `pnpm test -- src/app/page.test.tsx && pnpm typecheck && pnpm build`
 Expected: PASS; the production build contains `/` and no environment-variable error.
 
-- [ ] **Step 6: Commit the foundation**
+- [x] **Step 7: Commit the foundation**
 
 ```bash
 git add package.json pnpm-lock.yaml pnpm-workspace.yaml tsconfig.json next-env.d.ts next.config.ts eslint.config.mjs .prettierrc.json .gitignore .env.example vitest.config.ts src
@@ -791,4 +796,3 @@ git commit -m "docs: record zero-billing Vercel deployment"
 - PWA installation, iPhone behavior, visual fidelity, privacy, no-audio-retention, and A1–C1 content have explicit evidence gates.
 - Native App Intents remain intentionally outside the PWA implementation; stable deep links and Manifest shortcuts preserve the future integration boundary.
 - Deployment completion requires a real online URL and online smoke tests, not only a local build.
-
