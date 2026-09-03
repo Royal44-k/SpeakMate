@@ -1,0 +1,12 @@
+.control { padding: 14px 18px max(16px, env(safe-area-inset-bottom)); border-top: 1px solid var(--color-border); background: color-mix(in srgb, var(--color-paper) 94%, transparent); backdrop-filter: blur(18px); }
+.controlsRow { display: grid; grid-template-columns: 62px minmax(0, 1fr) 48px; gap: 13px; align-items: center; max-width: var(--content-max); margin: 0 auto; }
+.recordButton, .recordingButton { position: relative; display: grid; width: 62px; height: 62px; place-items: center; border: 0; border-radius: 50%; background: var(--color-coral-500); box-shadow: var(--shadow-coral); color: var(--color-ink-950); cursor: pointer; touch-action: none; }
+.recordingButton { background: var(--color-atlantic-950); color: var(--color-white); transform: scale(calc(1 + var(--amplitude, 0) * .055)); }
+.recordButton:disabled { cursor: wait; opacity: .62; box-shadow: none; }
+.caption { display: grid; gap: 3px; min-width: 0; }
+.caption strong { color: var(--color-ink-950); font-size: .88rem; }
+.caption span { overflow: hidden; color: var(--color-ink-500); font-size: .73rem; text-overflow: ellipsis; white-space: nowrap; }
+.keyboardButton { display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid var(--color-border); border-radius: 50%; background: var(--color-paper); color: var(--color-atlantic-800); cursor: pointer; }
+.keyboardButton:disabled { cursor: wait; opacity: .45; }
+.notice { max-width: var(--content-max); margin: 0 auto 10px; color: var(--color-danger); font-size: .78rem; line-height: 1.5; }
+@media (prefers-reduced-motion: no-preference) { .recordButton, .recordingButton { transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out); } }

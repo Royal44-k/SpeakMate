@@ -504,7 +504,7 @@ git commit -m "feat: add onboarding and adaptive scene discovery"
 - Consumes: adapted scenes, session repositories, visual shell, and `ConversationResult` contract.
 - Produces: `transitionPractice(state, event)`, `createRecorder()`, `browserTts`, `localCoach.nextTurn()`, `SpeechControl`, and the active practice route.
 
-- [ ] **Step 1: Write state, local-coach, and speech-control tests**
+- [x] **Step 1: Write state, local-coach, and speech-control tests**
 
 ```ts
 expect(transitionPractice(idle, { type: 'PRESS_RECORD' }).status).toBe(
@@ -515,33 +515,33 @@ expect(localResult.feedback.issueTags).toHaveLength(0)
 expect(localResult.provider).toBe('local')
 ```
 
-- [ ] **Step 2: Confirm red state**
+- [x] **Step 2: Confirm red state**
 
 Run: `pnpm test -- src/domain/practice/machine.test.ts src/domain/ai/local-coach.test.ts src/components/speech-control/speech-control.test.tsx`  
 Expected: FAIL because the practice engine is absent.
 
-- [ ] **Step 3: Implement the pure state machine and deterministic coach**
+- [x] **Step 3: Implement the pure state machine and deterministic coach**
 
 Support every transition in the approved spec. The local coach matches goal keywords, detects a bounded set of level-appropriate grammar/clarity patterns, returns no more than two issue tags, and always produces a scenario-valid next reply.
 
-- [ ] **Step 4: Implement browser recording safely**
+- [x] **Step 4: Implement browser recording safely**
 
 Probe MIME support in order, request audio-only media, target 48 kbps, stop at 30 seconds, reject under 0.8 seconds or over 2 MB, expose amplitude samples, stop all tracks, and revoke all Blob URLs after use.
 
-- [ ] **Step 5: Implement browser TTS**
+- [x] **Step 5: Implement browser TTS**
 
 Select an English device voice, support 0.8/1/1.15 rate, cancel before recording and on route exit, and surface playback failure without blocking text.
 
-- [ ] **Step 6: Build the Dialogue Stage practice UI**
+- [x] **Step 6: Build the Dialogue Stage practice UI**
 
 Match the selected visual hierarchy: Atlantic title band, 16:9 scene strip, large English AI line, Chinese situational hint, collapsed correction affordance, coral thumb-zone speech control, and keyboard alternative. Add click-to-toggle recording for accessibility and long-press behavior for touch users.
 
-- [ ] **Step 7: Verify practice behavior**
+- [x] **Step 7: Verify practice behavior**
 
 Run: `pnpm test -- src/domain/practice/machine.test.ts src/domain/ai/local-coach.test.ts src/components/speech-control/speech-control.test.tsx && pnpm typecheck`  
 Expected: PASS for permission denial, cancellation, silence, timeout, oversize, TTS cancellation, feedback limit, and illegal state transitions.
 
-- [ ] **Step 8: Commit the offline-complete practice loop**
+- [x] **Step 8: Commit the offline-complete practice loop**
 
 ```bash
 git add src/domain/practice src/domain/ai src/infrastructure/audio src/components/speech-control src/components/feedback-sheet src/features/practice src/app/session
