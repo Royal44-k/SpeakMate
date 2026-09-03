@@ -109,12 +109,12 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 - 生产环境没有意外的 Cloudflare、Supabase 或其他付费资源。
 - Vercel 最近一小时错误日志无新增应用错误。
 
-## 8. 2026-09-03 首次生产发布记录
+## 8. 2026-09-03 生产发布记录
 
 - 生产 URL：<https://speakmate-pwa.vercel.app>
-- Vercel 部署 ID：`dpl_5W8H97z5TUymw1AMvmCJtyU5WWdg`
+- 当前 Vercel 部署 ID：`dpl_AUENsa2CW3fP76zjdS65QxNUcvuM`
 - 账户：个人 Hobby；环境变量列表为空，未启用付费云资源。
-- 状态：`READY`；Next.js 函数部署到 `sin1`。
+- 状态：`READY`；Node.js 固定为 22.x，Next.js 函数部署到 `sin1`。
 - 远端健康检查：200，`version: 2.0.0`，`aiMode: local`。
 - 远端资源检查：首页、欢迎页、场景库、动态会话页、manifest、Service Worker、能力接口均返回 200。
 - 远端对话检查：`POST /api/v1/turns` 返回 200，并由 `local` provider 生成下一轮回复。
