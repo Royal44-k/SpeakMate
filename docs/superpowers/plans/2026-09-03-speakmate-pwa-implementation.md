@@ -270,7 +270,7 @@ git commit -m "feat: add adaptive forty-two scene catalog"
 - Consumes: scene IDs and versions from Task 2.
 - Produces: `ProfileRepository`, `SessionRepository`, `TurnRepository`, `FavoriteRepository`, `ensureGuestProfile()`, `findRecoverableSession()`, `exportLearnerData()`, and `clearLearnerData()`.
 
-- [ ] **Step 1: Write in-memory repository contract tests**
+- [x] **Step 1: Write in-memory repository contract tests**
 
 ```ts
 const profile = await repositories.profiles.ensureGuestProfile()
@@ -281,25 +281,25 @@ await repositories.sessions.save({ ...activeSession, status: 'completed' })
 expect(await repositories.sessions.findRecoverable()).toBeNull()
 ```
 
-- [ ] **Step 2: Confirm the tests fail**
+- [x] **Step 2: Confirm the tests fail**
 
 Run: `pnpm test -- src/infrastructure/persistence/repositories.test.ts`  
 Expected: FAIL because repository interfaces and implementations do not exist.
 
-- [ ] **Step 3: Implement versioned IndexedDB and memory test adapter**
+- [x] **Step 3: Implement versioned IndexedDB and memory test adapter**
 
 Use database `speakmate-v1` with explicit version 1 stores: `profile`, `sessions`, `turns`, `favorites`, `settings`, `outbox`. Preserve ISO timestamps and UUID identifiers. Do not create an audio store.
 
-- [ ] **Step 4: Implement guest identity and recovery behavior**
+- [x] **Step 4: Implement guest identity and recovery behavior**
 
 `ensureGuestProfile()` creates one durable device profile; `findRecoverableSession()` returns the most recently updated active session; export returns a schema-versioned JSON object; clear closes and deletes only `speakmate-v1`.
 
-- [ ] **Step 5: Run persistence and type checks**
+- [x] **Step 5: Run persistence and type checks**
 
 Run: `pnpm test -- src/infrastructure/persistence/repositories.test.ts src/features/profile/profile-store.test.ts && pnpm typecheck`  
 Expected: PASS with fake IndexedDB in tests and no audio persistence API.
 
-- [ ] **Step 6: Commit local-first persistence**
+- [x] **Step 6: Commit local-first persistence**
 
 ```bash
 git add src/domain/learning src/domain/practice src/infrastructure/persistence src/features/profile
