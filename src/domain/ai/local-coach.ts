@@ -5,44 +5,6 @@ import type {
   FeedbackIssueTag,
 } from './contracts'
 
-const CATEGORY_REPLIES: Record<string, string[]> = {
-  travel: [
-    'Welcome. May I have the name on the reservation, please?',
-    'Thank you. Could I see your passport or booking confirmation?',
-    'Your room is ready. Would you like to ask about breakfast or check-out?',
-  ],
-  dining: [
-    'Of course. What would you like to order today?',
-    'Would you like anything changed or left out?',
-    'Is there anything else I can help you with?',
-  ],
-  daily: [
-    'Certainly. Could you tell me a little more about what you need?',
-    'I understand. What option would work best for you?',
-    'That sounds clear. Shall we confirm the details?',
-  ],
-  work: [
-    'Thanks for explaining. What outcome would you like from this discussion?',
-    'What is the main reason behind your suggestion?',
-    'That is helpful. How should we move forward?',
-  ],
-  social: [
-    'Nice to meet you. What brings you here today?',
-    'That sounds interesting. Could you tell me more?',
-    'I enjoyed our conversation. Would you like to stay in touch?',
-  ],
-  study: [
-    'That is a good starting point. Which part would you like to explore?',
-    'What example could you use to support that idea?',
-    'How would you summarize your conclusion?',
-  ],
-  emergency: [
-    'I understand. Please tell me what happened and where you are now.',
-    'Thank you. What is the most urgent detail we should record?',
-    'I have the key information. Is there anything important to add?',
-  ],
-}
-
 interface Correction {
   pattern: RegExp
   replacement: string
@@ -90,17 +52,54 @@ function applyCorrections(text: string, level: string) {
 
 function findNewCompletedGoalIds(input: ConversationInput): string[] {
   const normalized = input.learnerText.toLowerCase()
-  const matchesKeyword = input.scene.keywords.some((keyword) =>
-    normalized.includes(keyword.toLowerCase()),
-  )
-  const nextGoal = input.scene.goals.find(
-    (goal) => !input.completedGoalIds.includes(goal.id),
-  )
+  const completed = new Set(input.completedGoalIds)
 
-  if (!nextGoal || (!matchesKeyword && input.turnIndex < 2)) {
-    return [...input.completedGoalIds]
+  for (const [goalIndex, goal] of input.scene.goals.entries()) {
+    if (completed.has(goal.id)) continue
+    const goalKeywords = [input.scene.keywords[goalIndex]].filter(Boolean)
+    if (goalKeywords.some((keyword) => includesWholeKeyword(normalized, keyword))) {
+      completed.add(goal.id)
+    }
   }
-  return [...new Set([...input.completedGoalIds, nextGoal.id])]
+
+  return [...completed]
+}
+
+function includesWholeKeyword(text: string, keyword: string) {
+  const escaped = keyword
+    .toLowerCase()
+    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escaped}(?=$|[^\\p{L}\\p{N}])`, 'iu').test(text)
+}
+
+function buildReply(input: ConversationInput, completedGoalIds: string[]) {
+  const nextGoalIndex = input.scene.goals.findIndex(
+    (goal) => !completedGoalIds.includes(goal.id),
+  )
+  const keyword = input.scene.keywords[
+    Math.max(0, nextGoalIndex) % input.scene.keywords.length
+  ]
+  const templates = {
+    A1: `Please tell me about ${keyword} now.`,
+    A2: `Could you tell me more about ${keyword}, please?`,
+    B1: `Thank you. Could you explain the ${keyword} detail and what you need next?`,
+    B2: `Thank you. Could you clarify the ${keyword} detail and explain which option would work best for you?`,
+    C1: `Thank you. Could you clarify the ${keyword} detail, including any constraints, priorities, or trade-offs we should consider next?`,
+  } as const
+  const closing = {
+    A1: 'Thank you. Is there anything else you need?',
+    A2: 'Thank you. Is there anything else you would like to add?',
+    B1: 'Thank you. We have covered the key points. Is there anything else to confirm?',
+    B2: 'Thank you. We have covered the priorities. Is there any final detail you would like to clarify?',
+    C1: 'Thank you. We have covered the competing priorities and practical constraints. Is there any final nuance we should clarify?',
+  } as const
+
+  return {
+    text: nextGoalIndex < 0 ? closing[input.scene.level] : templates[input.scene.level],
+    hintZh: nextGoalIndex < 0
+      ? '本场景的关键任务已覆盖，可以结束练习或再补充一个细节。'
+      : `下一步试着说明：${input.scene.goals[nextGoalIndex].labelZh}。可参考关键词 “${keyword}”。`,
+  }
 }
 
 export const localCoach: ConversationProvider = {
@@ -113,16 +112,13 @@ export const localCoach: ConversationProvider = {
       input.scene.level,
     )
     const completedGoalIds = findNewCompletedGoalIds(input)
-    const replies = CATEGORY_REPLIES[input.scene.category] ?? CATEGORY_REPLIES.daily
-    // The scene opening line is already on screen before the learner speaks,
-    // so the first processed learner turn must advance to the next prompt.
-    const reply = replies[Math.min(input.turnIndex + 1, replies.length - 1)]
+    const reply = buildReply(input, completedGoalIds)
     const hasCorrection = tags.length > 0
 
     const result: ConversationResult = {
       reply: {
-        text: reply,
-        hintZh: '听清问题后，用一句完整英文回应；需要时可参考下方关键词。',
+        text: reply.text,
+        hintZh: reply.hintZh,
         emotion: input.turnIndex === 0 ? 'warm' : 'curious',
       },
       feedback: {

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import { getSceneBySlug } from '@/content/scenes/catalog'
+import { getSceneBySlug, SCENE_CATALOG } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
+import { CEFR_LEVELS } from '@/domain/scenes/types'
 
 import { localCoach } from './local-coach'
 
@@ -47,5 +48,38 @@ describe('localCoach', () => {
     })
 
     expect(result.progress.completedGoalIds.length).toBeGreaterThan(0)
+  })
+
+  it('does not complete a goal merely because several turns have passed', async () => {
+    const result = await localCoach.nextTurn({
+      scene: hotel,
+      learnerText: 'I am still thinking about my answer.',
+      history: [],
+      completedGoalIds: [],
+      turnIndex: 4,
+    })
+
+    expect(result.progress.completedGoalIds).toEqual([])
+  })
+
+  it('keeps every scene and level inside its vocabulary and response constraints', async () => {
+    for (const definition of SCENE_CATALOG) {
+      for (const level of CEFR_LEVELS) {
+        const scene = adaptScene(definition, level)
+        const result = await localCoach.nextTurn({
+          scene,
+          learnerText: `I would like to discuss ${scene.keywords[0]}.`,
+          history: [],
+          completedGoalIds: [],
+          turnIndex: 0,
+        })
+        const wordCount = result.reply.text.trim().split(/\s+/).length
+
+        expect(result.progress.completedGoalIds, `${scene.slug} ${level}`).toContain(scene.goals[0].id)
+        expect(result.reply.text.toLowerCase(), `${scene.slug} ${level}`).toContain(scene.keywords[1].toLowerCase())
+        expect(wordCount, `${scene.slug} ${level}`).toBeGreaterThanOrEqual(scene.constraints.minAiWords)
+        expect(wordCount, `${scene.slug} ${level}`).toBeLessThanOrEqual(scene.constraints.maxAiWords)
+      }
+    }
   })
 })
