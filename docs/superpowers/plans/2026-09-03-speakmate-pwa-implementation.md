@@ -326,7 +326,7 @@ git commit -m "feat: add guest-first local persistence"
 - Consumes: root layout from Task 1.
 - Produces: installable manifest, service-worker registration, offline shell behavior, `InstallPrompt`, and `/install` instructions.
 
-- [ ] **Step 1: Write manifest and platform-branch tests**
+- [x] **Step 1: Write manifest and platform-branch tests**
 
 ```ts
 expect(manifest().display).toBe('standalone')
@@ -337,29 +337,29 @@ expect(manifest().shortcuts?.map((item) => item.url)).toEqual([
 expect(screen.getByText('打开 Safari 的分享菜单')).toBeVisible()
 ```
 
-- [ ] **Step 2: Confirm red state**
+- [x] **Step 2: Confirm red state**
 
 Run: `pnpm test -- src/app/manifest.test.ts src/components/install-prompt/install-prompt.test.tsx`  
 Expected: FAIL because manifest and install components are absent.
 
-- [ ] **Step 3: Generate original app icons and add the manifest**
+- [x] **Step 3: Generate original app icons and add the manifest**
 
 Generate a simple Atlantic-blue SpeakMate icon with a coral five-bar speech waveform as a real raster asset, export all required sizes, and declare standalone portrait behavior, theme colors, scope, categories, and two shortcuts.
 
-- [ ] **Step 4: Implement the service worker**
+- [x] **Step 4: Implement the service worker**
 
 Use cache version `speakmate-shell-v1`; cache static shell and scene metadata; use network-first navigation, cache-first immutable assets, stale-while-revalidate scene content, and never intercept `/api/`, audio blobs, auth callbacks, or personal exports.
 
-- [ ] **Step 5: Implement platform-specific installation guidance**
+- [x] **Step 5: Implement platform-specific installation guidance**
 
 Chromium uses a captured `beforeinstallprompt` event; iOS displays Safari share-sheet instructions; already-standalone mode hides the prompt; dismissal persists for 14 days and auto-prompting stops after three impressions.
 
-- [ ] **Step 6: Verify PWA assets and tests**
+- [x] **Step 6: Verify PWA assets and tests**
 
 Run: `pnpm test -- src/app/manifest.test.ts src/components/install-prompt/install-prompt.test.tsx && pnpm build`  
 Expected: PASS; build exposes `/manifest.webmanifest`, `/sw.js`, icons, and `/install`.
 
-- [ ] **Step 7: Commit the installable shell**
+- [x] **Step 7: Commit the installable shell**
 
 ```bash
 git add src/app/manifest.ts src/app/install src/components/install-prompt public next.config.ts
