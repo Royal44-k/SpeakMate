@@ -280,6 +280,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
   }, [])
 
   return {
+    sessionId,
     machine,
     ready,
     turns,

@@ -1,0 +1,16 @@
+.page { width: min(100%, var(--content-max)); min-height: 100dvh; margin: 0 auto; padding: max(38px, env(safe-area-inset-top)) 22px 38px; background: var(--color-paper); }
+.eyebrow { margin: 0 0 10px; color: var(--color-coral-600); font-family: var(--font-display); font-weight: 800; letter-spacing: .12em; }
+.page h1 { max-width: 8ch; margin: 0; color: var(--color-atlantic-950); font-family: var(--font-display); font-size: 3.5rem; line-height: .94; letter-spacing: -.045em; }
+.intro { color: var(--color-ink-500); line-height: 1.7; }
+.page form { display: grid; gap: 10px; margin: 28px 0; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 18px; background: var(--color-white); }
+.page form label { font-size: .8rem; font-weight: 750; }
+.page form input { min-height: 48px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0 12px; font: inherit; }
+.page form button { display: inline-flex; min-height: 50px; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: var(--radius-pill); background: var(--color-coral-500); font-weight: 850; cursor: pointer; }
+.page form button:disabled { opacity: .55; cursor: wait; }
+.page form p { margin: 3px 0 0; color: var(--color-ink-500); font-size: .74rem; line-height: 1.5; }
+.localOnly { display: grid; grid-template-columns: 28px 1fr; gap: 12px; margin: 28px 0; border-radius: var(--radius-md); padding: 16px; background: var(--color-sky-50); color: var(--color-atlantic-800); }
+.localOnly h2, .localOnly p { margin: 0; }
+.localOnly h2 { font-size: 1rem; }
+.localOnly p { margin-top: 4px; font-size: .8rem; line-height: 1.6; }
+.status { color: var(--color-success); font-size: .82rem; font-weight: 700; }
+.page > a { display: inline-flex; min-height: 44px; align-items: center; color: var(--color-atlantic-800); font-weight: 800; }

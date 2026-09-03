@@ -31,8 +31,8 @@ export function PracticeStage({
         <span><Check aria-hidden size={34} weight="bold" /></span>
         <p>SESSION COMPLETE</p>
         <h1>这次真的开口了。</h1>
-        <p>练习已保存在本机。完整复盘会在下一阶段生成。</p>
-        <Link href="/practice">返回今日练习</Link>
+        <p>练习已保存在本机，现在可以查看可解释的表达复盘。</p>
+        <Link href={`/session/${practice.sessionId}/report`}>查看本次复盘</Link>
       </main>
     )
   }

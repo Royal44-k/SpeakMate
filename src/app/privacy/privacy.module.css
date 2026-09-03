@@ -1,0 +1,17 @@
+.page { width: min(100%, var(--content-max)); min-height: 100dvh; margin: 0 auto; padding-bottom: max(36px, env(safe-area-inset-bottom)); background: var(--color-paper); }
+.page > header { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: center; padding: max(22px, env(safe-area-inset-top)) 18px 22px; background: var(--color-atlantic-950); color: var(--color-white); }
+.page > header a { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 50%; color: inherit; }
+.page > header p, .page > header h1 { margin: 0; }
+.page > header p { color: var(--color-sky-100); font-family: var(--font-display); font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
+.page > header h1 { margin-top: 2px; font-family: var(--font-display); font-size: 2.35rem; line-height: 1; }
+.promise { display: grid; gap: 10px; margin: 22px 18px 0; }
+.promise article { display: grid; grid-template-columns: 28px 1fr; gap: 11px; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px; background: var(--color-white); color: var(--color-atlantic-800); }
+.promise h2, .promise p { margin: 0; }
+.promise h2 { color: var(--color-ink-950); font-size: .92rem; }
+.promise p { margin-top: 4px; color: var(--color-ink-500); font-size: .77rem; line-height: 1.55; }
+.detail { margin: 24px 18px; }
+.detail h2 { margin: 0 0 8px; font-size: 1rem; }
+.detail p { margin: 0; color: var(--color-ink-500); font-size: .82rem; line-height: 1.7; }
+.page > section:nth-of-type(3) { margin: 26px 18px 0; }
+.page footer { margin: 28px 18px 0; border-top: 1px solid var(--color-border); padding-top: 18px; color: var(--color-ink-500); font-size: .72rem; line-height: 1.65; }
+.page footer p { margin: 0; }

@@ -631,7 +631,7 @@ git commit -m "feat: add zero-billing cloud AI fallback"
 - Consumes: saved sessions/turns, favorites, profile, and optional public Supabase configuration.
 - Produces: `buildSessionReport()`, learning history/statistics, JSON export, destructive-clear confirmation, `AuthAdapter`, and `mergeGuestData()`.
 
-- [ ] **Step 1: Write report, merge, and data-control tests**
+- [x] **Step 1: Write report, merge, and data-control tests**
 
 ```ts
 expect(report.metrics).toEqual(
@@ -642,29 +642,29 @@ expect(mergeGuestData(local, remote).sessions).toHaveLength(2)
 expect(screen.getByRole('button', { name: '永久清空本机数据' })).toBeVisible()
 ```
 
-- [ ] **Step 2: Confirm red state**
+- [x] **Step 2: Confirm red state**
 
 Run: `pnpm test -- src/domain/practice/report.test.ts src/infrastructure/persistence/sync.test.ts src/features/profile/data-controls.test.tsx`  
 Expected: FAIL because reporting and sync are absent.
 
-- [ ] **Step 3: Implement explainable reports and learning center**
+- [x] **Step 3: Implement explainable reports and learning center**
 
 Calculate 0–4 grammar, vocabulary, naturalness, and interaction descriptors from stored feedback and goals. Show best expressions, at most two improvement themes, one next action, history, favorites, and simple weekly practice counts.
 
-- [ ] **Step 4: Implement export and clear controls**
+- [x] **Step 4: Implement export and clear controls**
 
 Export schema-versioned JSON locally. Require typed confirmation `清空` before deleting IndexedDB. Explain that clearing cannot be undone and does not delete a separately synced account unless selected.
 
-- [ ] **Step 5: Implement optional Supabase auth and merge**
+- [x] **Step 5: Implement optional Supabase auth and merge**
 
 When both public variables exist, enable email OTP and RLS-backed sync; otherwise hide the form and show local-only status. Merge by UUID and `updatedAt`; upload local-only entities; never upload audio.
 
-- [ ] **Step 6: Verify reporting and optional configuration**
+- [x] **Step 6: Verify reporting and optional configuration**
 
 Run: `pnpm test -- src/domain/practice/report.test.ts src/infrastructure/persistence/sync.test.ts src/features/profile/data-controls.test.tsx && pnpm build`  
 Expected: PASS both with and without mocked Supabase variables.
 
-- [ ] **Step 7: Commit learner records and sync**
+- [x] **Step 7: Commit learner records and sync**
 
 ```bash
 git add src/domain/practice/report.ts src/features/practice/session-report.tsx src/features/profile src/features/auth src/infrastructure/persistence/sync.ts src/app/session src/app/me src/app/privacy src/app/auth
