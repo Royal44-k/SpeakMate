@@ -48,31 +48,35 @@ export function SpeechControl({
         <p className={styles.notice}>无法使用麦克风，你仍可输入英文继续练习。</p>
       ) : null}
       <div className={styles.controlsRow}>
-        <button
-          type="button"
-          className={isRecording ? styles.recordingButton : styles.recordButton}
-          aria-label={label}
-          disabled={isProcessing}
-          style={{ '--amplitude': Math.max(0, Math.min(1, amplitude)) } as React.CSSProperties}
-          onClick={handleClick}
-          onPointerDown={(event) => {
-            if (event.pointerType === 'mouse' || isProcessing || isRecording) return
-            suppressClick.current = true
-            onStart()
-          }}
-          onPointerUp={(event) => {
-            if (event.pointerType === 'mouse' || !isRecording) return
-            onStop()
-          }}
-        >
-          {isRecording ? <Stop aria-hidden size={29} weight="fill" /> : isProcessing ? <Waveform aria-hidden size={31} /> : <Microphone aria-hidden size={31} weight="fill" />}
-        </button>
+        <div className={styles.voiceRow}>
+          <Waveform className={styles.wave} aria-hidden size={54} weight="duotone" />
+          <button
+            type="button"
+            className={isRecording ? styles.recordingButton : styles.recordButton}
+            aria-label={label}
+            disabled={isProcessing}
+            style={{ '--amplitude': Math.max(0, Math.min(1, amplitude)) } as React.CSSProperties}
+            onClick={handleClick}
+            onPointerDown={(event) => {
+              if (event.pointerType === 'mouse' || isProcessing || isRecording) return
+              suppressClick.current = true
+              onStart()
+            }}
+            onPointerUp={(event) => {
+              if (event.pointerType === 'mouse' || !isRecording) return
+              onStop()
+            }}
+          >
+            {isRecording ? <Stop aria-hidden size={33} weight="fill" /> : isProcessing ? <Waveform aria-hidden size={35} /> : <Microphone aria-hidden size={35} weight="fill" />}
+            <span>{isRecording ? '点击结束' : isProcessing ? '分析中' : '按住说英语'}</span>
+          </button>
+          <Waveform className={styles.wave} aria-hidden size={54} weight="duotone" />
+        </div>
         <div className={styles.caption} aria-live="polite">
-          <strong>{isRecording ? '松开或点击结束' : isProcessing ? '正在处理这一轮' : '按住说话，也可点击开始'}</strong>
-          <span>{isRecording ? formatDuration(elapsedSeconds) : '最长 30 秒，录音不会保存'}</span>
+          <span>{isRecording ? formatDuration(elapsedSeconds) : '最长 30 秒 · 录音不会保存'}</span>
         </div>
         <button type="button" className={styles.keyboardButton} disabled={isProcessing} onClick={onOpenKeyboard} aria-label="改用键盘输入">
-          <Keyboard aria-hidden size={24} />
+          <Keyboard aria-hidden size={22} /><strong>键盘输入</strong>
         </button>
       </div>
     </section>

@@ -114,7 +114,9 @@ export const localCoach: ConversationProvider = {
     )
     const completedGoalIds = findNewCompletedGoalIds(input)
     const replies = CATEGORY_REPLIES[input.scene.category] ?? CATEGORY_REPLIES.daily
-    const reply = replies[Math.min(input.turnIndex, replies.length - 1)]
+    // The scene opening line is already on screen before the learner speaks,
+    // so the first processed learner turn must advance to the next prompt.
+    const reply = replies[Math.min(input.turnIndex + 1, replies.length - 1)]
     const hasCorrection = tags.length > 0
 
     const result: ConversationResult = {

@@ -689,7 +689,7 @@ git commit -m "feat: add reports privacy controls and optional sync"
 - Consumes: complete local-mode product, selected source visual, and production build.
 - Produces: automated user-flow evidence, browser screenshots, combined comparison evidence, and a passing `design-qa.md`.
 
-- [ ] **Step 1: Write end-to-end tests before final polish**
+- [x] **Step 1: Write end-to-end tests before final polish**
 
 ```ts
 test('guest completes a first session without cloud credentials', async ({ page }) => {
@@ -705,33 +705,33 @@ test('guest completes a first session without cloud credentials', async ({ page 
 })
 ```
 
-- [ ] **Step 2: Run E2E and record failures**
+- [x] **Step 2: Run E2E and record failures**
 
 Run: `pnpm test:e2e`  
 Expected: first run may expose missing selectors, responsive overflows, or state recovery defects; each failure is fixed in the owning module rather than bypassed in the test.
 
-- [ ] **Step 3: Verify runtime and responsive behavior**
+- [x] **Step 3: Verify runtime and responsive behavior**
 
 Test Chromium and WebKit projects at 360 × 800, 390 × 844, 393 × 852, 430 × 932, and 768 × 1024. Check onboarding, scene filtering, text and mocked microphone flows, feedback, completion, refresh recovery, offline shell, export, clear, install guidance, safe-area layout, keyboard focus, and reduced motion.
 
-- [ ] **Step 4: Capture implementation evidence**
+- [x] **Step 4: Capture implementation evidence**
 
 Run the production server, set the browser viewport to 390 × 844 with device scale factor 1, open the hotel check-in practice state matching the reference, and capture the content viewport. Record console errors and primary interactions.
 
-- [ ] **Step 5: Create combined visual comparison and run Design QA**
+- [x] **Step 5: Create combined visual comparison and run Design QA**
 
 Place the source visual and browser-rendered implementation in one comparison image. Evaluate typography, spacing/layout rhythm, colors/tokens, image fidelity, copy, accessibility, and polish. Save every P0/P1/P2 iteration and final evidence in `design-qa.md`.
 
-- [ ] **Step 6: Fix every P0/P1/P2 and recapture**
+- [x] **Step 6: Fix every P0/P1/P2 and recapture**
 
 Repeat the same-state 390 × 844 comparison until no actionable P0/P1/P2 remains. P3 suggestions may be recorded as follow-up polish.
 
-- [ ] **Step 7: Run full local verification**
+- [x] **Step 7: Run full local verification**
 
 Run: `pnpm verify && pnpm test:e2e`  
 Expected: all checks pass; `design-qa.md` ends with exactly `final result: passed`.
 
-- [ ] **Step 8: Commit verified product**
+- [x] **Step 8: Commit verified product**
 
 ```bash
 git add playwright.config.ts tests design-qa.md src public

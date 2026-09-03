@@ -16,6 +16,7 @@ export function LearningCenter() {
   const [profile, setProfile] = useState<LearnerProfile | null>(null)
   const [sessions, setSessions] = useState<PracticeSession[]>([])
   const [favorites, setFavorites] = useState<FavoriteExpression[]>([])
+  const [loadedAt] = useState(() => Date.now())
 
   useEffect(() => {
     let active = true
@@ -36,9 +37,9 @@ export function LearningCenter() {
   }, [])
 
   const completedThisWeek = useMemo(() => {
-    const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1_000
+    const cutoff = loadedAt - 7 * 24 * 60 * 60 * 1_000
     return sessions.filter((session) => session.completedAt && new Date(session.completedAt).getTime() >= cutoff).length
-  }, [sessions])
+  }, [loadedAt, sessions])
   const completed = sessions.filter((session) => session.status === 'completed')
 
   return (

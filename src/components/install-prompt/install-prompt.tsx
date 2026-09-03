@@ -1,7 +1,7 @@
 'use client'
 
 import { DownloadSimple, Export, PlusSquare, X } from '@phosphor-icons/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 
 import styles from './install-prompt.module.css'
 
@@ -25,53 +25,43 @@ export function InstallPrompt({
   platform = 'auto',
   standalone,
 }: InstallPromptProps) {
-  const [resolvedPlatform, setResolvedPlatform] = useState<InstallPlatform>(platform)
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent>()
-  const [visible, setVisible] = useState(standalone !== true)
+  const [dismissed, setDismissed] = useState(false)
+  const installed = useSyncExternalStore(subscribeDisplayMode, isStandalone, () => false)
+  const detectedPlatform = useSyncExternalStore(noopSubscribe, detectPlatform, () => 'unsupported')
+  const suppressedByHistory = useSyncExternalStore(subscribeStorage, isSuppressedByHistory, () => false)
+  const resolvedPlatform = installEvent
+    ? 'chromium'
+    : platform === 'auto'
+      ? detectedPlatform
+      : platform
 
   useEffect(() => {
-    if (standalone ?? isStandalone()) {
-      setVisible(false)
-      return
-    }
-
-    const actualPlatform = platform === 'auto' ? detectPlatform() : platform
-    setResolvedPlatform(actualPlatform)
-
-    const dismissedAt = Number(localStorage.getItem(DISMISSAL_KEY) ?? 0)
-    const dismissedRecently =
-      Date.now() - dismissedAt < DISMISSAL_DAYS * 24 * 60 * 60 * 1000
     const impressions = Number(localStorage.getItem(IMPRESSIONS_KEY) ?? 0)
-    if (dismissedRecently || impressions >= 3) {
-      setVisible(false)
-      return
-    }
-
-    localStorage.setItem(IMPRESSIONS_KEY, String(impressions + 1))
+    if (!installed && !suppressedByHistory) localStorage.setItem(IMPRESSIONS_KEY, String(impressions + 1))
 
     function handleBeforeInstallPrompt(event: Event) {
       event.preventDefault()
       setInstallEvent(event as BeforeInstallPromptEvent)
-      setResolvedPlatform('chromium')
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
     return () =>
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-  }, [platform, standalone])
+  }, [installed, suppressedByHistory])
 
-  if (!visible || resolvedPlatform === 'unsupported') return null
+  if (standalone === true || installed || dismissed || suppressedByHistory || resolvedPlatform === 'unsupported') return null
 
   async function install() {
     if (!installEvent) return
     await installEvent.prompt()
     const result = await installEvent.userChoice
-    if (result.outcome === 'accepted') setVisible(false)
+    if (result.outcome === 'accepted') setDismissed(true)
   }
 
   function dismiss() {
     localStorage.setItem(DISMISSAL_KEY, String(Date.now()))
-    setVisible(false)
+    setDismissed(true)
   }
 
   return (
@@ -111,7 +101,29 @@ function detectPlatform(): InstallPlatform {
 
 function isStandalone(): boolean {
   return (
-    window.matchMedia('(display-mode: standalone)').matches ||
+    (typeof window.matchMedia === 'function' && window.matchMedia('(display-mode: standalone)').matches) ||
     ('standalone' in navigator && Boolean((navigator as Navigator & { standalone?: boolean }).standalone))
   )
+}
+
+function subscribeDisplayMode(callback: () => void) {
+  if (typeof window.matchMedia !== 'function') return () => undefined
+  const media = window.matchMedia('(display-mode: standalone)')
+  media.addEventListener('change', callback)
+  return () => media.removeEventListener('change', callback)
+}
+
+function subscribeStorage(callback: () => void) {
+  window.addEventListener('storage', callback)
+  return () => window.removeEventListener('storage', callback)
+}
+
+function noopSubscribe() {
+  return () => undefined
+}
+
+function isSuppressedByHistory() {
+  const dismissedAt = Number(localStorage.getItem(DISMISSAL_KEY) ?? 0)
+  const dismissedRecently = Date.now() - dismissedAt < DISMISSAL_DAYS * 24 * 60 * 60 * 1000
+  return dismissedRecently || Number(localStorage.getItem(IMPRESSIONS_KEY) ?? 0) >= 3
 }

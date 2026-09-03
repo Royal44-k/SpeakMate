@@ -24,4 +24,12 @@ describe('InstallPrompt', () => {
 
     expect(screen.queryByText('添加 SpeakMate 到主屏幕')).not.toBeInTheDocument()
   })
+
+  it('keeps installation guidance usable when display-mode media queries are unavailable', () => {
+    expect(window.matchMedia).toBeUndefined()
+
+    render(<InstallPrompt platform="ios" standalone={false} />)
+
+    expect(screen.getByText('添加 SpeakMate 到主屏幕')).toBeVisible()
+  })
 })

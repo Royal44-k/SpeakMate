@@ -122,7 +122,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       recognitionRef.current?.abort()
       browserTts.stop()
     }
-  }, [clearElapsedTimer, requestedId, scene.id, scene.level])
+  }, [clearElapsedTimer, requestedId, scene.id, scene.level, scene.version])
 
   const finishRecording = useCallback(async () => {
     if (finishingRef.current || !recorderRef.current) return
@@ -178,7 +178,11 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     } catch (error) {
       recorderRef.current = null
       const denied = error instanceof DOMException && ['NotAllowedError', 'SecurityError'].includes(error.name)
-      setMachine((current) => transitionPractice(current, { type: denied ? 'PERMISSION_DENIED' : 'FAIL', ...(denied ? {} : { code: 'RECORDING_UNAVAILABLE', message: '当前浏览器无法录音，请改用键盘输入。' }) } as Parameters<typeof transitionPractice>[1]))
+      const unsupported = error instanceof Error && error.message === 'RECORDING_UNSUPPORTED'
+      setMachine((current) => transitionPractice(current, {
+        type: denied || unsupported ? 'PERMISSION_DENIED' : 'FAIL',
+        ...(denied || unsupported ? {} : { code: 'RECORDING_UNAVAILABLE', message: '当前浏览器无法录音，请改用键盘输入。' }),
+      } as Parameters<typeof transitionPractice>[1]))
     }
   }, [finishRecording])
 

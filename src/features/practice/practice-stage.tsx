@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeft, Check, Headphones, Keyboard, SpinnerGap } from '@phosphor-icons/react'
+import { ArrowLeft, Check, Headphones, Lightbulb, SpinnerGap } from '@phosphor-icons/react'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -41,8 +41,12 @@ export function PracticeStage({
     <main className={styles.stage}>
       <header className={styles.topbar}>
         <Link href={`/scenes/${scene.slug}?level=${scene.level}`} aria-label="退出本次练习"><ArrowLeft aria-hidden size={23} /></Link>
-        <div><p>{scene.titleEn}</p><h1>{scene.titleZh}</h1></div>
-        <span>{Math.min(practice.machine.turnIndex + 1, scene.recommendedTurns)} / {scene.recommendedTurns}</span>
+        <div>
+          <p>SpeakMate</p>
+          <h1>Dialogue Stage</h1>
+          <small>场景对话练习 · {scene.titleZh}</small>
+        </div>
+        <span><strong>{Math.min(practice.machine.turnIndex + 1, scene.recommendedTurns)} / {scene.recommendedTurns}</strong><small>任务进度</small></span>
       </header>
 
       <div className={styles.progress} aria-label={`已完成 ${completedGoals.length} 个任务目标`}>
@@ -61,9 +65,11 @@ export function PracticeStage({
       </section>
 
       {practice.latestResult ? (
-        <FeedbackSheet feedback={practice.latestResult.feedback} expanded={feedbackExpanded} onToggle={() => setFeedbackExpanded((value) => !value)} />
+        <div className={styles.feedbackHolder}>
+          <FeedbackSheet feedback={practice.latestResult.feedback} expanded={feedbackExpanded} onToggle={() => setFeedbackExpanded((value) => !value)} />
+        </div>
       ) : (
-        <aside className={styles.firstHint}><Keyboard aria-hidden size={20} /><p>第一次可先用键盘组织一句，再尝试录音。反馈只指出最影响沟通的问题。</p></aside>
+        <aside className={styles.firstHint}><Lightbulb aria-hidden size={20} /><p><strong>情境提示：</strong>第一次可先用键盘组织一句，再尝试录音。反馈只指出最影响沟通的问题。</p></aside>
       )}
 
       {isReviewing ? (

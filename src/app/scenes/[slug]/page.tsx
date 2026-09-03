@@ -5,10 +5,6 @@ import { adaptScene } from '@/domain/scenes/adapt-scene'
 import { CEFR_LEVELS, type CefrLevel } from '@/domain/scenes/types'
 import { ScenePreparation } from '@/features/scenes/scene-preparation'
 
-export function generateStaticParams() {
-  return []
-}
-
 export default async function ScenePage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ level?: string }> }) {
   const [{ slug }, query] = await Promise.all([params, searchParams])
   const scene = getSceneBySlug(slug)

@@ -20,7 +20,8 @@ describe('localCoach', () => {
     expect(result.provider).toBe('local')
     expect(result.degraded).toBe(true)
     expect(result.feedback.issueTags).toHaveLength(0)
-    expect(result.reply.text).toMatch(/reservation|passport|name|room/i)
+    expect(result.reply.text).toMatch(/passport|booking confirmation/i)
+    expect(result.reply.text).not.toBe(hotel.openingLines[0])
   })
 
   it('limits feedback to the one or two issues that matter most', async () => {
