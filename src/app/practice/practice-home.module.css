@@ -1,0 +1,20 @@
+.page { min-height: 100dvh; padding: max(30px, env(safe-area-inset-top)) 18px 36px; background: var(--color-paper); }
+.header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 26px; }
+.header p { margin: 0; color: var(--color-coral-600); font-family: var(--font-display); font-weight: 800; letter-spacing: .12em; }
+.header h1 { margin: 7px 0 0; color: var(--color-atlantic-950); font-family: var(--font-display); font-size: clamp(3.3rem, 15vw, 4.6rem); line-height: .82; letter-spacing: -.04em; }
+.header > span { display: grid; width: 48px; height: 48px; place-items: center; border-radius: var(--radius-pill); background: var(--color-atlantic-950); color: var(--color-white); font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; }
+.recommendation { overflow: hidden; border-radius: var(--radius-lg); background: var(--color-atlantic-950); box-shadow: var(--shadow-float); color: var(--color-white); }
+.image { position: relative; }
+.image :global(span) { border-radius: 0; }
+.image > span { position: absolute; top: 14px; left: 14px; display: inline-flex; width: auto; align-items: center; gap: 6px; border-radius: var(--radius-pill); padding: 8px 11px; background: var(--color-coral-500); color: var(--color-ink-950); font-size: .76rem; font-weight: 800; }
+.body { padding: 20px; }
+.body > p:first-child { margin: 0; color: var(--color-sky-100); font-weight: 750; }
+.body h2 { margin: 3px 0 11px; font-family: var(--font-display); font-size: 2.6rem; line-height: 1; }
+.meta { display: flex; gap: 14px; color: var(--color-sky-100); font-size: .8rem; }
+.meta span { display: flex; align-items: center; gap: 5px; }
+.summary { margin: 16px 0; color: color-mix(in srgb, var(--color-white) 78%, transparent); line-height: 1.6; }
+.body a { display: flex; min-height: 52px; align-items: center; justify-content: center; gap: 8px; border-radius: var(--radius-pill); background: var(--color-coral-500); color: var(--color-ink-950); font-weight: 850; text-decoration: none; }
+.explore { margin-top: 18px; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 20px; background: var(--color-sky-50); }
+.explore p { margin: 0; color: var(--color-coral-600); font-size: .78rem; font-weight: 800; }
+.explore h2 { margin: 7px 0 18px; font-family: var(--font-display); font-size: 1.8rem; line-height: 1.05; }
+.explore a { display: inline-flex; min-height: 44px; align-items: center; color: var(--color-atlantic-800); font-weight: 800; text-underline-offset: 4px; }

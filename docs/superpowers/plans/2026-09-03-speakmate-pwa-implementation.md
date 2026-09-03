@@ -445,7 +445,7 @@ git commit -m "feat: establish Dialogue Stage design system"
 - Consumes: profile repositories, `SCENE_CATALOG`, `adaptScene`, and `AppShell`.
 - Produces: `recommendScene(profile, history)`, onboarding completion, practice home, searchable/filterable scene library, and scene preparation route.
 
-- [ ] **Step 1: Write recommendation and flow tests**
+- [x] **Step 1: Write recommendation and flow tests**
 
 ```ts
 expect(recommendScene(travelB1Profile, [])?.category).toBe('travel')
@@ -453,29 +453,29 @@ expect(recommendScene(travelB1Profile, history)?.id).not.toBe(history[0].sceneId
 expect(screen.getByRole('heading', { name: '今天想练什么？' })).toBeVisible()
 ```
 
-- [ ] **Step 2: Confirm red state**
+- [x] **Step 2: Confirm red state**
 
 Run: `pnpm test -- src/domain/learning/recommendation.test.ts src/features/onboarding/onboarding-flow.test.tsx src/features/scenes/scene-library.test.tsx`  
 Expected: FAIL because recommendation and UI flows are absent.
 
-- [ ] **Step 3: Implement the three-step onboarding**
+- [x] **Step 3: Implement the three-step onboarding**
 
 Persist level, goals, and 5/10/15-minute preference. Include “帮我推荐” with five deterministic self-assessment questions. Never request an email during onboarding.
 
-- [ ] **Step 4: Implement recommendation and practice home**
+- [x] **Step 4: Implement recommendation and practice home**
 
 Prioritize goal match, level compatibility, incomplete session, not-practiced scenes, then least recently practiced. Show one dominant recommended scene and one continue action, not a metric dashboard.
 
-- [ ] **Step 5: Implement scene discovery and preparation**
+- [x] **Step 5: Implement scene discovery and preparation**
 
 Provide category, CEFR, and duration filters plus title/keyword search. Scene preparation displays role, measurable goals, level-specific keywords, examples, and safety copy where required.
 
-- [ ] **Step 6: Verify all discovery paths**
+- [x] **Step 6: Verify all discovery paths**
 
 Run: `pnpm test -- src/domain/learning/recommendation.test.ts src/features/onboarding/onboarding-flow.test.tsx src/features/scenes/scene-library.test.tsx && pnpm typecheck`  
 Expected: PASS; A1, B2, and C1 filters return adapted scenes.
 
-- [ ] **Step 7: Commit discovery flows**
+- [x] **Step 7: Commit discovery flows**
 
 ```bash
 git add src/features/onboarding src/features/scenes src/domain/learning src/app/welcome src/app/practice src/app/scenes

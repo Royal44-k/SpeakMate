@@ -1,0 +1,22 @@
+.preparation { min-height: 100dvh; padding: max(12px, env(safe-area-inset-top)) 18px max(36px, env(safe-area-inset-bottom)); background: var(--color-paper); }
+.hero { position: relative; margin: 0 -6px; }
+.heroMeta { position: absolute; right: 14px; bottom: 14px; left: 14px; display: flex; justify-content: space-between; color: var(--color-white); font-family: var(--font-display); font-weight: 800; letter-spacing: .1em; text-shadow: 0 2px 12px var(--color-atlantic-950); }
+.preparation header { padding: 22px 4px 0; }
+.preparation header p { margin: 0; color: var(--color-coral-600); font-weight: 800; }
+.preparation h1 { margin: 3px 0 8px; font-family: var(--font-display); font-size: 3.2rem; line-height: .95; }
+.duration { display: flex; align-items: center; gap: 6px; color: var(--color-ink-500); font-size: .86rem; }
+.summary { margin: 18px 4px 26px; color: var(--color-ink-700); font-size: 1rem; line-height: 1.7; }
+.preparation section { margin: 0 0 16px; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 18px; background: var(--color-white); }
+.sectionTitle { display: flex; align-items: center; gap: 8px; color: var(--color-atlantic-800); }
+.sectionTitle h2 { margin: 0; font-size: 1rem; }
+.roles { display: grid; gap: 10px; margin: 15px 0 0; }
+.roles div { display: grid; grid-template-columns: 36px 1fr; align-items: start; gap: 10px; }
+.roles dt { display: grid; width: 32px; height: 32px; place-items: center; border-radius: var(--radius-pill); background: var(--color-sky-100); color: var(--color-atlantic-800); font-weight: 800; }
+.roles dd { margin: 4px 0 0; color: var(--color-ink-700); line-height: 1.5; }
+.goals { display: grid; gap: 12px; margin: 15px 0 0; padding-left: 23px; color: var(--color-ink-700); line-height: 1.5; }
+.keywords { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px; }
+.keywords span { border-radius: var(--radius-pill); padding: 7px 11px; background: var(--color-sky-50); color: var(--color-atlantic-800); font-size: .82rem; font-weight: 750; }
+.examples { display: grid; gap: 8px; margin-top: 14px; }
+.examples blockquote { margin: 0; border-left: 3px solid var(--color-coral-500); padding: 8px 0 8px 12px; color: var(--color-ink-700); font-family: var(--font-display); font-size: 1.25rem; line-height: 1.25; }
+.safety { margin: 16px 0; border-radius: var(--radius-md); padding: 14px; background: color-mix(in srgb, var(--color-warning) 10%, var(--color-white)); color: var(--color-ink-700); font-size: .86rem; line-height: 1.55; }
+.start { position: sticky; bottom: max(12px, env(safe-area-inset-bottom)); display: flex; min-height: 58px; align-items: center; justify-content: center; gap: 8px; border-radius: var(--radius-pill); background: var(--color-coral-500); box-shadow: var(--shadow-coral); color: var(--color-ink-950); font-weight: 850; text-decoration: none; }
