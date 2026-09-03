@@ -28,6 +28,7 @@ export interface SceneSeed {
     advanced: string
   }
   imageAltZh: string
+  imageKey?: string
 }
 
 const CONSTRAINTS: LevelContent<LevelConstraint> = {
@@ -145,7 +146,7 @@ export function defineScenes(
     ) as LevelContent<LevelConstraint>,
     safetyNote,
     image: {
-      key: imageKey,
+      key: seed.imageKey ?? imageKey,
       altZh: seed.imageAltZh,
       focalPoint: '50% 45%',
     },

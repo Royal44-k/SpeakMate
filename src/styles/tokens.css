@@ -1,0 +1,42 @@
+:root {
+  --color-atlantic-950: #0b2a43;
+  --color-atlantic-800: #123b5d;
+  --color-atlantic-700: #1b4f75;
+  --color-sky-100: #ddefed;
+  --color-sky-50: #edf7fb;
+  --color-coral-500: #ff6b5e;
+  --color-coral-600: #e75046;
+  --color-ink-950: #14202b;
+  --color-ink-700: #41515e;
+  --color-ink-500: #61717d;
+  --color-paper: #fffdf8;
+  --color-white: #ffffff;
+  --color-success: #207a5a;
+  --color-warning: #985b13;
+  --color-danger: #b52b35;
+  --color-border: rgb(18 59 93 / 12%);
+  --color-overlay: rgb(11 42 67 / 68%);
+  --shadow-float: 0 18px 55px rgb(12 42 67 / 15%);
+  --shadow-coral: 0 14px 34px rgb(255 107 94 / 24%);
+  --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+  --font-body: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+  --nav-height: 72px;
+  --content-max: 480px;
+  --tap-target: 44px;
+  --duration-fast: 160ms;
+  --duration-standard: 240ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}

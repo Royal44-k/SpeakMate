@@ -1,0 +1,13 @@
+.frame {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-lg);
+  background: var(--color-sky-100);
+}
+
+.frame img {
+  object-fit: cover;
+}

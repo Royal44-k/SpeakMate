@@ -382,7 +382,7 @@ git commit -m "feat: add installable offline PWA shell"
 - Consumes: selected visual reference and PWA layout.
 - Produces: exact CSS design tokens, safe-area shell, three-item navigation, responsive scene imagery, and documented Figma node/token mapping.
 
-- [ ] **Step 1: Write shell accessibility tests**
+- [x] **Step 1: Write shell accessibility tests**
 
 ```ts
 render(<AppShell activeDestination="practice">content</AppShell>)
@@ -394,29 +394,29 @@ expect(screen.getByRole('link', { name: '练习' })).toHaveAttribute(
 expect(await axe(document.body)).toHaveNoViolations()
 ```
 
-- [ ] **Step 2: Confirm red state**
+- [x] **Step 2: Confirm red state**
 
 Run: `pnpm test -- src/components/app-shell/app-shell.test.tsx`  
 Expected: FAIL because the shell is absent.
 
-- [ ] **Step 3: Build the Figma-ready token and component map**
+- [x] **Step 3: Build the Figma-ready token and component map**
 
 Map Atlantic, sky, coral, ink, spacing, radius, typography, app shell, navigation, stage banner, transcript, feedback sheet, and speech control to named Figma variables/components. If a writable Figma design file is available, create and validate the same tokens and the 390 × 844 practice frame with Auto Layout; otherwise preserve the exact node recipe in `figma-handoff.md` without claiming a Figma file was produced.
 
-- [ ] **Step 4: Implement the shared shell**
+- [x] **Step 4: Implement the shared shell**
 
 Use `min-height: 100dvh`, safe-area padding, a centered maximum width of 480 px, three navigation destinations, visible focus rings, self-hosted display font, system Chinese body stack, and reduced-motion media queries.
 
-- [ ] **Step 5: Add real scene assets**
+- [x] **Step 5: Add real scene assets**
 
 Generate original hotel, airport, café, workplace, social, classroom, daily-service, and health-service editorial images. Convert them to responsive WebP/AVIF sources under 160 KB for the 390 px presentation size; never crop the full-screen visual reference into production assets.
 
-- [ ] **Step 6: Verify shell and visual tokens**
+- [x] **Step 6: Verify shell and visual tokens**
 
 Run: `pnpm test -- src/components/app-shell/app-shell.test.tsx && pnpm typecheck`  
 Expected: PASS with no axe violations and all colors sourced from token variables.
 
-- [ ] **Step 7: Commit the visual foundation**
+- [x] **Step 7: Commit the visual foundation**
 
 ```bash
 git add src/styles src/components/app-shell src/components/scene-image public/scenes docs/design/figma-handoff.md

@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from 'next'
 import type { ReactNode } from 'react'
 
+import '@fontsource/barlow-condensed/400.css'
+import '@fontsource/barlow-condensed/700.css'
+import '@fontsource/barlow-condensed/800.css'
 import { ServiceWorkerRegistration } from '@/components/install-prompt/service-worker-registration'
 
 import './globals.css'

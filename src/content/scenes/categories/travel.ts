@@ -105,6 +105,7 @@ const scenes = [
       advanced: 'Welcome. I found the reservation, though the requested room type is limited tonight. How would you like to proceed?',
     },
     imageAltZh: '温暖灯光下的精品酒店前台',
+    imageKey: 'hotel',
   },
   {
     slug: 'hotel-room-problem',
