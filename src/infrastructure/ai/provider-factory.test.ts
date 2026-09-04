@@ -4,13 +4,31 @@ import { getSceneBySlug } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
 
 import { assertAllowedModel } from './cloudflare-client'
-import { createConversationProvider } from './provider-factory'
+import { createConversationProvider, resolveAiEnvironment } from './provider-factory'
 
 const hotel = adaptScene(getSceneBySlug('hotel-check-in')!, 'B1')
 
 describe('createConversationProvider', () => {
   it('selects local mode when zero-billing credentials are absent', () => {
     expect(createConversationProvider({ AI_MODE: 'auto' }).kind).toBe('local')
+  })
+
+  it('does not validate unused cloud models in explicit local mode', () => {
+    expect(resolveAiEnvironment({
+      AI_MODE: 'local',
+      CLOUDFLARE_ACCOUNT_ID: 'account',
+      CLOUDFLARE_API_TOKEN: 'secret',
+      CLOUDFLARE_ASR_MODEL: 'paid-or-unknown',
+    })).toEqual({ mode: 'local' })
+  })
+
+  it('falls back safely when auto mode contains an invalid cloud model', () => {
+    expect(resolveAiEnvironment({
+      AI_MODE: 'auto',
+      CLOUDFLARE_ACCOUNT_ID: 'account',
+      CLOUDFLARE_API_TOKEN: 'secret',
+      CLOUDFLARE_LLM_MODEL: 'paid-or-unknown',
+    })).toMatchObject({ mode: 'local', configurationError: expect.any(String) })
   })
 
   it('refuses an unapproved paid or unknown model', () => {

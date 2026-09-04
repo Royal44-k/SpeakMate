@@ -7,10 +7,10 @@ describe('PWA manifest', () => {
     const value = manifest()
 
     expect(value.display).toBe('standalone')
-    expect(value.orientation).toBe('portrait')
+    expect(value.orientation).toBe('portrait-primary')
     expect(value.start_url).toBe('/practice')
     expect(value.shortcuts?.map((item) => item.url)).toEqual([
-      '/practice',
+      '/practice/today',
       '/scenes',
     ])
     expect(value.icons).toEqual(

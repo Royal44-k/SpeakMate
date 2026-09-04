@@ -41,6 +41,15 @@ describe('transitionPractice', () => {
     expect(transitionPractice(state, { type: 'SUBMIT', hasAudio: true }).status).toBe('submitting')
   })
 
+  it('returns an audio-only failed submission to editable review state', () => {
+    const failed = transitionPractice(
+      { status: 'receiving', turnIndex: 0, draftTranscript: '' },
+      { type: 'FAIL', code: 'NO_SPEECH', message: '请输入英文内容。' },
+    )
+
+    expect(transitionPractice(failed, { type: 'RETRY' }).status).toBe('reviewing')
+  })
+
   it('retains a safe retry target after a recoverable failure', () => {
     const submitting: PracticeState = {
       status: 'submitting',

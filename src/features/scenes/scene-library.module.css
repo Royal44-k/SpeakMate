@@ -12,6 +12,9 @@
 .levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; padding: 5px; border-radius: var(--radius-md); background: var(--color-sky-50); }
 .level, .levelActive { min-height: 40px; border: 0; border-radius: var(--radius-sm); background: transparent; color: var(--color-ink-500); font-weight: 800; }
 .levelActive { background: var(--color-white); box-shadow: 0 3px 12px rgb(18 59 93 / 10%); color: var(--color-atlantic-800); }
+.durations { display: flex; overflow-x: auto; gap: 8px; scrollbar-width: none; }
+.duration, .durationActive { flex: 0 0 auto; min-height: 38px; border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: 0 13px; background: transparent; color: var(--color-ink-500); font-size: .78rem; font-weight: 750; }
+.durationActive { border-color: var(--color-coral-500); background: color-mix(in srgb, var(--color-coral-500) 13%, var(--color-white)); color: var(--color-ink-950); }
 .resultBar { display: flex; align-items: baseline; gap: 6px; margin: 22px 2px 12px; color: var(--color-ink-500); font-size: .82rem; }
 .resultBar strong { color: var(--color-atlantic-950); font-family: var(--font-display); font-size: 1.5rem; }
 .grid { display: grid; gap: 16px; }

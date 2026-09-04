@@ -14,7 +14,11 @@ export function GET() {
   return NextResponse.json({
     cloudAsr: Boolean(resolved.cloudflare && resolved.mode !== 'local'),
     cloudConversation: Boolean(resolved.cloudflare && resolved.mode !== 'local'),
-    emailSync: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY),
+    emailSync: Boolean(
+      process.env.NEXT_PUBLIC_SYNC_ENABLED === 'true'
+      && process.env.NEXT_PUBLIC_SUPABASE_URL
+      && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    ),
     maxAudioBytes: MAX_AUDIO_BYTES,
     textFallback: true,
   })

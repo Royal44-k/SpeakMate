@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { POST } from './route'
 
-function sessionInput() {
+function sessionInput(overrides: Record<string, unknown> = {}) {
   return JSON.stringify({
     sceneId: 'travel-01',
     sceneVersion: 1,
@@ -10,6 +10,15 @@ function sessionInput() {
     turnIndex: 0,
     recentTurns: [],
     completedGoalIds: [],
+    ...overrides,
+  })
+}
+
+function browserRequest(form: FormData, headers: Record<string, string> = {}) {
+  return new Request('https://speakmate.test/api/v1/turns', {
+    method: 'POST',
+    body: form,
+    headers,
   })
 }
 
@@ -53,5 +62,45 @@ describe('POST /api/v1/turns', () => {
 
     const response = await POST(requestWith(form))
     expect(response.status).toBe(400)
+  })
+
+  it('rejects cross-site browser submissions', async () => {
+    const form = new FormData()
+    form.set('transcript', 'Hello.')
+    form.set('session', sessionInput())
+    form.set('idempotencyKey', '772870f9-6004-44b8-8464-8dbfdb160e93')
+
+    const response = await POST(browserRequest(form, {
+      Origin: 'https://attacker.example',
+      'Sec-Fetch-Site': 'cross-site',
+    }))
+
+    expect(response.status).toBe(403)
+    expect((await response.json()).code).toBe('CROSS_SITE_REQUEST')
+  })
+
+  it('enforces the selected scene turn limit', async () => {
+    const form = new FormData()
+    form.set('transcript', 'Hello.')
+    form.set('session', sessionInput({ turnIndex: 99 }))
+    form.set('idempotencyKey', 'fa10f108-4ee5-4dcb-a99f-8bdcc352519e')
+
+    const response = await POST(browserRequest(form, { Origin: 'https://speakmate.test' }))
+
+    expect(response.status).toBe(400)
+    expect((await response.json()).code).toBe('TURN_LIMIT_REACHED')
+  })
+
+  it('rate limits repeated submissions from one forwarded client address', async () => {
+    let response: Response | undefined
+    for (let index = 0; index <= 20; index += 1) {
+      response = await POST(browserRequest(new FormData(), {
+        Origin: 'https://speakmate.test',
+        'X-Forwarded-For': '203.0.113.42',
+      }))
+    }
+
+    expect(response?.status).toBe(429)
+    expect(await response?.json()).toMatchObject({ code: 'RATE_LIMITED', retryable: true })
   })
 })

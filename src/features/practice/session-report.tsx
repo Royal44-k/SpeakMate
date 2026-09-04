@@ -2,18 +2,37 @@
 
 import { ArrowRight, BookmarkSimple, CheckCircle, SpinnerGap } from '@phosphor-icons/react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
 import { buildSessionReport, type SessionReport } from '@/domain/practice/report'
 import type { PracticeSession } from '@/domain/practice/types'
-import { createIndexedDbRepositories } from '@/infrastructure/persistence/repositories'
+import {
+  createIndexedDbRepositories,
+  type Repositories,
+} from '@/infrastructure/persistence/repositories'
 
 import styles from './session-report.module.css'
 
 const metricOrder = ['grammar', 'vocabulary', 'naturalness', 'interaction'] as const
 
-export function SessionReportView({ sessionId }: { sessionId: string }) {
+export function favoriteIdFor(sessionId: string, expression: string): string {
+  let hash = 2166136261
+  for (const character of `${sessionId}:${expression}`) {
+    hash ^= character.charCodeAt(0)
+    hash = Math.imul(hash, 16777619)
+  }
+  return `favorite_${sessionId}_${(hash >>> 0).toString(36)}`
+}
+
+export function SessionReportView({
+  sessionId,
+  repositories,
+}: {
+  sessionId: string
+  repositories?: Repositories
+}) {
+  const repositoryRef = useRef(repositories ?? createIndexedDbRepositories())
   const [report, setReport] = useState<SessionReport | null>(null)
   const [session, setSession] = useState<PracticeSession | null>(null)
   const [savedExpressions, setSavedExpressions] = useState<string[]>([])
@@ -22,26 +41,34 @@ export function SessionReportView({ sessionId }: { sessionId: string }) {
   useEffect(() => {
     let active = true
     async function load() {
-      const repositories = createIndexedDbRepositories()
-      const value = await repositories.sessions.get(sessionId)
+      const value = await repositoryRef.current.sessions.get(sessionId)
       if (!value) {
         if (active) setMissing(true)
         return
       }
-      const turns = await repositories.turns.listBySession(sessionId)
-      const scene = SCENE_CATALOG.find((item) => item.id === value.sceneId)
+      const [turns, favorites] = await Promise.all([
+        repositoryRef.current.turns.listBySession(sessionId),
+        repositoryRef.current.favorites.list(),
+      ])
+      const scene = SCENE_CATALOG.find(
+        (item) => item.id === value.sceneId && item.version === value.sceneVersion,
+      )
       if (!active) return
       setSession(value)
       setReport(buildSessionReport(value, turns, scene?.goals.length ?? 0))
+      setSavedExpressions(favorites
+        .filter((favorite) => favorite.sceneId === value.sceneId)
+        .map((favorite) => favorite.expression))
     }
     void load().catch(() => active && setMissing(true))
     return () => { active = false }
   }, [sessionId])
 
   async function saveExpression(expression: string) {
+    if (savedExpressions.includes(expression)) return
     const now = new Date().toISOString()
-    await createIndexedDbRepositories().favorites.save({
-      id: `favorite_${globalThis.crypto.randomUUID()}`,
+    await repositoryRef.current.favorites.save({
+      id: favoriteIdFor(sessionId, expression),
       expression,
       sceneId: session?.sceneId,
       createdAt: now,

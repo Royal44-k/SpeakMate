@@ -8,10 +8,18 @@ import { localOnlyAuthAdapter } from './auth-adapter'
 import { createSupabaseAuthAdapter } from './supabase-auth-adapter'
 import styles from './auth-panel.module.css'
 
-export function AuthPanel({ url, anonKey }: { url?: string; anonKey?: string }) {
-  const adapter = useMemo(() => url && anonKey
+export function AuthPanel({
+  url,
+  anonKey,
+  enabled = false,
+}: {
+  url?: string
+  anonKey?: string
+  enabled?: boolean
+}) {
+  const adapter = useMemo(() => enabled && url && anonKey
     ? createSupabaseAuthAdapter(url, anonKey)
-    : localOnlyAuthAdapter, [anonKey, url])
+    : localOnlyAuthAdapter, [anonKey, enabled, url])
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<string | null>(null)
   const [sending, setSending] = useState(false)
@@ -44,7 +52,7 @@ export function AuthPanel({ url, anonKey }: { url?: string; anonKey?: string }) 
           <p>登录后可选择合并本机记录；原始录音不会上传。</p>
         </form>
       ) : (
-        <section className={styles.localOnly}><HardDrive aria-hidden size={25} /><div><h2>当前仅保存在本机</h2><p>部署者尚未配置 Supabase Free，因此同步入口已安全隐藏。</p></div></section>
+        <section className={styles.localOnly}><HardDrive aria-hidden size={25} /><div><h2>跨设备同步尚未开放</h2><p>当前版本会把学习记录保存在这台设备；你无需登录即可免费练习。</p></div></section>
       )}
       {status ? <p className={styles.status} role="status">{status}</p> : null}
       <Link href="/me">返回学习中心</Link>

@@ -35,6 +35,9 @@ const supportedAudioTypes = new Set([
   'application/octet-stream',
 ])
 const successCache = new Map<string, unknown>()
+const rateBuckets = new Map<string, { count: number; resetAt: number }>()
+const RATE_LIMIT = 20
+const RATE_WINDOW_MS = 60_000
 
 function isBlobLike(value: FormDataEntryValue | null): value is File {
   return typeof value === 'object' && value !== null &&
@@ -44,6 +47,31 @@ function isBlobLike(value: FormDataEntryValue | null): value is File {
 
 function requestId() {
   return `req_${globalThis.crypto.randomUUID()}`
+}
+
+function requestIsSameOrigin(request: Request): boolean {
+  const fetchSite = request.headers?.get?.('sec-fetch-site')
+  if (fetchSite === 'cross-site') return false
+  const origin = request.headers?.get?.('origin')
+  if (!origin || !request.url) return true
+  try {
+    return new URL(origin).origin === new URL(request.url).origin
+  } catch {
+    return false
+  }
+}
+
+function rateLimitExceeded(request: Request): boolean {
+  const forwarded = request.headers?.get?.('x-forwarded-for')?.split(',')[0]?.trim()
+  if (!forwarded) return false
+  const now = Date.now()
+  const current = rateBuckets.get(forwarded)
+  if (!current || current.resetAt <= now) {
+    rateBuckets.set(forwarded, { count: 1, resetAt: now + RATE_WINDOW_MS })
+    return false
+  }
+  current.count += 1
+  return current.count > RATE_LIMIT
 }
 
 function currentAiEnvironment(): AiEnvironment {
@@ -75,6 +103,12 @@ function errorResponse(
 export async function POST(request: Request) {
   const startedAt = performance.now()
   const id = requestId()
+  if (!requestIsSameOrigin(request)) {
+    return errorResponse(403, 'CROSS_SITE_REQUEST', '请求来源不受信任。', id)
+  }
+  if (rateLimitExceeded(request)) {
+    return errorResponse(429, 'RATE_LIMITED', '请求过于频繁，请稍后再试。', id, true)
+  }
   let form: FormData
   try {
     form = await request.formData()
@@ -122,9 +156,16 @@ export async function POST(request: Request) {
   if (!definition) {
     return errorResponse(400, 'INVALID_INPUT', '场景版本不存在，请返回场景库重新进入。', id)
   }
+  if (parsedSession.turnIndex >= definition.recommendedTurns) {
+    return errorResponse(400, 'TURN_LIMIT_REACHED', '本场景已达到建议轮数，请先完成复盘。', id)
+  }
   const scene = adaptScene(definition, parsedSession.level)
   const env = currentAiEnvironment()
   const resolved = resolveAiEnvironment(env)
+
+  if (resolved.mode === 'cloudflare' && resolved.configurationError) {
+    return errorResponse(503, 'AI_CONFIGURATION_ERROR', '智能反馈配置暂时不可用。', id, true)
+  }
 
   if (!transcript && audio) {
     if (!resolved.cloudflare || resolved.mode === 'local') {

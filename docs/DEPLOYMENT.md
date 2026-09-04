@@ -76,7 +76,7 @@ CLOUDFLARE_LLM_MODEL=@cf/zai-org/glm-4.7-flash
 - 先在 Preview 环境验证，再复制到 Production 并重新部署。
 - 若希望保持严格零费用，继续留空即可；健康接口会显示 `local` 模式。
 
-可选 Supabase 同步只需要公开项目 URL 和 anon key，但它会引入外部服务依赖。MVP 正式版保持游客优先，不配置也不会影响练习。
+Supabase 适配器属于后续同步脚手架，当前正式版必须保持 `NEXT_PUBLIC_SYNC_ENABLED=false`。只有数据表、读取/合并、删除和端到端验收全部完成后，才可同时配置公共项目 URL、anon key 并显式开启该开关。
 
 ## 5. iPhone 安装与使用
 

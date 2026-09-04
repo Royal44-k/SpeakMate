@@ -5,7 +5,10 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(SHELL_CACHE).then((cache) => cache.addAll(STATIC_ROUTES)),
   )
-  self.skipWaiting()
+})
+
+self.addEventListener('message', (event) => {
+  if (event.data?.type === 'SKIP_WAITING') self.skipWaiting()
 })
 
 self.addEventListener('activate', (event) => {
@@ -27,6 +30,7 @@ self.addEventListener('fetch', (event) => {
     request.method !== 'GET' ||
     url.origin !== self.location.origin ||
     url.pathname.startsWith('/api/') ||
+    url.pathname === '/auth' ||
     url.pathname.startsWith('/auth/') ||
     request.destination === 'audio'
   ) {
@@ -34,7 +38,9 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    event.respondWith(networkFirst(request))
+    if (STATIC_ROUTES.includes(url.pathname)) {
+      event.respondWith(networkFirst(request))
+    }
     return
   }
 
@@ -43,17 +49,20 @@ self.addEventListener('fetch', (event) => {
     return
   }
 
-  event.respondWith(staleWhileRevalidate(request))
 })
 
 async function networkFirst(request) {
   const cache = await caches.open(SHELL_CACHE)
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 3_000)
   try {
-    const response = await fetch(request)
+    const response = await fetch(request, { signal: controller.signal })
     if (response.ok) await cache.put(request, response.clone())
     return response
   } catch {
     return (await cache.match(request)) ?? (await cache.match('/'))
+  } finally {
+    clearTimeout(timeout)
   }
 }
 
@@ -66,14 +75,4 @@ async function cacheFirst(request) {
     await cache.put(request, response.clone())
   }
   return response
-}
-
-async function staleWhileRevalidate(request) {
-  const cache = await caches.open(SHELL_CACHE)
-  const cached = await cache.match(request)
-  const fresh = fetch(request).then((response) => {
-    if (response.ok) void cache.put(request, response.clone())
-    return response
-  })
-  return cached ?? fresh
 }

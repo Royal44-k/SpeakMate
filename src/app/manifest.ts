@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: '/practice',
     scope: '/',
     display: 'standalone',
-    orientation: 'portrait',
+    orientation: 'portrait-primary',
     background_color: '#fffdf8',
     theme_color: '#123b5d',
     categories: ['education', 'productivity'],
@@ -38,7 +38,7 @@ export default function manifest(): MetadataRoute.Manifest {
         name: '继续练习',
         short_name: '练习',
         description: '打开今天的英语口语练习',
-        url: '/practice',
+        url: '/practice/today',
         icons: [{ src: '/icons/icon-192.png', sizes: '192x192' }],
       },
       {

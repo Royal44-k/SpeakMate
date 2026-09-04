@@ -129,7 +129,7 @@ export function defineScenes(
     summaryZh: seed.summaryZh,
     learnerRole: seed.learnerRole,
     aiRole: seed.aiRole,
-    estimatedMinutes: seed.minutes ?? 5,
+    estimatedMinutes: seed.minutes ?? ([3, 5, 5, 8, 8, 10] as const)[index % 6],
     recommendedTurns: seed.turns ?? 6,
     goals: seed.goalsZh.map((labelZh, goalIndex) => ({
       id: `${seed.slug}-goal-${goalIndex + 1}`,

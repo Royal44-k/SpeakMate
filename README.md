@@ -18,7 +18,7 @@ pnpm dev
 复制 `.env.example` 为 `.env.local`，按需填写：
 
 - `CLOUDFLARE_ACCOUNT_ID`、`CLOUDFLARE_API_TOKEN`：启用 Cloudflare Workers AI 的英文 ASR 与结构化对话；缺失、超时或失败时自动回退本地陪练。
-- `NEXT_PUBLIC_SUPABASE_URL`、`NEXT_PUBLIC_SUPABASE_ANON_KEY`：启用可选的邮箱同步登录；游客本机数据仍是默认体验。
+- `NEXT_PUBLIC_SYNC_ENABLED=true` 与 Supabase 公共配置：仅供后续完成跨设备数据闭环后显式开放；当前正式版保持关闭，游客本机数据是唯一承诺的体验。
 
 模型名称经过服务端白名单约束，密钥不得使用 `NEXT_PUBLIC_` 前缀，也不得提交到 Git。
 

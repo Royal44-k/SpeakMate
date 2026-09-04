@@ -4,7 +4,6 @@ import { localCoach } from '@/domain/ai/local-coach'
 import {
   ALLOWED_ASR_MODELS,
   ALLOWED_LLM_MODELS,
-  assertAllowedModel,
   generateWithCloudflare,
   type CloudflareAiConfig,
 } from './cloudflare-client'
@@ -22,24 +21,29 @@ export interface AiEnvironment {
 export interface ResolvedAiEnvironment {
   mode: AiMode
   cloudflare?: CloudflareAiConfig
+  configurationError?: string
 }
 
 export function resolveAiEnvironment(env: AiEnvironment): ResolvedAiEnvironment {
   const mode: AiMode = ['local', 'cloudflare', 'auto'].includes(env.AI_MODE ?? '')
     ? env.AI_MODE as AiMode
     : 'auto'
+  if (mode === 'local') return { mode: 'local' }
   if (!env.CLOUDFLARE_ACCOUNT_ID || !env.CLOUDFLARE_API_TOKEN) {
-    return { mode: mode === 'cloudflare' ? 'cloudflare' : 'local' }
+    return mode === 'cloudflare'
+      ? { mode, configurationError: 'Cloudflare AI credentials are missing' }
+      : { mode: 'local' }
   }
   const asrModel = env.CLOUDFLARE_ASR_MODEL ?? ALLOWED_ASR_MODELS[0]
   const llmModel = env.CLOUDFLARE_LLM_MODEL ?? ALLOWED_LLM_MODELS[0]
-  assertAllowedModel(asrModel)
-  assertAllowedModel(llmModel)
-  if (!ALLOWED_ASR_MODELS.includes(asrModel as (typeof ALLOWED_ASR_MODELS)[number])) {
-    throw new Error(`Model is not allowed in zero-billing mode: ${asrModel}`)
-  }
-  if (!ALLOWED_LLM_MODELS.includes(llmModel as (typeof ALLOWED_LLM_MODELS)[number])) {
-    throw new Error(`Model is not allowed in zero-billing mode: ${llmModel}`)
+  const asrAllowed = ALLOWED_ASR_MODELS.includes(asrModel as (typeof ALLOWED_ASR_MODELS)[number])
+  const llmAllowed = ALLOWED_LLM_MODELS.includes(llmModel as (typeof ALLOWED_LLM_MODELS)[number])
+  if (!asrAllowed || !llmAllowed) {
+    const invalidModel = !asrAllowed ? asrModel : llmModel
+    const configurationError = `Model is not allowed in zero-billing mode: ${invalidModel}`
+    return mode === 'auto'
+      ? { mode: 'local', configurationError }
+      : { mode: 'cloudflare', configurationError }
   }
   return {
     mode,
@@ -62,7 +66,7 @@ export function createConversationProvider(
       return {
         kind: 'cloudflare',
         async nextTurn() {
-          throw new Error('Cloudflare AI credentials are missing')
+          throw new Error(resolved.configurationError ?? 'Cloudflare AI is not configured')
         },
       }
     }

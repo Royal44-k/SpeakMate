@@ -28,4 +28,15 @@ describe('SceneLibrary', () => {
     expect(screen.getByText('C1')).toBeVisible()
     expect(screen.getAllByTestId('scene-card')[0]).toHaveTextContent('5 个关键词')
   })
+
+  it('filters scenes by estimated practice duration', () => {
+    render(<SceneLibrary initialLevel="A2" />)
+
+    fireEvent.click(screen.getByRole('button', { name: '3 分钟' }))
+
+    expect(screen.getAllByTestId('scene-card')).toHaveLength(7)
+    screen.getAllByTestId('scene-card').forEach((card) => {
+      expect(card).toHaveTextContent('3 分钟')
+    })
+  })
 })
