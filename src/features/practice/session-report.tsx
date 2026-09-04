@@ -2,7 +2,7 @@
 
 import { ArrowRight, BookmarkSimple, CheckCircle, SpinnerGap } from '@phosphor-icons/react'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
 import { buildSessionReport, type SessionReport } from '@/domain/practice/report'
@@ -32,7 +32,7 @@ export function SessionReportView({
   sessionId: string
   repositories?: Repositories
 }) {
-  const repositoryRef = useRef(repositories ?? createIndexedDbRepositories())
+  const [repository] = useState(() => repositories ?? createIndexedDbRepositories())
   const [report, setReport] = useState<SessionReport | null>(null)
   const [session, setSession] = useState<PracticeSession | null>(null)
   const [savedExpressions, setSavedExpressions] = useState<string[]>([])
@@ -41,14 +41,14 @@ export function SessionReportView({
   useEffect(() => {
     let active = true
     async function load() {
-      const value = await repositoryRef.current.sessions.get(sessionId)
+      const value = await repository.sessions.get(sessionId)
       if (!value) {
         if (active) setMissing(true)
         return
       }
       const [turns, favorites] = await Promise.all([
-        repositoryRef.current.turns.listBySession(sessionId),
-        repositoryRef.current.favorites.list(),
+        repository.turns.listBySession(sessionId),
+        repository.favorites.list(),
       ])
       const scene = SCENE_CATALOG.find(
         (item) => item.id === value.sceneId && item.version === value.sceneVersion,
@@ -62,12 +62,12 @@ export function SessionReportView({
     }
     void load().catch(() => active && setMissing(true))
     return () => { active = false }
-  }, [sessionId])
+  }, [repository, sessionId])
 
   async function saveExpression(expression: string) {
     if (savedExpressions.includes(expression)) return
     const now = new Date().toISOString()
-    await repositoryRef.current.favorites.save({
+    await repository.favorites.save({
       id: favoriteIdFor(sessionId, expression),
       expression,
       sceneId: session?.sceneId,

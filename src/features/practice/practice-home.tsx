@@ -2,7 +2,7 @@
 
 import { ArrowRight, Clock, Headphones, Sparkle } from '@phosphor-icons/react'
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { AppShell } from '@/components/app-shell/app-shell'
 import { SceneImage } from '@/components/scene-image/scene-image'
@@ -28,7 +28,7 @@ interface PracticeHomeData {
 }
 
 export function PracticeHome({ repositories }: PracticeHomeProps) {
-  const repositoryRef = useRef(repositories ?? createIndexedDbRepositories())
+  const [repository] = useState(() => repositories ?? createIndexedDbRepositories())
   const [data, setData] = useState<PracticeHomeData>()
   const [loadError, setLoadError] = useState(false)
 
@@ -36,8 +36,8 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     let active = true
     const load = async () => {
       try {
-        const profile = await repositoryRef.current.profiles.ensureGuestProfile()
-        const sessions = await repositoryRef.current.sessions.list()
+        const profile = await repository.profiles.ensureGuestProfile()
+        const sessions = await repository.sessions.list()
         if (active) setData({ profile, sessions })
       } catch {
         if (active) setLoadError(true)
@@ -47,7 +47,7 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     return () => {
       active = false
     }
-  }, [])
+  }, [repository])
 
   if (loadError) {
     return (

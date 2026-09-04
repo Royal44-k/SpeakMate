@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { SCENE_CATALOG, getSceneBySlug } from '@/content/scenes/catalog'
 import type { PracticeSession } from '@/domain/practice/types'
@@ -44,7 +44,7 @@ export function SessionResolver({
   queryLevel,
   repositories,
 }: SessionResolverProps) {
-  const repositoryRef = useRef(repositories ?? createIndexedDbRepositories())
+  const [repository] = useState(() => repositories ?? createIndexedDbRepositories())
   const [resolution, setResolution] = useState<Resolution>({ status: 'loading' })
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export function SessionResolver({
       }
 
       try {
-        const session = await repositoryRef.current.sessions.get(requestedId)
+        const session = await repository.sessions.get(requestedId)
         const scene = session ? restoreScene(session) : undefined
         if (!session || !scene) {
           if (active) {
@@ -92,7 +92,7 @@ export function SessionResolver({
     return () => {
       active = false
     }
-  }, [queryLevel, queryScene, requestedId])
+  }, [queryLevel, queryScene, repository, requestedId])
 
   if (resolution.status === 'loading') {
     return <main className={styles.state} aria-busy="true">正在恢复练习…</main>

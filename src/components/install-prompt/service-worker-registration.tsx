@@ -1,18 +1,19 @@
 'use client'
 
 import { ArrowClockwise } from '@phosphor-icons/react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import styles from './service-worker-registration.module.css'
 
 export function ServiceWorkerRegistration() {
   const [waitingWorker, setWaitingWorker] = useState<ServiceWorker | null>(null)
+  const refreshRequestedRef = useRef(false)
 
   useEffect(() => {
     if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
       let reloading = false
       const handleControllerChange = () => {
-        if (reloading) return
+        if (reloading || !refreshRequestedRef.current) return
         reloading = true
         window.location.reload()
       }
@@ -40,7 +41,10 @@ export function ServiceWorkerRegistration() {
   return (
     <aside className={styles.update} role="status">
       <p><strong>新版本已准备好</strong><span>完成本轮后即可安全更新。</span></p>
-      <button type="button" onClick={() => waitingWorker.postMessage({ type: 'SKIP_WAITING' })}>
+      <button type="button" onClick={() => {
+        refreshRequestedRef.current = true
+        waitingWorker.postMessage({ type: 'SKIP_WAITING' })
+      }}>
         <ArrowClockwise aria-hidden size={18} weight="bold" />
         立即更新
       </button>

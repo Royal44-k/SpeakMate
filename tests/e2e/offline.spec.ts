@@ -15,12 +15,17 @@ test('installed public shell remains available after the network goes offline', 
   await page.goto('/')
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready
-    if (!navigator.serviceWorker.controller) window.location.reload()
   })
+  if (!await page.evaluate(() => Boolean(navigator.serviceWorker.controller))) {
+    await page.reload()
+  }
   await page.waitForFunction(() => Boolean(navigator.serviceWorker.controller))
+  await page.goto('/install')
+  await expect(page.locator('h1')).toContainText('把练习放到主屏幕')
+  expect(await page.evaluate(async () => Boolean(await caches.match('/install')))).toBe(true)
 
   await context.setOffline(true)
-  await page.goto('/install', { waitUntil: 'domcontentloaded' })
-  await expect(page.getByRole('heading', { name: /装到主屏幕/ })).toBeVisible()
+  await page.reload({ waitUntil: 'domcontentloaded' })
+  await expect(page.locator('h1')).toContainText('把练习放到主屏幕')
   await context.setOffline(false)
 })

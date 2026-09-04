@@ -1,6 +1,6 @@
 # SpeakMate Design QA
 
-- Date: 2026-09-03
+- Date: 2026-09-04
 - Scope: mobile PWA core speaking flow, with the hotel check-in scene at B1
 - Target viewport: 390 × 844 CSS pixels, light color scheme
 - Visual source: `docs/design/speakmate-dialogue-stage-reference.png`
@@ -13,6 +13,8 @@
 The reference and implementation were normalized to the same 390 × 844 aspect ratio and placed side by side in one comparison image. The implementation fixture restores one completed learner turn from IndexedDB so both sides show the hotel check-in scene at step 2 / 6 with the same AI sentence. The reference is an art-direction target rather than a pixel-exact product screenshot; the implementation therefore keeps required working controls such as back navigation, TTS playback, task progress, privacy copy, and the text-input fallback.
 
 No additional crop was needed: both full mobile frames remain at 1:1 CSS-pixel size in the 840-pixel-wide comparison, and the title, dialogue, hint, microphone, and keyboard control are all readable together.
+
+Focused-region comparison was not needed because the 390 × 844, 1× combined source shows the display typography, generated hotel artwork, dialogue copy, icons, microphone control, privacy copy, and keyboard fallback at directly readable size.
 
 ## Static source review
 
@@ -43,10 +45,20 @@ No additional crop was needed: both full mobile frames remain at 1:1 CSS-pixel s
 - Reference and implementation now share the intended hierarchy: branded stage → cinematic scenario → AI line → concise cue → speaking action → keyboard fallback.
 - No clipped content, broken spacing, unintended horizontal overflow, unreadable text, or inaccessible unlabeled core controls remain in the inspected state.
 
+### Pass 4 release revalidation
+
+- Re-captured the same B1 hotel check-in state after the PWA update lifecycle, audio-only submission, and storage-recovery changes.
+- Typography remains consistent: Barlow Condensed carries the display hierarchy without truncation; compact Chinese guidance uses readable weight and line height.
+- Spacing, Atlantic/coral/sky tokens, Phosphor icon treatment, generated scene-image crop, and all app-specific copy remain aligned with the approved visual direction.
+- The update notification is anchored to the safe-area-aware top edge, so it does not cover the persistent microphone or keyboard actions.
+- No new P0, P1, or P2 design mismatch was found in the combined comparison.
+
 ## Automated evidence
 
-- `pnpm verify`: lint, TypeScript, 58 unit/component tests, and production build passed.
-- Playwright: Chromium-mobile and WebKit-iPhone flows passed for onboarding, first conversation turn, session recovery, microphone denial, PWA assets, offline privacy boundaries, and accessibility semantics.
+- `pnpm lint`, `pnpm typecheck`, 79 unit/component tests, and the production build passed.
+- Playwright: 23 checks passed and 3 browser-capability-specific checks were skipped as intended across Chromium-mobile and WebKit-iPhone.
+- Primary interactions verified: onboarding, first text-assisted turn, audio-only submission, session recovery, microphone denial, scene filtering, PWA assets, offline public-shell recovery, install guidance, and accessibility semantics.
+- Browser console review found no application errors in the captured release state.
 - Responsive checks passed at 360 × 800, 390 × 844, 430 × 932, 768 × 1024, 844 × 390 landscape, 200% root text size, and forced dark preference.
 
 ## Open findings

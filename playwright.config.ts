@@ -7,6 +7,10 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 8_000 },
   fullyParallel: false,
+  // PWA cases intentionally share one origin, service worker and Cache Storage.
+  // Serial workers prevent one browser context from installing an update while
+  // another context is asserting onboarding or offline behavior.
+  workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: [['list'], ['html', { open: 'never' }]],
   use: {
@@ -31,7 +35,7 @@ export default defineConfig({
     },
   ],
   webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
-    command: '.\\node_modules\\.bin\\next.CMD start -p 3100',
+    command: 'node ./node_modules/next/dist/bin/next start -p 3100',
     url: baseURL,
     reuseExistingServer: true,
     timeout: 60_000,

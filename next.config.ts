@@ -20,7 +20,7 @@ const contentSecurityPolicy = [
   "object-src 'none'",
   "base-uri 'self'",
   "frame-ancestors 'none'",
-  'upgrade-insecure-requests',
+  ...(process.env.VERCEL === '1' ? ['upgrade-insecure-requests'] : []),
 ].join('; ')
 
 const securityHeaders = [
