@@ -22,7 +22,9 @@ export function PracticeStage({
   const practice = usePracticeSession(scene, sessionId)
   const [feedbackExpanded, setFeedbackExpanded] = useState(false)
   const status = practice.machine.status
-  const isReviewing = status === 'reviewing' || (status === 'recoverable-error' && Boolean(practice.machine.draftTranscript))
+  const isReviewing = status === 'reviewing' || (status === 'recoverable-error' && Boolean(practice.machine.draftTranscript || practice.audio))
+  const hasTranscript = Boolean(practice.machine.draftTranscript?.trim())
+  const canSubmit = hasTranscript || (Boolean(practice.audio) && practice.machine.errorCode !== 'NO_SPEECH')
   const completedGoals = practice.latestResult?.progress.completedGoalIds ?? []
 
   if (status === 'completed') {
@@ -58,6 +60,10 @@ export function PracticeStage({
         <span>你是：{scene.learnerRole}</span>
       </section>
 
+      {practice.ephemeral ? (
+        <p className={styles.storageNotice} role="status">本机存储当前不可用；你仍可练习，但关闭页面后本次记录可能丢失。</p>
+      ) : null}
+
       <section className={styles.dialogue} aria-live="polite">
         <div className={styles.speakerLine}><span>AI · {scene.aiRole}</span><div>{practice.latestResult?.degraded ? <em>基础反馈模式</em> : null}<button type="button" aria-label="播放 AI 回复" onClick={() => void practice.speakReply().catch(() => undefined)}><Headphones aria-hidden size={21} /></button></div></div>
         <blockquote>“{practice.aiReply}”</blockquote>
@@ -77,8 +83,9 @@ export function PracticeStage({
           <div><span>YOUR TURN</span><h2 id="review-title">确认你刚才说的话</h2></div>
           <label htmlFor="turn-transcript">英文内容</label>
           <textarea id="turn-transcript" rows={4} autoFocus value={practice.machine.draftTranscript ?? ''} placeholder="例如：Hello, I have a reservation under the name Chen." onChange={(event) => practice.updateTranscript(event.target.value)} />
-          {practice.audio && !(practice.machine.draftTranscript ?? '').trim() ? <p>录音已准备，但当前浏览器无法本地转写。输入或修改英文后继续。</p> : null}
-          <div className={styles.reviewActions}><button type="button" onClick={practice.cancelReview}>取消</button><button type="button" disabled={!(practice.machine.draftTranscript ?? '').trim()} onClick={() => void practice.submitTurn()}>提交这一轮</button></div>
+          {practice.machine.errorMessage ? <p role="alert">{practice.machine.errorMessage}</p> : null}
+          {practice.audio && !hasTranscript && practice.machine.errorCode !== 'NO_SPEECH' ? <p>录音已准备，将先尝试云端识别；若当前为基础模式，再请你输入英文确认。</p> : null}
+          <div className={styles.reviewActions}><button type="button" onClick={practice.cancelReview}>取消</button><button type="button" disabled={!canSubmit} onClick={() => void practice.submitTurn()}>提交这一轮</button></div>
         </section>
       ) : null}
 

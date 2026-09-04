@@ -74,6 +74,10 @@ export function getDatabase(): Promise<IDBPDatabase<SpeakMateDbSchema>> {
         database.createObjectStore('outbox', { keyPath: 'id' })
       }
     },
+    blocking() {
+      void databasePromise?.then((database) => database.close())
+      databasePromise = undefined
+    },
   })
 
   return databasePromise
@@ -88,6 +92,23 @@ export async function deleteDatabase(): Promise<void> {
     const request = indexedDB.deleteDatabase(DATABASE_NAME)
     request.onsuccess = () => resolve()
     request.onerror = () => reject(request.error)
-    request.onblocked = () => resolve()
+    request.onblocked = () => reject(new Error('DATABASE_DELETE_BLOCKED'))
   })
+}
+
+export async function clearDatabase(): Promise<void> {
+  const database = await getDatabase()
+  const stores = [
+    'profile',
+    'sessions',
+    'turns',
+    'favorites',
+    'settings',
+    'outbox',
+  ] as const
+  const transaction = database.transaction([...stores], 'readwrite')
+  await Promise.all([
+    ...stores.map((store) => transaction.objectStore(store).clear()),
+    transaction.done,
+  ])
 }

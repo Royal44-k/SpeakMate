@@ -29,7 +29,7 @@ export type PracticeEvent =
   | { type: 'ENTER_TEXT'; transcript?: string }
   | { type: 'UPDATE_TRANSCRIPT'; transcript: string }
   | { type: 'CANCEL' }
-  | { type: 'SUBMIT' }
+  | { type: 'SUBMIT'; hasAudio?: boolean }
   | { type: 'SUBMISSION_ACCEPTED' }
   | { type: 'RESULT_RECEIVED' }
   | { type: 'COMPLETE' }
@@ -56,6 +56,8 @@ export function transitionPractice(
   if (event.type === 'FAIL' && state.status !== 'completed') {
     const retryStatus = state.draftTranscript?.trim()
       ? 'reviewing'
+      : state.status === 'submitting' || state.status === 'receiving'
+        ? 'reviewing'
       : state.status === 'text-only'
         ? 'text-only'
         : 'ready'
@@ -91,7 +93,9 @@ export function transitionPractice(
       return illegal(state, event)
     case 'reviewing':
       if (event.type === 'UPDATE_TRANSCRIPT') return { ...state, draftTranscript: event.transcript }
-      if (event.type === 'SUBMIT' && state.draftTranscript?.trim()) return { ...state, status: 'submitting' }
+      if (event.type === 'SUBMIT' && (state.draftTranscript?.trim() || event.hasAudio)) {
+        return { ...state, status: 'submitting' }
+      }
       if (event.type === 'CANCEL') return { ...state, status: 'ready', draftTranscript: undefined }
       return illegal(state, event)
     case 'submitting':

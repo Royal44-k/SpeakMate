@@ -16,6 +16,7 @@
 .sceneStrip > div { height: 100%; border-radius: 0; }
 .sceneStrip::after { position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(transparent, rgb(11 42 67 / 78%)); content: ''; pointer-events: none; }
 .sceneStrip > span { position: absolute; z-index: 1; right: 18px; bottom: 14px; left: 18px; overflow: hidden; color: var(--color-white); font-size: .78rem; font-weight: 700; text-overflow: ellipsis; white-space: nowrap; }
+.storageNotice { margin: 12px 22px 0; border-left: 3px solid var(--color-warning); padding: 8px 10px; background: color-mix(in srgb, var(--color-warning) 8%, var(--color-white)); color: var(--color-ink-700); font-size: .74rem; line-height: 1.5; }
 .dialogue, .feedbackHolder, .firstHint, .review, .error, .processing, .completeButton { margin-right: 22px; margin-left: 22px; }
 .dialogue { padding: 20px 0 14px; }
 .speakerLine { display: flex; align-items: center; justify-content: space-between; color: var(--color-atlantic-700); font-size: .7rem; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; }

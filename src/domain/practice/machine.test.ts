@@ -33,6 +33,14 @@ describe('transitionPractice', () => {
     expect(denied.errorCode).toBe('MICROPHONE_DENIED')
   })
 
+  it('submits a recorded turn even when browser speech recognition returns no transcript', () => {
+    let state = transitionPractice(INITIAL_PRACTICE_STATE, { type: 'PRESS_RECORD' })
+    state = transitionPractice(state, { type: 'PERMISSION_GRANTED' })
+    state = transitionPractice(state, { type: 'RECORDING_READY', transcript: '' })
+
+    expect(transitionPractice(state, { type: 'SUBMIT', hasAudio: true }).status).toBe('submitting')
+  })
+
   it('retains a safe retry target after a recoverable failure', () => {
     const submitting: PracticeState = {
       status: 'submitting',

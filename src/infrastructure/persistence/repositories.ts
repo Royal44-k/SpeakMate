@@ -5,7 +5,7 @@ import type {
 } from '@/domain/learning/types'
 import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
 
-import { deleteDatabase, getDatabase } from './db'
+import { clearDatabase, getDatabase } from './db'
 
 export interface ProfileRepository {
   get(): Promise<LearnerProfile | undefined>
@@ -47,6 +47,7 @@ export interface Repositories {
   sessions: SessionRepository
   turns: TurnRepository
   favorites: FavoriteRepository
+  saveTurnAndSession(turn: PracticeTurn, session: PracticeSession): Promise<void>
   exportLearnerData(): Promise<LearnerDataExport>
   clearLearnerData(): Promise<void>
 }
@@ -135,6 +136,10 @@ export function createMemoryRepositories(): Repositories {
         favorites.delete(id)
       },
     },
+    async saveTurnAndSession(turn, session) {
+      turns.set(turn.id, structuredClone(turn))
+      sessions.set(session.id, structuredClone(session))
+    },
     async exportLearnerData() {
       return {
         schemaVersion: 1,
@@ -219,6 +224,15 @@ export function createIndexedDbRepositories(): Repositories {
         await (await getDatabase()).delete('favorites', id)
       },
     },
+    async saveTurnAndSession(turn, session) {
+      const database = await getDatabase()
+      const transaction = database.transaction(['turns', 'sessions'], 'readwrite')
+      await Promise.all([
+        transaction.objectStore('turns').put(turn),
+        transaction.objectStore('sessions').put(session),
+        transaction.done,
+      ])
+    },
     async exportLearnerData() {
       const database = await getDatabase()
       const [profile, sessions, turns, favorites, settings] = await Promise.all([
@@ -239,7 +253,7 @@ export function createIndexedDbRepositories(): Repositories {
       }
     },
     async clearLearnerData() {
-      await deleteDatabase()
+      await clearDatabase()
     },
   }
 

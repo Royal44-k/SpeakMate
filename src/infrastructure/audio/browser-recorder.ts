@@ -37,6 +37,40 @@ export interface BrowserRecorder {
 export interface BrowserRecorderOptions {
   onAmplitude?: (amplitude: number) => void
   onAutoStop?: () => void
+  onInterrupted?: () => void
+}
+
+export interface RecordingInterruptionSources {
+  page?: EventTarget
+  lifecycle?: EventTarget
+  tracks: EventTarget[]
+  isHidden?: () => boolean
+}
+
+export function bindRecordingInterruptionHandlers(
+  sources: RecordingInterruptionSources,
+  onInterrupted: () => void,
+): () => void {
+  let interrupted = false
+  const interruptOnce = () => {
+    if (interrupted) return
+    interrupted = true
+    onInterrupted()
+  }
+  const handleVisibility = () => {
+    if (sources.isHidden?.()) interruptOnce()
+  }
+
+  sources.page?.addEventListener('visibilitychange', handleVisibility)
+  const lifecycle = sources.lifecycle ?? sources.page
+  lifecycle?.addEventListener('pagehide', interruptOnce)
+  sources.tracks.forEach((track) => track.addEventListener('ended', interruptOnce))
+
+  return () => {
+    sources.page?.removeEventListener('visibilitychange', handleVisibility)
+    lifecycle?.removeEventListener('pagehide', interruptOnce)
+    sources.tracks.forEach((track) => track.removeEventListener('ended', interruptOnce))
+  }
 }
 
 export function selectSupportedMimeType(
@@ -79,11 +113,14 @@ export function createRecorder(
   let stopPromise: Promise<RecordedAudio> | undefined
   let resolveStop: ((audio: RecordedAudio) => void) | undefined
   let rejectStop: ((reason: unknown) => void) | undefined
+  let detachInterruptionHandlers: (() => void) | undefined
+  let cancelled = false
   const amplitudeSamples: number[] = []
 
   function cleanup() {
     if (autoStopTimer) clearTimeout(autoStopTimer)
     if (amplitudeTimer) clearInterval(amplitudeTimer)
+    detachInterruptionHandlers?.()
     stopTracks(stream)
     void audioContext?.close().catch(() => undefined)
     stream = undefined
@@ -92,6 +129,16 @@ export function createRecorder(
     audioContext = undefined
     autoStopTimer = undefined
     amplitudeTimer = undefined
+    detachInterruptionHandlers = undefined
+  }
+
+  function cancelRecording() {
+    if (cancelled) return
+    cancelled = true
+    if (recorder?.state === 'recording') recorder.stop()
+    rejectStop?.(new DOMException('Recording cancelled', 'AbortError'))
+    void stopPromise?.catch(() => undefined)
+    cleanup()
   }
 
   function sampleAmplitude() {
@@ -127,6 +174,17 @@ export function createRecorder(
       chunks = []
       amplitudeSamples.length = 0
       startedAt = performance.now()
+      cancelled = false
+
+      detachInterruptionHandlers = bindRecordingInterruptionHandlers({
+        page: globalThis.document,
+        lifecycle: globalThis.window,
+        tracks: stream.getTracks(),
+        isHidden: () => globalThis.document?.visibilityState === 'hidden',
+      }, () => {
+        cancelRecording()
+        options.onInterrupted?.()
+      })
 
       try {
         audioContext = new AudioContext()
@@ -150,6 +208,7 @@ export function createRecorder(
         cleanup()
       })
       recorder.addEventListener('stop', () => {
+        if (cancelled) return
         const durationMs = Math.min(MAX_RECORDING_MS, Math.round(performance.now() - startedAt))
         const type = recorder?.mimeType || mimeType || 'audio/webm'
         const blob = new Blob(chunks, { type })
@@ -182,9 +241,7 @@ export function createRecorder(
       return stopPromise
     },
     cancel() {
-      if (recorder?.state === 'recording') recorder.stop()
-      rejectStop?.(new DOMException('Recording cancelled', 'AbortError'))
-      cleanup()
+      cancelRecording()
     },
     isRecording() {
       return recorder?.state === 'recording'

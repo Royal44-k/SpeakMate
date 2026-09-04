@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import {
+  bindRecordingInterruptionHandlers,
   MAX_AUDIO_BYTES,
   MAX_RECORDING_MS,
   MIN_RECORDING_MS,
@@ -23,5 +24,23 @@ describe('browser recorder guards', () => {
 
   it('does not submit a silent recording', () => {
     expect(validateRecording({ durationMs: 1_200, size: 10_000, peakAmplitude: 0.004 })).toMatchObject({ code: 'NO_SPEECH' })
+  })
+
+  it('cancels an active recording when the page is hidden or the audio track ends', () => {
+    const page = new EventTarget()
+    const track = new EventTarget()
+    const onInterrupted = vi.fn()
+    const detach = bindRecordingInterruptionHandlers(
+      { page, tracks: [track], isHidden: () => true },
+      onInterrupted,
+    )
+
+    page.dispatchEvent(new Event('visibilitychange'))
+    track.dispatchEvent(new Event('ended'))
+    expect(onInterrupted).toHaveBeenCalledOnce()
+
+    detach()
+    page.dispatchEvent(new Event('pagehide'))
+    expect(onInterrupted).toHaveBeenCalledOnce()
   })
 })

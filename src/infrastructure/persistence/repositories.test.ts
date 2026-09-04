@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
 
-import { createMemoryRepositories } from './repositories'
+import { createIndexedDbRepositories, createMemoryRepositories } from './repositories'
 
 describe('guest-first repository contracts', () => {
   let repositories: ReturnType<typeof createMemoryRepositories>
@@ -61,6 +61,31 @@ describe('guest-first repository contracts', () => {
     expect('audio' in repositories).toBe(false)
   })
 
+  it('atomically saves an idempotent turn with its session progress', async () => {
+    const session = sessionFixture()
+    const turn: PracticeTurn = {
+      id: `${session.id}:turn:0`,
+      sessionId: session.id,
+      index: 0,
+      learnerText: 'I have a reservation.',
+      aiText: 'May I see your passport?',
+      createdAt: session.updatedAt,
+    }
+
+    await repositories.saveTurnAndSession(turn, session)
+    await repositories.saveTurnAndSession(
+      { ...turn, aiText: 'Could I see your passport?' },
+      { ...session, completedGoals: ['hotel-check-in-goal-1'] },
+    )
+
+    expect(await repositories.turns.listBySession(session.id)).toEqual([
+      { ...turn, aiText: 'Could I see your passport?' },
+    ])
+    expect(await repositories.sessions.get(session.id)).toMatchObject({
+      completedGoals: ['hotel-check-in-goal-1'],
+    })
+  })
+
   it('exports versioned learner data and clears every local collection', async () => {
     await repositories.profiles.ensureGuestProfile()
     await repositories.sessions.save(sessionFixture())
@@ -74,6 +99,30 @@ describe('guest-first repository contracts', () => {
     await repositories.clearLearnerData()
     expect((await repositories.exportLearnerData()).sessions).toHaveLength(0)
     expect(await repositories.profiles.get()).toBeUndefined()
+  })
+})
+
+describe('IndexedDB repository transactions', () => {
+  it('clears data without deleting the database or waiting on other open tabs', async () => {
+    const repositories = createIndexedDbRepositories()
+    await repositories.clearLearnerData()
+    const profile = await repositories.profiles.ensureGuestProfile()
+    const session = sessionFixture({ profileId: profile.id })
+    const turn: PracticeTurn = {
+      id: `${session.id}:turn:0`,
+      sessionId: session.id,
+      index: 0,
+      learnerText: 'Hello.',
+      aiText: 'Welcome.',
+      createdAt: session.updatedAt,
+    }
+    await repositories.saveTurnAndSession(turn, session)
+
+    await repositories.clearLearnerData()
+
+    expect(await repositories.profiles.get()).toBeUndefined()
+    expect(await repositories.sessions.list()).toEqual([])
+    expect(await repositories.turns.list()).toEqual([])
   })
 })
 
