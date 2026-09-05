@@ -38,9 +38,7 @@ export function RouteCoordinator() {
       announcementRef.current.textContent = title?.textContent?.trim() ?? ''
     }
 
-    if (document.activeElement === document.body) {
-      title?.focus()
-    }
+    title?.focus()
   }, [route])
 
   return (

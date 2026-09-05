@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs'
+
 import { fireEvent, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
 import { describe, expect, it, vi } from 'vitest'
@@ -30,6 +32,22 @@ describe('AppShell', () => {
     expect(screen.getAllByRole('link')).toHaveLength(3)
   })
 
+  it('keeps three 44px navigation targets separated by an 8px gap', () => {
+    const navigationStyles = readFileSync(
+      'src/components/app-shell/app-shell.module.css',
+      'utf8',
+    )
+    const tokens = readFileSync('src/styles/tokens.css', 'utf8')
+
+    expect(navigationStyles).toMatch(
+      /\.navigation\s*{[^}]*grid-template-columns:\s*repeat\(3, 1fr\);[^}]*gap:\s*8px;/s,
+    )
+    expect(navigationStyles).toMatch(
+      /\.navigationLink,\s*\.navigationLinkActive\s*{[^}]*min-width:\s*var\(--tap-target\);[^}]*min-height:\s*52px;/s,
+    )
+    expect(tokens).toMatch(/--tap-target:\s*44px;/)
+  })
+
   it('has no detectable accessibility violations in the shared shell', async () => {
     const { container } = render(
       <AppShell activeDestination="scenes">
@@ -53,6 +71,19 @@ describe('AppShell', () => {
       'data-page-title',
     )
     expect((await axe(container)).violations).toEqual([])
+  })
+
+  it('allows a long page title to wrap instead of truncating at large text sizes', () => {
+    const headerStyles = readFileSync(
+      'src/components/app-shell/mobile-page-header.module.css',
+      'utf8',
+    )
+
+    expect(headerStyles).toMatch(
+      /\.header h1\s*{[^}]*overflow-wrap:\s*anywhere;[^}]*white-space:\s*normal;/s,
+    )
+    expect(headerStyles).not.toMatch(/\.header h1\s*{[^}]*overflow:\s*hidden;/s)
+    expect(headerStyles).not.toMatch(/\.header h1\s*{[^}]*text-overflow:/s)
   })
 
   it('uses browser back only when the current session has an in-app route', () => {
@@ -98,5 +129,32 @@ describe('AppShell', () => {
     )
     expect(screen.getByRole('heading', { name: '场景库' })).toHaveFocus()
     expect(screen.getByRole('status')).toHaveTextContent('场景库')
+  })
+
+  it('moves forward-navigation focus to the page title even from a persistent control', () => {
+    const { rerender } = render(
+      <>
+        <button type="button">持久操作</button>
+        <h1 data-page-title tabIndex={-1}>
+          场景库
+        </h1>
+        <RouteCoordinator />
+      </>,
+    )
+    screen.getByRole('button', { name: '持久操作' }).focus()
+    navigation.pathname = '/scenes/hotel-check-in'
+    navigation.search = ''
+
+    rerender(
+      <>
+        <button type="button">持久操作</button>
+        <h1 data-page-title tabIndex={-1}>
+          酒店入住
+        </h1>
+        <RouteCoordinator />
+      </>,
+    )
+
+    expect(screen.getByRole('heading', { name: '酒店入住' })).toHaveFocus()
   })
 })
