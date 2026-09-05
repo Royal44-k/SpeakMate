@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   parseSceneFilterState,
+  sceneLibraryHref,
   serializeSceneFilterState,
 } from './scene-filter-state'
 
@@ -38,5 +39,20 @@ describe('scene filter state', () => {
         duration: 5,
       }),
     ).toBe('category=social&level=B1&duration=5')
+  })
+
+  it('preserves typed search text while parsing and trims it only for the URL', () => {
+    expect(
+      parseSceneFilterState(new URLSearchParams('q=%20hotel%20'), 'A2').search,
+    ).toBe(' hotel ')
+
+    expect(
+      sceneLibraryHref({
+        search: ' hotel ',
+        category: 'all',
+        level: 'B1',
+        duration: 'all',
+      }),
+    ).toBe('/scenes?q=hotel&level=B1')
   })
 })
