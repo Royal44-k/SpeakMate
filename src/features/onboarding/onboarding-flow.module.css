@@ -4,6 +4,10 @@
 .header h1 { margin: 20px 0 8px; font-family: var(--font-display); font-size: clamp(2.8rem, 12vw, 4rem); line-height: .95; letter-spacing: -.035em; }
 .header > p:last-child { margin: 0; color: var(--color-ink-500); line-height: 1.6; }
 .panel { width: min(100%, 440px); margin: 0 auto; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 20px; background: var(--color-white); box-shadow: var(--shadow-float); }
+.loadingPanel { display: grid; gap: 12px; text-align: center; }
+.loadingPanel h1, .loadingPanel p { margin: 0; }
+.loadingPanel h1 { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-atlantic-800); }
+.loadingPanel p { color: var(--color-ink-500); line-height: 1.6; }
 .panelTopline, .sectionHeading, .sectionHeading > div { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .panelTopline { min-height: 44px; margin-bottom: 12px; color: var(--color-ink-500); font-size: .8rem; font-weight: 800; }
 .sectionHeading { margin-bottom: 16px; }

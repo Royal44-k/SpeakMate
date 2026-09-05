@@ -64,4 +64,24 @@ describe('OnboardingFlow', () => {
 
     expect(screen.getByRole('heading', { name: '选择首要目标' })).toBeVisible()
   })
+
+  it('allows a new learner to confirm the default level once', () => {
+    render(<OnboardingFlow />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'A2 基础' }))
+
+    expect(screen.getByRole('heading', { name: '选择首要目标' })).toBeVisible()
+  })
+
+  it('allows a saved level to be confirmed once without advancing after a step back', () => {
+    render(<OnboardingFlow initialChoices={{ level: 'B1', goals: ['work'], dailyMinutes: 10 }} />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'B1 中级' }))
+    expect(screen.getByRole('heading', { name: '选择首要目标' })).toBeVisible()
+
+    fireEvent.click(screen.getByRole('button', { name: '返回选择英语水平' }))
+    fireEvent.click(screen.getByRole('button', { name: 'B1 中级' }))
+
+    expect(screen.getByRole('heading', { name: '选择英语水平' })).toBeVisible()
+  })
 })

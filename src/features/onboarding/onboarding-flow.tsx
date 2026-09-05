@@ -50,6 +50,7 @@ export function OnboardingFlow({
 }) {
   const [step, setStep] = useState<1 | 2 | 3>(1)
   const [level, setLevel] = useState<CefrLevel>(initialChoices?.level ?? 'A2')
+  const [levelConfirmed, setLevelConfirmed] = useState(false)
   const [goals, setGoals] = useState<SceneCategory[]>(initialChoices?.goals ?? ['travel'])
   const [dailyMinutes, setDailyMinutes] = useState<5 | 10 | 15>(initialChoices?.dailyMinutes ?? 5)
   const [goalConfirmed, setGoalConfirmed] = useState(false)
@@ -57,8 +58,9 @@ export function OnboardingFlow({
   const [quizScore, setQuizScore] = useState(0)
 
   function chooseLevel(value: CefrLevel) {
-    if (value === level) return
-    setLevel(value)
+    if (value === level && levelConfirmed) return
+    if (value !== level) setLevel(value)
+    setLevelConfirmed(true)
     setStep(2)
   }
 
