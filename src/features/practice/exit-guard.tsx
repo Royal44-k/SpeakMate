@@ -4,12 +4,13 @@ import { ArrowLeft, Warning } from '@phosphor-icons/react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import {
-  useEffect,
   useLayoutEffect,
   useRef,
   useState,
+  type KeyboardEvent,
   type MouseEvent,
 } from 'react'
+import { createPortal } from 'react-dom'
 
 import type { PracticeStatus } from '@/domain/practice/machine'
 
@@ -54,11 +55,14 @@ function GuardedExit({
 }) {
   const router = useRouter()
   const [dialogOpen, setDialogOpen] = useState(false)
+  const dialogRef = useRef<HTMLDialogElement>(null)
   const continueButtonRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLAnchorElement>(null)
+  const restoreFocusRef = useRef(false)
   const confirmingRef = useRef(false)
   const sentinelIdRef = useRef<string | undefined>(undefined)
   const sentinelCurrentRef = useRef(false)
+  const cleanupVersionRef = useRef(0)
   const fallbackHrefRef = useRef(fallbackHref)
   const onConfirmExitRef = useRef(onConfirmExit)
   const replaceRef = useRef(router.replace)
@@ -70,15 +74,24 @@ function GuardedExit({
   }, [fallbackHref, onConfirmExit, router.replace])
 
   useLayoutEffect(() => {
-    const sentinelId = `practice-exit-${globalThis.crypto?.randomUUID?.() ?? Date.now()}`
+    cleanupVersionRef.current += 1
+    const sentinelId =
+      sentinelIdRef.current ??
+      `practice-exit-${globalThis.crypto?.randomUUID?.() ?? Date.now()}`
     const currentHref = `${window.location.pathname}${window.location.search}${window.location.hash}`
     sentinelIdRef.current = sentinelId
 
-    window.history.pushState(
-      sentinelState(window.history.state, sentinelId),
-      '',
-      currentHref,
-    )
+    if (
+      (window.history.state as Record<string, unknown> | null)?.[
+        SENTINEL_KEY
+      ] !== sentinelId
+    ) {
+      window.history.pushState(
+        sentinelState(window.history.state, sentinelId),
+        '',
+        currentHref,
+      )
+    }
     sentinelCurrentRef.current = true
 
     function handleBeforeUnload(event: BeforeUnloadEvent) {
@@ -109,25 +122,74 @@ function GuardedExit({
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload)
       window.removeEventListener('popstate', handlePopState)
-      if (
-        sentinelCurrentRef.current &&
-        (window.history.state as Record<string, unknown> | null)?.[
-          SENTINEL_KEY
-        ] === sentinelId
-      ) {
-        window.history.replaceState(
-          removeSentinel(window.history.state, sentinelId),
-          '',
-        )
-        sentinelCurrentRef.current = false
-        window.history.back()
-      }
-      sentinelIdRef.current = undefined
+      const cleanupVersion = ++cleanupVersionRef.current
+
+      queueMicrotask(() => {
+        if (cleanupVersionRef.current !== cleanupVersion) return
+        if (
+          sentinelCurrentRef.current &&
+          (window.history.state as Record<string, unknown> | null)?.[
+            SENTINEL_KEY
+          ] === sentinelId
+        ) {
+          window.history.replaceState(
+            removeSentinel(window.history.state, sentinelId),
+            '',
+          )
+          sentinelCurrentRef.current = false
+          window.history.back()
+        }
+        sentinelIdRef.current = undefined
+      })
     }
   }, [])
 
-  useEffect(() => {
-    if (dialogOpen) continueButtonRef.current?.focus()
+  useLayoutEffect(() => {
+    if (!dialogOpen) return
+
+    const dialog = dialogRef.current
+    const trigger = triggerRef.current
+    if (!dialog) return
+    const isolatedElements = Array.from(document.body.children)
+      .filter((element): element is HTMLElement => {
+        return element instanceof HTMLElement && element !== dialog
+      })
+      .map((element) => ({
+        element,
+        hadInert: element.hasAttribute('inert'),
+        ariaHidden: element.getAttribute('aria-hidden'),
+      }))
+
+    if (typeof dialog.showModal === 'function') {
+      dialog.showModal()
+    } else {
+      dialog.setAttribute('open', '')
+    }
+    continueButtonRef.current?.focus()
+    for (const { element } of isolatedElements) {
+      element.setAttribute('inert', '')
+      element.setAttribute('aria-hidden', 'true')
+    }
+
+    return () => {
+      if (typeof dialog.close === 'function' && dialog.open) {
+        dialog.close()
+      } else {
+        dialog.removeAttribute('open')
+      }
+      for (const { element, hadInert, ariaHidden } of isolatedElements) {
+        if (!hadInert) element.removeAttribute('inert')
+        if (ariaHidden === null) {
+          element.removeAttribute('aria-hidden')
+        } else {
+          element.setAttribute('aria-hidden', ariaHidden)
+        }
+      }
+      if (restoreFocusRef.current) {
+        restoreFocusRef.current = false
+        trigger?.focus()
+      }
+    }
   }, [dialogOpen])
 
   function requestExit(event: MouseEvent<HTMLAnchorElement>) {
@@ -147,8 +209,47 @@ function GuardedExit({
   }
 
   function continuePractice() {
+    restoreFocusRef.current = true
     setDialogOpen(false)
-    triggerRef.current?.focus()
+  }
+
+  function keepFocusInDialog(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key === 'Escape') {
+      event.preventDefault()
+      continuePractice()
+      return
+    }
+    if (event.key !== 'Tab') return
+
+    const dialog = dialogRef.current
+    if (!dialog) return
+    const focusable = Array.from(
+      dialog.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ),
+    )
+    const first = focusable[0]
+    const last = focusable.at(-1)
+    if (!first || !last) {
+      event.preventDefault()
+      return
+    }
+
+    if (
+      event.shiftKey &&
+      (document.activeElement === first ||
+        !dialog.contains(document.activeElement))
+    ) {
+      event.preventDefault()
+      last.focus()
+    } else if (
+      !event.shiftKey &&
+      (document.activeElement === last ||
+        !dialog.contains(document.activeElement))
+    ) {
+      event.preventDefault()
+      first.focus()
+    }
   }
 
   function confirmExit() {
@@ -187,42 +288,44 @@ function GuardedExit({
         <ArrowLeft aria-hidden size={23} />
       </Link>
 
-      {dialogOpen ? (
-        <div
-          className={styles.exitBackdrop}
-          onKeyDown={(event) => {
-            if (event.key === 'Escape') continuePractice()
-          }}
-        >
-          <section
-            className={styles.exitDialog}
-            role="alertdialog"
-            aria-modal="true"
-            aria-labelledby="practice-exit-title"
-            aria-describedby="practice-exit-description"
-          >
-            <span className={styles.exitWarning}>
-              <Warning aria-hidden size={24} weight="fill" />
-            </span>
-            <h2 id="practice-exit-title">退出本次练习？</h2>
-            <p id="practice-exit-description">
-              当前这轮还没有完成，退出后未提交的录音或文字会丢失。
-            </p>
-            <div className={styles.exitActions}>
-              <button
-                ref={continueButtonRef}
-                type="button"
-                onClick={continuePractice}
-              >
-                继续练习
-              </button>
-              <button type="button" onClick={confirmExit}>
-                退出
-              </button>
-            </div>
-          </section>
-        </div>
-      ) : null}
+      {dialogOpen
+        ? createPortal(
+            <dialog
+              ref={dialogRef}
+              className={styles.exitDialog}
+              role="alertdialog"
+              aria-modal="true"
+              aria-labelledby="practice-exit-title"
+              aria-describedby="practice-exit-description"
+              onCancel={(event) => {
+                event.preventDefault()
+                continuePractice()
+              }}
+              onKeyDown={keepFocusInDialog}
+            >
+              <span className={styles.exitWarning}>
+                <Warning aria-hidden size={24} weight="fill" />
+              </span>
+              <h2 id="practice-exit-title">退出本次练习？</h2>
+              <p id="practice-exit-description">
+                当前这轮还没有完成，退出后未提交的录音或文字会丢失。
+              </p>
+              <div className={styles.exitActions}>
+                <button
+                  ref={continueButtonRef}
+                  type="button"
+                  onClick={continuePractice}
+                >
+                  继续练习
+                </button>
+                <button type="button" onClick={confirmExit}>
+                  退出
+                </button>
+              </div>
+            </dialog>,
+            document.body,
+          )
+        : null}
     </>
   )
 }
@@ -249,9 +352,6 @@ export function ExitGuard({
   }
 
   return (
-    <GuardedExit
-      fallbackHref={fallbackHref}
-      onConfirmExit={onConfirmExit}
-    />
+    <GuardedExit fallbackHref={fallbackHref} onConfirmExit={onConfirmExit} />
   )
 }
