@@ -125,3 +125,18 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 - 错误日志：发布后一小时内未发现 error 级别日志。
 
 当前中国大陆网络的浏览器自动化无法直接完成线上 UI 复测：系统 DNS 将 `*.vercel.app` 解析到非 Vercel 地址，Chromium/WebKit 均在导航阶段超时；同一部署经独立 HTTPS 客户端及 Vercel 部署状态检查正常。这是域名网络可达性限制，不是页面或 API 执行失败。上线前仍需用实际 iPhone 的 Wi-Fi 和蜂窝网络分别测试；若不稳定，下一步是绑定用户自有域名，或采用完成 ICP 备案的大陆镜像。
+
+## 9. 2026-09-05 生产发布记录
+
+- 公共生产 URL：<https://speakmate-pwa.vercel.app>
+- Vercel 部署 ID：`dpl_FwV45ugpo992BTjuktFUUq6ZTsG8`
+- 代码提交：`c44cabc`；健康接口通过该次部署专用的 `SPEAKMATE_RELEASE_SHA` 返回同一短 SHA。
+- 状态：`READY`；目标为 Production；Node.js 22.x；Next.js 16.3.4；Serverless Functions 区域为 `sin1`。
+- 远端健康检查：200，`version: 2.1.1`、`aiMode: local`、`buildSha: c44cabc`。
+- 远端能力检查：云 ASR、云对话和邮箱同步均为 `false`；没有启用可能产生费用的云能力。
+- 远端资源检查：首页、欢迎页、场景库、动态会话页、固定离线会话壳、Manifest 与 Service Worker 均返回 200；Worker 版本为 `speakmate-shell-v2.1.1`。
+- 远端安全检查：CSP 和 `Permissions-Policy` 存在；同源文字对话返回 200 和 `local` provider，跨站提交返回 403。
+- 私有缓存检查：`/session/:id` 使用 `cacheResponse=false`，活动会话 ID 不写入 CacheStorage；本地 Chromium 实测可从固定壳恢复 IndexedDB 会话。
+- 自动化验证：92 项单元/组件测试通过；Playwright 24 项通过、4 项按浏览器能力跳过；发布后 error 级别日志为空。
+
+本记录只证明自动化 iPhone WebKit 路径和公开 HTTPS 端点通过，不声称已经在用户的实体 iPhone 上完成验收。中国大陆访问质量仍取决于实际网络，必须按第 5、6 节用 Wi-Fi 与蜂窝网络各测试一次。
