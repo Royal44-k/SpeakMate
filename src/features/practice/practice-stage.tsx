@@ -22,9 +22,11 @@ import { usePracticeSession } from './use-practice-session'
 export function PracticeStage({
   scene,
   sessionId,
+  completed = false,
 }: {
   scene: AdaptedScene
   sessionId: string
+  completed?: boolean
 }) {
   const practice = usePracticeSession(scene, sessionId)
   const [feedbackExpanded, setFeedbackExpanded] = useState(false)
@@ -69,7 +71,7 @@ export function PracticeStage({
     }
   }, [interactionBusy])
 
-  if (status === 'completed') {
+  if (status === 'completed' || completed) {
     return (
       <main className={styles.completed}>
         <span>

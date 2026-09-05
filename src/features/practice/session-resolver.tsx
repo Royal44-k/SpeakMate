@@ -33,6 +33,7 @@ type Resolution =
       requestKey: string
       scene: AdaptedScene
       sessionId: string
+      completed: boolean
     }
   | { status: 'error'; requestKey: string; message: string }
 
@@ -93,6 +94,7 @@ export function SessionResolver({
             requestKey,
             scene: adaptScene(definition, queryLevelOrDefault(queryLevel)),
             sessionId: requestedId,
+            completed: false,
           })
         }
         return
@@ -118,6 +120,7 @@ export function SessionResolver({
             requestKey,
             scene,
             sessionId: session.id,
+            completed: session.status === 'completed',
           })
       } catch {
         if (active) {
@@ -158,6 +161,7 @@ export function SessionResolver({
       key={`${resolution.sessionId}:${resolution.scene.id}:${resolution.scene.version}:${resolution.scene.level}`}
       scene={resolution.scene}
       sessionId={resolution.sessionId}
+      completed={resolution.completed}
     />
   )
 }

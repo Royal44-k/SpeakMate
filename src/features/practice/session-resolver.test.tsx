@@ -11,10 +11,12 @@ vi.mock('./practice-stage', () => ({
   PracticeStage: ({
     scene,
     sessionId,
+    completed = false,
   }: {
     scene: { slug: string; level: string }
     sessionId: string
-  }) => <div>{`${sessionId}:${scene.slug}:${scene.level}`}</div>,
+    completed?: boolean
+  }) => <div>{`${sessionId}:${scene.slug}:${scene.level}:${completed ? 'completed' : 'active'}`}</div>,
 }))
 
 describe('SessionResolver', () => {
@@ -43,7 +45,7 @@ describe('SessionResolver', () => {
     )
 
     expect(
-      await screen.findByText('saved-session:job-interview:C1'),
+      await screen.findByText('saved-session:job-interview:C1:active'),
     ).toBeVisible()
   })
 
@@ -102,7 +104,7 @@ describe('SessionResolver', () => {
     )
 
     expect(
-      await screen.findByText('snapshot-session:hotel-check-in:B2'),
+      await screen.findByText('snapshot-session:hotel-check-in:B2:active'),
     ).toBeVisible()
   })
 
@@ -139,7 +141,7 @@ describe('SessionResolver', () => {
       />,
     )
     expect(
-      await screen.findByText('first-session:airport-check-in:B1'),
+      await screen.findByText('first-session:airport-check-in:B1:active'),
     ).toBeVisible()
 
     view.rerender(
@@ -152,5 +154,30 @@ describe('SessionResolver', () => {
     expect(screen.queryByText(/first-session:/)).not.toBeInTheDocument()
     expect(screen.getByText('正在恢复练习…')).toBeVisible()
     releaseSecond?.()
+  })
+
+  it('keeps a persisted completed session in its report-only stage on browser forward', async () => {
+    const repositories = createMemoryRepositories()
+    const profile = await repositories.profiles.ensureGuestProfile()
+    await repositories.sessions.save({
+      id: 'completed-session',
+      profileId: profile.id,
+      sceneId: 'travel-01',
+      sceneVersion: 1,
+      level: 'B1',
+      status: 'completed',
+      startedAt: '2026-09-05T09:00:00.000Z',
+      updatedAt: '2026-09-05T09:05:00.000Z',
+      completedAt: '2026-09-05T09:05:00.000Z',
+      completedGoals: ['travel-01-goal-1'],
+    })
+
+    render(
+      <SessionResolver requestedId="completed-session" repositories={repositories} />,
+    )
+
+    expect(
+      await screen.findByText('completed-session:airport-check-in:B1:completed'),
+    ).toBeVisible()
   })
 })

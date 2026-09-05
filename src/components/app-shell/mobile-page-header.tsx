@@ -7,16 +7,21 @@ export function MobilePageHeader({
   title,
   eyebrow,
   fallbackHref,
+  backLabel,
   trailing,
 }: {
   title: string
   eyebrow?: string
   fallbackHref: string
+  backLabel?: string
   trailing?: ReactNode
 }) {
   return (
     <header className={styles.header}>
-      <SmartBackLink fallbackHref={fallbackHref} ariaLabel={`返回${title}`} />
+      <SmartBackLink
+        fallbackHref={fallbackHref}
+        ariaLabel={backLabel ?? `返回${title}`}
+      />
       <div>
         {eyebrow ? <p>{eyebrow}</p> : null}
         <h1 data-page-title tabIndex={-1}>{title}</h1>

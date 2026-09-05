@@ -9,6 +9,7 @@ import {
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
 import {
   buildSessionReport,
@@ -117,14 +118,20 @@ export function SessionReportView({
 
   return (
     <main className={styles.report}>
-      <header>
+      <MobilePageHeader
+        title="本次复盘"
+        eyebrow="SESSION REPORT"
+        fallbackHref="/me"
+        backLabel="返回我的练习"
+      />
+      <header className={styles.scoreHeader}>
         <span>
           <CheckCircle aria-hidden size={24} weight="fill" />
           SESSION COMPLETE
         </span>
-        <h1>
+        <h2>
           {report.completionPercent}%<small>任务完成</small>
-        </h1>
+        </h2>
         <p>分数来自本轮文字与任务完成情况，不包含没有声学依据的发音评分。</p>
       </header>
 

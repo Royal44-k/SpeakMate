@@ -149,3 +149,17 @@ describe('PracticeStage fixed-layer safety', () => {
     )
   })
 })
+
+describe('PracticeStage completion', () => {
+  it('leaves only the deterministic report destination after a session completes', () => {
+    setPracticeState('completed')
+
+    render(<PracticeStage scene={scene} sessionId="session-text" />)
+
+    expect(
+      screen.getByRole('link', { name: '查看本次复盘' }),
+    ).toHaveAttribute('href', '/session/session-text/report')
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
+    expect(screen.queryByRole('region', { name: '语音输入' })).not.toBeInTheDocument()
+  })
+})
