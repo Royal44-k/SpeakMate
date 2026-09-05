@@ -1,21 +1,22 @@
 'use client'
 
 import {
-  ArrowLeft,
   Check,
   Headphones,
   Lightbulb,
   SpinnerGap,
 } from '@phosphor-icons/react'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { FeedbackSheet } from '@/components/feedback-sheet/feedback-sheet'
 import { SceneImage } from '@/components/scene-image/scene-image'
 import { SpeechControl } from '@/components/speech-control/speech-control'
 import type { AdaptedScene } from '@/domain/scenes/types'
 
+import { ExitGuard, exitGuardState } from './exit-guard'
 import styles from './practice-stage.module.css'
+import { TextReviewDock } from './text-review-dock'
 import { usePracticeSession } from './use-practice-session'
 
 export function PracticeStage({
@@ -37,6 +38,36 @@ export function PracticeStage({
     hasTranscript ||
     (Boolean(practice.audio) && practice.machine.errorCode !== 'NO_SPEECH')
   const completedGoals = practice.completedGoalIds ?? []
+  const dockMode = isReviewing
+    ? 'text'
+    : ['submitting', 'receiving'].includes(status)
+      ? 'processing'
+      : 'speech'
+  const interactionBusy =
+    status === 'recording' ||
+    isReviewing ||
+    status === 'submitting' ||
+    status === 'receiving'
+  const guardState = exitGuardState(
+    status,
+    practice.machine.draftTranscript ?? '',
+    Boolean(practice.audio),
+  )
+
+  useEffect(() => {
+    if (!interactionBusy) return
+    const root = document.documentElement
+    const previousValue = root.dataset.interactionBusy
+    root.dataset.interactionBusy = 'true'
+
+    return () => {
+      if (previousValue === undefined) {
+        delete root.dataset.interactionBusy
+      } else {
+        root.dataset.interactionBusy = previousValue
+      }
+    }
+  }, [interactionBusy])
 
   if (status === 'completed') {
     return (
@@ -55,12 +86,10 @@ export function PracticeStage({
   return (
     <main className={styles.stage}>
       <header className={styles.topbar}>
-        <Link
-          href={`/scenes/${scene.slug}?level=${scene.level}`}
-          aria-label="退出本次练习"
-        >
-          <ArrowLeft aria-hidden size={23} />
-        </Link>
+        <ExitGuard
+          state={guardState}
+          fallbackHref={`/scenes/${scene.slug}?level=${scene.level}`}
+        />
         <div>
           <p>SpeakMate</p>
           <h1>Dialogue Stage</h1>
@@ -125,6 +154,7 @@ export function PracticeStage({
           <FeedbackSheet
             feedback={practice.latestResult.feedback}
             expanded={feedbackExpanded}
+            contentId={`turn-feedback-${practice.machine.turnIndex}`}
             onToggle={() => setFeedbackExpanded((value) => !value)}
           />
         </div>
@@ -138,46 +168,6 @@ export function PracticeStage({
         </aside>
       )}
 
-      {isReviewing ? (
-        <section className={styles.review} aria-labelledby="review-title">
-          <div>
-            <span>YOUR TURN</span>
-            <h2 id="review-title">确认你刚才说的话</h2>
-          </div>
-          <label htmlFor="turn-transcript">英文内容</label>
-          <textarea
-            id="turn-transcript"
-            rows={4}
-            autoFocus
-            value={practice.machine.draftTranscript ?? ''}
-            placeholder="例如：Hello, I have a reservation under the name Chen."
-            onChange={(event) => practice.updateTranscript(event.target.value)}
-          />
-          {practice.machine.errorMessage ? (
-            <p role="alert">{practice.machine.errorMessage}</p>
-          ) : null}
-          {practice.audio &&
-          !hasTranscript &&
-          practice.machine.errorCode !== 'NO_SPEECH' ? (
-            <p>
-              录音已准备，将先尝试云端识别；若当前为基础模式，再请你输入英文确认。
-            </p>
-          ) : null}
-          <div className={styles.reviewActions}>
-            <button type="button" onClick={practice.cancelReview}>
-              取消
-            </button>
-            <button
-              type="button"
-              disabled={!canSubmit}
-              onClick={() => void practice.submitTurn()}
-            >
-              提交这一轮
-            </button>
-          </div>
-        </section>
-      ) : null}
-
       {status === 'recoverable-error' && !isReviewing ? (
         <section className={styles.error} role="alert">
           <p>{practice.machine.errorMessage}</p>
@@ -185,13 +175,6 @@ export function PracticeStage({
             返回继续
           </button>
         </section>
-      ) : null}
-
-      {['submitting', 'receiving'].includes(status) ? (
-        <div className={styles.processing} role="status">
-          <SpinnerGap aria-hidden size={22} />
-          <span>正在理解并准备下一句…</span>
-        </div>
       ) : null}
 
       {practice.latestResult?.progress.shouldOfferCompletion &&
@@ -211,15 +194,34 @@ export function PracticeStage({
         </div>
       ) : null}
 
-      <div className={styles.speechDock}>
-        <SpeechControl
-          status={status}
-          elapsedSeconds={practice.elapsedSeconds}
-          amplitude={practice.amplitude}
-          onStart={() => void practice.startRecording()}
-          onStop={() => void practice.stopRecording()}
-          onOpenKeyboard={practice.openKeyboard}
-        />
+      <div className={styles.practiceDock}>
+        {dockMode === 'text' ? (
+          <TextReviewDock
+            transcript={practice.machine.draftTranscript ?? ''}
+            canSubmit={canSubmit}
+            errorMessage={practice.machine.errorMessage}
+            hasAudio={Boolean(
+              practice.audio && practice.machine.errorCode !== 'NO_SPEECH',
+            )}
+            onChange={practice.updateTranscript}
+            onCancel={practice.cancelReview}
+            onSubmit={() => void practice.submitTurn()}
+          />
+        ) : dockMode === 'processing' ? (
+          <div className={styles.processingDock} role="status">
+            <SpinnerGap aria-hidden size={22} />
+            <span>正在理解并准备下一句…</span>
+          </div>
+        ) : (
+          <SpeechControl
+            status={status}
+            elapsedSeconds={practice.elapsedSeconds}
+            amplitude={practice.amplitude}
+            onStart={() => void practice.startRecording()}
+            onStop={() => void practice.stopRecording()}
+            onOpenKeyboard={practice.openKeyboard}
+          />
+        )}
       </div>
     </main>
   )

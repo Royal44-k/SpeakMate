@@ -14,4 +14,4 @@
 .keyboardButton:disabled { cursor: wait; opacity: .45; }
 .notice { max-width: var(--content-max); margin: 0 auto 10px; color: var(--color-danger); font-size: .78rem; line-height: 1.5; }
 @media (prefers-reduced-motion: no-preference) { .recordButton, .recordingButton { transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out); } }
-@media (max-height: 760px) { .voiceRow { grid-template-columns: minmax(0, 1fr) 82px minmax(0, 1fr); } .recordButton, .recordingButton { width: 82px; height: 82px; border-width: 6px; box-shadow: 0 0 0 1px rgb(255 107 94 / 20%), 0 0 0 10px rgb(255 107 94 / 9%), var(--shadow-coral); } .recordButton span, .recordingButton span { font-size: .65rem; } .keyboardButton { min-height: 42px; } }
+@media (max-height: 760px) { .voiceRow { grid-template-columns: minmax(0, 1fr) 82px minmax(0, 1fr); } .recordButton, .recordingButton { width: 82px; height: 82px; border-width: 6px; box-shadow: 0 0 0 1px rgb(255 107 94 / 20%), 0 0 0 10px rgb(255 107 94 / 9%), var(--shadow-coral); } .recordButton span, .recordingButton span { font-size: .65rem; } .keyboardButton { min-height: 44px; } }

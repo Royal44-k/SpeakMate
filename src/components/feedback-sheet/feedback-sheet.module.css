@@ -7,7 +7,7 @@
 .issueIcon { color: var(--color-warning); }
 .caret, .caretOpen { color: var(--color-ink-500); transition: transform var(--duration-fast) var(--ease-out); }
 .caretOpen { transform: rotate(180deg); }
-.details { display: grid; gap: 14px; border-top: 1px solid var(--color-border); padding: 16px; }
+.details { display: grid; gap: 14px; border-top: 1px solid var(--color-border); padding: 16px; scroll-margin-bottom: calc(var(--speech-dock-height) + 24px); }
 .details span { color: var(--color-ink-500); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
 .details p { margin: 4px 0 0; line-height: 1.55; }
 .corrected { color: var(--color-atlantic-800); font-weight: 760; }

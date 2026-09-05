@@ -1,6 +1,7 @@
 'use client'
 
 import { CaretDown, CheckCircle, Lightbulb, WarningCircle } from '@phosphor-icons/react'
+import { useEffect, useRef } from 'react'
 
 import type { ConversationResult } from '@/domain/ai/contracts'
 
@@ -9,16 +10,38 @@ import styles from './feedback-sheet.module.css'
 export function FeedbackSheet({
   feedback,
   expanded,
+  contentId,
   onToggle,
+  onExpanded,
 }: {
   feedback: ConversationResult['feedback']
   expanded: boolean
+  contentId: string
   onToggle: () => void
+  onExpanded?: () => void
 }) {
   const hasIssues = feedback.issueTags.length > 0
+  const detailsRef = useRef<HTMLDivElement>(null)
+  const wasExpanded = useRef(false)
+
+  useEffect(() => {
+    if (!expanded) {
+      wasExpanded.current = false
+      return
+    }
+    if (wasExpanded.current) return
+    wasExpanded.current = true
+
+    const frame = requestAnimationFrame(() => {
+      detailsRef.current?.scrollIntoView({ block: 'nearest' })
+      onExpanded?.()
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [expanded, onExpanded])
+
   return (
     <section className={styles.sheet} aria-label="本轮表达反馈">
-      <button type="button" className={styles.summary} aria-expanded={expanded} onClick={onToggle}>
+      <button type="button" className={styles.summary} aria-expanded={expanded} aria-controls={contentId} onClick={onToggle}>
         <span className={hasIssues ? styles.issueIcon : styles.goodIcon}>
           {hasIssues ? <WarningCircle aria-hidden size={21} weight="fill" /> : <CheckCircle aria-hidden size={21} weight="fill" />}
         </span>
@@ -26,7 +49,7 @@ export function FeedbackSheet({
         <CaretDown aria-hidden size={19} className={expanded ? styles.caretOpen : styles.caret} />
       </button>
       {expanded ? (
-        <div className={styles.details}>
+        <div ref={detailsRef} id={contentId} className={styles.details}>
           <div><span>我听到</span><p>{feedback.heard}</p></div>
           {feedback.corrected ? <div><span>建议表达</span><p className={styles.corrected}>{feedback.corrected}</p></div> : null}
           <div className={styles.explanation}><Lightbulb aria-hidden size={19} /><p>{feedback.explanationZh}</p></div>
