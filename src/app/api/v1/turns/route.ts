@@ -2,7 +2,9 @@ import { NextResponse } from 'next/server'
 import { z } from 'zod'
 
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
+import { localCoach } from '@/domain/ai/local-coach'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
+import type { AdaptedScene } from '@/domain/scenes/types'
 import { MAX_AUDIO_BYTES } from '@/infrastructure/audio/browser-recorder'
 import { transcribeWithCloudflare } from '@/infrastructure/ai/cloudflare-client'
 import {
@@ -12,6 +14,72 @@ import {
 } from '@/infrastructure/ai/provider-factory'
 
 export const runtime = 'nodejs'
+
+const boundedText = (max: number) => z.string().trim().min(1).max(max)
+const sceneSnapshotSchema = z
+  .object({
+    id: boundedText(100),
+    slug: boundedText(100),
+    version: z.number().int().positive(),
+    category: z.enum([
+      'travel',
+      'dining',
+      'daily',
+      'work',
+      'social',
+      'study',
+      'emergency',
+    ]),
+    titleZh: boundedText(100),
+    titleEn: boundedText(120),
+    summaryZh: boundedText(300),
+    learnerRole: boundedText(160),
+    aiRole: boundedText(160),
+    estimatedMinutes: z.union([
+      z.literal(3),
+      z.literal(5),
+      z.literal(8),
+      z.literal(10),
+    ]),
+    recommendedTurns: z.number().int().min(1).max(20),
+    goals: z
+      .array(
+        z
+          .object({
+            id: boundedText(100),
+            labelZh: boundedText(160),
+            completionSignal: boundedText(240),
+            completionKeywords: z.array(boundedText(80)).min(1).max(12),
+          })
+          .strict(),
+      )
+      .min(1)
+      .max(8),
+    keywords: z.array(boundedText(80)).min(1).max(20),
+    exampleExpressions: z.array(boundedText(300)).min(1).max(10),
+    openingLines: z.array(boundedText(300)).min(1).max(6),
+    constraints: z
+      .object({
+        minAiWords: z.number().int().min(1).max(80),
+        maxAiWords: z.number().int().min(1).max(120),
+        followUpStyle: boundedText(300),
+        feedbackFocus: boundedText(300),
+        strategy: boundedText(300),
+        speechRate: z.number().min(0.5).max(1.5),
+      })
+      .strict(),
+    safetyNote: z.string().trim().max(500).optional(),
+    image: z
+      .object({
+        key: boundedText(100),
+        altZh: boundedText(200),
+        focalPoint: z.string().regex(/^\d{1,3}% \d{1,3}%$/),
+      })
+      .strict(),
+    status: z.enum(['published', 'archived']),
+    level: z.enum(['A1', 'A2', 'B1', 'B2', 'C1']),
+  })
+  .strict()
 
 const sessionSchema = z.object({
   sceneId: z.string().min(1).max(100),
@@ -27,6 +95,7 @@ const sessionSchema = z.object({
     )
     .max(8),
   completedGoalIds: z.array(z.string().max(100)).max(20),
+  sceneSnapshot: sceneSnapshotSchema.optional(),
 })
 
 const idempotencySchema = z.string().uuid()
@@ -95,6 +164,7 @@ function rateLimitExceeded(request: Request): boolean {
 function currentAiEnvironment(): AiEnvironment {
   return {
     AI_MODE: process.env.AI_MODE,
+    AI_SHARED_RATE_LIMIT_READY: process.env.AI_SHARED_RATE_LIMIT_READY,
     CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
     CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
     CLOUDFLARE_ASR_MODEL: process.env.CLOUDFLARE_ASR_MODEL,
@@ -193,7 +263,8 @@ export async function POST(request: Request) {
   let parsedSession: z.infer<typeof sessionSchema>
   let idempotencyKey: string
   try {
-    if (typeof rawSession !== 'string') throw new Error('missing session')
+    if (typeof rawSession !== 'string' || rawSession.length > 50_000)
+      throw new Error('missing or oversized session')
     parsedSession = sessionSchema.parse(JSON.parse(rawSession))
     idempotencyKey = idempotencySchema.parse(rawIdempotencyKey)
   } catch {
@@ -213,7 +284,15 @@ export async function POST(request: Request) {
       scene.id === parsedSession.sceneId &&
       scene.version === parsedSession.sceneVersion,
   )
-  if (!definition) {
+  const snapshot = parsedSession.sceneSnapshot as AdaptedScene | undefined
+  const validSnapshot =
+    snapshot &&
+    snapshot.id === parsedSession.sceneId &&
+    snapshot.version === parsedSession.sceneVersion &&
+    snapshot.level === parsedSession.level
+      ? snapshot
+      : undefined
+  if (!definition && !validSnapshot) {
     return errorResponse(
       400,
       'INVALID_INPUT',
@@ -221,7 +300,10 @@ export async function POST(request: Request) {
       id,
     )
   }
-  if (parsedSession.turnIndex >= definition.recommendedTurns) {
+  const scene = definition
+    ? adaptScene(definition, parsedSession.level)
+    : validSnapshot!
+  if (parsedSession.turnIndex >= scene.recommendedTurns) {
     return errorResponse(
       400,
       'TURN_LIMIT_REACHED',
@@ -229,7 +311,6 @@ export async function POST(request: Request) {
       id,
     )
   }
-  const scene = adaptScene(definition, parsedSession.level)
   const validGoalIds = new Set(scene.goals.map((goal) => goal.id))
   const completedGoalIds = parsedSession.completedGoalIds.filter((goalId) =>
     validGoalIds.has(goalId),
@@ -270,7 +351,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const provider = createConversationProvider(env)
+    const provider = definition ? createConversationProvider(env) : localCoach
     const result = await provider.nextTurn({
       scene,
       learnerText: transcript,

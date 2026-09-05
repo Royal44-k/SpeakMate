@@ -87,6 +87,20 @@ describe('localCoach', () => {
     expect(result.progress.completedGoalIds).toEqual([])
   })
 
+  it('uses a goal-specific follow-up without an unrelated category script', async () => {
+    const returnItem = adaptScene(getSceneBySlug('return-item')!, 'B1')
+    const result = await localCoach.nextTurn({
+      scene: returnItem,
+      learnerText: 'I bought this yesterday and here is the receipt.',
+      history: [],
+      completedGoalIds: [],
+      turnIndex: 0,
+    })
+
+    expect(result.reply.text).toMatch(/faulty|broken|problem|stopped working/i)
+    expect(result.reply.text).not.toMatch(/your order/i)
+  })
+
   it('keeps every scene and level inside its vocabulary and response constraints', async () => {
     for (const definition of SCENE_CATALOG) {
       for (const level of CEFR_LEVELS) {

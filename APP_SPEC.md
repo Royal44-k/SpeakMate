@@ -1,6 +1,6 @@
 # SpeakMate PWA 开发规格
 
-> 文档版本：2.1.0
+> 文档版本：2.1.1
 >
 > 状态：PWA MVP 已实现并进入生产发布验收
 >
@@ -356,8 +356,9 @@ Next.js 官方 PWA 指南要求有效 Manifest 与 HTTPS；同时指出 iOS Safa
 
 - 发布版本独占缓存名；等待中的 Worker 不写入当前 Worker 的缓存，激活后再删除旧版本，避免新旧 HTML 与运行时代码混用。
 - 版本化静态资源：cache-first。
-- `/`、安装页和场景库预缓存；已访问的场景详情与本地会话壳使用 network-first，3 秒后恢复对应缓存。
-- 客户端业务数据只存 IndexedDB，不写入 Cache Storage。
+- `/`、安装页、场景库和不含用户标识的通用离线会话壳预缓存；已访问的公开场景详情使用 network-first，3 秒后恢复对应缓存。
+- `/session/:id` 在线响应永不写入 Cache Storage；离线导航由固定 `/offline/session` 壳接管，再按地址栏中的会话 ID 从 IndexedDB 恢复，避免私有标识残留在缓存中。
+- 客户端业务数据只存 IndexedDB，不写入 Cache Storage；发布版本升级时激活新缓存并删除旧缓存。
 - `/api/**`、音频、登录响应和含个人数据请求：never-cache。
 - 新 Service Worker 等待激活时显示“新版本已准备好”，由用户触发刷新。
 
@@ -475,7 +476,7 @@ interface SpeechSynthesisProvider {
 - `CloudflareWhisperProvider`：默认模型 `@cf/openai/whisper`。
 - `CloudflareConversationProvider`：默认模型 `@cf/zai-org/glm-4.7-flash`，模型 ID 必须通过服务器白名单。
 - `BrowserTranscriptProvider`：使用浏览器语音识别结果或用户确认文字。
-- `DeterministicConversationProvider`：使用每个目标独立维护的 `completionKeywords` 判定完成度，并结合场景分类、AI 角色、历史轮次、当前水平和下一目标生成可预测回复与反馈；不得按等级关键词数组位置推导目标。
+- `DeterministicConversationProvider`：使用每个目标独立维护的 `completionKeywords` 判定完成度，并结合 AI 角色、历史轮次、当前水平和下一目标生成可预测回复与反馈；不得按等级关键词数组位置推导目标，也不得套用可能与具体任务冲突的分类级话术。
 - `BrowserSpeechSynthesisProvider`：基于 `speechSynthesis`。
 
 Cloudflare Whisper 支持通用语音转写；GLM-4.7-Flash 支持多语言对话并提供 OpenAI 兼容接口。[Whisper 模型](https://developers.cloudflare.com/workers-ai/models/whisper/) · [GLM-4.7-Flash](https://developers.cloudflare.com/workers-ai/models/glm-4.7-flash/)
@@ -487,9 +488,11 @@ type AiMode = 'local' | 'cloudflare' | 'auto'
 ```
 
 - `local`：不发出任何云端 AI 请求。
-- `cloudflare`：缺少密钥、模型不在白名单或上游失败时返回可恢复错误。
-- `auto`：密钥完整时调用 Cloudflare；遇到配额、限流、超时或 5xx 自动调用本地引擎。
+- `cloudflare`：缺少密钥、共享额度守卫未就绪、模型不在白名单或上游失败时返回可恢复错误。
+- `auto`：密钥完整且 `AI_SHARED_RATE_LIMIT_READY=true` 时调用 Cloudflare；否则保持本地模式；遇到配额、限流、超时或 5xx 自动调用本地引擎。
 - 生产默认 `auto`；没有环境变量时等价于 `local`。
+
+`AI_SHARED_RATE_LIMIT_READY` 是发布闸门，不是限流实现本身。只有平台防火墙或共享存储额度计数已经上线并完成并发验证后，运维人员才能设置该变量。
 
 ### 11.3 单轮处理
 
@@ -599,7 +602,7 @@ Supabase 启用时使用 `profiles`、`sessions`、`turns`、`favorites` 四张�
 ```json
 {
   "status": "ok",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "aiMode": "local"
 }
 ```
@@ -614,7 +617,7 @@ Supabase 启用时使用 `profiles`、`sessions`、`turns`、`favorites` 四张�
 
 - `audio`：可选，最大 2 MB。
 - `transcript`：可选，最长 500 字符；音频和转写至少存在一个。
-- `session`：JSON，包含场景 ID、版本、水平、轮次、最近 8 轮和目标状态。
+- `session`：JSON，包含场景 ID、版本、水平、轮次、最近 8 轮、目标状态和有界、严格校验的场景快照。
 - `idempotencyKey`：UUID。
 
 响应为 `ConversationResult` 加 `requestId`、`latencyMs`。
@@ -657,6 +660,7 @@ idle → requesting-permission → recording → reviewing
 
 - 每次完成一轮后立即持久化。
 - 新建会话时保存不可变 `sceneSnapshot`；目录升级或旧版本下线后仍可按原角色、目标、难度和话术恢复。
+- API 优先使用服务端目录版本；版本已移除时只接受 ID、版本和水平完全匹配且通过严格字段/长度校验的客户端快照，并强制使用确定性本地对话生成，避免把客户端场景文本提升为云端系统提示；已启用云 ASR 时仍可先完成录音转写。
 - 刷新或被系统杀掉后优先恢复最近一个具有目录版本或场景快照的 `active` 会话。
 - `submitting` 状态刷新后不自动重传音频；显示“上一段未提交，请重新录制”。
 - 相同 `sessionId + sequence` 不产生两个成功轮次。
@@ -763,12 +767,14 @@ idle → requesting-permission → recording → reviewing
 - 部署前执行 `pnpm verify`，包含 lint、typecheck、unit、component 和 production build。
 - 环境变量缺失时构建仍成功，应用自动使用本地模式。
 - Cloudflare 变量只由用户在 Vercel Dashboard 手工填写，不通过聊天传递密钥。
+- 云 AI 上线前先配置跨实例共享配额或平台防火墙限流并完成并发验证，最后才可设置 `AI_SHARED_RATE_LIMIT_READY=true`；单实例内存计数不能满足此门槛。
 - 达到任何免费配额后允许功能降级或暂时不可用，禁止自动升级。
 
 ### 19.2 环境变量
 
 ```dotenv
 AI_MODE=auto
+AI_SHARED_RATE_LIMIT_READY=
 CLOUDFLARE_ACCOUNT_ID=
 CLOUDFLARE_API_TOKEN=
 CLOUDFLARE_ASR_MODEL=@cf/openai/whisper
@@ -785,7 +791,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 - Manifest、图标和 Service Worker 均可访问。
 - Lighthouse PWA 安装条件通过。
 - 无密钥时本地模式完成整场对话。
-- 配置 Free Cloudflare 后真实音频完成 ASR 与 LLM 回复。
+- 配置 Free Cloudflare、共享额度守卫并显式打开发布闸门后，真实音频完成 ASR 与 LLM 回复。
 - iPhone Safari 打开线上 HTTPS 地址，授权麦克风并添加主屏。
 - Vercel 项目保持 Hobby，Cloudflare 保持 Workers Free，Supabase 保持 Free。
 
@@ -820,7 +826,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 - [ ] 游客无需登录即可完成从选场景到报告的完整流程。
 - [ ] 至少 42 个场景可浏览，并覆盖 A1–C1 的适配内容。
 - [ ] 录音最长 30 秒，拒绝、无声、中断和超大文件均有明确恢复路径。
-- [ ] 真实 AI 可在 Free Cloudflare 配置下工作。
+- [ ] 真实 AI 可在 Free Cloudflare、共享额度守卫和显式发布闸门配置下工作。
 - [ ] 免费额度或上游失败后自动降级，不产生付费调用。
 - [ ] 不展示无声学依据的发音评分。
 - [ ] iPhone Safari 可访问、录音、朗读和添加到主屏。
@@ -857,6 +863,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 | 2026-09-03 | 首版不实现 App Intents | PWA 无法直接提供原生系统集成，避免伪装原生能力 |
 | 2026-09-05 | 场景目标改为显式完成信号并保存会话场景快照 | 避免等级词表错配目标，并保证目录升级后历史会话可恢复 |
 | 2026-09-05 | Service Worker 使用发布级隔离缓存 | 保证用户确认更新前不混用新旧运行时代码，并覆盖已访问场景与本地会话壳 |
+| 2026-09-05 | 私有会话导航改用固定离线壳且云 AI 增加共享额度发布闸门 | 避免会话 ID 进入 Cache Storage，并防止单实例限流被误当作跨实例计费保护 |
 
 ## 24. 权威外部依据
 

@@ -5,12 +5,19 @@ test('service worker shell contains the privacy-safe offline routes', async ({
 }) => {
   const response = await request.get('/sw.js')
   const source = await response.text()
-  expect(source).toContain('speakmate-shell-v2.1.0')
-  expect(source).toContain(
-    "['/', '/install', '/scenes', '/manifest.webmanifest']",
-  )
+  expect(source).toContain('speakmate-shell-v2.1.1')
+  for (const path of [
+    "'/'",
+    "'/install'",
+    "'/scenes'",
+    "'/offline/session'",
+    "'/manifest.webmanifest'",
+  ]) {
+    expect(source).toContain(path)
+  }
   expect(source).toContain("pathname.startsWith('/scenes/')")
   expect(source).toContain("pathname.startsWith('/session/')")
+  expect(source).toContain("networkFirst(request, '/offline/session', false)")
   expect(source).toContain("url.pathname.startsWith('/api/')")
   expect(source).toContain("request.destination === 'audio'")
   expect(source).toContain("event.data?.type === 'SKIP_WAITING'")
@@ -74,10 +81,40 @@ test('visited scene library and local session shell recover offline', async ({
   await context.setOffline(false)
   await page.goto('/session/new?scene=hotel-check-in&level=B1')
   await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+  const sessionId = await page.evaluate(async () => {
+    const database = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open('speakmate-v1')
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => reject(request.error)
+    })
+    const sessions = await new Promise<Array<{ id: string }>>(
+      (resolve, reject) => {
+        const request = database
+          .transaction('sessions', 'readonly')
+          .objectStore('sessions')
+          .getAll()
+        request.onsuccess = () => resolve(request.result)
+        request.onerror = () => reject(request.error)
+      },
+    )
+    database.close()
+    return sessions[0]?.id
+  })
+  expect(sessionId).toBeTruthy()
+  await page.goto(`/session/${sessionId}`)
+  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+  const privateSessionUrl = page.url()
+  expect(
+    await page.evaluate(
+      async (url) => Boolean(await caches.match(url)),
+      privateSessionUrl,
+    ),
+  ).toBe(false)
   await context.setOffline(true)
   await page.reload({ waitUntil: 'domcontentloaded' })
   await expect(
     page.getByRole('heading', { name: 'Dialogue Stage' }),
   ).toBeVisible()
+  expect(page.url()).toBe(privateSessionUrl)
   await context.setOffline(false)
 })

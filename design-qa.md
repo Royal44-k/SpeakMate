@@ -59,9 +59,16 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 - The release-hardening changes did not alter the approved hierarchy, image crop, typography, control placement, or visible mobile density.
 - No new P0, P1, or P2 design mismatch was found.
 
+### Pass 6 release-blocker revalidation
+
+- Rechecked the approved reference/implementation comparison after session-switch isolation, the privacy-safe generic offline session shell, and the cloud quota release gate were added.
+- These changes affect lifecycle, persistence, and server safeguards only; the inspected Dialogue Stage viewport and interaction hierarchy remain unchanged.
+- The offline shell deliberately reuses the existing loading and session components rather than introducing a visually divergent recovery surface.
+- No new P0, P1, or P2 design mismatch was found.
+
 ## Automated evidence
 
-- `pnpm lint`, `pnpm typecheck`, 87 unit/component tests, and the production build passed.
+- `pnpm lint`, `pnpm typecheck`, 91 unit/component tests, and the production build passed.
 - Playwright: 24 checks passed and 4 browser-capability-specific checks were skipped as intended across Chromium-mobile and WebKit-iPhone.
 - Primary interactions verified: onboarding, first text-assisted turn, audio-only submission, session recovery, microphone denial, scene filtering, PWA assets, offline public-shell recovery, install guidance, and accessibility semantics.
 - Browser console review found no application errors in the captured release state.

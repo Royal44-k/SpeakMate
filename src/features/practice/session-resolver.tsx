@@ -28,8 +28,13 @@ interface SessionResolverProps {
 
 type Resolution =
   | { status: 'loading' }
-  | { status: 'ready'; scene: AdaptedScene; sessionId: string }
-  | { status: 'error'; message: string }
+  | {
+      status: 'ready'
+      requestKey: string
+      scene: AdaptedScene
+      sessionId: string
+    }
+  | { status: 'error'; requestKey: string; message: string }
 
 function queryLevelOrDefault(value?: string): CefrLevel {
   return CEFR_LEVELS.includes(value as CefrLevel) ? (value as CefrLevel) : 'A2'
@@ -63,6 +68,10 @@ export function SessionResolver({
   const [resolution, setResolution] = useState<Resolution>({
     status: 'loading',
   })
+  const requestKey =
+    requestedId === 'new'
+      ? `new:${queryScene ?? 'hotel-check-in'}:${queryLevelOrDefault(queryLevel)}`
+      : `session:${requestedId}`
 
   useEffect(() => {
     let active = true
@@ -73,6 +82,7 @@ export function SessionResolver({
           if (active)
             setResolution({
               status: 'error',
+              requestKey,
               message: '这个练习场景不存在或已下线。',
             })
           return
@@ -80,6 +90,7 @@ export function SessionResolver({
         if (active) {
           setResolution({
             status: 'ready',
+            requestKey,
             scene: adaptScene(definition, queryLevelOrDefault(queryLevel)),
             sessionId: requestedId,
           })
@@ -94,6 +105,7 @@ export function SessionResolver({
           if (active) {
             setResolution({
               status: 'error',
+              requestKey,
               message:
                 '暂时无法恢复这次练习：记录不存在，或对应的场景版本已不可用。',
             })
@@ -101,11 +113,17 @@ export function SessionResolver({
           return
         }
         if (active)
-          setResolution({ status: 'ready', scene, sessionId: session.id })
+          setResolution({
+            status: 'ready',
+            requestKey,
+            scene,
+            sessionId: session.id,
+          })
       } catch {
         if (active) {
           setResolution({
             status: 'error',
+            requestKey,
             message: '暂时无法恢复这次练习，请刷新页面后重试。',
           })
         }
@@ -115,9 +133,9 @@ export function SessionResolver({
     return () => {
       active = false
     }
-  }, [queryLevel, queryScene, repository, requestedId])
+  }, [queryLevel, queryScene, repository, requestKey, requestedId])
 
-  if (resolution.status === 'loading') {
+  if (resolution.status === 'loading' || resolution.requestKey !== requestKey) {
     return (
       <main className={styles.state} aria-busy="true">
         正在恢复练习…
@@ -136,6 +154,10 @@ export function SessionResolver({
   }
 
   return (
-    <PracticeStage scene={resolution.scene} sessionId={resolution.sessionId} />
+    <PracticeStage
+      key={`${resolution.sessionId}:${resolution.scene.id}:${resolution.scene.version}:${resolution.scene.level}`}
+      scene={resolution.scene}
+      sessionId={resolution.sessionId}
+    />
   )
 }

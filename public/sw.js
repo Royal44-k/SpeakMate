@@ -1,18 +1,18 @@
-const SHELL_CACHE = 'speakmate-shell-v2.1.0'
-const STATIC_ROUTES = ['/', '/install', '/scenes', '/manifest.webmanifest']
+const SHELL_CACHE = 'speakmate-shell-v2.1.1'
+const STATIC_ROUTES = [
+  '/',
+  '/install',
+  '/scenes',
+  '/offline/session',
+  '/manifest.webmanifest',
+]
 
 function isOfflineShellRoute(pathname) {
-  return (
-    STATIC_ROUTES.includes(pathname) ||
-    pathname.startsWith('/scenes/') ||
-    pathname.startsWith('/session/')
-  )
+  return STATIC_ROUTES.includes(pathname) || pathname.startsWith('/scenes/')
 }
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(SHELL_CACHE).then((cache) => cache.addAll(STATIC_ROUTES)),
-  )
+  event.waitUntil(precacheShell())
 })
 
 self.addEventListener('message', (event) => {
@@ -50,7 +50,9 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    if (isOfflineShellRoute(url.pathname)) {
+    if (url.pathname.startsWith('/session/')) {
+      event.respondWith(networkFirst(request, '/offline/session', false))
+    } else if (isOfflineShellRoute(url.pathname)) {
       event.respondWith(networkFirst(request))
     }
     return
@@ -65,19 +67,41 @@ self.addEventListener('fetch', (event) => {
   }
 })
 
-async function networkFirst(request) {
+async function networkFirst(request, fallbackPath = '/', cacheResponse = true) {
   const cache = await caches.open(SHELL_CACHE)
   const controller = new AbortController()
   const timeout = setTimeout(() => controller.abort(), 3_000)
   try {
     const response = await fetch(request, { signal: controller.signal })
-    if (response.ok) await cache.put(request, response.clone())
+    if (response.ok && cacheResponse) await cache.put(request, response.clone())
     return response
   } catch {
-    return (await cache.match(request)) ?? (await cache.match('/'))
+    return (await cache.match(request)) ?? (await cache.match(fallbackPath))
   } finally {
     clearTimeout(timeout)
   }
+}
+
+async function precacheShell() {
+  const cache = await caches.open(SHELL_CACHE)
+  await cache.addAll(STATIC_ROUTES)
+  const documents = await Promise.all(
+    STATIC_ROUTES.filter((path) => path !== '/manifest.webmanifest').map(
+      (path) => cache.match(path),
+    ),
+  )
+  const assets = new Set()
+  for (const response of documents) {
+    if (!response) continue
+    const html = await response.text()
+    for (const match of html.matchAll(/(?:src|href)="([^"]+)"/g)) {
+      const path = match[1]
+      if (path.startsWith('/_next/static/') || path.startsWith('/icons/')) {
+        assets.add(path)
+      }
+    }
+  }
+  if (assets.size > 0) await cache.addAll([...assets])
 }
 
 async function cacheFirst(request) {

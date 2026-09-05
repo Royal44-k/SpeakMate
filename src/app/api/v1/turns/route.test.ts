@@ -1,5 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
+import { getSceneBySlug } from '@/content/scenes/catalog'
+import { adaptScene } from '@/domain/scenes/adapt-scene'
+
 import { POST } from './route'
 
 function sessionInput(overrides: Record<string, unknown> = {}) {
@@ -103,15 +106,48 @@ describe('POST /api/v1/turns', () => {
   it('drops client-supplied goal ids that do not belong to the scene version', async () => {
     const form = new FormData()
     form.set('transcript', 'I am still deciding what to say.')
-    form.set('session', sessionInput({ completedGoalIds: ['fake-1', 'fake-2', 'fake-3'] }))
+    form.set(
+      'session',
+      sessionInput({ completedGoalIds: ['fake-1', 'fake-2', 'fake-3'] }),
+    )
     form.set('idempotencyKey', 'f42d5758-3daf-49b8-8446-f4f43385c532')
 
-    const response = await POST(browserRequest(form, { Origin: 'https://speakmate.test' }))
+    const response = await POST(
+      browserRequest(form, { Origin: 'https://speakmate.test' }),
+    )
     const body = await response.json()
 
     expect(response.status).toBe(200)
     expect(body.progress.completedGoalIds).toEqual([])
     expect(body.progress.shouldOfferCompletion).toBe(false)
+  })
+
+  it('continues a removed scene version from a strictly validated snapshot in local mode', async () => {
+    const snapshot = {
+      ...adaptScene(getSceneBySlug('hotel-check-in')!, 'B2'),
+      version: 99,
+    }
+    const form = new FormData()
+    form.set('transcript', 'I have a reservation under the name Chen.')
+    form.set(
+      'session',
+      sessionInput({
+        sceneId: snapshot.id,
+        sceneVersion: snapshot.version,
+        level: snapshot.level,
+        sceneSnapshot: snapshot,
+      }),
+    )
+    form.set('idempotencyKey', '8cab401b-4aa4-46f8-b4f4-33e9c18dc82b')
+
+    const response = await POST(
+      browserRequest(form, { Origin: 'https://speakmate.test' }),
+    )
+    const body = await response.json()
+
+    expect(response.status).toBe(200)
+    expect(body.provider).toBe('local')
+    expect(body.progress.completedGoalIds).toContain(snapshot.goals[0].id)
   })
 
   it('rate limits repeated submissions from one forwarded client address', async () => {

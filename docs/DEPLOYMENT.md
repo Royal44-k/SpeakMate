@@ -6,7 +6,7 @@
 - 托管：Vercel Hobby 个人空间；不绑定数据库、付费模型、Blob、队列、Cron 或付费 Marketplace 资源。
 - 地区：中国大陆用户优先使用新加坡 `sin1` Serverless 区域；静态资源仍由 Vercel 全球边缘网络提供。
 - 默认能力：42 个场景、游客本地档案、本地对话反馈、历史记录、学习报告、数据导出与清空均可零配置运行。
-- 可选能力：Cloudflare Workers AI 和 Supabase 只有在明确配置环境变量后才启用；任何云端错误都会回退到本地陪练。
+- 可选能力：Cloudflare Workers AI 只有在密钥、共享额度保护和显式发布闸门同时就绪后才启用；Supabase 仍需单独显式开启；云端错误会进入本地陪练降级路径。
 
 ## 2. 电脑端本地预览
 
@@ -65,6 +65,7 @@ pnpm dev
 
 ```text
 AI_MODE=auto
+AI_SHARED_RATE_LIMIT_READY=true
 CLOUDFLARE_ACCOUNT_ID=...
 CLOUDFLARE_API_TOKEN=...
 CLOUDFLARE_ASR_MODEL=@cf/openai/whisper
@@ -73,6 +74,7 @@ CLOUDFLARE_LLM_MODEL=@cf/zai-org/glm-4.7-flash
 
 - Token 仅用于服务端，不可添加 `NEXT_PUBLIC_` 前缀。
 - 模型必须位于服务端白名单中。
+- 在设置 `AI_SHARED_RATE_LIMIT_READY=true` 之前，必须先用平台防火墙或共享存储实现跨实例、按用户/IP 的额度限制，并完成并发与故障测试；该变量只是运维确认闸门，不会自行创建限流。
 - 先在 Preview 环境验证，再复制到 Production 并重新部署。
 - 若希望保持严格零费用，继续留空即可；健康接口会显示 `local` 模式。
 
@@ -85,7 +87,7 @@ Supabase 适配器属于后续同步脚手架，当前正式版必须保持 `NEX
 3. 在操作列表中选择“添加到主屏幕”，确认名称为 SpeakMate 后点“添加”。
 4. 从主屏幕打开 SpeakMate。独立窗口启动即表示 PWA 安装成功。
 5. 第一次点麦克风时选择“允许”。如曾拒绝：进入 iPhone“设置 → App → Safari → 麦克风”，或 Safari 地址栏的网站设置中重新允许。
-6. 网络异常时仍可浏览已缓存的公开场景和使用本地陪练；不要关闭或清理 Safari 网站数据，否则游客档案和本机历史会被移除。
+6. 网络异常时仍可浏览已缓存的公开场景，并通过不含用户标识的通用离线壳恢复本机会话；AI/ASR 和未缓存资源仍需要网络。不要关闭或清理 Safari 网站数据，否则游客档案和本机历史会被移除。
 
 ## 6. 中国大陆访问说明
 

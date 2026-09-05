@@ -39,22 +39,34 @@ export async function submitTurn(
     const extension = submission.audio.type.includes('mp4') ? 'm4a' : 'webm'
     form.set('audio', submission.audio, `turn.${extension}`)
   }
-  if (submission.transcript) form.set('transcript', submission.transcript.slice(0, 500))
-  form.set('session', JSON.stringify({
-    sceneId: submission.scene.id,
-    sceneVersion: submission.scene.version,
-    level: submission.scene.level,
-    turnIndex: submission.turnIndex,
-    recentTurns: submission.history.slice(-8),
-    completedGoalIds: submission.completedGoalIds,
-  }))
+  if (submission.transcript)
+    form.set('transcript', submission.transcript.slice(0, 500))
+  form.set(
+    'session',
+    JSON.stringify({
+      sceneId: submission.scene.id,
+      sceneVersion: submission.scene.version,
+      sceneSnapshot: submission.scene,
+      level: submission.scene.level,
+      turnIndex: submission.turnIndex,
+      recentTurns: submission.history.slice(-8),
+      completedGoalIds: submission.completedGoalIds,
+    }),
+  )
   form.set('idempotencyKey', submission.idempotencyKey)
 
-  const response = await fetch('/api/v1/turns', { method: 'POST', body: form, signal })
-  const body = await response.json() as TurnApiResult | { code?: string; message?: string; retryable?: boolean }
+  const response = await fetch('/api/v1/turns', {
+    method: 'POST',
+    body: form,
+    signal,
+  })
+  const body = (await response.json()) as
+    TurnApiResult | { code?: string; message?: string; retryable?: boolean }
   if (!response.ok) {
     throw new TurnApiError(
-      'message' in body && body.message ? body.message : '这一轮暂时没有处理成功。',
+      'message' in body && body.message
+        ? body.message
+        : '这一轮暂时没有处理成功。',
       'code' in body && body.code ? body.code : 'AI_UNAVAILABLE',
       'retryable' in body && Boolean(body.retryable),
     )

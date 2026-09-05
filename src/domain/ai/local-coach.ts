@@ -88,22 +88,13 @@ function buildReply(input: ConversationInput, completedGoalIds: string[]) {
           levelKeyword.toLowerCase() === candidate.toLowerCase(),
       ),
     ) ?? nextGoal.completionKeywords[0]
-  const categoryLead = {
-    travel: 'Before we continue',
-    dining: 'For your order',
-    daily: 'So I can help',
-    work: 'For our next step',
-    social: 'I am curious',
-    study: 'To understand clearly',
-    emergency: 'For clarity',
-  }[input.scene.category]
   const acknowledgement = input.history.length > 0 ? 'Thanks.' : 'All right.'
   const templates = {
     A1: `Please tell me about ${keyword} now.`,
     A2: `Could you tell me more about ${keyword}, please?`,
-    B1: `${acknowledgement} ${categoryLead}, could you explain the ${keyword} detail?`,
-    B2: `${acknowledgement} ${categoryLead}, could you clarify the ${keyword} detail and your preferred option?`,
-    C1: `${acknowledgement} ${categoryLead}, could you clarify the ${keyword} detail, including the main constraint, priority, and trade-off?`,
+    B1: `${acknowledgement} Could you explain the ${keyword} detail and what you need next?`,
+    B2: `${acknowledgement} Could you clarify the ${keyword} detail and your preferred option?`,
+    C1: `${acknowledgement} Could you clarify the ${keyword} detail, including the main constraint, priority, and trade-off?`,
   } as const
   const closing = {
     A1: 'Thank you. Is there anything else you need?',

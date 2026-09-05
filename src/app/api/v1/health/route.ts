@@ -5,6 +5,7 @@ import { resolveAiEnvironment } from '@/infrastructure/ai/provider-factory'
 export function GET() {
   const resolved = resolveAiEnvironment({
     AI_MODE: process.env.AI_MODE,
+    AI_SHARED_RATE_LIMIT_READY: process.env.AI_SHARED_RATE_LIMIT_READY,
     CLOUDFLARE_ACCOUNT_ID: process.env.CLOUDFLARE_ACCOUNT_ID,
     CLOUDFLARE_API_TOKEN: process.env.CLOUDFLARE_API_TOKEN,
     CLOUDFLARE_ASR_MODEL: process.env.CLOUDFLARE_ASR_MODEL,
@@ -12,7 +13,7 @@ export function GET() {
   })
   return NextResponse.json({
     status: 'ok',
-    version: '2.1.0',
+    version: '2.1.1',
     aiMode: resolved.cloudflare ? resolved.mode : 'local',
     buildSha: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 12) ?? 'local',
   })

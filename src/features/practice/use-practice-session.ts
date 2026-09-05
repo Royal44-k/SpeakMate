@@ -86,6 +86,9 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
 
   useEffect(() => {
     let active = true
+    sessionRef.current = null
+    transcriptRef.current = ''
+    idempotencyRef.current = null
     async function loadWith(repositories: Repositories) {
       const profile = await repositories.profiles.ensureGuestProfile()
       let session =
@@ -123,12 +126,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       setSessionId(session.id)
       setCompletedGoalIds(session.completedGoals)
       setTurns(savedTurns)
-      setLatestResult(null)
       setAiReply(savedTurns.at(-1)?.aiText ?? scene.openingLines[0])
-      setAiHint('先听对方说什么，再用自己的话回应。')
-      setAudio(null)
-      transcriptRef.current = ''
-      idempotencyRef.current = null
       setMachine({ status: 'ready', turnIndex: savedTurns.length })
       setReady(true)
     }
