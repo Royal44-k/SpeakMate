@@ -1,6 +1,6 @@
-import { ArrowLeft, CloudCheck, MicrophoneSlash, ShieldCheck } from '@phosphor-icons/react/dist/ssr'
-import Link from 'next/link'
+import { CloudCheck, MicrophoneSlash, ShieldCheck } from '@phosphor-icons/react/dist/ssr'
 
+import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
 import { DataControls } from '@/features/profile/data-controls'
 
 import styles from './privacy.module.css'
@@ -10,7 +10,7 @@ export const metadata = { title: '隐私与数据' }
 export default function PrivacyPage() {
   return (
     <main className={styles.page}>
-      <header><Link href="/me" aria-label="返回学习中心"><ArrowLeft aria-hidden size={23} /></Link><div><p>PRIVACY FIRST</p><h1>隐私与数据</h1></div></header>
+      <MobilePageHeader title="隐私与数据" eyebrow="PRIVACY FIRST" fallbackHref="/me" />
       <section className={styles.promise}>
         <article><MicrophoneSlash aria-hidden size={25} /><div><h2>原始录音不保存</h2><p>音频只在本轮请求内短暂使用；结束、失败或取消后释放。</p></div></article>
         <article><ShieldCheck aria-hidden size={25} /><div><h2>游客优先</h2><p>不要求昵称、头像、手机号或微信账号；学习记录默认留在本机。</p></div></article>

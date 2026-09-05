@@ -5,7 +5,10 @@ import { useEffect, useState, useSyncExternalStore } from 'react'
 
 import styles from './install-prompt.module.css'
 
-type InstallPlatform = 'auto' | 'ios' | 'chromium' | 'unsupported'
+export type InstallPlatform = 'ios' | 'android' | 'wechat' | 'unknown'
+
+type InstallMode = 'page' | 'prompt'
+type ManualGuide = 'ios' | 'android'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
@@ -13,8 +16,9 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 export interface InstallPromptProps {
-  platform?: InstallPlatform
+  platform?: InstallPlatform | 'auto'
   standalone?: boolean
+  mode?: InstallMode
 }
 
 const DISMISSAL_KEY = 'speakmate-install-dismissed-at'
@@ -24,21 +28,31 @@ const DISMISSAL_DAYS = 14
 export function InstallPrompt({
   platform = 'auto',
   standalone,
+  mode = 'prompt',
 }: InstallPromptProps) {
   const [installEvent, setInstallEvent] = useState<BeforeInstallPromptEvent>()
   const [dismissed, setDismissed] = useState(false)
+  const [installCompleted, setInstallCompleted] = useState(false)
   const installed = useSyncExternalStore(subscribeDisplayMode, isStandalone, () => false)
-  const detectedPlatform = useSyncExternalStore(noopSubscribe, detectPlatform, () => 'unsupported')
-  const suppressedByHistory = useSyncExternalStore(subscribeStorage, isSuppressedByHistory, () => false)
-  const resolvedPlatform = installEvent
-    ? 'chromium'
-    : platform === 'auto'
-      ? detectedPlatform
-      : platform
+  const detectedPlatform = useSyncExternalStore(noopSubscribe, detectPlatform, () => 'unknown')
+  const suppressedByHistory = useSyncExternalStore(
+    mode === 'prompt' ? subscribeStorage : noopSubscribe,
+    mode === 'prompt' ? isSuppressedByHistory : () => false,
+    () => false,
+  )
+  const resolvedPlatform = platform === 'auto'
+    ? installEvent ? 'android' : detectedPlatform
+    : platform
+  const preferredGuide: ManualGuide = resolvedPlatform === 'android' ? 'android' : 'ios'
+  const [selectedGuide, setSelectedGuide] = useState<ManualGuide | null>(null)
+  const activeGuide = selectedGuide ?? preferredGuide
+  const isInstalled = standalone === true || installed || installCompleted
 
   useEffect(() => {
-    const impressions = Number(localStorage.getItem(IMPRESSIONS_KEY) ?? 0)
-    if (!installed && !suppressedByHistory) localStorage.setItem(IMPRESSIONS_KEY, String(impressions + 1))
+    if (mode === 'prompt') {
+      const impressions = Number(localStorage.getItem(IMPRESSIONS_KEY) ?? 0)
+      if (!isInstalled && !suppressedByHistory) localStorage.setItem(IMPRESSIONS_KEY, String(impressions + 1))
+    }
 
     function handleBeforeInstallPrompt(event: Event) {
       event.preventDefault()
@@ -46,17 +60,18 @@ export function InstallPrompt({
     }
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-    return () =>
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
-  }, [installed, suppressedByHistory])
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt)
+  }, [isInstalled, mode, suppressedByHistory])
 
-  if (standalone === true || installed || dismissed || suppressedByHistory || resolvedPlatform === 'unsupported') return null
+  if (mode === 'prompt' && (isInstalled || dismissed || suppressedByHistory || resolvedPlatform === 'unknown')) {
+    return null
+  }
 
   async function install() {
     if (!installEvent) return
     await installEvent.prompt()
     const result = await installEvent.userChoice
-    if (result.outcome === 'accepted') setDismissed(true)
+    if (result.outcome === 'accepted') setInstallCompleted(true)
   }
 
   function dismiss() {
@@ -64,39 +79,92 @@ export function InstallPrompt({
     setDismissed(true)
   }
 
+  const heading = isInstalled ? '已安装到主屏幕' : '添加 SpeakMate 到主屏幕'
+  const tabId = `install-tab-${activeGuide}`
+  const panelId = `install-panel-${activeGuide}`
+
   return (
-    <aside className={styles.prompt} aria-labelledby="install-heading">
+    <section className={`${styles.prompt} ${mode === 'page' ? styles.pageGuide : ''}`} aria-labelledby="install-heading">
       <div className={styles.headingRow}>
         <DownloadSimple aria-hidden size={22} weight="bold" />
-        <h2 id="install-heading">添加 SpeakMate 到主屏幕</h2>
-        <button className={styles.close} type="button" onClick={dismiss} aria-label="关闭安装提示">
-          <X aria-hidden size={19} />
-        </button>
+        <h2 id="install-heading">{heading}</h2>
+        {mode === 'prompt' ? (
+          <button className={styles.close} type="button" onClick={dismiss} aria-label="关闭安装提示">
+            <X aria-hidden size={19} />
+          </button>
+        ) : null}
       </div>
 
-      {resolvedPlatform === 'ios' ? (
-        <ol className={styles.steps}>
-          <li><Export aria-hidden size={19} />打开 Safari 的分享菜单</li>
-          <li><PlusSquare aria-hidden size={19} />选择“添加到主屏幕”</li>
-        </ol>
-      ) : (
-        <p className={styles.description}>像普通 App 一样从主屏幕打开，也能使用离线场景库。</p>
+      {isInstalled ? <p className={styles.installed} role="status">SpeakMate 已可从主屏幕像 App 一样打开。</p> : (
+        <>
+          {resolvedPlatform === 'wechat' ? <p className={styles.browserNotice}>请使用 Safari 或系统浏览器打开</p> : null}
+          <div className={styles.tabs} role="tablist" aria-label="选择设备">
+            <button
+              id="install-tab-ios"
+              className={styles.tab}
+              type="button"
+              role="tab"
+              aria-selected={activeGuide === 'ios'}
+              aria-controls="install-panel-ios"
+              onClick={() => setSelectedGuide('ios')}
+            >
+              iPhone
+            </button>
+            <button
+              id="install-tab-android"
+              className={styles.tab}
+              type="button"
+              role="tab"
+              aria-selected={activeGuide === 'android'}
+              aria-controls="install-panel-android"
+              onClick={() => setSelectedGuide('android')}
+            >
+              Android
+            </button>
+          </div>
+          <div id={panelId} className={styles.guidePanel} role="tabpanel" aria-labelledby={tabId}>
+            {activeGuide === 'ios' ? <IosGuide /> : <AndroidGuide />}
+          </div>
+
+          {installEvent ? (
+            <button className={styles.install} type="button" onClick={() => void install()}>立即安装</button>
+          ) : null}
+        </>
       )}
 
-      <div className={styles.actions}>
-        {resolvedPlatform === 'chromium' && installEvent ? (
-          <button className={styles.install} type="button" onClick={install}>立即安装</button>
-        ) : null}
-        <button className={styles.later} type="button" onClick={dismiss}>暂时不用</button>
-      </div>
-    </aside>
+      {mode === 'prompt' && !isInstalled ? (
+        <div className={styles.actions}>
+          <button className={styles.later} type="button" onClick={dismiss}>暂时不用</button>
+        </div>
+      ) : null}
+    </section>
+  )
+}
+
+function IosGuide() {
+  return (
+    <ol className={styles.steps}>
+      <li><Export aria-hidden size={19} />打开 Safari 的分享菜单</li>
+      <li><PlusSquare aria-hidden size={19} />选择“添加到主屏幕”</li>
+    </ol>
+  )
+}
+
+function AndroidGuide() {
+  return (
+    <ol className={styles.steps}>
+      <li><DownloadSimple aria-hidden size={19} />打开 Chrome 或系统浏览器的菜单</li>
+      <li><PlusSquare aria-hidden size={19} />选择“安装应用或添加到主屏幕”</li>
+    </ol>
   )
 }
 
 function detectPlatform(): InstallPlatform {
   const agent = navigator.userAgent.toLowerCase()
-  const isIos = /iphone|ipad|ipod/.test(agent)
-  return isIos ? 'ios' : 'unsupported'
+  if (/micromessenger/.test(agent)) return 'wechat'
+  if (/iphone|ipad|ipod/.test(agent)) return 'ios'
+  if (/android/.test(agent)) return 'android'
+  return 'unknown'
 }
 
 function isStandalone(): boolean {

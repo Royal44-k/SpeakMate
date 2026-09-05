@@ -4,6 +4,32 @@ import { describe, expect, it } from 'vitest'
 import { InstallPrompt } from './install-prompt'
 
 describe('InstallPrompt', () => {
+  it('keeps both manual guides available when the platform is unknown', () => {
+    render(<InstallPrompt platform="unknown" standalone={false} mode="page" />)
+
+    expect(screen.getByRole('tab', { name: 'iPhone' })).toBeVisible()
+    expect(screen.getByRole('tab', { name: 'Android' })).toBeVisible()
+    expect(screen.getByText('打开 Safari 的分享菜单')).toBeVisible()
+
+    fireEvent.click(screen.getByRole('tab', { name: 'Android' }))
+
+    expect(screen.getByText(/安装应用或添加到主屏幕/)).toBeVisible()
+  })
+
+  it('confirms installation instead of hiding the page guide in standalone mode', () => {
+    render(<InstallPrompt platform="ios" standalone mode="page" />)
+
+    expect(screen.getByText('已安装到主屏幕')).toBeVisible()
+  })
+
+  it('directs WeChat visitors to a browser while retaining both manual guides', () => {
+    render(<InstallPrompt platform="wechat" standalone={false} mode="page" />)
+
+    expect(screen.getByText('请使用 Safari 或系统浏览器打开')).toBeVisible()
+    expect(screen.getByRole('tab', { name: 'iPhone' })).toBeVisible()
+    expect(screen.getByRole('tab', { name: 'Android' })).toBeVisible()
+  })
+
   it('gives iPhone users accurate Safari installation steps', () => {
     render(<InstallPrompt platform="ios" standalone={false} />)
 

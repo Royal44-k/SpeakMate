@@ -1,6 +1,5 @@
-.page { width: min(100%, var(--content-max)); min-height: 100dvh; margin: 0 auto; padding: max(38px, env(safe-area-inset-top)) 22px 38px; background: var(--color-paper); }
-.eyebrow { margin: 0 0 10px; color: var(--color-coral-600); font-family: var(--font-display); font-weight: 800; letter-spacing: .12em; }
-.page h1 { max-width: 8ch; margin: 0; color: var(--color-atlantic-950); font-family: var(--font-display); font-size: 3.5rem; line-height: .94; letter-spacing: -.045em; }
+.page { width: min(100%, var(--content-max)); min-height: calc(100dvh - 56px - env(safe-area-inset-top)); margin: 0 auto; padding: 32px 22px 38px; background: var(--color-paper); }
+.page h2 { max-width: 8ch; margin: 0; color: var(--color-atlantic-950); font-family: var(--font-display); font-size: 3.5rem; line-height: .94; letter-spacing: -.045em; }
 .intro { color: var(--color-ink-500); line-height: 1.7; }
 .page form { display: grid; gap: 10px; margin: 28px 0; border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: 18px; background: var(--color-white); }
 .page form label { font-size: .8rem; font-weight: 750; }

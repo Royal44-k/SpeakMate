@@ -1,0 +1,39 @@
+.page {
+  width: min(100%, var(--content-max));
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--color-paper);
+}
+
+.content {
+  display: grid;
+  gap: 18px;
+  padding: 26px 18px max(36px, env(safe-area-inset-bottom));
+}
+
+.content h2,
+.content p {
+  margin: 0;
+}
+
+.content h2 {
+  color: var(--color-atlantic-950);
+  font-family: var(--font-display);
+  font-size: clamp(2.1rem, 10vw, 3.1rem);
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+.content > p {
+  color: var(--color-ink-500);
+  line-height: 1.7;
+}
+
+.continue {
+  display: inline-flex;
+  width: fit-content;
+  min-height: var(--tap-target);
+  align-items: center;
+  color: var(--color-atlantic-800);
+  font-weight: 800;
+}

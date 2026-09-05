@@ -1,9 +1,4 @@
 .page { width: min(100%, var(--content-max)); min-height: 100dvh; margin: 0 auto; padding-bottom: max(36px, env(safe-area-inset-bottom)); background: var(--color-paper); }
-.page > header { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: center; padding: max(22px, env(safe-area-inset-top)) 18px 22px; background: var(--color-atlantic-950); color: var(--color-white); }
-.page > header a { display: grid; width: 44px; height: 44px; place-items: center; border-radius: 50%; color: inherit; }
-.page > header p, .page > header h1 { margin: 0; }
-.page > header p { color: var(--color-sky-100); font-family: var(--font-display); font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
-.page > header h1 { margin-top: 2px; font-family: var(--font-display); font-size: 2.35rem; line-height: 1; }
 .promise { display: grid; gap: 10px; margin: 22px 18px 0; }
 .promise article { display: grid; grid-template-columns: 28px 1fr; gap: 11px; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 14px; background: var(--color-white); color: var(--color-atlantic-800); }
 .promise h2, .promise p { margin: 0; }

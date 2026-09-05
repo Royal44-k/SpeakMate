@@ -40,9 +40,8 @@ export function AuthPanel({
   }
 
   return (
-    <main className={styles.page}>
-      <p className={styles.eyebrow}>OPTIONAL SYNC</p>
-      <h1>练习不登录，也能继续。</h1>
+    <section className={styles.page}>
+      <h2>练习不登录，也能继续。</h2>
       <p className={styles.intro}>账号只用于跨设备同步。不会影响免费练习，也不需要微信或手机号。</p>
       {adapter.enabled ? (
         <form onSubmit={(event) => void submit(event)}>
@@ -56,6 +55,6 @@ export function AuthPanel({
       )}
       {status ? <p className={styles.status} role="status">{status}</p> : null}
       <Link href="/me">返回学习中心</Link>
-    </main>
+    </section>
   )
 }
