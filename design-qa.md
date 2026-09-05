@@ -68,7 +68,7 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 
 ## Automated evidence
 
-- `pnpm lint`, `pnpm typecheck`, 91 unit/component tests, and the production build passed.
+- `pnpm lint`, `pnpm typecheck`, 92 unit/component tests, and the production build passed.
 - Playwright: 24 checks passed and 4 browser-capability-specific checks were skipped as intended across Chromium-mobile and WebKit-iPhone.
 - Primary interactions verified: onboarding, first text-assisted turn, audio-only submission, session recovery, microphone denial, scene filtering, PWA assets, offline public-shell recovery, install guidance, and accessibility semantics.
 - Browser console review found no application errors in the captured release state.

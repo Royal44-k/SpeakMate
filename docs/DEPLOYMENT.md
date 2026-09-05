@@ -59,6 +59,8 @@ pnpm dev
 
 `.vercel/` 保存本机项目关联，已经被 Git 忽略。不要提交 `.env.local`、Vercel Token 或任何 AI 密钥。
 
+若通过本机 CLI 直接创建生产部署而非 Git 集成发布，请把当前提交短 SHA 作为仅该部署使用的运行变量传入，例如 `--env SPEAKMATE_RELEASE_SHA=<commit>`，使健康接口仍能准确报告发布来源。
+
 ## 4. 可选的真实 AI 配置
 
 当前生产发布不需要以下变量。需要真实 ASR/LLM 时，在 Vercel 项目设置中只为所需环境添加：

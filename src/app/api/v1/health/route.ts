@@ -15,6 +15,11 @@ export function GET() {
     status: 'ok',
     version: '2.1.1',
     aiMode: resolved.cloudflare ? resolved.mode : 'local',
-    buildSha: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 12) ?? 'local',
+    buildSha:
+      (
+        process.env.VERCEL_GIT_COMMIT_SHA ||
+        process.env.SPEAKMATE_RELEASE_SHA ||
+        'local'
+      ).slice(0, 12),
   })
 }
