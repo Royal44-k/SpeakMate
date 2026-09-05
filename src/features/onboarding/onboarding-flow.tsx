@@ -41,23 +41,31 @@ const SELF_ASSESSMENT = [
 
 export function OnboardingFlow({
   onComplete,
+  returnHref,
+  initialChoices,
 }: {
   onComplete?: (choices: OnboardingChoices) => void | Promise<void>
+  returnHref?: string
+  initialChoices?: OnboardingChoices
 }) {
   const [step, setStep] = useState<1 | 2 | 3>(1)
-  const [level, setLevel] = useState<CefrLevel>('A2')
-  const [goals, setGoals] = useState<SceneCategory[]>(['travel'])
-  const [dailyMinutes, setDailyMinutes] = useState<5 | 10 | 15>(5)
+  const [level, setLevel] = useState<CefrLevel>(initialChoices?.level ?? 'A2')
+  const [goals, setGoals] = useState<SceneCategory[]>(initialChoices?.goals ?? ['travel'])
+  const [dailyMinutes, setDailyMinutes] = useState<5 | 10 | 15>(initialChoices?.dailyMinutes ?? 5)
+  const [goalConfirmed, setGoalConfirmed] = useState(false)
   const [quizIndex, setQuizIndex] = useState<number | null>(null)
   const [quizScore, setQuizScore] = useState(0)
 
   function chooseLevel(value: CefrLevel) {
+    if (value === level) return
     setLevel(value)
     setStep(2)
   }
 
   function chooseGoal(value: SceneCategory) {
-    setGoals([value])
+    if (goals.includes(value) && goalConfirmed) return
+    if (!goals.includes(value)) setGoals([value])
+    setGoalConfirmed(true)
     setStep(3)
   }
 
@@ -80,7 +88,6 @@ export function OnboardingFlow({
     <div className={styles.flow}>
       <header className={styles.header}>
         <p className={styles.brand}>SPEAKMATE</p>
-        <p className={styles.progress}>STEP {step} / 3</p>
         <h1>今天想练什么？</h1>
         <p>用一分钟定好难度和目标，之后可随时修改。</p>
       </header>
@@ -103,6 +110,10 @@ export function OnboardingFlow({
 
       {quizIndex === null && step === 1 ? (
         <section className={styles.panel} aria-labelledby="level-title">
+          <div className={styles.panelTopline}>
+            {returnHref ? <a className={styles.backButton} href={returnHref} aria-label="返回我的练习"><ArrowLeft aria-hidden size={19} /></a> : <span />}
+            <span>STEP 1 / 3</span>
+          </div>
           <div className={styles.sectionHeading}>
             <div><span>01</span><h2 id="level-title">选择英语水平</h2></div>
             <button className={styles.recommendButton} type="button" onClick={() => setQuizIndex(0)}>
@@ -111,7 +122,7 @@ export function OnboardingFlow({
           </div>
           <div className={styles.optionList}>
             {LEVELS.map((item) => (
-              <button key={item.value} type="button" aria-label={item.label} className={level === item.value ? styles.optionSelected : styles.option} onClick={() => chooseLevel(item.value)}>
+              <button key={item.value} type="button" aria-label={item.label} aria-pressed={level === item.value} className={level === item.value ? styles.optionSelected : styles.option} onClick={() => chooseLevel(item.value)}>
                 <span><strong>{item.label}</strong><small>{item.hint}</small></span>
                 {level === item.value ? <Check aria-hidden size={20} weight="bold" /> : null}
               </button>
@@ -122,30 +133,36 @@ export function OnboardingFlow({
 
       {quizIndex === null && step === 2 ? (
         <section className={styles.panel} aria-labelledby="goal-title">
+          <div className={styles.panelTopline}>
+            <button className={styles.backButton} type="button" onClick={() => setStep(1)} aria-label="返回选择英语水平"><ArrowLeft aria-hidden size={19} /></button>
+            <span>STEP 2 / 3</span>
+          </div>
           <div className={styles.sectionHeading}><div><span>02</span><h2 id="goal-title">选择首要目标</h2></div></div>
           <div className={styles.goalGrid}>
             {GOALS.map((goal) => (
-              <button key={goal.value} type="button" className={goals.includes(goal.value) ? styles.goalSelected : styles.goal} onClick={() => chooseGoal(goal.value)}>
+              <button key={goal.value} type="button" aria-pressed={goals.includes(goal.value)} className={goals.includes(goal.value) ? styles.goalSelected : styles.goal} onClick={() => chooseGoal(goal.value)}>
                 {goal.label}
               </button>
             ))}
           </div>
-          <button className={styles.textBack} type="button" onClick={() => setStep(1)}>返回修改水平</button>
         </section>
       ) : null}
 
       {quizIndex === null && step === 3 ? (
         <section className={styles.panel} aria-labelledby="time-title">
+          <div className={styles.panelTopline}>
+            <button className={styles.backButton} type="button" onClick={() => setStep(2)} aria-label="返回选择首要目标"><ArrowLeft aria-hidden size={19} /></button>
+            <span>STEP 3 / 3</span>
+          </div>
           <div className={styles.sectionHeading}><div><span>03</span><h2 id="time-title">每天练多久？</h2></div></div>
           <div className={styles.timeGrid}>
             {([5, 10, 15] as const).map((minutes) => (
-              <button key={minutes} type="button" className={dailyMinutes === minutes ? styles.timeSelected : styles.time} onClick={() => setDailyMinutes(minutes)}>
+              <button key={minutes} type="button" aria-pressed={dailyMinutes === minutes} className={dailyMinutes === minutes ? styles.timeSelected : styles.time} onClick={() => setDailyMinutes(minutes)}>
                 每天 {minutes} 分钟
               </button>
             ))}
           </div>
           <button className={styles.primaryButton} type="button" onClick={() => void onComplete?.({ level, goals, dailyMinutes })}>开始第一次练习</button>
-          <button className={styles.textBack} type="button" onClick={() => setStep(2)}>返回修改目标</button>
         </section>
       ) : null}
     </div>

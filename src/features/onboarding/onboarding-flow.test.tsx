@@ -30,4 +30,38 @@ describe('OnboardingFlow', () => {
     expect(screen.getByText('1 / 5')).toBeVisible()
     expect(screen.getByRole('button', { name: '这很像我' })).toBeVisible()
   })
+
+  it('keeps step back inside the flow and exposes selected choices semantically', () => {
+    render(<OnboardingFlow />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'B1 中级' }))
+
+    expect(screen.getByRole('button', { name: '返回选择英语水平' })).toBeVisible()
+    expect(screen.getByRole('button', { name: '旅行' })).toHaveAttribute('aria-pressed', 'true')
+
+    fireEvent.click(screen.getByRole('button', { name: '返回选择英语水平' }))
+
+    expect(screen.getByRole('heading', { name: '选择英语水平' })).toBeVisible()
+  })
+
+  it('shows the app-level return link only on the first step when editing settings', () => {
+    render(<OnboardingFlow returnHref="/me" />)
+
+    expect(screen.getByRole('link', { name: '返回我的练习' })).toHaveAttribute('href', '/me')
+
+    fireEvent.click(screen.getByRole('button', { name: 'B1 中级' }))
+
+    expect(screen.queryByRole('link', { name: '返回我的练习' })).not.toBeInTheDocument()
+  })
+
+  it('does not advance again when a confirmed goal is tapped after stepping back', () => {
+    render(<OnboardingFlow />)
+
+    fireEvent.click(screen.getByRole('button', { name: 'B1 中级' }))
+    fireEvent.click(screen.getByRole('button', { name: '旅行' }))
+    fireEvent.click(screen.getByRole('button', { name: '返回选择首要目标' }))
+    fireEvent.click(screen.getByRole('button', { name: '旅行' }))
+
+    expect(screen.getByRole('heading', { name: '选择首要目标' })).toBeVisible()
+  })
 })
