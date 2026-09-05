@@ -62,7 +62,7 @@ export function LearningCenter() {
           <div className={styles.sectionTitle}><ClockCounterClockwise aria-hidden size={21} /><h2 id="history-title">最近练习</h2></div>
           {sessions.length > 0 ? <div className={styles.list}>{sessions.slice(0, 6).map((session) => {
             const scene = SCENE_CATALOG.find((item) => item.id === session.sceneId)
-            return <Link key={session.id} href={session.status === 'completed' ? `/session/${session.id}/report` : `/session/${session.id}?scene=${scene?.slug ?? 'hotel-check-in'}&level=${session.level}`}><span><strong>{scene?.titleZh ?? '英语对话'}</strong><small>{session.level} · {session.status === 'completed' ? '已完成' : '继续练习'}</small></span><time dateTime={session.updatedAt}>{new Date(session.updatedAt).toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric' })}</time></Link>
+            return <Link key={session.id} href={session.status === 'completed' ? `/session/${session.id}/report` : `/session/${session.id}`}><span><strong>{scene?.titleZh ?? '英语对话'}</strong><small>{session.level} · {session.status === 'completed' ? '已完成' : '继续练习'}</small></span><time dateTime={session.updatedAt}>{new Date(session.updatedAt).toLocaleDateString('zh-CN', { month: 'numeric', day: 'numeric' })}</time></Link>
           })}</div> : <p className={styles.empty}>完成第一场练习后，记录会出现在这里。</p>}
         </section>
 

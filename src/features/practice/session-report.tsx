@@ -161,23 +161,12 @@ export function SessionReportView({
         <h2 id="expression-title">本场好表达</h2>
         {report.bestExpressions.length > 0 ? (
           report.bestExpressions.map((expression) => (
-            <article key={expression}>
-              <p>“{expression}”</p>
-              <button
-                type="button"
-                aria-label={`收藏表达：${expression}`}
-                disabled={savedExpressions.includes(expression)}
-                onClick={() => void saveExpression(expression)}
-              >
-                <BookmarkSimple
-                  aria-hidden
-                  size={20}
-                  weight={
-                    savedExpressions.includes(expression) ? 'fill' : 'regular'
-                  }
-                />
-              </button>
-            </article>
+            <ExpressionFavorite
+              key={expression}
+              expression={expression}
+              saved={savedExpressions.includes(expression)}
+              onSave={saveExpression}
+            />
           ))
         ) : (
           <p className={styles.emptyCopy}>再完成一轮，就能在这里积累好表达。</p>
@@ -209,5 +198,33 @@ export function SessionReportView({
         </Link>
       </nav>
     </main>
+  )
+}
+
+function ExpressionFavorite({
+  expression,
+  saved,
+  onSave,
+}: {
+  expression: string
+  saved: boolean
+  onSave: (expression: string) => Promise<void>
+}) {
+  return (
+    <article>
+      <p>“{expression}”</p>
+      <button
+        type="button"
+        aria-label={`${saved ? '已收藏' : '收藏'}表达：${expression}`}
+        disabled={saved}
+        onClick={() => void onSave(expression)}
+      >
+        <BookmarkSimple
+          aria-hidden
+          size={20}
+          weight={saved ? 'fill' : 'regular'}
+        />
+      </button>
+    </article>
   )
 }

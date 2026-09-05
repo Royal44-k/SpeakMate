@@ -162,4 +162,19 @@ describe('PracticeStage completion', () => {
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
     expect(screen.queryByRole('region', { name: '语音输入' })).not.toBeInTheDocument()
   })
+
+  it('keeps a restored completed session out of the ready practice controls', () => {
+    setPracticeState('ready')
+
+    render(
+      <PracticeStage scene={scene} sessionId="session-text" completed />,
+    )
+
+    expect(
+      screen.getByRole('link', { name: '查看本次复盘' }),
+    ).toHaveAttribute('href', '/session/session-text/report')
+    expect(screen.queryByRole('button')).not.toBeInTheDocument()
+    expect(screen.queryByRole('region', { name: '语音输入' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: '提交这一轮' })).not.toBeInTheDocument()
+  })
 })
