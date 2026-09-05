@@ -1,9 +1,13 @@
 import { MagnifyingGlass } from '@phosphor-icons/react'
 
-import { CEFR_LEVELS, type CefrLevel, type SceneCategory } from '@/domain/scenes/types'
+import {
+  CEFR_LEVELS,
+  type CefrLevel,
+  type SceneCategory,
+} from '@/domain/scenes/types'
 
 import styles from './scene-library.module.css'
-import type { DurationFilter } from './scene-library'
+import type { DurationFilter } from './scene-filter-state'
 
 const categories: Array<{ value: SceneCategory | 'all'; label: string }> = [
   { value: 'all', label: '全部' },
@@ -40,16 +44,39 @@ export function SceneFilters({
       <label className={styles.search}>
         <MagnifyingGlass aria-hidden size={20} />
         <span className={styles.srOnly}>搜索场景</span>
-        <input aria-label="搜索场景" value={search} onChange={(event) => onSearch(event.target.value)} placeholder="搜索中文、英文或关键词" />
+        <input
+          aria-label="搜索场景"
+          value={search}
+          onChange={(event) => onSearch(event.target.value)}
+          placeholder="搜索中文、英文或关键词"
+        />
       </label>
       <div className={styles.chips} aria-label="场景分类">
         {categories.map((item) => (
-          <button key={item.value} type="button" className={category === item.value ? styles.chipActive : styles.chip} onClick={() => onCategory(item.value)}>{item.label}</button>
+          <button
+            key={item.value}
+            type="button"
+            aria-pressed={category === item.value}
+            className={
+              category === item.value ? styles.chipActive : styles.chip
+            }
+            onClick={() => onCategory(item.value)}
+          >
+            {item.label}
+          </button>
         ))}
       </div>
       <div className={styles.levels} aria-label="英语水平">
         {CEFR_LEVELS.map((item) => (
-          <button key={item} type="button" className={level === item ? styles.levelActive : styles.level} onClick={() => onLevel(item)}>{item}</button>
+          <button
+            key={item}
+            type="button"
+            aria-pressed={level === item}
+            className={level === item ? styles.levelActive : styles.level}
+            onClick={() => onLevel(item)}
+          >
+            {item}
+          </button>
         ))}
       </div>
       <div className={styles.durations} aria-label="练习时长">
@@ -57,7 +84,10 @@ export function SceneFilters({
           <button
             key={item}
             type="button"
-            className={duration === item ? styles.durationActive : styles.duration}
+            aria-pressed={duration === item}
+            className={
+              duration === item ? styles.durationActive : styles.duration
+            }
             onClick={() => onDuration(item)}
           >
             {item === 'all' ? '全部时长' : `${item} 分钟`}
