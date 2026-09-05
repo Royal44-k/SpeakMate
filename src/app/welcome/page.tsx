@@ -18,7 +18,6 @@ export default function WelcomePage() {
     let mounted = true
     const repositories = createIndexedDbRepositories()
 
-    setLoadFailed(false)
     void repositories.profiles.ensureGuestProfile()
       .then((guestProfile) => {
         if (mounted) setProfile(guestProfile)
@@ -29,6 +28,11 @@ export default function WelcomePage() {
 
     return () => { mounted = false }
   }, [loadAttempt])
+
+  function retryProfileLoad() {
+    setLoadFailed(false)
+    setLoadAttempt((attempt) => attempt + 1)
+  }
 
   async function complete(choices: OnboardingChoices) {
     const repositories = createIndexedDbRepositories()
@@ -49,7 +53,7 @@ export default function WelcomePage() {
           <p className={styles.brand}>SPEAKMATE</p>
           <h1>暂时无法准备练习</h1>
           <p role="alert">无法读取本地练习设置，请重试。</p>
-          <button className={styles.primaryButton} type="button" onClick={() => setLoadAttempt((attempt) => attempt + 1)}>重试</button>
+          <button className={styles.primaryButton} type="button" onClick={retryProfileLoad}>重试</button>
         </section>
       </main>
     )
