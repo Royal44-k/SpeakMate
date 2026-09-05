@@ -1,0 +1,22 @@
+import { describe, expect, it } from 'vitest'
+
+import { canGoBackWithinApp, trackRoute } from './navigation-history'
+
+describe('navigation history', () => {
+  it('records a forward route and identifies browser-back restoration', () => {
+    const forward = trackRoute(['/scenes?level=B1'], '/scenes/hotel-check-in?level=B1')
+
+    expect(forward).toEqual({
+      stack: ['/scenes?level=B1', '/scenes/hotel-check-in?level=B1'],
+      kind: 'forward',
+    })
+    expect(trackRoute(forward.stack, '/scenes?level=B1')).toEqual({
+      stack: ['/scenes?level=B1'],
+      kind: 'back',
+    })
+  })
+
+  it('does not claim a safe in-app back route for a direct deep link', () => {
+    expect(canGoBackWithinApp(['/privacy'])).toBe(false)
+  })
+})
