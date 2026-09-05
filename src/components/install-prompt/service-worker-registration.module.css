@@ -1,8 +1,8 @@
 .update {
   position: fixed;
-  z-index: 30;
+  z-index: var(--z-notice);
   right: max(14px, env(safe-area-inset-right));
-  top: max(14px, env(safe-area-inset-top));
+  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom) + 12px);
   left: max(14px, env(safe-area-inset-left));
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -33,7 +33,7 @@
 
 .update button {
   display: inline-flex;
-  min-height: 42px;
+  min-height: var(--tap-target);
   align-items: center;
   gap: 5px;
   border: 0;
@@ -51,6 +51,11 @@
 }
 
 @media (max-width: 390px) {
-  .update { grid-template-columns: 1fr auto; }
-  .update .later { grid-column: 2; min-height: 34px; }
+  .update {
+    grid-template-columns: 1fr auto;
+  }
+
+  .update p {
+    grid-column: 1 / -1;
+  }
 }

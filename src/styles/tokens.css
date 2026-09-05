@@ -34,6 +34,12 @@
   --radius-lg: 24px;
   --radius-pill: 999px;
   --nav-height: 72px;
+  --page-header-height: 64px;
+  --speech-dock-height: 214px;
+  --z-sticky: 10;
+  --z-navigation: 20;
+  --z-notice: 30;
+  --z-dialog: 40;
   --content-max: 480px;
   --tap-target: 44px;
   --duration-fast: 160ms;
