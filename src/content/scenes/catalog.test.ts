@@ -2,11 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { CEFR_LEVELS } from '@/domain/scenes/types'
 
-import {
-  SCENE_CATALOG,
-  getPublishedScenes,
-  getSceneBySlug,
-} from './catalog'
+import { SCENE_CATALOG, getPublishedScenes, getSceneBySlug } from './catalog'
 
 describe('SCENE_CATALOG', () => {
   it('publishes exactly forty-two unique scenes across seven balanced categories', () => {
@@ -23,17 +19,28 @@ describe('SCENE_CATALOG', () => {
     )
 
     expect(Object.keys(categoryCounts)).toHaveLength(7)
-    expect(Object.values(categoryCounts).every((count) => count === 6)).toBe(true)
-    expect(SCENE_CATALOG.every((scene) => scene.status === 'published')).toBe(true)
+    expect(Object.values(categoryCounts).every((count) => count === 6)).toBe(
+      true,
+    )
+    expect(SCENE_CATALOG.every((scene) => scene.status === 'published')).toBe(
+      true,
+    )
   })
 
   it('contains complete, measurable content for A1 through C1', () => {
     for (const scene of SCENE_CATALOG) {
       expect(scene.version).toBeGreaterThan(0)
       expect(scene.goals).toHaveLength(3)
-      expect(scene.goals.every((goal) => goal.completionSignal.trim().length > 0)).toBe(
-        true,
+      expect(
+        scene.goals.every((goal) => goal.completionSignal.trim().length > 0),
+      ).toBe(true)
+      expect(
+        scene.goals.every((goal) => goal.completionKeywords.length > 0),
+      ).toBe(true)
+      const completionKeywords = scene.goals.flatMap((goal) =>
+        goal.completionKeywords.map((keyword) => keyword.toLowerCase()),
       )
+      expect(new Set(completionKeywords).size).toBe(completionKeywords.length)
 
       for (const level of CEFR_LEVELS) {
         expect(scene.keywords[level].length).toBeGreaterThanOrEqual(3)

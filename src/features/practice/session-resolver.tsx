@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react'
 import { SCENE_CATALOG, getSceneBySlug } from '@/content/scenes/catalog'
 import type { PracticeSession } from '@/domain/practice/types'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
-import { CEFR_LEVELS, type AdaptedScene, type CefrLevel } from '@/domain/scenes/types'
+import {
+  CEFR_LEVELS,
+  type AdaptedScene,
+  type CefrLevel,
+} from '@/domain/scenes/types'
 import {
   createIndexedDbRepositories,
   type Repositories,
@@ -28,12 +32,21 @@ type Resolution =
   | { status: 'error'; message: string }
 
 function queryLevelOrDefault(value?: string): CefrLevel {
-  return CEFR_LEVELS.includes(value as CefrLevel) ? value as CefrLevel : 'A2'
+  return CEFR_LEVELS.includes(value as CefrLevel) ? (value as CefrLevel) : 'A2'
 }
 
 function restoreScene(session: PracticeSession): AdaptedScene | undefined {
+  if (
+    session.sceneSnapshot &&
+    session.sceneSnapshot.id === session.sceneId &&
+    session.sceneSnapshot.version === session.sceneVersion &&
+    session.sceneSnapshot.level === session.level
+  ) {
+    return session.sceneSnapshot
+  }
   const definition = SCENE_CATALOG.find(
-    (scene) => scene.id === session.sceneId && scene.version === session.sceneVersion,
+    (scene) =>
+      scene.id === session.sceneId && scene.version === session.sceneVersion,
   )
   return definition ? adaptScene(definition, session.level) : undefined
 }
@@ -44,8 +57,12 @@ export function SessionResolver({
   queryLevel,
   repositories,
 }: SessionResolverProps) {
-  const [repository] = useState(() => repositories ?? createIndexedDbRepositories())
-  const [resolution, setResolution] = useState<Resolution>({ status: 'loading' })
+  const [repository] = useState(
+    () => repositories ?? createIndexedDbRepositories(),
+  )
+  const [resolution, setResolution] = useState<Resolution>({
+    status: 'loading',
+  })
 
   useEffect(() => {
     let active = true
@@ -53,7 +70,11 @@ export function SessionResolver({
       if (requestedId === 'new') {
         const definition = getSceneBySlug(queryScene ?? 'hotel-check-in')
         if (!definition) {
-          if (active) setResolution({ status: 'error', message: '这个练习场景不存在或已下线。' })
+          if (active)
+            setResolution({
+              status: 'error',
+              message: '这个练习场景不存在或已下线。',
+            })
           return
         }
         if (active) {
@@ -73,12 +94,14 @@ export function SessionResolver({
           if (active) {
             setResolution({
               status: 'error',
-              message: '暂时无法恢复这次练习：记录不存在，或对应的场景版本已不可用。',
+              message:
+                '暂时无法恢复这次练习：记录不存在，或对应的场景版本已不可用。',
             })
           }
           return
         }
-        if (active) setResolution({ status: 'ready', scene, sessionId: session.id })
+        if (active)
+          setResolution({ status: 'ready', scene, sessionId: session.id })
       } catch {
         if (active) {
           setResolution({
@@ -95,7 +118,11 @@ export function SessionResolver({
   }, [queryLevel, queryScene, repository, requestedId])
 
   if (resolution.status === 'loading') {
-    return <main className={styles.state} aria-busy="true">正在恢复练习…</main>
+    return (
+      <main className={styles.state} aria-busy="true">
+        正在恢复练习…
+      </main>
+    )
   }
 
   if (resolution.status === 'error') {
@@ -108,5 +135,7 @@ export function SessionResolver({
     )
   }
 
-  return <PracticeStage scene={resolution.scene} sessionId={resolution.sessionId} />
+  return (
+    <PracticeStage scene={resolution.scene} sessionId={resolution.sessionId} />
+  )
 }

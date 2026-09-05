@@ -1,4 +1,4 @@
-import type { CefrLevel } from '@/domain/scenes/types'
+import type { AdaptedScene, CefrLevel } from '@/domain/scenes/types'
 
 export type PracticeSessionStatus = 'active' | 'completed' | 'abandoned'
 
@@ -7,6 +7,7 @@ export interface PracticeSession {
   profileId: string
   sceneId: string
   sceneVersion: number
+  sceneSnapshot?: AdaptedScene
   level: CefrLevel
   status: PracticeSessionStatus
   startedAt: string

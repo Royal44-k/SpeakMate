@@ -28,7 +28,9 @@ interface PracticeHomeData {
 }
 
 export function PracticeHome({ repositories }: PracticeHomeProps) {
-  const [repository] = useState(() => repositories ?? createIndexedDbRepositories())
+  const [repository] = useState(
+    () => repositories ?? createIndexedDbRepositories(),
+  )
   const [data, setData] = useState<PracticeHomeData>()
   const [loadError, setLoadError] = useState(false)
 
@@ -70,18 +72,27 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     )
   }
 
-  const definition = recommendScene(data.profile, SCENE_CATALOG, data.sessions)
-    ?? SCENE_CATALOG[0]
-  const recoverable = [...data.sessions]
-    .filter(
-      (session) =>
-        session.status === 'active'
-        && session.sceneId === definition.id
-        && session.sceneVersion === definition.version,
-    )
+  const latestActive = [...data.sessions]
+    .filter((session) => session.status === 'active')
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
-  const level = recoverable?.level ?? data.profile.level
-  const scene = adaptScene(definition, level)
+  const catalogDefinition = latestActive
+    ? SCENE_CATALOG.find(
+        (item) =>
+          item.id === latestActive.sceneId &&
+          item.version === latestActive.sceneVersion,
+      )
+    : undefined
+  const recoverableScene =
+    latestActive?.sceneSnapshot ??
+    (latestActive && catalogDefinition
+      ? adaptScene(catalogDefinition, latestActive.level)
+      : undefined)
+  const recommendation =
+    recommendScene(data.profile, SCENE_CATALOG, data.sessions) ??
+    SCENE_CATALOG[0]
+  const recoverable = recoverableScene ? latestActive : undefined
+  const level = recoverableScene?.level ?? data.profile.level
+  const scene = recoverableScene ?? adaptScene(recommendation, level)
   const href = recoverable
     ? `/session/${recoverable.id}?scene=${scene.slug}&level=${level}`
     : `/scenes/${scene.slug}?level=${level}`
@@ -96,7 +107,10 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
           </div>
           <span>{level}</span>
         </header>
-        <section className={styles.recommendation} aria-labelledby="recommendation-title">
+        <section
+          className={styles.recommendation}
+          aria-labelledby="recommendation-title"
+        >
           <div className={styles.image}>
             <SceneImage image={scene.image} priority />
             <span>
@@ -108,8 +122,14 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
             <p>{scene.titleEn}</p>
             <h2 id="recommendation-title">{scene.titleZh}</h2>
             <div className={styles.meta}>
-              <span><Clock aria-hidden size={16} />{scene.estimatedMinutes} 分钟</span>
-              <span><Headphones aria-hidden size={16} />{scene.recommendedTurns} 轮</span>
+              <span>
+                <Clock aria-hidden size={16} />
+                {scene.estimatedMinutes} 分钟
+              </span>
+              <span>
+                <Headphones aria-hidden size={16} />
+                {scene.recommendedTurns} 轮
+              </span>
             </div>
             <p className={styles.summary}>{scene.summaryZh}</p>
             <Link href={href}>

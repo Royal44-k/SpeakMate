@@ -11,7 +11,7 @@ test('publishes an installable manifest and service worker', async ({ page, requ
 
   const serviceWorker = await request.get('/sw.js')
   expect(serviceWorker.ok()).toBe(true)
-  expect(await serviceWorker.text()).toContain('speakmate-shell-v1')
+  expect(await serviceWorker.text()).toContain('speakmate-shell-v2.1.0')
 })
 
 test('shows iPhone add-to-home-screen instructions', async ({ page, browserName }) => {

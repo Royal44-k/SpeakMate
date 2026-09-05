@@ -20,6 +20,7 @@ export interface SceneGoal {
   id: string
   labelZh: string
   completionSignal: string
+  completionKeywords: string[]
 }
 
 export interface LevelConstraint {
@@ -59,11 +60,10 @@ export interface SceneDefinition {
   status: 'published' | 'archived'
 }
 
-export interface AdaptedScene
-  extends Omit<
-    SceneDefinition,
-    'keywords' | 'exampleExpressions' | 'openingLines' | 'constraints'
-  > {
+export interface AdaptedScene extends Omit<
+  SceneDefinition,
+  'keywords' | 'exampleExpressions' | 'openingLines' | 'constraints'
+> {
   level: CefrLevel
   keywords: string[]
   exampleExpressions: string[]

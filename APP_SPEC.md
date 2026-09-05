@@ -1,8 +1,10 @@
 # SpeakMate PWA 开发规格
 
-> 文档版本：2.0.0  
-> 状态：已确认产品路线与视觉方向，待实现计划评审  
-> 更新日期：2026-09-03  
+> 文档版本：2.1.0
+>
+> 状态：PWA MVP 已实现并进入生产发布验收
+>
+> 更新日期：2026-09-05
 > 产品形态：移动优先的可安装 PWA，不再以微信小程序为首发载体  
 > 首发环境：Vercel Hobby 免费计划，面向个人开发、内测与演示  
 > 视觉基准：[`docs/design/speakmate-dialogue-stage-reference.png`](./docs/design/speakmate-dialogue-stage-reference.png)
@@ -352,9 +354,10 @@ Next.js 官方 PWA 指南要求有效 Manifest 与 HTTPS；同时指出 iOS Safa
 
 ### 9.2 Service Worker 缓存策略
 
+- 发布版本独占缓存名；等待中的 Worker 不写入当前 Worker 的缓存，激活后再删除旧版本，避免新旧 HTML 与运行时代码混用。
 - 版本化静态资源：cache-first。
-- 页面导航：network-first，3 秒后使用缓存壳。
-- 场景内容 JSON：stale-while-revalidate。
+- `/`、安装页和场景库预缓存；已访问的场景详情与本地会话壳使用 network-first，3 秒后恢复对应缓存。
+- 客户端业务数据只存 IndexedDB，不写入 Cache Storage。
 - `/api/**`、音频、登录响应和含个人数据请求：never-cache。
 - 新 Service Worker 等待激活时显示“新版本已准备好”，由用户触发刷新。
 
@@ -472,7 +475,7 @@ interface SpeechSynthesisProvider {
 - `CloudflareWhisperProvider`：默认模型 `@cf/openai/whisper`。
 - `CloudflareConversationProvider`：默认模型 `@cf/zai-org/glm-4.7-flash`，模型 ID 必须通过服务器白名单。
 - `BrowserTranscriptProvider`：使用浏览器语音识别结果或用户确认文字。
-- `DeterministicConversationProvider`：基于场景目标、关键词和表达模式返回可预测回复与反馈。
+- `DeterministicConversationProvider`：使用每个目标独立维护的 `completionKeywords` 判定完成度，并结合场景分类、AI 角色、历史轮次、当前水平和下一目标生成可预测回复与反馈；不得按等级关键词数组位置推导目标。
 - `BrowserSpeechSynthesisProvider`：基于 `speechSynthesis`。
 
 Cloudflare Whisper 支持通用语音转写；GLM-4.7-Flash 支持多语言对话并提供 OpenAI 兼容接口。[Whisper 模型](https://developers.cloudflare.com/workers-ai/models/whisper/) · [GLM-4.7-Flash](https://developers.cloudflare.com/workers-ai/models/glm-4.7-flash/)
@@ -491,7 +494,7 @@ type AiMode = 'local' | 'cloudflare' | 'auto'
 ### 11.3 单轮处理
 
 1. 校验同源请求、场景 ID、水平、轮次、音频类型、时长估计和大小。
-2. 生成 `requestId` 与幂等键；客户端相同轮次只接受一个成功结果。
+2. 过滤不属于当前场景版本的目标 ID，生成 `requestId` 与幂等键；客户端相同轮次只接受一个成功结果。
 3. ASR 超时 12 秒；失败后尝试已确认的客户端转写。
 4. 将最近 8 轮、场景目标和当前水平组装成最小提示词。
 5. LLM 超时 15 秒；`max_tokens` 上限 420。
@@ -596,7 +599,7 @@ Supabase 启用时使用 `profiles`、`sessions`、`turns`、`favorites` 四张�
 ```json
 {
   "status": "ok",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "aiMode": "local"
 }
 ```
@@ -653,7 +656,8 @@ idle → requesting-permission → recording → reviewing
 恢复规则：
 
 - 每次完成一轮后立即持久化。
-- 刷新或被系统杀掉后恢复最后一个 `active` 会话。
+- 新建会话时保存不可变 `sceneSnapshot`；目录升级或旧版本下线后仍可按原角色、目标、难度和话术恢复。
+- 刷新或被系统杀掉后优先恢复最近一个具有目录版本或场景快照的 `active` 会话。
 - `submitting` 状态刷新后不自动重传音频；显示“上一段未提交，请重新录制”。
 - 相同 `sessionId + sequence` 不产生两个成功轮次。
 
@@ -662,13 +666,14 @@ idle → requesting-permission → recording → reviewing
 - Cloudflare API Token 只存在于 Vercel 服务端环境变量。
 - `.env*` 被 Git 忽略；提供只有变量名的 `.env.example`。
 - 日志只记录 `requestId`、状态、耗时、提供者、错误代码和粗粒度字符数；不记录音频、完整转写、完整回复、邮箱或令牌。
-- CSP 默认 `self`，仅按启用能力放行 Supabase 连接域名；禁止任意内联脚本。
+- CSP 默认 `self`，仅按启用能力放行 Supabase 连接域名；生产禁用 `unsafe-eval` 和第三方脚本。Next.js 静态水合当前保留受框架约束的 `unsafe-inline`，后续若切换动态 nonce 渲染再移除。
 - 设置 `X-Content-Type-Options`、`Referrer-Policy`、`Permissions-Policy`、`frame-ancestors` 等响应头。
 - 音频请求校验 MIME、大小和扩展信息，不信任客户端文件名。
 - 所有用户可导出本地 JSON、删除练习记录、清空本机数据；同步用户可发起云端账号删除。
 - 首次录音前说明用途：“麦克风只用于本轮英语练习，原始录音不会保存。”
 - 健康、法律和紧急场景只做语言教学，不给出专业结论。
 - 面向中国大陆公开运营前，应另行完成域名、备案、隐私政策、数据跨境和生成式 AI 合规评估；Vercel 内测不等于取得运营合规资格。
+- API 具备单实例、按客户端地址的基础限流；生产默认本地 AI。启用可能产生额度成本的云端 AI 前，必须再配置跨实例共享配额或平台防火墙限流，不能把进程内计数视为计费保护。
 
 ## 16. 性能与可靠性预算
 
@@ -850,6 +855,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 | 2026-09-03 | 采用真实 AI 免费额度 + 本地降级 | 同时满足真实语音体验与零账单硬约束 |
 | 2026-09-03 | 选择 Dialogue Stage 视觉方向 | 把“开口说话”而非统计或游戏化作为唯一主角 |
 | 2026-09-03 | 首版不实现 App Intents | PWA 无法直接提供原生系统集成，避免伪装原生能力 |
+| 2026-09-05 | 场景目标改为显式完成信号并保存会话场景快照 | 避免等级词表错配目标，并保证目录升级后历史会话可恢复 |
+| 2026-09-05 | Service Worker 使用发布级隔离缓存 | 保证用户确认更新前不混用新旧运行时代码，并覆盖已访问场景与本地会话壳 |
 
 ## 24. 权威外部依据
 
@@ -864,4 +871,3 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 - [MDN：MediaRecorder](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/MediaRecorder)
 - [MDN：SpeechSynthesis](https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis)
 - [WebKit：Web Push for Web Apps on iOS and iPadOS](https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/)
-

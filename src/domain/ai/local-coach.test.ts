@@ -21,7 +21,7 @@ describe('localCoach', () => {
     expect(result.provider).toBe('local')
     expect(result.degraded).toBe(true)
     expect(result.feedback.issueTags).toHaveLength(0)
-    expect(result.reply.text).toMatch(/passport|booking confirmation/i)
+    expect(result.reply.text).toMatch(/room|nights|stay/i)
     expect(result.reply.text).not.toBe(hotel.openingLines[0])
   })
 
@@ -50,6 +50,31 @@ describe('localCoach', () => {
     expect(result.progress.completedGoalIds.length).toBeGreaterThan(0)
   })
 
+  it('uses explicit goal signals instead of the level-filtered keyword position', async () => {
+    const advancedHotel = adaptScene(getSceneBySlug('hotel-check-in')!, 'B2')
+    const passportOnly = await localCoach.nextTurn({
+      scene: advancedHotel,
+      learnerText: 'Here is my passport.',
+      history: [],
+      completedGoalIds: [],
+      turnIndex: 0,
+    })
+    const reservation = await localCoach.nextTurn({
+      scene: advancedHotel,
+      learnerText: 'I have a reservation under the name Chen.',
+      history: [],
+      completedGoalIds: [],
+      turnIndex: 0,
+    })
+
+    expect(passportOnly.progress.completedGoalIds).not.toContain(
+      advancedHotel.goals[0].id,
+    )
+    expect(reservation.progress.completedGoalIds).toContain(
+      advancedHotel.goals[0].id,
+    )
+  })
+
   it('does not complete a goal merely because several turns have passed', async () => {
     const result = await localCoach.nextTurn({
       scene: hotel,
@@ -68,17 +93,29 @@ describe('localCoach', () => {
         const scene = adaptScene(definition, level)
         const result = await localCoach.nextTurn({
           scene,
-          learnerText: `I would like to discuss ${scene.keywords[0]}.`,
+          learnerText: `I would like to discuss ${scene.goals[0].completionKeywords[0]}.`,
           history: [],
           completedGoalIds: [],
           turnIndex: 0,
         })
         const wordCount = result.reply.text.trim().split(/\s+/).length
 
-        expect(result.progress.completedGoalIds, `${scene.slug} ${level}`).toContain(scene.goals[0].id)
-        expect(result.reply.text.toLowerCase(), `${scene.slug} ${level}`).toContain(scene.keywords[1].toLowerCase())
-        expect(wordCount, `${scene.slug} ${level}`).toBeGreaterThanOrEqual(scene.constraints.minAiWords)
-        expect(wordCount, `${scene.slug} ${level}`).toBeLessThanOrEqual(scene.constraints.maxAiWords)
+        expect(
+          result.progress.completedGoalIds,
+          `${scene.slug} ${level}`,
+        ).toContain(scene.goals[0].id)
+        expect(
+          scene.goals[1].completionKeywords.some((keyword) =>
+            result.reply.text.toLowerCase().includes(keyword.toLowerCase()),
+          ),
+          `${scene.slug} ${level}`,
+        ).toBe(true)
+        expect(wordCount, `${scene.slug} ${level}`).toBeGreaterThanOrEqual(
+          scene.constraints.minAiWords,
+        )
+        expect(wordCount, `${scene.slug} ${level}`).toBeLessThanOrEqual(
+          scene.constraints.maxAiWords,
+        )
       }
     }
   })

@@ -43,7 +43,12 @@ describe('POST /api/v1/turns', () => {
 
   it('rejects audio larger than 2 MB before contacting a provider', async () => {
     const form = new FormData()
-    form.set('audio', new File([new Uint8Array(2 * 1024 * 1024 + 1)], 'turn.webm', { type: 'audio/webm' }))
+    form.set(
+      'audio',
+      new File([new Uint8Array(2 * 1024 * 1024 + 1)], 'turn.webm', {
+        type: 'audio/webm',
+      }),
+    )
     form.set('session', sessionInput())
     form.set('idempotencyKey', '5e88d4fc-51d0-4d20-babf-697276aab7fb')
 
@@ -70,10 +75,12 @@ describe('POST /api/v1/turns', () => {
     form.set('session', sessionInput())
     form.set('idempotencyKey', '772870f9-6004-44b8-8464-8dbfdb160e93')
 
-    const response = await POST(browserRequest(form, {
-      Origin: 'https://attacker.example',
-      'Sec-Fetch-Site': 'cross-site',
-    }))
+    const response = await POST(
+      browserRequest(form, {
+        Origin: 'https://attacker.example',
+        'Sec-Fetch-Site': 'cross-site',
+      }),
+    )
 
     expect(response.status).toBe(403)
     expect((await response.json()).code).toBe('CROSS_SITE_REQUEST')
@@ -85,22 +92,57 @@ describe('POST /api/v1/turns', () => {
     form.set('session', sessionInput({ turnIndex: 99 }))
     form.set('idempotencyKey', 'fa10f108-4ee5-4dcb-a99f-8bdcc352519e')
 
-    const response = await POST(browserRequest(form, { Origin: 'https://speakmate.test' }))
+    const response = await POST(
+      browserRequest(form, { Origin: 'https://speakmate.test' }),
+    )
 
     expect(response.status).toBe(400)
     expect((await response.json()).code).toBe('TURN_LIMIT_REACHED')
   })
 
+  it('drops client-supplied goal ids that do not belong to the scene version', async () => {
+    const form = new FormData()
+    form.set('transcript', 'I am still deciding what to say.')
+    form.set('session', sessionInput({ completedGoalIds: ['fake-1', 'fake-2', 'fake-3'] }))
+    form.set('idempotencyKey', 'f42d5758-3daf-49b8-8446-f4f43385c532')
+
+    const response = await POST(browserRequest(form, { Origin: 'https://speakmate.test' }))
+    const body = await response.json()
+
+    expect(response.status).toBe(200)
+    expect(body.progress.completedGoalIds).toEqual([])
+    expect(body.progress.shouldOfferCompletion).toBe(false)
+  })
+
   it('rate limits repeated submissions from one forwarded client address', async () => {
     let response: Response | undefined
     for (let index = 0; index <= 20; index += 1) {
-      response = await POST(browserRequest(new FormData(), {
-        Origin: 'https://speakmate.test',
-        'X-Forwarded-For': '203.0.113.42',
-      }))
+      response = await POST(
+        browserRequest(new FormData(), {
+          Origin: 'https://speakmate.test',
+          'X-Forwarded-For': '203.0.113.42',
+        }),
+      )
     }
 
     expect(response?.status).toBe(429)
-    expect(await response?.json()).toMatchObject({ code: 'RATE_LIMITED', retryable: true })
+    expect(await response?.json()).toMatchObject({
+      code: 'RATE_LIMITED',
+      retryable: true,
+    })
+  })
+
+  it('does not bypass the best-effort limiter when proxy IP headers are absent', async () => {
+    let response: Response | undefined
+    for (let index = 0; index <= 20; index += 1) {
+      response = await POST(
+        browserRequest(new FormData(), {
+          Origin: 'https://speakmate.test',
+          'User-Agent': 'no-forwarded-address-test',
+        }),
+      )
+    }
+
+    expect(response?.status).toBe(429)
   })
 })

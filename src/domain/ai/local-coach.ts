@@ -54,10 +54,13 @@ function findNewCompletedGoalIds(input: ConversationInput): string[] {
   const normalized = input.learnerText.toLowerCase()
   const completed = new Set(input.completedGoalIds)
 
-  for (const [goalIndex, goal] of input.scene.goals.entries()) {
+  for (const goal of input.scene.goals) {
     if (completed.has(goal.id)) continue
-    const goalKeywords = [input.scene.keywords[goalIndex]].filter(Boolean)
-    if (goalKeywords.some((keyword) => includesWholeKeyword(normalized, keyword))) {
+    if (
+      goal.completionKeywords.some((keyword) =>
+        includesWholeKeyword(normalized, keyword),
+      )
+    ) {
       completed.add(goal.id)
     }
   }
@@ -66,25 +69,41 @@ function findNewCompletedGoalIds(input: ConversationInput): string[] {
 }
 
 function includesWholeKeyword(text: string, keyword: string) {
-  const escaped = keyword
-    .toLowerCase()
-    .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-  return new RegExp(`(?:^|[^\\p{L}\\p{N}])${escaped}(?=$|[^\\p{L}\\p{N}])`, 'iu').test(text)
+  const escaped = keyword.toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  return new RegExp(
+    `(?:^|[^\\p{L}\\p{N}])${escaped}(?=$|[^\\p{L}\\p{N}])`,
+    'iu',
+  ).test(text)
 }
 
 function buildReply(input: ConversationInput, completedGoalIds: string[]) {
   const nextGoalIndex = input.scene.goals.findIndex(
     (goal) => !completedGoalIds.includes(goal.id),
   )
-  const keyword = input.scene.keywords[
-    Math.max(0, nextGoalIndex) % input.scene.keywords.length
-  ]
+  const nextGoal = input.scene.goals[Math.max(0, nextGoalIndex)]
+  const keyword =
+    nextGoal.completionKeywords.find((candidate) =>
+      input.scene.keywords.some(
+        (levelKeyword) =>
+          levelKeyword.toLowerCase() === candidate.toLowerCase(),
+      ),
+    ) ?? nextGoal.completionKeywords[0]
+  const categoryLead = {
+    travel: 'Before we continue',
+    dining: 'For your order',
+    daily: 'So I can help',
+    work: 'For our next step',
+    social: 'I am curious',
+    study: 'To understand clearly',
+    emergency: 'For clarity',
+  }[input.scene.category]
+  const acknowledgement = input.history.length > 0 ? 'Thanks.' : 'All right.'
   const templates = {
     A1: `Please tell me about ${keyword} now.`,
     A2: `Could you tell me more about ${keyword}, please?`,
-    B1: `Thank you. Could you explain the ${keyword} detail and what you need next?`,
-    B2: `Thank you. Could you clarify the ${keyword} detail and explain which option would work best for you?`,
-    C1: `Thank you. Could you clarify the ${keyword} detail, including any constraints, priorities, or trade-offs we should consider next?`,
+    B1: `${acknowledgement} ${categoryLead}, could you explain the ${keyword} detail?`,
+    B2: `${acknowledgement} ${categoryLead}, could you clarify the ${keyword} detail and your preferred option?`,
+    C1: `${acknowledgement} ${categoryLead}, could you clarify the ${keyword} detail, including the main constraint, priority, and trade-off?`,
   } as const
   const closing = {
     A1: 'Thank you. Is there anything else you need?',
@@ -95,10 +114,14 @@ function buildReply(input: ConversationInput, completedGoalIds: string[]) {
   } as const
 
   return {
-    text: nextGoalIndex < 0 ? closing[input.scene.level] : templates[input.scene.level],
-    hintZh: nextGoalIndex < 0
-      ? '本场景的关键任务已覆盖，可以结束练习或再补充一个细节。'
-      : `下一步试着说明：${input.scene.goals[nextGoalIndex].labelZh}。可参考关键词 “${keyword}”。`,
+    text:
+      nextGoalIndex < 0
+        ? closing[input.scene.level]
+        : templates[input.scene.level],
+    hintZh:
+      nextGoalIndex < 0
+        ? '本场景的关键任务已覆盖，可以结束练习或再补充一个细节。'
+        : `AI 角色“${input.scene.aiRole}”正在确认：${input.scene.goals[nextGoalIndex].labelZh}。可参考关键词 “${keyword}”。`,
   }
 }
 

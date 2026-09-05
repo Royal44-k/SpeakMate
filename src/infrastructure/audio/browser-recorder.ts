@@ -12,7 +12,11 @@ const MIME_CANDIDATES = [
 
 export type RecordingValidation =
   | { ok: true }
-  | { ok: false; code: 'TOO_SHORT' | 'TOO_LONG' | 'TOO_LARGE' | 'NO_SPEECH'; message: string }
+  | {
+      ok: false
+      code: 'TOO_SHORT' | 'TOO_LONG' | 'TOO_LARGE' | 'NO_SPEECH'
+      message: string
+    }
 
 export interface RecordingMetadata {
   durationMs: number
@@ -64,12 +68,16 @@ export function bindRecordingInterruptionHandlers(
   sources.page?.addEventListener('visibilitychange', handleVisibility)
   const lifecycle = sources.lifecycle ?? sources.page
   lifecycle?.addEventListener('pagehide', interruptOnce)
-  sources.tracks.forEach((track) => track.addEventListener('ended', interruptOnce))
+  sources.tracks.forEach((track) =>
+    track.addEventListener('ended', interruptOnce),
+  )
 
   return () => {
     sources.page?.removeEventListener('visibilitychange', handleVisibility)
     lifecycle?.removeEventListener('pagehide', interruptOnce)
-    sources.tracks.forEach((track) => track.removeEventListener('ended', interruptOnce))
+    sources.tracks.forEach((track) =>
+      track.removeEventListener('ended', interruptOnce),
+    )
   }
 }
 
@@ -79,18 +87,32 @@ export function selectSupportedMimeType(
   return MIME_CANDIDATES.find(isSupported)
 }
 
-export function validateRecording(input: RecordingMetadata): RecordingValidation {
+export function validateRecording(
+  input: RecordingMetadata,
+): RecordingValidation {
   if (input.durationMs < MIN_RECORDING_MS) {
-    return { ok: false, code: 'TOO_SHORT', message: '录音太短，请说完一句完整的话。' }
+    return {
+      ok: false,
+      code: 'TOO_SHORT',
+      message: '录音太短，请说完一句完整的话。',
+    }
   }
   if (input.durationMs > MAX_RECORDING_MS) {
     return { ok: false, code: 'TOO_LONG', message: '每次录音最长 30 秒。' }
   }
   if (input.size > MAX_AUDIO_BYTES) {
-    return { ok: false, code: 'TOO_LARGE', message: '录音文件超过 2 MB，请缩短后重试。' }
+    return {
+      ok: false,
+      code: 'TOO_LARGE',
+      message: '录音文件超过 2 MB，请缩短后重试。',
+    }
   }
   if (input.peakAmplitude !== undefined && input.peakAmplitude < 0.012) {
-    return { ok: false, code: 'NO_SPEECH', message: '没有听到清晰语音，请靠近麦克风再试一次。' }
+    return {
+      ok: false,
+      code: 'NO_SPEECH',
+      message: '没有听到清晰语音，请靠近麦克风再试一次。',
+    }
   }
   return { ok: true }
 }
@@ -145,7 +167,8 @@ export function createRecorder(
     if (!analyser) return
     const data = new Uint8Array(analyser.fftSize)
     analyser.getByteTimeDomainData(data)
-    const mean = data.reduce((sum, value) => sum + Math.abs(value - 128), 0) / data.length
+    const mean =
+      data.reduce((sum, value) => sum + Math.abs(value - 128), 0) / data.length
     const normalized = Math.min(1, mean / 32)
     amplitudeSamples.push(normalized)
     options.onAmplitude?.(normalized)
@@ -154,7 +177,10 @@ export function createRecorder(
   return {
     async start() {
       if (recorder?.state === 'recording') return
-      if (!globalThis.navigator?.mediaDevices?.getUserMedia || !globalThis.MediaRecorder) {
+      if (
+        !globalThis.navigator?.mediaDevices?.getUserMedia ||
+        !globalThis.MediaRecorder
+      ) {
         throw new Error('RECORDING_UNSUPPORTED')
       }
 
@@ -166,74 +192,103 @@ export function createRecorder(
         },
         video: false,
       })
-      const mimeType = selectSupportedMimeType((type) => MediaRecorder.isTypeSupported(type))
-      recorder = new MediaRecorder(stream, {
-        ...(mimeType ? { mimeType } : {}),
-        audioBitsPerSecond: TARGET_AUDIO_BITS_PER_SECOND,
-      })
-      chunks = []
-      amplitudeSamples.length = 0
-      startedAt = performance.now()
-      cancelled = false
-
-      detachInterruptionHandlers = bindRecordingInterruptionHandlers({
-        page: globalThis.document,
-        lifecycle: globalThis.window,
-        tracks: stream.getTracks(),
-        isHidden: () => globalThis.document?.visibilityState === 'hidden',
-      }, () => {
-        cancelRecording()
-        options.onInterrupted?.()
-      })
-
       try {
-        audioContext = new AudioContext()
-        analyser = audioContext.createAnalyser()
-        analyser.fftSize = 256
-        audioContext.createMediaStreamSource(stream).connect(analyser)
-        amplitudeTimer = setInterval(sampleAmplitude, 100)
-      } catch {
-        // Recording still works when an amplitude meter is unavailable.
-      }
-
-      stopPromise = new Promise<RecordedAudio>((resolve, reject) => {
-        resolveStop = resolve
-        rejectStop = reject
-      })
-      recorder.addEventListener('dataavailable', (event) => {
-        if (event.data.size > 0) chunks.push(event.data)
-      })
-      recorder.addEventListener('error', () => {
-        rejectStop?.(new Error('RECORDING_FAILED'))
-        cleanup()
-      })
-      recorder.addEventListener('stop', () => {
-        if (cancelled) return
-        const durationMs = Math.min(MAX_RECORDING_MS, Math.round(performance.now() - startedAt))
-        const type = recorder?.mimeType || mimeType || 'audio/webm'
-        const blob = new Blob(chunks, { type })
-        const validation = validateRecording({
-          durationMs,
-          size: blob.size,
-          peakAmplitude: amplitudeSamples.length > 0
-            ? Math.max(...amplitudeSamples)
-            : undefined,
+        const mimeType = selectSupportedMimeType((type) =>
+          MediaRecorder.isTypeSupported(type),
+        )
+        recorder = new MediaRecorder(stream, {
+          ...(mimeType ? { mimeType } : {}),
+          audioBitsPerSecond: TARGET_AUDIO_BITS_PER_SECOND,
         })
-        cleanup()
-        if (!validation.ok) {
-          rejectStop?.(Object.assign(new Error(validation.message), { code: validation.code }))
-          return
-        }
-        resolveStop?.({ blob, durationMs, mimeType: type, amplitudeSamples: [...amplitudeSamples] })
-      }, { once: true })
+        chunks = []
+        amplitudeSamples.length = 0
+        startedAt = performance.now()
+        cancelled = false
 
-      recorder.start(200)
-      autoStopTimer = setTimeout(() => {
-        if (recorder?.state === 'recording') {
-          recorder.stop()
-          options.onAutoStop?.()
+        detachInterruptionHandlers = bindRecordingInterruptionHandlers(
+          {
+            page: globalThis.document,
+            lifecycle: globalThis.window,
+            tracks: stream.getTracks(),
+            isHidden: () => globalThis.document?.visibilityState === 'hidden',
+          },
+          () => {
+            cancelRecording()
+            options.onInterrupted?.()
+          },
+        )
+
+        try {
+          audioContext = new AudioContext()
+          analyser = audioContext.createAnalyser()
+          analyser.fftSize = 256
+          audioContext.createMediaStreamSource(stream).connect(analyser)
+          amplitudeTimer = setInterval(sampleAmplitude, 100)
+        } catch {
+          // Recording still works when an amplitude meter is unavailable.
         }
-      }, MAX_RECORDING_MS)
+
+        stopPromise = new Promise<RecordedAudio>((resolve, reject) => {
+          resolveStop = resolve
+          rejectStop = reject
+        })
+        recorder.addEventListener('dataavailable', (event) => {
+          if (event.data.size > 0) chunks.push(event.data)
+        })
+        recorder.addEventListener('error', () => {
+          rejectStop?.(new Error('RECORDING_FAILED'))
+          cleanup()
+        })
+        recorder.addEventListener(
+          'stop',
+          () => {
+            if (cancelled) return
+            const durationMs = Math.min(
+              MAX_RECORDING_MS,
+              Math.round(performance.now() - startedAt),
+            )
+            const type = recorder?.mimeType || mimeType || 'audio/webm'
+            const blob = new Blob(chunks, { type })
+            const validation = validateRecording({
+              durationMs,
+              size: blob.size,
+              peakAmplitude:
+                amplitudeSamples.length > 0
+                  ? Math.max(...amplitudeSamples)
+                  : undefined,
+            })
+            cleanup()
+            if (!validation.ok) {
+              rejectStop?.(
+                Object.assign(new Error(validation.message), {
+                  code: validation.code,
+                }),
+              )
+              return
+            }
+            resolveStop?.({
+              blob,
+              durationMs,
+              mimeType: type,
+              amplitudeSamples: [...amplitudeSamples],
+            })
+          },
+          { once: true },
+        )
+
+        recorder.start(200)
+        autoStopTimer = setTimeout(() => {
+          if (recorder?.state === 'recording') {
+            recorder.stop()
+            options.onAutoStop?.()
+          }
+        }, MAX_RECORDING_MS)
+      } catch (error) {
+        rejectStop?.(error)
+        void stopPromise?.catch(() => undefined)
+        cleanup()
+        throw error
+      }
     },
     async stop() {
       if (!recorder || !stopPromise) throw new Error('NOT_RECORDING')

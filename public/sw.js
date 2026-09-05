@@ -1,5 +1,13 @@
-const SHELL_CACHE = 'speakmate-shell-v1'
-const STATIC_ROUTES = ['/', '/install', '/manifest.webmanifest']
+const SHELL_CACHE = 'speakmate-shell-v2.1.0'
+const STATIC_ROUTES = ['/', '/install', '/scenes', '/manifest.webmanifest']
+
+function isOfflineShellRoute(pathname) {
+  return (
+    STATIC_ROUTES.includes(pathname) ||
+    pathname.startsWith('/scenes/') ||
+    pathname.startsWith('/session/')
+  )
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -13,11 +21,15 @@ self.addEventListener('message', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys.filter((key) => key !== SHELL_CACHE).map((key) => caches.delete(key)),
+    caches
+      .keys()
+      .then((keys) =>
+        Promise.all(
+          keys
+            .filter((key) => key !== SHELL_CACHE)
+            .map((key) => caches.delete(key)),
+        ),
       ),
-    ),
   )
   self.clients.claim()
 })
@@ -38,17 +50,19 @@ self.addEventListener('fetch', (event) => {
   }
 
   if (request.mode === 'navigate') {
-    if (STATIC_ROUTES.includes(url.pathname)) {
+    if (isOfflineShellRoute(url.pathname)) {
       event.respondWith(networkFirst(request))
     }
     return
   }
 
-  if (url.pathname.startsWith('/_next/static/') || url.pathname.startsWith('/icons/')) {
+  if (
+    url.pathname.startsWith('/_next/static/') ||
+    url.pathname.startsWith('/icons/')
+  ) {
     event.respondWith(cacheFirst(request))
     return
   }
-
 })
 
 async function networkFirst(request) {

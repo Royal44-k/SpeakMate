@@ -12,7 +12,7 @@ export function GET() {
   })
   return NextResponse.json({
     status: 'ok',
-    version: '2.0.0',
+    version: '2.1.0',
     aiMode: resolved.cloudflare ? resolved.mode : 'local',
     buildSha: process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 12) ?? 'local',
   })

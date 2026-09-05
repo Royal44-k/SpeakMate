@@ -55,13 +55,16 @@ function createId(prefix: string) {
 export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
   const [machine, setMachine] = useState<PracticeState>(INITIAL_PRACTICE_STATE)
   const [turns, setTurns] = useState<PracticeTurn[]>([])
-  const [latestResult, setLatestResult] = useState<ConversationResult | null>(null)
+  const [latestResult, setLatestResult] = useState<ConversationResult | null>(
+    null,
+  )
   const [aiReply, setAiReply] = useState(scene.openingLines[0])
   const [aiHint, setAiHint] = useState('先听对方说什么，再用自己的话回应。')
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [amplitude, setAmplitude] = useState(0)
   const [audio, setAudio] = useState<RecordedAudio | null>(null)
   const [sessionId, setSessionId] = useState(requestedId)
+  const [completedGoalIds, setCompletedGoalIds] = useState<string[]>([])
   const [ready, setReady] = useState(false)
   const [ephemeral, setEphemeral] = useState(false)
   const [initialRepositories] = useState(createIndexedDbRepositories)
@@ -72,7 +75,9 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
   const elapsedTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const finishingRef = useRef(false)
   const sessionRef = useRef<PracticeSession | null>(null)
-  const idempotencyRef = useRef<{ fingerprint: string; key: string } | null>(null)
+  const idempotencyRef = useRef<{ fingerprint: string; key: string } | null>(
+    null,
+  )
 
   const clearElapsedTimer = useCallback(() => {
     if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current)
@@ -83,10 +88,16 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     let active = true
     async function loadWith(repositories: Repositories) {
       const profile = await repositories.profiles.ensureGuestProfile()
-      let session = requestedId === 'new' ? undefined : await repositories.sessions.get(requestedId)
+      let session =
+        requestedId === 'new'
+          ? undefined
+          : await repositories.sessions.get(requestedId)
       if (!session && requestedId === 'new') {
         const recoverable = await repositories.sessions.findRecoverable()
-        if (recoverable?.sceneId === scene.id && recoverable.level === scene.level) {
+        if (
+          recoverable?.sceneId === scene.id &&
+          recoverable.level === scene.level
+        ) {
           session = recoverable
         }
       }
@@ -97,6 +108,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
           profileId: profile.id,
           sceneId: scene.id,
           sceneVersion: scene.version,
+          sceneSnapshot: scene,
           level: scene.level,
           status: 'active',
           startedAt: timestamp,
@@ -109,8 +121,14 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       if (!active) return
       sessionRef.current = session
       setSessionId(session.id)
+      setCompletedGoalIds(session.completedGoals)
       setTurns(savedTurns)
-      if (savedTurns.length > 0) setAiReply(savedTurns.at(-1)!.aiText)
+      setLatestResult(null)
+      setAiReply(savedTurns.at(-1)?.aiText ?? scene.openingLines[0])
+      setAiHint('先听对方说什么，再用自己的话回应。')
+      setAudio(null)
+      transcriptRef.current = ''
+      idempotencyRef.current = null
       setMachine({ status: 'ready', turnIndex: savedTurns.length })
       setReady(true)
     }
@@ -123,11 +141,13 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
         await loadWith(memoryRepositories)
       } catch {
         if (active) {
-          setMachine((current) => transitionPractice(current, {
-            type: 'FAIL',
-            code: 'STORAGE_UNAVAILABLE',
-            message: '无法准备本次练习，请刷新页面后重试。',
-          }))
+          setMachine((current) =>
+            transitionPractice(current, {
+              type: 'FAIL',
+              code: 'STORAGE_UNAVAILABLE',
+              message: '无法准备本次练习，请刷新页面后重试。',
+            }),
+          )
           setReady(true)
         }
       }
@@ -139,7 +159,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       recognitionRef.current?.abort()
       browserTts.stop()
     }
-  }, [clearElapsedTimer, requestedId, scene.id, scene.level, scene.version])
+  }, [clearElapsedTimer, requestedId, scene])
 
   const finishRecording = useCallback(async () => {
     if (finishingRef.current || !recorderRef.current) return
@@ -149,10 +169,22 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     try {
       const recording = await recorderRef.current.stop()
       setAudio(recording)
-      setMachine((current) => transitionPractice(current, { type: 'RECORDING_READY', transcript: transcriptRef.current }))
+      setMachine((current) =>
+        transitionPractice(current, {
+          type: 'RECORDING_READY',
+          transcript: transcriptRef.current,
+        }),
+      )
     } catch (error) {
-      const message = error instanceof Error ? error.message : '录音没有成功，请重试。'
-      setMachine((current) => transitionPractice(current, { type: 'FAIL', code: 'RECORDING_FAILED', message }))
+      const message =
+        error instanceof Error ? error.message : '录音没有成功，请重试。'
+      setMachine((current) =>
+        transitionPractice(current, {
+          type: 'FAIL',
+          code: 'RECORDING_FAILED',
+          message,
+        }),
+      )
     } finally {
       recorderRef.current = null
       recognitionRef.current = null
@@ -165,7 +197,9 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     browserTts.stop()
     transcriptRef.current = ''
     setElapsedSeconds(0)
-    setMachine((current) => transitionPractice(current, { type: 'PRESS_RECORD' }))
+    setMachine((current) =>
+      transitionPractice(current, { type: 'PRESS_RECORD' }),
+    )
     const recorder = createRecorder({
       onAmplitude: setAmplitude,
       onAutoStop: () => void finishRecording(),
@@ -177,7 +211,11 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
         setAmplitude(0)
         setAudio(null)
         setMachine((current) => {
-          if (current.status !== 'recording' && current.status !== 'requesting-permission') return current
+          if (
+            current.status !== 'recording' &&
+            current.status !== 'requesting-permission'
+          )
+            return current
           return transitionPractice(current, { type: 'CANCEL' })
         })
       },
@@ -185,7 +223,8 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     recorderRef.current = recorder
     try {
       await recorder.start()
-      const Recognition = window.SpeechRecognition ?? window.webkitSpeechRecognition
+      const Recognition =
+        window.SpeechRecognition ?? window.webkitSpeechRecognition
       if (Recognition) {
         const recognition = new Recognition()
         recognition.lang = 'en-US'
@@ -198,20 +237,36 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
             .trim()
         }
         recognitionRef.current = recognition
-        try { recognition.start() } catch { recognitionRef.current = null }
+        try {
+          recognition.start()
+        } catch {
+          recognitionRef.current = null
+        }
       }
-      setMachine((current) => transitionPractice(current, { type: 'PERMISSION_GRANTED' }))
+      setMachine((current) =>
+        transitionPractice(current, { type: 'PERMISSION_GRANTED' }),
+      )
       elapsedTimerRef.current = setInterval(() => {
         setElapsedSeconds((seconds) => Math.min(30, seconds + 1))
       }, 1_000)
     } catch (error) {
       recorderRef.current = null
-      const denied = error instanceof DOMException && ['NotAllowedError', 'SecurityError'].includes(error.name)
-      const unsupported = error instanceof Error && error.message === 'RECORDING_UNSUPPORTED'
-      setMachine((current) => transitionPractice(current, {
-        type: denied || unsupported ? 'PERMISSION_DENIED' : 'FAIL',
-        ...(denied || unsupported ? {} : { code: 'RECORDING_UNAVAILABLE', message: '当前浏览器无法录音，请改用键盘输入。' }),
-      } as Parameters<typeof transitionPractice>[1]))
+      const denied =
+        error instanceof DOMException &&
+        ['NotAllowedError', 'SecurityError'].includes(error.name)
+      const unsupported =
+        error instanceof Error && error.message === 'RECORDING_UNSUPPORTED'
+      setMachine((current) =>
+        transitionPractice(current, {
+          type: denied || unsupported ? 'PERMISSION_DENIED' : 'FAIL',
+          ...(denied || unsupported
+            ? {}
+            : {
+                code: 'RECORDING_UNAVAILABLE',
+                message: '当前浏览器无法录音，请改用键盘输入。',
+              }),
+        } as Parameters<typeof transitionPractice>[1]),
+      )
     }
   }, [clearElapsedTimer, finishRecording])
 
@@ -222,26 +277,39 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       clearElapsedTimer()
       setMachine((current) => transitionPractice(current, { type: 'CANCEL' }))
     }
-    setMachine((current) => transitionPractice(current, { type: 'ENTER_TEXT', transcript: current.draftTranscript ?? '' }))
+    setMachine((current) =>
+      transitionPractice(current, {
+        type: 'ENTER_TEXT',
+        transcript: current.draftTranscript ?? '',
+      }),
+    )
   }, [clearElapsedTimer, machine.status])
 
   const submitTurn = useCallback(async () => {
     const learnerText = machine.draftTranscript?.trim() ?? ''
     if (!learnerText && !audio) return
     const turnIndex = machine.turnIndex
-    setMachine((current) => transitionPractice(current, { type: 'SUBMIT', hasAudio: Boolean(audio) }))
-    setMachine((current) => transitionPractice(current, { type: 'SUBMISSION_ACCEPTED' }))
+    setMachine((current) =>
+      transitionPractice(current, { type: 'SUBMIT', hasAudio: Boolean(audio) }),
+    )
+    setMachine((current) =>
+      transitionPractice(current, { type: 'SUBMISSION_ACCEPTED' }),
+    )
     try {
-      const history = turns.flatMap((turn) => [
+      const history = turns
+        .flatMap((turn) => [
           { speaker: 'learner' as const, text: turn.learnerText },
           { speaker: 'ai' as const, text: turn.aiText },
-        ]).slice(-8)
+        ])
+        .slice(-8)
       const completedGoalIds = sessionRef.current?.completedGoals ?? []
       const fingerprint = `${sessionId}:${turnIndex}:${learnerText || `audio:${audio?.blob.size ?? 0}`}`
       if (idempotencyRef.current?.fingerprint !== fingerprint) {
         idempotencyRef.current = {
           fingerprint,
-          key: globalThis.crypto?.randomUUID?.() ?? '00000000-0000-4000-8000-000000000000',
+          key:
+            globalThis.crypto?.randomUUID?.() ??
+            '00000000-0000-4000-8000-000000000000',
         }
       }
       let result: ConversationResult
@@ -256,7 +324,8 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
           idempotencyKey: idempotencyRef.current.key,
         })
       } catch (error) {
-        if (error instanceof TurnApiError && error.code === 'NO_SPEECH') throw error
+        if (error instanceof TurnApiError && error.code === 'NO_SPEECH')
+          throw error
         if (!learnerText) throw error
         result = await localCoach.nextTurn({
           scene,
@@ -291,35 +360,77 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       }
       await repositoriesRef.current.saveTurnAndSession(turn, updatedSession)
       sessionRef.current = updatedSession
-      setTurns((items) => [...items.filter((item) => item.id !== turn.id), turn]
-        .sort((a, b) => a.index - b.index))
+      setCompletedGoalIds(updatedSession.completedGoals)
+      setTurns((items) =>
+        [...items.filter((item) => item.id !== turn.id), turn].sort(
+          (a, b) => a.index - b.index,
+        ),
+      )
       setLatestResult(result)
       setAiReply(result.reply.text)
       setAiHint(result.reply.hintZh)
       setAudio(null)
       idempotencyRef.current = null
-      setMachine((current) => transitionPractice(current, { type: 'RESULT_RECEIVED' }))
-      void browserTts.speak(result.reply.text, { rate: scene.constraints.speechRate }).catch(() => undefined)
+      setMachine((current) =>
+        transitionPractice(current, { type: 'RESULT_RECEIVED' }),
+      )
+      void browserTts
+        .speak(result.reply.text, { rate: scene.constraints.speechRate })
+        .catch(() => undefined)
     } catch (error) {
-      const noSpeech = error instanceof TurnApiError && error.code === 'NO_SPEECH'
-      setMachine((current) => transitionPractice(current, {
-        type: 'FAIL',
-        code: noSpeech ? 'NO_SPEECH' : 'AI_UNAVAILABLE',
-        message: noSpeech
-          ? '当前基础模式不能自动转写这段录音，请输入英文内容后继续。'
-          : '这一轮暂时没有处理成功，请重试或修改文字。',
-      }))
+      const noSpeech =
+        error instanceof TurnApiError && error.code === 'NO_SPEECH'
+      setMachine((current) =>
+        transitionPractice(current, {
+          type: 'FAIL',
+          code: noSpeech ? 'NO_SPEECH' : 'AI_UNAVAILABLE',
+          message: noSpeech
+            ? '当前基础模式不能自动转写这段录音，请输入英文内容后继续。'
+            : '这一轮暂时没有处理成功，请重试或修改文字。',
+        }),
+      )
     }
-  }, [audio, machine.draftTranscript, machine.turnIndex, scene, sessionId, turns])
+  }, [
+    audio,
+    machine.draftTranscript,
+    machine.turnIndex,
+    scene,
+    sessionId,
+    turns,
+  ])
 
   const completeSession = useCallback(async () => {
     setMachine((current) => transitionPractice(current, { type: 'COMPLETE' }))
-    if (sessionRef.current) {
+    try {
+      if (!sessionRef.current) throw new Error('SESSION_NOT_READY')
       const now = new Date().toISOString()
-      sessionRef.current = { ...sessionRef.current, status: 'completed', completedAt: now, updatedAt: now }
-      await repositoriesRef.current.sessions.save(sessionRef.current)
+      const completedSession: PracticeSession = {
+        ...sessionRef.current,
+        status: 'completed',
+        completedAt: now,
+        updatedAt: now,
+      }
+      await repositoriesRef.current.sessions.save(completedSession)
+      sessionRef.current = completedSession
+      setMachine((current) =>
+        transitionPractice(current, { type: 'SESSION_COMPLETED' }),
+      )
+    } catch {
+      setMachine((current) =>
+        transitionPractice(current, {
+          type: 'FAIL',
+          code: 'STORAGE_UNAVAILABLE',
+          message: '暂时无法保存完成状态，请返回后重试。',
+        }),
+      )
     }
-    setMachine((current) => transitionPractice(current, { type: 'SESSION_COMPLETED' }))
+  }, [])
+
+  const cancelReview = useCallback(() => {
+    setAudio(null)
+    transcriptRef.current = ''
+    idempotencyRef.current = null
+    setMachine((current) => transitionPractice(current, { type: 'CANCEL' }))
   }, [])
 
   return {
@@ -328,6 +439,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     ready,
     ephemeral,
     turns,
+    completedGoalIds,
     latestResult,
     aiReply,
     aiHint,
@@ -337,11 +449,16 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     startRecording,
     stopRecording: finishRecording,
     openKeyboard,
-    updateTranscript: (transcript: string) => setMachine((current) => transitionPractice(current, { type: 'UPDATE_TRANSCRIPT', transcript })),
-    cancelReview: () => setMachine((current) => transitionPractice(current, { type: 'CANCEL' })),
-    retry: () => setMachine((current) => transitionPractice(current, { type: 'RETRY' })),
+    updateTranscript: (transcript: string) =>
+      setMachine((current) =>
+        transitionPractice(current, { type: 'UPDATE_TRANSCRIPT', transcript }),
+      ),
+    cancelReview,
+    retry: () =>
+      setMachine((current) => transitionPractice(current, { type: 'RETRY' })),
     submitTurn,
-    speakReply: () => browserTts.speak(aiReply, { rate: scene.constraints.speechRate }),
+    speakReply: () =>
+      browserTts.speak(aiReply, { rate: scene.constraints.speechRate }),
     completeSession,
   }
 }

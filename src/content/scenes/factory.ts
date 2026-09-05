@@ -16,6 +16,11 @@ export interface SceneSeed {
   minutes?: 3 | 5 | 8 | 10
   turns?: number
   goalsZh: [string, string, string]
+  goalKeywords: [
+    [string, ...string[]],
+    [string, ...string[]],
+    [string, ...string[]],
+  ]
   keywords: [string, string, string, ...string[]]
   expressions: {
     basic: [string, string]
@@ -67,16 +72,25 @@ const CONSTRAINTS: LevelContent<LevelConstraint> = {
   C1: {
     minAiWords: 12,
     maxAiWords: 42,
-    followUpStyle: 'Use implicit intent, layered constraints, and pressure questions.',
-    feedbackFocus: 'precision, style, strategy, and cross-cultural appropriateness',
-    strategy: 'implicit intent, competing priorities, and high-pressure follow-up',
+    followUpStyle:
+      'Use implicit intent, layered constraints, and pressure questions.',
+    feedbackFocus:
+      'precision, style, strategy, and cross-cultural appropriateness',
+    strategy:
+      'implicit intent, competing priorities, and high-pressure follow-up',
     speechRate: 1.06,
   },
 }
 
 function levelKeywords(words: SceneSeed['keywords']): LevelContent<string[]> {
-  const [first, second, third, fourth = 'confirm', fifth = 'clarify', sixth = 'option'] =
-    words
+  const [
+    first,
+    second,
+    third,
+    fourth = 'confirm',
+    fifth = 'clarify',
+    sixth = 'option',
+  ] = words
 
   return {
     A1: [first, second, third],
@@ -99,7 +113,9 @@ function levelExpressions(
   }
 }
 
-function levelOpenings(openings: SceneSeed['openings']): LevelContent<string[]> {
+function levelOpenings(
+  openings: SceneSeed['openings'],
+): LevelContent<string[]> {
   return {
     A1: [openings.basic],
     A2: [openings.basic, openings.standard],
@@ -135,6 +151,7 @@ export function defineScenes(
       id: `${seed.slug}-goal-${goalIndex + 1}`,
       labelZh,
       completionSignal: `Learner communicates this outcome: ${labelZh}`,
+      completionKeywords: [...seed.goalKeywords[goalIndex]],
     })),
     keywords: levelKeywords(seed.keywords),
     exampleExpressions: levelExpressions(seed.expressions),

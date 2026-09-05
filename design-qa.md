@@ -1,6 +1,6 @@
 # SpeakMate Design QA
 
-- Date: 2026-09-04
+- Date: 2026-09-05
 - Scope: mobile PWA core speaking flow, with the hotel check-in scene at B1
 - Target viewport: 390 × 844 CSS pixels, light color scheme
 - Visual source: `docs/design/speakmate-dialogue-stage-reference.png`
@@ -53,10 +53,16 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 - The update notification is anchored to the safe-area-aware top edge, so it does not cover the persistent microphone or keyboard actions.
 - No new P0, P1, or P2 design mismatch was found in the combined comparison.
 
+### Pass 5 version 2.1 revalidation
+
+- Re-captured the same viewport and state after explicit per-goal completion signals, immutable scene snapshots, and expanded offline recovery were implemented.
+- The release-hardening changes did not alter the approved hierarchy, image crop, typography, control placement, or visible mobile density.
+- No new P0, P1, or P2 design mismatch was found.
+
 ## Automated evidence
 
-- `pnpm lint`, `pnpm typecheck`, 79 unit/component tests, and the production build passed.
-- Playwright: 23 checks passed and 3 browser-capability-specific checks were skipped as intended across Chromium-mobile and WebKit-iPhone.
+- `pnpm lint`, `pnpm typecheck`, 87 unit/component tests, and the production build passed.
+- Playwright: 24 checks passed and 4 browser-capability-specific checks were skipped as intended across Chromium-mobile and WebKit-iPhone.
 - Primary interactions verified: onboarding, first text-assisted turn, audio-only submission, session recovery, microphone denial, scene filtering, PWA assets, offline public-shell recovery, install guidance, and accessibility semantics.
 - Browser console review found no application errors in the captured release state.
 - Responsive checks passed at 360 × 800, 390 × 844, 430 × 932, 768 × 1024, 844 × 390 landscape, 200% root text size, and forced dark preference.
