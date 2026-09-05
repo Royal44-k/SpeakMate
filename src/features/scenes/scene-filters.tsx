@@ -8,6 +8,7 @@ import {
 
 import styles from './scene-library.module.css'
 import type { DurationFilter } from './scene-filter-state'
+import { HorizontalFilterGroup } from './horizontal-filter-group'
 
 const categories: Array<{ value: SceneCategory | 'all'; label: string }> = [
   { value: 'all', label: '全部' },
@@ -51,7 +52,7 @@ export function SceneFilters({
           placeholder="搜索中文、英文或关键词"
         />
       </label>
-      <div className={styles.chips} aria-label="场景分类">
+      <HorizontalFilterGroup label="场景分类" selectedValue={category}>
         {categories.map((item) => (
           <button
             key={item.value}
@@ -65,7 +66,7 @@ export function SceneFilters({
             {item.label}
           </button>
         ))}
-      </div>
+      </HorizontalFilterGroup>
       <div className={styles.levels} aria-label="英语水平">
         {CEFR_LEVELS.map((item) => (
           <button
@@ -79,7 +80,7 @@ export function SceneFilters({
           </button>
         ))}
       </div>
-      <div className={styles.durations} aria-label="练习时长">
+      <HorizontalFilterGroup label="练习时长" selectedValue={duration}>
         {(['all', 3, 5, 8, 10] as const).map((item) => (
           <button
             key={item}
@@ -93,7 +94,7 @@ export function SceneFilters({
             {item === 'all' ? '全部时长' : `${item} 分钟`}
           </button>
         ))}
-      </div>
+      </HorizontalFilterGroup>
     </div>
   )
 }

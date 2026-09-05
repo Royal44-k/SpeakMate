@@ -7,6 +7,9 @@ import { createMemoryRepositories } from '@/infrastructure/persistence/repositor
 
 import { SceneLibraryRoute } from './scene-library-route'
 import { SceneLibrary } from './scene-library'
+import { ScenePreparation } from './scene-preparation'
+import { getSceneBySlug } from '@/content/scenes/catalog'
+import { adaptScene } from '@/domain/scenes/adapt-scene'
 
 const initialState = {
   search: '',
@@ -60,6 +63,8 @@ describe('SceneLibrary', () => {
 
   afterEach(() => {
     vi.useRealTimers()
+    vi.unstubAllGlobals()
+    Reflect.deleteProperty(HTMLElement.prototype, 'scrollIntoView')
   })
 
   it('holds an aria-busy skeleton without A2 until the saved profile resolves', async () => {
@@ -243,6 +248,151 @@ describe('SceneLibrary', () => {
     screen.getAllByTestId('scene-card').forEach((card) => {
       expect(card).toHaveTextContent('3 分钟')
     })
+  })
+
+  it('summarizes active filters and clears them without changing the level', () => {
+    render(
+      <SceneLibrary
+        initialState={{
+          search: '',
+          category: 'social',
+          level: 'B1',
+          duration: 5,
+        }}
+      />,
+    )
+
+    expect(screen.getByRole('button', { name: '社交' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(screen.getByText(/个匹配场景 · 当前 B1 · 社交 · 5 分钟/)).toBeVisible()
+
+    fireEvent.click(screen.getByRole('button', { name: '清除筛选' }))
+
+    expect(screen.getByRole('button', { name: 'B1' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(screen.getByRole('button', { name: '全部' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(screen.queryByRole('button', { name: '清除筛选' })).not.toBeInTheDocument()
+  })
+
+  it('links the complete scene card back to the current library state', () => {
+    render(
+      <SceneLibrary
+        initialState={{
+          search: '',
+          category: 'social',
+          level: 'B1',
+          duration: 'all',
+        }}
+      />,
+    )
+
+    const link = screen.getByRole('link', { name: '准备练习：初次寒暄' })
+    expect(link).toContainElement(screen.getByText('First-time small talk'))
+    expect(link).toHaveAttribute(
+      'href',
+      expect.stringContaining('from=%2Fscenes'),
+    )
+  })
+
+  it('offers exactly one clear action when filters have no results', () => {
+    render(
+      <SceneLibrary
+        initialState={{ ...initialState, search: 'no such scene' }}
+      />,
+    )
+
+    expect(screen.getByText('没有找到这个场景')).toBeVisible()
+    expect(screen.getAllByRole('button', { name: '清除筛选' })).toHaveLength(1)
+  })
+
+  it('tracks horizontal filter edges and centers the selected option', () => {
+    const scrollIntoView = vi.fn()
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: scrollIntoView,
+    })
+    vi.stubGlobal(
+      'ResizeObserver',
+      class ResizeObserver {
+        observe() {}
+        disconnect() {}
+      },
+    )
+    vi.stubGlobal('matchMedia', () => ({ matches: false }))
+
+    render(
+      <SceneLibrary
+        initialState={{ ...initialState, category: 'social', level: 'B1' }}
+      />,
+    )
+
+    const categoryGroup = screen.getByRole('group', { name: '场景分类' })
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-start', 'true')
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'true')
+    expect(scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+
+    Object.defineProperties(categoryGroup, {
+      clientWidth: { configurable: true, value: 100 },
+      scrollWidth: { configurable: true, value: 300 },
+      scrollLeft: { configurable: true, value: 70, writable: true },
+    })
+    fireEvent.scroll(categoryGroup)
+
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-start', 'false')
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'false')
+
+    categoryGroup.scrollLeft = 200
+    fireEvent.scroll(categoryGroup)
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'true')
+  })
+
+  it('reveals a return-to-top control after two viewports', () => {
+    const scrollTo = vi.fn()
+    vi.stubGlobal('scrollTo', scrollTo)
+    vi.stubGlobal('matchMedia', () => ({ matches: false }))
+    Object.defineProperties(window, {
+      innerHeight: { configurable: true, value: 800 },
+      scrollY: { configurable: true, value: 1_601 },
+    })
+
+    render(<SceneLibrary initialState={initialState} />)
+    fireEvent.scroll(window)
+    fireEvent.click(screen.getByRole('button', { name: '返回顶部' }))
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
+  })
+
+  it('renders a source-aware mobile header before the scene hero', () => {
+    const scene = getSceneBySlug('first-small-talk')
+    if (!scene) throw new Error('Scene fixture is missing')
+
+    render(
+      <ScenePreparation
+        scene={adaptScene(scene, 'B1')}
+        backHref="/scenes?category=social&level=B1"
+      />,
+    )
+
+    const backLink = screen.getByRole('link', { name: '返回初次寒暄' })
+    expect(backLink).toHaveAttribute(
+      'href',
+      '/scenes?category=social&level=B1',
+    )
+    expect(screen.getByText('SCENE BRIEF')).toBeVisible()
+    expect(backLink.closest('header')?.nextElementSibling).toContainElement(
+      screen.getByAltText('轻松社交活动中的两人交谈'),
+    )
   })
 
   it('emits complete current state with the source of each filter change', () => {

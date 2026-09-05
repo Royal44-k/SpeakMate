@@ -4,7 +4,9 @@ import { useMemo, useRef, useState } from 'react'
 
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
+import { ScrollToTopButton } from '@/components/app-shell/scroll-to-top-button'
 import type { SceneFilterState } from './scene-filter-state'
+import { sceneLibraryHref } from './scene-filter-state'
 import { SceneCard } from './scene-card'
 import { SceneFilters } from './scene-filters'
 import styles from './scene-library.module.css'
@@ -45,6 +47,30 @@ export function SceneLibrary({
         .includes(query)
     }).map((scene) => adaptScene(scene, state.level))
   }, [state])
+  const hasActiveFilters =
+    state.search.trim().length > 0 ||
+    state.category !== 'all' ||
+    state.duration !== 'all'
+  const categoryLabel =
+    {
+      travel: '旅行',
+      dining: '餐饮',
+      daily: '日常',
+      work: '职场',
+      social: '社交',
+      study: '学习',
+      emergency: '应急',
+    }[state.category === 'all' ? 'travel' : state.category]
+  const summaryDetails = [
+    `当前 ${state.level}`,
+    state.category === 'all' ? undefined : categoryLabel,
+    state.duration === 'all' ? undefined : `${state.duration} 分钟`,
+  ].filter(Boolean)
+  const sourceHref = sceneLibraryHref(state)
+
+  function clearFilters() {
+    updateState({ search: '', category: 'all', duration: 'all' }, 'filter')
+  }
 
   return (
     <div className={styles.library}>
@@ -64,20 +90,24 @@ export function SceneLibrary({
         onDuration={(duration) => updateState({ duration }, 'filter')}
       />
       <div className={styles.resultBar}>
-        <strong>{scenes.length}</strong>
-        <span>个匹配场景 · 当前 {state.level}</span>
+        <p><strong>{scenes.length}</strong> 个匹配场景 · {summaryDetails.join(' · ')}</p>
+        {hasActiveFilters && scenes.length > 0 ? (
+          <button type="button" onClick={clearFilters}>清除筛选</button>
+        ) : null}
       </div>
       <div className={styles.grid}>
         {scenes.map((scene) => (
-          <SceneCard key={scene.id} scene={scene} />
+          <SceneCard key={scene.id} scene={scene} sourceHref={sourceHref} />
         ))}
       </div>
       {scenes.length === 0 ? (
         <div className={styles.empty}>
           <h2>没有找到这个场景</h2>
-          <p>换个关键词，或清除分类后再试。</p>
+          <p>当前条件下没有匹配项，清除筛选后看看全部场景。</p>
+          {hasActiveFilters ? <button type="button" onClick={clearFilters}>清除筛选</button> : null}
         </div>
       ) : null}
+      <ScrollToTopButton thresholdViewports={2} />
     </div>
   )
 }

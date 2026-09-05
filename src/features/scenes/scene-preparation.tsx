@@ -1,21 +1,33 @@
 import { ArrowRight, CheckCircle, Clock, UserFocus } from '@phosphor-icons/react/dist/ssr'
 import Link from 'next/link'
 
+import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
 import { SceneImage } from '@/components/scene-image/scene-image'
 import type { AdaptedScene } from '@/domain/scenes/types'
 
 import styles from './scene-preparation.module.css'
 
-export function ScenePreparation({ scene }: { scene: AdaptedScene }) {
+export function ScenePreparation({
+  scene,
+  backHref,
+}: {
+  scene: AdaptedScene
+  backHref: string
+}) {
   return (
     <article className={styles.preparation}>
+      <MobilePageHeader
+        title={scene.titleZh}
+        eyebrow="SCENE BRIEF"
+        fallbackHref={backHref}
+      />
       <div className={styles.hero}>
         <SceneImage image={scene.image} priority />
         <div className={styles.heroMeta}><span>{scene.category.toUpperCase()}</span><span>{scene.level}</span></div>
       </div>
-      <header>
+      <header className={styles.intro}>
         <p>{scene.titleEn}</p>
-        <h1>{scene.titleZh}</h1>
+        <h2 className={styles.sceneTitle}>{scene.titleZh}</h2>
         <div className={styles.duration}><Clock aria-hidden size={17} />约 {scene.estimatedMinutes} 分钟 · 建议 {scene.recommendedTurns} 轮</div>
       </header>
       <p className={styles.summary}>{scene.summaryZh}</p>
