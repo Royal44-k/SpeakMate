@@ -3,11 +3,13 @@
 import { ArrowClockwise } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
+import packageJson from '../../../package.json'
 
 import styles from './service-worker-registration.module.css'
 
 const UPDATE_DISMISSAL_KEY = 'speakmate-update-dismissed-worker'
 const WAITING_WORKER_FALLBACK_KEY = 'speakmate-pwa-update-v1'
+const SERVICE_WORKER_URL = `/sw.js?v=${packageJson.version}`
 
 export function shouldShowUpdate(pathname: string, interactionBusy: boolean): boolean {
   return !interactionBusy
@@ -34,6 +36,7 @@ export function ServiceWorkerRegistration() {
   const [interactionBusy, setInteractionBusy] = useState(false)
   const [updateFailure, setUpdateFailure] = useState('')
   const refreshRequestedRef = useRef(false)
+  const noticeRef = useRef<HTMLElement>(null)
   const pathname = usePathname() ?? ''
 
   useEffect(() => {
@@ -61,7 +64,7 @@ export function ServiceWorkerRegistration() {
         window.location.reload()
       }
       navigator.serviceWorker.addEventListener('controllerchange', handleControllerChange)
-      void navigator.serviceWorker.register('/sw.js').then((registration) => {
+      void navigator.serviceWorker.register(SERVICE_WORKER_URL).then((registration) => {
         if (registration.waiting && navigator.serviceWorker.controller) {
           setWaitingWorker(registration.waiting)
         }
@@ -82,6 +85,29 @@ export function ServiceWorkerRegistration() {
   const visible = waitingWorker
     && !isDismissedForSession(waitingWorker)
     && shouldShowUpdate(pathname, interactionBusy)
+
+  useEffect(() => {
+    if (!visible) return
+
+    const root = document.documentElement
+    const updateNoticeHeight = () => {
+      const height = Math.ceil(noticeRef.current?.getBoundingClientRect().height ?? 0)
+      root.style.setProperty('--update-notice-height', `${height}px`)
+    }
+    const resizeObserver = typeof ResizeObserver === 'undefined'
+      ? undefined
+      : new ResizeObserver(updateNoticeHeight)
+
+    root.dataset.updateNoticeVisible = 'true'
+    updateNoticeHeight()
+    if (noticeRef.current) resizeObserver?.observe(noticeRef.current)
+
+    return () => {
+      resizeObserver?.disconnect()
+      delete root.dataset.updateNoticeVisible
+      root.style.removeProperty('--update-notice-height')
+    }
+  }, [visible])
 
   function dismissLater() {
     if (!waitingWorker) return
@@ -110,7 +136,7 @@ export function ServiceWorkerRegistration() {
     <>
       {updateFailure ? <span className="visually-hidden" role="status">{updateFailure}</span> : null}
       {visible ? (
-        <aside className={styles.update} role="status">
+        <aside className={styles.update} ref={noticeRef} role="status">
           <p><strong>新版本已准备好</strong><span>完成本轮后即可安全更新。</span></p>
           <button type="button" onClick={updateNow}>
             <ArrowClockwise aria-hidden size={18} weight="bold" />
