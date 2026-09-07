@@ -114,6 +114,28 @@ describe('AppShell', () => {
     expect(onGuardedBack).toHaveBeenCalledTimes(1)
   })
 
+  it('preserves fallback navigation when a guarded state has no callback', () => {
+    render(
+      <SmartBackLink
+        fallbackHref="/scenes"
+        ariaLabel="返回场景"
+        guardState="recording"
+      />,
+    )
+
+    const click = new MouseEvent('click', {
+      bubbles: true,
+      button: 0,
+      cancelable: true,
+    })
+    const link = screen.getByRole('link', { name: '返回场景' })
+    expect(link).toHaveAttribute('href', '/scenes')
+    link.removeAttribute('href')
+    link.dispatchEvent(click)
+
+    expect(click.defaultPrevented).toBe(false)
+  })
+
   it('stores the current route and announces its new page title', () => {
     render(
       <>

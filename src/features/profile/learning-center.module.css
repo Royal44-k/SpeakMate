@@ -25,7 +25,7 @@
 .favoriteList { display: grid; gap: 8px; }
 .favoriteList blockquote { margin: 0; border-left: 3px solid var(--color-coral-500); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 13px; background: var(--color-white); color: var(--color-atlantic-950); font-family: var(--font-display); font-size: 1.2rem; font-weight: 650; }
 .empty { margin: 0; color: var(--color-ink-500); font-size: .8rem; line-height: 1.6; }
-.settings { display: grid; margin: 28px 18px 0; border-top: 1px solid var(--color-border); }
+.settings { display: grid; gap: 8px; margin: 28px 18px 0; border-top: 1px solid var(--color-border); }
 .settings a { display: grid; min-height: 64px; grid-template-columns: 26px 1fr; gap: 10px; align-items: center; border-bottom: 1px solid var(--color-border); color: var(--color-atlantic-800); text-decoration: none; }
 .settings a > span { display: grid; gap: 2px; color: var(--color-ink-950); }
 .settings small { color: var(--color-ink-500); font-size: .7rem; font-weight: 400; }

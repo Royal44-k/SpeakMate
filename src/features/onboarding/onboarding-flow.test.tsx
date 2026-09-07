@@ -54,6 +54,41 @@ describe('OnboardingFlow', () => {
     expect(screen.queryByRole('link', { name: '返回我的练习' })).not.toBeInTheDocument()
   })
 
+  it('omits an app back action on the first step for first-run onboarding', () => {
+    render(<OnboardingFlow />)
+
+    expect(screen.queryByRole('link', { name: '返回我的练习' })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /返回/ })).not.toBeInTheDocument()
+  })
+
+  it('prefills every settings choice and exposes each selection with aria-pressed', () => {
+    render(
+      <OnboardingFlow
+        returnHref="/me"
+        initialChoices={{
+          level: 'B2',
+          goals: ['work'],
+          dailyMinutes: 15,
+        }}
+      />,
+    )
+
+    expect(screen.getByRole('button', { name: 'B2 中高级' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    fireEvent.click(screen.getByRole('button', { name: 'B2 中高级' }))
+    expect(screen.getByRole('button', { name: '职场' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    fireEvent.click(screen.getByRole('button', { name: '职场' }))
+    expect(screen.getByRole('button', { name: '每天 15 分钟' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+  })
+
   it('does not advance again when a confirmed goal is tapped after stepping back', () => {
     render(<OnboardingFlow />)
 

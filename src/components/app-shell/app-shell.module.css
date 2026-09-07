@@ -20,7 +20,7 @@
 
 .navigation {
   position: fixed;
-  z-index: 20;
+  z-index: var(--z-navigation);
   right: max(0px, calc((100vw - var(--content-max)) / 2));
   bottom: 0;
   left: max(0px, calc((100vw - var(--content-max)) / 2));

@@ -1,7 +1,12 @@
 'use client'
 
 import { DownloadSimple, Export, PlusSquare, X } from '@phosphor-icons/react'
-import { useEffect, useState, useSyncExternalStore } from 'react'
+import {
+  useEffect,
+  useState,
+  useSyncExternalStore,
+  type KeyboardEvent,
+} from 'react'
 
 import styles from './install-prompt.module.css'
 
@@ -79,6 +84,26 @@ export function InstallPrompt({
     setDismissed(true)
   }
 
+  function selectGuideFromKeyboard(
+    event: KeyboardEvent<HTMLButtonElement>,
+  ) {
+    let nextGuide: ManualGuide | undefined
+    if (event.key === 'ArrowLeft') {
+      nextGuide = activeGuide === 'ios' ? 'android' : 'ios'
+    } else if (event.key === 'ArrowRight') {
+      nextGuide = activeGuide === 'android' ? 'ios' : 'android'
+    } else if (event.key === 'Home') {
+      nextGuide = 'ios'
+    } else if (event.key === 'End') {
+      nextGuide = 'android'
+    }
+    if (!nextGuide) return
+
+    event.preventDefault()
+    setSelectedGuide(nextGuide)
+    document.getElementById(`install-tab-${nextGuide}`)?.focus()
+  }
+
   const heading = isInstalled ? '已安装到主屏幕' : '添加 SpeakMate 到主屏幕'
   const tabId = `install-tab-${activeGuide}`
   const panelId = `install-panel-${activeGuide}`
@@ -104,9 +129,11 @@ export function InstallPrompt({
               className={styles.tab}
               type="button"
               role="tab"
+              tabIndex={activeGuide === 'ios' ? 0 : -1}
               aria-selected={activeGuide === 'ios'}
               aria-controls="install-panel-ios"
               onClick={() => setSelectedGuide('ios')}
+              onKeyDown={selectGuideFromKeyboard}
             >
               iPhone
             </button>
@@ -115,9 +142,11 @@ export function InstallPrompt({
               className={styles.tab}
               type="button"
               role="tab"
+              tabIndex={activeGuide === 'android' ? 0 : -1}
               aria-selected={activeGuide === 'android'}
               aria-controls="install-panel-android"
               onClick={() => setSelectedGuide('android')}
+              onKeyDown={selectGuideFromKeyboard}
             >
               Android
             </button>

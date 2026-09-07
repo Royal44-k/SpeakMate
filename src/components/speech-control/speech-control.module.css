@@ -4,6 +4,7 @@
 .voiceRow > .wave:first-child { justify-self: end; }
 .voiceRow > .wave:last-child { justify-self: start; transform: scaleX(-1); }
 .recordButton, .recordingButton { position: relative; display: grid; width: 108px; height: 108px; place-content: center; justify-items: center; gap: 6px; border: 8px solid rgb(255 255 255 / 75%); border-radius: 50%; background: var(--color-coral-500); box-shadow: 0 0 0 1px rgb(255 107 94 / 20%), 0 0 0 15px rgb(255 107 94 / 10%), 0 0 0 28px rgb(255 107 94 / 5%), var(--shadow-coral); color: var(--color-white); cursor: pointer; touch-action: none; }
+.recordButton { color: var(--color-ink-950); }
 .recordingButton { background: var(--color-atlantic-950); color: var(--color-white); transform: scale(calc(1 + var(--amplitude, 0) * .055)); }
 .recordButton:disabled { cursor: wait; opacity: .62; box-shadow: none; }
 .recordButton span, .recordingButton span { font-size: .72rem; font-weight: 800; }

@@ -46,7 +46,7 @@ export function LearningCenter() {
     <AppShell activeDestination="me">
       <div className={styles.page}>
         <header>
-          <div><p>LEARNING CENTER</p><h1>我的练习</h1></div>
+          <div><p>LEARNING CENTER</p><h1 data-page-title tabIndex={-1}>我的练习</h1></div>
           <span>{profile?.level ?? 'A2'}</span>
         </header>
 

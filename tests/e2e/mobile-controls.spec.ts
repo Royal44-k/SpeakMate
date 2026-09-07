@@ -95,3 +95,22 @@ test('guards a draft from browser back until the learner confirms exit', async (
 
   await expect(page).toHaveURL(/\/scenes\/hotel-check-in\?level=B1/)
 })
+
+test('keeps keyboard actions reachable in a shrunken iPhone viewport approximation', async ({
+  page,
+}) => {
+  const viewport = { width: 390, height: 460 }
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto('/session/new?scene=hotel-check-in&level=B1')
+  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+  await page.getByRole('button', { name: '改用键盘输入' }).click()
+
+  await page.setViewportSize(viewport)
+  const textarea = page.getByLabel('英文内容')
+  const cancel = page.getByRole('button', { name: '取消' })
+  const submit = page.getByRole('button', { name: '提交这一轮' })
+
+  await expectControlInFront(page, textarea, viewport)
+  await expectControlInFront(page, cancel, viewport)
+  await expectControlInFront(page, submit, viewport)
+})

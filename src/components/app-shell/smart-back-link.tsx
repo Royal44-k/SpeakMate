@@ -44,8 +44,10 @@ export function SmartBackLink({
     }
 
     if (guardState !== 'clean') {
-      event.preventDefault()
-      onGuardedBack?.()
+      if (onGuardedBack) {
+        event.preventDefault()
+        onGuardedBack()
+      }
       return
     }
 

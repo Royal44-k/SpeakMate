@@ -357,6 +357,90 @@ describe('SceneLibrary', () => {
     expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'true')
   })
 
+  it('uses instant centering when reduced motion is requested', () => {
+    const scrollIntoView = vi.fn()
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: scrollIntoView,
+    })
+    vi.stubGlobal('matchMedia', () => ({ matches: true }))
+
+    render(
+      <SceneLibrary
+        initialState={{ ...initialState, category: 'social', level: 'B1' }}
+      />,
+    )
+
+    expect(scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'auto',
+      block: 'nearest',
+      inline: 'center',
+    })
+  })
+
+  it('recalculates filter edges after ResizeObserver reports a size change', () => {
+    const observations: Array<{
+      callback: ResizeObserverCallback
+      target?: Element
+    }> = []
+    vi.stubGlobal(
+      'ResizeObserver',
+      class ResizeObserver {
+        private observation = { callback: vi.fn() as ResizeObserverCallback, target: undefined as Element | undefined }
+
+        constructor(callback: ResizeObserverCallback) {
+          this.observation.callback = callback
+          observations.push(this.observation)
+        }
+
+        observe(target: Element) {
+          this.observation.target = target
+        }
+
+        disconnect() {}
+        unobserve() {}
+      },
+    )
+
+    render(<SceneLibrary initialState={initialState} />)
+    const categoryGroup = screen.getByRole('group', { name: '场景分类' })
+    Object.defineProperties(categoryGroup, {
+      clientWidth: { configurable: true, value: 100 },
+      scrollWidth: { configurable: true, value: 300 },
+      scrollLeft: { configurable: true, value: 80, writable: true },
+    })
+    const categoryObservation = observations.find(
+      ({ target }) => target === categoryGroup,
+    )
+    expect(categoryObservation).toBeDefined()
+
+    act(() => {
+      categoryObservation!.callback([], {} as ResizeObserver)
+    })
+
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-start', 'false')
+    expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'false')
+  })
+
+  it('recenters the active filter whenever the selected value changes', () => {
+    const scrollIntoView = vi.fn()
+    Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+      configurable: true,
+      value: scrollIntoView,
+    })
+    vi.stubGlobal('matchMedia', () => ({ matches: false }))
+
+    render(<SceneLibrary initialState={initialState} />)
+    scrollIntoView.mockClear()
+    fireEvent.click(screen.getByRole('button', { name: '社交' }))
+
+    expect(scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+  })
+
   it('reveals a return-to-top control after two viewports', () => {
     const scrollTo = vi.fn()
     vi.stubGlobal('scrollTo', scrollTo)
@@ -371,6 +455,22 @@ describe('SceneLibrary', () => {
     fireEvent.click(screen.getByRole('button', { name: '返回顶部' }))
 
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'smooth' })
+  })
+
+  it('returns to the top instantly when reduced motion is requested', () => {
+    const scrollTo = vi.fn()
+    vi.stubGlobal('scrollTo', scrollTo)
+    vi.stubGlobal('matchMedia', () => ({ matches: true }))
+    Object.defineProperties(window, {
+      innerHeight: { configurable: true, value: 800 },
+      scrollY: { configurable: true, value: 1_601 },
+    })
+
+    render(<SceneLibrary initialState={initialState} />)
+    fireEvent.scroll(window)
+    fireEvent.click(screen.getByRole('button', { name: '返回顶部' }))
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'auto' })
   })
 
   it('renders a source-aware mobile header before the scene hero', () => {

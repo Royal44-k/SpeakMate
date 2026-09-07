@@ -108,7 +108,11 @@ export function PracticeStage({
 
       <div
         className={styles.progress}
+        role="progressbar"
         aria-label={`已完成 ${completedGoals.length} 个任务目标`}
+        aria-valuemin={0}
+        aria-valuemax={scene.goals.length}
+        aria-valuenow={completedGoals.length}
       >
         {scene.goals.map((goal) => (
           <span

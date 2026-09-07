@@ -103,7 +103,7 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
         <header className={styles.header}>
           <div>
             <p>GOOD EVENING</p>
-            <h1>{`今天，开口说 ${data.profile.dailyMinutes} 分钟`}</h1>
+            <h1 data-page-title tabIndex={-1}>{`今天，开口说 ${data.profile.dailyMinutes} 分钟`}</h1>
           </div>
           <span>{level}</span>
         </header>

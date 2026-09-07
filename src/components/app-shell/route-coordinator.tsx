@@ -33,12 +33,23 @@ export function RouteCoordinator() {
 
     if (nextHistory.kind !== 'forward') return
 
-    const title = document.querySelector<HTMLElement>('[data-page-title]')
-    if (announcementRef.current) {
-      announcementRef.current.textContent = title?.textContent?.trim() ?? ''
+    const focusPageTitle = () => {
+      const title = document.querySelector<HTMLElement>('[data-page-title]')
+      if (!title) return false
+      if (announcementRef.current) {
+        announcementRef.current.textContent = title.textContent?.trim() ?? ''
+      }
+      title.focus()
+      return true
     }
 
-    title?.focus()
+    if (focusPageTitle()) return
+
+    const observer = new MutationObserver(() => {
+      if (focusPageTitle()) observer.disconnect()
+    })
+    observer.observe(document.body, { childList: true, subtree: true })
+    return () => observer.disconnect()
   }, [route])
 
   return (

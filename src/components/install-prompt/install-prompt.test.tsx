@@ -16,6 +16,29 @@ describe('InstallPrompt', () => {
     expect(screen.getByText(/安装应用或添加到主屏幕/)).toBeVisible()
   })
 
+  it('uses roving tab focus with Arrow, Home, and End keys', () => {
+    render(<InstallPrompt platform="unknown" standalone={false} mode="page" />)
+
+    const ios = screen.getByRole('tab', { name: 'iPhone' })
+    const android = screen.getByRole('tab', { name: 'Android' })
+    expect(ios).toHaveAttribute('tabindex', '0')
+    expect(android).toHaveAttribute('tabindex', '-1')
+
+    ios.focus()
+    fireEvent.keyDown(ios, { key: 'ArrowRight' })
+    expect(android).toHaveFocus()
+    expect(android).toHaveAttribute('aria-selected', 'true')
+    expect(android).toHaveAttribute('tabindex', '0')
+
+    fireEvent.keyDown(android, { key: 'Home' })
+    expect(ios).toHaveFocus()
+    expect(ios).toHaveAttribute('aria-selected', 'true')
+
+    fireEvent.keyDown(ios, { key: 'End' })
+    expect(android).toHaveFocus()
+    expect(android).toHaveAttribute('aria-selected', 'true')
+  })
+
   it('confirms installation instead of hiding the page guide in standalone mode', () => {
     render(<InstallPrompt platform="ios" standalone mode="page" />)
 

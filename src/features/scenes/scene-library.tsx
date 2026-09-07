@@ -76,7 +76,7 @@ export function SceneLibrary({
     <div className={styles.library}>
       <header className={styles.header}>
         <p>SITUATIONS</p>
-        <h1>把英语练进生活里</h1>
+        <h1 data-page-title tabIndex={-1}>把英语练进生活里</h1>
         <span>42 个真实对话场景</span>
       </header>
       <SceneFilters
