@@ -47,6 +47,7 @@
 
 .search input {
   min-width: 0;
+  min-height: var(--tap-target);
   border: 0;
   outline: 0;
   background: transparent;

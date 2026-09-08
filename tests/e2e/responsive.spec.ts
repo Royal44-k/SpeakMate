@@ -1,6 +1,27 @@
 import { expect, test, type Locator, type Page } from '@playwright/test'
 
 const COMPLETED_SESSION_ID = 'e2e-responsive-report'
+// The processing-dock assertion owns this request; service workers bypass routes.
+test.use({ serviceWorkers: 'block' })
+
+const interactiveSelector = [
+  'a[href]',
+  'button',
+  '[contenteditable="true"]',
+  '[data-touch-target]',
+  'input:not([type="hidden"])',
+  'select',
+  'summary',
+  'textarea',
+  '[role="button"]',
+  '[role="checkbox"]',
+  '[role="link"]',
+  '[role="menuitem"]',
+  '[role="radio"]',
+  '[role="switch"]',
+  '[role="tab"]',
+  '[tabindex]:not([tabindex="-1"])',
+].join(', ')
 const viewports = [
   { width: 320, height: 568 },
   { width: 360, height: 800 },
@@ -80,11 +101,26 @@ async function expectRouteReady(
 }
 
 async function auditTouchGeometry(page: Page) {
-  return page
-    .locator('button, nav a, [data-touch-target]')
-    .evaluateAll((nodes) => {
+  return page.locator(interactiveSelector).evaluateAll((nodes) => {
+      const invalidExemptions = nodes
+        .filter(
+          (node) => node.getAttribute('data-touch-target-exempt') === 'inline',
+        )
+        .filter((node) => {
+          const style = getComputedStyle(node)
+          return (
+            node.tagName !== 'A' ||
+            !style.display.startsWith('inline') ||
+            !node.closest('p, li')
+          )
+        })
+        .map((node) => node.textContent?.trim())
       const visible = nodes
         .filter((node): node is HTMLElement => node instanceof HTMLElement)
+        .filter(
+          (node) =>
+            node.getAttribute('data-touch-target-exempt') !== 'inline',
+        )
         .filter((node) => {
           const style = getComputedStyle(node)
           const rect = node.getBoundingClientRect()
@@ -99,6 +135,9 @@ async function auditTouchGeometry(page: Page) {
           node,
           text: node.getAttribute('aria-label') ?? node.textContent?.trim(),
           rect: node.getBoundingClientRect(),
+          group: node.closest(
+            '[role="group"], [role="tablist"], [role="dialog"], [role="alertdialog"], nav, form, header, footer, section, main',
+          ),
         }))
       const undersized = visible
         .filter(({ rect }) => rect.width < 44 || rect.height < 44)
@@ -121,9 +160,18 @@ async function auditTouchGeometry(page: Page) {
           const first = visible[firstIndex]
           const second = visible[secondIndex]
           if (
-            first.node.parentElement !== second.node.parentElement ||
+            !first.group ||
+            first.group !== second.group ||
             first.node.contains(second.node) ||
-            second.node.contains(first.node)
+            second.node.contains(first.node) ||
+            first.rect.right <= 0 ||
+            first.rect.left >= innerWidth ||
+            first.rect.bottom <= 0 ||
+            first.rect.top >= innerHeight ||
+            second.rect.right <= 0 ||
+            second.rect.left >= innerWidth ||
+            second.rect.bottom <= 0 ||
+            second.rect.top >= innerHeight
           ) {
             continue
           }
@@ -148,7 +196,7 @@ async function auditTouchGeometry(page: Page) {
         }
       }
 
-      return { undersized, crowded }
+      return { undersized, crowded, invalidExemptions }
     })
 }
 
@@ -181,6 +229,10 @@ for (const viewport of viewports) {
         geometry.crowded,
         `crowded targets on ${route.path} at ${viewport.width}x${viewport.height}`,
       ).toEqual([])
+      expect(
+        geometry.invalidExemptions,
+        `invalid inline exemptions on ${route.path}`,
+      ).toEqual([])
     }
   })
 }
@@ -203,30 +255,39 @@ test('bottom navigation consumes the shared navigation layer token', async ({
 async function expectControlInFront(
   page: Page,
   control: Locator,
-  viewport: { width: number; height: number },
 ) {
   await control.scrollIntoViewIfNeeded()
-  const box = await control.boundingBox()
-  expect(box).not.toBeNull()
-  expect(box!.x + box!.width).toBeGreaterThan(0)
-  expect(box!.x).toBeLessThan(viewport.width)
-  expect(box!.y + box!.height).toBeGreaterThan(0)
-  expect(box!.y).toBeLessThan(viewport.height)
-
-  const ownsCenterPoint = await control.evaluate((element) => {
+  const geometry = await control.evaluate((element) => {
     const rect = element.getBoundingClientRect()
-    const centerX = Math.max(
-      0,
-      Math.min(innerWidth - 1, rect.left + rect.width / 2),
-    )
-    const centerY = Math.max(
-      0,
-      Math.min(innerHeight - 1, rect.top + rect.height / 2),
-    )
+    const viewport = window.visualViewport
+    const safeLeft = viewport?.offsetLeft ?? 0
+    const safeTop = viewport?.offsetTop ?? 0
+    const safeRight = safeLeft + (viewport?.width ?? innerWidth)
+    const safeBottom = safeTop + (viewport?.height ?? innerHeight)
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
     const front = document.elementFromPoint(centerX, centerY)
-    return front === element || element.contains(front)
+    return {
+      rect: rect.toJSON(),
+      safeLeft,
+      safeTop,
+      safeRight,
+      safeBottom,
+      centerX,
+      centerY,
+      ownsCenterPoint: front === element || element.contains(front),
+    }
   })
-  expect(ownsCenterPoint).toBe(true)
+
+  expect(geometry.rect.left).toBeGreaterThanOrEqual(geometry.safeLeft)
+  expect(geometry.rect.top).toBeGreaterThanOrEqual(geometry.safeTop)
+  expect(geometry.rect.right).toBeLessThanOrEqual(geometry.safeRight)
+  expect(geometry.rect.bottom).toBeLessThanOrEqual(geometry.safeBottom)
+  expect(geometry.centerX).toBeGreaterThanOrEqual(geometry.safeLeft)
+  expect(geometry.centerX).toBeLessThanOrEqual(geometry.safeRight)
+  expect(geometry.centerY).toBeGreaterThanOrEqual(geometry.safeTop)
+  expect(geometry.centerY).toBeLessThanOrEqual(geometry.safeBottom)
+  expect(geometry.ownsCenterPoint).toBe(true)
 }
 
 test('phone landscape keeps both keyboard actions above fixed layers at 200 percent text', async ({
@@ -241,10 +302,110 @@ test('phone landscape keeps both keyboard actions above fixed layers at 200 perc
   })
   await page.getByRole('button', { name: '改用键盘输入' }).click()
 
-  await expectControlInFront(page, page.getByLabel('英文内容'), viewport)
+  await expectControlInFront(page, page.getByLabel('英文内容'))
   await expectControlInFront(
     page,
     page.getByRole('button', { name: '提交这一轮' }),
-    viewport,
   )
 })
+
+for (const viewport of viewports) {
+  test(`keeps navigation, sticky CTA, and every practice dock in the safe viewport at ${viewport.width}x${viewport.height}`, async ({
+    page,
+  }) => {
+    test.setTimeout(90_000)
+    await page.setViewportSize(viewport)
+
+    await page.goto('/practice')
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '200%'
+    })
+    const navigation = page.getByRole('navigation', { name: '主要导航' })
+    await expectControlInFront(page, navigation)
+    const navigationContract = await navigation.evaluate((node) => ({
+      bottom: getComputedStyle(node).bottom,
+      position: getComputedStyle(node).position,
+      minHeight: Number.parseFloat(getComputedStyle(node).minHeight),
+      tokenHeight: Number.parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue(
+          '--nav-height',
+        ),
+      ),
+    }))
+    expect(navigationContract.position).toBe('fixed')
+    expect(navigationContract.bottom).toBe('0px')
+    expect(navigationContract.minHeight).toBeGreaterThanOrEqual(
+      navigationContract.tokenHeight,
+    )
+
+    await page.goto('/scenes/daily-standup?level=B2')
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '200%'
+    })
+    const stickyCta = page.getByRole('link', { name: '进入对话舞台' })
+    await expectControlInFront(page, stickyCta)
+    expect(await stickyCta.evaluate((node) => getComputedStyle(node).position)).toBe(
+      'sticky',
+    )
+    expect(
+      Number.parseFloat(
+        await stickyCta.evaluate((node) => getComputedStyle(node).bottom),
+      ),
+    ).toBeGreaterThanOrEqual(12)
+
+    await stickyCta.click()
+    await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+    await page.evaluate(() => {
+      document.documentElement.style.fontSize = '200%'
+    })
+    const speechDock = page.getByRole('region', { name: '语音输入' })
+    await expectControlInFront(
+      page,
+      page.getByRole('button', { name: '开始录音' }),
+    )
+    await expectControlInFront(
+      page,
+      page.getByRole('button', { name: '改用键盘输入' }),
+    )
+    expect(
+      Number.parseFloat(
+        await speechDock.evaluate((node) => getComputedStyle(node).paddingBottom),
+      ),
+    ).toBeGreaterThanOrEqual(12)
+
+    await page.getByRole('button', { name: '改用键盘输入' }).click()
+    await expectControlInFront(page, page.getByLabel('英文内容'))
+    await expectControlInFront(
+      page,
+      page.getByRole('button', { name: '取消' }),
+    )
+    await expectControlInFront(
+      page,
+      page.getByRole('button', { name: '提交这一轮' }),
+    )
+
+    let releaseRequest: (() => void) | undefined
+    await page.route('**/api/v1/turns', async (route) => {
+      await new Promise<void>((resolve) => {
+        releaseRequest = resolve
+      })
+      await route.abort()
+    })
+    await page
+      .getByLabel('英文内容')
+      .fill('Hello, I have a reservation for two nights.')
+    await page.getByRole('button', { name: '提交这一轮' }).click()
+    const processingDock = page
+      .getByText('正在理解并准备下一句…', { exact: true })
+      .locator('..')
+    await expectControlInFront(page, processingDock)
+    expect(
+      Number.parseFloat(
+        await processingDock.evaluate(
+          (node) => getComputedStyle(node).paddingBottom,
+        ),
+      ),
+    ).toBeGreaterThanOrEqual(16)
+    releaseRequest?.()
+  })
+}

@@ -92,6 +92,32 @@ test('moves through the three primary destinations without an intermediate route
   expect(visited.every((route) => ['/practice', '/scenes', '/me'].includes(route))).toBe(true)
 })
 
+test('focuses the practice title after entering a session from its real scene CTA', async ({
+  page,
+}) => {
+  await page.goto('/scenes?category=work&level=B2')
+  await page.getByRole('link', { name: '准备练习：每日站会' }).click()
+  await page.getByRole('link', { name: '进入对话舞台' }).click()
+  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+
+  const title = page.getByRole('heading', { level: 1, name: 'Dialogue Stage' })
+  await expect(title).toHaveAttribute('data-page-title')
+  await expect(title).toHaveAttribute('tabindex', '-1')
+  await expect(title).toBeFocused()
+})
+
+test('focuses onboarding after entering settings from the learning center', async ({
+  page,
+}) => {
+  await page.goto('/me')
+  await page.getByRole('link', { name: /重新设置目标/ }).click()
+
+  const title = page.getByRole('heading', { level: 1, name: '今天想练什么？' })
+  await expect(title).toHaveAttribute('data-page-title')
+  await expect(title).toHaveAttribute('tabindex', '-1')
+  await expect(title).toBeFocused()
+})
+
 test('restores a filtered scene URL and scroll position after visiting daily stand-up', async ({
   page,
 }) => {
@@ -121,8 +147,10 @@ test('restores a filtered scene URL and scroll position after visiting daily sta
     'true',
   )
   await expect
-    .poll(() => page.evaluate(() => window.scrollY))
-    .toBeGreaterThanOrEqual(Math.max(1, previousScroll - 2))
+    .poll(async () =>
+      Math.abs((await page.evaluate(() => window.scrollY)) - previousScroll),
+    )
+    .toBeLessThanOrEqual(2)
 })
 
 for (const route of [

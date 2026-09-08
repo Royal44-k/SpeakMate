@@ -90,7 +90,7 @@ export function OnboardingFlow({
     <div className={styles.flow}>
       <header className={styles.header}>
         <p className={styles.brand}>SPEAKMATE</p>
-        <h1>今天想练什么？</h1>
+        <h1 data-page-title tabIndex={-1}>今天想练什么？</h1>
         <p>用一分钟定好难度和目标，之后可随时修改。</p>
       </header>
 

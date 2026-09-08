@@ -94,7 +94,7 @@ export function PracticeStage({
         />
         <div>
           <p>SpeakMate</p>
-          <h1>Dialogue Stage</h1>
+          <h1 data-page-title tabIndex={-1}>Dialogue Stage</h1>
           <small>场景对话练习 · {scene.titleZh}</small>
         </div>
         <span>
