@@ -28,10 +28,12 @@ export function RouteCoordinator() {
   const route = search ? `${pathname}?${search}` : pathname
 
   useEffect(() => {
-    const nextHistory = trackRoute(getRouteStack(), route)
+    const currentHistory = getRouteStack()
+    const previousPathname = currentHistory.at(-1)?.split(/[?#]/, 1)[0]
+    const nextHistory = trackRoute(currentHistory, route)
     window.sessionStorage.setItem(ROUTE_STACK_KEY, JSON.stringify(nextHistory.stack))
 
-    if (nextHistory.kind !== 'forward') return
+    if (nextHistory.kind !== 'forward' || previousPathname === pathname) return
 
     const focusPageTitle = () => {
       const title = document.querySelector<HTMLElement>('[data-page-title]')
@@ -50,7 +52,7 @@ export function RouteCoordinator() {
     })
     observer.observe(document.body, { childList: true, subtree: true })
     return () => observer.disconnect()
-  }, [route])
+  }, [pathname, route])
 
   return (
     <span

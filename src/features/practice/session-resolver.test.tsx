@@ -12,11 +12,15 @@ vi.mock('./practice-stage', () => ({
     scene,
     sessionId,
     completed = false,
+    exitHref,
   }: {
     scene: { slug: string; level: string }
     sessionId: string
     completed?: boolean
-  }) => <div>{`${sessionId}:${scene.slug}:${scene.level}:${completed ? 'completed' : 'active'}`}</div>,
+    exitHref?: string
+  }) => (
+    <div>{`${sessionId}:${scene.slug}:${scene.level}:${completed ? 'completed' : 'active'}:${exitHref ?? ''}`}</div>
+  ),
 }))
 
 describe('SessionResolver', () => {
@@ -45,7 +49,9 @@ describe('SessionResolver', () => {
     )
 
     expect(
-      await screen.findByText('saved-session:job-interview:C1:active'),
+      await screen.findByText(
+        'saved-session:job-interview:C1:active:/scenes/job-interview?level=C1',
+      ),
     ).toBeVisible()
   })
 
@@ -74,6 +80,12 @@ describe('SessionResolver', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent(
       '暂时无法恢复这次练习',
     )
+    const title = screen.getByRole('heading', {
+      level: 1,
+      name: '暂时无法恢复这次练习',
+    })
+    expect(title).toHaveAttribute('data-page-title')
+    expect(title).toHaveAttribute('tabindex', '-1')
   })
 
   it('restores an immutable scene snapshot when the catalog version is no longer present', async () => {
@@ -104,7 +116,9 @@ describe('SessionResolver', () => {
     )
 
     expect(
-      await screen.findByText('snapshot-session:hotel-check-in:B2:active'),
+      await screen.findByText(
+        'snapshot-session:hotel-check-in:B2:active:/scenes/hotel-check-in?level=B2',
+      ),
     ).toBeVisible()
   })
 
@@ -141,7 +155,9 @@ describe('SessionResolver', () => {
       />,
     )
     expect(
-      await screen.findByText('first-session:airport-check-in:B1:active'),
+      await screen.findByText(
+        'first-session:airport-check-in:B1:active:/scenes/airport-check-in?level=B1',
+      ),
     ).toBeVisible()
 
     view.rerender(
@@ -177,7 +193,45 @@ describe('SessionResolver', () => {
     )
 
     expect(
-      await screen.findByText('completed-session:airport-check-in:B1:completed'),
+      await screen.findByText(
+        'completed-session:airport-check-in:B1:completed:/scenes/airport-check-in?level=B1',
+      ),
+    ).toBeVisible()
+  })
+
+  it('carries a validated filtered-library source into the session exit route', async () => {
+    render(
+      <SessionResolver
+        requestedId="new"
+        queryScene="hotel-check-in"
+        queryLevel="B1"
+        queryFrom="/scenes?q=hotel&category=travel&level=B1&duration=5"
+        repositories={createMemoryRepositories()}
+      />,
+    )
+
+    expect(
+      await screen.findByText(
+        'new:hotel-check-in:B1:active:/scenes/hotel-check-in?level=B1&from=%2Fscenes%3Fq%3Dhotel%26category%3Dtravel%26level%3DB1%26duration%3D5',
+      ),
+    ).toBeVisible()
+  })
+
+  it('rejects a lookalike scene source when building the session exit route', async () => {
+    render(
+      <SessionResolver
+        requestedId="new"
+        queryScene="hotel-check-in"
+        queryLevel="B1"
+        queryFrom="/scenes-bogus?level=B1"
+        repositories={createMemoryRepositories()}
+      />,
+    )
+
+    expect(
+      await screen.findByText(
+        'new:hotel-check-in:B1:active:/scenes/hotel-check-in?level=B1',
+      ),
     ).toBeVisible()
   })
 })

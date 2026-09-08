@@ -12,6 +12,22 @@ vi.mock('next/navigation', () => ({
 }))
 
 describe('SessionReportView', () => {
+  it('exposes a missing report as the focusable page title', async () => {
+    render(
+      <SessionReportView
+        sessionId="missing-session"
+        repositories={createMemoryRepositories()}
+      />,
+    )
+
+    const title = await screen.findByRole('heading', {
+      level: 1,
+      name: '找不到这次练习',
+    })
+    expect(title).toHaveAttribute('data-page-title')
+    expect(title).toHaveAttribute('tabindex', '-1')
+  })
+
   it('offers a named return control and both explicit terminal destinations', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()

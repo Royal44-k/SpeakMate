@@ -110,6 +110,26 @@ describe('PracticeStage dock ownership', () => {
       )
     },
   )
+
+  it('locks completion persistence behind a disabled saving dock', () => {
+    setPracticeState('completing')
+
+    render(<PracticeStage scene={scene} sessionId="session-text" />)
+
+    const saving = screen.getByRole('status')
+    expect(saving).toHaveTextContent('正在保存练习…')
+    expect(saving.parentElement).toHaveAttribute('aria-disabled', 'true')
+    expect(document.documentElement.dataset.interactionBusy).toBe('true')
+    expect(
+      screen.queryByRole('region', { name: '语音输入' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: '改用键盘输入' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: '提交这一轮' }),
+    ).not.toBeInTheDocument()
+  })
 })
 
 describe('PracticeStage fixed-layer safety', () => {
@@ -159,6 +179,12 @@ describe('PracticeStage completion', () => {
     expect(
       screen.getByRole('link', { name: '查看本次复盘' }),
     ).toHaveAttribute('href', '/session/session-text/report')
+    expect(
+      screen.getByRole('heading', { level: 1, name: '这次真的开口了。' }),
+    ).toHaveAttribute('data-page-title')
+    expect(
+      screen.getByRole('heading', { level: 1, name: '这次真的开口了。' }),
+    ).toHaveAttribute('tabindex', '-1')
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
     expect(screen.queryByRole('region', { name: '语音输入' })).not.toBeInTheDocument()
   })

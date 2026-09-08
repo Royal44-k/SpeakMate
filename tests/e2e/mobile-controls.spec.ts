@@ -5,6 +5,24 @@ const viewports = [
   { width: 844, height: 390 },
 ]
 
+test('shows the current AI prompt above the speech dock on initial short landscape', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 844, height: 390 })
+  await page.goto('/session/new?scene=hotel-check-in&level=B1')
+  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+
+  const prompt = page.locator('section[aria-live="polite"] blockquote')
+  const dock = page.getByRole('region', { name: '语音输入' })
+  const promptBox = await prompt.boundingBox()
+  const dockBox = await dock.boundingBox()
+
+  expect(promptBox).not.toBeNull()
+  expect(dockBox).not.toBeNull()
+  expect(promptBox!.y).toBeGreaterThanOrEqual(0)
+  expect(promptBox!.y + promptBox!.height).toBeLessThanOrEqual(dockBox!.y)
+})
+
 async function expectControlInFront(
   page: Page,
   control: Locator,

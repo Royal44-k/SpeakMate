@@ -19,4 +19,16 @@ describe('navigation history', () => {
   it('does not claim a safe in-app back route for a direct deep link', () => {
     expect(canGoBackWithinApp(['/privacy'])).toBe(false)
   })
+
+  it('replaces same-path query state without inventing a browser history entry', () => {
+    expect(
+      trackRoute(
+        ['/practice', '/scenes?level=B1'],
+        '/scenes?q=hotel&level=B1',
+      ),
+    ).toEqual({
+      stack: ['/practice', '/scenes?q=hotel&level=B1'],
+      kind: 'same',
+    })
+  })
 })

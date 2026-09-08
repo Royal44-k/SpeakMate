@@ -85,7 +85,7 @@ The IAB console contained 0 warnings and 0 errors during this walkthrough. The 3
 | Fidelity surface | 2.2.0 result and evidence |
 | --- | --- |
 | Hierarchy | Passed: Atlantic stage header, 2 / 6 progress, hotel scenario, English response, contextual cue, coral speaking action and keyboard fallback retain the approved reading order. |
-| Image crop | Passed: the generated hotel check-in image keeps the people, counter and role context legible in portrait and the responsive landscape crop; it is not stretched or replaced. |
+| Image crop | Passed: the generated hotel check-in image keeps the people, counter and role context legible in portrait; short landscape intentionally suppresses the decorative strip so the live AI prompt remains visible above the Dock. |
 | Spacing and typography | Passed: Barlow Condensed display hierarchy, Chinese guidance, content insets, dividers, corner radii and action spacing remain consistent; no title truncation or unreadable label was observed. |
 | Touch targets | Passed: automated geometry checks cover visible interactive controls at a minimum 44 × 44 pixels, with explicit inline-link exceptions and spacing checks for independent sibling controls. |
 | Horizontal and vertical scrolling | Passed: the filter strip reaches its end without root overflow; history return restores the list within a two-sided tolerance; long content uses document scroll and provides its escape action. |
@@ -93,6 +93,13 @@ The IAB console contained 0 warnings and 0 errors during this walkthrough. The 3
 | Focus visibility | Passed: forward navigation focuses the page title, the first supported Tab reaches an interactive control, dialogs contain focus, and selected filters/tabs expose their semantic state. |
 | Safe areas | Passed in CSS/automation: `viewport-fit=cover`, shared inset variables and bottom clearance are present and verified in simulated viewports; hardware-notch behavior remains a real-device follow-up. |
 | Reduced motion | Passed: reduced-motion behavior disables nonessential smooth scrolling and animation while preserving state visibility and task completion. |
+
+### Pass 8 short-landscape remediation
+
+- Pre-fix finding (P2): at the initial 844 × 390 Dialogue Stage position, the 2:1 scene image pushed the current AI prompt below the top edge of the fixed Speech Dock. The speaking controls remained reachable, but the conversational context was not simultaneously visible.
+- Fix: the short-landscape composition now suppresses the decorative scene strip and compacts the Atlantic header/dialogue spacing while preserving the portrait composition and the current AI text.
+- Post-fix evidence: the exact 844 × 390 capture and a dedicated browser geometry assertion place the entire current AI prompt above the Speech Dock at scroll position 0. The 390 × 844 portrait capture remains valid and unchanged in structure.
+- Result: no open P0, P1, or P2 visual finding remains after this pass; device-only safe-area, dynamic toolbar and real software-keyboard checks remain follow-ups.
 
 ## 2.1.1 historical automated evidence
 
@@ -112,6 +119,7 @@ The IAB console contained 0 warnings and 0 errors during this walkthrough. The 3
 - Installation coverage verifies the persistent iPhone/Android tab interface, WAI-ARIA tab keyboard behavior, standalone state, unknown-platform fallback, and the WebKit iPhone “添加到主屏幕” copy.
 - The five skips are explicit capability partitions: Chromium omits the iPhone-only install-copy case; Playwright WebKit cannot expose Safari Full Keyboard Access for sequential link focus; the audio-only MediaRecorder mock targets Chromium; two Service Worker offline-cache cases target Chromium production behavior.
 - The first Windows `pnpm test:e2e` emitted all 88 pass/skip results but its Playwright-owned Next.js server did not terminate. Re-running against a separately started production server via `PLAYWRIGHT_BASE_URL` exited 0 with the same 83/5 result. This is recorded as a Windows test-server teardown limitation, not a test failure.
+- The final whole-branch remediation gate passed with 37 Vitest files / 194 tests and 91 Playwright passes / 5 capability skips / 0 failures across 96 cases. It adds explicit coverage for same-path query focus, exact filtered-library session exits, completion persistence locking, asynchronous terminal focus, profile-read recovery, complete installation instructions, strict `from` validation, and initial 844 × 390 prompt visibility.
 
 ## Deployment and reachability evidence
 

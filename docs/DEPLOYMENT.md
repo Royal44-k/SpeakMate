@@ -20,7 +20,7 @@ pnpm dev
 
 打开 `http://localhost:3000`。首次进入选择英语等级、学习目标和每日时长，然后在场景准备页进入对话。电脑必须允许浏览器使用麦克风；如果拒绝，仍可点“键盘输入”完成全流程。
 
-2.2.0 本地质量门的确认结果为：Vitest 37 个文件、179 项通过；Playwright 两个移动引擎共 88 项，83 项通过、5 项按浏览器能力跳过。Windows 上由 Playwright 自动托管 Next.js 时可能在全部用例输出后停留在服务进程收尾；发布验证应先独立启动生产构建，再设置 `PLAYWRIGHT_BASE_URL` 运行同一套件，并以退出码 0 为准。
+2.2.0 本地质量门的最新确认结果为：Vitest 37 个文件、194 项通过；Playwright 两个移动引擎共 96 项，91 项通过、5 项按浏览器能力跳过。Windows 上由 Playwright 自动托管 Next.js 时可能在全部用例输出后停留在服务进程收尾；发布验证应先独立启动生产构建，再设置 `PLAYWRIGHT_BASE_URL` 运行同一套件，并以退出码 0 为准。
 
 同一 Wi-Fi 下也可临时在 iPhone Safari 访问开发电脑的局域网地址，但这不是正式发布方式，Windows 防火墙、网络隔离和非 HTTPS 会影响录音权限。正式体验应使用下方 Vercel HTTPS 地址。
 
@@ -130,10 +130,10 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 
 ## 9. 2.2.0 本地与视觉验收
 
-- 版本元数据：`package.json` 为 2.2.0；Service Worker 候选缓存为 `speakmate-v2.2.0-shell-r1`。
+- 版本元数据：`package.json` 为 2.2.0；Service Worker 候选缓存为 `speakmate-v2.2.0-shell-r2`。
 - 本地静态门：`pnpm lint`、`pnpm typecheck`、`pnpm build` 通过。
-- Vitest：37 个测试文件、179 项通过，0 失败。
-- Playwright：Chromium Mobile 与 WebKit iPhone 合计 88 项；83 项通过、5 项跳过、0 失败。
+- Vitest：37 个测试文件、194 项通过，0 失败。
+- Playwright：Chromium Mobile 与 WebKit iPhone 合计 96 项；91 项通过、5 项跳过、0 失败。
 - 跳过原因：Chromium 不重复运行 iPhone 安装文案；Playwright WebKit 不暴露 Safari Full Keyboard Access 的顺序链接焦点；音频提交模拟只覆盖 Chromium MediaRecorder；两项离线 Service Worker 验证限定 Chromium 生产目标。
 - 覆盖的 2.2.0 行为包括：三项一级导航、共享次级页返回、直接深链兜底、路由标题焦点、场景筛选 URL 与滚动恢复、互斥 Speech/Text/Processing Dock、退出守卫、报告显式出口，以及 iPhone/Android 安装页签。
 - 视觉验收已完成：参考图与新实现曾在同一输入中比较，精确 390 × 844 和 844 × 390 证据已保存；`design-qa.md` 未发现 P0、P1 或 P2 视觉问题。
@@ -172,7 +172,7 @@ Vercel 控制面的构建、Ready 状态、Preview 晋升和 Production 别名�
 ## 11. 2026-09-03 生产发布记录
 
 - 生产 URL：<https://speakmate-pwa.vercel.app>
-- 当前 Vercel 部署 ID：`dpl_AUENsa2CW3fP76zjdS65QxNUcvuM`
+- 当时的部署 ID：`dpl_AUENsa2CW3fP76zjdS65QxNUcvuM`
 - 账户：个人 Hobby；环境变量列表为空，未启用付费云资源。
 - 状态：`READY`；Node.js 固定为 22.x，Next.js 函数部署到 `sin1`。
 - 远端健康检查：200，`version: 2.0.0`，`aiMode: local`。

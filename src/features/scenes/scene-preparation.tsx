@@ -50,7 +50,12 @@ export function ScenePreparation({
 
       {scene.safetyNote ? <aside className={styles.safety}>{scene.safetyNote}</aside> : null}
 
-      <Link className={styles.start} href={`/session/new?scene=${scene.slug}&level=${scene.level}`}>进入对话舞台<ArrowRight aria-hidden size={21} weight="bold" /></Link>
+      <Link
+        className={styles.start}
+        href={`/session/new?scene=${scene.slug}&level=${scene.level}&from=${encodeURIComponent(backHref)}`}
+      >
+        进入对话舞台<ArrowRight aria-hidden size={21} weight="bold" />
+      </Link>
     </article>
   )
 }

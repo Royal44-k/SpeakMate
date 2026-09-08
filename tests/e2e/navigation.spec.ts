@@ -118,6 +118,30 @@ test('focuses onboarding after entering settings from the learning center', asyn
   await expect(title).toBeFocused()
 })
 
+test('focuses asynchronously resolved completed and error session titles', async ({
+  page,
+}) => {
+  await seedCompletedSession(page)
+
+  await page.goto(`/session/${COMPLETED_SESSION_ID}`)
+  const completedTitle = page.getByRole('heading', {
+    level: 1,
+    name: '这次真的开口了。',
+  })
+  await expect(completedTitle).toHaveAttribute('data-page-title')
+  await expect(completedTitle).toHaveAttribute('tabindex', '-1')
+  await expect(completedTitle).toBeFocused()
+
+  await page.goto('/session/session-that-does-not-exist')
+  const errorTitle = page.getByRole('heading', {
+    level: 1,
+    name: '暂时无法恢复这次练习',
+  })
+  await expect(errorTitle).toHaveAttribute('data-page-title')
+  await expect(errorTitle).toHaveAttribute('tabindex', '-1')
+  await expect(errorTitle).toBeFocused()
+})
+
 test('restores a filtered scene URL and scroll position after visiting daily stand-up', async ({
   page,
 }) => {
@@ -204,6 +228,52 @@ test('a new session supports guarded and clean exits without an incorrect URL', 
   await expect(dialog).toHaveCount(0)
   await expect(page).toHaveURL(/\/scenes\/hotel-check-in\?level=B1$/)
   await expectSingleHeading(page, '酒店入住')
+})
+
+test('returns through the exact filtered library without duplicate detail entries', async ({
+  page,
+}) => {
+  const libraryUrl =
+    '/scenes?q=Daily&category=work&level=B2&duration=5'
+  const detailUrl =
+    '/scenes/daily-standup?level=B2&from=%2Fscenes%3Fq%3DDaily%26category%3Dwork%26level%3DB2%26duration%3D5'
+  const sessionUrl =
+    '/session/new?scene=daily-standup&level=B2&from=%2Fscenes%3Fq%3DDaily%26category%3Dwork%26level%3DB2%26duration%3D5'
+
+  await page.goto(libraryUrl)
+  await page.getByRole('link', { name: '准备练习：每日站会' }).click()
+  await expect(page).toHaveURL(new RegExp(`${detailUrl.replace(/[?&]/g, '\\$&')}$`))
+  await page.getByRole('link', { name: '进入对话舞台' }).click()
+  await expect(page).toHaveURL(new RegExp(`${sessionUrl.replace(/[?&]/g, '\\$&')}$`))
+  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+
+  await page.getByRole('link', { name: '退出本次练习' }).click()
+  await expect(page).toHaveURL(new RegExp(`${detailUrl.replace(/[?&]/g, '\\$&')}$`))
+  await page.getByRole('link', { name: '返回每日站会' }).click()
+
+  await expect(page).toHaveURL(new RegExp(`${libraryUrl.replace(/[?&]/g, '\\$&')}$`))
+  await expect(page.getByLabel('搜索场景')).toHaveValue('Daily')
+  await expect(page.getByRole('button', { name: '职场' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await expect(page.getByRole('button', { name: '5 分钟' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
+
+test('uses deterministic scene and library fallbacks for a direct session deep link', async ({
+  page,
+}) => {
+  await page.goto('/session/new?scene=hotel-check-in&level=B1')
+  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+
+  await page.getByRole('link', { name: '退出本次练习' }).click()
+  await expect(page).toHaveURL(/\/scenes\/hotel-check-in\?level=B1$/)
+  await page.getByRole('link', { name: '返回酒店入住' }).click()
+
+  await expect(page).toHaveURL(/\/scenes\?level=B1$/)
 })
 
 test('a completed report exits explicitly to practice and scenes', async ({

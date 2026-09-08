@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 
 import { fireEvent, render, screen } from '@testing-library/react'
 import { axe } from 'jest-axe'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { AppShell } from './app-shell'
 import { MobilePageHeader } from './mobile-page-header'
@@ -21,6 +21,13 @@ vi.mock('next/navigation', () => ({
 }))
 
 describe('AppShell', () => {
+  beforeEach(() => {
+    navigation.pathname = '/scenes'
+    navigation.search = 'level=B1'
+    routerBack.mockReset()
+    window.sessionStorage.clear()
+  })
+
   it('keeps three primary destinations reachable with the current page announced', () => {
     render(<AppShell activeDestination="practice">content</AppShell>)
 
@@ -178,5 +185,35 @@ describe('AppShell', () => {
     )
 
     expect(screen.getByRole('heading', { name: '酒店入住' })).toHaveFocus()
+  })
+
+  it('updates same-path query history without stealing focus from the active control', () => {
+    const { rerender } = render(
+      <>
+        <input aria-label="搜索场景" />
+        <h1 data-page-title tabIndex={-1}>
+          场景库
+        </h1>
+        <RouteCoordinator />
+      </>,
+    )
+    const search = screen.getByRole('textbox', { name: '搜索场景' })
+    search.focus()
+    navigation.search = 'q=hotel&level=B1'
+
+    rerender(
+      <>
+        <input aria-label="搜索场景" />
+        <h1 data-page-title tabIndex={-1}>
+          场景库
+        </h1>
+        <RouteCoordinator />
+      </>,
+    )
+
+    expect(search).toHaveFocus()
+    expect(window.sessionStorage.getItem('speakmate-route-stack')).toBe(
+      JSON.stringify(['/scenes?q=hotel&level=B1']),
+    )
   })
 })

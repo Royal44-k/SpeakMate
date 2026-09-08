@@ -19,6 +19,27 @@ import styles from './practice-stage.module.css'
 export type ExitGuardState = 'clean' | 'draft' | 'recording' | 'processing'
 
 const SENTINEL_KEY = '__speakmateExitGuard'
+const ROUTE_STACK_KEY = 'speakmate-route-stack'
+
+function getRouteStack() {
+  try {
+    const stored = window.sessionStorage.getItem(ROUTE_STACK_KEY)
+    const parsed: unknown = stored ? JSON.parse(stored) : []
+    return Array.isArray(parsed) && parsed.every((route) => typeof route === 'string')
+      ? parsed
+      : []
+  } catch {
+    return []
+  }
+}
+
+function canReturnToExactRoute(fallbackHref: string) {
+  return getRouteStack().at(-2) === fallbackHref
+}
+
+function resetRouteStack(fallbackHref: string) {
+  window.sessionStorage.setItem(ROUTE_STACK_KEY, JSON.stringify([fallbackHref]))
+}
 
 export function exitGuardState(
   status: PracticeStatus,
@@ -26,7 +47,12 @@ export function exitGuardState(
   hasAudio: boolean,
 ): ExitGuardState {
   if (status === 'recording') return 'recording'
-  if (status === 'submitting' || status === 'receiving') return 'processing'
+  if (
+    status === 'submitting' ||
+    status === 'receiving' ||
+    status === 'completing'
+  )
+    return 'processing'
   if (draftTranscript.trim() || hasAudio) return 'draft'
   return 'clean'
 }
@@ -60,6 +86,7 @@ function GuardedExit({
   const triggerRef = useRef<HTMLAnchorElement>(null)
   const restoreFocusRef = useRef(false)
   const confirmingRef = useRef(false)
+  const returningToPreviousRef = useRef(false)
   const sentinelIdRef = useRef<string | undefined>(undefined)
   const sentinelCurrentRef = useRef(false)
   const cleanupVersionRef = useRef(0)
@@ -103,6 +130,8 @@ function GuardedExit({
       sentinelCurrentRef.current = false
       if (confirmingRef.current) {
         onConfirmExitRef.current?.()
+        if (returningToPreviousRef.current) return
+        resetRouteStack(fallbackHrefRef.current)
         replaceRef.current(fallbackHrefRef.current)
         return
       }
@@ -255,6 +284,9 @@ function GuardedExit({
   function confirmExit() {
     setDialogOpen(false)
     confirmingRef.current = true
+    returningToPreviousRef.current = canReturnToExactRoute(
+      fallbackHrefRef.current,
+    )
     const sentinelId = sentinelIdRef.current
     if (
       sentinelId &&
@@ -268,11 +300,20 @@ function GuardedExit({
         '',
       )
       sentinelCurrentRef.current = false
-      window.history.back()
+      if (returningToPreviousRef.current) {
+        window.history.go(-2)
+      } else {
+        window.history.back()
+      }
       return
     }
 
     onConfirmExitRef.current?.()
+    if (returningToPreviousRef.current) {
+      router.back()
+      return
+    }
+    resetRouteStack(fallbackHrefRef.current)
     replaceRef.current(fallbackHrefRef.current)
   }
 
@@ -340,18 +381,46 @@ export function ExitGuard({
   onConfirmExit?: () => void
 }) {
   if (state === 'clean') {
-    return (
-      <Link
-        className={styles.exitLink}
-        href={fallbackHref}
-        aria-label="退出本次练习"
-      >
-        <ArrowLeft aria-hidden size={23} />
-      </Link>
-    )
+    return <CleanExit fallbackHref={fallbackHref} />
   }
 
   return (
     <GuardedExit fallbackHref={fallbackHref} onConfirmExit={onConfirmExit} />
+  )
+}
+
+function CleanExit({ fallbackHref }: { fallbackHref: string }) {
+  const router = useRouter()
+
+  function exit(event: MouseEvent<HTMLAnchorElement>) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return
+    }
+
+    event.preventDefault()
+    if (canReturnToExactRoute(fallbackHref)) {
+      router.back()
+      return
+    }
+    resetRouteStack(fallbackHref)
+    router.replace(fallbackHref)
+  }
+
+  return (
+    <Link
+      className={styles.exitLink}
+      href={fallbackHref}
+      aria-label="退出本次练习"
+      onClick={exit}
+    >
+      <ArrowLeft aria-hidden size={23} />
+    </Link>
   )
 }

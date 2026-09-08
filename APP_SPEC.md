@@ -765,8 +765,8 @@ idle → requesting-permission → recording → reviewing
 ### 17.6 2.2.0 发布候选验证基线
 
 - `pnpm lint`、`pnpm typecheck` 与 `pnpm build` 通过。
-- Vitest：37 个测试文件、179 项测试通过，0 失败。
-- Playwright：Chromium Mobile 与 WebKit iPhone 合计 88 项；83 项通过、5 项有明确浏览器能力原因地跳过、0 失败。
+- Vitest：37 个测试文件、194 项测试通过，0 失败。
+- Playwright：Chromium Mobile 与 WebKit iPhone 合计 96 项；91 项通过、5 项有明确浏览器能力原因地跳过、0 失败。
 - 5 项跳过分别为：Chromium 不重复验证 iPhone 安装文案；WebKit 自动化不暴露 Safari Full Keyboard Access 的顺序链接焦点；音频提交模拟仅覆盖 Chromium MediaRecorder 路径；两项 Service Worker 离线缓存测试限定 Chromium 生产目标。
 - 自动化验证不等同于实体 iPhone/Android 验收。真实安全区、Safari 动态工具栏、系统软键盘、麦克风权限与中断、添加到主屏幕及中国大陆 Wi-Fi/蜂窝网络可达性必须在公开候选部署后人工复测。
 

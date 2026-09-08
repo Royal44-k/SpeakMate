@@ -52,5 +52,17 @@
 .completed a { display: inline-flex; min-height: 50px; align-items: center; margin-top: 18px; border-radius: var(--radius-pill); padding: 0 22px; background: var(--color-coral-500); color: var(--color-ink-950); font-weight: 850; text-decoration: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (max-height: 760px) { .stage { padding-bottom: 190px; } .topbar { min-height: 126px; } .topbar h1 { margin-top: 11px; font-size: 2.6rem; } .topbar div > small { margin-top: 9px; } .topbar > span { padding-top: 39px; } .sceneStrip { aspect-ratio: 2.25 / 1; } .dialogue { padding-top: 16px; } }
+@media (orientation: landscape) and (max-height: 500px) {
+  .stage { padding-bottom: 168px; }
+  .topbar { min-height: 88px; align-items: center; padding-top: max(8px, env(safe-area-inset-top)); padding-bottom: 8px; }
+  .topbar h1 { margin-top: 3px; font-size: 2.15rem; line-height: .9; }
+  .topbar div > small { margin-top: 5px; }
+  .topbar > span { padding-top: 18px; }
+  .sceneStrip { display: none; }
+  .progress { padding-bottom: 6px; }
+  .dialogue { padding-top: 7px; padding-bottom: 6px; }
+  .dialogue blockquote { margin-top: 4px; margin-bottom: 5px; font-size: 1.62rem; line-height: .96; }
+  .hint { font-size: .76rem; line-height: 1.35; }
+}
 @media (min-width: 540px) { .stage { width: min(100%, 480px); margin: 0 auto; box-shadow: 0 0 60px rgb(11 42 67 / 16%); } .practiceDock { left: 50%; width: min(100%, 480px); transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .processingDock svg { animation: none; } }

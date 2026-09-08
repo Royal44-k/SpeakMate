@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
@@ -21,14 +21,21 @@ export function SceneLibrary({
   onStateChange,
 }: SceneLibraryProps) {
   const [state, setState] = useState(initialState)
-  const stateRef = useRef(initialState)
+  const incomingHref = sceneLibraryHref(initialState)
+  const [lastIncomingHref, setLastIncomingHref] = useState(incomingHref)
+
+  if (incomingHref !== lastIncomingHref) {
+    setLastIncomingHref(incomingHref)
+    if (sceneLibraryHref(state) !== incomingHref) {
+      setState(initialState)
+    }
+  }
 
   function updateState(
     patch: Partial<SceneFilterState>,
     source: 'search' | 'filter',
   ) {
-    const next = { ...stateRef.current, ...patch }
-    stateRef.current = next
+    const next = { ...state, ...patch }
     setState(next)
     onStateChange?.(next, source)
   }

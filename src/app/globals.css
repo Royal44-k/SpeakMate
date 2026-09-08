@@ -57,6 +57,35 @@ a {
   outline-offset: 3px;
 }
 
+.route-recovery {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: max(16px, env(safe-area-inset-top)) 18px 0;
+  border-left: 4px solid var(--color-warning);
+  padding: 12px 14px;
+  background: color-mix(in srgb, var(--color-warning) 8%, var(--color-white));
+  color: var(--color-ink-700);
+}
+
+.route-recovery p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.route-recovery button {
+  flex: 0 0 auto;
+  min-height: var(--tap-target);
+  border: 1px solid var(--color-warning);
+  border-radius: var(--radius-pill);
+  padding: 0 14px;
+  background: var(--color-white);
+  color: var(--color-ink-950);
+  font-weight: 800;
+}
+
 .landing-shell {
   display: grid;
   min-height: 100dvh;

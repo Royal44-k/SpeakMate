@@ -5,12 +5,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ExitGuard, exitGuardState } from './exit-guard'
 
-const { routerReplace } = vi.hoisted(() => ({
+const { routerBack, routerReplace } = vi.hoisted(() => ({
+  routerBack: vi.fn(),
   routerReplace: vi.fn(),
 }))
 
 vi.mock('next/navigation', () => ({
-  useRouter: () => ({ replace: routerReplace }),
+  useRouter: () => ({ back: routerBack, replace: routerReplace }),
 }))
 
 describe('exitGuardState', () => {
@@ -20,6 +21,7 @@ describe('exitGuardState', () => {
     ['reviewing', '', true, 'draft'],
     ['submitting', 'hello', false, 'processing'],
     ['receiving', '', true, 'processing'],
+    ['completing', '', false, 'processing'],
     ['ready', '', false, 'clean'],
   ] as const)(
     'maps %s with transcript %j and audio %s to %s',
@@ -31,8 +33,11 @@ describe('exitGuardState', () => {
 
 describe('ExitGuard', () => {
   beforeEach(() => {
+    routerBack.mockReset()
     routerReplace.mockReset()
+    window.sessionStorage.clear()
     vi.spyOn(window.history, 'back').mockImplementation(() => undefined)
+    vi.spyOn(window.history, 'go').mockImplementation(() => undefined)
     window.history.replaceState(null, '', '/session/session-draft')
   })
 
@@ -120,6 +125,28 @@ describe('ExitGuard', () => {
     expect(routerReplace).toHaveBeenCalledWith(
       '/scenes/hotel-check-in?level=B1',
     )
+  })
+
+  it('removes the sentinel and session entries when guarded exit returns to its exact previous detail', async () => {
+    const user = userEvent.setup()
+    window.sessionStorage.setItem(
+      'speakmate-route-stack',
+      JSON.stringify([
+        '/scenes?category=travel&level=B1',
+        '/scenes/hotel-check-in?level=B1&from=%2Fscenes%3Fcategory%3Dtravel%26level%3DB1',
+        '/session/new?scene=hotel-check-in&level=B1&from=%2Fscenes%3Fcategory%3Dtravel%26level%3DB1',
+      ]),
+    )
+    const fallbackHref =
+      '/scenes/hotel-check-in?level=B1&from=%2Fscenes%3Fcategory%3Dtravel%26level%3DB1'
+    render(<ExitGuard state="draft" fallbackHref={fallbackHref} />)
+
+    await user.click(screen.getByRole('link', { name: '退出本次练习' }))
+    await user.click(screen.getByRole('button', { name: '退出' }))
+
+    expect(window.history.go).toHaveBeenCalledWith(-2)
+    fireEvent.popState(window, { state: null })
+    expect(routerReplace).not.toHaveBeenCalled()
   })
 
   it('reopens the guarded session when browser back is requested', () => {
@@ -218,5 +245,23 @@ describe('ExitGuard', () => {
     expect(
       screen.queryByRole('alertdialog', { name: '退出本次练习？' }),
     ).not.toBeInTheDocument()
+  })
+
+  it('uses browser back for a clean exit only when the exact detail is previous', () => {
+    const fallbackHref =
+      '/scenes/hotel-check-in?level=B1&from=%2Fscenes%3Fcategory%3Dtravel%26level%3DB1'
+    window.sessionStorage.setItem(
+      'speakmate-route-stack',
+      JSON.stringify([
+        '/scenes?category=travel&level=B1',
+        fallbackHref,
+        '/session/new?scene=hotel-check-in&level=B1',
+      ]),
+    )
+    render(<ExitGuard state="clean" fallbackHref={fallbackHref} />)
+
+    fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+
+    expect(routerBack).toHaveBeenCalledTimes(1)
   })
 })

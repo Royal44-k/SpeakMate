@@ -7,7 +7,7 @@ export default async function SessionPage({
   searchParams,
 }: {
   params: Promise<{ id: string }>
-  searchParams: Promise<{ scene?: string; level?: string }>
+  searchParams: Promise<{ scene?: string; level?: string; from?: string }>
 }) {
   const [{ id }, query] = await Promise.all([params, searchParams])
   return (
@@ -15,6 +15,7 @@ export default async function SessionPage({
       requestedId={id}
       queryScene={query.scene}
       queryLevel={query.level}
+      queryFrom={query.from}
     />
   )
 }

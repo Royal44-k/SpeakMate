@@ -51,7 +51,7 @@ export default function WelcomePage() {
       <main className={styles.flow} aria-label="无法读取练习设置">
         <section className={`${styles.panel} ${styles.loadingPanel}`}>
           <p className={styles.brand}>SPEAKMATE</p>
-          <h1>暂时无法准备练习</h1>
+          <h1 data-page-title tabIndex={-1}>暂时无法准备练习</h1>
           <p role="alert">无法读取本地练习设置，请重试。</p>
           <button className={styles.primaryButton} type="button" onClick={retryProfileLoad}>重试</button>
         </section>

@@ -39,7 +39,7 @@ pnpm verify
 pnpm test:e2e
 ```
 
-2.2.0 发布候选的本地基线：37 个 Vitest 文件、179 项测试全部通过；Playwright 在 Chromium Mobile 与 WebKit iPhone 共运行 88 项，其中 83 项通过、5 项按浏览器能力有明确原因地跳过。跳过项仅限 Chromium 不执行 iPhone 安装文案、WebKit 自动化不提供 Safari Full Keyboard Access、Chromium 专用 MediaRecorder 模拟，以及两项 Chromium 专属 Service Worker 离线验证。
+2.2.0 发布候选的最新本地基线：37 个 Vitest 文件、194 项测试全部通过；Playwright 在 Chromium Mobile 与 WebKit iPhone 共运行 96 项，其中 91 项通过、5 项按浏览器能力有明确原因地跳过。跳过项仅限 Chromium 不执行 iPhone 安装文案、WebKit 自动化不提供 Safari Full Keyboard Access、Chromium 专用 MediaRecorder 模拟，以及两项 Chromium 专属 Service Worker 离线验证。
 
 自动化不能代替实体设备：发布前仍需在真实 iPhone Safari/主屏 PWA 与 Android Chrome/已安装 PWA 上复测安全区、动态浏览器工具栏、系统键盘、麦克风权限、录音中断和主屏安装。
 

@@ -94,6 +94,23 @@ async function assertCaptureReady(page, capture) {
     }
   }
 
+  if (capture.name === 'landscape') {
+    const prompt = page.locator('blockquote').filter({ hasText: 'Welcome' })
+    const dock = page.getByRole('region', { name: '语音输入' })
+    const [promptBounds, dockBounds] = await Promise.all([
+      prompt.boundingBox(),
+      dock.boundingBox(),
+    ])
+    if (
+      !promptBounds ||
+      !dockBounds ||
+      promptBounds.y < 0 ||
+      promptBounds.y + promptBounds.height > dockBounds.y
+    ) {
+      throw new Error('landscape AI prompt is not fully visible above the speech dock')
+    }
+  }
+
   const layout = await page.evaluate(() => ({
     rootOverflow:
       document.documentElement.scrollWidth -

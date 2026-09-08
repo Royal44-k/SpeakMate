@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import type { LearnerProfile } from '@/domain/learning/types'
@@ -174,6 +174,96 @@ describe('SceneLibrary', () => {
     expect(routerReplace).toHaveBeenCalledWith('/scenes?q=hotel&level=B1', {
       scroll: false,
     })
+  })
+
+  it('preserves live search whitespace and focus when its normalized URL arrives', async () => {
+    vi.useFakeTimers()
+    const view = await renderReadyRoute()
+    const search = screen.getByLabelText('搜索场景')
+    search.focus()
+
+    fireEvent.change(search, { target: { value: ' hotel ' } })
+    await act(async () => {
+      vi.advanceTimersByTime(250)
+    })
+    expect(routerReplace).toHaveBeenLastCalledWith(
+      '/scenes?q=hotel&level=B1',
+      { scroll: false },
+    )
+
+    navigation.search = 'q=hotel&level=B1'
+    view.rerender(
+      <SceneLibraryRoute
+        profileRepository={createMemoryRepositories().profiles}
+      />,
+    )
+    await act(async () => undefined)
+
+    expect(screen.getByLabelText('搜索场景')).toHaveValue(' hotel ')
+    expect(screen.getByLabelText('搜索场景')).toHaveFocus()
+  })
+
+  it('synchronizes external query navigation without replacing the focused control', async () => {
+    const repositories = createMemoryRepositories()
+    const saved = await repositories.profiles.ensureGuestProfile()
+    await repositories.profiles.save({ ...saved, level: 'B1' })
+    const view = render(
+      <SceneLibraryRoute profileRepository={repositories.profiles} />,
+    )
+    await act(async () => undefined)
+    const search = screen.getByLabelText('搜索场景')
+    search.focus()
+
+    navigation.search = 'category=social&level=C1&duration=5'
+    view.rerender(
+      <SceneLibraryRoute profileRepository={repositories.profiles} />,
+    )
+    await act(async () => undefined)
+
+    expect(screen.getByRole('button', { name: '社交' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(screen.getByRole('button', { name: 'C1' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(screen.getByRole('button', { name: '5 分钟' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    expect(search).toHaveFocus()
+  })
+
+  it('recovers from a rejected profile read with an accessible A2 fallback and retry', async () => {
+    const profileRepository: ProfileRepository = {
+      get: vi.fn(),
+      ensureGuestProfile: vi
+        .fn()
+        .mockRejectedValueOnce(new Error('IndexedDB unavailable'))
+        .mockResolvedValueOnce(profile('B2')),
+      save: vi.fn(),
+    }
+
+    render(<SceneLibraryRoute profileRepository={profileRepository} />)
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      '无法读取本地水平，已暂用 A2',
+    )
+    expect(screen.getByRole('button', { name: 'A2' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+    fireEvent.click(screen.getByRole('button', { name: '重试读取水平' }))
+
+    await waitFor(() =>
+      expect(screen.getByRole('button', { name: 'B2' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      ),
+    )
+    expect(profileRepository.ensureGuestProfile).toHaveBeenCalledTimes(2)
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
   })
 
   it('writes filters immediately and cancels a pending search write', async () => {
@@ -492,6 +582,12 @@ describe('SceneLibrary', () => {
     expect(screen.getByText('SCENE BRIEF')).toBeVisible()
     expect(backLink.closest('header')?.nextElementSibling).toContainElement(
       screen.getByAltText('轻松社交活动中的两人交谈'),
+    )
+    expect(
+      screen.getByRole('link', { name: '进入对话舞台' }),
+    ).toHaveAttribute(
+      'href',
+      '/session/new?scene=first-small-talk&level=B1&from=%2Fscenes%3Fcategory%3Dsocial%26level%3DB1',
     )
   })
 

@@ -43,6 +43,9 @@ describe('WelcomePage', () => {
 
     expect(screen.getByRole('main', { name: '正在准备你的练习' })).toHaveAttribute('aria-busy', 'true')
     expect(screen.getByRole('status')).toHaveTextContent('正在读取你的练习设置…')
+    expect(
+      screen.getByRole('heading', { name: '正在准备你的练习' }),
+    ).not.toHaveAttribute('data-page-title')
   })
 
   it('prefills a completed profile and offers the return-to-practice link', async () => {
@@ -60,6 +63,11 @@ describe('WelcomePage', () => {
     render(<WelcomePage />)
 
     expect(await screen.findByRole('alert')).toHaveTextContent('无法读取本地练习设置，请重试。')
+    const errorTitle = screen.getByRole('heading', {
+      name: '暂时无法准备练习',
+    })
+    expect(errorTitle).toHaveAttribute('data-page-title')
+    expect(errorTitle).toHaveAttribute('tabindex', '-1')
     fireEvent.click(screen.getByRole('button', { name: '重试' }))
 
     expect(screen.getByRole('main', { name: '正在准备你的练习' })).toHaveAttribute('aria-busy', 'true')

@@ -10,10 +10,30 @@ describe('InstallPrompt', () => {
     expect(screen.getByRole('tab', { name: 'iPhone' })).toBeVisible()
     expect(screen.getByRole('tab', { name: 'Android' })).toBeVisible()
     expect(screen.getByText('打开 Safari 的分享菜单')).toBeVisible()
+    expect(screen.getByText('确认名称并点“添加”')).toBeVisible()
 
     fireEvent.click(screen.getByRole('tab', { name: 'Android' }))
 
     expect(screen.getByText(/安装应用或添加到主屏幕/)).toBeVisible()
+    expect(screen.getByText('在系统提示中确认安装或添加')).toBeVisible()
+  })
+
+  it('offers a captured native install action only from the Android panel', async () => {
+    render(<InstallPrompt platform="unknown" standalone={false} mode="page" />)
+    const installEvent = Object.assign(new Event('beforeinstallprompt'), {
+      prompt: async () => undefined,
+      userChoice: Promise.resolve({ outcome: 'dismissed' as const }),
+    })
+
+    fireEvent(window, installEvent)
+
+    expect(
+      screen.queryByRole('button', { name: '立即安装' }),
+    ).not.toBeInTheDocument()
+    fireEvent.click(screen.getByRole('tab', { name: 'Android' }))
+    expect(
+      await screen.findByRole('button', { name: '立即安装' }),
+    ).toBeVisible()
   })
 
   it('uses roving tab focus with Arrow, Home, and End keys', () => {

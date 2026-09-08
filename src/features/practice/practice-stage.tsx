@@ -23,12 +23,16 @@ export function PracticeStage({
   scene,
   sessionId,
   completed = false,
+  exitHref,
 }: {
   scene: AdaptedScene
   sessionId: string
   completed?: boolean
+  exitHref?: string
 }) {
   const practice = usePracticeSession(scene, sessionId)
+  const resolvedExitHref =
+    exitHref ?? `/scenes/${scene.slug}?level=${scene.level}`
   const [feedbackExpanded, setFeedbackExpanded] = useState(false)
   const status = practice.machine.status
   const isReviewing =
@@ -42,14 +46,15 @@ export function PracticeStage({
   const completedGoals = practice.completedGoalIds ?? []
   const dockMode = isReviewing
     ? 'text'
-    : ['submitting', 'receiving'].includes(status)
+    : ['submitting', 'receiving', 'completing'].includes(status)
       ? 'processing'
       : 'speech'
   const interactionBusy =
     status === 'recording' ||
     isReviewing ||
     status === 'submitting' ||
-    status === 'receiving'
+    status === 'receiving' ||
+    status === 'completing'
   const guardState = exitGuardState(
     status,
     practice.machine.draftTranscript ?? '',
@@ -78,7 +83,7 @@ export function PracticeStage({
           <Check aria-hidden size={34} weight="bold" />
         </span>
         <p>SESSION COMPLETE</p>
-        <h1>这次真的开口了。</h1>
+        <h1 data-page-title tabIndex={-1}>这次真的开口了。</h1>
         <p>练习已保存在本机，现在可以查看可解释的表达复盘。</p>
         <Link href={`/session/${practice.sessionId}/report`}>查看本次复盘</Link>
       </main>
@@ -90,7 +95,7 @@ export function PracticeStage({
       <header className={styles.topbar}>
         <ExitGuard
           state={guardState}
-          fallbackHref={`/scenes/${scene.slug}?level=${scene.level}`}
+          fallbackHref={resolvedExitHref}
         />
         <div>
           <p>SpeakMate</p>
@@ -214,9 +219,13 @@ export function PracticeStage({
             onSubmit={() => void practice.submitTurn()}
           />
         ) : dockMode === 'processing' ? (
-          <div className={styles.processingDock} role="status">
+          <div className={styles.processingDock} aria-disabled="true">
             <SpinnerGap aria-hidden size={22} />
-            <span>正在理解并准备下一句…</span>
+            <span role="status">
+              {status === 'completing'
+                ? '正在保存练习…'
+                : '正在理解并准备下一句…'}
+            </span>
           </div>
         ) : (
           <SpeechControl

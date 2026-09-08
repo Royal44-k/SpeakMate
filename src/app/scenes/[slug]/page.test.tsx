@@ -54,6 +54,12 @@ describe('scene detail page return route', () => {
       expected: '/scenes?level=C1',
     },
     {
+      name: 'a lookalike scene prefix',
+      level: 'B1',
+      from: '/scenes-bogus?category=social',
+      expected: '/scenes?level=B1',
+    },
+    {
       name: 'an array value',
       level: 'B2',
       from: ['/scenes?level=A1', '/scenes?level=B2'],

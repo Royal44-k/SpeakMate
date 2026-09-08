@@ -8,6 +8,22 @@ import { getSceneBySlug } from '@/content/scenes/catalog'
 import { PracticeHome } from './practice-home'
 
 describe('PracticeHome', () => {
+  it('exposes its asynchronous failure as the focusable page title', async () => {
+    const repositories = createMemoryRepositories()
+    repositories.profiles.ensureGuestProfile = async () => {
+      throw new Error('IndexedDB unavailable')
+    }
+
+    render(<PracticeHome repositories={repositories} />)
+
+    const title = await screen.findByRole('heading', {
+      level: 1,
+      name: '暂时无法读取练习记录',
+    })
+    expect(title).toHaveAttribute('data-page-title')
+    expect(title).toHaveAttribute('tabindex', '-1')
+  })
+
   it('uses the saved level, duration, goal and recoverable session', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()

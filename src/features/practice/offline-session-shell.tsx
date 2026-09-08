@@ -8,6 +8,7 @@ interface OfflineTarget {
   id: string
   scene?: string
   level?: string
+  from?: string
 }
 
 export function OfflineSessionShell() {
@@ -31,6 +32,7 @@ export function OfflineSessionShell() {
     id: match ? decodeURIComponent(match[1]) : 'new',
     scene: url.searchParams.get('scene') ?? undefined,
     level: url.searchParams.get('level') ?? undefined,
+    from: url.searchParams.get('from') ?? undefined,
   }
 
   return (
@@ -38,6 +40,7 @@ export function OfflineSessionShell() {
       requestedId={target.id}
       queryScene={target.scene}
       queryLevel={target.level}
+      queryFrom={target.from}
     />
   )
 }

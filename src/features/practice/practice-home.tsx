@@ -55,7 +55,7 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     return (
       <AppShell activeDestination="practice">
         <main className={styles.state}>
-          <h1>暂时无法读取练习记录</h1>
+          <h1 data-page-title tabIndex={-1}>暂时无法读取练习记录</h1>
           <p>请刷新页面重试。你的本地记录不会因此被清除。</p>
         </main>
       </AppShell>

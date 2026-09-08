@@ -155,7 +155,7 @@ export function InstallPrompt({
             {activeGuide === 'ios' ? <IosGuide /> : <AndroidGuide />}
           </div>
 
-          {installEvent ? (
+          {installEvent && activeGuide === 'android' ? (
             <button className={styles.install} type="button" onClick={() => void install()}>立即安装</button>
           ) : null}
         </>
@@ -175,6 +175,7 @@ function IosGuide() {
     <ol className={styles.steps}>
       <li><Export aria-hidden size={19} />打开 Safari 的分享菜单</li>
       <li><PlusSquare aria-hidden size={19} />选择“添加到主屏幕”</li>
+      <li><PlusSquare aria-hidden size={19} />确认名称并点“添加”</li>
     </ol>
   )
 }
@@ -184,6 +185,7 @@ function AndroidGuide() {
     <ol className={styles.steps}>
       <li><DownloadSimple aria-hidden size={19} />打开 Chrome 或系统浏览器的菜单</li>
       <li><PlusSquare aria-hidden size={19} />选择“安装应用或添加到主屏幕”</li>
+      <li><PlusSquare aria-hidden size={19} />在系统提示中确认安装或添加</li>
     </ol>
   )
 }

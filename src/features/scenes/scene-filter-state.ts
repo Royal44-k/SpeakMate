@@ -71,3 +71,7 @@ export function sceneLibraryHref(state: SceneFilterState) {
   const query = serializeSceneFilterState(state)
   return query ? `/scenes?${query}` : '/scenes'
 }
+
+export function isSceneLibraryHref(value: unknown): value is string {
+  return typeof value === 'string' && /^\/scenes(?:\?.*)?$/.test(value)
+}

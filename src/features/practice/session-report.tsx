@@ -103,7 +103,7 @@ export function SessionReportView({
   if (missing)
     return (
       <main className={styles.empty}>
-        <h1>找不到这次练习</h1>
+        <h1 data-page-title tabIndex={-1}>找不到这次练习</h1>
         <p>记录可能已在本机被清空。</p>
         <Link href="/practice">返回练习</Link>
       </main>

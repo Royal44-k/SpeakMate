@@ -36,6 +36,8 @@ export function SceneLibraryRoute({
   const [profileFallback, setProfileFallback] = useState<
     { request: string; level: CefrLevel } | undefined
   >()
+  const [profileLoadFailed, setProfileLoadFailed] = useState(false)
+  const [profileLoadAttempt, setProfileLoadAttempt] = useState(0)
   const searchTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   )
@@ -45,16 +47,25 @@ export function SceneLibraryRoute({
     if (isLevel(levelParam)) return
 
     let active = true
-    void profiles.ensureGuestProfile().then((profile) => {
-      if (active) {
-        setProfileFallback({ request: fallbackRequest, level: profile.level })
-      }
-    })
+    void profiles
+      .ensureGuestProfile()
+      .then((profile) => {
+        if (active) {
+          setProfileFallback({ request: fallbackRequest, level: profile.level })
+          setProfileLoadFailed(false)
+        }
+      })
+      .catch(() => {
+        if (active) {
+          setProfileFallback({ request: fallbackRequest, level: 'A2' })
+          setProfileLoadFailed(true)
+        }
+      })
 
     return () => {
       active = false
     }
-  }, [fallbackRequest, levelParam, profiles])
+  }, [fallbackRequest, levelParam, profileLoadAttempt, profiles])
 
   useEffect(
     () => () => {
@@ -99,10 +110,25 @@ export function SceneLibraryRoute({
   }
 
   return (
-    <SceneLibrary
-      key={searchParams.toString()}
-      initialState={initialState}
-      onStateChange={handleStateChange}
-    />
+    <>
+      {profileLoadFailed ? (
+        <section className="route-recovery" role="alert">
+          <p>无法读取本地水平，已暂用 A2。你的学习记录没有被删除。</p>
+          <button
+            type="button"
+            onClick={() => {
+              setProfileLoadFailed(false)
+              setProfileLoadAttempt((attempt) => attempt + 1)
+            }}
+          >
+            重试读取水平
+          </button>
+        </section>
+      ) : null}
+      <SceneLibrary
+        initialState={initialState}
+        onStateChange={handleStateChange}
+      />
+    </>
   )
 }
