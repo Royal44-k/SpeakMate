@@ -1,7 +1,8 @@
 # SpeakMate Design QA
 
-- Date: 2026-09-05
+- Last updated: 2026-09-08
 - Scope: mobile PWA core speaking flow, with the hotel check-in scene at B1
+- Current candidate: 2.2.0; automated interaction/layout evidence is current, while new in-app-browser captures and physical-device acceptance remain pending
 - Target viewport: 390 × 844 CSS pixels, light color scheme
 - Visual source: `docs/design/speakmate-dialogue-stage-reference.png`
 - Render capture: `tests/visual/implementation-390x844.png`
@@ -66,7 +67,7 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 - The offline shell deliberately reuses the existing loading and session components rather than introducing a visually divergent recovery surface.
 - No new P0, P1, or P2 design mismatch was found.
 
-## Automated evidence
+## 2.1.1 historical automated evidence
 
 - `pnpm lint`, `pnpm typecheck`, 92 unit/component tests, and the production build passed.
 - Playwright: 24 checks passed and 4 browser-capability-specific checks were skipped as intended across Chromium-mobile and WebKit-iPhone.
@@ -74,8 +75,23 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 - Browser console review found no application errors in the captured release state.
 - Responsive checks passed at 360 × 800, 390 × 844, 430 × 932, 768 × 1024, 844 × 390 landscape, 200% root text size, and forced dark preference.
 
+## 2.2.0 release-candidate automated evidence
+
+- Both the pre-version and post-change gates ran `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`, and the complete two-engine Playwright suite. Each gate passed with 37 Vitest files / 179 tests and 83 Playwright passes / 5 capability skips / 0 failures across 88 cases.
+- Navigation coverage verifies exactly three primary destinations, shared secondary-page headers, safe direct-deep-link fallbacks, guarded/clean session exits, report terminal actions, one visible `h1`, forward-title focus, and correct active bottom navigation where present.
+- Scene coverage verifies URL-backed search/category/level/duration state, full-card detail links, selected filter semantics, horizontal strip containment, exact back URL recovery, and two-sided vertical scroll restoration tolerance.
+- Practice coverage verifies that Speech, Text Review, and Processing Docks are mutually exclusive; text input and submit actions remain reachable at 390 × 844, 844 × 390, and a shrunken iPhone-keyboard approximation; feedback and completion controls stay above fixed layers.
+- Responsive coverage spans 320 × 568, 360 × 800, 390 × 844, 430 × 932, 844 × 390, and 768 × 1024. It checks root overflow, 44-pixel touch geometry, spacing between independent targets, bottom navigation, scene sticky CTA, every practice Dock, safe viewport intersection, 200% text, explicit light theme, reduced-motion-sensitive behavior, and serious/critical Axe findings.
+- Installation coverage verifies the persistent iPhone/Android tab interface, WAI-ARIA tab keyboard behavior, standalone state, unknown-platform fallback, and the WebKit iPhone “添加到主屏幕” copy.
+- The five skips are explicit capability partitions: Chromium omits the iPhone-only install-copy case; Playwright WebKit cannot expose Safari Full Keyboard Access for sequential link focus; the audio-only MediaRecorder mock targets Chromium; two Service Worker offline-cache cases target Chromium production behavior.
+- The first Windows `pnpm test:e2e` emitted all 88 pass/skip results but its Playwright-owned Next.js server did not terminate. Re-running against a separately started production server via `PLAYWRIGHT_BASE_URL` exited 0 with the same 83/5 result. This is recorded as a Windows test-server teardown limitation, not a test failure.
+
 ## Open findings
 
-None.
+- Required before production acceptance: capture the designated 390 × 844 and 844 × 390 states in the selected in-app browser, reject loading/cropped/overlapped states, and compare the matching 390 × 844 Dialogue Stage capture with `docs/design/speakmate-dialogue-stage-reference.png` in one comparison input.
+- Required after public deployment: repeat the guest smoke flow and WebKit check against the canonical URL, then record the deployment ID, commit and timestamps from actual responses.
+- Physical iPhone and Android testing remains necessary for hardware safe areas, Safari dynamic toolbar, real software keyboard, Full Keyboard Access, microphone permission/recording interruption, standalone installation and China-mainland Wi-Fi/cellular reachability. Automation cannot establish those device facts.
 
-final result: passed
+2.1.1 historical result: passed
+
+2.2.0 release-candidate result: pending visual and physical-device acceptance

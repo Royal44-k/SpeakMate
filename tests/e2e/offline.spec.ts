@@ -5,7 +5,7 @@ test('service worker shell contains the privacy-safe offline routes', async ({
 }) => {
   const response = await request.get('/sw.js')
   const source = await response.text()
-  expect(source).toContain('speakmate-shell-v2.1.1')
+  expect(source).toContain('speakmate-v2.2.0-shell-r1')
   for (const path of [
     "'/'",
     "'/install'",

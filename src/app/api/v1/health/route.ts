@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import packageJson from '../../../../../package.json'
 
 import { resolveAiEnvironment } from '@/infrastructure/ai/provider-factory'
 
@@ -13,7 +14,7 @@ export function GET() {
   })
   return NextResponse.json({
     status: 'ok',
-    version: '2.1.1',
+    version: packageJson.version,
     aiMode: resolved.cloudflare ? resolved.mode : 'local',
     buildSha:
       (

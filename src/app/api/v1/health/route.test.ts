@@ -13,7 +13,7 @@ describe('GET /api/v1/health', () => {
 
     expect(body).toMatchObject({
       status: 'ok',
-      version: '2.1.1',
+      version: '2.2.0',
       buildSha: 'a668452-rele',
     })
   })
