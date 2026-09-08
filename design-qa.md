@@ -2,20 +2,21 @@
 
 - Last updated: 2026-09-08
 - Scope: mobile PWA core speaking flow, with the hotel check-in scene at B1
-- Current candidate: 2.2.0; automated interaction/layout evidence is current, while new in-app-browser captures and physical-device acceptance remain pending
-- Target viewport: 390 × 844 CSS pixels, light color scheme
+- Current candidate: 2.2.0; mobile visual and interaction QA passed with physical-device validation retained as a release follow-up
+- Target viewports: 390 × 844 portrait and 844 × 390 landscape CSS pixels, light color scheme
 - Visual source: `docs/design/speakmate-dialogue-stage-reference.png`
-- Render capture: `tests/visual/implementation-390x844.png`
-- Combined comparison: `tests/visual/comparison-reference-vs-implementation.png`
+- Current portrait capture: `tests/visual/mobile-ux-390x844.png` (390 × 844 pixels, device scale factor 1)
+- Current landscape capture: `tests/visual/mobile-ux-844x390.png` (844 × 390 pixels, device scale factor 1)
+- Normalized combined comparison: `tests/visual/comparison-reference-vs-implementation.png` (840 × 910 pixels)
 - Capture recipe: `node scripts/capture-design-qa.mjs`
 
 ## Source and state alignment
 
-The reference and implementation were normalized to the same 390 × 844 aspect ratio and placed side by side in one comparison image. The implementation fixture restores one completed learner turn from IndexedDB so both sides show the hotel check-in scene at step 2 / 6 with the same AI sentence. The reference is an art-direction target rather than a pixel-exact product screenshot; the implementation therefore keeps required working controls such as back navigation, TTS playback, task progress, privacy copy, and the text-input fallback.
+The source file is 853 × 1844 pixels. The approved comparison normalizes the source and implementation to the same 390 × 844 frame and places them side by side without using either image as a substitute for interaction testing. The current fixture restores one completed learner turn from IndexedDB so the implementation shows the B1 hotel check-in scene at step 2 / 6. The reference is an art-direction target, not an exact content fixture: its opening copy differs intentionally, while the branded stage, hotel scenario, task progress, English line, contextual cue, coral microphone, and keyboard fallback remain the comparison anchors.
 
-No additional crop was needed: both full mobile frames remain at 1:1 CSS-pixel size in the 840-pixel-wide comparison, and the title, dialogue, hint, microphone, and keyboard control are all readable together.
+The fresh selected in-app-browser portrait capture calibrated to 390 × 845 physical screenshot pixels for the approximately 390 × 844 target because of one-pixel IAB rounding. The source and that fresh implementation were emitted together in one comparison input; the existing normalized comparison independently corroborates the same hierarchy. The approved Playwright artifact records the implementation at exact 390 × 844 pixels and 1× density. No loading state, unintended crop, root overflow, or fixed-layer collision is present.
 
-Focused-region comparison was not needed because the 390 × 844, 1× combined source shows the display typography, generated hotel artwork, dialogue copy, icons, microphone control, privacy copy, and keyboard fallback at directly readable size.
+The IAB landscape visual viewport measured approximately 844.6 × 415 CSS pixels and kept every dialogue control visible. Because the IAB screenshot backend caps or downsamples wide captures, the approved Playwright path supplies the exact 844 × 390, 1× landscape artifact. Focused-region comparison was unnecessary because the portrait comparison and exact artifacts keep the display typography, hotel artwork, dialogue hierarchy, icons, microphone control, privacy copy, and keyboard fallback directly readable.
 
 ## Static source review
 
@@ -67,6 +68,32 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 - The offline shell deliberately reuses the existing loading and session components rather than introducing a visually divergent recovery surface.
 - No new P0, P1, or P2 design mismatch was found.
 
+### Pass 7 mobile consistency acceptance for 2.2.0
+
+The fresh selected in-app-browser walkthrough verified the following real routes and states, rather than isolated screenshots:
+
+1. Scene Library with the category strip scrolled horizontally to about `190.77 / 191` pixels and no root-level overflow.
+2. Scene preparation with the shared back header and unobscured sticky primary action.
+3. Dialogue Stage at hotel B1, step 2 / 6, in Speech Dock mode.
+4. Text Review Dock with both enabled and disabled actions, followed by the Processing Dock transition.
+5. Expanded per-turn feedback positioned above the active Dock.
+6. Installation help with iPhone and Android WAI-ARIA tabs and the platform-specific manual copy.
+7. Session report with the shared header and both explicit terminal actions.
+
+The IAB console contained 0 warnings and 0 errors during this walkthrough. The 390 × 845 rounded IAB portrait and source reference were judged together in one comparison input. The exact 390 × 844 and 844 × 390 Playwright artifacts were then inspected at original resolution. No actionable P0, P1, or P2 mismatch was found.
+
+| Fidelity surface | 2.2.0 result and evidence |
+| --- | --- |
+| Hierarchy | Passed: Atlantic stage header, 2 / 6 progress, hotel scenario, English response, contextual cue, coral speaking action and keyboard fallback retain the approved reading order. |
+| Image crop | Passed: the generated hotel check-in image keeps the people, counter and role context legible in portrait and the responsive landscape crop; it is not stretched or replaced. |
+| Spacing and typography | Passed: Barlow Condensed display hierarchy, Chinese guidance, content insets, dividers, corner radii and action spacing remain consistent; no title truncation or unreadable label was observed. |
+| Touch targets | Passed: automated geometry checks cover visible interactive controls at a minimum 44 × 44 pixels, with explicit inline-link exceptions and spacing checks for independent sibling controls. |
+| Horizontal and vertical scrolling | Passed: the filter strip reaches its end without root overflow; history return restores the list within a two-sided tolerance; long content uses document scroll and provides its escape action. |
+| Fixed layers | Passed: bottom navigation, scene sticky CTA, Speech Dock, Text Review Dock, Processing Dock and expanded feedback remain inside the safe viewport without mutual overlap at all six automated sizes. |
+| Focus visibility | Passed: forward navigation focuses the page title, the first supported Tab reaches an interactive control, dialogs contain focus, and selected filters/tabs expose their semantic state. |
+| Safe areas | Passed in CSS/automation: `viewport-fit=cover`, shared inset variables and bottom clearance are present and verified in simulated viewports; hardware-notch behavior remains a real-device follow-up. |
+| Reduced motion | Passed: reduced-motion behavior disables nonessential smooth scrolling and animation while preserving state visibility and task completion. |
+
 ## 2.1.1 historical automated evidence
 
 - `pnpm lint`, `pnpm typecheck`, 92 unit/component tests, and the production build passed.
@@ -86,12 +113,10 @@ Focused-region comparison was not needed because the 390 × 844, 1× combined so
 - The five skips are explicit capability partitions: Chromium omits the iPhone-only install-copy case; Playwright WebKit cannot expose Safari Full Keyboard Access for sequential link focus; the audio-only MediaRecorder mock targets Chromium; two Service Worker offline-cache cases target Chromium production behavior.
 - The first Windows `pnpm test:e2e` emitted all 88 pass/skip results but its Playwright-owned Next.js server did not terminate. Re-running against a separately started production server via `PLAYWRIGHT_BASE_URL` exited 0 with the same 83/5 result. This is recorded as a Windows test-server teardown limitation, not a test failure.
 
-## Open findings
+## Release follow-ups, not design-QA blockers
 
-- Required before production acceptance: capture the designated 390 × 844 and 844 × 390 states in the selected in-app browser, reject loading/cropped/overlapped states, and compare the matching 390 × 844 Dialogue Stage capture with `docs/design/speakmate-dialogue-stage-reference.png` in one comparison input.
-- Required after public deployment: repeat the guest smoke flow and WebKit check against the canonical URL, then record the deployment ID, commit and timestamps from actual responses.
-- Physical iPhone and Android testing remains necessary for hardware safe areas, Safari dynamic toolbar, real software keyboard, Full Keyboard Access, microphone permission/recording interruption, standalone installation and China-mainland Wi-Fi/cellular reachability. Automation cannot establish those device facts.
+- There are no open P0, P1, or P2 visual findings in the inspected 2.2.0 states.
+- Public-release verification still must repeat the guest smoke flow and WebKit checks against the canonical deployment, then record the actual deployment ID, commit and UTC/CST timestamps.
+- Physical iPhone and Android testing remains necessary for hardware safe areas, Safari dynamic toolbar, real software keyboard, Full Keyboard Access, hardware microphone permission and recording interruption, standalone installation, and China-mainland Wi-Fi/cellular reachability. Automated viewports and screenshots cannot establish those device facts.
 
-2.1.1 historical result: passed
-
-2.2.0 release-candidate result: pending visual and physical-device acceptance
+final result: passed
