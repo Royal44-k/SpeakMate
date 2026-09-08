@@ -2,11 +2,18 @@
 
 > 文档版本：2.2.0
 >
-> 状态：2.2.0 已通过本地自动化与选定 IAB 视觉验收；Vercel Production 控制面 Ready 且规范别名已指向；受已记录的网络/DNS 条件限制，公开 HTTP/WebKit、实体设备与中国大陆可达性验收待完成
+> 状态：2.2.0 最终修复版已通过本地自动化（Vitest 194/194；Playwright 91 通过、5 个能力跳过、0 失败）与选定 IAB 视觉验收；Vercel Production 控制面 Ready，两个规范别名已指向当前部署；受已记录的网络/DNS 条件限制，公开 HTTP/WebKit、实体设备与中国大陆可达性验收仍待完成
 >
 > 更新日期：2026-09-08
-> 产品形态：移动优先的可安装 PWA，不再以微信小程序为首发载体  
-> 首发环境：Vercel Hobby 免费计划，面向个人开发、内测与演示  
+>
+> 当前部署源提交：`83fe5916c0ea72076042b44152a049eeb9252cbf`
+>
+> 当前生产部署：`dpl_r7q651yW9C3nbPobrgVmQSRgDBhF`（Vercel Production / Ready）
+>
+> 产品形态：移动优先的可安装 PWA，不再以微信小程序为首发载体
+>
+> 首发环境：Vercel Hobby 免费计划，面向个人开发、内测与演示
+>
 > 视觉基准：[`docs/design/speakmate-dialogue-stage-reference.png`](./docs/design/speakmate-dialogue-stage-reference.png)
 
 ## 1. 文档目的

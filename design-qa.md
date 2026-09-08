@@ -123,13 +123,14 @@ The IAB console contained 0 warnings and 0 errors during this walkthrough. The 3
 
 ## Deployment and reachability evidence
 
-- Verified deployed source commit: `dcaf18701891a77f59b2d58042823f173e2b7b0f`.
-- Preview deployment `dpl_WkQVPYnKDT9MDQhgvxPFCrz27jYD` at <https://speakmate-55q5fdjt9-lirongouyang522-3492s-projects.vercel.app> was inspected as Preview / Ready, created 2026-09-08 13:17:54 CST.
-- The preview was promoted to Production deployment `dpl_635uQRg99PiT8eUBqU9X5sJoYAt8` at <https://speakmate-otr5hnill-lirongouyang522-3492s-projects.vercel.app>, inspected as Production / Ready, created 2026-09-08 13:25:12 CST (05:25:12 UTC).
-- Canonical aliases include <https://speakmate-pwa.vercel.app>. A second alias inspection confirmed in the Vercel control plane that this canonical domain resolves to the same Production deployment.
-- Rollback remains available through the previously verified deployment `dpl_FwV45ugpo992BTjuktFUUq6ZTsG8`.
+- The final remediation source commit is `83fe5916c0ea72076042b44152a049eeb9252cbf`; package version remains 2.2.0 and the Service Worker cache revision is `speakmate-v2.2.0-shell-r2`.
+- Preview deployment `dpl_7Aw5fdzw7RhbP57Zs2ZK6jw8BMYA` at <https://speakmate-jkexu3op7-lirongouyang522-3492s-projects.vercel.app> returned `READY` in Vercel.
+- The preview was promoted to Production deployment `dpl_r7q651yW9C3nbPobrgVmQSRgDBhF` at <https://speakmate-kgwkpb1sl-lirongouyang522-3492s-projects.vercel.app>, inspected as Production / Ready, created 2026-09-08 17:42:45 CST (09:42:45 UTC).
+- Vercel control-plane inspections confirmed that both <https://speakmate-pwa.vercel.app> and <https://speakmate-pwa-lirongouyang522-3492s-projects.vercel.app> resolve to that Production deployment.
+- The superseded Production deployment `dpl_635uQRg99PiT8eUBqU9X5sJoYAt8` is the immediate rollback target. The older `dpl_FwV45ugpo992BTjuktFUUq6ZTsG8` remains historical evidence, not the current rollback target.
+- Earlier on the same day, source `dcaf18701891a77f59b2d58042823f173e2b7b0f` produced Preview `dpl_WkQVPYnKDT9MDQhgvxPFCrz27jYD` and Production `dpl_635uQRg99PiT8eUBqU9X5sJoYAt8`; those IDs are retained here only as superseded release history.
 
-The Vercel control-plane checks passed, but this China-mainland workstation could not complete public-content verification: system DNS returned the poisoned address `157.240.12.50`; Google DoH returned Vercel A records `216.198.79.131` and `64.29.17.131`; direct `vercel curl` timed out; `curl --resolve` to either official A record was reset during TLS; and in-app-browser navigation timed out. Therefore public GETs, the deployed guest flow, remote WebKit smoke, China-mainland reachability, and iPhone hardware validation are **not passed or claimed** here. This network limitation does not alter the independently completed local visual comparison and interaction QA.
+The final remediation deployment's Vercel build, control-plane Ready state, promotion, and alias mapping passed. This China-mainland workstation did not reverify public content because the same documented limitation remains: system DNS returned the poisoned address `157.240.12.50`; Google DoH returned Vercel A records `216.198.79.131` and `64.29.17.131`; direct `vercel curl` timed out; `curl --resolve` to either official A record was reset during TLS; and in-app-browser navigation timed out. Therefore public GETs, the deployed guest flow, remote WebKit smoke, China-mainland reachability, and iPhone hardware validation are **not passed or claimed** here. This network limitation does not alter the independently completed local visual comparison and interaction QA.
 
 ## Release follow-ups, not design-QA blockers
 

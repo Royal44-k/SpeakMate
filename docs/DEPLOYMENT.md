@@ -139,17 +139,23 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 - 视觉验收已完成：参考图与新实现曾在同一输入中比较，精确 390 × 844 和 844 × 390 证据已保存；`design-qa.md` 未发现 P0、P1 或 P2 视觉问题。
 - 尚未完成：从当前中国大陆工作站执行公开 URL GET、远端 WebKit 冒烟、中国大陆实际可达性，以及真实 iPhone/Android 验收。实体设备仍须验证安全区、Safari 动态工具栏、系统软键盘、麦克风权限和中断、主屏安装，以及 Wi-Fi/蜂窝网络表现。
 
-## 10. 2026-09-08 2.2.0 生产发布记录
+## 10. 2026-09-08 2.2.0 最终修复版生产发布记录
 
-- 已验证部署源提交：`dcaf18701891a77f59b2d58042823f173e2b7b0f`。
-- Preview 部署：`dpl_WkQVPYnKDT9MDQhgvxPFCrz27jYD`，不可变 URL <https://speakmate-55q5fdjt9-lirongouyang522-3492s-projects.vercel.app>；Vercel inspect 显示目标为 Preview、状态为 Ready，创建时间为 2026-09-08 13:17:54 CST。
-- Preview 已晋升。Production 部署：`dpl_635uQRg99PiT8eUBqU9X5sJoYAt8`，不可变 URL <https://speakmate-otr5hnill-lirongouyang522-3492s-projects.vercel.app>；目标为 Production、状态为 Ready，创建时间为 2026-09-08 13:25:12 CST（05:25:12 UTC）。
-- 规范生产别名包含 <https://speakmate-pwa.vercel.app>；第二次 alias inspect 在 Vercel 控制面确认该域名解析到上述 Production 部署。
-- 回滚目标保留为上一版已验证部署 `dpl_FwV45ugpo992BTjuktFUUq6ZTsG8`。
+- 已验证部署源提交：`83fe5916c0ea72076042b44152a049eeb9252cbf`；`package.json` 保持 2.2.0，Service Worker 缓存为 `speakmate-v2.2.0-shell-r2`。
+- Preview 部署：`dpl_7Aw5fdzw7RhbP57Zs2ZK6jw8BMYA`，不可变 URL <https://speakmate-jkexu3op7-lirongouyang522-3492s-projects.vercel.app>；Vercel 结果为 `READY`。
+- Preview 已晋升。Production 部署：`dpl_r7q651yW9C3nbPobrgVmQSRgDBhF`，不可变 URL <https://speakmate-kgwkpb1sl-lirongouyang522-3492s-projects.vercel.app>；目标为 Production、状态为 Ready，创建时间为 2026-09-08 17:42:45 CST（09:42:45 UTC）。
+- Vercel 控制面分别确认规范别名 <https://speakmate-pwa.vercel.app> 与 <https://speakmate-pwa-lirongouyang522-3492s-projects.vercel.app> 均指向上述 Production 部署。
+- 直接回滚目标为被本次发布替换的 Production 部署 `dpl_635uQRg99PiT8eUBqU9X5sJoYAt8`；更早的 `dpl_FwV45ugpo992BTjuktFUUq6ZTsG8` 仅保留为历史部署，不是当前首选回滚目标。
+
+### 同日较早的 2.2.0 部署（已被最终修复版替换）
+
+- 部署源提交：`dcaf18701891a77f59b2d58042823f173e2b7b0f`。
+- Preview：`dpl_WkQVPYnKDT9MDQhgvxPFCrz27jYD`，不可变 URL <https://speakmate-55q5fdjt9-lirongouyang522-3492s-projects.vercel.app>；目标为 Preview、状态为 Ready，创建时间为 2026-09-08 13:17:54 CST。
+- Production：`dpl_635uQRg99PiT8eUBqU9X5sJoYAt8`，不可变 URL <https://speakmate-otr5hnill-lirongouyang522-3492s-projects.vercel.app>；目标为 Production、状态为 Ready，创建时间为 2026-09-08 13:25:12 CST（05:25:12 UTC）。该部署现为当前直接回滚目标。
 
 ### 控制面通过但公网验证受阻
 
-Vercel 控制面的构建、Ready 状态、Preview 晋升和 Production 别名验证均通过；这只证明平台已接收并指向正确部署，不证明本工作站已成功访问公开 HTTPS 内容。
+最终修复版的 Vercel 构建、Ready 状态、Preview 晋升和两个 Production 别名验证均在控制面通过；这只证明平台已接收并指向正确部署，不证明本工作站已成功访问公开 HTTPS 内容。
 
 当前中国大陆工作站的验证结果如下：
 
@@ -159,7 +165,7 @@ Vercel 控制面的构建、Ready 状态、Preview 晋升和 Production 别名�
 - 对两个 DoH A 记录分别使用 `curl --resolve` 时，TLS 连接均被重置。
 - 所选 in-app browser 导航也超时。
 
-因此以下项目**没有完成且不得标记为通过**：公开首页与 `/api/v1/health` 等 GET、线上游客主流程、远端 WebKit 冒烟、中国大陆可达性、iPhone 硬件验收。不要把网络失败解释为已证明的应用执行错误，也不要把 Vercel `Ready` 解释为公网体验通过。
+相同的网络/DNS 限制下，最终修复版没有重新完成公网内容验证。因此以下项目**没有完成且不得标记为通过**：公开首页与 `/api/v1/health` 等 GET、线上游客主流程、远端 WebKit 冒烟、中国大陆可达性、iPhone 硬件验收。不要把网络失败解释为已证明的应用执行错误，也不要把 Vercel `Ready` 解释为公网体验通过。
 
 ### 仍需用户在实体设备完成
 
