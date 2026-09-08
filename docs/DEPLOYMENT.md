@@ -7,7 +7,7 @@
 - 地区：中国大陆用户优先使用新加坡 `sin1` Serverless 区域；静态资源仍由 Vercel 全球边缘网络提供。
 - 默认能力：42 个场景、游客本地档案、本地对话反馈、历史记录、学习报告、数据导出与清空均可零配置运行。
 - 可选能力：Cloudflare Workers AI 只有在密钥、共享额度保护和显式发布闸门同时就绪后才启用；Supabase 仍需单独显式开启；云端错误会进入本地陪练降级路径。
-- 当前候选：2.2.0 已完成本地自动化质量门，Vercel 预览、生产晋升、公开 URL 冒烟和实体手机验收尚未记录；不得把本节当作已上线证明。
+- 当前版本：2.2.0 已完成本地自动化与视觉质量门，并已在 Vercel 控制面完成 Preview 晋升和 Production 别名指向；受当前中国大陆网络限制，公开 URL 冒烟、远端 WebKit 和实体手机验收仍未完成。
 
 ## 2. 电脑端本地预览
 
@@ -128,7 +128,7 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 - 生产环境没有意外的 Cloudflare、Supabase 或其他付费资源。
 - Vercel 最近一小时错误日志无新增应用错误。
 
-## 9. 2.2.0 发布候选本地验证（待部署）
+## 9. 2.2.0 本地与视觉验收
 
 - 版本元数据：`package.json` 为 2.2.0；Service Worker 候选缓存为 `speakmate-v2.2.0-shell-r1`。
 - 本地静态门：`pnpm lint`、`pnpm typecheck`、`pnpm build` 通过。
@@ -136,11 +136,40 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 - Playwright：Chromium Mobile 与 WebKit iPhone 合计 88 项；83 项通过、5 项跳过、0 失败。
 - 跳过原因：Chromium 不重复运行 iPhone 安装文案；Playwright WebKit 不暴露 Safari Full Keyboard Access 的顺序链接焦点；音频提交模拟只覆盖 Chromium MediaRecorder；两项离线 Service Worker 验证限定 Chromium 生产目标。
 - 覆盖的 2.2.0 行为包括：三项一级导航、共享次级页返回、直接深链兜底、路由标题焦点、场景筛选 URL 与滚动恢复、互斥 Speech/Text/Processing Dock、退出守卫、报告显式出口，以及 iPhone/Android 安装页签。
-- 尚未完成：同一输入中的参考图/实现图视觉比较、Vercel 预览与生产部署、公开 URL 冒烟、真实 iPhone 和 Android 验收。实体设备仍须验证安全区、Safari 动态工具栏、系统软键盘、麦克风权限和中断、主屏安装，以及中国大陆 Wi-Fi/蜂窝网络可达性。
+- 视觉验收已完成：参考图与新实现曾在同一输入中比较，精确 390 × 844 和 844 × 390 证据已保存；`design-qa.md` 未发现 P0、P1 或 P2 视觉问题。
+- 尚未完成：从当前中国大陆工作站执行公开 URL GET、远端 WebKit 冒烟、中国大陆实际可达性，以及真实 iPhone/Android 验收。实体设备仍须验证安全区、Safari 动态工具栏、系统软键盘、麦克风权限和中断、主屏安装，以及 Wi-Fi/蜂窝网络表现。
 
-本节不得填写或推断部署 ID、生产提交、发布时间或线上响应；这些信息只能在实际部署并验证后追加。
+## 10. 2026-09-08 2.2.0 生产发布记录
 
-## 10. 2026-09-03 生产发布记录
+- 已验证部署源提交：`dcaf18701891a77f59b2d58042823f173e2b7b0f`。
+- Preview 部署：`dpl_WkQVPYnKDT9MDQhgvxPFCrz27jYD`，不可变 URL <https://speakmate-55q5fdjt9-lirongouyang522-3492s-projects.vercel.app>；Vercel inspect 显示目标为 Preview、状态为 Ready，创建时间为 2026-09-08 13:17:54 CST。
+- Preview 已晋升。Production 部署：`dpl_635uQRg99PiT8eUBqU9X5sJoYAt8`，不可变 URL <https://speakmate-otr5hnill-lirongouyang522-3492s-projects.vercel.app>；目标为 Production、状态为 Ready，创建时间为 2026-09-08 13:25:12 CST（05:25:12 UTC）。
+- 规范生产别名包含 <https://speakmate-pwa.vercel.app>；第二次 alias inspect 在 Vercel 控制面确认该域名解析到上述 Production 部署。
+- 回滚目标保留为上一版已验证部署 `dpl_FwV45ugpo992BTjuktFUUq6ZTsG8`。
+
+### 控制面通过但公网验证受阻
+
+Vercel 控制面的构建、Ready 状态、Preview 晋升和 Production 别名验证均通过；这只证明平台已接收并指向正确部署，不证明本工作站已成功访问公开 HTTPS 内容。
+
+当前中国大陆工作站的验证结果如下：
+
+- 系统 DNS 为 `*.vercel.app` 返回被污染的 `157.240.12.50`。
+- Google DoH 返回 Vercel A 记录 `216.198.79.131` 和 `64.29.17.131`。
+- 直接 `vercel curl` 超时。
+- 对两个 DoH A 记录分别使用 `curl --resolve` 时，TLS 连接均被重置。
+- 所选 in-app browser 导航也超时。
+
+因此以下项目**没有完成且不得标记为通过**：公开首页与 `/api/v1/health` 等 GET、线上游客主流程、远端 WebKit 冒烟、中国大陆可达性、iPhone 硬件验收。不要把网络失败解释为已证明的应用执行错误，也不要把 Vercel `Ready` 解释为公网体验通过。
+
+### 仍需用户在实体设备完成
+
+1. iPhone 分别使用 Wi-Fi 与蜂窝网络在 Safari 打开 <https://speakmate-pwa.vercel.app>，确认首页、`/api/v1/health`、`/scenes?category=social&level=B1&duration=5` 与 `/install` 可访问。
+2. 在 Safari 完成游客首次引导、文字对话、反馈展开和报告；允许麦克风后再完成一次真实录音，并测试来电/切后台后的恢复。
+3. 按“分享 → 添加到主屏幕”安装，从主屏幕启动，复测安全区、动态 Safari 工具栏、软件键盘、退出返回和离线壳。
+4. Android 用 Chrome 重复首页、筛选、文字/录音、报告与“安装应用/添加到主屏幕”，并检查系统返回和横屏。
+5. 若任一大陆网络无法稳定访问，先绑定可控自有域名并做多省运营商监测；仍不达标时切换到已备案的大陆托管方案。
+
+## 11. 2026-09-03 生产发布记录
 
 - 生产 URL：<https://speakmate-pwa.vercel.app>
 - 当前 Vercel 部署 ID：`dpl_AUENsa2CW3fP76zjdS65QxNUcvuM`
@@ -153,7 +182,7 @@ Vercel 官方说明指出，未使用其中国合作网络的部署在中国大�
 
 当前中国大陆网络的浏览器自动化无法直接完成线上 UI 复测：系统 DNS 将 `*.vercel.app` 解析到非 Vercel 地址，Chromium/WebKit 均在导航阶段超时；同一部署经独立 HTTPS 客户端及 Vercel 部署状态检查正常。这是域名网络可达性限制，不是页面或 API 执行失败。上线前仍需用实际 iPhone 的 Wi-Fi 和蜂窝网络分别测试；若不稳定，下一步是绑定用户自有域名，或采用完成 ICP 备案的大陆镜像。
 
-## 11. 2026-09-05 生产发布记录
+## 12. 2026-09-05 生产发布记录
 
 - 公共生产 URL：<https://speakmate-pwa.vercel.app>
 - Vercel 部署 ID：`dpl_FwV45ugpo992BTjuktFUUq6ZTsG8`

@@ -113,10 +113,20 @@ The IAB console contained 0 warnings and 0 errors during this walkthrough. The 3
 - The five skips are explicit capability partitions: Chromium omits the iPhone-only install-copy case; Playwright WebKit cannot expose Safari Full Keyboard Access for sequential link focus; the audio-only MediaRecorder mock targets Chromium; two Service Worker offline-cache cases target Chromium production behavior.
 - The first Windows `pnpm test:e2e` emitted all 88 pass/skip results but its Playwright-owned Next.js server did not terminate. Re-running against a separately started production server via `PLAYWRIGHT_BASE_URL` exited 0 with the same 83/5 result. This is recorded as a Windows test-server teardown limitation, not a test failure.
 
+## Deployment and reachability evidence
+
+- Verified deployed source commit: `dcaf18701891a77f59b2d58042823f173e2b7b0f`.
+- Preview deployment `dpl_WkQVPYnKDT9MDQhgvxPFCrz27jYD` at <https://speakmate-55q5fdjt9-lirongouyang522-3492s-projects.vercel.app> was inspected as Preview / Ready, created 2026-09-08 13:17:54 CST.
+- The preview was promoted to Production deployment `dpl_635uQRg99PiT8eUBqU9X5sJoYAt8` at <https://speakmate-otr5hnill-lirongouyang522-3492s-projects.vercel.app>, inspected as Production / Ready, created 2026-09-08 13:25:12 CST (05:25:12 UTC).
+- Canonical aliases include <https://speakmate-pwa.vercel.app>. A second alias inspection confirmed in the Vercel control plane that this canonical domain resolves to the same Production deployment.
+- Rollback remains available through the previously verified deployment `dpl_FwV45ugpo992BTjuktFUUq6ZTsG8`.
+
+The Vercel control-plane checks passed, but this China-mainland workstation could not complete public-content verification: system DNS returned the poisoned address `157.240.12.50`; Google DoH returned Vercel A records `216.198.79.131` and `64.29.17.131`; direct `vercel curl` timed out; `curl --resolve` to either official A record was reset during TLS; and in-app-browser navigation timed out. Therefore public GETs, the deployed guest flow, remote WebKit smoke, China-mainland reachability, and iPhone hardware validation are **not passed or claimed** here. This network limitation does not alter the independently completed local visual comparison and interaction QA.
+
 ## Release follow-ups, not design-QA blockers
 
 - There are no open P0, P1, or P2 visual findings in the inspected 2.2.0 states.
-- Public-release verification still must repeat the guest smoke flow and WebKit checks against the canonical deployment, then record the actual deployment ID, commit and UTC/CST timestamps.
+- Public-release verification from a network that can reach the canonical deployment still must complete the homepage, health, filtered-scenes and install GETs, the guest smoke flow, and a remote WebKit check.
 - Physical iPhone and Android testing remains necessary for hardware safe areas, Safari dynamic toolbar, real software keyboard, Full Keyboard Access, hardware microphone permission and recording interruption, standalone installation, and China-mainland Wi-Fi/cellular reachability. Automated viewports and screenshots cannot establish those device facts.
 
 final result: passed
