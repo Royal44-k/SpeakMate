@@ -82,6 +82,7 @@ let databasePromise: Promise<IDBPDatabase<SpeakMateDbSchema>> | undefined
 export function getDatabase(): Promise<IDBPDatabase<SpeakMateDbSchema>> {
   if (databasePromise) return databasePromise
   let blocked = false
+  let migrationFailure: Error | undefined
   let rejectBlocked: (reason: Error) => void
   const blockedPromise = new Promise<never>((_resolve, reject) => {
     rejectBlocked = reject
@@ -159,7 +160,16 @@ export function getDatabase(): Promise<IDBPDatabase<SpeakMateDbSchema>> {
           }
           for (const note of notes)
             await transaction.objectStore('notebook').put(note)
-        })().catch(() => {
+        })().catch((cause: unknown) => {
+          const ambiguous =
+            cause instanceof Error &&
+            cause.message === 'MIGRATION_PROFILE_AMBIGUOUS'
+          migrationFailure = new Error(
+            ambiguous
+              ? 'MIGRATION_PROFILE_AMBIGUOUS: 旧记录缺少个人资料且包含多个归属，无法自动迁移。原有数据已保留；请保留此浏览器数据并联系支持进行人工恢复，不要清空站点数据。'
+              : 'DATABASE_MIGRATION_FAILED: 本地数据升级失败，原有数据已保留。请保留此浏览器数据并联系支持进行人工恢复，不要清空站点数据。',
+            { cause },
+          )
           try {
             transaction.abort()
           } catch {
@@ -195,7 +205,7 @@ export function getDatabase(): Promise<IDBPDatabase<SpeakMateDbSchema>> {
     blockedPromise,
   ]).catch((error: unknown) => {
     if (databasePromise === pending) databasePromise = undefined
-    throw error
+    throw migrationFailure ?? error
   })
   databasePromise = pending
   return pending

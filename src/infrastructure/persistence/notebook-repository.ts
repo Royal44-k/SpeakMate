@@ -8,7 +8,14 @@ import {
   notebookIdentityMap,
 } from './notebook-data'
 import { put, type DataState, type LocalStoragePort } from './storage'
-import { isoSchema, notebookSchema } from './backup-schemas'
+import { favoriteSchema, isoSchema, notebookSchema } from './backup-schemas'
+import { validateNotebookRelations } from './data-invariants'
+
+function validateNotebookWrite(state: DataState): void {
+  for (const note of state.notebook) notebookSchema.parse(note)
+  for (const favorite of state.favorites) favoriteSchema.parse(favorite)
+  validateNotebookRelations(state)
+}
 
 export interface NotebookRepository {
   get(id: string): Promise<NotebookEntry | undefined>
@@ -43,10 +50,12 @@ export function bridgeFavorite(
   if (existing?.deletedAt) return // Only explicit notebook.restore can revive a deleted bridge.
   if (existing?.favoriteIds.includes(favorite.id)) {
     syncFavorites(state, existing)
+    validateNotebookWrite(state)
     return // Repeated compatibility save must not overwrite edited text/snapshots.
   }
   put(state.notebook, existing ? mergeNote(existing, candidate) : candidate)
   put(state.favorites, favorite)
+  validateNotebookWrite(state)
 }
 
 function syncFavorites(state: DataState, note: NotebookEntry): void {
@@ -110,8 +119,8 @@ export function createNotebookRepository(
             ? mergeNote(sameId, entry)
             : entry
         put(state.notebook, merged)
-        notebookIdentityMap(state.notebook)
         syncFavorites(state, merged)
+        validateNotebookWrite(state)
         return merged
       }),
     remove: (id, at) =>
@@ -122,6 +131,7 @@ export function createNotebookRepository(
         note.deletedAt = at
         note.updatedAt = at
         syncFavorites(state, note)
+        validateNotebookWrite(state)
       }),
     restore: (id, at) =>
       storage.change((state) => {
@@ -131,6 +141,7 @@ export function createNotebookRepository(
         delete note.deletedAt
         note.updatedAt = at
         syncFavorites(state, note)
+        validateNotebookWrite(state)
         return note
       }),
   }

@@ -45,6 +45,48 @@ function unique<T>(items: T[], key: (item: T) => string, label: string): void {
   )
 }
 
+/** Shared by notebook writes and whole-backup validation, without requiring staged history to be complete. */
+export function validateNotebookRelations(state: DataState): void {
+  const sessions = new Map(state.sessions.map((item) => [item.id, item]))
+  const turns = new Map(state.turns.map((item) => [item.id, item]))
+  notebookIdentityMap(state.notebook)
+  for (const note of state.notebook) {
+    requireValid(
+      state.profile[0]?.id === note.profileId,
+      'BROKEN_PROFILE_REFERENCE',
+    )
+    requireValid(
+      note.normalizedText === normalizeNotebookText(note.text) &&
+        !!note.normalizedText,
+      'INVALID_NORMALIZED_TEXT',
+    )
+    unique(note.sources, (source) => source.id, 'NOTE_SOURCE')
+    unique(note.favoriteIds, (id) => id, 'FAVORITE_BRIDGE')
+    for (const source of note.sources) {
+      if (source.sessionId && sessions.has(source.sessionId))
+        requireValid(
+          sessions.get(source.sessionId)?.profileId === note.profileId,
+          'SOURCE_OWNER_MISMATCH',
+        )
+      if (source.turnId && turns.has(source.turnId) && source.sessionId)
+        requireValid(
+          turns.get(source.turnId)?.sessionId === source.sessionId,
+          'SOURCE_CONTEXT_MISMATCH',
+        )
+    }
+  }
+  unique(
+    state.notebook,
+    (note) => stableId(note.profileId, note.normalizedText),
+    'NORMALIZED_NOTE',
+  )
+  unique(
+    state.notebook.flatMap((note) => note.favoriteIds),
+    (id) => id,
+    'FAVORITE_BRIDGE',
+  )
+}
+
 /** Authoritative links are strict; history pointers may outlive deleted sessions/turns. */
 export function validateRelations(state: DataState): void {
   for (const [name, rows] of Object.entries(state))
@@ -79,38 +121,7 @@ export function validateRelations(state: DataState): void {
     (turn) => stableId(turn.sessionId, String(turn.index)),
     'TURN_INDEX',
   )
-  for (const note of state.notebook) {
-    owns(note.profileId)
-    requireValid(
-      note.normalizedText === normalizeNotebookText(note.text) &&
-        !!note.normalizedText,
-      'INVALID_NORMALIZED_TEXT',
-    )
-    unique(note.sources, (source) => source.id, 'NOTE_SOURCE')
-    unique(note.favoriteIds, (id) => id, 'FAVORITE_BRIDGE')
-    for (const source of note.sources) {
-      if (source.sessionId && sessions.has(source.sessionId))
-        requireValid(
-          sessions.get(source.sessionId)?.profileId === note.profileId,
-          'SOURCE_OWNER_MISMATCH',
-        )
-      if (source.turnId && turns.has(source.turnId) && source.sessionId)
-        requireValid(
-          turns.get(source.turnId)?.sessionId === source.sessionId,
-          'SOURCE_CONTEXT_MISMATCH',
-        )
-    }
-  }
-  unique(
-    state.notebook,
-    (note) => stableId(note.profileId, note.normalizedText),
-    'NORMALIZED_NOTE',
-  )
-  unique(
-    state.notebook.flatMap((note) => note.favoriteIds),
-    (id) => id,
-    'FAVORITE_BRIDGE',
-  )
+  validateNotebookRelations(state)
   const checkProvenance = (
     provenance: NonNullable<LearningEvent['provenance']>,
     owner: string,

@@ -36,11 +36,29 @@ describe('v1 upgrade safety', () => {
     })
     await old.put('favorites', golden.favorites[0])
     old.close()
-    await expect(getDatabase()).rejects.toThrow()
+    const opening = getDatabase()
+    await expect(opening).rejects.toMatchObject({
+      message: expect.stringContaining('MIGRATION_PROFILE_AMBIGUOUS'),
+      cause: expect.objectContaining({
+        message: 'MIGRATION_PROFILE_AMBIGUOUS',
+      }),
+    })
+    await expect(opening).rejects.toThrow('保留')
+    await expect(opening).rejects.toThrow('人工恢复')
+    await expect(opening).rejects.toThrow('不要清空')
     const stillV1 = await openDB(DATABASE_NAME, 1)
+    expect(stillV1.version).toBe(1)
     expect(stillV1.objectStoreNames.contains('notebook')).toBe(false)
-    expect(await stillV1.count('sessions')).toBe(2)
-    expect(await stillV1.count('favorites')).toBe(1)
+    expect(await stillV1.getAll('profile')).toEqual([])
+    expect(await stillV1.getAll('sessions')).toEqual([
+      {
+        ...golden.sessions[0],
+        id: 'ambiguous_session',
+        profileId: 'another_owner',
+      },
+      golden.sessions[0],
+    ])
+    expect(await stillV1.getAll('favorites')).toEqual([golden.favorites[0]])
     await stillV1.delete('sessions', 'ambiguous_session')
     stillV1.close()
     expect((await getDatabase()).version).toBe(2)
@@ -132,6 +150,131 @@ describe.each([
   ['memory', createMemoryRepositories],
   ['indexeddb', createIndexedDbRepositories],
 ] as const)('%s notebook bridge', (_name, create) => {
+  it.each(['notebook', 'favorite'] as const)(
+    'rejects %s source-union overflow atomically and leaves backup and learning usable',
+    async (path) => {
+      const repository = create()
+      const profile = await repository.profiles.ensureGuestProfile()
+      await repository.favorites.save(golden.favorites[0])
+      const note = (await repository.notebook.list())[0]
+      await repository.notebook.save({
+        ...note,
+        sources: [
+          ...note.sources,
+          ...Array.from({ length: 999 }, (_, i) => ({
+            id: `source_${i}`,
+            kind: 'manual' as const,
+            originalText: note.text,
+            createdAt: note.createdAt,
+          })),
+        ],
+      })
+      const before = await repository.exportLearnerData()
+      const write =
+        path === 'notebook'
+          ? repository.notebook.save({
+              ...note,
+              id: 'new_note',
+              favoriteIds: [],
+              sources: [
+                {
+                  id: 'extra_source',
+                  kind: 'manual',
+                  originalText: note.text,
+                  createdAt: note.createdAt,
+                },
+              ],
+            })
+          : repository.favorites.save({
+              ...golden.favorites[0],
+              id: 'extra_favorite',
+            })
+      await expect(write).rejects.toThrow()
+      const after = await repository.exportLearnerData()
+      expect({ ...after, exportedAt: before.exportedAt }).toEqual(before)
+      await repository.learning.recordEvent({
+        id: 'still_learning',
+        profileId: profile.id,
+        type: 'notebook-added',
+        noteId: note.id,
+        occurredAt: '2026-09-09T00:00:00.000Z',
+        dateKey: '2026-09-09',
+      })
+      expect(
+        (await repository.exportLearnerData()).learningEvents,
+      ).toHaveLength(1)
+    },
+  )
+
+  it('rejects punctuation-only favorite conversion without creating a guest or blocking later learning', async () => {
+    const repository = create()
+    await expect(
+      repository.favorites.save({ ...golden.favorites[0], expression: '...' }),
+    ).rejects.toThrow('normalizedText')
+    expect(await repository.profiles.get()).toBeUndefined()
+    expect((await repository.exportLearnerData()).notebook).toEqual([])
+    await repository.favorites.save(golden.favorites[0])
+    const note = (await repository.notebook.list())[0]
+    await repository.learning.recordEvent({
+      id: 'valid_after_reject',
+      profileId: note.profileId,
+      type: 'notebook-added',
+      noteId: note.id,
+      occurredAt: '2026-09-09T00:00:00.000Z',
+      dateKey: '2026-09-09',
+    })
+    expect((await repository.exportLearnerData()).learningEvents).toHaveLength(
+      1,
+    )
+  })
+
+  it.each(['source-id', 'favorite-bridge', 'source-context'] as const)(
+    'rejects invalid final %s relationships without damaging the existing notebook',
+    async (invalid) => {
+      const repository = create()
+      const profile = await repository.profiles.ensureGuestProfile()
+      await repository.saveTurnAndSession(golden.turns[0], {
+        ...golden.sessions[0],
+        level: 'C1',
+        status: 'active',
+        profileId: profile.id,
+      })
+      await repository.favorites.save(golden.favorites[0])
+      const note = (await repository.notebook.list())[0]
+      const before = await repository.exportLearnerData()
+      const source = {
+        id: 'new_source',
+        kind: 'manual' as const,
+        originalText: 'Another sentence',
+        createdAt: note.createdAt,
+      }
+      await expect(
+        repository.notebook.save({
+          ...note,
+          id: 'other_note',
+          text: 'Another sentence',
+          favoriteIds: invalid === 'favorite-bridge' ? note.favoriteIds : [],
+          sources:
+            invalid === 'source-id'
+              ? [source, source]
+              : invalid === 'source-context'
+                ? [
+                    {
+                      ...source,
+                      turnId: golden.turns[0].id,
+                      sessionId: 'wrong_session',
+                    },
+                  ]
+                : [source],
+        }),
+      ).rejects.toThrow()
+      expect({
+        ...(await repository.exportLearnerData()),
+        exportedAt: before.exportedAt,
+      }).toEqual(before)
+    },
+  )
+
   it('captures available live turn context and level in new favorite sources', async () => {
     const repository = create()
     const profile = await repository.profiles.ensureGuestProfile()
