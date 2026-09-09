@@ -35,7 +35,14 @@ export const localLearningAssistant: LearningAssistantProvider = {
         'self-recall',
       ],
     }
-    if (request.sceneId !== 'dining-01')
+    const remainingDining = [
+      'dining-02',
+      'dining-03',
+      'dining-04',
+      'dining-05',
+      'dining-06',
+    ].includes(request.sceneId ?? '')
+    if (request.sceneId !== 'dining-01' && !remainingDining)
       return {
         ...base,
         status: 'unknown',
@@ -43,8 +50,11 @@ export const localLearningAssistant: LearningAssistantProvider = {
         explanationZh:
           '此场景尚无已收录解析。可以保存原文、写笔记或自行回忆，不生成含义或评分。',
       }
-    const { coffeeAnalysis } = await import('./coffee')
-    const entries = coffeeAnalysis
+    const catalog = remainingDining
+      ? (await import('./dining')).diningAnalysis
+      : (await import('./coffee')).coffeeAnalysis
+    const entries = catalog
+      .filter((e) => e.sceneId === request.sceneId)
       .map((e) => analysisEntrySchema.parse(e))
       .filter((e) => e.review.state === 'model-reviewed')
     const normalized = normalizeAcceptedForm(request.text)
@@ -76,7 +86,7 @@ export const localLearningAssistant: LearningAssistantProvider = {
           status: 'partial',
           entries: partial,
           explanationZh:
-            '仅找到部分单词的咖啡情境义，不代表整句解析正确，也不确认该句中这些词的实际含义。',
+            '仅找到部分单词的本场景情境义，不代表整句解析正确，也不确认该句中这些词的实际含义。',
         }
       : {
           ...base,
