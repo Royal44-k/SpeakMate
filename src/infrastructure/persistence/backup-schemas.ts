@@ -170,14 +170,12 @@ export const sessionSchema = z
     const pack = session.gradedDialogue?.pack
     if (
       pack &&
-      (pack.sceneId !== session.sceneId ||
-        pack.contentVersion !== session.sceneVersion ||
-        pack.level !== session.level)
+      (pack.sceneId !== session.sceneId || pack.level !== session.level)
     )
       ctx.addIssue({
         code: 'custom',
         message:
-          'GRADED_SNAPSHOT_MISMATCH: 保存的场景、等级或内容版本与练习记录不一致。',
+          'GRADED_SNAPSHOT_MISMATCH: 保存的语料场景或等级与练习记录不一致。',
       })
   })
 export const turnSchema = z.strictObject({

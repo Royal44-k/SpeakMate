@@ -248,8 +248,28 @@ function step(
   return state
 }
 
+const unreviewedMessage =
+  'DIALOGUE_UNREVIEWED: 此内容尚未完成逐项模型辅助阅读，不能恢复或继续练习。'
+
+/** A restored selected pack has the same editorial gate as a newly created one. */
+function isReviewedSelection(pack: GradedPack, variantId: string): boolean {
+  return (
+    pack.variants.find((v) => v.id === variantId)?.review.state ===
+      'model-reviewed' &&
+    pack.questions.every(
+      (q) =>
+        q.review.state === 'model-reviewed' &&
+        q.answers.every((a) => a.review.state === 'model-reviewed'),
+    )
+  )
+}
+
 export const dialogueSnapshotSchema = snapshotShape.superRefine(
   (snapshot, ctx) => {
+    if (!isReviewedSelection(snapshot.pack, snapshot.state.variantId)) {
+      ctx.addIssue({ code: 'custom', message: unreviewedMessage })
+      return
+    }
     try {
       let expected = initialState(
         snapshot.pack,
@@ -304,17 +324,8 @@ export function createDialogue(
   options: { mode: DialogueMode; variantId: string },
 ): DialogueResult {
   const selected = gradedPackSchema.parse(pack)
-  const variant = selected.variants.find((v) => v.id === options.variantId)
-  if (
-    !variant ||
-    variant.review.state !== 'model-reviewed' ||
-    selected.questions.some(
-      (q) =>
-        q.review.state !== 'model-reviewed' ||
-        q.answers.some((a) => a.review.state !== 'model-reviewed'),
-    )
-  )
-    throw new Error('DIALOGUE_UNREVIEWED: 此内容尚未完成逐项模型辅助阅读。')
+  if (!isReviewedSelection(selected, options.variantId))
+    throw new Error(unreviewedMessage)
   return result({
     schemaVersion: 1,
     pack: selected,

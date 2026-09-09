@@ -9,6 +9,54 @@ import {
 } from './graded-dialogue'
 
 describe('graded coffee contract and state machine', () => {
+  it.each(['question', 'answer', 'variant'] as const)(
+    'rejects a restored draft %s at every dialogue entry point',
+    async (kind) => {
+      const loaded = await localContentProvider.load({
+        sceneId: 'dining-01',
+        level: 'A1',
+      })
+      if (loaded.status !== 'available') throw Error('missing')
+      const opening = createDialogue(loaded.pack, {
+        mode: 'short',
+        variantId: 'counter',
+      })
+      const restored = structuredClone(opening.snapshot)
+      if (kind === 'question') restored.pack.questions[0].review.state = 'draft'
+      if (kind === 'answer')
+        restored.pack.questions[0].answers[0].review.state = 'draft'
+      if (kind === 'variant') restored.pack.variants[0].review.state = 'draft'
+      expect(dialogueSnapshotSchema.safeParse(restored).success).toBe(false)
+      expect(() => dialogueSuggestions(restored)).toThrow(/DIALOGUE_UNREVIEWED/)
+      expect(() =>
+        advanceDialogue(restored, { text: 'An Americano, please.' }),
+      ).toThrow(/DIALOGUE_UNREVIEWED/)
+      expect(() =>
+        createDialogue(restored.pack, { mode: 'short', variantId: 'counter' }),
+      ).toThrow(/DIALOGUE_UNREVIEWED/)
+      expect(dialogueSuggestions(opening.snapshot)).toHaveLength(2)
+      expect(
+        advanceDialogue(opening.snapshot, { text: 'An Americano, please.' })
+          .confirmation,
+      ).toBe('exact')
+    },
+  )
+
+  it('does not reject a reviewed selection merely because another variant is draft', async () => {
+    const loaded = await localContentProvider.load({
+      sceneId: 'dining-01',
+      level: 'A1',
+    })
+    if (loaded.status !== 'available') throw Error('missing')
+    loaded.pack.variants[1].review.state = 'draft'
+    const run = createDialogue(loaded.pack, {
+      mode: 'short',
+      variantId: 'counter',
+    })
+    expect(dialogueSnapshotSchema.safeParse(run.snapshot).success).toBe(true)
+    expect(dialogueSuggestions(run.snapshot)).toHaveLength(2)
+  })
+
   it('keeps the existing canonical scene identity instead of storing its slug as an ID', async () => {
     const loaded = await localContentProvider.load({
       sceneId: 'dining-01',

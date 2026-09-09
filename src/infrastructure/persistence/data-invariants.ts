@@ -109,7 +109,6 @@ export function validateRelations(state: DataState): void {
     if (session.gradedDialogue)
       requireValid(
         session.gradedDialogue.pack.sceneId === session.sceneId &&
-          session.gradedDialogue.pack.contentVersion === session.sceneVersion &&
           session.gradedDialogue.pack.level === session.level,
         'GRADED_SNAPSHOT_MISMATCH',
       )
