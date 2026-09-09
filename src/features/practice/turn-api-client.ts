@@ -49,7 +49,7 @@ export async function submitTurn(
       sceneSnapshot: submission.scene,
       level: submission.scene.level,
       turnIndex: submission.turnIndex,
-      recentTurns: submission.history.slice(-8),
+      recentTurns: submission.history.slice(-40),
       completedGoalIds: submission.completedGoalIds,
     }),
   )

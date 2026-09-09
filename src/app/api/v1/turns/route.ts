@@ -93,7 +93,7 @@ const sessionSchema = z.object({
         text: z.string().max(500),
       }),
     )
-    .max(8),
+    .max(40),
   completedGoalIds: z.array(z.string().max(100)).max(20),
   sceneSnapshot: sceneSnapshotSchema.optional(),
 })
@@ -131,7 +131,12 @@ function requestIsSameOrigin(request: Request): boolean {
   const origin = request.headers?.get?.('origin')
   if (!origin || !request.url) return true
   try {
-    return new URL(origin).origin === new URL(request.url).origin
+    const incoming = new URL(origin)
+    const internal = new URL(request.url)
+    // Next may normalize the request URL to localhost behind the HTTP listener.
+    // The actual Host still identifies the origin used by this browser request.
+    const host = request.headers.get('host') ?? internal.host
+    return incoming.protocol === internal.protocol && incoming.host === host
   } catch {
     return false
   }

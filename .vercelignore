@@ -6,4 +6,6 @@ design-qa.md
 APP_SPEC.md
 playwright-report/
 test-results/
+test-results-new-round/
 coverage/
+artifacts/

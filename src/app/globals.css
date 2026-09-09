@@ -17,17 +17,16 @@ html {
 }
 
 body {
+  width: min(100%, var(--content-max));
   min-height: 100dvh;
-  margin: 0;
+  margin: 0 auto;
   background: var(--color-paper);
 }
 
 :root[data-update-notice-visible='true'] body {
   padding-bottom: calc(
-    var(--update-notice-height) +
-    var(--nav-height) +
-    env(safe-area-inset-bottom) +
-    12px
+    var(--update-notice-height) + var(--nav-height) +
+      env(safe-area-inset-bottom) + 12px
   );
 }
 
@@ -90,10 +89,8 @@ a {
   display: grid;
   min-height: 100dvh;
   place-items: center;
-  padding:
-    max(32px, env(safe-area-inset-top))
-    max(24px, env(safe-area-inset-right))
-    max(32px, env(safe-area-inset-bottom))
+  padding: max(32px, env(safe-area-inset-top))
+    max(24px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom))
     max(24px, env(safe-area-inset-left));
   background:
     radial-gradient(circle at 82% 18%, rgb(221 239 253 / 80%), transparent 34%),

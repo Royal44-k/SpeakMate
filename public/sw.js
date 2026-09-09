@@ -1,4 +1,4 @@
-const SHELL_CACHE = 'speakmate-v2.2.0-shell-r2'
+const SHELL_CACHE = 'speakmate-v2.3.0-shell-r1'
 const STATIC_ROUTES = [
   '/',
   '/install',

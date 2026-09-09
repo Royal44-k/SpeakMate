@@ -10,7 +10,7 @@ test('restores the latest active scene after refresh', async ({ page }) => {
 
   await page.reload()
   await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
-  await expect(page.getByText(/room|nights|stay/i)).toBeVisible()
+  await expect(page.locator('blockquote')).toContainText(/room|nights|stay/i)
 })
 
 test('falls back to keyboard when microphone permission is denied', async ({ page }) => {

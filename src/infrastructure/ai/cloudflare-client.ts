@@ -1,6 +1,10 @@
 import { z } from 'zod'
 
-import type { ConversationInput, ConversationResult } from '@/domain/ai/contracts'
+import type {
+  ConversationInput,
+  ConversationResult,
+} from '@/domain/ai/contracts'
+import { normalizeUtterance } from '@/domain/ai/dialogue-guide'
 
 import { buildConversationMessages } from './prompt-builder'
 
@@ -9,7 +13,10 @@ export const ALLOWED_ASR_MODELS = [
   '@cf/openai/whisper-large-v3-turbo',
 ] as const
 export const ALLOWED_LLM_MODELS = ['@cf/zai-org/glm-4.7-flash'] as const
-const ALLOWED_MODELS = new Set<string>([...ALLOWED_ASR_MODELS, ...ALLOWED_LLM_MODELS])
+const ALLOWED_MODELS = new Set<string>([
+  ...ALLOWED_ASR_MODELS,
+  ...ALLOWED_LLM_MODELS,
+])
 
 export interface CloudflareAiConfig {
   accountId: string
@@ -40,7 +47,11 @@ const conversationPayloadSchema = z.object({
     corrected: z.string().max(500).nullable(),
     naturalAlternative: z.string().max(500).nullable(),
     explanationZh: z.string().min(1).max(500),
-    issueTags: z.array(z.enum(['grammar', 'vocabulary', 'register', 'clarity', 'strategy'])).max(2),
+    issueTags: z
+      .array(
+        z.enum(['grammar', 'vocabulary', 'register', 'clarity', 'strategy']),
+      )
+      .max(2),
   }),
   progress: z.object({
     completedGoalIds: z.array(z.string().max(100)),
@@ -67,13 +78,21 @@ async function fetchWithTimeout(
   externalSignal?: AbortSignal,
 ) {
   const controller = new AbortController()
-  const timeout = setTimeout(() => controller.abort(new DOMException('Timed out', 'TimeoutError')), timeoutMs)
+  const timeout = setTimeout(
+    () => controller.abort(new DOMException('Timed out', 'TimeoutError')),
+    timeoutMs,
+  )
   const abort = () => controller.abort(externalSignal?.reason)
   externalSignal?.addEventListener('abort', abort, { once: true })
   try {
     return await fetchImpl(url, { ...init, signal: controller.signal })
   } catch (error) {
-    if (controller.signal.aborted) throw new CloudflareAiError('Cloudflare AI request timed out', undefined, true)
+    if (controller.signal.aborted)
+      throw new CloudflareAiError(
+        'Cloudflare AI request timed out',
+        undefined,
+        true,
+      )
     throw error
   } finally {
     clearTimeout(timeout)
@@ -83,9 +102,17 @@ async function fetchWithTimeout(
 
 async function parseEnvelope(response: Response) {
   if (!response.ok) {
-    throw new CloudflareAiError(`Cloudflare AI returned ${response.status}`, response.status, response.status === 429 || response.status >= 500)
+    throw new CloudflareAiError(
+      `Cloudflare AI returned ${response.status}`,
+      response.status,
+      response.status === 429 || response.status >= 500,
+    )
   }
-  const body = await response.json() as { success?: boolean; result?: unknown; errors?: unknown }
+  const body = (await response.json()) as {
+    success?: boolean
+    result?: unknown
+    errors?: unknown
+  }
   if (body.success === false || body.result === undefined) {
     throw new CloudflareAiError('Cloudflare AI returned an invalid envelope')
   }
@@ -113,7 +140,7 @@ export async function transcribeWithCloudflare(
     fetchImpl,
     signal,
   )
-  const result = await parseEnvelope(response) as { text?: unknown }
+  const result = (await parseEnvelope(response)) as { text?: unknown }
   if (typeof result.text !== 'string' || !result.text.trim()) {
     throw new CloudflareAiError('Cloudflare ASR returned no speech')
   }
@@ -141,7 +168,9 @@ export async function generateWithCloudflare(
 ): Promise<ConversationResult> {
   assertAllowedModel(config.llmModel)
   const baseMessages = buildConversationMessages(input)
-  async function requestCompletion(messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }>) {
+  async function requestCompletion(
+    messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
+  ) {
     const response = await fetchWithTimeout(
       endpoint(config, config.llmModel),
       {
@@ -175,20 +204,43 @@ export async function generateWithCloudflare(
     const repairedRaw = await requestCompletion([
       ...baseMessages,
       { role: 'assistant', content: firstRaw.slice(0, 1_500) },
-      { role: 'user', content: 'The previous response did not match the required JSON contract. Return one corrected JSON object only.' },
+      {
+        role: 'user',
+        content:
+          'The previous response did not match the required JSON contract. Return one corrected JSON object only.',
+      },
     ])
     try {
       payload = parsePayload(repairedRaw)
     } catch {
-      throw new CloudflareAiError('Cloudflare LLM returned invalid structured output')
+      throw new CloudflareAiError(
+        'Cloudflare LLM returned invalid structured output',
+      )
     }
   }
   const knownGoals = new Set(input.scene.goals.map((goal) => goal.id))
+  if (
+    input.history.some(
+      (item) =>
+        normalizeUtterance(item.text) ===
+        normalizeUtterance(payload.reply.text),
+    )
+  ) {
+    throw new CloudflareAiError('Cloudflare LLM repeated a previous utterance')
+  }
   return {
     ...payload,
     progress: {
       ...payload.progress,
-      completedGoalIds: payload.progress.completedGoalIds.filter((id) => knownGoals.has(id)),
+      completedGoalIds: [
+        ...new Set([
+          ...input.completedGoalIds,
+          ...payload.progress.completedGoalIds,
+        ]),
+      ].filter((id) => knownGoals.has(id)),
+      shouldOfferCompletion:
+        payload.progress.shouldOfferCompletion ||
+        input.turnIndex + 1 >= input.scene.recommendedTurns,
     },
     provider: 'cloudflare',
     degraded: false,

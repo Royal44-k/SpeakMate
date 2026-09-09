@@ -57,7 +57,7 @@ describe('ServiceWorkerRegistration', () => {
     vi.stubEnv('NODE_ENV', 'production')
     const worker = {
       postMessage: vi.fn(),
-      scriptURL: 'https://speakmate.test/sw.js?v=2.2.0',
+      scriptURL: 'https://speakmate.test/sw.js?v=2.3.0',
     } as unknown as WaitingWorker
     installWaitingWorker(worker)
 
@@ -91,21 +91,21 @@ describe('ServiceWorkerRegistration', () => {
     vi.stubEnv('NODE_ENV', 'production')
     const worker = {
       postMessage: vi.fn(),
-      scriptURL: 'https://speakmate.test/sw.js?v=2.2.0',
+      scriptURL: 'https://speakmate.test/sw.js?v=2.3.0',
     } as unknown as WaitingWorker
     const { register } = installWaitingWorker(worker)
 
     render(<ServiceWorkerRegistrationComponent />)
 
     await screen.findByRole('status')
-    expect(register).toHaveBeenCalledWith('/sw.js?v=2.2.0')
+    expect(register).toHaveBeenCalledWith('/sw.js?v=2.3.0')
   })
 
   it('adds document scroll clearance only while the update Snackbar is visible', async () => {
     vi.stubEnv('NODE_ENV', 'production')
     const worker = {
       postMessage: vi.fn(),
-      scriptURL: 'https://speakmate.test/sw.js?v=2.2.0',
+      scriptURL: 'https://speakmate.test/sw.js?v=2.3.0',
     } as unknown as WaitingWorker
     installWaitingWorker(worker)
 

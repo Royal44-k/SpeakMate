@@ -102,7 +102,7 @@ test('guards a draft from browser back until the learner confirms exit', async (
   await expect(dialog).toBeVisible()
   await page.getByRole('button', { name: '继续练习' }).click()
   await expect(dialog).toBeHidden()
-  await expect(page).toHaveURL(/\/session\/new/)
+  await expect(page).toHaveURL(/\/session\/session_[^?]+\?scene=hotel-check-in&level=B1$/)
   await expect(page.getByLabel('英文内容')).toHaveValue(
     'Hello, I have a reservation.',
   )

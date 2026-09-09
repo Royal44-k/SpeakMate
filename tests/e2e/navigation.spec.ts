@@ -210,7 +210,7 @@ test('a new session supports guarded and clean exits without an incorrect URL', 
   await page.getByRole('link', { name: '退出本次练习' }).click()
 
   await expect(page).toHaveURL(
-    /\/session\/new\?scene=hotel-check-in&level=B1$/,
+    /\/session\/session_[^?]+\?scene=hotel-check-in&level=B1$/,
   )
   const dialog = page.getByRole('alertdialog', { name: '退出本次练习？' })
   await expect(dialog).toBeVisible()

@@ -11,6 +11,7 @@ import { recommendScene } from '@/domain/learning/recommendation'
 import type { LearnerProfile } from '@/domain/learning/types'
 import type { PracticeSession } from '@/domain/practice/types'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
+import { CEFR_LEVELS, type CefrLevel } from '@/domain/scenes/types'
 import {
   createIndexedDbRepositories,
   type Repositories,
@@ -33,6 +34,27 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
   )
   const [data, setData] = useState<PracticeHomeData>()
   const [loadError, setLoadError] = useState(false)
+  const [levelError, setLevelError] = useState('')
+  const [savingLevel, setSavingLevel] = useState(false)
+
+  async function changeLevel(level: CefrLevel) {
+    if (!data || savingLevel) return
+    setSavingLevel(true)
+    setLevelError('')
+    try {
+      const profile = {
+        ...data.profile,
+        level,
+        updatedAt: new Date().toISOString(),
+      }
+      await repository.profiles.save(profile)
+      setData({ ...data, profile })
+    } catch {
+      setLevelError('水平未能保存，请再试一次。')
+    } finally {
+      setSavingLevel(false)
+    }
+  }
 
   useEffect(() => {
     let active = true
@@ -55,7 +77,9 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     return (
       <AppShell activeDestination="practice">
         <main className={styles.state}>
-          <h1 data-page-title tabIndex={-1}>暂时无法读取练习记录</h1>
+          <h1 data-page-title tabIndex={-1}>
+            暂时无法读取练习记录
+          </h1>
           <p>请刷新页面重试。你的本地记录不会因此被清除。</p>
         </main>
       </AppShell>
@@ -102,18 +126,61 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
       <div className={styles.page}>
         <header className={styles.header}>
           <div>
-            <p>GOOD EVENING</p>
-            <h1 data-page-title tabIndex={-1}>{`今天，开口说 ${data.profile.dailyMinutes} 分钟`}</h1>
+            <p>DAILY PRACTICE</p>
+            <h1
+              data-page-title
+              tabIndex={-1}
+            >{`今天，开口说 ${data.profile.dailyMinutes} 分钟`}</h1>
           </div>
-          <span>{level}</span>
+          <label className={styles.levelPicker}>
+            当前水平
+            <select
+              aria-label="当前练习水平"
+              value={data.profile.level}
+              disabled={savingLevel}
+              onChange={(event) =>
+                void changeLevel(event.target.value as CefrLevel)
+              }
+            >
+              {CEFR_LEVELS.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
         </header>
+        {levelError ? (
+          <p className={styles.levelError} role="alert">
+            {levelError}
+          </p>
+        ) : null}
+        {recoverable ? (
+          <section className={styles.newPractice} aria-label="新一轮练习">
+            <h2>换个开场，再练一次</h2>
+            <p>
+              {scene.titleZh} · 使用当前 {data.profile.level}{' '}
+              水平。原对话保留，随时可以继续。
+            </p>
+            <Link
+              href={`/session/new?scene=${scene.slug}&level=${data.profile.level}`}
+            >
+              开启新一轮对话
+              <ArrowRight aria-hidden size={20} />
+            </Link>
+          </section>
+        ) : null}
         <section
           className={styles.recommendation}
           aria-labelledby="recommendation-title"
         >
           <div className={styles.image}>
-            <SceneImage image={scene.image} priority />
-            <span>
+            <SceneImage
+              image={scene.image}
+              priority
+              className={styles.imageFrame}
+            />
+            <span className={styles.badge}>
               <Sparkle aria-hidden size={16} weight="fill" />
               {recoverable ? '继续练习' : '今日推荐'}
             </span>
@@ -122,6 +189,9 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
             <p>{scene.titleEn}</p>
             <h2 id="recommendation-title">{scene.titleZh}</h2>
             <div className={styles.meta}>
+              <span>
+                {recoverable ? '原对话' : '练习水平'} {level}
+              </span>
               <span>
                 <Clock aria-hidden size={16} />
                 {scene.estimatedMinutes} 分钟
@@ -141,9 +211,9 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
         <section className={styles.explore}>
           <div>
             <p>还想练点别的？</p>
-            <h2>42 个场景，覆盖生活里的每一次开口。</h2>
+            <h2>{SCENE_CATALOG.length} 个场景，覆盖生活里的每一次开口。</h2>
           </div>
-          <Link href="/scenes">浏览全部场景</Link>
+          <Link href={`/scenes?level=${data.profile.level}`}>浏览全部场景</Link>
         </section>
       </div>
     </AppShell>

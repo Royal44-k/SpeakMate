@@ -1,4 +1,19 @@
-# SpeakMate Design QA
+# SpeakMate 设计与交互验收
+
+## 2.3.0 移动布局与练习闭环修复（2026-09-09）
+
+依据用户的咖啡点单 C1 链接及首页截图开展复现、代码定位、修复和回归，延续既定深蓝/珊瑚/纸白视觉，而非重新设计品牌。
+
+- 全路由使用最大 480 CSS px 手机画布；退出练习、浏览器返回、直接访问详情和横竖屏均检查，未通过隐藏根溢出掩盖问题。
+- 首页中文标题缩小并调整行距；图片框从被错误 CSS 压缩的 16px 恢复为实际图片比例，继续练习徽章与标题分离。
+- 新一轮入口位于继续旧对话上方；当前档案等级可选择，旧会话单独标注原等级，避免混淆。
+- 搜索支持显式搜索、清空、手机搜索键和中文输入；横向筛选留在容器内，交互目标至少 44px、间距至少 8px。
+- 对话提供渐进展开的当前任务表达参考，结束入口明确，刷新恢复反馈，失败保留可编辑草稿，完成后可不刷新直接再练。
+- 对照尼尔森十项原则的逐项记录、完整测试结果和能力边界见 [2.3.0 发布记录](docs/releases/2.3.0-mobile-dialogue-repair.md)。
+
+视觉与交互证据：`artifacts/2.3.0/home-390.png`、`home-resume-390.png`、`search-390.png`、`next-reply-390.png`、`next-reply-scrolled-390.png`、`exit-detail-1280.png`；使用 `node scripts/capture-mobile-repair.mjs` 重现。截图不作为手机真机麦克风、系统键盘或中国大陆网络验收的替代。
+
+## 2.2.0 历史验收记录（保留原文）
 
 - Last updated: 2026-09-08
 - Scope: mobile PWA core speaking flow, with the hotel check-in scene at B1

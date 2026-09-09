@@ -4,7 +4,11 @@ async function submitTextTurn(page: Page, text: string) {
   await page.getByRole('button', { name: '改用键盘输入' }).click()
   await page.getByLabel('英文内容').fill(text)
   await page.getByRole('button', { name: '提交这一轮' }).click()
-  await expect(page.getByRole('button', { name: '改用键盘输入' })).toBeEnabled()
+  await expect(
+    page
+      .getByRole('button', { name: '改用键盘输入' })
+      .or(page.getByRole('button', { name: '完成场景并查看复盘' })),
+  ).toBeEnabled()
 }
 
 test('guest completes a first text-assisted session and leaves the report through either destination', async ({
@@ -31,7 +35,9 @@ test('guest completes a first text-assisted session and leaves the report throug
   await expect(page.getByText('这句话表达得很清楚')).toBeVisible()
 
   await page.getByRole('button', { name: '完成场景并查看复盘' }).click()
-  await expect(page.getByRole('heading', { name: '这次真的开口了。' })).toBeVisible()
+  await expect(
+    page.getByRole('heading', { name: '这次真的开口了。' }),
+  ).toBeVisible()
   await expect(page.getByRole('link', { name: '查看本次复盘' })).toBeVisible()
   await expect(page.getByRole('button', { name: '开始录音' })).toHaveCount(0)
 

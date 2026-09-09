@@ -38,6 +38,8 @@ export function SceneLibraryRoute({
   >()
   const [profileLoadFailed, setProfileLoadFailed] = useState(false)
   const [profileLoadAttempt, setProfileLoadAttempt] = useState(0)
+  const [levelSaveError, setLevelSaveError] = useState(false)
+  const levelSaveQueue = useRef(Promise.resolve())
   const searchTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
     undefined,
   )
@@ -111,6 +113,11 @@ export function SceneLibraryRoute({
 
   return (
     <>
+      {levelSaveError ? (
+        <p className="route-recovery" role="alert">
+          本次筛选已生效，但默认水平未能保存。请重新选择水平再试。
+        </p>
+      ) : null}
       {profileLoadFailed ? (
         <section className="route-recovery" role="alert">
           <p>无法读取本地水平，已暂用 A2。你的学习记录没有被删除。</p>
@@ -128,6 +135,19 @@ export function SceneLibraryRoute({
       <SceneLibrary
         initialState={initialState}
         onStateChange={handleStateChange}
+        onLevelChange={(level) => {
+          levelSaveQueue.current = levelSaveQueue.current
+            .then(async () => {
+              const profile = await profiles.ensureGuestProfile()
+              await profiles.save({
+                ...profile,
+                level,
+                updatedAt: new Date().toISOString(),
+              })
+              setLevelSaveError(false)
+            })
+            .catch(() => setLevelSaveError(true))
+        }}
       />
     </>
   )

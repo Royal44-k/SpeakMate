@@ -1,4 +1,5 @@
-import { MagnifyingGlass } from '@phosphor-icons/react'
+import { MagnifyingGlass, X } from '@phosphor-icons/react'
+import { useRef, useState } from 'react'
 
 import {
   CEFR_LEVELS,
@@ -27,6 +28,7 @@ export function SceneFilters({
   level,
   duration,
   onSearch,
+  onSubmitSearch,
   onCategory,
   onLevel,
   onDuration,
@@ -36,22 +38,65 @@ export function SceneFilters({
   level: CefrLevel
   duration: DurationFilter
   onSearch(value: string): void
+  onSubmitSearch(value: string): void
   onCategory(value: SceneCategory | 'all'): void
   onLevel(value: CefrLevel): void
   onDuration(value: DurationFilter): void
 }) {
+  const inputRef = useRef<HTMLInputElement>(null)
+  const [composition, setComposition] = useState<string | null>(null)
   return (
     <div className={styles.filters}>
-      <label className={styles.search}>
-        <MagnifyingGlass aria-hidden size={20} />
-        <span className={styles.srOnly}>搜索场景</span>
+      <form
+        className={styles.search}
+        role="search"
+        onSubmit={(event) => {
+          event.preventDefault()
+          if (composition === null) onSubmitSearch(search)
+        }}
+      >
+        <label className={styles.srOnly} htmlFor="scene-search">
+          搜索场景
+        </label>
         <input
+          id="scene-search"
+          ref={inputRef}
+          type="search"
+          enterKeyHint="search"
           aria-label="搜索场景"
-          value={search}
-          onChange={(event) => onSearch(event.target.value)}
-          placeholder="搜索中文、英文或关键词"
+          value={composition ?? search}
+          onCompositionStart={(event) =>
+            setComposition(event.currentTarget.value)
+          }
+          onCompositionEnd={(event) => {
+            setComposition(null)
+            onSearch(event.currentTarget.value)
+          }}
+          onChange={(event) =>
+            composition === null
+              ? onSearch(event.target.value)
+              : setComposition(event.target.value)
+          }
+          placeholder="搜场景、需求或关键词"
         />
-      </label>
+        <button
+          type="button"
+          aria-label="清空搜索"
+          className={styles.clearSearch}
+          disabled={!search && !composition}
+          onClick={() => {
+            setComposition(null)
+            onSubmitSearch('')
+            inputRef.current?.focus()
+          }}
+        >
+          <X aria-hidden size={19} />
+        </button>
+        <button type="submit" className={styles.submitSearch} aria-label="搜索">
+          <MagnifyingGlass aria-hidden size={18} />
+          <span>搜索</span>
+        </button>
+      </form>
       <HorizontalFilterGroup label="场景分类" selectedValue={category}>
         {categories.map((item) => (
           <button

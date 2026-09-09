@@ -1,11 +1,6 @@
 'use client'
 
-import {
-  Check,
-  Headphones,
-  Lightbulb,
-  SpinnerGap,
-} from '@phosphor-icons/react'
+import { Check, Headphones, Lightbulb, SpinnerGap } from '@phosphor-icons/react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -13,6 +8,7 @@ import { FeedbackSheet } from '@/components/feedback-sheet/feedback-sheet'
 import { SceneImage } from '@/components/scene-image/scene-image'
 import { SpeechControl } from '@/components/speech-control/speech-control'
 import type { AdaptedScene } from '@/domain/scenes/types'
+import { replySuggestions } from '@/domain/ai/dialogue-guide'
 
 import { ExitGuard, exitGuardState } from './exit-guard'
 import styles from './practice-stage.module.css'
@@ -44,6 +40,17 @@ export function PracticeStage({
     hasTranscript ||
     (Boolean(practice.audio) && practice.machine.errorCode !== 'NO_SPEECH')
   const completedGoals = practice.completedGoalIds ?? []
+  const turnLimitReached = practice.machine.turnIndex >= scene.recommendedTurns
+  const canComplete =
+    turnLimitReached ||
+    Boolean(practice.latestResult?.progress.shouldOfferCompletion) ||
+    completedGoals.length >= scene.goals.length
+  const suggestions = replySuggestions(
+    scene,
+    practice.aiReply,
+    completedGoals,
+    practice.turns.map((turn) => turn.learnerText),
+  )
   const dockMode = isReviewing
     ? 'text'
     : ['submitting', 'receiving', 'completing'].includes(status)
@@ -83,9 +90,16 @@ export function PracticeStage({
           <Check aria-hidden size={34} weight="bold" />
         </span>
         <p>SESSION COMPLETE</p>
-        <h1 data-page-title tabIndex={-1}>这次真的开口了。</h1>
+        <h1 data-page-title tabIndex={-1}>
+          这次真的开口了。
+        </h1>
         <p>练习已保存在本机，现在可以查看可解释的表达复盘。</p>
         <Link href={`/session/${practice.sessionId}/report`}>查看本次复盘</Link>
+        <Link
+          href={`/session/new?scene=${scene.slug}&level=${scene.level}&round=${practice.sessionId}`}
+        >
+          再练一轮新对话
+        </Link>
       </main>
     )
   }
@@ -93,13 +107,12 @@ export function PracticeStage({
   return (
     <main className={styles.stage}>
       <header className={styles.topbar}>
-        <ExitGuard
-          state={guardState}
-          fallbackHref={resolvedExitHref}
-        />
+        <ExitGuard state={guardState} fallbackHref={resolvedExitHref} />
         <div>
           <p>SpeakMate</p>
-          <h1 data-page-title tabIndex={-1}>Dialogue Stage</h1>
+          <h1 data-page-title tabIndex={-1}>
+            Dialogue Stage
+          </h1>
           <small>场景对话练习 · {scene.titleZh}</small>
         </div>
         <span>
@@ -107,7 +120,7 @@ export function PracticeStage({
             {Math.min(practice.machine.turnIndex + 1, scene.recommendedTurns)} /{' '}
             {scene.recommendedTurns}
           </strong>
-          <small>任务进度</small>
+          <small>{scene.level} · 对话轮次</small>
         </span>
       </header>
 
@@ -132,8 +145,12 @@ export function PracticeStage({
       </div>
 
       <section className={styles.sceneStrip} aria-label="当前对话场景">
-        <SceneImage image={scene.image} priority />
-        <span>你是：{scene.learnerRole}</span>
+        <SceneImage
+          image={scene.image}
+          priority
+          className={styles.sceneImage}
+        />
+        <span className={styles.roleCaption}>你是：{scene.learnerRole}</span>
       </section>
 
       {practice.ephemeral ? (
@@ -159,6 +176,28 @@ export function PracticeStage({
         <blockquote>“{practice.aiReply}”</blockquote>
         <p className={styles.hint}>{practice.aiHint}</p>
       </section>
+
+      {!canComplete && practice.ready ? (
+        <details
+          key={practice.machine.turnIndex}
+          className={styles.replySupport}
+        >
+          <summary>下一句怎么说？</summary>
+          <p>选择一种表达思路，再结合对方的问题，用自己的话回应。</p>
+          {suggestions.length ? (
+            suggestions.map((suggestion) => (
+              <div key={suggestion.text}>
+                <span>{suggestion.label}</span>
+                <p lang="en">{suggestion.text}</p>
+              </div>
+            ))
+          ) : (
+            <p>
+              这些参考表达你已经练过了。试着更换一个细节或补充原因，不必重复原句。
+            </p>
+          )}
+        </details>
+      ) : null}
 
       {practice.latestResult ? (
         <div className={styles.feedbackHolder}>
@@ -188,17 +227,6 @@ export function PracticeStage({
         </section>
       ) : null}
 
-      {practice.latestResult?.progress.shouldOfferCompletion &&
-      status === 'ready' ? (
-        <button
-          type="button"
-          className={styles.completeButton}
-          onClick={() => void practice.completeSession()}
-        >
-          完成场景并查看复盘
-        </button>
-      ) : null}
-
       {!practice.ready ? (
         <div className={styles.loading} role="status">
           正在准备对话舞台…
@@ -206,7 +234,17 @@ export function PracticeStage({
       ) : null}
 
       <div className={styles.practiceDock}>
-        {dockMode === 'text' ? (
+        {canComplete && status === 'ready' ? (
+          <div className={styles.endDock}>
+            <p>本轮已完成，复盘后可以开启新对话。</p>
+            <button
+              type="button"
+              onClick={() => void practice.completeSession()}
+            >
+              完成场景并查看复盘
+            </button>
+          </div>
+        ) : dockMode === 'text' ? (
           <TextReviewDock
             transcript={practice.machine.draftTranscript ?? ''}
             canSubmit={canSubmit}

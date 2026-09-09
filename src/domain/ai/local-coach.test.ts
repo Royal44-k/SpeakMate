@@ -118,12 +118,9 @@ describe('localCoach', () => {
           result.progress.completedGoalIds,
           `${scene.slug} ${level}`,
         ).toContain(scene.goals[0].id)
-        expect(
-          scene.goals[1].completionKeywords.some((keyword) =>
-            result.reply.text.toLowerCase().includes(keyword.toLowerCase()),
-          ),
-          `${scene.slug} ${level}`,
-        ).toBe(true)
+        expect(result.reply.hintZh, `${scene.slug} ${level}`).toContain(
+          scene.goals[1].labelZh,
+        )
         expect(wordCount, `${scene.slug} ${level}`).toBeGreaterThanOrEqual(
           scene.constraints.minAiWords,
         )

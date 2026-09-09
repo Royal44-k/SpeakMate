@@ -7,6 +7,23 @@ import {
 } from './machine'
 
 describe('transitionPractice', () => {
+  it('lets the retained review dock edit and resubmit after an API failure', () => {
+    const failed = transitionPractice(
+      { status: 'receiving', turnIndex: 1, draftTranscript: 'Hello.' },
+      { type: 'FAIL', code: 'RATE_LIMITED', message: '稍后重试。' },
+    )
+    const edited = transitionPractice(failed, {
+      type: 'UPDATE_TRANSCRIPT',
+      transcript: 'Could I have a latte?',
+    })
+    expect(edited.draftTranscript).toBe('Could I have a latte?')
+    expect(transitionPractice(edited, { type: 'SUBMIT' }).status).toBe(
+      'submitting',
+    )
+    expect(transitionPractice(failed, { type: 'SUBMIT' }).status).toBe(
+      'submitting',
+    )
+  })
   it('moves from idle through a successful recorded turn', () => {
     let state = transitionPractice(INITIAL_PRACTICE_STATE, {
       type: 'PRESS_RECORD',

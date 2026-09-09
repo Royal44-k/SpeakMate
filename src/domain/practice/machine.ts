@@ -44,7 +44,9 @@ export const INITIAL_PRACTICE_STATE: PracticeState = {
 }
 
 function illegal(state: PracticeState, event: PracticeEvent): never {
-  throw new Error(`Illegal practice transition: ${event.type} from ${state.status}`)
+  throw new Error(
+    `Illegal practice transition: ${event.type} from ${state.status}`,
+  )
 }
 
 export function transitionPractice(
@@ -58,9 +60,9 @@ export function transitionPractice(
       ? 'reviewing'
       : state.status === 'submitting' || state.status === 'receiving'
         ? 'reviewing'
-      : state.status === 'text-only'
-        ? 'text-only'
-        : 'ready'
+        : state.status === 'text-only'
+          ? 'text-only'
+          : 'ready'
     return {
       ...state,
       status: 'recoverable-error',
@@ -73,33 +75,68 @@ export function transitionPractice(
   switch (state.status) {
     case 'idle':
       if (event.type === 'START_SESSION') return { ...state, status: 'ready' }
-      if (event.type === 'PRESS_RECORD') return { ...state, status: 'requesting-permission' }
-      if (event.type === 'ENTER_TEXT') return { ...state, status: 'reviewing', draftTranscript: event.transcript ?? '' }
+      if (event.type === 'PRESS_RECORD')
+        return { ...state, status: 'requesting-permission' }
+      if (event.type === 'ENTER_TEXT')
+        return {
+          ...state,
+          status: 'reviewing',
+          draftTranscript: event.transcript ?? '',
+        }
       if (event.type === 'COMPLETE') return { ...state, status: 'completing' }
       return illegal(state, event)
     case 'ready':
-      if (event.type === 'PRESS_RECORD') return { ...state, status: 'requesting-permission' }
-      if (event.type === 'ENTER_TEXT') return { ...state, status: 'reviewing', draftTranscript: event.transcript ?? '' }
+      if (event.type === 'PRESS_RECORD')
+        return { ...state, status: 'requesting-permission' }
+      if (event.type === 'ENTER_TEXT')
+        return {
+          ...state,
+          status: 'reviewing',
+          draftTranscript: event.transcript ?? '',
+        }
       if (event.type === 'COMPLETE') return { ...state, status: 'completing' }
       return illegal(state, event)
     case 'requesting-permission':
-      if (event.type === 'PERMISSION_GRANTED') return { ...state, status: 'recording', errorCode: undefined, errorMessage: undefined }
-      if (event.type === 'PERMISSION_DENIED') return { ...state, status: 'text-only', errorCode: 'MICROPHONE_DENIED', errorMessage: '无法使用麦克风，你仍可输入英文继续练习。' }
+      if (event.type === 'PERMISSION_GRANTED')
+        return {
+          ...state,
+          status: 'recording',
+          errorCode: undefined,
+          errorMessage: undefined,
+        }
+      if (event.type === 'PERMISSION_DENIED')
+        return {
+          ...state,
+          status: 'text-only',
+          errorCode: 'MICROPHONE_DENIED',
+          errorMessage: '无法使用麦克风，你仍可输入英文继续练习。',
+        }
       if (event.type === 'CANCEL') return { ...state, status: 'ready' }
       return illegal(state, event)
     case 'recording':
-      if (event.type === 'RECORDING_READY') return { ...state, status: 'reviewing', draftTranscript: event.transcript ?? '' }
+      if (event.type === 'RECORDING_READY')
+        return {
+          ...state,
+          status: 'reviewing',
+          draftTranscript: event.transcript ?? '',
+        }
       if (event.type === 'CANCEL') return { ...state, status: 'ready' }
       return illegal(state, event)
     case 'reviewing':
-      if (event.type === 'UPDATE_TRANSCRIPT') return { ...state, draftTranscript: event.transcript }
-      if (event.type === 'SUBMIT' && (state.draftTranscript?.trim() || event.hasAudio)) {
+      if (event.type === 'UPDATE_TRANSCRIPT')
+        return { ...state, draftTranscript: event.transcript }
+      if (
+        event.type === 'SUBMIT' &&
+        (state.draftTranscript?.trim() || event.hasAudio)
+      ) {
         return { ...state, status: 'submitting' }
       }
-      if (event.type === 'CANCEL') return { ...state, status: 'ready', draftTranscript: undefined }
+      if (event.type === 'CANCEL')
+        return { ...state, status: 'ready', draftTranscript: undefined }
       return illegal(state, event)
     case 'submitting':
-      if (event.type === 'SUBMISSION_ACCEPTED') return { ...state, status: 'receiving' }
+      if (event.type === 'SUBMISSION_ACCEPTED')
+        return { ...state, status: 'receiving' }
       return illegal(state, event)
     case 'receiving':
       if (event.type === 'RESULT_RECEIVED') {
@@ -110,11 +147,26 @@ export function transitionPractice(
       }
       return illegal(state, event)
     case 'text-only':
-      if (event.type === 'ENTER_TEXT') return { ...state, status: 'reviewing', draftTranscript: event.transcript ?? '' }
-      if (event.type === 'PRESS_RECORD') return { ...state, status: 'requesting-permission' }
+      if (event.type === 'ENTER_TEXT')
+        return {
+          ...state,
+          status: 'reviewing',
+          draftTranscript: event.transcript ?? '',
+        }
+      if (event.type === 'PRESS_RECORD')
+        return { ...state, status: 'requesting-permission' }
       if (event.type === 'COMPLETE') return { ...state, status: 'completing' }
       return illegal(state, event)
     case 'recoverable-error':
+      if (
+        state.retryStatus === 'reviewing' &&
+        (event.type === 'UPDATE_TRANSCRIPT' || event.type === 'SUBMIT')
+      ) {
+        return transitionPractice(
+          { ...state, status: 'reviewing', errorMessage: undefined },
+          event,
+        )
+      }
       if (event.type === 'RETRY') {
         return {
           ...state,
@@ -124,11 +176,18 @@ export function transitionPractice(
           retryStatus: undefined,
         }
       }
-      if (event.type === 'ENTER_TEXT') return { ...state, status: 'reviewing', draftTranscript: event.transcript ?? state.draftTranscript ?? '' }
-      if (event.type === 'CANCEL') return { status: 'ready', turnIndex: state.turnIndex }
+      if (event.type === 'ENTER_TEXT')
+        return {
+          ...state,
+          status: 'reviewing',
+          draftTranscript: event.transcript ?? state.draftTranscript ?? '',
+        }
+      if (event.type === 'CANCEL')
+        return { status: 'ready', turnIndex: state.turnIndex }
       return illegal(state, event)
     case 'completing':
-      if (event.type === 'SESSION_COMPLETED') return { ...state, status: 'completed' }
+      if (event.type === 'SESSION_COMPLETED')
+        return { ...state, status: 'completed' }
       return illegal(state, event)
     case 'completed':
       return illegal(state, event)

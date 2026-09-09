@@ -76,6 +76,30 @@ describe('PracticeStage audio review', () => {
 })
 
 describe('PracticeStage dock ownership', () => {
+  it('ends the conversation when all task goals have been completed', () => {
+    setPracticeState('ready', { turnIndex: 2 })
+    practiceState.value = {
+      ...practiceState.value,
+      completedGoalIds: scene.goals.map((goal) => goal.id),
+    }
+    render(<PracticeStage scene={scene} sessionId="session-text" />)
+    expect(
+      screen.queryByRole('button', { name: '改用键盘输入' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: '完成场景并查看复盘' }),
+    ).toBeEnabled()
+  })
+  it('replaces input with completion after the final turn even when restoring without a result', () => {
+    setPracticeState('ready', { turnIndex: scene.recommendedTurns })
+    render(<PracticeStage scene={scene} sessionId="session-text" />)
+    expect(
+      screen.queryByRole('button', { name: '改用键盘输入' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: '完成场景并查看复盘' }),
+    ).toBeEnabled()
+  })
   it('renders the text review as the only practice dock', () => {
     setPracticeState('reviewing', { draftTranscript: 'Hello' })
 
@@ -87,12 +111,10 @@ describe('PracticeStage dock ownership', () => {
     expect(
       screen.queryByRole('button', { name: '开始录音' }),
     ).not.toBeInTheDocument()
-    expect(
-      screen.getByRole('button', { name: '提交这一轮' }),
-    ).toBeEnabled()
+    expect(screen.getByRole('button', { name: '提交这一轮' })).toBeEnabled()
   })
 
-  it.each(['submitting', 'receiving']) (
+  it.each(['submitting', 'receiving'])(
     'renders only processing controls while %s',
     (status) => {
       setPracticeState(status, { draftTranscript: 'Hello' })
@@ -176,9 +198,10 @@ describe('PracticeStage completion', () => {
 
     render(<PracticeStage scene={scene} sessionId="session-text" />)
 
-    expect(
-      screen.getByRole('link', { name: '查看本次复盘' }),
-    ).toHaveAttribute('href', '/session/session-text/report')
+    expect(screen.getByRole('link', { name: '查看本次复盘' })).toHaveAttribute(
+      'href',
+      '/session/session-text/report',
+    )
     expect(
       screen.getByRole('heading', { level: 1, name: '这次真的开口了。' }),
     ).toHaveAttribute('data-page-title')
@@ -186,21 +209,26 @@ describe('PracticeStage completion', () => {
       screen.getByRole('heading', { level: 1, name: '这次真的开口了。' }),
     ).toHaveAttribute('tabindex', '-1')
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
-    expect(screen.queryByRole('region', { name: '语音输入' })).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('region', { name: '语音输入' }),
+    ).not.toBeInTheDocument()
   })
 
   it('keeps a restored completed session out of the ready practice controls', () => {
     setPracticeState('ready')
 
-    render(
-      <PracticeStage scene={scene} sessionId="session-text" completed />,
-    )
+    render(<PracticeStage scene={scene} sessionId="session-text" completed />)
 
-    expect(
-      screen.getByRole('link', { name: '查看本次复盘' }),
-    ).toHaveAttribute('href', '/session/session-text/report')
+    expect(screen.getByRole('link', { name: '查看本次复盘' })).toHaveAttribute(
+      'href',
+      '/session/session-text/report',
+    )
     expect(screen.queryByRole('button')).not.toBeInTheDocument()
-    expect(screen.queryByRole('region', { name: '语音输入' })).not.toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: '提交这一轮' })).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('region', { name: '语音输入' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: '提交这一轮' }),
+    ).not.toBeInTheDocument()
   })
 })

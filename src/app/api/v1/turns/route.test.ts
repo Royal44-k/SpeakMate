@@ -30,6 +30,24 @@ function requestWith(form: FormData) {
 }
 
 describe('POST /api/v1/turns', () => {
+  it('accepts a same-origin request when Next normalizes its internal hostname', async () => {
+    const form = new FormData()
+    form.set('transcript', 'Hello.')
+    form.set('session', sessionInput())
+    form.set('idempotencyKey', '3e908fa5-9bcc-44b9-aad3-347f92710a51')
+    const response = await POST(
+      new Request('http://localhost:3114/api/v1/turns', {
+        method: 'POST',
+        body: form,
+        headers: {
+          host: '127.0.0.1:3114',
+          origin: 'http://127.0.0.1:3114',
+          'sec-fetch-site': 'same-origin',
+        },
+      }),
+    )
+    expect(response.status).toBe(200)
+  })
   it('serves a valid text-only turn locally without cloud secrets', async () => {
     const form = new FormData()
     form.set('transcript', 'Hello, I have a reservation under Chen.')

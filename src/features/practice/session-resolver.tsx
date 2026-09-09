@@ -25,6 +25,7 @@ interface SessionResolverProps {
   queryScene?: string
   queryLevel?: string
   queryFrom?: string
+  queryRound?: string
   repositories?: Repositories
 }
 
@@ -64,6 +65,7 @@ export function SessionResolver({
   queryScene,
   queryLevel,
   queryFrom,
+  queryRound,
   repositories,
 }: SessionResolverProps) {
   const [repository] = useState(
@@ -74,7 +76,7 @@ export function SessionResolver({
   })
   const requestKey =
     requestedId === 'new'
-      ? `new:${queryScene ?? 'hotel-check-in'}:${queryLevelOrDefault(queryLevel)}`
+      ? `new:${queryScene ?? 'hotel-check-in'}:${queryLevelOrDefault(queryLevel)}:${queryRound?.slice(0, 100) ?? ''}`
       : `session:${requestedId}`
 
   useEffect(() => {
@@ -152,7 +154,9 @@ export function SessionResolver({
   if (resolution.status === 'error') {
     return (
       <main className={styles.state} role="alert">
-        <h1 data-page-title tabIndex={-1}>暂时无法恢复这次练习</h1>
+        <h1 data-page-title tabIndex={-1}>
+          暂时无法恢复这次练习
+        </h1>
         <p>{resolution.message}</p>
         <Link href="/practice">返回今日练习</Link>
       </main>
@@ -161,7 +165,7 @@ export function SessionResolver({
 
   return (
     <PracticeStage
-      key={`${resolution.sessionId}:${resolution.scene.id}:${resolution.scene.version}:${resolution.scene.level}`}
+      key={`${resolution.requestKey}:${resolution.scene.id}:${resolution.scene.version}:${resolution.scene.level}`}
       scene={resolution.scene}
       sessionId={resolution.sessionId}
       completed={resolution.completed}

@@ -4,6 +4,7 @@ import type {
   ConversationResult,
   FeedbackIssueTag,
 } from './contracts'
+import { guideQuestions, normalizeUtterance } from './dialogue-guide'
 
 interface Correction {
   pattern: RegExp
@@ -77,42 +78,50 @@ function includesWholeKeyword(text: string, keyword: string) {
 }
 
 function buildReply(input: ConversationInput, completedGoalIds: string[]) {
-  const nextGoalIndex = input.scene.goals.findIndex(
+  let nextGoalIndex = input.scene.goals.findIndex(
     (goal) => !completedGoalIds.includes(goal.id),
   )
-  const nextGoal = input.scene.goals[Math.max(0, nextGoalIndex)]
-  const keyword =
-    nextGoal.completionKeywords.find((candidate) =>
-      input.scene.keywords.some(
-        (levelKeyword) =>
-          levelKeyword.toLowerCase() === candidate.toLowerCase(),
-      ),
-    ) ?? nextGoal.completionKeywords[0]
-  const acknowledgement = input.history.length > 0 ? 'Thanks.' : 'All right.'
-  const templates = {
-    A1: `Please tell me about ${keyword} now.`,
-    A2: `Could you tell me more about ${keyword}, please?`,
-    B1: `${acknowledgement} Could you explain the ${keyword} detail and what you need next?`,
-    B2: `${acknowledgement} Could you clarify the ${keyword} detail and your preferred option?`,
-    C1: `${acknowledgement} Could you clarify the ${keyword} detail, including the main constraint, priority, and trade-off?`,
-  } as const
+  const used = new Set([
+    ...input.history.map((item) => normalizeUtterance(item.text)),
+    normalizeUtterance(input.learnerText),
+  ])
+  let question: string | undefined
+  if (nextGoalIndex >= 0) {
+    for (let offset = 0; offset < input.scene.goals.length; offset++) {
+      const index = (nextGoalIndex + offset) % input.scene.goals.length
+      const options = guideQuestions(input.scene, index)
+      const openingIndex = Math.max(
+        0,
+        input.scene.openingLines.indexOf(input.history[0]?.text ?? ''),
+      )
+      const shift = options.length ? openingIndex % options.length : 0
+      question = [...options.slice(shift), ...options.slice(0, shift)].find(
+        (text) => !used.has(normalizeUtterance(text)),
+      )
+      if (question) {
+        nextGoalIndex = index
+        break
+      }
+    }
+  }
+  const finished =
+    nextGoalIndex < 0 ||
+    input.turnIndex + 1 >= input.scene.recommendedTurns ||
+    !question
   const closing = {
-    A1: 'Thank you. Is there anything else you need?',
-    A2: 'Thank you. Is there anything else you would like to add?',
-    B1: 'Thank you. We have covered the key points. Is there anything else to confirm?',
-    B2: 'Thank you. We have covered the priorities. Is there any final detail you would like to clarify?',
-    C1: 'Thank you. We have covered the competing priorities and practical constraints. Is there any final nuance we should clarify?',
+    A1: 'Thank you. Let us review your practice now.',
+    A2: 'Thank you for practising. Let us review your conversation now.',
+    B1: 'Thank you for the conversation. Let us review your expressions and choose what to practise next.',
+    B2: 'Thank you for working through this situation. Let us review your expressions and identify a useful next step.',
+    C1: 'Thank you for exploring this situation. Let us review how you expressed your ideas and identify opportunities to refine them further.',
   } as const
 
   return {
-    text:
-      nextGoalIndex < 0
-        ? closing[input.scene.level]
-        : templates[input.scene.level],
-    hintZh:
-      nextGoalIndex < 0
-        ? '本场景的关键任务已覆盖，可以结束练习或再补充一个细节。'
-        : `AI 角色“${input.scene.aiRole}”正在确认：${input.scene.goals[nextGoalIndex].labelZh}。可参考关键词 “${keyword}”。`,
+    finished,
+    text: finished ? closing[input.scene.level] : question!,
+    hintZh: finished
+      ? '这一轮练习已结束。查看复盘后，可开启新对话继续挑战。'
+      : `${completedGoalIds.includes(input.scene.goals[nextGoalIndex].id) ? '补充练习' : '下一步'}：${input.scene.goals[nextGoalIndex].labelZh}。可展开“下一句怎么说”组织自己的回应。`,
   }
 }
 
@@ -141,14 +150,12 @@ export const localCoach: ConversationProvider = {
         naturalAlternative: hasCorrection ? corrected : null,
         explanationZh: hasCorrection
           ? explanations.join(' ')
-          : '表达清楚自然，继续把注意力放在完成场景任务上。',
+          : '基础规则检查未发现预设的常见问题；这不代表完整语法或发音评估。请继续回应对方的问题。',
         issueTags: tags,
       },
       progress: {
         completedGoalIds,
-        shouldOfferCompletion:
-          completedGoalIds.length >= input.scene.goals.length ||
-          input.turnIndex + 1 >= input.scene.recommendedTurns,
+        shouldOfferCompletion: reply.finished,
       },
       provider: 'local',
       degraded: true,

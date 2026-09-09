@@ -4,6 +4,8 @@ import { useMemo, useState } from 'react'
 
 import { SCENE_CATALOG } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
+import { searchScenes } from '@/domain/scenes/search-scenes'
+import type { CefrLevel } from '@/domain/scenes/types'
 import { ScrollToTopButton } from '@/components/app-shell/scroll-to-top-button'
 import type { SceneFilterState } from './scene-filter-state'
 import { sceneLibraryHref } from './scene-filter-state'
@@ -14,11 +16,13 @@ import styles from './scene-library.module.css'
 interface SceneLibraryProps {
   initialState: SceneFilterState
   onStateChange?(state: SceneFilterState, source: 'search' | 'filter'): void
+  onLevelChange?(level: CefrLevel): void
 }
 
 export function SceneLibrary({
   initialState,
   onStateChange,
+  onLevelChange,
 }: SceneLibraryProps) {
   const [state, setState] = useState(initialState)
   const incomingHref = sceneLibraryHref(initialState)
@@ -41,33 +45,32 @@ export function SceneLibrary({
   }
 
   const scenes = useMemo(() => {
-    const query = state.search.trim().toLocaleLowerCase()
-    return SCENE_CATALOG.filter((scene) => {
-      if (state.category !== 'all' && scene.category !== state.category)
-        return false
-      if (state.duration !== 'all' && scene.estimatedMinutes !== state.duration)
-        return false
-      if (!query) return true
-      return [scene.titleZh, scene.titleEn, ...scene.keywords[state.level]]
-        .join(' ')
-        .toLocaleLowerCase()
-        .includes(query)
-    }).map((scene) => adaptScene(scene, state.level))
+    return searchScenes(SCENE_CATALOG, state.search)
+      .filter((scene) => {
+        if (state.category !== 'all' && scene.category !== state.category)
+          return false
+        if (
+          state.duration !== 'all' &&
+          scene.estimatedMinutes !== state.duration
+        )
+          return false
+        return true
+      })
+      .map((scene) => adaptScene(scene, state.level))
   }, [state])
   const hasActiveFilters =
     state.search.trim().length > 0 ||
     state.category !== 'all' ||
     state.duration !== 'all'
-  const categoryLabel =
-    {
-      travel: '旅行',
-      dining: '餐饮',
-      daily: '日常',
-      work: '职场',
-      social: '社交',
-      study: '学习',
-      emergency: '应急',
-    }[state.category === 'all' ? 'travel' : state.category]
+  const categoryLabel = {
+    travel: '旅行',
+    dining: '餐饮',
+    daily: '日常',
+    work: '职场',
+    social: '社交',
+    study: '学习',
+    emergency: '应急',
+  }[state.category === 'all' ? 'travel' : state.category]
   const summaryDetails = [
     `当前 ${state.level}`,
     state.category === 'all' ? undefined : categoryLabel,
@@ -83,7 +86,9 @@ export function SceneLibrary({
     <div className={styles.library}>
       <header className={styles.header}>
         <p>SITUATIONS</p>
-        <h1 data-page-title tabIndex={-1}>把英语练进生活里</h1>
+        <h1 data-page-title tabIndex={-1}>
+          把英语练进生活里
+        </h1>
         <span>42 个真实对话场景</span>
       </header>
       <SceneFilters
@@ -92,14 +97,23 @@ export function SceneLibrary({
         level={state.level}
         duration={state.duration}
         onSearch={(search) => updateState({ search }, 'search')}
+        onSubmitSearch={(search) => updateState({ search }, 'filter')}
         onCategory={(category) => updateState({ category }, 'filter')}
-        onLevel={(level) => updateState({ level }, 'filter')}
+        onLevel={(level) => {
+          updateState({ level }, 'filter')
+          onLevelChange?.(level)
+        }}
         onDuration={(duration) => updateState({ duration }, 'filter')}
       />
       <div className={styles.resultBar}>
-        <p><strong>{scenes.length}</strong> 个匹配场景 · {summaryDetails.join(' · ')}</p>
+        <p role="status" aria-live="polite">
+          <strong>{scenes.length}</strong> 个匹配场景 ·{' '}
+          {summaryDetails.join(' · ')}
+        </p>
         {hasActiveFilters && scenes.length > 0 ? (
-          <button type="button" onClick={clearFilters}>清除筛选</button>
+          <button type="button" onClick={clearFilters}>
+            清除筛选
+          </button>
         ) : null}
       </div>
       <div className={styles.grid}>
@@ -111,7 +125,11 @@ export function SceneLibrary({
         <div className={styles.empty}>
           <h2>没有找到这个场景</h2>
           <p>当前条件下没有匹配项，清除筛选后看看全部场景。</p>
-          {hasActiveFilters ? <button type="button" onClick={clearFilters}>清除筛选</button> : null}
+          {hasActiveFilters ? (
+            <button type="button" onClick={clearFilters}>
+              清除筛选
+            </button>
+          ) : null}
         </div>
       ) : null}
       <ScrollToTopButton thresholdViewports={2} />

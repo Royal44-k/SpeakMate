@@ -1,4 +1,5 @@
 import type { AdaptedScene, CefrLevel } from '@/domain/scenes/types'
+import type { ConversationResult } from '@/domain/ai/contracts'
 
 export type PracticeSessionStatus = 'active' | 'completed' | 'abandoned'
 
@@ -14,6 +15,7 @@ export interface PracticeSession {
   updatedAt: string
   completedAt?: string
   completedGoals: string[]
+  openingText?: string
 }
 
 export interface TurnFeedback {
@@ -31,5 +33,6 @@ export interface PracticeTurn {
   aiText: string
   feedback?: TurnFeedback
   degraded?: boolean
+  result?: ConversationResult
   createdAt: string
 }

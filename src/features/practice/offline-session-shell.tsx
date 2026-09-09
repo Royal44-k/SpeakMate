@@ -41,6 +41,7 @@ export function OfflineSessionShell() {
       queryScene={target.scene}
       queryLevel={target.level}
       queryFrom={target.from}
+      queryRound={url.searchParams.get('round') ?? undefined}
     />
   )
 }

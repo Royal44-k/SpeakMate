@@ -18,13 +18,15 @@ const sceneSources: Record<string, string> = {
 export function SceneImage({
   image,
   priority = false,
+  className = '',
 }: {
   image: SceneImageDescriptor
   priority?: boolean
+  className?: string
 }) {
   const src = sceneSources[image.key] ?? sceneSources.travel
   return (
-    <span className={styles.frame}>
+    <span className={`${styles.frame} ${className}`}>
       <Image
         src={src}
         alt={image.altZh}
