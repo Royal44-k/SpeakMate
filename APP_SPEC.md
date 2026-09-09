@@ -6,6 +6,8 @@
 >
 > 更新日期：2026-09-09
 >
+> 当前生产版本：2.3.0；来源提交 `eb2a6e7f76a6d24446e59bec6a0abc86731801d8`；部署 `dpl_EUHHJUXwxLJw7FjFjntkrf2ZE1Fh`。正式健康接口与关键资源已从外部验证；大陆实体手机验收仍待完成。
+>
 > 上一生产版源提交：`83fe5916c0ea72076042b44152a049eeb9252cbf`
 >
 > 上一生产部署（回退点）：`dpl_r7q651yW9C3nbPobrgVmQSRgDBhF`
