@@ -1,12 +1,116 @@
-.controls { display: grid; gap: 12px; }
-.controls h2, .controls h3, .controls p { margin: 0; }
-.controls > p { color: var(--color-ink-500); font-size: .84rem; line-height: 1.65; }
-.exportButton { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--color-atlantic-950); border-radius: var(--radius-pill); background: var(--color-atlantic-950); color: var(--color-white); font-weight: 800; cursor: pointer; }
-.dangerZone { display: grid; gap: 10px; margin-top: 8px; border: 1px solid color-mix(in srgb, var(--color-danger) 24%, transparent); border-radius: var(--radius-md); padding: 16px; }
-.dangerZone h3 { color: var(--color-danger); font-size: 1rem; }
-.dangerZone p { color: var(--color-ink-500); font-size: .78rem; line-height: 1.55; }
-.dangerZone label { color: var(--color-ink-700); font-size: .76rem; font-weight: 750; }
-.dangerZone input { min-height: 46px; border: 1px solid var(--color-border); border-radius: var(--radius-sm); padding: 0 12px; background: var(--color-paper); font: inherit; }
-.dangerZone button { display: inline-flex; min-height: 46px; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--color-danger); border-radius: var(--radius-pill); background: transparent; color: var(--color-danger); font-weight: 800; cursor: pointer; }
-.dangerZone button:disabled { opacity: .4; cursor: not-allowed; }
-.status { color: var(--color-success); font-size: .8rem; font-weight: 700; }
+.controls {
+  display: grid;
+  gap: 12px;
+}
+.controls h2,
+.controls h3,
+.controls p {
+  margin: 0;
+}
+.controls > p {
+  color: var(--color-ink-500);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+.exportButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-atlantic-950);
+  border-radius: var(--radius-pill);
+  background: var(--color-atlantic-950);
+  color: var(--color-white);
+  font-weight: 800;
+  cursor: pointer;
+}
+.dangerZone {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+  border: 1px solid color-mix(in srgb, var(--color-danger) 24%, transparent);
+  border-radius: var(--radius-md);
+  padding: 16px;
+}
+.dangerZone h3 {
+  color: var(--color-danger);
+  font-size: 1rem;
+}
+.dangerZone p {
+  color: var(--color-ink-500);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+.dangerZone label {
+  color: var(--color-ink-700);
+  font-size: 0.76rem;
+  font-weight: 750;
+}
+.dangerZone input {
+  min-height: 46px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0 12px;
+  background: var(--color-paper);
+  font: inherit;
+}
+.dangerZone button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-danger);
+  font-weight: 800;
+  cursor: pointer;
+}
+.dangerZone button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.status {
+  color: var(--color-success);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.restoreZone {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  min-width: 0;
+}
+.restoreZone p,
+.restoreZone li {
+  font-size: 0.8rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+.restoreZone input {
+  width: 100%;
+  min-height: 44px;
+  font: inherit;
+  font-size: 0.8rem;
+}
+.restoreZone button {
+  min-height: 44px;
+  margin: 8px 8px 0 0;
+  padding: 8px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
+  color: var(--color-ink-700);
+  cursor: pointer;
+}
+.restoreZone button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.controls [role='alert'] {
+  color: var(--color-danger);
+}

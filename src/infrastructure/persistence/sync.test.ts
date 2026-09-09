@@ -2,22 +2,60 @@ import { describe, expect, it, vi } from 'vitest'
 
 import type { LearnerDataExport } from './repositories'
 import { mergeGuestData, uploadLearnerData } from './sync'
+import { createMemoryRepositories } from './repositories'
 
 function dataset(sessionId: string, updatedAt: string): LearnerDataExport {
   return {
     schemaVersion: 1,
     exportedAt: updatedAt,
-    sessions: [{
-      id: sessionId, profileId: 'guest', sceneId: 'travel-01', sceneVersion: 1,
-      level: 'A2', status: 'completed', startedAt: updatedAt, updatedAt,
-      completedGoals: [],
-    }],
+    sessions: [
+      {
+        id: sessionId,
+        profileId: 'guest',
+        sceneId: 'travel-01',
+        sceneVersion: 1,
+        level: 'A2',
+        status: 'completed',
+        startedAt: updatedAt,
+        updatedAt,
+        completedGoals: [],
+      },
+    ],
     turns: [],
     favorites: [],
   }
 }
 
 describe('mergeGuestData', () => {
+  it('preserves schema2 notes and immutable learning events without enabling remote writes', async () => {
+    const repository = createMemoryRepositories()
+    const profile = await repository.profiles.ensureGuestProfile()
+    await repository.favorites.save({
+      id: 'favorite_sync',
+      expression: 'Hello!',
+      createdAt: '2026-09-09T00:00:00.000Z',
+      updatedAt: '2026-09-09T00:00:00.000Z',
+    })
+    await repository.learning.recordEvent({
+      id: 'event_sync',
+      type: 'warmup-completed',
+      runId: 'run_sync',
+      profileId: profile.id,
+      recalledNoteIds: [],
+      recalledStarterExpressionIds: ['starter'],
+      occurredAt: '2026-09-09T00:00:00.000Z',
+      dateKey: '2026-09-09',
+    })
+    const local = await repository.exportLearnerData()
+    const merged = mergeGuestData(
+      local,
+      await createMemoryRepositories().exportLearnerData(),
+    )
+    expect(merged.schemaVersion).toBe(2)
+    if (merged.schemaVersion !== 2) throw new Error('lost schema2')
+    expect(merged.notebook[0].text).toBe('Hello!')
+    expect(merged.learningEvents).toHaveLength(1)
+  })
   it('keeps local-only and remote-only learning records', () => {
     const merged = mergeGuestData(
       dataset('session_local', '2026-09-03T09:00:00.000Z'),

@@ -1,6 +1,8 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 
 import type { LearnerDataExport } from './repositories'
+import { exportState, importState, mergeStates } from './backup-merge'
+import { emptyState } from './storage'
 
 function newest<T extends { id: string }>(
   local: T[],
@@ -10,7 +12,8 @@ function newest<T extends { id: string }>(
   const items = new Map<string, T>()
   for (const value of [...remote, ...local]) {
     const existing = items.get(value.id)
-    if (!existing || timestamp(value) >= timestamp(existing)) items.set(value.id, value)
+    if (!existing || timestamp(value) >= timestamp(existing))
+      items.set(value.id, value)
   }
   return [...items.values()]
 }
@@ -21,7 +24,11 @@ function withoutRuntimeAudio<T extends object>(value: T): T {
   return clone
 }
 
-function latestOptional<T>(local: T | undefined, remote: T | undefined, timestamp: (value: T) => string) {
+function latestOptional<T>(
+  local: T | undefined,
+  remote: T | undefined,
+  timestamp: (value: T) => string,
+) {
   if (!local) return remote
   if (!remote) return local
   return timestamp(local) >= timestamp(remote) ? local : remote
@@ -31,11 +38,43 @@ export function mergeGuestData(
   local: LearnerDataExport,
   remote: LearnerDataExport,
 ): LearnerDataExport {
-  const sessions = newest(local.sessions, remote.sessions, (value) => value.updatedAt).map(withoutRuntimeAudio)
-  const turns = newest(local.turns, remote.turns, (value) => value.createdAt).map(withoutRuntimeAudio)
-  const favorites = newest(local.favorites, remote.favorites, (value) => value.updatedAt).map(withoutRuntimeAudio)
-  const profile = latestOptional(local.profile, remote.profile, (value) => value.updatedAt)
-  const settings = latestOptional(local.settings, remote.settings, (value) => value.updatedAt)
+  if (local.schemaVersion === 2 || remote.schemaVersion === 2) {
+    const localState = importState(local, emptyState()).state
+    const merged = mergeStates(
+      localState,
+      importState(remote, localState).state,
+    )
+    if (merged.conflicts.length) throw new Error(merged.conflicts.join('\n'))
+    return exportState(
+      merged.state,
+      [local.exportedAt, remote.exportedAt].sort().at(-1)!,
+    )
+  }
+  const sessions = newest(
+    local.sessions,
+    remote.sessions,
+    (value) => value.updatedAt,
+  ).map(withoutRuntimeAudio)
+  const turns = newest(
+    local.turns,
+    remote.turns,
+    (value) => value.createdAt,
+  ).map(withoutRuntimeAudio)
+  const favorites = newest(
+    local.favorites,
+    remote.favorites,
+    (value) => value.updatedAt,
+  ).map(withoutRuntimeAudio)
+  const profile = latestOptional(
+    local.profile,
+    remote.profile,
+    (value) => value.updatedAt,
+  )
+  const settings = latestOptional(
+    local.settings,
+    remote.settings,
+    (value) => value.updatedAt,
+  )
   return {
     schemaVersion: 1,
     exportedAt: [local.exportedAt, remote.exportedAt].sort().at(-1)!,

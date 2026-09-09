@@ -4,35 +4,65 @@ import type {
   LearnerSettings,
 } from '@/domain/learning/types'
 import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
-
-import { clearDatabase, getDatabase } from './db'
+import type { NotebookEntry, ReviewRecord } from '@/domain/notebook/types'
+import type {
+  DailyPlan,
+  LearningEvent,
+  PointsLedgerEntry,
+  RewardUnlock,
+} from '@/domain/goals/types'
+import type { OutboxItem } from './db'
+import { createGuestProfile } from './identity'
+import {
+  bridgeFavorite,
+  createNotebookRepository,
+  type NotebookRepository,
+} from './notebook-repository'
+import {
+  createMemoryStorage,
+  createIndexedDbStorage,
+  emptyState,
+  put,
+  type LocalStoragePort,
+} from './storage'
+import {
+  createLearningRepository,
+  type LearningRepository,
+} from './learning-repository'
+import {
+  createBackupPort,
+  type RestorePreview,
+  type RestoreResult,
+} from './backup'
+import {
+  profileSchema,
+  sessionSchema,
+  turnSchema,
+  favoriteSchema,
+} from './backup-schemas'
 
 export interface ProfileRepository {
   get(): Promise<LearnerProfile | undefined>
   ensureGuestProfile(): Promise<LearnerProfile>
   save(profile: LearnerProfile): Promise<void>
 }
-
 export interface SessionRepository {
   get(id: string): Promise<PracticeSession | undefined>
   list(): Promise<PracticeSession[]>
   save(session: PracticeSession): Promise<void>
   findRecoverable(): Promise<PracticeSession | null>
 }
-
 export interface TurnRepository {
   list(): Promise<PracticeTurn[]>
   listBySession(sessionId: string): Promise<PracticeTurn[]>
   save(turn: PracticeTurn): Promise<void>
 }
-
 export interface FavoriteRepository {
   list(): Promise<FavoriteExpression[]>
   save(favorite: FavoriteExpression): Promise<void>
   remove(id: string): Promise<void>
 }
-
-export interface LearnerDataExport {
+export interface LearnerDataExportV1 {
   schemaVersion: 1
   exportedAt: string
   profile?: LearnerProfile
@@ -41,221 +71,122 @@ export interface LearnerDataExport {
   favorites: FavoriteExpression[]
   settings?: LearnerSettings
 }
-
+export interface LearnerDataExportV2 extends Omit<
+  LearnerDataExportV1,
+  'schemaVersion'
+> {
+  schemaVersion: 2
+  notebook: NotebookEntry[]
+  reviews: ReviewRecord[]
+  dailyPlans: DailyPlan[]
+  learningEvents: LearningEvent[]
+  pointsLedger: PointsLedgerEntry[]
+  rewardUnlocks: RewardUnlock[]
+  outbox: OutboxItem[]
+}
+export type LearnerDataExport = LearnerDataExportV1 | LearnerDataExportV2
 export interface Repositories {
   profiles: ProfileRepository
   sessions: SessionRepository
   turns: TurnRepository
   favorites: FavoriteRepository
-  saveTurnAndSession(turn: PracticeTurn, session: PracticeSession): Promise<void>
-  exportLearnerData(): Promise<LearnerDataExport>
+  notebook: NotebookRepository
+  learning: LearningRepository
+  previewRestore(input: string | File): Promise<RestorePreview>
+  restoreLearnerData(preview: RestorePreview): Promise<RestoreResult>
+  saveTurnAndSession(
+    turn: PracticeTurn,
+    session: PracticeSession,
+  ): Promise<void>
+  exportLearnerData(): Promise<LearnerDataExportV2>
   clearLearnerData(): Promise<void>
 }
 
-function createGuestProfile(): LearnerProfile {
-  const timestamp = new Date().toISOString()
+function createRepositories(storage: LocalStoragePort): Repositories {
+  const notebook = createNotebookRepository(storage)
   return {
-    id: `guest_${createId()}`,
-    level: 'A2',
-    goals: ['travel'],
-    dailyMinutes: 5,
-    onboardingCompleted: false,
-    createdAt: timestamp,
-    updatedAt: timestamp,
+    profiles: {
+      get: () => storage.read((state) => state.profile[0]),
+      ensureGuestProfile: () =>
+        storage.change((state) => (state.profile[0] ??= createGuestProfile())),
+      save: (profile) =>
+        storage.change((state) => {
+          state.profile = [profileSchema.parse(profile)]
+        }),
+    },
+    sessions: {
+      get: (id) =>
+        storage.read((state) =>
+          state.sessions.find((session) => session.id === id),
+        ),
+      list: () => storage.read((state) => state.sessions),
+      save: (session) =>
+        storage.change((state) =>
+          put(state.sessions, sessionSchema.parse(session) as PracticeSession),
+        ),
+      findRecoverable: () =>
+        storage.read(
+          (state) =>
+            state.sessions
+              .filter((session) => session.status === 'active')
+              .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0] ??
+            null,
+        ),
+    },
+    turns: {
+      list: () => storage.read((state) => state.turns),
+      listBySession: (id) =>
+        storage.read((state) =>
+          state.turns
+            .filter((turn) => turn.sessionId === id)
+            .sort((a, b) => a.index - b.index),
+        ),
+      save: (turn) =>
+        storage.change((state) => put(state.turns, turnSchema.parse(turn))),
+    },
+    favorites: {
+      list: () => storage.read((state) => state.favorites),
+      save: (favorite) =>
+        storage.change((state) =>
+          bridgeFavorite(state, favoriteSchema.parse(favorite)),
+        ),
+      remove: (id) =>
+        storage.change((state) => {
+          state.favorites = state.favorites.filter(
+            (favorite) => favorite.id !== id,
+          )
+          const note = state.notebook.find((item) =>
+            item.favoriteIds.includes(id),
+          )
+          if (note) {
+            const now = new Date().toISOString()
+            note.deletedAt = now
+            note.updatedAt = now
+            state.favorites = state.favorites.filter(
+              (favorite) => !note.favoriteIds.includes(favorite.id),
+            )
+          }
+        }),
+    },
+    notebook,
+    learning: createLearningRepository(storage),
+    ...createBackupPort(storage),
+    saveTurnAndSession: (turn, session) =>
+      storage.change((state) => {
+        if (turn.sessionId !== session.id)
+          throw new Error('TURN_SESSION_MISMATCH')
+        put(state.turns, turnSchema.parse(turn))
+        put(state.sessions, sessionSchema.parse(session) as PracticeSession)
+      }),
+    clearLearnerData: () =>
+      storage.change((state) => {
+        Object.assign(state, emptyState())
+      }),
   }
 }
-
-function createId(): string {
-  return globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)
-}
-
-function byUpdatedAtDescending<T extends { updatedAt: string }>(a: T, b: T): number {
-  return b.updatedAt.localeCompare(a.updatedAt)
-}
-
 export function createMemoryRepositories(): Repositories {
-  let profile: LearnerProfile | undefined
-  let settings: LearnerSettings | undefined
-  const sessions = new Map<string, PracticeSession>()
-  const turns = new Map<string, PracticeTurn>()
-  const favorites = new Map<string, FavoriteExpression>()
-
-  const repositories: Repositories = {
-    profiles: {
-      async get() {
-        return profile ? structuredClone(profile) : undefined
-      },
-      async ensureGuestProfile() {
-        profile ??= createGuestProfile()
-        return structuredClone(profile)
-      },
-      async save(value) {
-        profile = structuredClone(value)
-      },
-    },
-    sessions: {
-      async get(id) {
-        const value = sessions.get(id)
-        return value ? structuredClone(value) : undefined
-      },
-      async list() {
-        return [...sessions.values()].map((value) => structuredClone(value))
-      },
-      async save(value) {
-        sessions.set(value.id, structuredClone(value))
-      },
-      async findRecoverable() {
-        const value = [...sessions.values()]
-          .filter((session) => session.status === 'active')
-          .sort(byUpdatedAtDescending)[0]
-        return value ? structuredClone(value) : null
-      },
-    },
-    turns: {
-      async list() {
-        return [...turns.values()].map((value) => structuredClone(value))
-      },
-      async listBySession(sessionId) {
-        return [...turns.values()]
-          .filter((turn) => turn.sessionId === sessionId)
-          .sort((a, b) => a.index - b.index)
-          .map((value) => structuredClone(value))
-      },
-      async save(value) {
-        turns.set(value.id, structuredClone(value))
-      },
-    },
-    favorites: {
-      async list() {
-        return [...favorites.values()].map((value) => structuredClone(value))
-      },
-      async save(value) {
-        favorites.set(value.id, structuredClone(value))
-      },
-      async remove(id) {
-        favorites.delete(id)
-      },
-    },
-    async saveTurnAndSession(turn, session) {
-      turns.set(turn.id, structuredClone(turn))
-      sessions.set(session.id, structuredClone(session))
-    },
-    async exportLearnerData() {
-      return {
-        schemaVersion: 1,
-        exportedAt: new Date().toISOString(),
-        profile: profile ? structuredClone(profile) : undefined,
-        sessions: await repositories.sessions.list(),
-        turns: await repositories.turns.list(),
-        favorites: await repositories.favorites.list(),
-        settings: settings ? structuredClone(settings) : undefined,
-      }
-    },
-    async clearLearnerData() {
-      profile = undefined
-      settings = undefined
-      sessions.clear()
-      turns.clear()
-      favorites.clear()
-    },
-  }
-
-  return repositories
+  return createRepositories(createMemoryStorage())
 }
-
 export function createIndexedDbRepositories(): Repositories {
-  const repositories: Repositories = {
-    profiles: {
-      async get() {
-        return (await getDatabase()).getAll('profile').then((items) => items[0])
-      },
-      async ensureGuestProfile() {
-        const existing = await this.get()
-        if (existing) return existing
-        const profile = createGuestProfile()
-        await this.save(profile)
-        return profile
-      },
-      async save(profile) {
-        await (await getDatabase()).put('profile', profile)
-      },
-    },
-    sessions: {
-      async get(id) {
-        return (await getDatabase()).get('sessions', id)
-      },
-      async list() {
-        return (await getDatabase()).getAll('sessions')
-      },
-      async save(session) {
-        await (await getDatabase()).put('sessions', session)
-      },
-      async findRecoverable() {
-        const sessions = await this.list()
-        return sessions
-          .filter((session) => session.status === 'active')
-          .sort(byUpdatedAtDescending)[0] ?? null
-      },
-    },
-    turns: {
-      async list() {
-        return (await getDatabase()).getAll('turns')
-      },
-      async listBySession(sessionId) {
-        const turns = await (await getDatabase()).getAllFromIndex(
-          'turns',
-          'by-session',
-          sessionId,
-        )
-        return turns.sort((a, b) => a.index - b.index)
-      },
-      async save(turn) {
-        await (await getDatabase()).put('turns', turn)
-      },
-    },
-    favorites: {
-      async list() {
-        return (await getDatabase()).getAll('favorites')
-      },
-      async save(favorite) {
-        await (await getDatabase()).put('favorites', favorite)
-      },
-      async remove(id) {
-        await (await getDatabase()).delete('favorites', id)
-      },
-    },
-    async saveTurnAndSession(turn, session) {
-      const database = await getDatabase()
-      const transaction = database.transaction(['turns', 'sessions'], 'readwrite')
-      await Promise.all([
-        transaction.objectStore('turns').put(turn),
-        transaction.objectStore('sessions').put(session),
-        transaction.done,
-      ])
-    },
-    async exportLearnerData() {
-      const database = await getDatabase()
-      const [profile, sessions, turns, favorites, settings] = await Promise.all([
-        database.getAll('profile'),
-        database.getAll('sessions'),
-        database.getAll('turns'),
-        database.getAll('favorites'),
-        database.getAll('settings'),
-      ])
-      return {
-        schemaVersion: 1,
-        exportedAt: new Date().toISOString(),
-        profile: profile[0],
-        sessions,
-        turns,
-        favorites,
-        settings: settings[0],
-      }
-    },
-    async clearLearnerData() {
-      await clearDatabase()
-    },
-  }
-
-  return repositories
+  return createRepositories(createIndexedDbStorage())
 }

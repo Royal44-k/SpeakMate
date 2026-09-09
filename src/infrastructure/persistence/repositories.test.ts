@@ -2,7 +2,10 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
 
-import { createIndexedDbRepositories, createMemoryRepositories } from './repositories'
+import {
+  createIndexedDbRepositories,
+  createMemoryRepositories,
+} from './repositories'
 
 describe('guest-first repository contracts', () => {
   let repositories: ReturnType<typeof createMemoryRepositories>
@@ -22,8 +25,14 @@ describe('guest-first repository contracts', () => {
   })
 
   it('recovers only the most recently updated active session', async () => {
-    const older = sessionFixture({ id: 'session_old', updatedAt: '2026-09-03T08:00:00.000Z' })
-    const active = sessionFixture({ id: 'session_new', updatedAt: '2026-09-03T09:00:00.000Z' })
+    const older = sessionFixture({
+      id: 'session_old',
+      updatedAt: '2026-09-03T08:00:00.000Z',
+    })
+    const active = sessionFixture({
+      id: 'session_new',
+      updatedAt: '2026-09-03T09:00:00.000Z',
+    })
 
     await repositories.sessions.save(older)
     await repositories.sessions.save(active)
@@ -87,14 +96,17 @@ describe('guest-first repository contracts', () => {
   })
 
   it('exports versioned learner data and clears every local collection', async () => {
-    await repositories.profiles.ensureGuestProfile()
-    await repositories.sessions.save(sessionFixture())
+    const profile = await repositories.profiles.ensureGuestProfile()
+    await repositories.sessions.save(sessionFixture({ profileId: profile.id }))
 
     const exported = await repositories.exportLearnerData()
 
-    expect(exported.schemaVersion).toBe(1)
+    expect(exported.schemaVersion).toBe(2)
     expect(exported.sessions).toHaveLength(1)
     expect(JSON.stringify(exported)).not.toContain('audio')
+    expect(
+      (await repositories.previewRestore(JSON.stringify(exported))).canImport,
+    ).toBe(true)
 
     await repositories.clearLearnerData()
     expect((await repositories.exportLearnerData()).sessions).toHaveLength(0)

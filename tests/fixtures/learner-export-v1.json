@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2026-09-08T15:59:00.000Z",
+  "profile": {
+    "id": "guest_migration_fixture",
+    "level": "C1",
+    "goals": ["dining", "work"],
+    "dailyMinutes": 15,
+    "onboardingCompleted": true,
+    "createdAt": "2026-09-01T08:00:00.000Z",
+    "updatedAt": "2026-09-08T15:50:00.000Z"
+  },
+  "sessions": [
+    {
+      "id": "session_migration_fixture",
+      "profileId": "guest_migration_fixture",
+      "sceneId": "dining-01",
+      "sceneVersion": 1,
+      "level": "C1",
+      "status": "active",
+      "startedAt": "2026-09-08T15:55:00.000Z",
+      "updatedAt": "2026-09-08T15:58:00.000Z",
+      "completedGoals": ["coffee-order-goal-1"],
+      "openingText": "What can I make for you today?"
+    }
+  ],
+  "turns": [
+    {
+      "id": "session_migration_fixture:turn:0",
+      "sessionId": "session_migration_fixture",
+      "index": 0,
+      "learnerText": "Could I have an oat-milk latte to go, please?",
+      "aiText": "Certainly. Would you like a small or a large cup?",
+      "feedback": {
+        "corrected": "Could I have an oat-milk latte to go, please?",
+        "natural": "Could I get an oat-milk latte to go, please?",
+        "explanationZh": "这是礼貌的点单表达。",
+        "tags": ["register"]
+      },
+      "degraded": true,
+      "createdAt": "2026-09-08T15:58:00.000Z"
+    }
+  ],
+  "favorites": [
+    {
+      "id": "favorite_migration_fixture",
+      "expression": "Could I get an oat-milk latte to go, please?",
+      "translationZh": "请给我一杯燕麦奶拿铁，外带。",
+      "sceneId": "dining-01",
+      "turnId": "session_migration_fixture:turn:0",
+      "createdAt": "2026-09-08T15:58:10.000Z",
+      "updatedAt": "2026-09-08T15:58:10.000Z"
+    }
+  ],
+  "settings": {
+    "id": "settings",
+    "speechRate": 0.85,
+    "autoPlayAi": false,
+    "feedbackExpanded": true,
+    "updatedAt": "2026-09-08T15:50:00.000Z"
+  }
+}

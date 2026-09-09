@@ -6,9 +6,33 @@ import type {
   LearnerSettings,
 } from '@/domain/learning/types'
 import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
+import type { NotebookEntry, ReviewRecord } from '@/domain/notebook/types'
+import type {
+  DailyPlan,
+  LearningEvent,
+  PointsLedgerEntry,
+  RewardUnlock,
+} from '@/domain/goals/types'
+import { createGuestProfile } from './identity'
+import { mergeNote, noteFromFavorite } from './notebook-data'
 
 export const DATABASE_NAME = 'speakmate-v1'
-export const DATABASE_VERSION = 1
+export const DATABASE_VERSION = 2
+export const STORE_NAMES = [
+  'profile',
+  'sessions',
+  'turns',
+  'favorites',
+  'settings',
+  'outbox',
+  'notebook',
+  'reviews',
+  'dailyPlans',
+  'learningEvents',
+  'pointsLedger',
+  'rewardUnlocks',
+] as const
+export type StoreName = (typeof STORE_NAMES)[number]
 
 export interface OutboxItem {
   id: string
@@ -19,6 +43,12 @@ export interface OutboxItem {
 }
 
 export interface SpeakMateDbSchema extends DBSchema {
+  notebook: { key: string; value: NotebookEntry }
+  reviews: { key: string; value: ReviewRecord }
+  dailyPlans: { key: string; value: DailyPlan }
+  learningEvents: { key: string; value: LearningEvent }
+  pointsLedger: { key: string; value: PointsLedgerEntry }
+  rewardUnlocks: { key: string; value: RewardUnlock }
   profile: {
     key: string
     value: LearnerProfile
@@ -50,13 +80,22 @@ export interface SpeakMateDbSchema extends DBSchema {
 let databasePromise: Promise<IDBPDatabase<SpeakMateDbSchema>> | undefined
 
 export function getDatabase(): Promise<IDBPDatabase<SpeakMateDbSchema>> {
-  databasePromise ??= openDB<SpeakMateDbSchema>(DATABASE_NAME, DATABASE_VERSION, {
-    upgrade(database) {
+  if (databasePromise) return databasePromise
+  let blocked = false
+  let rejectBlocked: (reason: Error) => void
+  const blockedPromise = new Promise<never>((_resolve, reject) => {
+    rejectBlocked = reject
+  })
+  const opening = openDB<SpeakMateDbSchema>(DATABASE_NAME, DATABASE_VERSION, {
+    upgrade(database, oldVersion, _newVersion, transaction) {
+      void transaction.done.catch(() => undefined)
       if (!database.objectStoreNames.contains('profile')) {
         database.createObjectStore('profile', { keyPath: 'id' })
       }
       if (!database.objectStoreNames.contains('sessions')) {
-        const sessions = database.createObjectStore('sessions', { keyPath: 'id' })
+        const sessions = database.createObjectStore('sessions', {
+          keyPath: 'id',
+        })
         sessions.createIndex('by-status', 'status')
         sessions.createIndex('by-updated-at', 'updatedAt')
       }
@@ -73,18 +112,97 @@ export function getDatabase(): Promise<IDBPDatabase<SpeakMateDbSchema>> {
       if (!database.objectStoreNames.contains('outbox')) {
         database.createObjectStore('outbox', { keyPath: 'id' })
       }
+      for (const name of [
+        'notebook',
+        'reviews',
+        'dailyPlans',
+        'learningEvents',
+        'pointsLedger',
+        'rewardUnlocks',
+      ] as const) {
+        if (!database.objectStoreNames.contains(name))
+          database.createObjectStore(name, { keyPath: 'id' })
+      }
+      if (oldVersion < 2) {
+        // Only IDB request awaits: all migration writes belong to the upgrade transaction.
+        void (async () => {
+          const [favorites, profiles, turns, sessions] = await Promise.all([
+            transaction.objectStore('favorites').getAll(),
+            transaction.objectStore('profile').getAll(),
+            transaction.objectStore('turns').getAll(),
+            transaction.objectStore('sessions').getAll(),
+          ])
+          if (!favorites.length) return
+          let profile = profiles[0]
+          if (!profile) {
+            const owners = [
+              ...new Set(sessions.map((session) => session.profileId)),
+            ]
+            if (owners.length > 1)
+              throw new Error('MIGRATION_PROFILE_AMBIGUOUS')
+            profile = createGuestProfile(
+              owners[0] ?? 'guest_recovered_favorites',
+              favorites[0].createdAt,
+            )
+            await transaction.objectStore('profile').put(profile)
+          }
+          const notes: NotebookEntry[] = []
+          for (const favorite of favorites) {
+            const turn = turns.find((item) => item.id === favorite.turnId)
+            const session = sessions.find((item) => item.id === turn?.sessionId)
+            const note = noteFromFavorite(favorite, profile.id, turn, session)
+            const index = notes.findIndex(
+              (item) => item.normalizedText === note.normalizedText,
+            )
+            if (index === -1) notes.push(note)
+            else notes[index] = mergeNote(notes[index], note)
+          }
+          for (const note of notes)
+            await transaction.objectStore('notebook').put(note)
+        })().catch(() => {
+          try {
+            transaction.abort()
+          } catch {
+            /* A failed request may already have aborted it. */
+          }
+        })
+      }
+    },
+    blocked() {
+      blocked = true
+      rejectBlocked(
+        new Error(
+          'DATABASE_UPGRADE_BLOCKED: 请关闭其他 SpeakMate 页面后重试；数据未清空。',
+        ),
+      )
     },
     blocking() {
-      void databasePromise?.then((database) => database.close())
+      void opening.then((database) => database.close()).catch(() => undefined)
+      databasePromise = undefined
+    },
+    terminated() {
       databasePromise = undefined
     },
   })
-
-  return databasePromise
+  const pending = Promise.race([
+    opening.then((database) => {
+      if (blocked) {
+        database.close()
+        throw new Error('DATABASE_UPGRADE_BLOCKED')
+      }
+      return database
+    }),
+    blockedPromise,
+  ]).catch((error: unknown) => {
+    if (databasePromise === pending) databasePromise = undefined
+    throw error
+  })
+  databasePromise = pending
+  return pending
 }
 
 export async function deleteDatabase(): Promise<void> {
-  const database = await databasePromise
+  const database = await databasePromise?.catch(() => undefined)
   database?.close()
   databasePromise = undefined
 
@@ -98,14 +216,7 @@ export async function deleteDatabase(): Promise<void> {
 
 export async function clearDatabase(): Promise<void> {
   const database = await getDatabase()
-  const stores = [
-    'profile',
-    'sessions',
-    'turns',
-    'favorites',
-    'settings',
-    'outbox',
-  ] as const
+  const stores = STORE_NAMES
   const transaction = database.transaction([...stores], 'readwrite')
   await Promise.all([
     ...stores.map((store) => transaction.objectStore(store).clear()),
