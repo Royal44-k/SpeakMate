@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { CEFR_LEVELS, SCENE_CATEGORIES } from '@/domain/scenes/types'
+import { dialogueSnapshotSchema } from '@/domain/ai/graded-dialogue'
 
 export const MAX_BACKUP_BYTES = 10 * 1024 * 1024
 export const textSchema = z.string().max(20_000)
@@ -148,21 +149,37 @@ export const conversationSnapshotSchema = z.strictObject({
   provider: z.enum(['cloudflare', 'local']),
   degraded: z.boolean(),
 })
-export const sessionSchema = z.strictObject({
-  id: idSchema,
-  profileId: idSchema,
-  sceneId: idSchema,
-  sceneVersion: positive,
-  sceneSnapshot: adaptedSceneSnapshotSchema.optional(),
-  level,
-  status: z.enum(['active', 'completed', 'abandoned']),
-  startedAt: isoSchema,
-  updatedAt: isoSchema,
-  completedAt: isoSchema.optional(),
-  completedGoals: ids,
-  openingText: textSchema.optional(),
-  provenance: provenanceSchema.optional(),
-})
+export const sessionSchema = z
+  .strictObject({
+    id: idSchema,
+    profileId: idSchema,
+    sceneId: idSchema,
+    sceneVersion: positive,
+    sceneSnapshot: adaptedSceneSnapshotSchema.optional(),
+    level,
+    status: z.enum(['active', 'completed', 'abandoned']),
+    startedAt: isoSchema,
+    updatedAt: isoSchema,
+    completedAt: isoSchema.optional(),
+    completedGoals: ids,
+    openingText: textSchema.optional(),
+    provenance: provenanceSchema.optional(),
+    gradedDialogue: dialogueSnapshotSchema.optional(),
+  })
+  .superRefine((session, ctx) => {
+    const pack = session.gradedDialogue?.pack
+    if (
+      pack &&
+      (pack.sceneId !== session.sceneId ||
+        pack.contentVersion !== session.sceneVersion ||
+        pack.level !== session.level)
+    )
+      ctx.addIssue({
+        code: 'custom',
+        message:
+          'GRADED_SNAPSHOT_MISMATCH: 保存的场景、等级或内容版本与练习记录不一致。',
+      })
+  })
 export const turnSchema = z.strictObject({
   id: idSchema,
   sessionId: idSchema,

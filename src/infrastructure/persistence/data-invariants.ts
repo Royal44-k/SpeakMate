@@ -106,6 +106,13 @@ export function validateRelations(state: DataState): void {
   const reviews = new Map(state.reviews.map((item) => [item.id, item]))
   for (const session of state.sessions) {
     owns(session.profileId)
+    if (session.gradedDialogue)
+      requireValid(
+        session.gradedDialogue.pack.sceneId === session.sceneId &&
+          session.gradedDialogue.pack.contentVersion === session.sceneVersion &&
+          session.gradedDialogue.pack.level === session.level,
+        'GRADED_SNAPSHOT_MISMATCH',
+      )
     if (session.sceneSnapshot)
       requireValid(
         session.sceneSnapshot.id === session.sceneId &&
