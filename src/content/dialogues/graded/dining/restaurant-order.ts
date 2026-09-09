@@ -7,6 +7,12 @@ const reviewed = {
     'src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0',
 }
 
+const breadReview = {
+  state: 'model-reviewed' as const,
+  record:
+    'src/content/dialogues/graded/dining/dining-review.md#fix-round-1 — A2/B1 bread question and owned pair reread with both timing choices and extended paths; Codex implementation agent, 2026-09-09; teacher0',
+}
+
 const variantReview = {
   state: 'model-reviewed' as const,
   record:
@@ -260,13 +266,13 @@ export const restaurantPacks = {
       [
         'bread',
         'extra',
-        'Can I bring some bread before the pasta?',
-        '决定餐前面包。',
+        'While we discuss the timing, would you like some bread?',
+        '正在讨论出餐时间；这里只选择面包，不确认愿意等意面。',
         'yes',
-        'Yes, please bring some bread first.',
+        'Yes, I would like some bread, please.',
         'no',
-        'No, thanks. I will wait for the pasta.',
-        reviewed,
+        'No, thanks. I do not need any bread.',
+        breadReview,
       ],
       [
         'cutlery',
@@ -405,13 +411,13 @@ export const restaurantPacks = {
       [
         'bread',
         'extra',
-        'Would you like bread during the wait, or prefer to save your appetite?',
-        '选择等餐方式。',
+        'While we look at the timing options, would some bread be welcome?',
+        '仍在商量出餐时间；接受或拒绝面包不改变之前的时间需要。',
         'bread',
         'Some bread would help because I have not eaten for hours.',
         'none',
-        'I would rather save my appetite for the pasta.',
-        reviewed,
+        'I would prefer not to add bread; I want to save my appetite for the meal.',
+        breadReview,
       ],
       [
         'cutlery',

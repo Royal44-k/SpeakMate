@@ -19,6 +19,89 @@ const scenes = [
 ] as const
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 describe('remaining dining corpus', () => {
+  // This pins a specifically reread content transition, not a general semantic checker.
+  // Reintroducing an assumed pasta wait must fail while the actual timing evidence stays `ask`.
+  for (const [level, question, answers, breadValues] of [
+    [
+      'A2',
+      'While we discuss the timing, would you like some bread?',
+      [
+        'Yes, I would like some bread, please.',
+        'No, thanks. I do not need any bread.',
+      ],
+      ['yes', 'no'],
+    ],
+    [
+      'B1',
+      'While we look at the timing options, would some bread be welcome?',
+      [
+        'Some bread would help because I have not eaten for hours.',
+        'I would prefer not to add bread; I want to save my appetite for the meal.',
+      ],
+      ['bread', 'none'],
+    ],
+  ] as const)
+    for (const variantId of ['visit', 'planning'])
+      for (const breadChoice of [0, 1]) {
+        it(`${level}/${variantId}/${breadChoice}: keeps quicker-option timing unresolved through bread`, async () => {
+          const loaded = await localContentProvider.load({
+            sceneId: 'dining-02',
+            level,
+          })
+          if (loaded.status !== 'available')
+            throw new Error('missing restaurant pack')
+          let run = createDialogue(loaded.pack, { mode: 'extended', variantId })
+          for (let i = 0; i < 5; i++)
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[0].text,
+            })
+          expect(run.snapshot.state.currentQuestionId).toBe(
+            `restaurant-order.${level}.timing`,
+          )
+          const quicker = dialogueSuggestions(run.snapshot)[1]
+          run = advanceDialogue(run.snapshot, {
+            text: quicker.text,
+            suggestionId: quicker.id,
+          })
+          const timingEvidence = run.snapshot.state.facts.find(
+            (f) => f.key === 'timing',
+          )!
+          expect(timingEvidence.value).toBe('ask')
+          expect(run.snapshot.state.currentQuestionId).toBe(
+            `restaurant-order.${level}.bread`,
+          )
+          expect(run.reply).toBe(question)
+          expect(dialogueSuggestions(run.snapshot).map((a) => a.text)).toEqual(
+            answers,
+          )
+          const bread = dialogueSuggestions(run.snapshot)[breadChoice]
+          run = advanceDialogue(run.snapshot, {
+            text: bread.text,
+            suggestionId: bread.id,
+          })
+          expect(run.confirmation).toBe('exact')
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'timing'),
+          ).toEqual(timingEvidence)
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'bread')?.value,
+          ).toBe(breadValues[breadChoice])
+          expect(run.snapshot.state.completedObjectives).toHaveLength(7)
+          expect(run.snapshot.state.currentQuestionId).toBe(
+            `restaurant-order.${level}.cutlery`,
+          )
+          for (let i = 0; i < 3; i++)
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[0].text,
+            })
+          expect(run.snapshot.state.outcome).toBe('achieved')
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'timing'),
+          ).toEqual(timingEvidence)
+          expect(dialogueSuggestions(run.snapshot)).toEqual([])
+          expect(run.reply).not.toMatch(/[?？]/u)
+        })
+      }
   for (const sceneId of scenes)
     for (const level of levels) {
       it(`${sceneId}/${level}: loads twelve reviewed substantive owned pairs`, async () => {
