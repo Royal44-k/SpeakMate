@@ -1,5 +1,7 @@
 'use client'
 
+import { useEffect, useState } from 'react'
+
 import styles from './text-review-dock.module.css'
 
 export function TextReviewDock({
@@ -7,6 +9,7 @@ export function TextReviewDock({
   canSubmit,
   errorMessage,
   hasAudio,
+  audio,
   onChange,
   onCancel,
   onSubmit,
@@ -15,10 +18,23 @@ export function TextReviewDock({
   canSubmit: boolean
   errorMessage?: string
   hasAudio: boolean
+  audio?: Blob
   onChange: (transcript: string) => void
   onCancel: () => void
   onSubmit: () => void
 }) {
+  const [audioUrl, setAudioUrl] = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!audio || typeof URL.createObjectURL !== 'function') {
+      setAudioUrl(null)
+      return
+    }
+    const url = URL.createObjectURL(audio)
+    setAudioUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [audio])
+
   return (
     <section
       className={styles.dock}
@@ -40,9 +56,10 @@ export function TextReviewDock({
         />
         {errorMessage ? <p role="alert">{errorMessage}</p> : null}
         {hasAudio && !transcript.trim() ? (
-          <p>
-            录音已准备，将先尝试云端识别；若当前为基础模式，再请你输入英文确认。
-          </p>
+          <>
+            <p>录音仅用于本机回听。请输入或确认英文内容后才能提交。</p>
+            {audioUrl ? <audio controls src={audioUrl} aria-label="回听本次录音" /> : null}
+          </>
         ) : null}
         <div className={styles.actions}>
           <button type="button" onClick={onCancel}>

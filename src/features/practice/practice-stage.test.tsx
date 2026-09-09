@@ -43,6 +43,8 @@ function setPracticeState(
     amplitude: 0,
     audio: null,
     completedGoalIds: [],
+    feedbackExpanded: false,
+    speechError: null,
     startRecording: vi.fn(),
     stopRecording: vi.fn(),
     openKeyboard: vi.fn(),
@@ -60,7 +62,17 @@ afterEach(() => {
 })
 
 describe('PracticeStage audio review', () => {
-  it('allows a recording to reach server-side speech recognition without local transcript', () => {
+  it('keeps a recording as a local preview until English text is confirmed', () => {
+    const createObjectURL = vi.fn().mockReturnValue('blob:local-preview')
+    const revokeObjectURL = vi.fn()
+    Object.defineProperty(URL, 'createObjectURL', {
+      configurable: true,
+      value: createObjectURL,
+    })
+    Object.defineProperty(URL, 'revokeObjectURL', {
+      configurable: true,
+      value: revokeObjectURL,
+    })
     setPracticeState('reviewing')
     practiceState.value = {
       ...practiceState.value,
@@ -68,10 +80,58 @@ describe('PracticeStage audio review', () => {
       audio: { blob: new Blob(['audio'], { type: 'audio/webm' }) },
     }
 
-    render(<PracticeStage scene={scene} sessionId="session-audio" />)
+    const view = render(<PracticeStage scene={scene} sessionId="session-audio" />)
 
-    expect(screen.getByText(/将先尝试云端识别/)).toBeVisible()
-    expect(screen.getByRole('button', { name: '提交这一轮' })).toBeEnabled()
+    expect(screen.getByText(/录音仅用于本机回听/)).toBeVisible()
+    expect(screen.queryByText(/云端/)).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: '提交这一轮' })).toBeDisabled()
+    expect(screen.getByLabelText('回听本次录音')).toHaveAttribute(
+      'src',
+      'blob:local-preview',
+    )
+    view.unmount()
+    expect(revokeObjectURL).toHaveBeenCalledWith('blob:local-preview')
+  })
+})
+
+describe('PracticeStage local feedback and speech status', () => {
+  it('uses the persisted feedback-expanded preference in the real feedback UI', () => {
+    setPracticeState('ready')
+    practiceState.value = {
+      ...practiceState.value,
+      feedbackExpanded: true,
+      latestResult: {
+        reply: { text: 'Certainly.', hintZh: '继续。', emotion: 'warm' },
+        feedback: {
+          heard: 'I want coffee.',
+          corrected: 'Could I have coffee?',
+          naturalAlternative: 'Could I have coffee?',
+          explanationZh: '服务场景中这样更自然。',
+          issueTags: ['register'],
+        },
+        progress: { completedGoalIds: [], shouldOfferCompletion: false },
+        provider: 'local',
+        degraded: true,
+      },
+    }
+
+    render(<PracticeStage scene={scene} sessionId="session-text" />)
+
+    expect(screen.getByText('服务场景中这样更自然。')).toBeVisible()
+    expect(screen.getByText('本地规则反馈')).toBeVisible()
+  })
+
+  it('shows local speech failure without removing typed practice controls', () => {
+    setPracticeState('ready')
+    practiceState.value = {
+      ...practiceState.value,
+      speechError: '这台设备没有可用的本地英语音色，请直接阅读文字继续练习。',
+    }
+
+    render(<PracticeStage scene={scene} sessionId="session-text" />)
+
+    expect(screen.getByRole('status')).toHaveTextContent('没有可用的本地英语音色')
+    expect(screen.getByRole('button', { name: '改用键盘输入' })).toBeEnabled()
   })
 })
 

@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { getSceneBySlug } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
@@ -30,6 +30,11 @@ function requestWith(form: FormData) {
 }
 
 describe('POST /api/v1/turns', () => {
+  afterEach(() => {
+    vi.unstubAllEnvs()
+    vi.unstubAllGlobals()
+  })
+
   it('accepts a same-origin request when Next normalizes its internal hostname', async () => {
     const form = new FormData()
     form.set('transcript', 'Hello.')
@@ -60,6 +65,30 @@ describe('POST /api/v1/turns', () => {
     expect(response.status).toBe(200)
     expect(body.provider).toBe('local')
     expect(body.requestId).toMatch(/^req_/)
+  })
+
+  it('keeps stale cloud configuration dormant for audio requests', async () => {
+    vi.stubEnv('AI_MODE', 'cloudflare')
+    vi.stubEnv('AI_SHARED_RATE_LIMIT_READY', 'true')
+    vi.stubEnv('CLOUDFLARE_ACCOUNT_ID', 'old-account')
+    vi.stubEnv('CLOUDFLARE_API_TOKEN', 'old-token')
+    const fetchSpy = vi.fn().mockResolvedValue(
+      Response.json({ result: { text: 'server transcript' }, success: true }),
+    )
+    vi.stubGlobal('fetch', fetchSpy)
+    const form = new FormData()
+    form.set(
+      'audio',
+      new File(['local preview'], 'turn.webm', { type: 'audio/webm' }),
+    )
+    form.set('session', sessionInput())
+    form.set('idempotencyKey', '5d53c832-736f-465f-a640-536e46f51962')
+
+    const response = await POST(requestWith(form))
+
+    expect(response.status).toBe(422)
+    expect((await response.json()).code).toBe('NO_SPEECH')
+    expect(fetchSpy).not.toHaveBeenCalled()
   })
 
   it('rejects audio larger than 2 MB before contacting a provider', async () => {

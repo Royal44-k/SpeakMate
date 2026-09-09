@@ -13,6 +13,10 @@ import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
 import type { AdaptedScene } from '@/domain/scenes/types'
 import { browserTts } from '@/infrastructure/audio/browser-tts'
 import {
+  startLocalRecognition,
+  type LocalSpeechRecognition,
+} from '@/infrastructure/audio/local-recognition'
+import {
   createRecorder,
   type BrowserRecorder,
   type RecordedAudio,
@@ -22,31 +26,10 @@ import {
   createMemoryRepositories,
   type Repositories,
 } from '@/infrastructure/persistence/repositories'
-
-import { submitTurn as submitTurnToApi, TurnApiError } from './turn-api-client'
-
-interface SpeechRecognitionResultEventLike {
-  results: ArrayLike<{ 0: { transcript: string }; isFinal: boolean }>
-}
-
-interface SpeechRecognitionLike {
-  continuous: boolean
-  interimResults: boolean
-  lang: string
-  onresult: ((event: SpeechRecognitionResultEventLike) => void) | null
-  start(): void
-  stop(): void
-  abort(): void
-}
-
-type SpeechRecognitionConstructor = new () => SpeechRecognitionLike
-
-declare global {
-  interface Window {
-    SpeechRecognition?: SpeechRecognitionConstructor
-    webkitSpeechRecognition?: SpeechRecognitionConstructor
-  }
-}
+import {
+  DEFAULT_LEARNER_SETTINGS,
+  loadLearnerSettings,
+} from '@/infrastructure/persistence/learner-settings'
 
 function createId(prefix: string) {
   return `${prefix}_${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`
@@ -67,10 +50,13 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
   const [completedGoalIds, setCompletedGoalIds] = useState<string[]>([])
   const [ready, setReady] = useState(false)
   const [ephemeral, setEphemeral] = useState(false)
+  const [settings, setSettings] = useState(DEFAULT_LEARNER_SETTINGS)
+  const [speechError, setSpeechError] = useState<string | null>(null)
   const [initialRepositories] = useState(createIndexedDbRepositories)
   const repositoriesRef = useRef<Repositories>(initialRepositories)
   const recorderRef = useRef<BrowserRecorder | null>(null)
-  const recognitionRef = useRef<SpeechRecognitionLike | null>(null)
+  const recognitionRef = useRef<LocalSpeechRecognition | null>(null)
+  const recognitionControllerRef = useRef<AbortController | null>(null)
   const transcriptRef = useRef('')
   const elapsedTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const finishingRef = useRef(false)
@@ -79,12 +65,10 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     session: PracticeSession
     savedTurns: PracticeTurn[]
     ephemeral: boolean
+    settings: typeof DEFAULT_LEARNER_SETTINGS
   }> | null>(null)
   const submittingRef = useRef(false)
   const mountedRef = useRef(false)
-  const idempotencyRef = useRef<{ fingerprint: string; key: string } | null>(
-    null,
-  )
 
   const clearElapsedTimer = useCallback(() => {
     if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current)
@@ -96,7 +80,6 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     mountedRef.current = true
     sessionRef.current = null
     transcriptRef.current = ''
-    idempotencyRef.current = null
     async function loadWith(repositories: Repositories) {
       const profile = await repositories.profiles.ensureGuestProfile()
       let session =
@@ -128,16 +111,27 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       const savedTurns = await repositories.turns.listBySession(session.id)
       return { session, savedTurns }
     }
-    initializationRef.current ??= loadWith(repositoriesRef.current)
-      .then((loaded) => ({ ...loaded, ephemeral: false }))
+    initializationRef.current ??= Promise.all([
+      loadWith(repositoriesRef.current),
+      loadLearnerSettings(),
+    ])
+      .then(([loaded, settings]) => ({
+        ...loaded,
+        settings,
+        ephemeral: false,
+      }))
       .catch(async (error: unknown) => {
         if (requestedId !== 'new') throw error
         const memoryRepositories = createMemoryRepositories()
         repositoriesRef.current = memoryRepositories
-        return { ...(await loadWith(memoryRepositories)), ephemeral: true }
+        return {
+          ...(await loadWith(memoryRepositories)),
+          settings: DEFAULT_LEARNER_SETTINGS,
+          ephemeral: true,
+        }
       })
     void initializationRef.current
-      .then(({ session, savedTurns, ephemeral }) => {
+      .then(({ session, savedTurns, ephemeral, settings }) => {
         if (!active) return
         sessionRef.current = session
         setSessionId(session.id)
@@ -181,6 +175,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
         )
         setMachine({ status: 'ready', turnIndex: savedTurns.length })
         setEphemeral(ephemeral)
+        setSettings(settings)
         if (requestedId === 'new' && !ephemeral) {
           const url = new URL(window.location.href)
           const previousRoute = `${url.pathname}${url.search}`
@@ -219,16 +214,35 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       mountedRef.current = false
       clearElapsedTimer()
       recorderRef.current?.cancel()
+      recognitionControllerRef.current?.abort()
       recognitionRef.current?.abort()
       browserTts.stop()
     }
   }, [clearElapsedTimer, requestedId, scene])
+
+  const speak = useCallback(
+    async (text: string) => {
+      setSpeechError(null)
+      try {
+        await browserTts.speak(text, { rate: settings.speechRate })
+      } catch (error) {
+        setSpeechError(
+          error instanceof Error &&
+            error.message === 'LOCAL_ENGLISH_VOICE_UNAVAILABLE'
+            ? '这台设备没有可用的本地英语音色，请直接阅读文字继续练习。'
+            : '本地朗读暂时不可用，请直接阅读文字继续练习。',
+        )
+      }
+    },
+    [settings.speechRate],
+  )
 
   const finishRecording = useCallback(async () => {
     if (finishingRef.current || !recorderRef.current) return
     finishingRef.current = true
     clearElapsedTimer()
     recognitionRef.current?.stop()
+    recognitionControllerRef.current?.abort()
     try {
       const recording = await recorderRef.current.stop()
       setAudio(recording)
@@ -269,6 +283,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       onAutoStop: () => void finishRecording(),
       onInterrupted: () => {
         clearElapsedTimer()
+        recognitionControllerRef.current?.abort()
         recognitionRef.current?.abort()
         recorderRef.current = null
         recognitionRef.current = null
@@ -285,35 +300,35 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       },
     })
     recorderRef.current = recorder
+    const recognitionController = new AbortController()
+    recognitionControllerRef.current?.abort()
+    recognitionControllerRef.current = recognitionController
     try {
       await recorder.start()
-      const Recognition =
-        window.SpeechRecognition ?? window.webkitSpeechRecognition
-      if (Recognition) {
-        const recognition = new Recognition()
-        recognition.lang = 'en-US'
-        recognition.continuous = true
-        recognition.interimResults = true
-        recognition.onresult = (event) => {
-          transcriptRef.current = Array.from(event.results)
-            .map((result) => result[0]?.transcript ?? '')
-            .join(' ')
-            .trim()
-        }
-        recognitionRef.current = recognition
-        try {
-          recognition.start()
-        } catch {
-          recognitionRef.current = null
-        }
-      }
       setMachine((current) =>
         transitionPractice(current, { type: 'PERMISSION_GRANTED' }),
       )
       elapsedTimerRef.current = setInterval(() => {
         setElapsedSeconds((seconds) => Math.min(30, seconds + 1))
       }, 1_000)
+      void startLocalRecognition({
+        locale: 'en-US',
+        signal: recognitionController.signal,
+        onTranscript: (transcript) => {
+          transcriptRef.current = transcript
+        },
+      }).then((recognition) => {
+        if (
+          recognitionController.signal.aborted ||
+          recorderRef.current !== recorder
+        ) {
+          recognition?.abort()
+          return
+        }
+        recognitionRef.current = recognition
+      })
     } catch (error) {
+      recognitionController.abort()
       recorderRef.current = null
       const denied =
         error instanceof DOMException &&
@@ -344,6 +359,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     if (!ready || machine.turnIndex >= scene.recommendedTurns) return
     if (machine.status === 'recording') {
       recorderRef.current?.cancel()
+      recognitionControllerRef.current?.abort()
       recognitionRef.current?.abort()
       clearElapsedTimer()
       setMachine((current) => transitionPractice(current, { type: 'CANCEL' }))
@@ -370,7 +386,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     )
       return
     const learnerText = machine.draftTranscript?.trim() ?? ''
-    if (!learnerText && !audio) return
+    if (!learnerText) return
     submittingRef.current = true
     const turnIndex = machine.turnIndex
     setMachine((current) =>
@@ -391,41 +407,13 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
         ]),
       ]
       const completedGoalIds = sessionRef.current?.completedGoals ?? []
-      const fingerprint = `${sessionId}:${turnIndex}:${learnerText || `audio:${audio?.blob.size ?? 0}`}`
-      if (idempotencyRef.current?.fingerprint !== fingerprint) {
-        idempotencyRef.current = {
-          fingerprint,
-          key:
-            globalThis.crypto?.randomUUID?.() ??
-            '00000000-0000-4000-8000-000000000000',
-        }
-      }
-      let result: ConversationResult
-      try {
-        result = await submitTurnToApi({
-          scene,
-          transcript: learnerText,
-          audio: audio?.blob,
-          turnIndex,
-          history,
-          completedGoalIds,
-          idempotencyKey: idempotencyRef.current.key,
-        })
-      } catch (error) {
-        if (
-          error instanceof TurnApiError &&
-          (!error.retryable || error.code === 'RATE_LIMITED')
-        )
-          throw error
-        if (!learnerText) throw error
-        result = await localCoach.nextTurn({
-          scene,
-          learnerText,
-          history,
-          completedGoalIds,
-          turnIndex,
-        })
-      }
+      const result = await localCoach.nextTurn({
+        scene,
+        learnerText,
+        history,
+        completedGoalIds,
+        turnIndex,
+      })
       const now = new Date().toISOString()
       const persistedLearnerText = result.feedback.heard.trim() || learnerText
       const turn: PracticeTurn = {
@@ -462,26 +450,17 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       setAiReply(result.reply.text)
       setAiHint(result.reply.hintZh)
       setAudio(null)
-      idempotencyRef.current = null
       setMachine((current) =>
         transitionPractice(current, { type: 'RESULT_RECEIVED' }),
       )
-      if (mountedRef.current)
-        void browserTts
-          .speak(result.reply.text, { rate: scene.constraints.speechRate })
-          .catch(() => undefined)
+      if (mountedRef.current && settings.autoPlayAi)
+        void speak(result.reply.text)
     } catch (error) {
-      const noSpeech =
-        error instanceof TurnApiError && error.code === 'NO_SPEECH'
       setMachine((current) =>
         transitionPractice(current, {
           type: 'FAIL',
-          code: error instanceof TurnApiError ? error.code : 'AI_UNAVAILABLE',
-          message: noSpeech
-            ? '当前基础模式不能自动转写这段录音，请输入英文内容后继续。'
-            : error instanceof TurnApiError
-              ? error.message
-              : '这一轮暂时没有处理成功，请重试或修改文字。',
+          code: 'LOCAL_COACH_UNAVAILABLE',
+          message: '这一轮暂时没有处理成功，请重试或修改文字。',
         }),
       )
     } finally {
@@ -495,6 +474,8 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     sessionId,
     turns,
     ready,
+    settings.autoPlayAi,
+    speak,
   ])
 
   const completeSession = useCallback(async () => {
@@ -527,7 +508,6 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
   const cancelReview = useCallback(() => {
     setAudio(null)
     transcriptRef.current = ''
-    idempotencyRef.current = null
     setMachine((current) => transitionPractice(current, { type: 'CANCEL' }))
   }, [])
 
@@ -536,6 +516,8 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     machine,
     ready,
     ephemeral,
+    feedbackExpanded: settings.feedbackExpanded,
+    speechError,
     turns,
     completedGoalIds,
     latestResult,
@@ -555,8 +537,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     retry: () =>
       setMachine((current) => transitionPractice(current, { type: 'RETRY' })),
     submitTurn,
-    speakReply: () =>
-      browserTts.speak(aiReply, { rate: scene.constraints.speechRate }),
+    speakReply: () => speak(aiReply),
     completeSession,
   }
 }

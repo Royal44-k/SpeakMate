@@ -1,7 +1,7 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import type { LearnerDataExport } from './repositories'
-import { mergeGuestData } from './sync'
+import { mergeGuestData, uploadLearnerData } from './sync'
 
 function dataset(sessionId: string, updatedAt: string): LearnerDataExport {
   return {
@@ -34,5 +34,21 @@ describe('mergeGuestData', () => {
     expect(merged.sessions).toHaveLength(1)
     expect(merged.sessions[0].updatedAt).toBe('2026-09-03T11:00:00.000Z')
     expect(JSON.stringify(merged)).not.toContain('audio')
+  })
+})
+
+describe('remote sync release gate', () => {
+  it('does not write learning data through the dormant backend adapter', async () => {
+    const from = vi.fn()
+    const client = { from }
+
+    await expect(
+      uploadLearnerData(
+        client as never,
+        'future-user',
+        dataset('local-only', '2026-09-09T00:00:00.000Z'),
+      ),
+    ).rejects.toThrow('REMOTE_LEARNING_DATA_DISABLED')
+    expect(from).not.toHaveBeenCalled()
   })
 })

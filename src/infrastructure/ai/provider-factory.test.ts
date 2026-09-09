@@ -27,7 +27,7 @@ describe('createConversationProvider', () => {
     ).toEqual({ mode: 'local' })
   })
 
-  it('falls back safely when auto mode contains an invalid cloud model', () => {
+  it('ignores dormant cloud configuration including an invalid model', () => {
     expect(
       resolveAiEnvironment({
         AI_MODE: 'auto',
@@ -35,17 +35,17 @@ describe('createConversationProvider', () => {
         CLOUDFLARE_API_TOKEN: 'secret',
         CLOUDFLARE_LLM_MODEL: 'paid-or-unknown',
       }),
-    ).toMatchObject({ mode: 'local', configurationError: expect.any(String) })
+    ).toEqual({ mode: 'local' })
   })
 
-  it('keeps cloud AI disabled until a shared quota guard is explicitly ready', () => {
+  it('keeps cloud AI disabled when stale credentials remain', () => {
     expect(
       resolveAiEnvironment({
         AI_MODE: 'auto',
         CLOUDFLARE_ACCOUNT_ID: 'account',
         CLOUDFLARE_API_TOKEN: 'secret',
       }),
-    ).toMatchObject({ mode: 'local', configurationError: expect.any(String) })
+    ).toEqual({ mode: 'local' })
   })
 
   it('refuses an unapproved paid or unknown model', () => {
@@ -54,7 +54,7 @@ describe('createConversationProvider', () => {
     )
   })
 
-  it('falls back to the deterministic coach on a Cloudflare rate limit in auto mode', async () => {
+  it('does not contact Cloudflare when an auto-mode adapter would rate limit', async () => {
     const fetchImpl = vi
       .fn()
       .mockResolvedValue(new Response('rate limited', { status: 429 }))
@@ -78,9 +78,10 @@ describe('createConversationProvider', () => {
 
     expect(result.provider).toBe('local')
     expect(result.degraded).toBe(true)
+    expect(fetchImpl).not.toHaveBeenCalled()
   })
 
-  it('repairs malformed structured output once before falling back', async () => {
+  it('does not contact a dormant adapter with malformed response fixtures', async () => {
     const fetchImpl = vi.fn().mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -108,11 +109,11 @@ describe('createConversationProvider', () => {
       turnIndex: 0,
     })
 
-    expect(fetchImpl).toHaveBeenCalledTimes(2)
+    expect(fetchImpl).not.toHaveBeenCalled()
     expect(result.provider).toBe('local')
   })
 
-  it('returns validated Cloudflare output when the zero-billing model succeeds', async () => {
+  it('stays local even when the dormant adapter could return valid output', async () => {
     const fetchImpl = vi.fn().mockResolvedValue(
       new Response(
         JSON.stringify({
@@ -159,11 +160,11 @@ describe('createConversationProvider', () => {
       turnIndex: 0,
     })
 
-    expect(result).toMatchObject({ provider: 'cloudflare', degraded: false })
+    expect(result).toMatchObject({ provider: 'local', degraded: true })
+    expect(fetchImpl).not.toHaveBeenCalled()
   })
 
-  it('falls back after the 15 second LLM deadline', async () => {
-    vi.useFakeTimers()
+  it('returns locally without starting a remote deadline', async () => {
     const fetchImpl = vi.fn(
       (_url: string | URL | Request, init?: RequestInit) =>
         new Promise<Response>((_resolve, reject) => {
@@ -183,19 +184,17 @@ describe('createConversationProvider', () => {
       },
       fetchImpl as typeof fetch,
     )
-    const pending = provider.nextTurn({
+    const result = await provider.nextTurn({
       scene: hotel,
       learnerText: 'I have a reservation.',
       history: [],
       completedGoalIds: [],
       turnIndex: 0,
     })
-    await vi.advanceTimersByTimeAsync(15_001)
-
-    await expect(pending).resolves.toMatchObject({
+    expect(result).toMatchObject({
       provider: 'local',
       degraded: true,
     })
-    vi.useRealTimers()
+    expect(fetchImpl).not.toHaveBeenCalled()
   })
 })

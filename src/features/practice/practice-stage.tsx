@@ -29,7 +29,11 @@ export function PracticeStage({
   const practice = usePracticeSession(scene, sessionId)
   const resolvedExitHref =
     exitHref ?? `/scenes/${scene.slug}?level=${scene.level}`
-  const [feedbackExpanded, setFeedbackExpanded] = useState(false)
+  const [feedbackOverride, setFeedbackOverride] = useState<boolean | null>(
+    null,
+  )
+  const feedbackExpanded =
+    feedbackOverride ?? Boolean(practice.feedbackExpanded)
   const status = practice.machine.status
   const isReviewing =
     status === 'reviewing' ||
@@ -37,8 +41,7 @@ export function PracticeStage({
       Boolean(practice.machine.draftTranscript || practice.audio))
   const hasTranscript = Boolean(practice.machine.draftTranscript?.trim())
   const canSubmit =
-    hasTranscript ||
-    (Boolean(practice.audio) && practice.machine.errorCode !== 'NO_SPEECH')
+    hasTranscript
   const completedGoals = practice.completedGoalIds ?? []
   const turnLimitReached = practice.machine.turnIndex >= scene.recommendedTurns
   const canComplete =
@@ -161,12 +164,12 @@ export function PracticeStage({
 
       <section className={styles.dialogue} aria-live="polite">
         <div className={styles.speakerLine}>
-          <span>AI · {scene.aiRole}</span>
+          <span>本地助手 · {scene.aiRole}</span>
           <div>
-            {practice.latestResult?.degraded ? <em>基础反馈模式</em> : null}
+            {practice.latestResult?.degraded ? <em>本地规则反馈</em> : null}
             <button
               type="button"
-              aria-label="播放 AI 回复"
+              aria-label="播放本地助手回复"
               onClick={() => void practice.speakReply().catch(() => undefined)}
             >
               <Headphones aria-hidden size={21} />
@@ -176,6 +179,12 @@ export function PracticeStage({
         <blockquote>“{practice.aiReply}”</blockquote>
         <p className={styles.hint}>{practice.aiHint}</p>
       </section>
+
+      {practice.speechError ? (
+        <p className={styles.storageNotice} role="status">
+          {practice.speechError}
+        </p>
+      ) : null}
 
       {!canComplete && practice.ready ? (
         <details
@@ -205,7 +214,7 @@ export function PracticeStage({
             feedback={practice.latestResult.feedback}
             expanded={feedbackExpanded}
             contentId={`turn-feedback-${practice.machine.turnIndex}`}
-            onToggle={() => setFeedbackExpanded((value) => !value)}
+            onToggle={() => setFeedbackOverride(!feedbackExpanded)}
           />
         </div>
       ) : (
@@ -249,9 +258,8 @@ export function PracticeStage({
             transcript={practice.machine.draftTranscript ?? ''}
             canSubmit={canSubmit}
             errorMessage={practice.machine.errorMessage}
-            hasAudio={Boolean(
-              practice.audio && practice.machine.errorCode !== 'NO_SPEECH',
-            )}
+            hasAudio={Boolean(practice.audio)}
+            audio={practice.audio?.blob}
             onChange={practice.updateTranscript}
             onCancel={practice.cancelReview}
             onSubmit={() => void practice.submitTurn()}

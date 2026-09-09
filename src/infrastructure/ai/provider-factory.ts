@@ -1,5 +1,6 @@
 import type { ConversationProvider } from '@/domain/ai/contracts'
 import { localCoach } from '@/domain/ai/local-coach'
+import { remoteLearningServicesEnabled } from '@/infrastructure/local-runtime-policy'
 
 import {
   ALLOWED_ASR_MODELS,
@@ -28,6 +29,7 @@ export interface ResolvedAiEnvironment {
 export function resolveAiEnvironment(
   env: AiEnvironment,
 ): ResolvedAiEnvironment {
+  if (!remoteLearningServicesEnabled()) return { mode: 'local' }
   const mode: AiMode = ['local', 'cloudflare', 'auto'].includes(
     env.AI_MODE ?? '',
   )

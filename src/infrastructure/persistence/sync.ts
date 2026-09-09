@@ -1,8 +1,5 @@
 import type { SupabaseClient } from '@supabase/supabase-js'
 
-import type { FavoriteExpression, LearnerProfile, LearnerSettings } from '@/domain/learning/types'
-import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
-
 import type { LearnerDataExport } from './repositories'
 
 function newest<T extends { id: string }>(
@@ -55,16 +52,8 @@ export async function uploadLearnerData(
   userId: string,
   data: LearnerDataExport,
 ) {
-  const rows: Array<[string, Array<LearnerProfile | LearnerSettings | PracticeSession | PracticeTurn | FavoriteExpression>]> = [
-    ['profiles', data.profile ? [data.profile] : []],
-    ['sessions', data.sessions],
-    ['turns', data.turns],
-    ['favorites', data.favorites],
-  ]
-  for (const [table, values] of rows) {
-    if (values.length === 0) continue
-    const sanitized = values.map((value) => ({ ...withoutRuntimeAudio(value), user_id: userId }))
-    const { error } = await client.from(table).upsert(sanitized)
-    if (error) throw error
-  }
+  void client
+  void userId
+  void data
+  throw new Error('REMOTE_LEARNING_DATA_DISABLED')
 }
