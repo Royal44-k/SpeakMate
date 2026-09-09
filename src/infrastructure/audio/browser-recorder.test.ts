@@ -11,7 +11,10 @@ import {
 } from './browser-recorder'
 
 describe('browser recorder guards', () => {
-  afterEach(() => vi.unstubAllGlobals())
+  afterEach(() => {
+    vi.restoreAllMocks()
+    vi.unstubAllGlobals()
+  })
 
   it('selects the first browser-supported compact audio format', () => {
     const supported = new Set(['audio/webm;codecs=opus', 'audio/mp4'])
@@ -119,5 +122,85 @@ describe('browser recorder guards', () => {
       'recorder start failed',
     )
     expect(stop).toHaveBeenCalledOnce()
+  })
+
+  it('preserves cancellation while microphone permission is pending', async () => {
+    let resolvePermission!: (stream: { getTracks: () => Array<{ stop: () => void }> }) => void
+    const stopTrack = vi.fn()
+    const track = new EventTarget() as EventTarget & { stop: () => void }
+    track.stop = stopTrack
+    const mediaStart = vi.fn()
+    vi.stubGlobal('navigator', {
+      mediaDevices: {
+        getUserMedia: vi.fn().mockReturnValue(
+          new Promise((resolve) => {
+            resolvePermission = resolve
+          }),
+        ),
+      },
+    })
+    vi.stubGlobal(
+      'MediaRecorder',
+      class extends EventTarget {
+        static isTypeSupported() {
+          return true
+        }
+        state = 'inactive'
+        mimeType = 'audio/webm'
+        start = mediaStart
+      },
+    )
+    const recorder = createRecorder()
+
+    const pending = recorder.start()
+    recorder.cancel()
+    resolvePermission({ getTracks: () => [track] })
+
+    await expect(pending).rejects.toMatchObject({ name: 'AbortError' })
+    expect(mediaStart).not.toHaveBeenCalled()
+    expect(stopTrack).toHaveBeenCalledOnce()
+    expect(recorder.isRecording()).toBe(false)
+  })
+
+  it('cancels pending permission when the page becomes hidden', async () => {
+    let resolvePermission!: (stream: { getTracks: () => Array<{ stop: () => void }> }) => void
+    const stopTrack = vi.fn()
+    const track = new EventTarget() as EventTarget & { stop: () => void }
+    track.stop = stopTrack
+    const mediaStart = vi.fn()
+    const onInterrupted = vi.fn()
+    const visibility = vi.spyOn(document, 'visibilityState', 'get')
+    visibility.mockReturnValue('visible')
+    vi.stubGlobal('navigator', {
+      mediaDevices: {
+        getUserMedia: vi.fn().mockReturnValue(
+          new Promise((resolve) => {
+            resolvePermission = resolve
+          }),
+        ),
+      },
+    })
+    vi.stubGlobal(
+      'MediaRecorder',
+      class extends EventTarget {
+        static isTypeSupported() {
+          return true
+        }
+        state = 'inactive'
+        mimeType = 'audio/webm'
+        start = mediaStart
+      },
+    )
+    const recorder = createRecorder({ onInterrupted })
+
+    const pending = recorder.start()
+    visibility.mockReturnValue('hidden')
+    document.dispatchEvent(new Event('visibilitychange'))
+    resolvePermission({ getTracks: () => [track] })
+
+    await expect(pending).rejects.toMatchObject({ name: 'AbortError' })
+    expect(onInterrupted).toHaveBeenCalledOnce()
+    expect(mediaStart).not.toHaveBeenCalled()
+    expect(stopTrack).toHaveBeenCalledOnce()
   })
 })

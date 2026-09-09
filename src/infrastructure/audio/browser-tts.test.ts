@@ -84,6 +84,82 @@ describe('browser TTS helpers', () => {
     expect(speak.mock.calls[0][0].voice).toBe(localVoice)
   })
 
+  it('does not start late playback after stop cancels voice discovery', async () => {
+    let voices: SpeechSynthesisVoice[] = []
+    const synth = new EventTarget() as EventTarget & SpeechSynthesis
+    synth.cancel = vi.fn()
+    synth.getVoices = () => voices
+    synth.speak = vi.fn((utterance: SpeechSynthesisUtterance) => {
+      queueMicrotask(() => utterance.dispatchEvent(new Event('end')))
+    })
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: synth,
+    })
+    class Utterance extends EventTarget {
+      lang = ''
+      rate = 1
+      voice: SpeechSynthesisVoice | null = null
+      constructor(readonly text: string) {
+        super()
+      }
+    }
+    vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
+
+    const pending = browserTts.speak('Hello')
+    browserTts.stop()
+    voices = [
+      {
+        lang: 'en-US',
+        name: 'Device English',
+        localService: true,
+      } as SpeechSynthesisVoice,
+    ]
+    synth.dispatchEvent(new Event('voiceschanged'))
+    await pending
+
+    expect(synth.speak).not.toHaveBeenCalled()
+  })
+
+  it('settles active playback when stop cancels the utterance', async () => {
+    const localVoice = {
+      lang: 'en-US',
+      name: 'Device English',
+      localService: true,
+    } as SpeechSynthesisVoice
+    const synth = new EventTarget() as EventTarget & SpeechSynthesis
+    synth.cancel = vi.fn()
+    synth.getVoices = () => [localVoice]
+    synth.speak = vi.fn()
+    Object.defineProperty(window, 'speechSynthesis', {
+      configurable: true,
+      value: synth,
+    })
+    class Utterance extends EventTarget {
+      lang = ''
+      rate = 1
+      voice: SpeechSynthesisVoice | null = null
+      constructor(readonly text: string) {
+        super()
+      }
+    }
+    vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
+
+    let settled = false
+    const pending = browserTts.speak('Hello').then(() => {
+      settled = true
+    })
+    await Promise.resolve()
+    browserTts.stop()
+    await Promise.race([
+      pending,
+      new Promise<void>((resolve) => setTimeout(resolve, 25)),
+    ])
+
+    expect(synth.speak).toHaveBeenCalledOnce()
+    expect(settled).toBe(true)
+  })
+
   it('cancels any current playback before recording or route exit', () => {
     const cancel = vi.fn()
     Object.defineProperty(window, 'speechSynthesis', {

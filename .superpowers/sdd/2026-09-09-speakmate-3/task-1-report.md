@@ -97,3 +97,27 @@ DEFAULT_LEARNER_SETTINGS: LearnerSettings
 - Verified stale Cloudflare and Supabase environment values do not activate runtime entry points.
 - No browser E2E, physical iPhone, or installed-language-package device test was requested for this task. Web Speech on-device APIs are experimental and browser-specific, so unit tests cover the contract and failure-safe behavior, while real-device availability remains a later release-verification item.
 - Host Node version differs from the declared Node 22.x engine; unit tests and typecheck nevertheless exited 0.
+
+## Review fix round 1: late audio operations
+
+### Root causes
+
+- TTS cancellation only reached `speechSynthesis.cancel()`. A `speak()` operation still awaiting `voiceschanged` had no operation identity, so it resumed after route cleanup or microphone start and invoked late playback. Active playback also relied on the browser emitting `end`/`error` after `cancel()`, leaving its promise pending on implementations that emit neither event.
+- Recorder cancellation was reset after `getUserMedia()` resolved. Because lifecycle listeners were not installed until after permission acquisition, cancellation, backgrounding, or unmount during the permission prompt could be lost; the hook then unconditionally advanced state, installed the elapsed timer, and began recognition after the late `start()` resolution.
+
+### RED evidence
+
+`pnpm test src/infrastructure/audio/browser-tts.test.ts src/infrastructure/audio/browser-recorder.test.ts src/features/practice/use-practice-session.test.tsx --reporter=verbose`
+
+- 3 files failed; 5 tests failed and 18 passed.
+- Reproduced late TTS after `stop()` during voice discovery, an unsettled active playback promise, explicit recorder cancellation and page-background cancellation while permission was pending, and hook continuation after unmount.
+
+### Fix and GREEN evidence
+
+- Added a TTS operation generation and an explicit active-playback cancellation settlement. Voice discovery and the final `synth.speak()` boundary both verify the captured generation.
+- Bound recorder interruption handling before `getUserMedia()`, preserved cancellation across the await, stopped tracks acquired after cancellation, and rejected the late start with `AbortError` before constructing or starting `MediaRecorder`.
+- Cleared recorder ownership during hook cleanup and checked both mount state and recorder identity immediately after `recorder.start()` before state, timer, or recognition work.
+- Intermediate TTS run: `pnpm test src/infrastructure/audio/browser-tts.test.ts --reporter=verbose` exited 0; 1 file and 7 tests passed.
+- Final focused run: `pnpm test src/infrastructure/audio/browser-tts.test.ts src/infrastructure/audio/browser-recorder.test.ts src/features/practice/use-practice-session.test.tsx --reporter=verbose` exited 0; 3 files and 23 tests passed.
+- `pnpm typecheck` exited 0.
+- Per the fix-round scope, the full suite and browser/device checks were not rerun. The runner again reported the deferred Node 24.19.0 versus declared Node 22.x engine warning.

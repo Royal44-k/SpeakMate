@@ -184,14 +184,44 @@ export function createRecorder(
         throw new Error('RECORDING_UNSUPPORTED')
       }
 
-      stream = await navigator.mediaDevices.getUserMedia({
-        audio: {
-          channelCount: 1,
-          echoCancellation: true,
-          noiseSuppression: true,
+      cancelled = false
+      detachInterruptionHandlers = bindRecordingInterruptionHandlers(
+        {
+          page: globalThis.document,
+          lifecycle: globalThis.window,
+          tracks: [],
+          isHidden: () => globalThis.document?.visibilityState === 'hidden',
         },
-        video: false,
-      })
+        () => {
+          cancelRecording()
+          options.onInterrupted?.()
+        },
+      )
+      let acquiredStream: MediaStream
+      try {
+        acquiredStream = await navigator.mediaDevices.getUserMedia({
+          audio: {
+            channelCount: 1,
+            echoCancellation: true,
+            noiseSuppression: true,
+          },
+          video: false,
+        })
+      } catch (error) {
+        cleanup()
+        throw error
+      }
+      if (
+        cancelled ||
+        globalThis.document?.visibilityState === 'hidden'
+      ) {
+        stopTracks(acquiredStream)
+        cleanup()
+        throw new DOMException('Recording cancelled', 'AbortError')
+      }
+      detachInterruptionHandlers()
+      detachInterruptionHandlers = undefined
+      stream = acquiredStream
       try {
         const mimeType = selectSupportedMimeType((type) =>
           MediaRecorder.isTypeSupported(type),
@@ -203,7 +233,6 @@ export function createRecorder(
         chunks = []
         amplitudeSamples.length = 0
         startedAt = performance.now()
-        cancelled = false
 
         detachInterruptionHandlers = bindRecordingInterruptionHandlers(
           {

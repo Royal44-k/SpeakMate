@@ -213,6 +213,46 @@ describe('practice session lifecycle', () => {
     expect(start).not.toHaveBeenCalled()
   })
 
+  it('does not continue a late microphone permission request after unmount', async () => {
+    let resolvePermission!: () => void
+    const recorderStart = new Promise<void>((resolve) => {
+      resolvePermission = resolve
+    })
+    const cancel = vi.fn()
+    const recognitionStart = vi.fn()
+    class Recognition {
+      static available = vi.fn().mockResolvedValue('available')
+      continuous = false
+      interimResults = false
+      lang = ''
+      processLocally = false
+      onresult = null
+      start = recognitionStart
+      stop = vi.fn()
+      abort = vi.fn()
+    }
+    window.SpeechRecognition = Recognition
+    recorderHarness.recorder = {
+      start: vi.fn().mockReturnValue(recorderStart),
+      stop: vi.fn(),
+      cancel,
+      isRecording: () => false,
+    }
+    const practice = renderHook(() => usePracticeSession(scene, 'new'))
+    await waitFor(() => expect(practice.result.current.ready).toBe(true))
+    const interval = vi.spyOn(globalThis, 'setInterval')
+
+    const pending = practice.result.current.startRecording()
+    practice.unmount()
+    resolvePermission()
+    await pending
+    await Promise.resolve()
+
+    expect(cancel).toHaveBeenCalledOnce()
+    expect(interval).not.toHaveBeenCalled()
+    expect(recognitionStart).not.toHaveBeenCalled()
+  })
+
   it('exposes a readable status when manual local speech is unavailable', async () => {
     await (await getDatabase()).put('settings', {
       id: 'settings',

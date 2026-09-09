@@ -213,7 +213,9 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       active = false
       mountedRef.current = false
       clearElapsedTimer()
-      recorderRef.current?.cancel()
+      const recorder = recorderRef.current
+      recorderRef.current = null
+      recorder?.cancel()
       recognitionControllerRef.current?.abort()
       recognitionRef.current?.abort()
       browserTts.stop()
@@ -305,6 +307,15 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
     recognitionControllerRef.current = recognitionController
     try {
       await recorder.start()
+      if (!mountedRef.current) {
+        recognitionController.abort()
+        return
+      }
+      if (recorderRef.current !== recorder) {
+        recorder.cancel()
+        recognitionController.abort()
+        return
+      }
       setMachine((current) =>
         transitionPractice(current, { type: 'PERMISSION_GRANTED' }),
       )
@@ -329,6 +340,7 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       })
     } catch (error) {
       recognitionController.abort()
+      if (!mountedRef.current || recorderRef.current !== recorder) return
       recorderRef.current = null
       const denied =
         error instanceof DOMException &&
