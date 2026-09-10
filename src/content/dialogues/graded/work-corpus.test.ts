@@ -22,6 +22,127 @@ const scenes = [
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 
 describe('original workplace corpus', () => {
+  // I1 source-language regressions: reaching a location/handover question does
+  // not establish that a functional check already ran. Pin the reviewed prose
+  // against both yesterday-work branches and independent account/help facts.
+  for (const [variantId, mode] of [
+    ['team', 'extended'],
+    ['handover', 'standard'],
+    ['handover', 'extended'],
+  ] as const)
+    for (const done of [0, 1])
+      for (const account of [0, 1])
+        for (const help of [0, 1])
+          it(`prior-check premise A2/${variantId}/${mode}/${done}/${account}/${help}: asks about work, not assumed checking`, async () => {
+            const result = await localContentProvider.load({
+              sceneId: 'work-02',
+              level: 'A2',
+            })
+            expect(result.status).toBe('available')
+            if (result.status !== 'available') return
+            let run = createDialogue(result.pack, { variantId, mode })
+            let reached = false
+            while (run.snapshot.state.outcome === 'active') {
+              const q = run.snapshot.pack.questions.find(
+                (q) => q.id === run.snapshot.state.currentQuestionId,
+              )!
+              if (q.objective === 'evidence') {
+                reached = true
+                expect(
+                  run.snapshot.state.facts.find((f) => f.key === 'done')?.value,
+                ).toBe(done === 0 ? 'list' : 'labels')
+                expect(
+                  run.snapshot.state.facts.find((f) => f.key === 'blocker')
+                    ?.value,
+                ).toBe(account === 0 ? 'account' : 'none')
+                expect(run.reply).toBe(
+                  'Where can the team see your work from yesterday?',
+                )
+              }
+              const choice =
+                q.objective === 'done'
+                  ? done
+                  : q.objective === 'blocker'
+                    ? account
+                    : q.objective === 'help'
+                      ? help
+                      : 0
+              run = advanceDialogue(run.snapshot, {
+                text: dialogueSuggestions(run.snapshot)[choice].text,
+              })
+            }
+            expect(reached).toBe(true)
+            expect(
+              run.snapshot.state.facts.find((f) => f.key === 'help')?.value,
+            ).toBe(help === 0 ? 'ask' : 'no')
+          })
+  for (const done of [0, 1])
+    for (const plan of [0, 1])
+      for (const account of [0, 1])
+        for (const help of [0, 1])
+          for (const handover of [0, 1])
+            it(`prior-check premise B1/${done}/${plan}/${account}/${help}/${handover}: planned checks and prepared material need no prior test run`, async () => {
+              const result = await localContentProvider.load({
+                sceneId: 'work-02',
+                level: 'B1',
+              })
+              expect(result.status).toBe('available')
+              if (result.status !== 'available') return
+              let run = createDialogue(result.pack, {
+                variantId: 'handover',
+                mode: 'extended',
+              })
+              while (
+                run.snapshot.state.currentQuestionId !==
+                'daily-standup.B1.handover'
+              ) {
+                expect(run.snapshot.state.outcome).toBe('active')
+                const q = run.snapshot.pack.questions.find(
+                  (q) => q.id === run.snapshot.state.currentQuestionId,
+                )!
+                const choice =
+                  q.objective === 'done'
+                    ? done
+                    : q.objective === 'plan'
+                      ? plan
+                      : q.objective === 'blocker'
+                        ? account
+                        : q.objective === 'help'
+                          ? help
+                          : 0
+                run = advanceDialogue(run.snapshot, {
+                  text: dialogueSuggestions(run.snapshot)[choice].text,
+                })
+              }
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'done')?.value,
+              ).toBe(done === 0 ? 'list' : 'labels')
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'plan')?.value,
+              ).toBe(plan === 0 ? 'form' : 'pictures')
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'blocker')
+                  ?.value,
+              ).toBe(account === 0 ? 'account' : 'none')
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'help')?.value,
+              ).toBe(help === 0 ? 'ask' : 'no')
+              const answer = dialogueSuggestions(run.snapshot)[handover]
+              expect(answer.text).toBe(
+                handover === 0
+                  ? 'I can include the steps and sample data needed to run the planned check.'
+                  : 'I can separate prepared material from open questions so they know where to start.',
+              )
+              run = advanceDialogue(run.snapshot, { text: answer.text })
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'handover')
+                  ?.value,
+              ).toBe(handover === 0 ? 'steps' : 'open')
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'blocker')
+                  ?.value,
+              ).toBe(account === 0 ? 'account' : 'none')
+            })
   it('loads six canonical work scenes and 360 new questions, not legacy triples', async () => {
     expect(
       gradedSceneManifest

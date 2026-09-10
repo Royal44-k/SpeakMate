@@ -7,12 +7,12 @@ const a1: Review = {
 const a2: Review = {
   state: 'model-reviewed',
   record:
-    'work-review.md#daily-standup: A2 all 12 Q/24 A, rationale, both variants and paths read and corrected by Codex implementation agent, 2026-09-10; model-assisted, not teacher certification',
+    'work-review.md#fix1: A2 all 12 Q/24 A, rationale, both variants and paths reread after I1 correction by Codex implementation agent, 2026-09-10; independent re-review pending',
 }
 const b1: Review = {
   state: 'model-reviewed',
   record:
-    'work-review.md#daily-standup: B1 all 12 Q/24 A, rationale, both variants and paths read and corrected by Codex implementation agent, 2026-09-10; model-assisted, not teacher certification',
+    'work-review.md#fix1: B1 all 12 Q/24 A, rationale, both variants and paths reread after I1 correction by Codex implementation agent, 2026-09-10; independent re-review pending',
 }
 const b2: Review = {
   state: 'model-reviewed',
@@ -305,8 +305,8 @@ export const standupPacks = {
       [
         'evidence',
         'locate-evidence',
-        'Where can the team see what you checked yesterday?',
-        '位置与证据形式。',
+        'Where can the team see your work from yesterday?',
+        '询问昨天工作资料的位置，不假设已经跑过测试。',
         'board',
         'I added my notes to the card on the work board.',
         'folder',
@@ -495,11 +495,11 @@ export const standupPacks = {
         'handover',
         'prepare-handover',
         'What would make your notes useful to a colleague picking up the work?',
-        '可复现和未完成内容。',
+        '提供计划检查步骤并区分准备材料与待解问题，不假设已检查。',
         'steps',
-        'I can include the exact steps and sample data so they can repeat the check.',
+        'I can include the steps and sample data needed to run the planned check.',
         'open',
-        'I can separate checked items from open questions so they know where to start.',
+        'I can separate prepared material from open questions so they know where to start.',
         b1,
       ],
       [

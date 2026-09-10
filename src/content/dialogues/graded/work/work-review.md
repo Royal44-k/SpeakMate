@@ -1,5 +1,7 @@
 # Workplace corpus model-assisted reading record
 
+Current correction status (fix1, 2026-09-10): the original all-eligible/no-known-error claims below describe the first author self-reading only and are superseded by independent Important I1. Independent review accepted28units/336Q/672A and held daily-standup A2/B1 (2units/24Q/48A). Both held units were reset to draft during correction; after actual complete-unit rereading their source attestations are renewed. Current source flags360Q/720A model-reviewed,0draft; independent eligibility remains336Q/672A, with corrected24Q/48A awaiting scoped re-review. Human-teacher0. The original inventory is unchanged; detailed fix1 evidence follows.
+
 Date:2026-09-10. Reader: Codex implementation agent (actual author/self-reader, not an independent reviewer or human teacher). Method: reopened and read all six complete authored scene files after drafting, then the complete analysis file; checked Q/A responsiveness, grammar, register, hints, effects and exact-form mapping, both answer choices across each explicit path, role/default introductions, proposals versus agreements, personal versus team responsibility, forecast versus confirmed state, and terminal/repair prose. Reopened corrected rows and all revised situations after edits. No constructor or test assigned review status; the explicit annotations were written only after this reading.
 
 Authored360Q/720A; structural360Q/720A (identity/count check13:33:48 and focused1038tests passed13:42:40); actually model-read360Q/720A; human-read0Q/0A; draft0Q/0A after corrections; editorially eligible360Q/720A pending controller independent review. Every unit has12named intents.30rationales,60variant instances,180explicit mode paths with3/6/10turns and repair/closing contexts read. Final full suite13:46:31:55files/3705tests passed,121.97s,exit0; typecheck/lint passed. Structural/path execution is not linguistic certification. The inventory below is a metadata expansion of the actually read row IDs, not a claim that generating it performed reading.
@@ -423,3 +425,48 @@ Canonical work-06. Every listed item was read; each level12Q/24A, human0,draft0,
 |job-interview.C1.question|job-interview.C1.question.a|job-interview.C1.question.b|
 |job-interview.C1.evidence|job-interview.C1.evidence.a|job-interview.C1.evidence.b|
 |job-interview.C1.clarify|job-interview.C1.clarify.a|job-interview.C1.clarify.b|
+
+
+## fix1
+
+FIX_BASE421500593709fd39a805443c0220a85616b86e13. Date2026-09-10; reader Codex implementation agent, model-assisted self-rereading, not independent review or a human teacher. Read the complete I1 finding and verified both premises. Actual RED preceded prose/review-state edits:56source/premise tests failed on old English, not draft gates. Then reset the2held units to draft, corrected the text and actually reopened/read both complete A2/B1 units:24Q/48A,24hints,all48owned effect/form mappings,2rationales,4instantiated variants/12paths and all shared situation/repair/closing prose in their context. Shared situations were read but not changed; no other level or analysis rereading is claimed this round.
+
+Changed items only:
+- daily-standup.A2.evidence: question now “Where can the team see your work from yesterday?”; hint says it asks where yesterday’s work can be found, not whether tests ran. Both original location answers remain unchanged and responsive after either list preparation or button-wording review. Read team extended, handover standard and handover extended orders, including both available/unavailable account and help/no-help choices.
+- daily-standup.B1.handover.a: “I can include the steps and sample data needed to run the planned check.” This is prospective and works when the account is not ready. daily-standup.B1.handover.b: “I can separate prepared material from open questions so they know where to start.” This does not presume checked items. Hint now names planned checks/prepared material. Both done choices, both planned tasks, both account states and either optional help response remain compatible; no colleague is assigned and no earlier check is invented.
+- Renewed A2/B1 level attestations cover each row’s Q/A and both variants only after the complete-unit rereading above. No additional prose issue found in that bounded reread.
+
+Actual delta:1Qtext,2Atexts,2hints;2review inputs covering24Q/48A. IDs,values,effects,forms mapping,paths,situations,sources,schema/engine/contentVersion1 and persisted snapshots unchanged. Edited Atexts change their exact forms through the existing mapper; no added alias or inferred fact. Authored/structural held-unit size24Q/48A; this round model-reread24Q/48A; human0; source-draft0 after renewal; self-read eligible24Q/48A; independently eligible0ofthese24Q/48A until re-review. Category independent eligibility336Q/672A remains unchanged. Existing6analysis entries/30examples/30substitutions retain prior status; reread0this round.
+
+The earlier broad standup self-reading observation missed these two residual premises; this explicit correction supersedes that observation. Tests pin these specific reviewed premises and prior states, not arbitrary linguistic understanding. No full-suite rerun, source count inflation, new teacher/CEFR certification, UI or release claim.
+
+### Fix1 complete-unit reread inventory
+
+Verification: Node22 work-corpus.test.ts -t 'prior-check premise' RED14:15:02,56failed/1038skipped,6.16s,exit1 against original prose. After correction/rereading, Node22 work-corpus.test.ts GREEN14:18:54,1094passed,17.06s,exit0. Typecheck and changed-file ESLint exit0. No full or unrelated suite rerun. Git LF→CRLF notices remain disclosed; this round unstaged diffcheck passed.
+
+|Question reread|Answer A reread|Answer B reread|
+|---|---|---|
+|daily-standup.A2.done|daily-standup.A2.done.a|daily-standup.A2.done.b|
+|daily-standup.A2.plan|daily-standup.A2.plan.a|daily-standup.A2.plan.b|
+|daily-standup.A2.blocker|daily-standup.A2.blocker.a|daily-standup.A2.blocker.b|
+|daily-standup.A2.owner|daily-standup.A2.owner.a|daily-standup.A2.owner.b|
+|daily-standup.A2.help|daily-standup.A2.help.a|daily-standup.A2.help.b|
+|daily-standup.A2.time|daily-standup.A2.time.a|daily-standup.A2.time.b|
+|daily-standup.A2.evidence|daily-standup.A2.evidence.a|daily-standup.A2.evidence.b|
+|daily-standup.A2.priority|daily-standup.A2.priority.a|daily-standup.A2.priority.b|
+|daily-standup.A2.detail|daily-standup.A2.detail.a|daily-standup.A2.detail.b|
+|daily-standup.A2.followup|daily-standup.A2.followup.a|daily-standup.A2.followup.b|
+|daily-standup.A2.handover|daily-standup.A2.handover.a|daily-standup.A2.handover.b|
+|daily-standup.A2.warning|daily-standup.A2.warning.a|daily-standup.A2.warning.b|
+|daily-standup.B1.done|daily-standup.B1.done.a|daily-standup.B1.done.b|
+|daily-standup.B1.plan|daily-standup.B1.plan.a|daily-standup.B1.plan.b|
+|daily-standup.B1.blocker|daily-standup.B1.blocker.a|daily-standup.B1.blocker.b|
+|daily-standup.B1.owner|daily-standup.B1.owner.a|daily-standup.B1.owner.b|
+|daily-standup.B1.help|daily-standup.B1.help.a|daily-standup.B1.help.b|
+|daily-standup.B1.time|daily-standup.B1.time.a|daily-standup.B1.time.b|
+|daily-standup.B1.evidence|daily-standup.B1.evidence.a|daily-standup.B1.evidence.b|
+|daily-standup.B1.priority|daily-standup.B1.priority.a|daily-standup.B1.priority.b|
+|daily-standup.B1.detail|daily-standup.B1.detail.a|daily-standup.B1.detail.b|
+|daily-standup.B1.followup|daily-standup.B1.followup.a|daily-standup.B1.followup.b|
+|daily-standup.B1.handover|daily-standup.B1.handover.a|daily-standup.B1.handover.b|
+|daily-standup.B1.warning|daily-standup.B1.warning.a|daily-standup.B1.warning.b|
