@@ -1,6 +1,48 @@
 // Metadata only: importing scene cards must not import authored dialogue prose.
 export const gradedSceneManifest = [
   {
+    sceneId: 'social-01',
+    category: 'social',
+    titleZh: '初次闲聊',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'social-02',
+    category: 'social',
+    titleZh: '交流活动',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'social-03',
+    category: 'social',
+    titleZh: '发出邀请',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'social-04',
+    category: 'social',
+    titleZh: '礼貌拒绝',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'social-05',
+    category: 'social',
+    titleZh: '讨论观点',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'social-06',
+    category: 'social',
+    titleZh: '道歉与修复',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
     sceneId: 'work-01',
     category: 'work',
     titleZh: '职场自我介绍',

@@ -16,6 +16,14 @@ export interface ContentProvider {
 
 export const localContentProvider: ContentProvider = {
   async load(request) {
+    const social = [
+      'social-01',
+      'social-02',
+      'social-03',
+      'social-04',
+      'social-05',
+      'social-06',
+    ].includes(request.sceneId)
     const work = [
       'work-01',
       'work-02',
@@ -52,7 +60,8 @@ export const localContentProvider: ContentProvider = {
       !remainingDining &&
       !travel &&
       !daily &&
-      !work
+      !work &&
+      !social
     )
       return { status: 'unavailable' }
     if (request.contentVersion !== undefined && request.contentVersion !== 1)
@@ -60,6 +69,15 @@ export const localContentProvider: ContentProvider = {
         status: 'version-unavailable',
         requestedVersion: request.contentVersion,
       }
+    if (social) {
+      const { socialPacks } = await import('./social')
+      return {
+        status: 'available',
+        pack: gradedPackSchema.parse(
+          socialPacks[request.sceneId][request.level],
+        ),
+      }
+    }
     if (work) {
       const { workPacks } = await import('./work')
       return {

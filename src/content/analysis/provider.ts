@@ -27,6 +27,14 @@ export interface LearningAssistantProvider {
 
 export const localLearningAssistant: LearningAssistantProvider = {
   async analyze(request) {
+    const social = [
+      'social-01',
+      'social-02',
+      'social-03',
+      'social-04',
+      'social-05',
+      'social-06',
+    ].includes(request.sceneId ?? '')
     const work = [
       'work-01',
       'work-02',
@@ -71,7 +79,8 @@ export const localLearningAssistant: LearningAssistantProvider = {
       !remainingDining &&
       !travel &&
       !daily &&
-      !work
+      !work &&
+      !social
     )
       return {
         ...base,
@@ -80,15 +89,17 @@ export const localLearningAssistant: LearningAssistantProvider = {
         explanationZh:
           '此场景尚无已收录解析。可以保存原文、写笔记或自行回忆，不生成含义或评分。',
       }
-    const catalog = work
-      ? (await import('./work')).workAnalysis
-      : daily
-        ? (await import('./daily')).dailyAnalysis
-        : travel
-          ? (await import('./travel')).travelAnalysis
-          : remainingDining
-            ? (await import('./dining')).diningAnalysis
-            : (await import('./coffee')).coffeeAnalysis
+    const catalog = social
+      ? (await import('./social')).socialAnalysis
+      : work
+        ? (await import('./work')).workAnalysis
+        : daily
+          ? (await import('./daily')).dailyAnalysis
+          : travel
+            ? (await import('./travel')).travelAnalysis
+            : remainingDining
+              ? (await import('./dining')).diningAnalysis
+              : (await import('./coffee')).coffeeAnalysis
     const entries = catalog
       .filter((e) => e.sceneId === request.sceneId)
       .map((e) => analysisEntrySchema.parse(e))
