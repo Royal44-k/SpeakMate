@@ -1,6 +1,48 @@
 // Metadata only: importing scene cards must not import authored dialogue prose.
 export const gradedSceneManifest = [
   {
+    sceneId: 'travel-01',
+    category: 'travel',
+    titleZh: '机场值机',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'travel-02',
+    category: 'travel',
+    titleZh: '安检沟通',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'travel-03',
+    category: 'travel',
+    titleZh: '航班转机',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'travel-04',
+    category: 'travel',
+    titleZh: '入境问答',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'travel-05',
+    category: 'travel',
+    titleZh: '酒店入住',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'travel-06',
+    category: 'travel',
+    titleZh: '酒店房间问题',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
     sceneId: 'dining-01',
     category: 'dining',
     titleZh: '咖啡点单',

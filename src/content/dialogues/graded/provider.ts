@@ -16,6 +16,14 @@ export interface ContentProvider {
 
 export const localContentProvider: ContentProvider = {
   async load(request) {
+    const travel = [
+      'travel-01',
+      'travel-02',
+      'travel-03',
+      'travel-04',
+      'travel-05',
+      'travel-06',
+    ].includes(request.sceneId)
     const remainingDining = [
       'dining-02',
       'dining-03',
@@ -23,13 +31,22 @@ export const localContentProvider: ContentProvider = {
       'dining-05',
       'dining-06',
     ].includes(request.sceneId)
-    if (request.sceneId !== 'dining-01' && !remainingDining)
+    if (request.sceneId !== 'dining-01' && !remainingDining && !travel)
       return { status: 'unavailable' }
     if (request.contentVersion !== undefined && request.contentVersion !== 1)
       return {
         status: 'version-unavailable',
         requestedVersion: request.contentVersion,
       }
+    if (travel) {
+      const { travelPacks } = await import('./travel')
+      return {
+        status: 'available',
+        pack: gradedPackSchema.parse(
+          travelPacks[request.sceneId][request.level],
+        ),
+      }
+    }
     if (remainingDining) {
       const { remainingDiningPacks } = await import('./dining')
       return {

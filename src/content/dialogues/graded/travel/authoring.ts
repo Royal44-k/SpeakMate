@@ -1,37 +1,35 @@
 import type { CefrLevel } from '@/domain/scenes/types'
-import type { GradedPack, GradedQuestion } from '../schema'
 import { assembleQuestions, type AuthoredRow } from '../authoring'
+import type { GradedPack } from '../schema'
 
 export const source =
-  'https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification.'
-export const draft = {
-  state: 'draft' as const,
-  record: 'dining-review.md: awaiting postdraft item reading',
-}
+  'https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice.'
 export type Row = AuthoredRow
 export type Scene = {
   sceneId: string
   slug: string
   situations: [string, string]
+  paths: [number[][], number[][]]
   closing: string
   partial: string
   repairs: GradedPack['repairs']
 }
-
-/** Category-local metadata only: every English string and level rationale is supplied by its author. */
-export function diningPack(
+export function travelPack(
   scene: Scene,
   level: CefrLevel,
   rationale: Omit<GradedPack['rationale'], 'sourceBasis'>,
   rows: Row[],
-  variantReview: GradedQuestion['review'] = draft,
+  variantReview: GradedPack['variants'][number]['review'] = {
+    state: 'draft',
+    record: 'travel-review.md: awaiting variant reading',
+  },
 ): GradedPack {
   const questions = assembleQuestions(
     scene.slug,
     level,
     rows,
     [source],
-    draft.record,
+    'travel-review.md: awaiting item reading',
   )
   const path = (positions: number[]) => ({
     questionIds: positions.map((i) => questions[i - 1].id),
@@ -43,33 +41,33 @@ export function diningPack(
     engineVersion: 1,
     contentVersion: 1,
     sceneId: scene.sceneId,
-    category: 'dining',
+    category: 'travel',
     level,
     author:
-      'SpeakMate original authoring — Codex implementation agent, 2026-09-09',
+      'SpeakMate original authoring — Codex implementation agent, 2026-09-09 to 2026-09-10',
     rationale: { ...rationale, sourceBasis: [source] },
     questions,
     repairs: scene.repairs,
     variants: [
       {
-        id: 'visit',
+        id: 'counter',
         situationZh: scene.situations[0],
-        review: { ...variantReview },
         modes: {
-          short: path([1, 2, 3]),
-          standard: path([1, 2, 3, 4, 5, 6]),
-          extended: path([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+          short: path(scene.paths[0][0]),
+          standard: path(scene.paths[0][1]),
+          extended: path(scene.paths[0][2]),
         },
+        review: { ...variantReview },
       },
       {
-        id: 'planning',
+        id: 'assistance',
         situationZh: scene.situations[1],
-        review: { ...variantReview },
         modes: {
-          short: path([1, 3, 2]),
-          standard: path([1, 3, 2, 4, 5, 6]),
-          extended: path([1, 3, 2, 4, 5, 6, 7, 8, 11, 12]),
+          short: path(scene.paths[1][0]),
+          standard: path(scene.paths[1][1]),
+          extended: path(scene.paths[1][2]),
         },
+        review: { ...variantReview },
       },
     ],
   }
