@@ -16,6 +16,14 @@ export interface ContentProvider {
 
 export const localContentProvider: ContentProvider = {
   async load(request) {
+    const emergency = [
+      'emergency-01',
+      'emergency-02',
+      'emergency-03',
+      'emergency-04',
+      'emergency-05',
+      'emergency-06',
+    ].includes(request.sceneId)
     const study = [
       'study-01',
       'study-02',
@@ -70,7 +78,8 @@ export const localContentProvider: ContentProvider = {
       !daily &&
       !work &&
       !social &&
-      !study
+      !study &&
+      !emergency
     )
       return { status: 'unavailable' }
     if (request.contentVersion !== undefined && request.contentVersion !== 1)
@@ -78,6 +87,15 @@ export const localContentProvider: ContentProvider = {
         status: 'version-unavailable',
         requestedVersion: request.contentVersion,
       }
+    if (emergency) {
+      const { emergencyPacks } = await import('./emergency')
+      return {
+        status: 'available',
+        pack: gradedPackSchema.parse(
+          emergencyPacks[request.sceneId][request.level],
+        ),
+      }
+    }
     if (study) {
       const { studyPacks } = await import('./study')
       return {

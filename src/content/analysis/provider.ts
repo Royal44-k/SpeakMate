@@ -27,6 +27,14 @@ export interface LearningAssistantProvider {
 
 export const localLearningAssistant: LearningAssistantProvider = {
   async analyze(request) {
+    const emergency = [
+      'emergency-01',
+      'emergency-02',
+      'emergency-03',
+      'emergency-04',
+      'emergency-05',
+      'emergency-06',
+    ].includes(request.sceneId ?? '')
     const study = [
       'study-01',
       'study-02',
@@ -89,7 +97,8 @@ export const localLearningAssistant: LearningAssistantProvider = {
       !daily &&
       !work &&
       !social &&
-      !study
+      !study &&
+      !emergency
     )
       return {
         ...base,
@@ -98,19 +107,21 @@ export const localLearningAssistant: LearningAssistantProvider = {
         explanationZh:
           '此场景尚无已收录解析。可以保存原文、写笔记或自行回忆，不生成含义或评分。',
       }
-    const catalog = study
-      ? (await import('./study')).studyAnalysis
-      : social
-        ? (await import('./social')).socialAnalysis
-        : work
-          ? (await import('./work')).workAnalysis
-          : daily
-            ? (await import('./daily')).dailyAnalysis
-            : travel
-              ? (await import('./travel')).travelAnalysis
-              : remainingDining
-                ? (await import('./dining')).diningAnalysis
-                : (await import('./coffee')).coffeeAnalysis
+    const catalog = emergency
+      ? (await import('./emergency')).emergencyAnalysis
+      : study
+        ? (await import('./study')).studyAnalysis
+        : social
+          ? (await import('./social')).socialAnalysis
+          : work
+            ? (await import('./work')).workAnalysis
+            : daily
+              ? (await import('./daily')).dailyAnalysis
+              : travel
+                ? (await import('./travel')).travelAnalysis
+                : remainingDining
+                  ? (await import('./dining')).diningAnalysis
+                  : (await import('./coffee')).coffeeAnalysis
     const entries = catalog
       .filter((e) => e.sceneId === request.sceneId)
       .map((e) => analysisEntrySchema.parse(e))

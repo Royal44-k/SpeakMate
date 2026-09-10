@@ -1,6 +1,48 @@
 // Metadata only: importing scene cards must not import authored dialogue prose.
 export const gradedSceneManifest = [
   {
+    sceneId: 'emergency-01',
+    category: 'emergency',
+    titleZh: '药店买药',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'emergency-02',
+    category: 'emergency',
+    titleZh: '描述症状',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'emergency-03',
+    category: 'emergency',
+    titleZh: '预约医生',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'emergency-04',
+    category: 'emergency',
+    titleZh: '拨打求助电话',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'emergency-05',
+    category: 'emergency',
+    titleZh: '报告遗失物',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'emergency-06',
+    category: 'emergency',
+    titleZh: '租房报修',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
     sceneId: 'study-01',
     category: 'study',
     titleZh: '课堂介绍',
