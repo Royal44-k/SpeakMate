@@ -17,12 +17,12 @@ const b1: Review = {
 const b2: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#phone-b2: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: phone B2 all 12 Q/24 A and both variants reread by Codex implementation agent, 2026-09-10',
 }
 const c1: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#phone-c1: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: phone C1 all 12 Q/24 A and both variants reread by Codex implementation agent, 2026-09-10',
 }
 const scene: DailyScene = {
   sceneId: 'daily-06',
@@ -556,12 +556,12 @@ export const phonePacks = {
       [
         'onset',
         'state-onset',
-        'When yesterday did you first notice the behaviour, rather than infer it began?',
-        '发现时间与起因时间分离。',
+        'When did you first notice the problem yesterday?',
+        '说明首次发现的时段和当时情境；不要求精确钟点。',
         'morning',
-        'I first noticed it in the morning; I cannot establish whether it had begun earlier.',
+        'Yesterday morning, when I picked it up before leaving home; I cannot remember the exact time.',
         'evening',
-        'I first noticed it in the evening, although that does not tell me the exact time it began.',
+        'Yesterday evening, after I got home; I had been too busy to use it earlier.',
         b2,
       ],
       [
@@ -578,23 +578,23 @@ export const phonePacks = {
       [
         'incident',
         'report-history',
-        'Is there a previous drop worth mentioning as background?',
-        '有情境理由的限定。',
+        'Had the phone been dropped before you noticed the problem?',
+        '描述是否掉落及记得的经过，不推断故障原因。',
         'dropped',
-        'Yes, the phone was dropped earlier; I would report that as background, not as proof of the cause.',
+        'Yes, it slipped out of my pocket the day before, but I do not remember how it landed.',
         'no-drop',
-        'No, there was no earlier drop that I can report.',
+        'No, it had not been dropped before I noticed the problem.',
         b2,
       ],
       [
         'restart',
         'report-attempt',
-        'What has already been tried in terms of restarting?',
+        'Have you tried restarting the phone since then?',
         '过去动作不生成步骤。',
         'tried',
-        'I attempted one restart after noticing the problem; that is the extent of it.',
+        'I restarted it once after noticing the problem, but have not tried again.',
         'not-tried',
-        'I have not attempted a restart, so I cannot report any result from one.',
+        'No, I have not restarted it; I came here to ask for help first.',
         b2,
       ],
       [
@@ -701,12 +701,12 @@ export const phonePacks = {
       [
         'onset',
         'state-onset',
-        'How precisely can you place your first observation of the problem yesterday?',
-        '观察时间而非故障起点。',
+        'What do you remember about when you first noticed the problem yesterday?',
+        '用当时正在做的事定位时段，允许不记得精确时间。',
         'morning',
-        'I can place the first observation in the morning, but cannot narrow down when the problem itself began.',
+        'I noticed it yesterday morning as I was getting ready to leave, although I cannot put an exact time to it.',
         'evening',
-        'I noticed it in the evening; that is the earliest point I can report with confidence.',
+        'It was yesterday evening, once I had got home and had a chance to use it; I had not noticed anything earlier.',
         c1,
       ],
       [
@@ -723,23 +723,23 @@ export const phonePacks = {
       [
         'incident',
         'report-history',
-        'What background about a possible drop would be relevant to mention?',
-        '有无事件都不臆测。',
+        'Do you remember the phone being dropped before you noticed this problem?',
+        '回忆是否掉落和当时处理，不把先后说成因果。',
         'dropped',
-        'The phone had been dropped earlier; I would include that in the history without presenting it as an established explanation.',
+        'Yes, it fell from my coat pocket the previous day; I picked it up straight away, but did not check it closely at the time.',
         'no-drop',
-        'There had been no prior drop, so I have no such incident to include in the history.',
+        'No, it had not been dropped; I had been keeping it in a padded pouch.',
         c1,
       ],
       [
         'restart',
         'report-attempt',
-        'What is the full extent of any restart you have already attempted?',
+        'Have you tried restarting it since you noticed the problem?',
         '不指导维修。',
         'tried',
         'I attempted a single restart after noticing the fault and have not repeated it.',
         'not-tried',
-        'I have not attempted a restart, so there is no outcome from one for me to report.',
+        'Not yet; I was short of time and wanted to discuss the problem before doing anything else.',
         c1,
       ],
       [

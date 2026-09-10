@@ -3,34 +3,34 @@ import { dailyPack, type DailyScene, type Review } from './authoring'
 const a1: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#directions-a1: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: directions A1 all 12 Q/24 A and both corrected variants reread by Codex implementation agent, 2026-09-10',
 }
 const a2: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#directions-a2: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: directions A2 all 12 Q/24 A and both corrected variants reread by Codex implementation agent, 2026-09-10',
 }
 const b1: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#directions-b1: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: directions B1 all 12 Q/24 A and both corrected variants reread by Codex implementation agent, 2026-09-10',
 }
 const b2: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#directions-b2: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: directions B2 all 12 Q/24 A and both corrected variants reread by Codex implementation agent, 2026-09-10',
 }
 const c1: Review = {
   state: 'model-reviewed',
   record:
-    'daily-review.md#directions-c1: all 12 named Q/A pairs and both variants read by Codex implementation agent, 2026-09-10',
+    'daily-review.md#fix1: directions C1 all 12 Q/24 A and both corrected variants reread by Codex implementation agent, 2026-09-10',
 }
 const scene: DailyScene = {
   sceneId: 'daily-01',
   slug: 'ask-directions',
   situations: [
-    '虚构Oak Square游客咨询点。你步行去图书馆或博物馆；两者均在河对岸，地图上经过面包店与桥。楼梯捷径和沿河无台阶路线都在讨论中，尚未选定。你有纸质地图，可选择拍照或抄写路线。工作人员逐项了解需要后再提供路线；短练只确定目的地、路线条件和指引方式，不假装已给出完整导航。',
-    '虚构Oak Square信息台，你在提前规划明天去河对岸图书馆或博物馆的步行路线；桥与面包店已在纸图上标出。你特别需要核对过桥之后的走法和问路备选方式。楼梯捷径与沿河无台阶路线均未选定；时间和天气都未保证。不是实时地图或真实通行建议。',
+    '虚构Oak Square游客咨询点。你步行去图书馆或博物馆；两者均在河对岸，地图上经过面包店与桥。楼梯捷径和沿河无台阶路线都在讨论中，尚未选定。你有纸质地图，可选择拍照或抄写路线。开场前，工作人员已指着地图上的两条街名，连着读过一遍：“Mill Road, Hill Road.”你听到了这两个相近的名字，但连读时不容易区分；这只是读出图上标签，还没有说明该走哪条路。工作人员接下来先了解你的需要；短练只确定目的地、路线条件和指引方式，不假装已给出完整导航。',
+    '虚构Oak Square信息台，你在提前规划明天去河对岸图书馆或博物馆的步行路线；桥与面包店已在纸图上标出。开场前，工作人员已指着地图上的两条街名，连着读过一遍：“Mill Road, Hill Road.”你听到了这两个相近的名字，但连读时不容易区分；这只是读出图上标签，还没有说明该走哪条路。你特别需要核对过桥之后的走法和问路备选方式。楼梯捷径与沿河无台阶路线均未选定；时间和天气都未保证。不是实时地图或真实通行建议。',
   ],
   paths: [
     {

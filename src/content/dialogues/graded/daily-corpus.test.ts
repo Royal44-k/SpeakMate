@@ -20,6 +20,54 @@ const scenes = [
 ] as const
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 describe('daily-life corpus', () => {
+  // Editorial prerequisite regression through the real selected snapshot/path.
+  // It protects the supplied listening experience, not a natural-language score.
+  for (const level of levels)
+    for (const variantId of ['visit', 'planning'])
+      for (const formatChoice of [0, 1])
+        for (const repairChoice of [0, 1])
+          it(`directions/${level}/${variantId}/${formatChoice}/${repairChoice}: prior street-name speech precedes hearing repair for either requested format`, async () => {
+            const result = await localContentProvider.load({
+              sceneId: 'daily-01',
+              level,
+            })
+            expect(result.status).toBe('available')
+            if (result.status !== 'available') return
+            let run = createDialogue(result.pack, {
+              mode: 'extended',
+              variantId,
+            })
+            const initialSituation = run.snapshot.pack.variants.find(
+              (variant) => variant.id === variantId,
+            )!.situationZh
+            for (let turn = 0; turn < 6; turn++) {
+              const choice =
+                run.snapshot.state.currentQuestionId ===
+                `ask-directions.${level}.format`
+                  ? formatChoice
+                  : turn % 2
+              run = advanceDialogue(run.snapshot, {
+                text: dialogueSuggestions(run.snapshot)[choice].text,
+              })
+            }
+            expect(run.snapshot.state.currentQuestionId).toBe(
+              `ask-directions.${level}.repeat`,
+            )
+            expect(
+              run.snapshot.state.facts.find((fact) => fact.key === 'format')
+                ?.value,
+            ).toBe(formatChoice === 0 ? 'map' : 'spoken')
+            expect(initialSituation).toContain(
+              '开场前，工作人员已指着地图上的两条街名，连着读过一遍：“Mill Road, Hill Road.”',
+            )
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[repairChoice].text,
+            })
+            expect(
+              run.snapshot.state.facts.find((fact) => fact.key === 'repeat')
+                ?.value,
+            ).toBe(repairChoice === 0 ? 'repeat' : 'spell')
+          })
   it('pins supported corpus versions and counts only 360 newly authored daily questions', async () => {
     const ids = new Set<string>()
     let answers = 0
