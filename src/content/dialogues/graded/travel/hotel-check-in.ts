@@ -256,7 +256,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.identity, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.identity, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -271,7 +271,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.dates, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.dates, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -286,7 +286,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.room, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.room, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -301,7 +301,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.location, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.location, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -316,7 +316,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.early, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.early, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -331,7 +331,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.breakfast, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.breakfast, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -346,7 +346,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.payment, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.payment, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -361,7 +361,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.key, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.key, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -376,7 +376,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.wifi, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.wifi, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -391,14 +391,14 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.contact, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.contact, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'luggage',
         'ask-storage',
-        'Would you like information about bag storage while room access is unresolved?',
-        '不假定已接受等待。',
+        'Would you like information about bag storage before you go to your room?',
+        '询问进入房间前的储物选择，不预设申请提前入住。',
         'ask',
         'Yes, is there somewhere I could leave my bag?',
         'keep',
@@ -406,7 +406,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.luggage, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.luggage, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -421,14 +421,14 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.A2.checkout, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.A2.checkout, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#hotel-check-in — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#hotel-check-in — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
   B1: travelPack(
@@ -453,7 +453,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.identity, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.identity, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -468,7 +468,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.dates, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.dates, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -483,7 +483,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.room, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.room, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -498,14 +498,14 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.location, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.location, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'early',
         'negotiate-time',
         'How would you like to handle the gap between now and the usual three-o’clock access time?',
-        '提前请求未解决。',
+        '可提出提前入住申请，也可明确选择等到三点。',
         'ask',
         'I would like to ask about early access, but I understand it needs checking.',
         'wait',
@@ -513,7 +513,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.early, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.early, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -528,7 +528,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.breakfast, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.breakfast, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -543,7 +543,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.payment, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.payment, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -558,7 +558,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.key, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.key, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -573,7 +573,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.wifi, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.wifi, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -588,22 +588,22 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.contact, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.contact, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'luggage',
         'ask-storage',
-        'Would discussing storage be helpful while the access timing remains under discussion?',
-        '不把提前入住申请变等待同意。',
+        'Would it help to discuss where you could leave your bag before going to your room?',
+        '储物选择不依赖是否提出提前入住申请。',
         'ask',
         'Yes, I would like to know whether a storage option exists and how it works.',
         'keep',
-        'No, I would keep the bag with me until the access timing is clear.',
+        'No, I would rather keep the bag with me until I go to my room.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.luggage, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.luggage, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -618,14 +618,14 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B1.checkout, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B1.checkout, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#hotel-check-in — B1 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#hotel-check-in — B1 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
   B2: travelPack(
@@ -650,7 +650,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.identity, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.identity, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -665,7 +665,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.dates, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.dates, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -680,7 +680,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.room, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.room, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -695,7 +695,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.location, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.location, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -710,7 +710,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.early, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.early, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -725,7 +725,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.breakfast, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.breakfast, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -740,7 +740,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.payment, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.payment, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -755,7 +755,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.key, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.key, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -770,7 +770,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.wifi, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.wifi, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -785,22 +785,22 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.contact, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.contact, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'luggage',
         'ask-storage',
-        'Would it be useful to investigate bag storage independently of the access-time decision?',
-        '储物和提前入住两个问题分开。',
+        'Would you like to look into bag storage for the time before you enter your room?',
+        '说明进入房间前的储物偏好，不推断提前入住申请状态。',
         'ask',
-        'Yes, I would check the storage conditions without assuming that early room access has been refused or approved.',
+        'Yes, I would like to check the storage conditions before deciding whether to leave my bag.',
         'keep',
-        'No, I prefer to retain the bag myself while the timing is clarified.',
+        'No, I would prefer to keep the bag with me until I enter the room.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.luggage, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.luggage, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -815,14 +815,14 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.B2.checkout, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.B2.checkout, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#hotel-check-in — B2 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#hotel-check-in — B2 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
   C1: travelPack(
@@ -847,7 +847,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.identity, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.identity, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -862,7 +862,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.dates, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.dates, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -877,7 +877,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.room, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.room, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -892,7 +892,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.location, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.location, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -907,7 +907,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.early, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.early, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -922,7 +922,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.breakfast, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.breakfast, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -937,7 +937,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.payment, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.payment, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -952,7 +952,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.key, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.key, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -967,7 +967,7 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.wifi, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.wifi, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -982,22 +982,22 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.contact, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.contact, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'luggage',
         'ask-storage',
-        'Would a separate enquiry about storage help without prejudging the room-access discussion?',
-        '提前入住始终独立待定。',
+        'Would it be helpful to go over the storage options for your bag before you head to your room?',
+        '储物与进入房间前的安排有关，不预设存在待定的提前入住请求。',
         'ask',
-        'Yes, I would like the storage conditions explained as an independent option, not as evidence that the access request has been settled.',
+        'Yes, please explain the storage arrangements, particularly how I would collect the bag when I need it.',
         'keep',
-        'No, I would retain the bag for now; that choice does not require the room-access question to be resolved first.',
+        'No, I would rather keep the bag with me, as there are a few things I may need before I go to my room.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.luggage, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.luggage, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -1012,14 +1012,14 @@ export const hotelPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-check-in — hotel-check-in.C1.checkout, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-check-in — hotel-check-in.C1.checkout, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#hotel-check-in — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#hotel-check-in — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
 }

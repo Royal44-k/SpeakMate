@@ -196,6 +196,101 @@ describe('travel corpus', () => {
         expect(declined.reply).not.toMatch(/[?？]/u)
       })
     }
+  // A reviewed wording contract, not an automatic natural-language quality check.
+  // Waiting until the stated time does not create an early-access request.
+  for (const [level, question, hint, answers] of [
+    [
+      'A2',
+      'Would you like information about bag storage before you go to your room?',
+      '询问进入房间前的储物选择，不预设申请提前入住。',
+      [
+        'Yes, is there somewhere I could leave my bag?',
+        'No, I would rather keep it with me.',
+      ],
+    ],
+    [
+      'B1',
+      'Would it help to discuss where you could leave your bag before going to your room?',
+      '储物选择不依赖是否提出提前入住申请。',
+      [
+        'Yes, I would like to know whether a storage option exists and how it works.',
+        'No, I would rather keep the bag with me until I go to my room.',
+      ],
+    ],
+    [
+      'B2',
+      'Would you like to look into bag storage for the time before you enter your room?',
+      '说明进入房间前的储物偏好，不推断提前入住申请状态。',
+      [
+        'Yes, I would like to check the storage conditions before deciding whether to leave my bag.',
+        'No, I would prefer to keep the bag with me until I enter the room.',
+      ],
+    ],
+    [
+      'C1',
+      'Would it be helpful to go over the storage options for your bag before you head to your room?',
+      '储物与进入房间前的安排有关，不预设存在待定的提前入住请求。',
+      [
+        'Yes, please explain the storage arrangements, particularly how I would collect the bag when I need it.',
+        'No, I would rather keep the bag with me, as there are a few things I may need before I go to my room.',
+      ],
+    ],
+  ] as const)
+    for (let intermediate = 0; intermediate < 8; intermediate++)
+      for (const luggageChoice of [0, 1]) {
+        it(`hotel/${level}/${intermediate}/${luggageChoice}: wait/no-request remains compatible with storage after intermediate alternatives`, async () => {
+          const result = await localContentProvider.load({
+            sceneId: 'travel-05',
+            level,
+          })
+          if (result.status !== 'available')
+            throw new Error('missing hotel pack')
+          let run = createDialogue(result.pack, {
+            mode: 'extended',
+            variantId: 'assistance',
+          })
+          for (let i = 0; i < 4; i++)
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[0].text,
+            })
+          expect(run.snapshot.state.currentQuestionId).toBe(
+            `hotel-check-in.${level}.early`,
+          )
+          run = advanceDialogue(run.snapshot, {
+            text: dialogueSuggestions(run.snapshot)[1].text,
+          })
+          for (const [i, key] of ['breakfast', 'payment', 'key'].entries()) {
+            expect(run.snapshot.state.currentQuestionId).toBe(
+              `hotel-check-in.${level}.${key}`,
+            )
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[(intermediate >> i) & 1]
+                .text,
+            })
+          }
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'early')?.value,
+          ).toBe('wait')
+          expect(run.snapshot.state.currentQuestionId).toBe(
+            `hotel-check-in.${level}.luggage`,
+          )
+          expect(run.reply).toBe(question)
+          expect(run.hintZh).toBe(hint)
+          expect(dialogueSuggestions(run.snapshot).map((a) => a.text)).toEqual(
+            answers,
+          )
+          run = advanceDialogue(run.snapshot, {
+            text: dialogueSuggestions(run.snapshot)[luggageChoice].text,
+          })
+          run = advanceDialogue(run.snapshot, {
+            text: dialogueSuggestions(run.snapshot)[0].text,
+          })
+          expect(run.snapshot.state.outcome).toBe('achieved')
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'early')?.value,
+          ).toBe('wait')
+        })
+      }
   it('registers six canonical IDs and no slug aliases', async () => {
     expect(
       gradedSceneManifest.filter((m) => String(m.category) === 'travel'),

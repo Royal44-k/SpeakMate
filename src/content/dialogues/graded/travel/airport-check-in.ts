@@ -847,7 +847,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.document, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.document, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -862,7 +862,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.flight, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.flight, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -877,7 +877,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.bag, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.bag, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -892,22 +892,22 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.seat, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.seat, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'weight',
         'clarify',
-        'What would settle the reading without introducing a second, conflicting figure?',
+        'Would you prefer to read the weight on the display or have me repeat it?',
         '18千克读数不变。',
         'display',
-        'Let me read the same display directly so we are checking one measurement rather than comparing recollections.',
+        'Let me check the display directly so I can compare the weight with the twenty-kilo allowance you mentioned.',
         'repeat',
-        'Please repeat eighteen kilos clearly; I need to confirm what I heard, not request a different weight.',
+        'Could you repeat the weight a little more clearly? I caught eighteen kilos, but I would like to make sure I heard you correctly.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.weight, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.weight, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -922,7 +922,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.packing, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.packing, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -937,7 +937,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.tag, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.tag, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -952,7 +952,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.notice, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.notice, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -967,7 +967,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.fee, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.fee, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -982,7 +982,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.next, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.next, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -997,7 +997,7 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.collection, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.collection, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -1012,14 +1012,14 @@ export const airportPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#airport-check-in — airport-check-in.C1.route, Codex postdraft reading 2026-09-10',
+            'travel-review.md#airport-check-in — airport-check-in.C1.route, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#airport-check-in — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#airport-check-in — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
 }

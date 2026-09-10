@@ -649,7 +649,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.pace, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.pace, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -664,22 +664,22 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.laptop, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.laptop, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'bottle',
         'describe',
-        'How would you describe the bottle while leaving the screening decision to staff?',
+        'Could you tell me what the bottle is made of and whether there is anything in it?',
         '不作许可判断。',
         'plastic',
-        'It is plastic and empty; those are the details I can confirm, not a clearance decision.',
+        'It is a plastic bottle, and it is completely empty. I can show it to you if you need a closer look.',
         'metal',
-        'It is an empty metal bottle, and I would ask staff about any further step rather than infer one.',
+        'It is a metal bottle with nothing in it. Please let me know if you need a closer look.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.bottle, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.bottle, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -694,7 +694,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.pockets, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.pockets, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -709,7 +709,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.tray, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.tray, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -724,7 +724,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.bag, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.bag, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -739,7 +739,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.coat, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.coat, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -754,7 +754,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.wait, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.wait, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -769,7 +769,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.repeat, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.repeat, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -784,7 +784,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.ready, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.ready, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -799,7 +799,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.claim, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.claim, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -814,14 +814,14 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.B2.privacy, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.B2.privacy, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#security-screening — B2 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#security-screening — B2 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
   C1: travelPack(
@@ -846,7 +846,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.pace, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.pace, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -861,22 +861,22 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.laptop, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.laptop, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'bottle',
         'describe',
-        'What can you establish about the bottle without anticipating the officer’s assessment?',
+        'Could you describe the bottle for me, including what it is made of and whether it contains anything?',
         '观察与决定严格分开。',
         'plastic',
-        'I can establish that it is plastic and currently empty; I would leave any further assessment to the officer.',
+        'It is made of plastic and is completely empty. If you need to see it more closely, please tell me where to put it.',
         'metal',
-        'It is an empty metal bottle. That is a description of what I am carrying, not a claim that a check has already been completed.',
+        'It is a metal bottle, and there is nothing in it. I can take it out for you to look at if you would like me to.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.bottle, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.bottle, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -891,7 +891,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.pockets, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.pockets, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -906,7 +906,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.tray, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.tray, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -921,7 +921,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.bag, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.bag, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -936,7 +936,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.coat, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.coat, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -951,7 +951,7 @@ export const securityPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.wait, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.wait, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -960,13 +960,13 @@ export const securityPacks = {
         'Which part of the empty-bottle instruction, if any, remains unclear?',
         '允许整个动作未听清。',
         'repeat',
-        'I heard which item you meant, but not the action; please repeat that part before we treat the instruction as understood.',
+        'I caught the part about the bottle, but the noise drowned out what I should do with it. Could you repeat that part?',
         'clear',
-        'None of it remains unclear: the empty bottle stays in the bag for this exercise, though understanding is not the same as completing a check.',
+        'The instruction is clear: the empty bottle stays in the bag. I will leave it there unless you ask me to take it out.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.repeat, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.repeat, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -975,28 +975,28 @@ export const securityPacks = {
         'What would allow you to move to the next instruction without rushing the current preparation?',
         '暂缓与准备好都合理。',
         'pause',
-        'A brief pause would let me organise the loose items deliberately rather than make a show of readiness while still distracted.',
+        'Could I have a moment to organise the loose items? I would find it easier to follow the next instruction once they are in place.',
         'ready',
         'The preparation is clear enough for me to ask for the next instruction; I do not need a further pause at this point.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.ready, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.ready, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'claim',
         'identify-items',
-        'How would you make your backpack description useful without treating it as conclusive proof of ownership?',
+        'What features would help me pick out your backpack from the others?',
         '描述限度明确。',
         'label',
-        'I would mention the white label on the blue backpack as a distinguishing feature, while accepting that staff may need more than a description.',
+        'Mine is the blue backpack with a white label. The label should help distinguish it from the other blue bags.',
         'handle',
-        'The red body and black handle give a more useful description than “that bag”, without by themselves settling ownership.',
+        'It is the red backpack with a black handle; that combination may be easier to spot than the colour alone.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.claim, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.claim, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -1005,20 +1005,20 @@ export const securityPacks = {
         'How would you express your preference about where to raise a sensitive question?',
         '不把隐私请求变成真实安排。',
         'private',
-        'I would prefer to ask away from the queue if a suitable place is available; I am requesting privacy, not assuming an alternative procedure has been arranged.',
+        'Is there somewhere away from the queue where I could ask? I would prefer not to discuss the details within everyone’s hearing.',
         'here',
         'I am comfortable remaining here as long as we keep the exchange to the necessary procedural detail.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#security-screening — security-screening.C1.privacy, Codex postdraft reading 2026-09-10',
+            'travel-review.md#security-screening — security-screening.C1.privacy, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#security-screening — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#security-screening — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
 }

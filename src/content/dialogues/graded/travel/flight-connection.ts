@@ -847,7 +847,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.time, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.time, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -862,7 +862,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.check, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.check, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -873,11 +873,11 @@ export const connectionPacks = {
         'today',
         'Same-day arrival would take precedence, but that preference should not be interpreted as unlimited consent to additional charges.',
         'cost',
-        'Keeping additional expense down would take precedence; I would accept discussing a later arrival rather than imply that both aims must be guaranteed.',
+        'Keeping additional expense down would take precedence. I would consider arriving later if that gave me a more affordable option.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.priority, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.priority, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -892,7 +892,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.evidence, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.evidence, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -907,7 +907,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.route, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.route, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -922,7 +922,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.consent, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.consent, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -937,7 +937,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.luggage, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.luggage, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -952,7 +952,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.help, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.help, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -967,22 +967,22 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.message, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.message, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'next',
         'plan-next',
-        'How would you stay usefully engaged while the options remain under discussion?',
+        'While staff look into the options, would you rather stay near the desk or keep an eye on the departure displays?',
         '未订位期间的行动。',
         'desk',
-        'I would stay close enough to respond promptly at the desk, without treating the absence of further questions as confirmation.',
+        'I would stay near the desk so I could respond promptly if staff needed more details, rather than risk missing them while checking the displays.',
         'board',
-        'I would monitor new display information while remaining available to staff, keeping any apparent change separate from an agreed solution.',
+        'I would keep an eye on the displays, but stay within reach of the desk so staff could find me when they had an update.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.next, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.next, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -997,7 +997,7 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.overnight, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.overnight, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -1012,14 +1012,14 @@ export const connectionPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#flight-connection — flight-connection.C1.record, Codex postdraft reading 2026-09-10',
+            'travel-review.md#flight-connection — flight-connection.C1.record, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#flight-connection — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#flight-connection — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
 }

@@ -1,5 +1,7 @@
 # Travel corpus — actual model-assisted reading record
 
+**Current status after independent review and fix round 1 (2026-09-10):** the initial all-eligible/no-unresolved-concerns statements below are historical and superseded by the correction record at the end. Independent review held 9 units/108Q/216A for Important1/2; 21 units/252Q/504A were independently eligible. Corrected units have been actually reread and relabelled model-reviewed by the implementation agent, but await controller re-review. This file does not clear that gate.
+
 Reader: Codex implementation agent (no backend model name inferred). Method: after drafting, reopened each complete scene source with Get-Content, and read every actual question, its own two answers, single fact effect values, exact form, Chinese hint, rationale, situation, path, repair and closing. Read the six actual analysis entries and all30examples/30substitutions separately. Date:2026-09-10 (first three scene drafts began2026-09-09). This is not teacher review, independent review or CEFR certification. Tests and inventory expansion did not perform language review.
 
 Actual read:30scene-level units,360Q/720A; human teacher0. Six analysis entries/30examples/30substitutions read; human0. All source labels remained draft through the reading and corrections. Afterwards, explicit per-row records naming each question and explicit per-level variant records were written to source; no constructor, test or prose generator attests reading. Current editorial eligibility is360Q/720A and6analyses,0draft, subject to controller independent review. No new legacy triples are counted.
@@ -491,3 +493,35 @@ Inventory follows in the committed file; total1080Q/A identifiers.
 - hotel-room-problem.C1.contact; hotel-room-problem.C1.contact.a; hotel-room-problem.C1.contact.b
 - hotel-room-problem.C1.record; hotel-room-problem.C1.record.a; hotel-room-problem.C1.record.b
 - hotel-room-problem.C1.followup; hotel-room-problem.C1.followup.a; hotel-room-problem.C1.followup.b
+
+## Fix round 1 — independent Important1/2 corrections
+
+Reader: Codex implementation agent, 2026-09-10; human teacher 0. Findings source: full task-3c-review.md at controller HEAD b5f0544. Exact source FIX_BASE: 779d9ed750e80b437db0680346ccc7f20384c333, not HEAD~1. Same original CEFR/local design evidence basis listed above; no new external policy claim or source version. ContentVersion/engineVersion/snapshotVersion remain 1; display scene versions, IDs, effects, paths and sourceBasis are unchanged.
+
+Sequence: added a named real-engine regression while all old flags were still model-reviewed; 64 wait/no-request combinations failed on the old luggage question text. Then reset all rows and variant attestations in the 9 held units to draft. Read the complete original units, authored bounded changes, reopened and actually read all revised complete units with their own A/B, hints, fact values, rationales and both variant situations, all paths, repairs and endings. Reading output suppressed repeated draft metadata only, never learner prose. One truncated security C1.wait row was reopened fully. Three further self-reading corrections removed an introduced airport-noise assumption, an unnecessary B2 bottle follow-up question, and an invented prior hearing failure in C1.repeat.b; the final complete pairs were reread. Only then renewed explicit item and variant records with “fix round 1 complete-unit reread”. Neither tests nor the metadata helper certify this reading.
+
+Actual affected reread: airport-check-in C1; security-screening B2/C1; flight-connection C1; hotel-check-in A2/B1/B2/C1; hotel-room-problem C1. Exactly 9 complete units, 108Q/216A, 108 hints, 216 owned effect/form mappings, 9 rationales, 18 variant instances and 54 short/standard/extended paths with their shared situations/repairs/endings. No extra analysis reading claimed in this round: the unchanged 6 entries/30 examples/30 substitutions retain their recorded prior reading. No teacher or independent certification inferred.
+
+Exact prose changes (all other items in these units were context-reread, not rewritten):
+
+- `hotel-check-in.A2.luggage`: Q + hint, A/B unchanged.
+- `hotel-check-in.B1.early`: hint only; early.a/.b unchanged.
+- `hotel-check-in.B1.luggage`: Q + hint + .b; .a unchanged.
+- `hotel-check-in.B2.luggage` and `hotel-check-in.C1.luggage`: Q + hint + .a + .b.
+- `airport-check-in.C1.weight`: Q + .a + .b.
+- `security-screening.B2.bottle` and `security-screening.C1.bottle`: Q + .a + .b.
+- `security-screening.C1.repeat`: .a + .b, Q unchanged.
+- `security-screening.C1.ready`: .a only; Q/.b unchanged.
+- `security-screening.C1.claim`: Q + .a + .b.
+- `security-screening.C1.privacy`: .a only; Q/.b unchanged.
+- `flight-connection.C1.priority`: .b only; Q/.a unchanged.
+- `flight-connection.C1.next`: Q + .a + .b.
+- `hotel-room-problem.C1.start` and `hotel-room-problem.C1.remote`: Q + .a + .b.
+
+Totals: 16 row IDs touched for prose/hints, 11 question texts, 24 answer texts and 5 hints changed. All 108 affected row records (including both owned answers through explicit authoring mapping) and 9 variant record inputs renewed; this is larger than the actual defect count by design. The inventory above identifies every reread Q/.a/.b in the named 9 units.
+
+Important1: storage now concerns the time before entering the room, not a presumed unresolved early-access request. Read both early.a (ask) and early.b (wait/no request), both breakfast answers, both payment answers, both sample-key answers and both storage answers at each level. The 64-case regression executes every intermediate combination after wait, checks neutral Q/hint/owned pair, then completes storage and checkout with early=wait preserved. Existing ask-branch and adjacency coverage remains. Neither waiting nor requesting now implies actual room access has been granted.
+
+Important2: airport weight repair repeats or reads the known figure, not “request a different weight”. Bottle speech describes material/emptiness and offers a closer look conditionally; no clearance assertion. Repeat speech distinguishes hearing difficulty from understanding the instruction, without reciting a completed-check disclaimer. Privacy asks for a suitable place without inventing an arranged procedure. Readiness requests time to organise items, without “make a show” judgment. Claim Q/pair identifies backpack features instead of debating proof of ownership. Flight cost priority makes the later-arrival tradeoff concrete; waiting near the desk means being available for staff. Room timing describes when cooling failure was noticed; remote answers describe lit/dark displays without diagnosing components. Meaningful charge/availability/permission conditions, fixed fictional policies, refusal and safety endings remain intact. C1 complexity comes from relevant contrasts, qualifications and reasons within the full unit, not a requirement to lengthen every line.
+
+Authored/structurally covered totals remain 30 units/360Q/720A; model-read cumulative coverage remains 360Q/720A, with 108Q/216A actually reread this round; current source draft count 0 after that reading. Runtime editorial flags are renewed, but independent eligibility remains 252Q/504A plus 108Q/216A awaiting re-review. No all-gates-passed or teacher-read claim. The UI role-label Cannot verify item is deferred to Task3I; no UI inspected or changed. LF→CRLF notices are disclosed, with no line-ending cleanup.

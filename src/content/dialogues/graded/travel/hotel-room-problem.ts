@@ -846,7 +846,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.room, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.room, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -861,7 +861,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.problem, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.problem, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -876,37 +876,37 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.request, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.request, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'start',
         'give-time',
-        'How would you qualify the timing so that your recollection is not mistaken for a technical fault history?',
+        'When did you first notice that the air conditioning was not cooling the room?',
         '发现时间与实际起因不同。',
         'recent',
-        'I only noticed it a few minutes ago; that is the start of my awareness, not necessarily the start of the fault.',
+        'I only noticed it a few minutes ago, so I cannot say how long it had been like that before I tried it.',
         'earlier',
-        'I noticed it earlier this evening, but I would not narrow the onset further than my observation supports.',
+        'I noticed it earlier this evening, although I cannot give you an exact time. It has not cooled the room since then.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.start, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.start, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
         'remote',
         'explain-attempt',
-        'What inference would be justified by the remote-control attempt, and where would you stop?',
+        'What happened when you tried the remote control? Did anything appear on its display?',
         '不猜电池或机器故障。',
         'lit',
-        'The illuminated display shows that something responded, but it does not establish that the command reached the unit or that cooling began.',
+        'The display lit up when I pressed the button, but the room did not get any cooler. I could not tell whether the unit had received the signal.',
         'dark',
-        'The display remained dark; I would report that observation without deciding whether the remote, its power source or something else caused it.',
+        'The display stayed dark when I pressed the button. I tried it again with the same result, so I thought I should ask reception for help.',
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.remote, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.remote, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -921,7 +921,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.wait, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.wait, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -936,7 +936,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.access, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.access, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -951,7 +951,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.impact, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.impact, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -966,7 +966,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.alternative, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.alternative, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -981,7 +981,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.contact, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.contact, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -996,7 +996,7 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.record, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.record, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
       [
@@ -1011,14 +1011,14 @@ export const roomProblemPacks = {
         {
           state: 'model-reviewed',
           record:
-            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.followup, Codex postdraft reading 2026-09-10',
+            'travel-review.md#hotel-room-problem — hotel-room-problem.C1.followup, Codex postdraft reading 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
         },
       ],
     ],
     {
       state: 'model-reviewed',
       record:
-        'travel-review.md#hotel-room-problem — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10',
+        'travel-review.md#hotel-room-problem — C1 counter/assistance situations, paths, endings and repairs read 2026-09-10; fix round 1 complete-unit reread 2026-09-10',
     },
   ),
 }
