@@ -1,6 +1,48 @@
 // Metadata only: importing scene cards must not import authored dialogue prose.
 export const gradedSceneManifest = [
   {
+    sceneId: 'study-01',
+    category: 'study',
+    titleZh: '课堂介绍',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'study-02',
+    category: 'study',
+    titleZh: '向老师提问',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'study-03',
+    category: 'study',
+    titleZh: '小组分工',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'study-04',
+    category: 'study',
+    titleZh: '演讲问答',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'study-05',
+    category: 'study',
+    titleZh: '研讨讨论',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'study-06',
+    category: 'study',
+    titleZh: 'Office Hour',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
     sceneId: 'social-01',
     category: 'social',
     titleZh: '初次闲聊',

@@ -27,6 +27,14 @@ export interface LearningAssistantProvider {
 
 export const localLearningAssistant: LearningAssistantProvider = {
   async analyze(request) {
+    const study = [
+      'study-01',
+      'study-02',
+      'study-03',
+      'study-04',
+      'study-05',
+      'study-06',
+    ].includes(request.sceneId ?? '')
     const social = [
       'social-01',
       'social-02',
@@ -80,7 +88,8 @@ export const localLearningAssistant: LearningAssistantProvider = {
       !travel &&
       !daily &&
       !work &&
-      !social
+      !social &&
+      !study
     )
       return {
         ...base,
@@ -89,17 +98,19 @@ export const localLearningAssistant: LearningAssistantProvider = {
         explanationZh:
           '此场景尚无已收录解析。可以保存原文、写笔记或自行回忆，不生成含义或评分。',
       }
-    const catalog = social
-      ? (await import('./social')).socialAnalysis
-      : work
-        ? (await import('./work')).workAnalysis
-        : daily
-          ? (await import('./daily')).dailyAnalysis
-          : travel
-            ? (await import('./travel')).travelAnalysis
-            : remainingDining
-              ? (await import('./dining')).diningAnalysis
-              : (await import('./coffee')).coffeeAnalysis
+    const catalog = study
+      ? (await import('./study')).studyAnalysis
+      : social
+        ? (await import('./social')).socialAnalysis
+        : work
+          ? (await import('./work')).workAnalysis
+          : daily
+            ? (await import('./daily')).dailyAnalysis
+            : travel
+              ? (await import('./travel')).travelAnalysis
+              : remainingDining
+                ? (await import('./dining')).diningAnalysis
+                : (await import('./coffee')).coffeeAnalysis
     const entries = catalog
       .filter((e) => e.sceneId === request.sceneId)
       .map((e) => analysisEntrySchema.parse(e))
