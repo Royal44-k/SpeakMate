@@ -555,3 +555,36 @@ Each row is one actual reread question and both answers; IDs remain unchanged.
 |apology-repair.A1.close|apology-repair.A1.close.a|apology-repair.A1.close.b|
 |apology-repair.A1.space|apology-repair.A1.space.a|apology-repair.A1.space.b|
 |apology-repair.A1.confirm|apology-repair.A1.confirm.a|apology-repair.A1.confirm.b|
+
+## Fix round2 — apology A1 responsibility, 2026-09-10
+
+FIX_BASE: 4388db0571bbf8eacf6a6c0bfb6dfb5884e65693. Scoped independent re-review addressed all four original Important findings and held only apology-repair.A1 for the newly weakened acknowledgement. Current independent eligibility is 29 units / 348 Q / 696 A, with this unit's 12 Q / 24 A pending re-review. Earlier counts in this ledger are historical.
+
+Reset apology A1's explicit attestation to draft while correcting, then reread the complete unit before renewal. Replaced acknowledgement answer a with "I am sorry. I did not give your book back on Friday." Its hint now explicitly says the learner did not return the book on Friday. The first-person simple past owns the missed action; two short sentences retain concrete beginner support. Answer b still owns not calling. Both are supported by the supplied borrowing/Friday/no-contact facts, not delayed delivery. The question, acknowledge-mistake intent, answer IDs and late/message effects remain unchanged; the complete accepted form is the actual new sentence, through the unchanged metadata mapper.
+
+Actual complete-unit reread: 12 Q / 24 A, 12 hints, 24 single effects/exact forms, all four rationale fields, both variant situations, all six short/standard/extended paths, full/partial/refused closings and all repairs. Both acknowledgement slots were followed contextually through each path. Later impact is hypothetical; explanations do not erase responsibility; repair/contact/reminder statements remain future; permission still asks/waits; response/space never require forgiveness; receipt checks remain planned, not performed. No additional correction was found. Shared scene contexts and all other units remain unchanged, so no reread scope expansion. The prior complete inventory below is explicitly renewed for this reread, not constructor-generated review.
+
+|Unit|Authored Q/A|Actually reread Q/A|Human Q/A|Draft Q/A|Model eligible Q/A|Independent eligible Q/A|
+|---|---|---|---|---|---|---|
+|apology-repair.A1|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+
+The other 29 units and all analyses are unchanged and were not reread this round. Model reading is not a human teacher or independent CEFR certification.
+
+### Fix2 complete reread item inventory
+
+|Question|Answer a|Answer b|
+|---|---|---|
+|apology-repair.A1.acknowledge|apology-repair.A1.acknowledge.a|apology-repair.A1.acknowledge.b|
+|apology-repair.A1.impact|apology-repair.A1.impact.a|apology-repair.A1.impact.b|
+|apology-repair.A1.explain|apology-repair.A1.explain.a|apology-repair.A1.explain.b|
+|apology-repair.A1.repair|apology-repair.A1.repair.a|apology-repair.A1.repair.b|
+|apology-repair.A1.contact|apology-repair.A1.contact.a|apology-repair.A1.contact.b|
+|apology-repair.A1.permission|apology-repair.A1.permission.a|apology-repair.A1.permission.b|
+|apology-repair.A1.prevent|apology-repair.A1.prevent.a|apology-repair.A1.prevent.b|
+|apology-repair.A1.response|apology-repair.A1.response.a|apology-repair.A1.response.b|
+|apology-repair.A1.scope|apology-repair.A1.scope.a|apology-repair.A1.scope.b|
+|apology-repair.A1.close|apology-repair.A1.close.a|apology-repair.A1.close.b|
+|apology-repair.A1.space|apology-repair.A1.space.a|apology-repair.A1.space.b|
+|apology-repair.A1.confirm|apology-repair.A1.confirm.a|apology-repair.A1.confirm.b|
+
+Verification: assertion-level RED at 16:19:28, 12 failed / 850 skipped, 9.90s, showed the old delivery-like sentence against the responsibility-owning exact fixture. Covering social-corpus.test.ts GREEN at 16:20:38: 862 passed, 49.21s; structural coverage 12 Q / 24 A for this unit. Node 22 typecheck and changed-two-TS ESLint exit 0, no diagnostics, completion observed at 2026-09-10T16:21:55.9212238+08:00. No new test cases were needed: amended the existing whole-unit consumer-visible Q/A/effect fixture and exercised all six paths with both answer slots. No full-suite or unrelated-category rerun.

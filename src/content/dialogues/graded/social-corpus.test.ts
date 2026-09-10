@@ -126,7 +126,7 @@ const a1FixRows = {
       'acknowledge',
       'What are you sorry for?',
       'late',
-      'I am sorry your book is late.',
+      'I am sorry. I did not give your book back on Friday.',
       'message',
       'I am sorry I did not call you.',
     ],

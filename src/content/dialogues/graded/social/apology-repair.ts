@@ -2,7 +2,7 @@ import { socialPack, type SocialScene, type Review } from './authoring'
 const read = {
   A1: {
     state: 'model-reviewed',
-    record: 'social-review.md: fix1 apology-repair.A1 complete-unit reread 2026-09-10',
+    record: 'social-review.md: fix2 apology-repair.A1 complete-unit reread 2026-09-10',
   },
   A2: {
     state: 'model-reviewed',
@@ -110,9 +110,9 @@ export const apologyRepair = {
         'acknowledge',
         'acknowledge-mistake',
         'What are you sorry for?',
-        '承认书迟还或没有打电话；都是虚构已知事实。',
+        '承认自己周五没有还书或没有打电话；都是虚构已知事实。',
         'late',
-        'I am sorry your book is late.',
+        'I am sorry. I did not give your book back on Friday.',
         'message',
         'I am sorry I did not call you.',
         read.A1,
