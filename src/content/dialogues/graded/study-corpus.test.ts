@@ -18,6 +18,82 @@ const scenes = [
   ['study-06', 'office-hours', 'aim'],
 ] as const
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
+describe('study fix round1', () => {
+  // A habitual example is not an explanation of the habit/current-action
+  // distinction. Protect that nonadjacent language premise, not just traversal.
+  for (const variantId of ['tutorial', 'workshop'])
+    for (const prefix of [0, 1])
+      for (const contrast of [0, 1])
+        for (const apply of [0, 1])
+          for (const scope of [0, 1])
+            it(`unresolved understanding ${variantId}/${prefix}/${contrast}/${apply}/${scope}: scope neither upgrades help nor invents a no-help request`, async () => {
+              const r = await localContentProvider.load({
+                sceneId: 'study-02',
+                level: 'B1',
+              })
+              expect(r.status).toBe('available')
+              if (r.status !== 'available') return
+              let run = createDialogue(r.pack, { mode: 'extended', variantId })
+              while (
+                !run.snapshot.state.currentQuestionId?.endsWith('.contrast')
+              ) {
+                expect(run.snapshot.state.outcome).toBe('active')
+                run = advanceDialogue(run.snapshot, {
+                  text: dialogueSuggestions(run.snapshot)[prefix].text,
+                })
+              }
+              const contrastText = [
+                'The first is a habit, while the second describes what is happening now.',
+                'I can see the verb changes, but I need help connecting that change to the time.',
+              ][contrast]
+              expect(dialogueSuggestions(run.snapshot)[contrast].text).toBe(
+                contrastText,
+              )
+              run = advanceDialogue(run.snapshot, { text: contrastText })
+              expect(run.snapshot.state.currentQuestionId).toBe(
+                'ask-teacher.B1.apply',
+              )
+              const applyText = [
+                'I walk to class every morning.',
+                'I cook dinner on Fridays.',
+              ][apply]
+              expect(dialogueSuggestions(run.snapshot)[apply].text).toBe(
+                applyText,
+              )
+              run = advanceDialogue(run.snapshot, { text: applyText })
+              expect(run.snapshot.state.currentQuestionId).toBe(
+                'ask-teacher.B1.scope',
+              )
+              const expectedContrast = contrast === 0 ? 'time' : 'help'
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'contrast')
+                  ?.value,
+              ).toBe(expectedContrast)
+              const scopeAnswer = dialogueSuggestions(run.snapshot)[scope]
+              expect(scopeAnswer.text).toBe(
+                [
+                  'No, these two examples do not cover all the uses. I would need to study more examples.',
+                  'Not yet. I would want to ask about verbs such as “know” first.',
+                ][scope],
+              )
+              expect(scopeAnswer.effects).toEqual([
+                { key: 'scope', value: scope === 0 ? 'limited' : 'question' },
+              ])
+              run = advanceDialogue(run.snapshot, { text: scopeAnswer.text })
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'contrast')
+                  ?.value,
+              ).toBe(expectedContrast)
+              run = advanceDialogue(run.snapshot, {
+                text: dialogueSuggestions(run.snapshot)[prefix].text,
+              })
+              expect(run.snapshot.state.outcome).toBe('achieved')
+              expect(run.reply).toContain(
+                'Requests for explanation remain requests',
+              )
+              expect(dialogueSuggestions(run.snapshot)).toEqual([])
+            })
+})
 describe('original study corpus', () => {
   // Editorial fixtures catch concrete missing premises, not CEFR proficiency.
   for (const level of ['B1', 'B2', 'C1'] as const)

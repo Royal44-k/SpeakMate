@@ -1,5 +1,7 @@
 # Study corpus: actual model-assisted reading record
 
+Current status after independent review and fix round1 (2026-09-10): the original all-eligible statements below describe the implementation agent's initial reading, not a passed independent gate. Independent review held ask-teacher.B1 (12Q/24A) for an unsupported understanding claim. The other29units (348Q/696A) and all6analyses/30examples/30substitutions remain independently eligible. The corrected B1 unit has now been fully reread and re-attested by its implementer and awaits scoped independent rereview; teacher0. See the appended fix record.
+
 Date: 2026-09-10. Reader: Codex Task3G implementation agent. Method: after drafting, reopened and read each of six complete scene source files (all Q/A, hints, effect values, rationales, both situations, explicit paths and repair/closing text), then the complete analysis file. Source mapping was separately read: accepted forms are exactly the owned answer text, with one explicit fact effect per answer. Corrected items and changed contexts/paths were reopened and reread before explicit per-row and per-level variant attestations were added. The metadata expansion that lists IDs or adds already-decided attestations did not perform the reading.
 
 Authored 30 units / 360Q / 720A; model-assisted read 360Q / 720A; human-teacher read 0Q / 0A; draft 0Q / 0A; editorially eligible 360Q / 720A. Structural/path test results are recorded separately in the task report, not inferred from reading. Eligibility means implementation-agent editorial reading, not independent controller gate or CEFR certification. No release/UI acceptance is claimed.
@@ -575,3 +577,32 @@ Read and editorially eligible: study.partner; study.for-example; study.role; stu
 ## Remaining limits
 
 No known unresolved item-level error is being concealed as reviewed. Independent review remains required and may identify language issues that these self-read records do not prove absent. Higher-level questions include explicit rehearsal of response strategies; these are not a general AI tutor. Exact forms intentionally leave unlisted paraphrases unconfirmed. Numerical/structural counts do not certify naturalness or CEFR validity. No browser/UI/device work, remote learner processing, dependencies, services, database activation or deployment occurred.
+
+## Fix round1 — ask-teacher.B1 complete-unit reread
+
+FIX_BASE d5f034ebf158b9c9e0755d5c09ee4de2e69acb80; controller-only HEAD56127c5 preserved. Reader: original Codex Task3G implementation agent,2026-09-10. Independent Important1 was verified in the source: contrast.b requests help connecting verb form to time; apply.a/b only gives a habitual sentence; old scope.a nevertheless claimed the learner could explain both examples. The initial language read missed this nonadjacent implication; earlier traversal success did not disprove it.
+
+Before the fix or any flag change,32 real provider/engine cases covered both variants, all-A/all-B surrounding answers, both contrast choices (including no-help), both apply choices and both scope choices. RED16failed/16passed/662skipped: every selected scope.a received the old wording, while scope.b passed. Exact commands/output are in task-3g-report.md; tests are not language certification.
+
+Reset all12B1 row review inputs and its variant review input to draft while making the bounded correction. Changed only ask-teacher.B1.scope.a English: “No, these two examples do not cover all the uses. I would need to study more examples.” Its exact accepted form follows the same owned text. No IDs, effects (scope=limited/question; contrast=time/help), other answer texts, questions, hints, source basis, situations, paths, repairs, versions or shared APIs changed.
+
+After the edit, actually reopened and read the complete B1 unit:12Q/24A,12hints,24owned value/form mappings, full four-field rationale, both situations, six paths and all achieved/partial/repair/refused text. Read the shared/category metadata mapping to confirm attachments; only annotation changes followed the read. Scope.a now limits coverage and proposes further study; scope.b instead identifies a concrete further question about know. Neither claims current comprehension or imposes a help request on contrast.a. Both apply choices preserve the earlier help/no-help distinction. The later next question proposes a future understanding check, not an achieved learning result. No additional item correction was needed.
+
+Actual reread inventory (each Q and both owned answers):
+
+- ask-teacher.B1.focus | ask-teacher.B1.focus.a | ask-teacher.B1.focus.b
+- ask-teacher.B1.instruction | ask-teacher.B1.instruction.a | ask-teacher.B1.instruction.b
+- ask-teacher.B1.example | ask-teacher.B1.example.a | ask-teacher.B1.example.b
+- ask-teacher.B1.meaning | ask-teacher.B1.meaning.a | ask-teacher.B1.meaning.b
+- ask-teacher.B1.attempt | ask-teacher.B1.attempt.a | ask-teacher.B1.attempt.b
+- ask-teacher.B1.check | ask-teacher.B1.check.a | ask-teacher.B1.check.b
+- ask-teacher.B1.contrast | ask-teacher.B1.contrast.a | ask-teacher.B1.contrast.b
+- ask-teacher.B1.apply | ask-teacher.B1.apply.a | ask-teacher.B1.apply.b
+- ask-teacher.B1.scope | ask-teacher.B1.scope.a | ask-teacher.B1.scope.b
+- ask-teacher.B1.next | ask-teacher.B1.next.a | ask-teacher.B1.next.b
+- ask-teacher.B1.repeat | ask-teacher.B1.repeat.a | ask-teacher.B1.repeat.b
+- ask-teacher.B1.format | ask-teacher.B1.format.a | ask-teacher.B1.format.b
+
+Variants actually reread: ask-teacher.B1/tutorial/short, /standard, /extended; ask-teacher.B1/workshop/short, /standard, /extended. Two variant instances/six paths; none changed. All13review inputs now explicitly cite this fix round after reading. No unchanged analyses or other units were reread in this fix, and no new coverage is counted from the metadata inventory.
+
+Final implementer counts: original authored360Q/720A; corrected1A (not12defective questions); cumulative model-read360Q/720A, of which12Q/24A fully reread this round; source model-reviewed360Q/720A,draft0; human0. Independent eligibility remains348Q/696A with corrected12Q/24A awaiting re-review. Analyses unchanged6entries/30examples/30substitutions independently eligible; no new teacher or UI/device acceptance claimed. No known remaining item-level issue in this bounded fix, subject to independent re-review.

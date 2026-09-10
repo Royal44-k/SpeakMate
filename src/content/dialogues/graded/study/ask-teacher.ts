@@ -10,7 +10,7 @@ const variantRead = {
   },
   B1: {
     state: 'model-reviewed',
-    record: 'study-review.md: ask-teacher.B1 variants',
+    record: 'study-review.md: fix round1 ask-teacher.B1 variants',
   },
   B2: {
     state: 'model-reviewed',
@@ -467,7 +467,7 @@ export const askTeacher = {
         'I understand the task, but putting my idea into a sentence is difficult.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.focus',
+          record: 'study-review.md: fix round1 ask-teacher.B1.focus',
         },
       ],
       [
@@ -481,7 +481,7 @@ export const askTeacher = {
         'Can we circle one word and write about a different one?',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.instruction',
+          record: 'study-review.md: fix round1 ask-teacher.B1.instruction',
         },
       ],
       [
@@ -495,7 +495,7 @@ export const askTeacher = {
         'Could you use a different word so I can make my own sentence?',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.example',
+          record: 'study-review.md: fix round1 ask-teacher.B1.example',
         },
       ],
       [
@@ -509,7 +509,7 @@ export const askTeacher = {
         'Do you mean we should express only one simple idea?',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.meaning',
+          record: 'study-review.md: fix round1 ask-teacher.B1.meaning',
         },
       ],
       [
@@ -523,7 +523,7 @@ export const askTeacher = {
         'I would leave a gap for the word and finish the rest of the sentence.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.attempt',
+          record: 'study-review.md: fix round1 ask-teacher.B1.attempt',
         },
       ],
       [
@@ -537,7 +537,7 @@ export const askTeacher = {
         'Could you tell me what meaning you get from my sentence?',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.check',
+          record: 'study-review.md: fix round1 ask-teacher.B1.check',
         },
       ],
       [
@@ -551,7 +551,7 @@ export const askTeacher = {
         'I can see the verb changes, but I need help connecting that change to the time.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.contrast',
+          record: 'study-review.md: fix round1 ask-teacher.B1.contrast',
         },
       ],
       [
@@ -565,7 +565,7 @@ export const askTeacher = {
         'I cook dinner on Fridays.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.apply',
+          record: 'study-review.md: fix round1 ask-teacher.B1.apply',
         },
       ],
       [
@@ -574,12 +574,12 @@ export const askTeacher = {
         'Would these two examples be enough for you to explain every use of the present tense?',
         '允许说明当前理解的范围。',
         'limited',
-        'No, I could explain these examples, but I would need more to describe all the uses.',
+        'No, these two examples do not cover all the uses. I would need to study more examples.',
         'question',
         'Not yet. I would want to ask about verbs such as “know” first.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.scope',
+          record: 'study-review.md: fix round1 ask-teacher.B1.scope',
         },
       ],
       [
@@ -593,7 +593,7 @@ export const askTeacher = {
         'I could sort a few sentences into habits and things happening now.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.next',
+          record: 'study-review.md: fix round1 ask-teacher.B1.next',
         },
       ],
       [
@@ -607,7 +607,7 @@ export const askTeacher = {
         'Could you say the first step again? I missed the action word.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.repeat',
+          record: 'study-review.md: fix round1 ask-teacher.B1.repeat',
         },
       ],
       [
@@ -621,7 +621,7 @@ export const askTeacher = {
         'Please demonstrate one step at a time and pause between them.',
         {
           state: 'model-reviewed',
-          record: 'study-review.md: ask-teacher.B1.format',
+          record: 'study-review.md: fix round1 ask-teacher.B1.format',
         },
       ],
     ],
