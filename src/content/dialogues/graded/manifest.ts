@@ -1,6 +1,48 @@
 // Metadata only: importing scene cards must not import authored dialogue prose.
 export const gradedSceneManifest = [
   {
+    sceneId: 'daily-01',
+    category: 'daily',
+    titleZh: '问路',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'daily-02',
+    category: 'daily',
+    titleZh: '乘出租车',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'daily-03',
+    category: 'daily',
+    titleZh: '银行卡问题',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'daily-04',
+    category: 'daily',
+    titleZh: '领取包裹',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'daily-05',
+    category: 'daily',
+    titleZh: '理发要求',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'daily-06',
+    category: 'daily',
+    titleZh: '手机维修',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
     sceneId: 'travel-01',
     category: 'travel',
     titleZh: '机场值机',
