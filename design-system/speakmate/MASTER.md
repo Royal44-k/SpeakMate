@@ -1,5 +1,7 @@
 # SpeakMate Dialogue Stage Design System
 
+3.0 implementation target, not a claim that the current production UI already implements these rules. Retain the approved visual direction; navigation destinations are integrated before the five-tab switch.
+
 ## Direction
 
 Adult-first, editorial and immersive. Every practice screen should feel like entering a small dialogue stage rather than opening a dashboard. Spend visual boldness on the live English line and speech control; keep surrounding controls quiet.
@@ -21,8 +23,9 @@ Adult-first, editorial and immersive. Every practice screen should feel like ent
 ## Mobile rules
 
 - Center content at a maximum width of 480 px.
-- Support 360 × 800 through 430 × 932 and tablet widths.
+- Verify 320–430 px phone widths, landscape, 200% text and larger viewports; keep the 480 px content cap at every route.
 - Respect top and bottom safe areas and keep persistent controls above them.
 - Use at least 44 × 44 px touch targets with visible focus states.
-- Keep bottom navigation to Practice, Scenes and Me.
+- Five top-level tabs in order: 目标, 练习, 场景, 记录簿, 我的. Activate together only after their destinations are functional; do not expose placeholder tabs.
+- Keep labels visible. At enlarged text sizes, allow labels and bar height to grow and reserve matching content clearance plus the safe area once.
 - No emoji icons, decorative CSS drawings or placeholder imagery.
