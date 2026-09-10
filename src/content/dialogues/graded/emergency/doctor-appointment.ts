@@ -261,7 +261,7 @@ export const doctorAppointment = {
         'I would like more information before I choose.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.purpose',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.purpose',
         },
       ],
       [
@@ -275,7 +275,7 @@ export const doctorAppointment = {
         'I would prefer Thursday afternoon.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.time',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.time',
         },
       ],
       [
@@ -289,7 +289,7 @@ export const doctorAppointment = {
         'I would like to ask about seeing someone in person.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.format',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.format',
         },
       ],
       [
@@ -303,7 +303,7 @@ export const doctorAppointment = {
         'I am available throughout the day.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.constraint',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.constraint',
         },
       ],
       [
@@ -317,7 +317,7 @@ export const doctorAppointment = {
         'No, I already have a map of the entrance.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.access',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.access',
         },
       ],
       [
@@ -331,7 +331,7 @@ export const doctorAppointment = {
         'I would like to leave that part blank.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.privacy',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.privacy',
         },
       ],
       [
@@ -345,7 +345,7 @@ export const doctorAppointment = {
         'A short paragraph would help me understand the details.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.reply',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.reply',
         },
       ],
       [
@@ -359,7 +359,7 @@ export const doctorAppointment = {
         'No, I do not want to include that question now.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.notice',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.notice',
         },
       ],
       [
@@ -373,7 +373,7 @@ export const doctorAppointment = {
         'I would like to know where to report when I arrive.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.question',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.question',
         },
       ],
       [
@@ -387,7 +387,7 @@ export const doctorAppointment = {
         'Please explain the words “appointment time”.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.clarify',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.clarify',
         },
       ],
       [
@@ -401,7 +401,7 @@ export const doctorAppointment = {
         'I would prefer to start a new list.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.record',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.record',
         },
       ],
       [
@@ -410,18 +410,18 @@ export const doctorAppointment = {
         'What would you like to do before finishing this appointment rehearsal?',
         '完成的是演练。',
         'check',
-        'I would like to check the times in my request.',
+        'I would like to check the wording of my request.',
         'practise',
         'I would like to practise saying the request aloud.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: doctor-appointment.A2.next',
+          record: 'emergency-review.md: fix1 doctor-appointment.A2.next',
         },
       ],
     ],
     {
       state: 'model-reviewed',
-      record: 'emergency-review.md: doctor-appointment.A2 variants',
+      record: 'emergency-review.md: fix1 doctor-appointment.A2 variants',
     },
   ),
   B1: emergencyPack(

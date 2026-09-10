@@ -2,6 +2,30 @@
 
 Date: 2026-09-10. Reader: Codex implementation agent, model-assisted reading. No human teacher, clinician or legal reviewer participated. This is editorial reading evidence, not a CEFR certificate or controller independent gate.
 
+## Fix round 1 — complete held-unit rereading
+
+This section supersedes the initial no-known-item-issue claim below. Independent review held describe-symptoms.C1, doctor-appointment.A2, rental-repair.B1, pharmacy-medicine.A1 and emergency-call.C1: 5 units / 60 Q / 120 A. The unchanged 25 units / 300 Q / 600 A and all six analyses retain their prior eligibility. The corrected five units await controller re-review; renewed model-reading metadata is not an independent acceptance decision.
+
+After reproducing all findings with genuine consumer assertion failures, I reset all 60 held question-row attestations and their five variant attestations to draft. I corrected the following authored premises, without altering shared situations, paths, rationales, repairs, closings or engine code:
+
+- describe-symptoms.C1.format now asks how to organise chronology alongside **whether** the routine changed. Both answers preserve an absent effect; neither revives a practical difficulty after activity.b says unchanged. The hint explicitly retains the no-impact possibility. Desk standard/extended and message extended were reread through activity and format; message standard is also safe without activity.
+- doctor-appointment.A2.next.a checks the wording of the request, not times allegedly included. Both next alternatives fit message short purpose → clarify → next, where clarify asks only about the printed headings, and desk short where a time was actually selected.
+- rental-repair.B1.next.b intends to prepare questions before a visit is arranged; it no longer claims questions were identified on desk short problem → onset → next. Both next alternatives remain compatible with the message variant and no real report/visit being sent or arranged.
+- pharmacy-medicine.A1.uncertain.a says “Yes, I know the name.” Its exact form follows that text and its value is now known, not written. The hint asks only whether the name is known, not for a real name. It adds nothing to the supplied no-name question cards and works with record=none or an omitted record step. Both complete variants were reread, including sample cards, optional list, format and next.
+- emergency-call.C1.language.b explicitly says support availability is unknown before requesting short concrete questions. It does not borrow a clarification already under way from language.a. Both alternatives remain requests, not confirmed capabilities; both message paths were reread before and after language, with contact absent.
+
+I then reopened each changed source separately using Get-Content -Raw and displayed its complete held unit plus the entire shared scene definition. These five post-fix displays were untruncated: all 60 Q / 120 A, 60 hints, 120 exact-form/single-effect mappings, five four-part rationales, ten situation instances, thirty short/standard/extended paths and all five repair/closing sets were actually read. The earlier combined pre-fix diagnostic display had a truncation in rental B1; it is not the evidence for this completed reread. I checked the unchanged alternatives as well as the six corrected answer texts. No additional prose correction or expanded shared-context reading was needed. Only after this reading did I renew the explicit 60 row and five variant attestations with the `fix1` record prefix.
+
+The following is the complete fix1 item inventory; each listed key identifies the question and both `.a` / `.b` answers under the stated unit ID, with its hint and mappings. `fix1 <unit> variants` identifies both complete variants, rationale, paths, repairs and closings. Generating/recording these IDs was bookkeeping after actual reading, not a substitute for it.
+
+- fix1 describe-symptoms.C1: feeling, onset, pattern, activity, duration, change, record, format, uncertain, location, support, next; variants.
+- fix1 doctor-appointment.A2: purpose, time, format, constraint, access, privacy, reply, notice, question, clarify, record, next; variants.
+- fix1 rental-repair.B1: problem, onset, pattern, impact, record, visit, entry, cost, update, request, clarify, next; variants.
+- fix1 pharmacy-medicine.A1: need, label, history, other, record, privacy, format, priority, uncertain, question, pace, next; variants.
+- fix1 emergency-call.C1: event, place, time, source, people, view, contact, pace, uncertain, landmark, language, next; variants.
+
+Counts after renewal: authored/structurally covered/model-read 30 units / 360 Q / 720 A; this round reread 5 units / 60 Q / 120 A; source-model-eligible 30 units / 360 Q / 720 A; draft 0; human/teacher/clinical read 0. Independently eligible remains 25 units / 300 Q / 600 A, with the corrected 5 / 60 / 120 pending re-review. Analysis authored/model-read/eligible remains six entries / thirty examples / thirty substitutions, unchanged and not newly reread this round. Tests exercise source-aware paths and factual state; they do not certify language or clinical accuracy. Existing 3I consumer alignment and later learning/UI/privacy/offline/restore/device/release verification limitations remain.
+
 ## Method and scope
 
 After all six scene files and the analysis file had been drafted, I reopened every scene file in full with Get-Content -Raw. No learner prose was omitted or tool-truncated in those reading calls. I then reopened the complete analysis file, category assembler and index. I read every question, both directly owned answers, hint, key/value mapping, rationale, situation, explicit path and closing/repair text. I checked both answer branches at adjacent and nonadjacent steps, including short paths that omit detail choices. I reopened the changed rows with both answers after correction; a second small correction pass was also reread with the affected initial symptom alternatives. Eligibility metadata was added only afterward. Generating this explicit ID inventory and expanding row metadata are bookkeeping, not the act of reading.

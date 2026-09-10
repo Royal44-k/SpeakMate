@@ -21,6 +21,208 @@ const scenes = [
 ] as const
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 
+describe('emergency fix round1 premise regressions', () => {
+  // The no-impact answer must survive all intervening answer combinations.
+  for (const [variantId, mode, intervening] of [
+    ['desk', 'standard', []],
+    ['desk', 'extended', ['duration', 'change', 'record']],
+    ['message', 'extended', ['support', 'change']],
+  ] as const)
+    for (let mask = 0; mask < 2 ** intervening.length; mask++)
+      for (const format of [0, 1])
+        it(`no-impact C1 ${variantId}/${mode}/${mask}/${format}`, async () => {
+          const r = await localContentProvider.load({
+            sceneId: 'emergency-02',
+            level: 'C1',
+          })
+          expect(r.status).toBe('available')
+          if (r.status !== 'available') return
+          let run = createDialogue(r.pack, { variantId, mode })
+          while (!run.snapshot.state.currentQuestionId?.endsWith('.format')) {
+            expect(run.snapshot.state.outcome).toBe('active')
+            const key = run.snapshot.state.currentQuestionId!.split('.').at(-1)!
+            const index = (intervening as readonly string[]).indexOf(key)
+            const slot =
+              key === 'activity' ? 1 : index < 0 ? 0 : (mask >> index) & 1
+            if (key === 'activity')
+              expect(dialogueSuggestions(run.snapshot)[slot].text).toBe(
+                'My routine has remained unchanged, so I would not invent a functional limitation just to make the account sound more substantial.',
+              )
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[slot].text,
+            })
+          }
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'activity')?.value,
+          ).toBe('unchanged')
+          expect(run.reply).toBe(
+            'How would you organise the timeline alongside an account of whether your routine changed?',
+          )
+          const answer = dialogueSuggestions(run.snapshot)[format]
+          expect(answer.text).toBe(
+            [
+              'I would use chronology as the main thread, stating at the relevant point whether there was any effect on my routine.',
+              'I would begin by saying whether my routine changed, then give a separate timeline so the two kinds of information remain distinguishable.',
+            ][format],
+          )
+          run = advanceDialogue(run.snapshot, { text: answer.text })
+          while (run.snapshot.state.outcome === 'active')
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[0].text,
+            })
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'activity')?.value,
+          ).toBe('unchanged')
+          expect(run.snapshot.state.outcome).toBe('achieved')
+          expect(dialogueSuggestions(run.snapshot)).toEqual([])
+        })
+
+  for (const [sceneId, level, slug, absentKey, expected] of [
+    [
+      'emergency-03',
+      'A2',
+      'doctor-appointment',
+      'time',
+      [
+        'I would like to check the wording of my request.',
+        'I would like to practise saying the request aloud.',
+      ],
+    ],
+    [
+      'emergency-06',
+      'B1',
+      'rental-repair',
+      'request',
+      [
+        'I have drafted a report, but it has not been sent or accepted.',
+        'I would like to prepare questions to ask before any visit is arranged.',
+      ],
+    ],
+  ] as const)
+    for (const variantId of ['desk', 'message'])
+      for (const first of [0, 1])
+        for (const second of [0, 1])
+          for (const last of [0, 1])
+            it(`short-next ${slug}/${variantId}/${first}/${second}/${last}`, async () => {
+              const r = await localContentProvider.load({ sceneId, level })
+              expect(r.status).toBe('available')
+              if (r.status !== 'available') return
+              let run = createDialogue(r.pack, { variantId, mode: 'short' })
+              for (const slot of [first, second])
+                run = advanceDialogue(run.snapshot, {
+                  text: dialogueSuggestions(run.snapshot)[slot].text,
+                })
+              expect(run.snapshot.state.currentQuestionId).toBe(
+                `${slug}.${level}.next`,
+              )
+              const omitted =
+                slug === 'doctor-appointment'
+                  ? variantId === 'message'
+                  : variantId === 'desk'
+              if (omitted)
+                expect(
+                  run.snapshot.state.facts.some((f) => f.key === absentKey),
+                ).toBe(false)
+              expect(dialogueSuggestions(run.snapshot)[last].text).toBe(
+                expected[last],
+              )
+              run = advanceDialogue(run.snapshot, { text: expected[last] })
+              if (omitted)
+                expect(
+                  run.snapshot.state.facts.some((f) => f.key === absentKey),
+                ).toBe(false)
+              expect(run.snapshot.state.outcome).toBe('achieved')
+              expect(dialogueSuggestions(run.snapshot)).toEqual([])
+            })
+
+  for (const variantId of ['desk', 'message'])
+    for (const middle of [0, 1])
+      for (const name of [0, 1])
+        it(`name-without-list A1 ${variantId}/${middle}/${name}`, async () => {
+          const r = await localContentProvider.load({
+            sceneId: 'emergency-01',
+            level: 'A1',
+          })
+          expect(r.status).toBe('available')
+          if (r.status !== 'available') return
+          let run = createDialogue(r.pack, { variantId, mode: 'extended' })
+          while (
+            !run.snapshot.state.currentQuestionId?.endsWith('.uncertain')
+          ) {
+            expect(run.snapshot.state.outcome).toBe('active')
+            const isRecord =
+              run.snapshot.state.currentQuestionId!.endsWith('.record')
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[isRecord ? 1 : middle]
+                .text,
+            })
+          }
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'record')?.value,
+          ).toBe(variantId === 'desk' ? 'none' : undefined)
+          expect(dialogueSuggestions(run.snapshot).map((a) => a.text)).toEqual([
+            'Yes, I know the name.',
+            'No, I do not know the name.',
+          ])
+          const answer = dialogueSuggestions(run.snapshot)[name]
+          expect(answer.effects).toEqual([
+            { key: 'uncertain', value: name === 0 ? 'known' : 'unknown' },
+          ])
+          run = advanceDialogue(run.snapshot, { text: answer.text })
+          run = advanceDialogue(run.snapshot, {
+            text: dialogueSuggestions(run.snapshot)[0].text,
+          })
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'record')?.value,
+          ).toBe(variantId === 'desk' ? 'none' : undefined)
+          expect(run.snapshot.state.outcome).toBe('achieved')
+        })
+
+  for (const mode of ['standard', 'extended'] as const)
+    for (const prefix of [0, 1])
+      for (const language of [0, 1])
+        it(`language-not-underway C1 message/${mode}/${prefix}/${language}`, async () => {
+          const r = await localContentProvider.load({
+            sceneId: 'emergency-04',
+            level: 'C1',
+          })
+          expect(r.status).toBe('available')
+          if (r.status !== 'available') return
+          let run = createDialogue(r.pack, { variantId: 'message', mode })
+          while (!run.snapshot.state.currentQuestionId?.endsWith('.language')) {
+            expect(run.snapshot.state.outcome).toBe('active')
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[prefix].text,
+            })
+          }
+          expect(
+            run.snapshot.state.facts.some((f) =>
+              ['language', 'contact'].includes(f.key),
+            ),
+          ).toBe(false)
+          const answer = dialogueSuggestions(run.snapshot)[language]
+          expect(answer.text).toBe(
+            [
+              'Could you clarify what language support is available here, so I do not assume a service you may not be able to provide?',
+              'I do not know what language support is available here; could we keep to short, concrete questions that I can answer accurately?',
+            ][language],
+          )
+          run = advanceDialogue(run.snapshot, { text: answer.text })
+          while (run.snapshot.state.outcome === 'active')
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[prefix].text,
+            })
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'language')?.value,
+          ).toBe(language === 0 ? 'availability' : 'interim')
+          expect(
+            run.snapshot.state.facts.some((f) => f.key === 'contact'),
+          ).toBe(false)
+          expect(run.snapshot.state.outcome).toBe('achieved')
+          expect(run.reply).toContain('no help was dispatched')
+        })
+})
+
 describe('emergency corpus nonadjacent premise regressions', () => {
   for (const source of [0, 1])
     for (const people of [0, 1])

@@ -816,7 +816,7 @@ export const describeSymptoms = {
         'I would describe what it feels like in ordinary words rather than choose a technical term that might be misleading.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.feeling',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.feeling',
         },
       ],
       [
@@ -830,7 +830,7 @@ export const describeSymptoms = {
         'I recall the feeling beginning during the morning, but giving a precise minute would overstate my recollection.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.onset',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.onset',
         },
       ],
       [
@@ -844,7 +844,7 @@ export const describeSymptoms = {
         'There were distinct periods when I felt it and periods when I did not; I would describe those rather than imply uninterrupted monitoring.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.pattern',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.pattern',
         },
       ],
       [
@@ -858,7 +858,7 @@ export const describeSymptoms = {
         'My routine has remained unchanged, so I would not invent a functional limitation just to make the account sound more substantial.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.activity',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.activity',
         },
       ],
       [
@@ -872,7 +872,7 @@ export const describeSymptoms = {
         'My notes cover a few moments across the afternoon, not a continuous record of everything between them.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.duration',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.duration',
         },
       ],
       [
@@ -886,7 +886,7 @@ export const describeSymptoms = {
         'I cannot identify a consistent change; the variation in my descriptions may reflect how difficult the sensation is to put into words.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.change',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.change',
         },
       ],
       [
@@ -900,21 +900,21 @@ export const describeSymptoms = {
         'I would leave the exact time open until I could examine the original note, rather than choose the version that sounds more plausible.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.record',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.record',
         },
       ],
       [
         'format',
         'choose-description-format',
-        'How would you structure an account that needs both chronology and a description of its practical effect?',
-        '自然管理两种信息结构。',
+        'How would you organise the timeline alongside an account of whether your routine changed?',
+        '组织时间线，并保留日常活动可能未受影响的情况。',
         'chronology',
-        'I would use chronology as the main thread, adding the effect on an activity at the point where it became relevant.',
+        'I would use chronology as the main thread, stating at the relevant point whether there was any effect on my routine.',
         'summary',
-        'I would begin with a concise account of the practical difficulty, then give a separate timeline so the two kinds of information remain distinguishable.',
+        'I would begin by saying whether my routine changed, then give a separate timeline so the two kinds of information remain distinguishable.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.format',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.format',
         },
       ],
       [
@@ -928,7 +928,7 @@ export const describeSymptoms = {
         'I would report the two events separately, then identify the possible link as my question rather than part of the observed account.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.uncertain',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.uncertain',
         },
       ],
       [
@@ -942,7 +942,7 @@ export const describeSymptoms = {
         'I would distinguish the spot I can point to from the wider area that only sometimes feels uncomfortable.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.location',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.location',
         },
       ],
       [
@@ -956,7 +956,7 @@ export const describeSymptoms = {
         'I could use that word as an approximation, provided the rest of my description is not lost.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.support',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.support',
         },
       ],
       [
@@ -970,13 +970,13 @@ export const describeSymptoms = {
         'I would preserve the distinction between my own words and any suggested terminology, so the listener can see where the wording is approximate.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: describe-symptoms.C1.next',
+          record: 'emergency-review.md: fix1 describe-symptoms.C1.next',
         },
       ],
     ],
     {
       state: 'model-reviewed',
-      record: 'emergency-review.md: describe-symptoms.C1 variants',
+      record: 'emergency-review.md: fix1 describe-symptoms.C1 variants',
     },
   ),
 }

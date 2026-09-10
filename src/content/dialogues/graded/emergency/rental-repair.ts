@@ -449,7 +449,7 @@ export const rentalRepair = {
         'The bedroom window will not close fully; I cannot say why.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.problem',
+          record: 'emergency-review.md: fix1 rental-repair.B1.problem',
         },
       ],
       [
@@ -463,7 +463,7 @@ export const rentalRepair = {
         'It came to my attention this afternoon.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.onset',
+          record: 'emergency-review.md: fix1 rental-repair.B1.onset',
         },
       ],
       [
@@ -477,7 +477,7 @@ export const rentalRepair = {
         'I have only observed it once, so I cannot describe a pattern yet.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.pattern',
+          record: 'emergency-review.md: fix1 rental-repair.B1.pattern',
         },
       ],
       [
@@ -491,7 +491,7 @@ export const rentalRepair = {
         'I have not noticed an effect on my routine, but I still want to report the fault.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.impact',
+          record: 'emergency-review.md: fix1 rental-repair.B1.impact',
         },
       ],
       [
@@ -505,7 +505,7 @@ export const rentalRepair = {
         'I could give a written account of what I have noticed.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.record',
+          record: 'emergency-review.md: fix1 rental-repair.B1.record',
         },
       ],
       [
@@ -519,7 +519,7 @@ export const rentalRepair = {
         'Thursday afternoon would work better with my plans.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.visit',
+          record: 'emergency-review.md: fix1 rental-repair.B1.visit',
         },
       ],
       [
@@ -533,7 +533,7 @@ export const rentalRepair = {
         'I would like to know who would attend and discuss entry before agreeing.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.entry',
+          record: 'emergency-review.md: fix1 rental-repair.B1.entry',
         },
       ],
       [
@@ -547,7 +547,7 @@ export const rentalRepair = {
         'Could you let me know what cost information would be available before any work is agreed?',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.cost',
+          record: 'emergency-review.md: fix1 rental-repair.B1.cost',
         },
       ],
       [
@@ -561,7 +561,7 @@ export const rentalRepair = {
         'I would prefer a spoken explanation so I could ask about unclear points.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.update',
+          record: 'emergency-review.md: fix1 rental-repair.B1.update',
         },
       ],
       [
@@ -575,7 +575,7 @@ export const rentalRepair = {
         'Who should I speak to about arranging an assessment of the problem?',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.request',
+          record: 'emergency-review.md: fix1 rental-repair.B1.request',
         },
       ],
       [
@@ -589,7 +589,7 @@ export const rentalRepair = {
         'Could you explain who would come and how the visit would be agreed?',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.clarify',
+          record: 'emergency-review.md: fix1 rental-repair.B1.clarify',
         },
       ],
       [
@@ -600,16 +600,16 @@ export const rentalRepair = {
         'draft',
         'I have drafted a report, but it has not been sent or accepted.',
         'questions',
-        'I have identified questions to ask, but no visit has been arranged.',
+        'I would like to prepare questions to ask before any visit is arranged.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: rental-repair.B1.next',
+          record: 'emergency-review.md: fix1 rental-repair.B1.next',
         },
       ],
     ],
     {
       state: 'model-reviewed',
-      record: 'emergency-review.md: rental-repair.B1 variants',
+      record: 'emergency-review.md: fix1 rental-repair.B1 variants',
     },
   ),
   B2: emergencyPack(

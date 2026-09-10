@@ -78,7 +78,7 @@ export const pharmacyMedicine = {
         'I have a question for the pharmacist.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.need',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.need',
         },
       ],
       [
@@ -92,7 +92,7 @@ export const pharmacyMedicine = {
         'I can read them, but I do not know “expiry”.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.label',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.label',
         },
       ],
       [
@@ -106,7 +106,7 @@ export const pharmacyMedicine = {
         'I do not remember.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.history',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.history',
         },
       ],
       [
@@ -120,7 +120,7 @@ export const pharmacyMedicine = {
         'No, I do not take vitamins.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.other',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.other',
         },
       ],
       [
@@ -134,7 +134,7 @@ export const pharmacyMedicine = {
         'No, I do not have a list.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.record',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.record',
         },
       ],
       [
@@ -148,7 +148,7 @@ export const pharmacyMedicine = {
         'Somewhere quiet, please.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.privacy',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.privacy',
         },
       ],
       [
@@ -162,7 +162,7 @@ export const pharmacyMedicine = {
         'A picture, please.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.format',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.format',
         },
       ],
       [
@@ -176,21 +176,21 @@ export const pharmacyMedicine = {
         'Medicine names come first.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.priority',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.priority',
         },
       ],
       [
         'uncertain',
         'acknowledge-uncertainty',
         'Do you know the medicine name?',
-        '可用虚构情况表示不知道。',
-        'written',
-        'Yes, it is on my card.',
+        '只说明是否知道；不说真实药品名。',
+        'known',
+        'Yes, I know the name.',
         'unknown',
         'No, I do not know the name.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.uncertain',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.uncertain',
         },
       ],
       [
@@ -204,7 +204,7 @@ export const pharmacyMedicine = {
         'Who can answer my question?',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.question',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.question',
         },
       ],
       [
@@ -218,7 +218,7 @@ export const pharmacyMedicine = {
         'Please let me read my card.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.pace',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.pace',
         },
       ],
       [
@@ -232,13 +232,13 @@ export const pharmacyMedicine = {
         'I want to read it aloud.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: pharmacy-medicine.A1.next',
+          record: 'emergency-review.md: fix1 pharmacy-medicine.A1.next',
         },
       ],
     ],
     {
       state: 'model-reviewed',
-      record: 'emergency-review.md: pharmacy-medicine.A1 variants',
+      record: 'emergency-review.md: fix1 pharmacy-medicine.A1 variants',
     },
   ),
   A2: emergencyPack(

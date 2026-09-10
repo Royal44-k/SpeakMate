@@ -820,7 +820,7 @@ export const emergencyCall = {
         'Smoke has been reported inside the hall, but attributing it to a particular source would go beyond the information available.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.event',
+          record: 'emergency-review.md: fix1 emergency-call.C1.event',
         },
       ],
       [
@@ -834,7 +834,7 @@ export const emergencyCall = {
         'Please identify the location in this exercise as Example Hall’s west entrance; no other location information should be inferred.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.place',
+          record: 'emergency-review.md: fix1 emergency-call.C1.place',
         },
       ],
       [
@@ -848,7 +848,7 @@ export const emergencyCall = {
         'I have no reliable onset time, and would leave it unspecified rather than let the time of this report stand in for it.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.time',
+          record: 'emergency-review.md: fix1 emergency-call.C1.time',
         },
       ],
       [
@@ -862,7 +862,7 @@ export const emergencyCall = {
         'I witnessed the event myself; I would identify any subsequent information from others separately rather than merge the two sources.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.source',
+          record: 'emergency-review.md: fix1 emergency-call.C1.source',
         },
       ],
       [
@@ -876,7 +876,7 @@ export const emergencyCall = {
         'The people are outside my view, so I cannot support either a number or a claim that nobody is there.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.people',
+          record: 'emergency-review.md: fix1 emergency-call.C1.people',
         },
       ],
       [
@@ -890,7 +890,7 @@ export const emergencyCall = {
         'I cannot see the entrance from my present position, so I would keep that part of the account explicitly unobserved.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.view',
+          record: 'emergency-review.md: fix1 emergency-call.C1.view',
         },
       ],
       [
@@ -904,7 +904,7 @@ export const emergencyCall = {
         'If the materials do not specify it, I would leave the capability unconfirmed rather than infer it from the presence of a phone.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.contact',
+          record: 'emergency-review.md: fix1 emergency-call.C1.contact',
         },
       ],
       [
@@ -918,7 +918,7 @@ export const emergencyCall = {
         'Could we take one detail at a time, allowing me to state explicitly when the information is unavailable?',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.pace',
+          record: 'emergency-review.md: fix1 emergency-call.C1.pace',
         },
       ],
       [
@@ -932,7 +932,7 @@ export const emergencyCall = {
         'That lies outside what I can see, so I would leave the question open rather than answer it negatively.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.uncertain',
+          record: 'emergency-review.md: fix1 emergency-call.C1.uncertain',
         },
       ],
       [
@@ -946,21 +946,21 @@ export const emergencyCall = {
         'I can name the garden marked beside the hall, while leaving its unmeasured distance from the entrance unspecified.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.landmark',
+          record: 'emergency-review.md: fix1 emergency-call.C1.landmark',
         },
       ],
       [
         'language',
         'request-language-support',
         'How would you raise a language-support need while leaving local capabilities for the recipient to clarify?',
-        '无普遍口译承诺。',
+        '语言支持能力仍未知；可提出澄清或简化问题的请求。',
         'availability',
         'Could you clarify what language support is available here, so I do not assume a service you may not be able to provide?',
         'interim',
-        'While that is being clarified, could we keep to short, concrete questions that I can answer accurately?',
+        'I do not know what language support is available here; could we keep to short, concrete questions that I can answer accurately?',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.language',
+          record: 'emergency-review.md: fix1 emergency-call.C1.language',
         },
       ],
       [
@@ -974,13 +974,13 @@ export const emergencyCall = {
         'I would retain any unresolved detail as unresolved, even if that leaves the practice report less complete than I had hoped.',
         {
           state: 'model-reviewed',
-          record: 'emergency-review.md: emergency-call.C1.next',
+          record: 'emergency-review.md: fix1 emergency-call.C1.next',
         },
       ],
     ],
     {
       state: 'model-reviewed',
-      record: 'emergency-review.md: emergency-call.C1 variants',
+      record: 'emergency-review.md: fix1 emergency-call.C1 variants',
     },
   ),
 }
