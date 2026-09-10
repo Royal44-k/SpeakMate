@@ -19,6 +19,411 @@ const scenes = [
 ] as const
 const levels = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 
+// Editorial regression fixtures, not an automatic CEFR or language-quality
+// test. These concrete A1 tasks deliberately replace abstract evidence and
+// trade-off tasks. Expected wording/effects are independent of the catalog.
+const a1FixRows = {
+  'social-05': [
+    [
+      'position',
+      'Do you want some quiet time at the event?',
+      'yes',
+      'Yes, I want some quiet time.',
+      'no',
+      'No, I like lots of music.',
+    ],
+    [
+      'reason',
+      'What do you enjoy at an event?',
+      'talk',
+      'I like talking to people.',
+      'music',
+      'I like listening to music.',
+    ],
+    [
+      'example',
+      'Was the last event you went to quiet or loud?',
+      'quiet',
+      'It was quiet.',
+      'loud',
+      'It was loud.',
+    ],
+    [
+      'priority',
+      'Do you like games or drawing at events?',
+      'games',
+      'I like games.',
+      'drawing',
+      'I like drawing.',
+    ],
+    [
+      'other',
+      'Do you understand my idea, or do you need an example?',
+      'yes',
+      'Yes, I understand your idea.',
+      'help',
+      'Please give me an example.',
+    ],
+    [
+      'proposal',
+      'What can we put in a quiet corner?',
+      'chairs',
+      'We can put some chairs there.',
+      'books',
+      'We can put some books there.',
+    ],
+    [
+      'tradeoff',
+      'What is difficult for you in a noisy room?',
+      'hear',
+      'I cannot hear my friends.',
+      'think',
+      'I cannot think well.',
+    ],
+    [
+      'evidence',
+      'What do you want to ask about the event?',
+      'time',
+      'What time does it start?',
+      'place',
+      'Where is it?',
+    ],
+    [
+      'limit',
+      'Do you like trying new activities?',
+      'new',
+      'Yes, I like trying new things.',
+      'familiar',
+      'No, I like my usual activities.',
+    ],
+    [
+      'close',
+      'How can you end our chat?',
+      'go',
+      'Thanks for the chat. I must go.',
+      'think',
+      'Thanks. I want to think about it.',
+    ],
+    [
+      'meaning',
+      'What does lively mean here?',
+      'active',
+      'It means busy and fun.',
+      'ask',
+      'I do not know. Please explain.',
+    ],
+    [
+      'tone',
+      'Am I speaking too fast for you?',
+      'slow',
+      'Yes, please slow down.',
+      'fine',
+      'No, this speed is OK.',
+    ],
+  ],
+  'social-06': [
+    [
+      'acknowledge',
+      'What are you sorry for?',
+      'late',
+      'I am sorry your book is late.',
+      'message',
+      'I am sorry I did not call you.',
+    ],
+    [
+      'impact',
+      'What might Robin need now?',
+      'need',
+      'Robin may need the book.',
+      'news',
+      'Robin may want news about the book.',
+    ],
+    [
+      'explain',
+      'Do you want to say why?',
+      'forgot',
+      'I forgot the date. I am sorry.',
+      'simple',
+      'No, I just want to say sorry.',
+    ],
+    [
+      'repair',
+      'What can you offer to do?',
+      'bring',
+      'I can bring the book today. Is that OK?',
+      'meet',
+      'When can we meet? I can bring the book.',
+    ],
+    [
+      'contact',
+      'Will you send a text or ask to call?',
+      'text',
+      'I will send a text.',
+      'call',
+      'I will ask to call.',
+    ],
+    [
+      'permission',
+      'Can you visit Robin without asking?',
+      'ask',
+      'No. I will ask first.',
+      'wait',
+      'No. I will wait for an invitation.',
+    ],
+    [
+      'prevent',
+      'How can you remember the date next time?',
+      'note',
+      'I can write it down.',
+      'alarm',
+      'I can set an alarm.',
+    ],
+    [
+      'response',
+      'What if Robin is upset?',
+      'time',
+      'I can give Robin time.',
+      'noask',
+      'I will not ask Robin to forgive me.',
+    ],
+    [
+      'scope',
+      'What will you say about borrowing books again?',
+      'date',
+      'I will ask about the date before I borrow again.',
+      'pause',
+      'I will not borrow more books for now.',
+    ],
+    [
+      'close',
+      'How will you end your message?',
+      'sorry',
+      'I am sorry about your book.',
+      'thanks',
+      'Thank you for reading this.',
+    ],
+    [
+      'space',
+      'Does Robin have to answer today?',
+      'later',
+      'No. Robin can answer later.',
+      'book',
+      'No. Robin can answer only about the book.',
+    ],
+    [
+      'confirm',
+      'Later, how can you check Robin has the book?',
+      'handover',
+      'I can give it to Robin myself.',
+      'ask',
+      "I can ask, 'Do you have your book?'",
+    ],
+  ],
+} as const
+
+describe('social fix round1 source and premise regressions', () => {
+  for (const level of ['B1', 'C1'] as const)
+    for (const variantId of ['conversation', 'consideration'])
+      for (const mode of ['short', 'standard', 'extended'] as const)
+        for (const prefix of [0, 1, 2])
+          for (const exitSlot of [0, 1])
+            it(`networking ${level}/${variantId}/${mode}/${prefix}/${exitSlot}: closes after learner answers, not an invented Morgan disclosure`, async () => {
+              const r = await localContentProvider.load({
+                sceneId: 'social-02',
+                level,
+              })
+              expect(r.status).toBe('available')
+              if (r.status !== 'available') return
+              let run = createDialogue(r.pack, { variantId, mode }),
+                turn = 0
+              while (!run.snapshot.state.currentQuestionId?.endsWith('.exit')) {
+                expect(run.snapshot.state.outcome).toBe('active')
+                const a = dialogueSuggestions(run.snapshot)[
+                  prefix === 2 ? turn % 2 : prefix
+                ]
+                run = advanceDialogue(run.snapshot, { text: a.text })
+                turn++
+              }
+              const expected =
+                level === 'B1'
+                  ? [
+                      'Thanks for the chat. I am going to catch the talk now.',
+                      'I have enjoyed meeting you. I need a break, so I will leave it there for today.',
+                    ]
+                  : [
+                      'It has been a pleasure meeting you. I will let you get on and head to the next session.',
+                      'Thank you for the conversation. I am going to take a little time to think about my next steps.',
+                    ]
+              const a = dialogueSuggestions(run.snapshot)[exitSlot]
+              expect(a.text).toBe(expected[exitSlot])
+              run = advanceDialogue(run.snapshot, { text: a.text })
+              expect(run.snapshot.state.outcome).toBe('achieved')
+            })
+  for (const level of ['A1', 'A2'] as const)
+    for (const [variantId, mode, reasonSlots] of [
+      ['conversation', 'extended', [0, 1]],
+      ['consideration', 'short', [0]],
+      ['consideration', 'extended', [0, 1]],
+    ] as const)
+      for (const decline of [0, 1])
+        for (const reason of reasonSlots)
+          for (const repair of [0, 1])
+            it(`refusal ${level}/${variantId}/${mode}/${decline}/${reason}/${repair}: repairs a separately quoted date, not an already clear no`, async () => {
+              const r = await localContentProvider.load({
+                sceneId: 'social-04',
+                level,
+              })
+              expect(r.status).toBe('available')
+              if (r.status !== 'available') return
+              let run = createDialogue(r.pack, { variantId, mode })
+              const initial = dialogueSuggestions(run.snapshot)[decline]
+              run = advanceDialogue(run.snapshot, { text: initial.text })
+              while (
+                !run.snapshot.state.currentQuestionId?.endsWith('.clarity')
+              ) {
+                expect(run.snapshot.state.outcome).toBe('active')
+                const slot = run.snapshot.state.currentQuestionId?.endsWith(
+                  '.reason',
+                )
+                  ? reason
+                  : 0
+                run = advanceDialogue(run.snapshot, {
+                  text: dialogueSuggestions(run.snapshot)[slot].text,
+                })
+              }
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'decline')
+                  ?.value,
+              ).toBe(initial.effects[0].value)
+              expect(run.reply).toBe(
+                level === 'A1'
+                  ? "A different example says, 'I cannot come this weekend.' Can you name one day?"
+                  : "Here is a separate example: 'I cannot come next week.' How could you make the day clear?",
+              )
+              const a = dialogueSuggestions(run.snapshot)[repair]
+              expect(a.text).toBe(
+                level === 'A1'
+                  ? ['I cannot come on Saturday.', 'I cannot come on Sunday.'][
+                      repair
+                    ]
+                  : [
+                      'I cannot come next Tuesday.',
+                      'I cannot come next Thursday.',
+                    ][repair],
+              )
+              expect(a.effects).toEqual([
+                {
+                  key: 'clarity',
+                  value: (level === 'A1'
+                    ? ['saturday', 'sunday']
+                    : ['tuesday', 'thursday'])[repair],
+                },
+              ])
+              run = advanceDialogue(run.snapshot, { text: a.text })
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === 'decline')
+                  ?.value,
+              ).toBe(initial.effects[0].value)
+              expect(
+                run.snapshot.state.completedObjectives.filter(
+                  (id) => id === 'decline',
+                ),
+              ).toHaveLength(1)
+              expect(run.snapshot.state.completedObjectives).toContain(
+                'clarity',
+              )
+            })
+  for (const sceneId of ['social-05', 'social-06'] as const)
+    for (const variantId of ['conversation', 'consideration'])
+      for (const mode of ['short', 'standard', 'extended'] as const)
+        for (const slot of [0, 1])
+          it(`A1 ${sceneId}/${variantId}/${mode}/${slot}: uses concrete reviewed steps and future checks`, async () => {
+            const r = await localContentProvider.load({ sceneId, level: 'A1' })
+            expect(r.status).toBe('available')
+            if (r.status !== 'available') return
+            // Check all twelve separately authored Q/A/effect fixtures, not
+            // sentence length or a generated expected manifest.
+            for (const [
+              key,
+              question,
+              valueA,
+              textA,
+              valueB,
+              textB,
+            ] of a1FixRows[sceneId]) {
+              const q = r.pack.questions.find((q) => q.objective === key)!
+              expect(q.text).toBe(question)
+              expect(q.answers.map((a) => a.text)).toEqual([textA, textB])
+              expect(q.answers.map((a) => a.effects)).toEqual([
+                [{ key, value: valueA }],
+                [{ key, value: valueB }],
+              ])
+            }
+            let run = createDialogue(r.pack, { variantId, mode })
+            while (run.snapshot.state.outcome === 'active') {
+              const q = run.snapshot.pack.questions.find(
+                (q) => q.id === run.snapshot.state.currentQuestionId,
+              )!
+              const row = a1FixRows[sceneId].find(
+                (row) => row[0] === q.objective,
+              )!
+              expect(run.reply).toBe(row[1])
+              const a = dialogueSuggestions(run.snapshot)[slot]
+              run = advanceDialogue(run.snapshot, { text: a.text })
+              expect(
+                run.snapshot.state.facts.find((f) => f.key === row[0])?.value,
+              ).toBe(row[slot === 0 ? 2 : 4])
+            }
+            expect(run.snapshot.state.outcome).toBe('achieved')
+            expect(run.reply).toContain(
+              sceneId === 'social-05'
+                ? 'whether or not our views match'
+                : 'The book has not been returned',
+            )
+          })
+  for (const mode of ['standard', 'extended'] as const)
+    for (const alternative of [0, 1])
+      for (const contact of [0, 1])
+        it(`C1 refusal/${mode}/${alternative}/${contact}: accepted pause wording actually stops further dinner invitations`, async () => {
+          const r = await localContentProvider.load({
+            sceneId: 'social-04',
+            level: 'C1',
+          })
+          expect(r.status).toBe('available')
+          if (r.status !== 'available') return
+          let run = createDialogue(r.pack, { variantId: 'conversation', mode })
+          while (!run.snapshot.state.currentQuestionId?.endsWith('.contact')) {
+            expect(run.snapshot.state.outcome).toBe('active')
+            const slot = run.snapshot.state.currentQuestionId?.endsWith(
+              '.alternative',
+            )
+              ? alternative
+              : 0
+            run = advanceDialogue(run.snapshot, {
+              text: dialogueSuggestions(run.snapshot)[slot].text,
+            })
+          }
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'alternative')
+              ?.value,
+          ).toBe(alternative === 0 ? 'nooffer' : 'offer')
+          const a = dialogueSuggestions(run.snapshot)[contact]
+          expect(a.text).toBe(
+            contact === 0
+              ? 'I would be glad to receive future invitations, without that placing any expectation on my answer to them.'
+              : 'I would ask Casey not to send me any more dinner invitations for now; I will bring it up again if that changes.',
+          )
+          run = advanceDialogue(run.snapshot, { text: a.text })
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'contact')?.value,
+          ).toBe(contact === 0 ? 'open' : 'pause')
+          expect(
+            run.snapshot.state.facts.find((f) => f.key === 'alternative')
+              ?.value,
+          ).toBe(alternative === 0 ? 'nooffer' : 'offer')
+        })
+})
+
 describe('original social corpus', () => {
   // These source-aware cases protect the specific authoring risks: changing
   // a preference must not establish a different fact or perform a real action.
@@ -156,7 +561,7 @@ describe('original social corpus', () => {
             variantId: 'consideration',
           })
           const confirmationQuestions = {
-            A1: 'How would you know the book had been received?',
+            A1: 'Later, how can you check Robin has the book?',
             A2: 'For a future return, how could you check that Robin received the book?',
             B1: 'What would count as knowing the book was back with Robin?',
             B2: 'What would establish receipt rather than merely show that you had planned a return?',

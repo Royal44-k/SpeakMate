@@ -2,11 +2,11 @@ import { socialPack, type SocialScene, type Review } from './authoring'
 const read = {
   A1: {
     state: 'model-reviewed',
-    record: 'social-review.md: polite-refusal.A1',
+    record: 'social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10',
   },
   A2: {
     state: 'model-reviewed',
-    record: 'social-review.md: polite-refusal.A2',
+    record: 'social-review.md: fix1 polite-refusal.A2 complete-unit reread 2026-09-10',
   },
   B1: {
     state: 'model-reviewed',
@@ -18,7 +18,7 @@ const read = {
   },
   C1: {
     state: 'model-reviewed',
-    record: 'social-review.md: polite-refusal.C1',
+    record: 'social-review.md: fix1 polite-refusal.C1 complete-unit reread 2026-09-10',
   },
 } satisfies Record<string, Review>
 const scene: SocialScene = {
@@ -133,13 +133,13 @@ export const politeRefusal = {
       ],
       [
         'clarity',
-        'avoid-ambiguity',
-        'Should the reply say no or maybe?',
-        '明确拒绝；两种策略为纠正与直接表达。',
-        'no',
-        'It should say no, not maybe.',
-        'remove',
-        'Let’s take maybe out of the reply.',
+        'clarify-example-date',
+        "A different example says, 'I cannot come this weekend.' Can you name one day?",
+        '单独例句：把 this weekend 换成具体星期，不修改你先前对周六的明确拒绝。',
+        'saturday',
+        'I cannot come on Saturday.',
+        'sunday',
+        'I cannot come on Sunday.',
         read.A1,
       ],
       [
@@ -278,13 +278,13 @@ export const politeRefusal = {
       ],
       [
         'clarity',
-        'avoid-ambiguity',
-        'How can the draft avoid sounding like a possible yes?',
-        '直接明确或删除含糊表达。',
-        'clear',
-        'We can say clearly that I will not attend.',
-        'remove',
-        'We can remove words like maybe from the draft.',
+        'clarify-example-date',
+        "Here is a separate example: 'I cannot come next week.' How could you make the day clear?",
+        '另一个例句需要明确日期；用 next Tuesday 或 next Thursday，不改变当前晚餐拒绝。',
+        'tuesday',
+        'I cannot come next Tuesday.',
+        'thursday',
+        'I cannot come next Thursday.',
         read.A2,
       ],
       [
@@ -742,7 +742,7 @@ export const politeRefusal = {
         'open',
         'I would be glad to receive future invitations, without that placing any expectation on my answer to them.',
         'pause',
-        'I would ask Casey to leave dinner invitations with me for a while; I will raise it if that changes.',
+        'I would ask Casey not to send me any more dinner invitations for now; I will bring it up again if that changes.',
         read.C1,
       ],
       [

@@ -1,5 +1,7 @@
 # Social corpus — actual model-assisted reading record
 
+Fix round1 supersession (2026-09-10): independent review of 8e9c117 held seven units / 84 Q / 168 A: networking-event.B1/C1, polite-refusal.A1/A2/C1, discuss-opinions.A1, apology-repair.A1. The historical no-known-error/all-eligible self-review below is not an independent gate pass. These seven units were reset to draft before correction; 276 Q / 552 A remain independently eligible. Corrected units await scoped re-review. Final correction and rereading evidence is appended below; unchanged analyses retain 6 entries / 30 examples / 30 substitutions eligibility.
+
 Date: 2026-09-10. Reader: Codex implementation agent for Task3F (not a human teacher). BASE 5dc83a101c65a3a4a789ae5bcb9627f0ae34c7a7. All original drafts were reopened completely through read-only shell output after drafting; each question, both answers, Chinese hint, single effect value and exact-form mapping was read. All30 rationales,60variant instances,180mode paths and associated situations/closings/repairs were also read. The shared mapper supplies IDs/forms/effects only. It defaults to draft and did not decide review status. Explicit per-unit reading records referenced beside every row and variant were changed only after this reading and correction reread.
 
 ## Scope and counts
@@ -435,3 +437,121 @@ Every line covers the question and its two owned answers, together with that que
 |apology-repair.C1.close|apology-repair.C1.close.a|apology-repair.C1.close.b|
 |apology-repair.C1.space|apology-repair.C1.space.a|apology-repair.C1.space.b|
 |apology-repair.C1.confirm|apology-repair.C1.confirm.a|apology-repair.C1.confirm.b|
+
+## Fix round1 — complete-unit reread, 2026-09-10
+
+FIX_BASE: 8e9c1170066cfb0a78771089c5daa9cd5077f1bb. Four Important findings held seven units. All seven explicit unit attestations were set to draft during correction, then renewed only after complete source rereading. Reader: implementation Codex agent, not a human teacher or independent reviewer.
+
+Actual post-fix reading covered every 84 Q, 168 A, 84 hints, 168 single effects/exact forms, seven rationales, 14 variant instances and 42 mode-path contexts. Read all four shared scene definitions in full: both situations, every short/standard/extended path, complete/partial closing and all repair messages. No shared scene definition changed, so the reread did not expand beyond these seven units. All six paths of each networking unit were checked against both exit choices; refusal A1/A2 clarity was read after both clear declines and voluntary/private reasons (including consideration.short with no reason); C1 contact was read with both alternative-plan choices. The two A1 units were read completely, not just the cited long sentences.
+
+Corrections:
+- networking-event B1.exit.a and C1.exit.a now thank Morgan for the meeting/chat, not absent experience/perspective disclosures. C1.exit.b now takes time to think about the learner's own next steps. B1.exit.b was reread and retained.
+- polite-refusal A1/A2.clarity now introduces a separate quoted refusal with an imprecise time (this weekend / next week), then asks for a named day. This is an independent example-date repair, not another vote on the learner's already-clear Saturday no. Intent is clarify-example-date; each exact answer sets the corresponding named-day clarity value only.
+- discuss-opinions A1 now uses concrete sound/activity preferences, a quiet-corner object suggestion, room difficulties, time/place questions and pace help. The four rationale fields now describe these actual tasks. Lively remains supported by Rowan's quoted opening; asking for an example does not claim one was supplied, and disagreement does not imply agreement.
+- apology-repair A1 now uses short apologies, concrete future contact/permission/reminder steps and a plain future receipt check (personal handover or asking "Do you have your book?"). Both repair choices remain offers, not accepted arrangements. Both permission choices require asking/waiting. No return/message/forgiveness is claimed. The full-unit reread additionally removed "still" from the hypothetical upset question and Chinese hint to avoid implying an earlier emotional state; reread the final row and matching test fixture.
+- polite-refusal C1.contact.b explicitly asks Casey not to send more dinner invitations for now, with the learner reopening it if preferences change. An alternative coffee offer neither cancels this dinner boundary nor becomes an agreed meeting.
+
+Counts below are per complete held unit. "Model eligible" is renewed editorial attestation, not an independent pass. Independent eligibility remains 23 unchanged units / 276 Q / 552 A; all corrected 84 Q / 168 A await scoped re-review. Unchanged analyses were not reread this fix: prior 6 entries / 30 examples / 30 substitutions remain unchanged.
+
+|Unit|Authored Q/A|Structural Q/A|Actually reread Q/A|Human Q/A|Draft Q/A|Model eligible Q/A|Independent eligible Q/A|
+|---|---|---|---|---|---|---|---|
+|networking-event.B1|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+|networking-event.C1|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+|polite-refusal.A1|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+|polite-refusal.A2|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+|polite-refusal.C1|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+|discuss-opinions.A1|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+|apology-repair.A1|12/24|12/24|12/24|0/0|0/0|12/24|0/0 pending|
+
+Verification: new source/premise regressions first failed on old prose at 15:44:01 (122 failed, 22 passed, 718 skipped; 6.37s). After correction and actual rereading, Node 22 social-corpus.test.ts passed all 862 at 15:52:44 (31.64s). The 144 new cases cover 72 networking exit paths/prefixes/slots, 40 separate-example refusal repairs after actual earlier choices, 24 whole-A1 fixtures/path executions and eight C1 alternative/contact combinations. These assertions preserve reviewed wording/effects; they are not automatic CEFR evidence. Typecheck and changed-five-TS ESLint exit 0 (7.42s / 7.56s). No full-suite, prior-category, browser or release validation rerun in this fix.
+
+### Fix1 complete reread item inventory
+
+Each row is one actual reread question and both answers; IDs remain unchanged.
+
+|Question|Answer a|Answer b|
+|---|---|---|
+|networking-event.B1.purpose|networking-event.B1.purpose.a|networking-event.B1.purpose.b|
+|networking-event.B1.area|networking-event.B1.area.a|networking-event.B1.area.b|
+|networking-event.B1.project|networking-event.B1.project.a|networking-event.B1.project.b|
+|networking-event.B1.experience|networking-event.B1.experience.a|networking-event.B1.experience.b|
+|networking-event.B1.interest|networking-event.B1.interest.a|networking-event.B1.interest.b|
+|networking-event.B1.resource|networking-event.B1.resource.a|networking-event.B1.resource.b|
+|networking-event.B1.offer|networking-event.B1.offer.a|networking-event.B1.offer.b|
+|networking-event.B1.contact|networking-event.B1.contact.a|networking-event.B1.contact.b|
+|networking-event.B1.permission|networking-event.B1.permission.a|networking-event.B1.permission.b|
+|networking-event.B1.exit|networking-event.B1.exit.a|networking-event.B1.exit.b|
+|networking-event.B1.time|networking-event.B1.time.a|networking-event.B1.time.b|
+|networking-event.B1.introduction|networking-event.B1.introduction.a|networking-event.B1.introduction.b|
+|networking-event.C1.purpose|networking-event.C1.purpose.a|networking-event.C1.purpose.b|
+|networking-event.C1.area|networking-event.C1.area.a|networking-event.C1.area.b|
+|networking-event.C1.project|networking-event.C1.project.a|networking-event.C1.project.b|
+|networking-event.C1.experience|networking-event.C1.experience.a|networking-event.C1.experience.b|
+|networking-event.C1.interest|networking-event.C1.interest.a|networking-event.C1.interest.b|
+|networking-event.C1.resource|networking-event.C1.resource.a|networking-event.C1.resource.b|
+|networking-event.C1.offer|networking-event.C1.offer.a|networking-event.C1.offer.b|
+|networking-event.C1.contact|networking-event.C1.contact.a|networking-event.C1.contact.b|
+|networking-event.C1.permission|networking-event.C1.permission.a|networking-event.C1.permission.b|
+|networking-event.C1.exit|networking-event.C1.exit.a|networking-event.C1.exit.b|
+|networking-event.C1.time|networking-event.C1.time.a|networking-event.C1.time.b|
+|networking-event.C1.introduction|networking-event.C1.introduction.a|networking-event.C1.introduction.b|
+|polite-refusal.A1.decline|polite-refusal.A1.decline.a|polite-refusal.A1.decline.b|
+|polite-refusal.A1.thanks|polite-refusal.A1.thanks.a|polite-refusal.A1.thanks.b|
+|polite-refusal.A1.reason|polite-refusal.A1.reason.a|polite-refusal.A1.reason.b|
+|polite-refusal.A1.clarity|polite-refusal.A1.clarity.a|polite-refusal.A1.clarity.b|
+|polite-refusal.A1.alternative|polite-refusal.A1.alternative.a|polite-refusal.A1.alternative.b|
+|polite-refusal.A1.contact|polite-refusal.A1.contact.a|polite-refusal.A1.contact.b|
+|polite-refusal.A1.boundary|polite-refusal.A1.boundary.a|polite-refusal.A1.boundary.b|
+|polite-refusal.A1.channel|polite-refusal.A1.channel.a|polite-refusal.A1.channel.b|
+|polite-refusal.A1.check|polite-refusal.A1.check.a|polite-refusal.A1.check.b|
+|polite-refusal.A1.close|polite-refusal.A1.close.a|polite-refusal.A1.close.b|
+|polite-refusal.A1.privacy|polite-refusal.A1.privacy.a|polite-refusal.A1.privacy.b|
+|polite-refusal.A1.silence|polite-refusal.A1.silence.a|polite-refusal.A1.silence.b|
+|polite-refusal.A2.decline|polite-refusal.A2.decline.a|polite-refusal.A2.decline.b|
+|polite-refusal.A2.thanks|polite-refusal.A2.thanks.a|polite-refusal.A2.thanks.b|
+|polite-refusal.A2.reason|polite-refusal.A2.reason.a|polite-refusal.A2.reason.b|
+|polite-refusal.A2.clarity|polite-refusal.A2.clarity.a|polite-refusal.A2.clarity.b|
+|polite-refusal.A2.alternative|polite-refusal.A2.alternative.a|polite-refusal.A2.alternative.b|
+|polite-refusal.A2.contact|polite-refusal.A2.contact.a|polite-refusal.A2.contact.b|
+|polite-refusal.A2.boundary|polite-refusal.A2.boundary.a|polite-refusal.A2.boundary.b|
+|polite-refusal.A2.channel|polite-refusal.A2.channel.a|polite-refusal.A2.channel.b|
+|polite-refusal.A2.check|polite-refusal.A2.check.a|polite-refusal.A2.check.b|
+|polite-refusal.A2.close|polite-refusal.A2.close.a|polite-refusal.A2.close.b|
+|polite-refusal.A2.privacy|polite-refusal.A2.privacy.a|polite-refusal.A2.privacy.b|
+|polite-refusal.A2.silence|polite-refusal.A2.silence.a|polite-refusal.A2.silence.b|
+|polite-refusal.C1.decline|polite-refusal.C1.decline.a|polite-refusal.C1.decline.b|
+|polite-refusal.C1.thanks|polite-refusal.C1.thanks.a|polite-refusal.C1.thanks.b|
+|polite-refusal.C1.reason|polite-refusal.C1.reason.a|polite-refusal.C1.reason.b|
+|polite-refusal.C1.clarity|polite-refusal.C1.clarity.a|polite-refusal.C1.clarity.b|
+|polite-refusal.C1.alternative|polite-refusal.C1.alternative.a|polite-refusal.C1.alternative.b|
+|polite-refusal.C1.contact|polite-refusal.C1.contact.a|polite-refusal.C1.contact.b|
+|polite-refusal.C1.boundary|polite-refusal.C1.boundary.a|polite-refusal.C1.boundary.b|
+|polite-refusal.C1.channel|polite-refusal.C1.channel.a|polite-refusal.C1.channel.b|
+|polite-refusal.C1.check|polite-refusal.C1.check.a|polite-refusal.C1.check.b|
+|polite-refusal.C1.close|polite-refusal.C1.close.a|polite-refusal.C1.close.b|
+|polite-refusal.C1.privacy|polite-refusal.C1.privacy.a|polite-refusal.C1.privacy.b|
+|polite-refusal.C1.silence|polite-refusal.C1.silence.a|polite-refusal.C1.silence.b|
+|discuss-opinions.A1.position|discuss-opinions.A1.position.a|discuss-opinions.A1.position.b|
+|discuss-opinions.A1.reason|discuss-opinions.A1.reason.a|discuss-opinions.A1.reason.b|
+|discuss-opinions.A1.example|discuss-opinions.A1.example.a|discuss-opinions.A1.example.b|
+|discuss-opinions.A1.priority|discuss-opinions.A1.priority.a|discuss-opinions.A1.priority.b|
+|discuss-opinions.A1.other|discuss-opinions.A1.other.a|discuss-opinions.A1.other.b|
+|discuss-opinions.A1.proposal|discuss-opinions.A1.proposal.a|discuss-opinions.A1.proposal.b|
+|discuss-opinions.A1.tradeoff|discuss-opinions.A1.tradeoff.a|discuss-opinions.A1.tradeoff.b|
+|discuss-opinions.A1.evidence|discuss-opinions.A1.evidence.a|discuss-opinions.A1.evidence.b|
+|discuss-opinions.A1.limit|discuss-opinions.A1.limit.a|discuss-opinions.A1.limit.b|
+|discuss-opinions.A1.close|discuss-opinions.A1.close.a|discuss-opinions.A1.close.b|
+|discuss-opinions.A1.meaning|discuss-opinions.A1.meaning.a|discuss-opinions.A1.meaning.b|
+|discuss-opinions.A1.tone|discuss-opinions.A1.tone.a|discuss-opinions.A1.tone.b|
+|apology-repair.A1.acknowledge|apology-repair.A1.acknowledge.a|apology-repair.A1.acknowledge.b|
+|apology-repair.A1.impact|apology-repair.A1.impact.a|apology-repair.A1.impact.b|
+|apology-repair.A1.explain|apology-repair.A1.explain.a|apology-repair.A1.explain.b|
+|apology-repair.A1.repair|apology-repair.A1.repair.a|apology-repair.A1.repair.b|
+|apology-repair.A1.contact|apology-repair.A1.contact.a|apology-repair.A1.contact.b|
+|apology-repair.A1.permission|apology-repair.A1.permission.a|apology-repair.A1.permission.b|
+|apology-repair.A1.prevent|apology-repair.A1.prevent.a|apology-repair.A1.prevent.b|
+|apology-repair.A1.response|apology-repair.A1.response.a|apology-repair.A1.response.b|
+|apology-repair.A1.scope|apology-repair.A1.scope.a|apology-repair.A1.scope.b|
+|apology-repair.A1.close|apology-repair.A1.close.a|apology-repair.A1.close.b|
+|apology-repair.A1.space|apology-repair.A1.space.a|apology-repair.A1.space.b|
+|apology-repair.A1.confirm|apology-repair.A1.confirm.a|apology-repair.A1.confirm.b|

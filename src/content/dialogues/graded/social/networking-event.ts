@@ -10,7 +10,7 @@ const read = {
   },
   B1: {
     state: 'model-reviewed',
-    record: 'social-review.md: networking-event.B1',
+    record: 'social-review.md: fix1 networking-event.B1 complete-unit reread 2026-09-10',
   },
   B2: {
     state: 'model-reviewed',
@@ -18,7 +18,7 @@ const read = {
   },
   C1: {
     state: 'model-reviewed',
-    record: 'social-review.md: networking-event.C1',
+    record: 'social-review.md: fix1 networking-event.C1 complete-unit reread 2026-09-10',
   },
 } satisfies Record<string, Review>
 const scene: SocialScene = {
@@ -490,7 +490,7 @@ export const networkingEvent = {
         'How would you end our chat while leaving the next step genuinely open?',
         '告别不等于承诺联络。',
         'talk',
-        'Thanks for sharing your experience. I am going to catch the talk now.',
+        'Thanks for the chat. I am going to catch the talk now.',
         'pause',
         'I have enjoyed meeting you. I need a break, so I will leave it there for today.',
         read.B1,
@@ -781,9 +781,9 @@ export const networkingEvent = {
         'How would you end on a warm note without implying an agreement to work together?',
         '友好收束，不虚构合作。',
         'session',
-        'I have enjoyed hearing your perspective. I will let you get on and head to the next session.',
+        'It has been a pleasure meeting you. I will let you get on and head to the next session.',
         'reflect',
-        'Thank you for such a thoughtful exchange. I am going to take a little time to reflect on what I have heard.',
+        'Thank you for the conversation. I am going to take a little time to think about my next steps.',
         read.C1,
       ],
       [
