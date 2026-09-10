@@ -27,6 +27,14 @@ export interface LearningAssistantProvider {
 
 export const localLearningAssistant: LearningAssistantProvider = {
   async analyze(request) {
+    const work = [
+      'work-01',
+      'work-02',
+      'work-03',
+      'work-04',
+      'work-05',
+      'work-06',
+    ].includes(request.sceneId ?? '')
     const daily = [
       'daily-01',
       'daily-02',
@@ -62,7 +70,8 @@ export const localLearningAssistant: LearningAssistantProvider = {
       request.sceneId !== 'dining-01' &&
       !remainingDining &&
       !travel &&
-      !daily
+      !daily &&
+      !work
     )
       return {
         ...base,
@@ -71,13 +80,15 @@ export const localLearningAssistant: LearningAssistantProvider = {
         explanationZh:
           '此场景尚无已收录解析。可以保存原文、写笔记或自行回忆，不生成含义或评分。',
       }
-    const catalog = daily
-      ? (await import('./daily')).dailyAnalysis
-      : travel
-        ? (await import('./travel')).travelAnalysis
-        : remainingDining
-          ? (await import('./dining')).diningAnalysis
-          : (await import('./coffee')).coffeeAnalysis
+    const catalog = work
+      ? (await import('./work')).workAnalysis
+      : daily
+        ? (await import('./daily')).dailyAnalysis
+        : travel
+          ? (await import('./travel')).travelAnalysis
+          : remainingDining
+            ? (await import('./dining')).diningAnalysis
+            : (await import('./coffee')).coffeeAnalysis
     const entries = catalog
       .filter((e) => e.sceneId === request.sceneId)
       .map((e) => analysisEntrySchema.parse(e))

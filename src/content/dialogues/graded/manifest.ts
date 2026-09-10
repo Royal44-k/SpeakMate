@@ -1,6 +1,48 @@
 // Metadata only: importing scene cards must not import authored dialogue prose.
 export const gradedSceneManifest = [
   {
+    sceneId: 'work-01',
+    category: 'work',
+    titleZh: '职场自我介绍',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'work-02',
+    category: 'work',
+    titleZh: '每日站会',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'work-03',
+    category: 'work',
+    titleZh: '进度汇报',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'work-04',
+    category: 'work',
+    titleZh: '截止日期协商',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'work-05',
+    category: 'work',
+    titleZh: '会议异议',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
+    sceneId: 'work-06',
+    category: 'work',
+    titleZh: '工作面试',
+    contentVersion: 1,
+    levels: ['A1', 'A2', 'B1', 'B2', 'C1'],
+  },
+  {
     sceneId: 'daily-01',
     category: 'daily',
     titleZh: '问路',

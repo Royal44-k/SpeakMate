@@ -16,6 +16,14 @@ export interface ContentProvider {
 
 export const localContentProvider: ContentProvider = {
   async load(request) {
+    const work = [
+      'work-01',
+      'work-02',
+      'work-03',
+      'work-04',
+      'work-05',
+      'work-06',
+    ].includes(request.sceneId)
     const daily = [
       'daily-01',
       'daily-02',
@@ -43,7 +51,8 @@ export const localContentProvider: ContentProvider = {
       request.sceneId !== 'dining-01' &&
       !remainingDining &&
       !travel &&
-      !daily
+      !daily &&
+      !work
     )
       return { status: 'unavailable' }
     if (request.contentVersion !== undefined && request.contentVersion !== 1)
@@ -51,6 +60,13 @@ export const localContentProvider: ContentProvider = {
         status: 'version-unavailable',
         requestedVersion: request.contentVersion,
       }
+    if (work) {
+      const { workPacks } = await import('./work')
+      return {
+        status: 'available',
+        pack: gradedPackSchema.parse(workPacks[request.sceneId][request.level]),
+      }
+    }
     if (daily) {
       const { dailyPacks } = await import('./daily')
       return {
