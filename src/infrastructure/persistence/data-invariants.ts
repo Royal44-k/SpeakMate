@@ -106,6 +106,22 @@ export function validateRelations(state: DataState): void {
   const reviews = new Map(state.reviews.map((item) => [item.id, item]))
   for (const session of state.sessions) {
     owns(session.profileId)
+    if (session.simulation) {
+      const note = notes.get(session.simulation.source.noteId)
+      requireValid(
+        note && note.profileId === session.profileId,
+        'BROKEN_SIMULATION_NOTE',
+      )
+      for (const turn of state.turns.filter(
+        (turn) => turn.sessionId === session.id,
+      ))
+        requireValid(
+          session.simulation.composition &&
+            Date.parse(turn.createdAt) >=
+              Date.parse(session.simulation.composition.completedAt),
+          'SIMULATION_TIME_MISMATCH',
+        )
+    }
     if (session.gradedDialogue)
       requireValid(
         session.gradedDialogue.pack.sceneId === session.sceneId &&

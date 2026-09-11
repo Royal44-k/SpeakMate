@@ -61,6 +61,8 @@ describe('shouldShowUpdate', () => {
     ['/welcome', false, false],
     ['/session/abc', false, false],
     ['/practice', true, false],
+    ['/notebook/simulation', false, false],
+    ['/notebook/note', true, false],
   ])(
     'keeps update notices safe on %s when interaction is %s',
     (pathname, interactionBusy, visible) => {

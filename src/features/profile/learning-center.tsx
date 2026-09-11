@@ -13,7 +13,10 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { AppShell } from '@/components/app-shell/app-shell'
 import { SCENE_METADATA } from '@/content/scenes/metadata'
-import { savedPracticeHref } from '@/components/app-shell/learning-routes'
+import {
+  savedPracticeHref,
+  savedSimulationHref,
+} from '@/components/app-shell/learning-routes'
 import { HistoricalPracticeRecord } from '@/features/practice/historical-practice-record'
 import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
 import type {
@@ -170,13 +173,15 @@ export function LearningCenter() {
                           : session.gradedDialogue?.state.outcome === 'active'
                             ? '继续练习'
                             : '待查看结束选项'
-                const href = savedPracticeHref(
-                  session.id,
-                  session.status === 'completed' ||
-                    session.status === 'abandoned'
-                    ? 'report'
-                    : 'session',
-                )
+                const href = session.simulation
+                  ? savedSimulationHref(session.id)
+                  : savedPracticeHref(
+                      session.id,
+                      session.status === 'completed' ||
+                        session.status === 'abandoned'
+                        ? 'report'
+                        : 'session',
+                    )
                 const content = (
                   <>
                     <span>
@@ -227,6 +232,7 @@ export function LearningCenter() {
           <div className={styles.sectionTitle}>
             <BookmarkSimple aria-hidden size={21} />
             <h2 id="favorite-title">收藏表达</h2>
+            <a href="/notebook">在记录簿查看与复习</a>
           </div>
           {favorites.length > 0 ? (
             <div className={styles.favoriteList}>

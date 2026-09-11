@@ -1,5 +1,12 @@
 import { StrictMode } from 'react'
-import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react'
 import { afterEach, expect, it, vi } from 'vitest'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import { SCENE_METADATA } from '@/content/scenes/metadata'
@@ -60,6 +67,19 @@ it('renders new through the real stage and hook, creates one pinned record and r
   )!
   expect(screen.getByText(firstQuestion.text)).toBeInTheDocument()
   expect(await repositories.turns.listBySession(saved.id)).toHaveLength(0)
+  fireEvent.click(
+    within(screen.getByRole('region', { name: '当前问题' })).getByRole(
+      'button',
+      { name: '记录词句' },
+    ),
+  )
+  fireEvent.click(screen.getByRole('button', { name: '保存词句' }))
+  await screen.findByText('已记录')
+  expect((await repositories.notebook.list())[0].sources[0]).toMatchObject({
+    sessionId: saved.id,
+    questionId: firstQuestion.id,
+    originalText: firstQuestion.text,
+  })
 })
 
 it('keeps a newer visible draft through a delayed local recovery read and submits that draft', async () => {

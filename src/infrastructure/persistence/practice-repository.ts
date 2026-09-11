@@ -11,6 +11,22 @@ import {
 } from '@/domain/practice/graded-evidence'
 import { sessionSchema, turnSchema, isoSchema } from './backup-schemas'
 import { put, type DataState, type LocalStoragePort } from './storage'
+import {
+  analysisEntrySchema,
+  type AnalysisEntry,
+} from '@/content/analysis/schema'
+import { matchAuthoredAnalysis } from '@/content/analysis/match-authored-analysis'
+import {
+  normalizeAcceptedForm,
+  gradedPackSchema,
+  type GradedPack,
+} from '@/content/dialogues/graded/schema'
+import {
+  projectMicroPractice,
+  microPracticeSchema,
+  type MicroPracticeDescriptor,
+} from '@/content/micro-practice'
+import { canonical } from './identity'
 
 export interface PracticeRecord {
   session: PracticeSession
@@ -19,7 +35,21 @@ export interface PracticeRecord {
   message?: string
 }
 export type PracticeChange =
-  | { kind: 'create'; session: PracticeSession }
+  | {
+      kind: 'create'
+      session: PracticeSession
+      simulationMaterial?: {
+        analysis: AnalysisEntry
+        sourcePack: GradedPack
+        descriptor: MicroPracticeDescriptor
+      }
+    }
+  | {
+      kind: 'recall' | 'compose'
+      expected: PracticeSession
+      text: string
+      at: string
+    }
   | {
       kind: 'advance'
       expected: PracticeSession
@@ -75,7 +105,12 @@ export function classifyPractice(
         row.learnerText !== input.text ||
         row.aiText !== replay.state.reply ||
         Date.parse(row.createdAt) <
-          Date.parse(index ? turns[index - 1].createdAt : session.startedAt) ||
+          Date.parse(
+            index
+              ? turns[index - 1].createdAt
+              : (session.simulation?.composition?.completedAt ??
+                  session.startedAt),
+          ) ||
         Date.parse(row.createdAt) > Date.parse(session.updatedAt)
       )
         fail('INCOHERENT')
@@ -120,8 +155,12 @@ export function assertHistoricalPracticeWrite(
   ]
   if (
     session?.gradedDialogue ||
+    session?.simulation ||
     affected.some(
-      (id) => id && state.sessions.find((row) => row.id === id)?.gradedDialogue,
+      (id) =>
+        id &&
+        (state.sessions.find((row) => row.id === id)?.gradedDialogue ||
+          state.sessions.find((row) => row.id === id)?.simulation),
     )
   )
     fail('GUARDED_WRITE_REQUIRED')
@@ -157,9 +196,107 @@ function activePrefixHead(
     status: 'active',
     completedAt: undefined,
     completionEvidence: undefined,
-    updatedAt: count ? record.turns[count - 1].createdAt : current.startedAt,
+    updatedAt: count
+      ? record.turns[count - 1].createdAt
+      : (current.simulation?.composition?.completedAt ??
+        current.simulation?.recall?.completedAt ??
+        current.startedAt),
     gradedDialogue: prefix,
   }) as PracticeSession
+}
+
+function initialHead(record: PracticeRecord): PracticeSession {
+  const head = activePrefixHead(record, 0)
+  if (head.simulation) {
+    delete head.simulation.recall
+    delete head.simulation.composition
+    head.updatedAt = head.startedAt
+  }
+  return head
+}
+function validateSimulationCreate(
+  state: DataState,
+  candidate: PracticeSession,
+  material: Extract<PracticeChange, { kind: 'create' }>['simulationMaterial'],
+) {
+  const sim = candidate.simulation
+  if (!sim) return
+  const note = state.notebook.find((note) => note.id === sim.source.noteId)
+  const source = note?.sources.find(
+    (source) => source.id === sim.source.sourceId,
+  )
+  if (
+    !note ||
+    note.deletedAt ||
+    note.profileId !== candidate.profileId ||
+    !source ||
+    canonical(source) !== canonical(sim.source.snapshot) ||
+    note.text !== sim.source.noteText ||
+    note.kind !== sim.source.noteKind ||
+    !material ||
+    sim.recall ||
+    sim.composition
+  )
+    return fail('SIMULATION_SOURCE')
+  const analysis = analysisEntrySchema.parse(material.analysis)
+  const originalPack = gradedPackSchema.parse(material.sourcePack)
+  const originalDescriptor = microPracticeSchema.parse(material.descriptor)
+  if (
+    originalPack.questions.length !== 12 ||
+    originalPack.contentVersion !== analysis.contentVersion ||
+    originalPack.questions.some(
+      (q) =>
+        q.review.state !== 'model-reviewed' ||
+        q.answers.some((a) => a.review.state !== 'model-reviewed'),
+    ) ||
+    originalPack.variants.some((v) => v.review.state !== 'model-reviewed') ||
+    canonical(originalDescriptor) !== canonical(sim.descriptor)
+  )
+    return fail('SIMULATION_SOURCE')
+  const result = matchAuthoredAnalysis(
+    {
+      text: note.text,
+      kind: note.kind,
+      sceneId: source.sceneId,
+      questionId: source.questionId,
+      level: source.level!,
+    },
+    [analysis],
+  )
+  const example = analysis.examples.find(
+    (example) => example.level === source.level,
+  )
+  const targetText =
+    result.status === 'exact'
+      ? note.text
+      : analysis.forms.find((form) =>
+          normalizeAcceptedForm(note.text)
+            .split(/[^a-z'-]+/u)
+            .includes(normalizeAcceptedForm(form)),
+        )
+  if (
+    result.status === 'unknown' ||
+    result.status !== sim.target.coverage ||
+    analysis.id !== sim.descriptor.analysisEntryId ||
+    !example ||
+    sim.target.text !== targetText ||
+    sim.target.kind !== analysis.kind ||
+    sim.target.meaningZh !== analysis.meaningZh ||
+    sim.target.example !== example.text ||
+    sim.target.substitution !== example.substitution ||
+    canonical(projectMicroPractice(material.sourcePack, sim.descriptor)) !==
+      canonical(candidate.gradedDialogue!.pack)
+  )
+    fail('SIMULATION_SOURCE')
+  const targets = material.sourcePack.questions
+    .filter((question) =>
+      analysis.questionIds
+        ? analysis.questionIds.includes(question.id)
+        : analysis.intents.includes(question.intent),
+    )
+    .map((question) => question.id)
+  if (canonical(targets) !== canonical(sim.descriptor.targetQuestionIds))
+    fail('SIMULATION_SOURCE')
 }
 
 export function createPracticeRepository(
@@ -184,12 +321,13 @@ export function createPracticeRepository(
             fail('INVALID_CREATE')
           const existing = read(state, candidate.id)
           if (existing) {
-            if (!equal(activePrefixHead(ready(existing), 0), candidate))
+            if (!equal(initialHead(ready(existing)), candidate))
               fail('CREATE_CONFLICT')
             return { applied: false, record: ready(existing) }
           }
           if (state.turns.some((turn) => turn.sessionId === candidate.id))
             fail('CREATE_CONFLICT')
+          validateSimulationCreate(state, candidate, change.simulationMaterial)
           put(state.sessions, candidate)
           return { applied: true, record: initial }
         }
@@ -201,7 +339,55 @@ export function createPracticeRepository(
         if (!state.profile.some((profile) => profile.id === current.profileId))
           fail('PROFILE_MISSING')
 
+        if (change.kind === 'recall' || change.kind === 'compose') {
+          const sim = current.simulation
+          if (!sim) fail('SIMULATION_PHASE')
+          const key = change.kind === 'recall' ? 'recall' : 'composition'
+          const text = change.text.trim()
+          if (!text || text.length > 20000) fail('EMPTY_EXPRESSION')
+          const done = sim![key]
+          if (done) {
+            const prefix = structuredClone(current)
+            delete prefix.simulation!.composition
+            if (key === 'recall') delete prefix.simulation!.recall
+            prefix.updatedAt =
+              key === 'recall'
+                ? prefix.startedAt
+                : prefix.simulation!.recall!.completedAt
+            if (
+              done.text !== text ||
+              done.completedAt !== at ||
+              !equal(expected, {
+                ...initialHead(record),
+                simulation: prefix.simulation,
+                updatedAt: prefix.updatedAt,
+              })
+            )
+              fail('SIMULATION_STEP_CONFLICT')
+            return { applied: false, record }
+          }
+          if (!equal(current, expected)) fail('STALE')
+          if (
+            current.status !== 'active' ||
+            snapshot.state.turns.length ||
+            (key === 'composition' && !sim!.recall)
+          )
+            fail('SIMULATION_PHASE')
+          if (Date.parse(at) < Date.parse(current.updatedAt))
+            fail('INVALID_TIME')
+          const next = sessionSchema.parse({
+            ...current,
+            updatedAt: at,
+            simulation: { ...sim, [key]: { text, completedAt: at } },
+          }) as PracticeSession
+          const coherent = ready(classifyPractice(next, record.turns))
+          put(state.sessions, next)
+          return { applied: true, record: coherent }
+        }
+
         if (change.kind === 'advance') {
+          if (current.simulation && !current.simulation.composition)
+            fail('SIMULATION_PHASE')
           const input = dialogueInputSchema.parse({
             ...change.input,
             action: change.input.action ?? 'answer',
@@ -275,6 +461,8 @@ export function createPracticeRepository(
         if (change.kind === 'stop')
           next = { ...current, status: 'abandoned', updatedAt: at }
         else {
+          if (current.simulation && !current.simulation.composition)
+            fail('SIMULATION_PHASE')
           const flow = practiceFlow(snapshot)
           if (!flow.basis) fail('FINISH_INELIGIBLE')
           // Task 5 inserts its actual synchronous policy/event/plan/ledger effects

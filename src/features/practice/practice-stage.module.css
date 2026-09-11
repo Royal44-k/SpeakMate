@@ -213,7 +213,8 @@
   color: var(--color-atlantic-800);
   cursor: pointer;
 }
-.dialogue blockquote {
+.dialogue blockquote,
+.dialogue [data-capture-block] > p {
   margin: 11px 0 12px;
   color: var(--color-atlantic-950);
   font-family: var(--font-display);

@@ -1,6 +1,6 @@
 import type { NotebookEntry } from '@/domain/notebook/types'
 import type { FavoriteExpression } from '@/domain/learning/types'
-import { createGuestProfile } from './identity'
+import { canonical, createGuestProfile } from './identity'
 import {
   mergeNote,
   normalizeNotebookText,
@@ -18,6 +18,10 @@ function validateNotebookWrite(state: DataState): void {
 }
 
 export interface NotebookRepository {
+  capture(
+    entry: NotebookEntry,
+  ): Promise<{ entry: NotebookEntry; duplicate: boolean; receipt: string }>
+  undoCapture(receipt: string, at: string): Promise<void>
   get(id: string): Promise<NotebookEntry | undefined>
   list(query?: {
     profileId?: string
@@ -82,7 +86,66 @@ function syncFavorites(state: DataState, note: NotebookEntry): void {
 export function createNotebookRepository(
   storage: LocalStoragePort,
 ): NotebookRepository {
+  // Ephemeral, instance-bound capabilities: no new history store or backup payload.
+  const receipts = new Map<
+    string,
+    { before?: NotebookEntry; after: NotebookEntry }
+  >()
   return {
+    capture: async (input) => {
+      const mutation = await storage.change((state) => {
+        const entry = notebookSchema.parse({
+          ...input,
+          normalizedText: normalizeNotebookText(input.text),
+        })
+        if (state.profile[0]?.id !== entry.profileId)
+          throw new Error('BROKEN_PROFILE_REFERENCE')
+        const before = state.notebook.find(
+          (note) =>
+            note.profileId === entry.profileId &&
+            note.normalizedText === entry.normalizedText,
+        )
+        if (before?.deletedAt) throw new Error('NOTE_DELETED_USE_UNDO')
+        if (!before && notebookIdentityMap(state.notebook).has(entry.id))
+          throw new Error('NOTE_EDIT_COLLISION')
+        // Capture adds provenance, never replaces an existing personal edit or creates a spurious alias.
+        const after = before
+          ? {
+              ...mergeNote(before, { ...before, sources: entry.sources }),
+              updatedAt: entry.updatedAt,
+            }
+          : entry
+        put(state.notebook, after)
+        syncFavorites(state, after)
+        validateNotebookWrite(state)
+        return { before, after }
+      })
+      const receipt = crypto.randomUUID()
+      receipts.set(receipt, structuredClone(mutation))
+      if (receipts.size > 32) receipts.delete(receipts.keys().next().value!)
+      return { entry: mutation.after, duplicate: !!mutation.before, receipt }
+    },
+    undoCapture: async (receipt, at) => {
+      const mutation = receipts.get(receipt)
+      if (!mutation) throw new Error('CAPTURE_RECEIPT_INVALID')
+      await storage.change((state) => {
+        isoSchema.parse(at)
+        const current = notebookIdentityMap(state.notebook).get(
+          mutation.after.id,
+        )
+        if (canonical(current) !== canonical(mutation.after))
+          throw new Error('CAPTURE_UNDO_CONFLICT')
+        const reverted = mutation.before ?? {
+          ...mutation.after,
+          deletedAt: at,
+          updatedAt: at,
+        }
+        put(state.notebook, reverted)
+        syncFavorites(state, reverted)
+        validateNotebookWrite(state)
+      })
+      receipts.delete(receipt)
+    },
     get: (id) =>
       storage.read((state) => notebookIdentityMap(state.notebook).get(id)),
     list: (query = {}) =>

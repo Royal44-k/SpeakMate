@@ -4,6 +4,8 @@ import { CaretDown, Lightbulb, Info } from '@phosphor-icons/react'
 import { useEffect, useRef } from 'react'
 
 import type { ConversationResult } from '@/domain/ai/contracts'
+import type { PracticeCaptureSource } from '@/domain/practice/graded-presenter'
+import { CaptureText } from '@/features/notebook/capture'
 
 import styles from './feedback-sheet.module.css'
 
@@ -20,6 +22,7 @@ export function FeedbackSheet({
     confirmation: 'none' | 'exact' | 'unknown' | 'repair'
     text: string
     explanationZh: string
+    source?: PracticeCaptureSource
   }
   expanded: boolean
   contentId: string
@@ -77,7 +80,13 @@ export function FeedbackSheet({
         <div ref={detailsRef} id={contentId} className={styles.details}>
           <div>
             <span>已确认文字</span>
-            <p>{graded?.text ?? feedback?.heard ?? '本轮没有提交表达文字。'}</p>
+            {graded?.source ? (
+              <CaptureText text={graded.text} source={graded.source} />
+            ) : (
+              <p>
+                {graded?.text ?? feedback?.heard ?? '本轮没有提交表达文字。'}
+              </p>
+            )}
           </div>
           {feedback?.corrected ? (
             <div>

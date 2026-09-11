@@ -1,0 +1,149 @@
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 20px calc(120px + env(safe-area-inset-bottom));
+  color: var(--ink-950, #14202b);
+  background: var(--paper, #fffdf8);
+  min-height: 100dvh;
+}
+.page h1,
+.page h2 {
+  color: var(--atlantic-950, #0b2a43);
+}
+.page h1 {
+  font-size: 2rem;
+}
+.page h1,
+.page h2,
+.original {
+  overflow-wrap: anywhere;
+}
+.page a,
+.notice a {
+  display: inline-flex;
+  align-items: center;
+}
+.page p,
+.captureDialog p {
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.page label,
+.captureDialog label {
+  display: grid;
+  gap: 8px;
+  margin-block: 16px;
+}
+.page input,
+.page textarea,
+.page select,
+.captureDialog textarea,
+.captureDialog select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 12px;
+  border: 1px solid #627785;
+  border-radius: 10px;
+  background: #fffdf8;
+  color: #14202b;
+  font: inherit;
+}
+.page textarea,
+.captureDialog textarea {
+  min-height: 110px;
+}
+.page button,
+.page a,
+.captureBlock button,
+.captureDialog button,
+.notice button,
+.notice a {
+  min-height: 44px;
+  padding: 10px 14px;
+  border: 1px solid #627785;
+  border-radius: 10px;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.page button:focus-visible,
+.page a:focus-visible,
+.captureBlock button:focus-visible,
+.captureDialog :focus-visible,
+.notice :focus-visible {
+  outline: 3px solid #ff6b5e;
+  outline-offset: 3px;
+}
+.page button:disabled,
+.captureDialog button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+.actions,
+.words,
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-block: 16px;
+}
+.tabs button[aria-selected='true'],
+.words button[aria-pressed='true'] {
+  background: #ddeffd;
+  border-color: #0b2a43;
+}
+.card {
+  padding: 20px;
+  margin-block: 16px;
+  border: 1px solid #cad6dc;
+  border-radius: 16px;
+  background: white;
+}
+.original {
+  font-family: var(--font-display, 'Barlow Condensed'), sans-serif;
+  font-size: 2rem;
+  line-height: 1.25;
+}
+.notice {
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid #627785;
+  border-radius: 16px;
+  background: #ddeffd;
+  color: #14202b;
+}
+.captureBlock {
+  margin-block: 12px;
+}
+.captureBlock p {
+  white-space: pre-wrap;
+  user-select: text;
+  overflow-wrap: anywhere;
+}
+.captureBlock button {
+  font-size: 0.875rem;
+}
+.captureDialog {
+  width: calc(100% - 32px);
+  max-width: 440px;
+  max-height: calc(100dvh - 48px - env(safe-area-inset-bottom));
+  overflow: auto;
+  border: 1px solid #627785;
+  border-radius: 24px;
+  padding: 24px;
+  background: #fffdf8;
+  color: #14202b;
+}
+.captureDialog::backdrop {
+  background: rgb(11 42 67 / 0.7);
+}
+.captureDialog h2 {
+  margin-top: 0;
+}
+.captureDialog .actions button:last-child {
+  background: #ff6b5e;
+  border-color: #ff6b5e;
+  color: #14202b;
+}

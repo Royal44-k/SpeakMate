@@ -13,6 +13,9 @@ const SHELLS = [
   '/session',
   '/session/report',
   '/scenes/prepare',
+  '/notebook',
+  '/notebook/note',
+  '/notebook/simulation',
 ]
 const CATEGORIES = [
   'travel',

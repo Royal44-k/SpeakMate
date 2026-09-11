@@ -28,6 +28,7 @@ interface Props {
   queryFrom?: string
   queryRound?: string
   repositories?: Repositories
+  simulationOnly?: boolean
 }
 type Resolution = { requestKey: string } & (
   | { status: 'ready'; scene: PreparedPractice; completed: boolean }
@@ -42,6 +43,7 @@ export function SessionResolver({
   queryFrom,
   queryRound,
   repositories,
+  simulationOnly = false,
 }: Props) {
   const [repository] = useState(
     () => repositories ?? createIndexedDbRepositories(),
@@ -101,6 +103,8 @@ export function SessionResolver({
         return
       }
       const saved = await repository.practice.read(requestedId)
+      if (saved && simulationOnly && !saved.session.simulation)
+        throw new Error('此编号不是定向模拟练习，未修改原记录。')
       if (!saved)
         throw new Error(
           '记录不存在。请检查本机记录或备份，不会把缺失的 ID 当作新建。',
@@ -166,6 +170,7 @@ export function SessionResolver({
     requestKey,
     requestedId,
     retry,
+    simulationOnly,
   ])
   if (!resolution || resolution.requestKey !== requestKey)
     return (
@@ -194,7 +199,12 @@ export function SessionResolver({
       </main>
     )
   if (resolution.status === 'historical')
-    return <HistoricalPracticeRecord record={resolution.record} />
+    return (
+      <HistoricalPracticeRecord
+        record={resolution.record}
+        repositories={repository}
+      />
+    )
   return (
     <PracticeStage
       key={requestKey}

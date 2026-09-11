@@ -10,11 +10,13 @@ import {
 import { SessionResolver } from './session-resolver'
 import { SessionReportView } from './session-report'
 import { ScenePreparation } from '@/features/scenes/scene-preparation'
+import { NotebookNote } from '@/features/notebook/notebook-note'
+import { SimulationEntry } from '@/features/notebook/simulation-entry'
 
 export function StaticLearningShell({
   kind,
 }: {
-  kind: 'session' | 'report' | 'prepare'
+  kind: 'session' | 'report' | 'prepare' | 'note' | 'simulation'
 }) {
   const params = useSearchParams()
   const path =
@@ -22,7 +24,11 @@ export function StaticLearningShell({
       ? '/session'
       : kind === 'report'
         ? '/session/report'
-        : '/scenes/prepare'
+        : kind === 'note'
+          ? '/notebook/note'
+          : kind === 'simulation'
+            ? '/notebook/simulation'
+            : '/scenes/prepare'
   const result = parseLearningTarget(`${path}?${params}`)
   if (result.status === 'invalid')
     return (
@@ -35,6 +41,14 @@ export function StaticLearningShell({
       </main>
     )
   const target = result.target
+  if (target.kind === 'note')
+    return <NotebookNote key={target.id} id={target.id} />
+  if (target.kind === 'simulation')
+    return target.id === 'new' ? (
+      <SimulationEntry key={`new:${target.source}`} noteId={target.source!} />
+    ) : (
+      <SessionResolver key={target.id} requestedId={target.id} simulationOnly />
+    )
   if (target.kind === 'session')
     return (
       <SessionResolver

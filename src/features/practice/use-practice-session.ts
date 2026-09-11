@@ -215,6 +215,8 @@ export function usePracticeSession(
   const canAnswer = () =>
     ready &&
     recordRef.current?.session.status === 'active' &&
+    (!recordRef.current.session.simulation ||
+      !!recordRef.current.session.simulation.composition) &&
     recordRef.current.session.gradedDialogue?.state.outcome === 'active'
   const speak = useCallback(
     async (text: string) => {
@@ -401,6 +403,7 @@ export function usePracticeSession(
       suggestionRef.current = undefined
       if (change.kind === 'advance' && settings.autoPlayAi)
         void speak(saved.record.session.gradedDialogue!.state.reply)
+      return true
     } catch (error) {
       if (mountedRef.current)
         setMachine((current) =>
@@ -633,6 +636,27 @@ export function usePracticeSession(
     submitTurn,
     submitAction,
     completeSession,
+    submitSimulationStep: async (text: string) => {
+      const current = recordRef.current
+      if (
+        !current?.session.simulation ||
+        current.session.simulation.composition ||
+        current.session.status !== 'active'
+      )
+        return false
+      const kind = current.session.simulation.recall ? 'compose' : 'recall'
+      const pending = pendingRef.current
+      return !!(await commit(
+        pending?.kind === kind && pending.text === text.trim()
+          ? pending
+          : {
+              kind,
+              expected: current.session,
+              text: text.trim(),
+              at: new Date().toISOString(),
+            },
+      ))
+    },
     stopSession,
     retryInitialization: () => {
       if (ready) return

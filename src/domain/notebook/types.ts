@@ -13,6 +13,7 @@ export interface NotebookSourceSnapshot {
   level?: CefrLevel
   sessionId?: string
   turnId?: string
+  questionId?: string
   learnerText?: string
   correctedText?: string
   naturalText?: string

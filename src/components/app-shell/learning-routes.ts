@@ -232,6 +232,18 @@ export function savedPracticeHref(
     : undefined
 }
 
+export function savedNotebookHref(id: string): string | undefined {
+  return opaque.test(id) && id !== 'new'
+    ? buildLearningHref({ kind: 'note', id })
+    : undefined
+}
+
+export function savedSimulationHref(id: string): string | undefined {
+  return opaque.test(id) && id !== 'new'
+    ? buildLearningHref({ kind: 'simulation', id })
+    : undefined
+}
+
 export function semanticRouteIdentity(href: string): string {
   const url = localUrl(href)
   if (!url) return href

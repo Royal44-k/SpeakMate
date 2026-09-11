@@ -1,6 +1,12 @@
 import { z } from 'zod'
 import { CEFR_LEVELS, SCENE_CATEGORIES } from '@/domain/scenes/types'
 import { dialogueSnapshotSchema } from '@/domain/ai/graded-dialogue'
+import { normalizeAcceptedForm } from '@/content/dialogues/graded/schema'
+import {
+  microPracticeSchema,
+  projectMicroPractice,
+} from '@/content/micro-practice'
+import { safeSourceHref } from '@/components/app-shell/learning-routes'
 import {
   practicePresentationSchema,
   completionEvidenceSchema,
@@ -154,6 +160,63 @@ export const conversationSnapshotSchema = z.strictObject({
   provider: z.enum(['cloudflare', 'local']),
   degraded: z.boolean(),
 })
+export const notebookSourceSchema = z.strictObject({
+  id: idSchema,
+  kind: z.enum(['manual', 'favorite', 'turn', 'scene']),
+  originalText: textSchema,
+  translationZh: textSchema.optional(),
+  sceneId: idSchema.optional(),
+  sceneTitleZh: textSchema.optional(),
+  level: level.optional(),
+  sessionId: idSchema.optional(),
+  turnId: idSchema.optional(),
+  questionId: z
+    .string()
+    .min(1)
+    .max(120)
+    .regex(/^[a-zA-Z0-9._:-]+$/)
+    .optional(),
+  learnerText: textSchema.optional(),
+  correctedText: textSchema.optional(),
+  naturalText: textSchema.optional(),
+  explanationZh: textSchema.optional(),
+  createdAt: isoSchema,
+})
+const simulationStep = z.strictObject({
+  text: textSchema.min(1).refine((value) => !!value.trim()),
+  completedAt: isoSchema,
+})
+export const simulationSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  noteIds: z.tuple([idSchema]),
+  source: z.strictObject({
+    noteId: idSchema,
+    sourceId: idSchema,
+    snapshot: notebookSourceSchema,
+    noteText: textSchema.min(1),
+    noteKind: z.enum(['word', 'phrase', 'sentence']),
+  }),
+  returnTo: z
+    .string()
+    .max(2000)
+    .refine(
+      (value) =>
+        safeSourceHref(value) === value &&
+        /^\/notebook(?:\/note\?id=[a-zA-Z0-9._:-]+)?$/u.test(value),
+      'INVALID_SIMULATION_RETURN',
+    ),
+  descriptor: microPracticeSchema,
+  target: z.strictObject({
+    coverage: z.enum(['exact', 'partial']),
+    text: textSchema.min(1),
+    kind: z.enum(['word', 'phrase', 'sentence']),
+    meaningZh: textSchema.min(1),
+    example: textSchema.min(1),
+    substitution: textSchema.min(1),
+  }),
+  recall: simulationStep.optional(),
+  composition: simulationStep.optional(),
+})
 export const sessionSchema = z
   .strictObject({
     id: idSchema,
@@ -172,8 +235,71 @@ export const sessionSchema = z
     gradedDialogue: dialogueSnapshotSchema.optional(),
     presentation: practicePresentationSchema.optional(),
     completionEvidence: completionEvidenceSchema.optional(),
+    simulation: simulationSchema.optional(),
   })
   .superRefine((session, ctx) => {
+    if (session.simulation) {
+      const sim = session.simulation
+      const snap = session.gradedDialogue
+      let valid =
+        !!snap &&
+        sim.noteIds[0] === sim.source.noteId &&
+        sim.source.sourceId === sim.source.snapshot.id &&
+        sim.source.snapshot.sceneId === session.sceneId &&
+        sim.source.snapshot.level === session.level
+      if (sim.composition && !sim.recall) valid = false
+      if (session.status === 'completed' && !session.completionEvidence)
+        valid = false
+      const dates = [
+        session.startedAt,
+        sim.recall?.completedAt,
+        sim.composition?.completedAt,
+        session.updatedAt,
+      ].filter((value): value is string => !!value)
+      if (
+        dates.some(
+          (value, index) =>
+            index > 0 && Date.parse(value) < Date.parse(dates[index - 1]),
+        )
+      )
+        valid = false
+      if (
+        snap &&
+        (snap.state.turns.length > 0 || session.status === 'completed') &&
+        !sim.composition
+      )
+        valid = false
+      if (
+        sim.target.coverage === 'exact' &&
+        (sim.target.text !== sim.source.noteText ||
+          sim.target.kind !== sim.source.noteKind)
+      )
+        valid = false
+      if (
+        sim.target.coverage === 'partial' &&
+        (sim.target.kind !== 'word' ||
+          !normalizeAcceptedForm(sim.source.noteText)
+            .split(/[^a-z'-]+/u)
+            .includes(normalizeAcceptedForm(sim.target.text)))
+      )
+        valid = false
+      try {
+        if (
+          !snap ||
+          snap.state.mode !== 'short' ||
+          JSON.stringify(projectMicroPractice(snap.pack, sim.descriptor)) !==
+            JSON.stringify(snap.pack)
+        )
+          valid = false
+      } catch {
+        valid = false
+      }
+      if (!valid)
+        ctx.addIssue({
+          code: 'custom',
+          message: 'SIMULATION_EVIDENCE_MISMATCH',
+        })
+    }
     const evidence = session.completionEvidence
     if (session.presentation && !session.gradedDialogue)
       ctx.addIssue({
@@ -245,26 +371,7 @@ export const notebookSchema = z.strictObject({
   translationZh: textSchema.optional(),
   notes: textSchema,
   tags: strings,
-  sources: z
-    .array(
-      z.strictObject({
-        id: idSchema,
-        kind: z.enum(['manual', 'favorite', 'turn', 'scene']),
-        originalText: textSchema,
-        translationZh: textSchema.optional(),
-        sceneId: idSchema.optional(),
-        sceneTitleZh: textSchema.optional(),
-        level: level.optional(),
-        sessionId: idSchema.optional(),
-        turnId: idSchema.optional(),
-        learnerText: textSchema.optional(),
-        correctedText: textSchema.optional(),
-        naturalText: textSchema.optional(),
-        explanationZh: textSchema.optional(),
-        createdAt: isoSchema,
-      }),
-    )
-    .max(1000),
+  sources: z.array(notebookSourceSchema).max(1000),
   favoriteIds: ids,
   createdAt: isoSchema,
   updatedAt: isoSchema,

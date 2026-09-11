@@ -9,6 +9,7 @@ import { SCENE_METADATA } from '@/content/scenes/metadata'
 import {
   buildLearningHref,
   savedPracticeHref,
+  savedSimulationHref,
 } from '@/components/app-shell/learning-routes'
 import { HistoricalPracticeRecord } from './historical-practice-record'
 import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
@@ -114,7 +115,9 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
   const level = data.profile.level
   const recent = data.recent
   const recentHref = recent
-    ? savedPracticeHref(recent.session.id, 'session')
+    ? recent.session.simulation
+      ? savedSimulationHref(recent.session.id)
+      : savedPracticeHref(recent.session.id, 'session')
     : undefined
   const recentLabel =
     recent?.status === 'historical'
@@ -129,7 +132,11 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
   if (retained)
     return (
       <AppShell activeDestination="practice">
-        <HistoricalPracticeRecord record={retained} unlinked>
+        <HistoricalPracticeRecord
+          record={retained}
+          repositories={repository}
+          unlinked
+        >
           <button type="button" onClick={() => setRetained(undefined)}>
             返回本页列表
           </button>

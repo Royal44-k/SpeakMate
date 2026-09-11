@@ -13,6 +13,8 @@ import {
 import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
 import { HistoricalPracticeRecord } from './historical-practice-record'
 import styles from './session-report.module.css'
+import { CaptureText } from '@/features/notebook/capture'
+import { RecordCaptureFrame } from '@/features/notebook/record-capture-frame'
 
 export function favoriteIdFor(sessionId: string, expression: string): string {
   let hash = 2166136261
@@ -184,7 +186,7 @@ export function SessionReportView({
   )
   if (!view)
     return (
-      <HistoricalPracticeRecord record={record}>
+      <HistoricalPracticeRecord record={record} repositories={repository}>
         {expressionSection}
       </HistoricalPracticeRecord>
     )
@@ -204,100 +206,138 @@ export function SessionReportView({
         : view.outcome === 'declined'
           ? '明确停止'
           : '进行中'
-  const resumeHref = buildLearningHref({ kind: 'session', id: sessionId })
+  const resumeHref = buildLearningHref({
+    kind: record.session.simulation ? 'simulation' : 'session',
+    id: sessionId,
+  })
   return (
-    <main className={styles.report}>
-      <MobilePageHeader
-        title="本次复盘"
-        eyebrow="SESSION RECORD"
-        fallbackHref="/me"
-        backLabel="返回我的练习"
-      />
-      <header className={styles.scoreHeader}>
-        <h2>
-          {outcome} · {workflow}
-        </h2>
-        <p>流程状态与表达覆盖分开记录，不提供语法、词汇、自然度或发音分数。</p>
-      </header>
-      <section className={styles.improve}>
-        <h2>本地覆盖与流程</h2>
-        <p>
-          已匹配表达：
-          {
-            view.history.filter((turn) => turn.confirmation === 'exact').length
-          }{' '}
-          轮
-        </p>
-        <p>
-          未匹配表达：
-          {
-            view.history.filter((turn) => turn.confirmation === 'unknown')
-              .length
-          }{' '}
-          轮
-        </p>
-        <p>
-          帮助或停止操作：
-          {
-            view.history.filter((turn) => turn.confirmation === 'repair').length
-          }{' '}
-          轮
-        </p>
-        <p>
-          已提交 {view.flow.submittedTurns} / {view.flow.requiredUserTurns}{' '}
-          轮，其中非空表达 {view.flow.expressionTurns}{' '}
-          轮。匹配只确认本题已收录表达；未收录不代表说错，帮助操作不证明表达正确。
-        </p>
-        {record.session.status === 'active' ? (
-          <a href={resumeHref}>
-            {view.canFinish
-              ? '返回练习并确认结束'
-              : view.canAnswer
-                ? '返回继续练习'
-                : '返回查看结束选项'}
-          </a>
-        ) : null}
-      </section>
-      <section className={styles.improve}>
-        <h2>{view.presentation.counterpartZh}</h2>
-        <p>{view.presentation.frameZh}</p>
-        <p className={styles.material}>{view.situationZh}</p>
-      </section>
-      <section className={styles.improve}>
-        <h2>原始对话与本题反馈</h2>
-        {view.opening.map((block, index) => (
-          <p key={`opening-${index}`} lang="en">
-            {block.text}
-          </p>
-        ))}
-        {view.history.map((turn) => (
-          <article key={turn.turnId}>
-            <h3>第 {view.history.indexOf(turn) + 1} 轮</h3>
-            <p>你：{turn.learner.text || '帮助或停止操作（没有表达文字）'}</p>
-            {turn.assistant.map((block, index) => (
-              <p key={index} lang="en">
-                {block.text}
+    <RecordCaptureFrame
+      repositories={repository}
+      returnTo={record.session.simulation?.returnTo ?? '/me'}
+    >
+      <main className={styles.report}>
+        <MobilePageHeader
+          title="本次复盘"
+          eyebrow="SESSION RECORD"
+          fallbackHref="/me"
+          backLabel="返回我的练习"
+        />
+        <header className={styles.scoreHeader}>
+          {record.session.simulation ? (
+            <section>
+              <h2>定向模拟练习记录</h2>
+              <p>原表达：{record.session.simulation.source.noteText}</p>
+              <p>本次覆盖目标：{record.session.simulation.target.text}</p>
+              <p>
+                回忆：{record.session.simulation.recall?.text ?? '尚未保存'}
               </p>
-            ))}
-            <p>{turn.feedback.text}</p>
-            {turn.references.length ? (
-              <details>
-                <summary>当时对应题目的参考表达</summary>
-                {turn.references.map((reference) => (
-                  <p key={reference.id} lang="en">
-                    {reference.text}
-                  </p>
-                ))}
-              </details>
-            ) : null}
-          </article>
-        ))}
-      </section>
-      {expressionSection}
-      <nav className={styles.actions} aria-label="复盘后操作">
-        <a href="/practice">回到今日练习</a>
-        <a href="/scenes">换个场景</a>
-      </nav>
-    </main>
+              <p>
+                造句：
+                {record.session.simulation.composition?.text ?? '尚未保存'}
+              </p>
+              <p>
+                独立路径 {record.session.simulation.descriptor.id} · v
+                {record.session.simulation.descriptor.version}；来源语料 v
+                {record.session.simulation.descriptor.sourceContentVersion}。
+              </p>
+              <a href={record.session.simulation.returnTo}>返回词句或记录簿</a>
+            </section>
+          ) : null}
+          <h2>
+            {outcome} · {workflow}
+          </h2>
+          <p>
+            流程状态与表达覆盖分开记录，不提供语法、词汇、自然度或发音分数。
+          </p>
+        </header>
+        <section className={styles.improve}>
+          <h2>本地覆盖与流程</h2>
+          <p>
+            已匹配表达：
+            {
+              view.history.filter((turn) => turn.confirmation === 'exact')
+                .length
+            }{' '}
+            轮
+          </p>
+          <p>
+            未匹配表达：
+            {
+              view.history.filter((turn) => turn.confirmation === 'unknown')
+                .length
+            }{' '}
+            轮
+          </p>
+          <p>
+            帮助或停止操作：
+            {
+              view.history.filter((turn) => turn.confirmation === 'repair')
+                .length
+            }{' '}
+            轮
+          </p>
+          <p>
+            已提交 {view.flow.submittedTurns} / {view.flow.requiredUserTurns}{' '}
+            轮，其中非空表达 {view.flow.expressionTurns}{' '}
+            轮。匹配只确认本题已收录表达；未收录不代表说错，帮助操作不证明表达正确。
+          </p>
+          {record.session.status === 'active' ? (
+            <a href={resumeHref}>
+              {view.canFinish
+                ? '返回练习并确认结束'
+                : view.canAnswer
+                  ? '返回继续练习'
+                  : '返回查看结束选项'}
+            </a>
+          ) : null}
+        </section>
+        <section className={styles.improve}>
+          <h2>{view.presentation.counterpartZh}</h2>
+          <p>{view.presentation.frameZh}</p>
+          <p className={styles.material}>{view.situationZh}</p>
+        </section>
+        <section className={styles.improve}>
+          <h2>原始对话与本题反馈</h2>
+          {view.opening.map((block, index) => (
+            <CaptureText key={`opening-${index}`} {...block} />
+          ))}
+          {view.history.map((turn) => (
+            <article key={turn.turnId}>
+              <h3>第 {view.history.indexOf(turn) + 1} 轮</h3>
+              {turn.learner.text ? (
+                <CaptureText {...turn.learner} label="你" />
+              ) : (
+                <p>帮助或停止操作（没有表达文字）</p>
+              )}
+              {turn.assistant.map((block, index) => (
+                <CaptureText key={index} {...block} label="情境回复" />
+              ))}
+              <CaptureText
+                text={turn.feedback.text}
+                source={turn.learner.source}
+                label="本题规则反馈"
+              />
+              {turn.references.length ? (
+                <details>
+                  <summary>当时对应题目的参考表达</summary>
+                  {turn.references.map((reference) => (
+                    <CaptureText
+                      key={reference.id}
+                      text={reference.text}
+                      source={turn.learner.source}
+                    />
+                  ))}
+                </details>
+              ) : null}
+            </article>
+          ))}
+        </section>
+        {expressionSection}
+        <nav className={styles.actions} aria-label="复盘后操作">
+          <a href="/practice">回到今日练习</a>
+          <a href="/scenes">换个场景</a>
+        </nav>
+      </main>
+    </RecordCaptureFrame>
   )
 }

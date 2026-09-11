@@ -3,6 +3,7 @@ import { CEFR_LEVELS, SCENE_CATEGORIES } from '@/domain/scenes/types'
 import { gradedPackSchema } from './dialogues/graded/schema'
 import { gradedSceneManifest } from './dialogues/graded/manifest'
 import { analysisEntrySchema } from './analysis/schema'
+import { microPracticeSchema, projectMicroPractice } from './micro-practice'
 
 export const publicCategorySchema = z
   .strictObject({
@@ -11,6 +12,7 @@ export const publicCategorySchema = z
     category: z.enum(SCENE_CATEGORIES),
     packs: z.array(gradedPackSchema).length(30),
     analyses: z.array(analysisEntrySchema).min(6).max(24),
+    microPractices: z.array(microPracticeSchema).min(1).max(120),
   })
   .superRefine((data, ctx) => {
     const expected = gradedSceneManifest
@@ -53,7 +55,40 @@ export const publicCategorySchema = z
               ),
           ),
       )
-    if (bad || analysisBad)
+    const associations = data.analyses.flatMap((entry) =>
+      data.packs
+        .filter((pack) => pack.sceneId === entry.sceneId)
+        .flatMap((pack) => {
+          const targets = pack.questions.filter((question) =>
+            entry.questionIds
+              ? entry.questionIds.includes(question.id)
+              : entry.intents.includes(question.intent),
+          )
+          return targets.length ? [{ entry, pack, targets }] : []
+        }),
+    )
+    const microBad =
+      data.microPractices.length !== associations.length ||
+      new Set(data.microPractices.map((d) => d.id)).size !==
+        associations.length ||
+      associations.some(({ entry, pack, targets }) => {
+        const desc = data.microPractices.find(
+          (d) => d.analysisEntryId === entry.id && d.level === pack.level,
+        )
+        if (
+          !desc ||
+          desc.targetQuestionIds.length !== targets.length ||
+          targets.some((q) => !desc.targetQuestionIds.includes(q.id))
+        )
+          return true
+        try {
+          projectMicroPractice(pack, desc)
+          return false
+        } catch {
+          return true
+        }
+      })
+    if (bad || analysisBad || microBad)
       ctx.addIssue({
         code: 'custom',
         message:

@@ -20,6 +20,7 @@ export function shouldShowUpdate(
     pathname !== '/' &&
     pathname !== '/welcome' &&
     pathname !== '/session' &&
+    pathname !== '/notebook/simulation' &&
     !pathname.startsWith('/session/')
   )
 }

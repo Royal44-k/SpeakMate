@@ -2,6 +2,7 @@ import { CEFR_LEVELS, SCENE_CATEGORIES } from '@/domain/scenes/types'
 import { gradedSceneManifest } from '@/content/dialogues/graded/manifest'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import { publicCategorySchema } from '@/content/public-category-schema'
+import { buildMicroPractices } from '@/content/micro-practice-authoring'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -60,6 +61,7 @@ export async function GET(
       category,
       packs,
       analyses,
+      microPractices: buildMicroPractices(packs, analyses),
     }),
   )
 }
