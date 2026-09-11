@@ -3,7 +3,7 @@ import type { Repositories } from './repositories'
 import type { PracticeSession } from '@/domain/practice/types'
 import { createDailyPlan } from '@/domain/goals/planner'
 import { practiceFlow } from '@/domain/practice/graded-evidence'
-import { settleTaskCompletion } from '@/domain/goals/task-policy'
+import { createGoalService } from '@/features/goals/goal-service'
 import { createDialogue } from '@/domain/ai/graded-dialogue'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import {
@@ -11,7 +11,6 @@ import {
   simulationOptions,
 } from '@/features/notebook/simulation-material'
 import { GET } from '@/app/content/v1/[category]/route'
-import type { LearningEvent } from '@/domain/goals/types'
 export const goalAt = (n: number) =>
   new Date(Date.parse('2026-09-10T00:00:00Z') + n * 1000).toISOString()
 export async function goalFixture(repos: Repositories) {
@@ -45,24 +44,20 @@ export async function completeWarmup(
       t.id === task.id ? { ...t, status: 'started', startedAt: goalAt(1) } : t,
     ),
   }))
-  const event: LearningEvent = {
-    id: 'warmup-event',
-    type: 'warmup-completed',
-    runId: 'warmup-run',
-    profileId: plan.profileId,
-    occurredAt: goalAt(2),
-    dateKey: plan.dateKey,
-    provenance: {
-      planId: plan.id,
-      sourceTaskId: task.id,
-      planDate: plan.dateKey,
-      returnTo: '/',
-    },
-    recalledNoteIds: task.target.noteIds,
-    recalledStarterExpressionIds: task.target.starterExpressionIds,
-  }
-  await repos.learning.recordEvent(event, (state) =>
-    settleTaskCompletion(state, event),
+  const service = createGoalService(repos, fetch, () => goalAt(2))
+  await service.finishWarmup(
+    service.warmupEvent(plan, task, 'warmup-run', [
+      ...task.target.noteIds.map((id) => ({
+        id,
+        kind: 'note' as const,
+        text: 'My recalled expression',
+      })),
+      ...task.target.starterExpressionIds.map((id) => ({
+        id,
+        kind: 'starter' as const,
+        text: 'black coffee',
+      })),
+    ]),
   )
 }
 export async function sceneCandidate(

@@ -6,7 +6,23 @@ import {
   createMemoryRepositories,
 } from './repositories'
 import type { LearningEvent } from '@/domain/goals/types'
-import { planFixture, completionFixture } from './learning-fixtures'
+import {
+  planFixture,
+  completionFixture as historicalCompletionFixture,
+} from './learning-fixtures'
+
+// New transaction writes supply recall; shared historical backup fixtures stay unchanged.
+function completionFixture(profileId: string) {
+  const event = historicalCompletionFixture(profileId)
+  return {
+    ...event,
+    recallResponses: event.recalledStarterExpressionIds.map((id) => ({
+      id,
+      kind: 'starter' as const,
+      text: 'My recalled expression',
+    })),
+  }
+}
 
 afterEach(async () => {
   await deleteDatabase()
@@ -466,6 +482,9 @@ describe.each([
       runId: 'run_1',
       recalledNoteIds: [],
       recalledStarterExpressionIds: ['starter_1'],
+      recallResponses: [
+        { id: 'starter_1', kind: 'starter', text: 'My recalled expression' },
+      ],
       occurredAt: '2026-09-09T00:00:00.000Z',
       dateKey: '2026-09-09',
     }

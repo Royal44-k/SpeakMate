@@ -23,6 +23,7 @@ import { DEFAULT_LEARNER_SETTINGS } from './learner-settings'
 import { rewardById } from '@/domain/goals/rewards'
 import { stableId } from './identity'
 import { beijingDateKey } from './data-invariants'
+import { hasFreshRecallEvidence } from '@/domain/goals/task-policy'
 
 export { learningEventId, beijingDateKey } from './data-invariants'
 export { stableId } from './identity'
@@ -316,6 +317,8 @@ export function createLearningRepository(
             state: learningState(state, event.profileId),
           }
         }
+        if (event.type === 'warmup-completed' && !hasFreshRecallEvidence(event))
+          throw new Error('WARMUP_RECALL_REQUIRED')
         if (
           (event.type === 'session-completed' ||
             event.type === 'simulation-completed') &&

@@ -24,6 +24,11 @@ import {
 } from '@/components/app-shell/learning-routes'
 import { settleTaskCompletion } from '@/domain/goals/task-policy'
 import { canonical } from '@/infrastructure/persistence/identity'
+import {
+  newSimulation,
+  simulationOptions,
+} from '@/features/notebook/simulation-material'
+import { validateTaskSession } from '@/domain/goals/task-policy'
 
 export const nowIso = () => new Date().toISOString()
 export function createGoalService(
@@ -60,14 +65,14 @@ export function createGoalService(
       return { profile, plan, state, notes, sessions, settings }
     },
     async launchScene(plan: DailyPlan, task: DailyPlanTask) {
-      const existing = (await repo.sessions.list())
+      const runs = (await repo.sessions.list())
         .filter(
           (s) =>
             s.provenance?.planId === plan.id &&
-            s.provenance.sourceTaskId === task.id &&
-            s.status !== 'abandoned',
+            s.provenance.sourceTaskId === task.id,
         )
-        .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
+        .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
+      const existing = runs.find((s) => s.status !== 'abandoned')
       if (existing) {
         const href = existing.simulation
           ? savedSimulationHref(existing.id)
@@ -80,51 +85,98 @@ export function createGoalService(
         return href
       }
       const target = task.target
-      if (target.kind !== 'scene' || !target.selection)
+      if (
+        (target.kind !== 'scene' && target.kind !== 'simulation') ||
+        !target.selection
+      )
         throw new Error('旧任务缺少固定路径信息，请保留记录并另开自由练习。')
       const key = plan.id + task.id
       let command = pending.get(key)
       if (!command) {
-        const selected = target.selection
-        const material = await publicContentProvider(fetcher).load({
-          sceneId: target.sceneId,
-          level: selected.level,
-          contentVersion: selected.contentVersion,
-        })
-        if (material.status !== 'available')
-          throw new Error('所选资料尚未准备好，请重试或完成更新。')
-        const start = createDialogue(material.pack, selected),
-          at = clock()
-        command = {
-          kind: 'create',
-          taskLaunch: { planId: plan.id, taskId: task.id },
-          session: {
-            id: `goal-session_${crypto.randomUUID()}`,
-            profileId: plan.profileId,
-            sceneId: target.sceneId,
-            sceneVersion: target.sceneVersion,
-            level: selected.level,
-            status: 'active',
+        const provenance = runs[0]?.provenance ?? {
+          planId: plan.id,
+          sourceTaskId: task.id,
+          planDate: plan.dateKey,
+          returnTo: buildGoalHref(plan.dateKey, task.slot),
+        }
+        if (target.kind === 'simulation') {
+          const selected = target.selection!
+          const note = await repo.notebook.get(selected.noteId)
+          const source = note?.sources.find((s) => s.id === selected.sourceId)
+          if (
+            !note ||
+            note.deletedAt ||
+            !source ||
+            source.level !== selected.sourceLevel
+          )
+            throw new Error(
+              '固定任务的原词句或来源暂不可用；原目标与记录保留，请恢复后重试。',
+            )
+          const option = (await simulationOptions(note, source, fetcher)).find(
+            (o) =>
+              o.descriptor.id === selected.descriptorId &&
+              o.descriptor.version === selected.descriptorVersion &&
+              o.sourcePack.contentVersion === selected.sourceContentVersion,
+          )
+          if (!option)
+            throw new Error(
+              '固定任务的原资料版本暂不可用；目标未改变，请完成资料更新后重试。',
+            )
+          const at = clock()
+          const session = {
+            ...newSimulation(note, source, option),
             startedAt: at,
             updatedAt: at,
-            completedGoals: [],
-            openingText: start.reply,
-            gradedDialogue: start.snapshot,
-            presentation: selectedPracticePresentation(
-              material.pack,
-              selected.variantId,
-            ),
-            provenance: {
-              planId: plan.id,
-              sourceTaskId: task.id,
-              planDate: plan.dateKey,
-              returnTo: buildGoalHref(plan.dateKey, task.slot),
+            provenance,
+          }
+          validateTaskSession(task, session)
+          command = { kind: 'create', session, simulationMaterial: option }
+        } else {
+          const selected = target.selection
+          const material = await publicContentProvider(fetcher).load({
+            sceneId: target.sceneId,
+            level: selected.level,
+            contentVersion: selected.contentVersion,
+          })
+          if (material.status !== 'available')
+            throw new Error('所选资料尚未准备好，请重试或完成更新。')
+          const start = createDialogue(material.pack, selected),
+            at = clock()
+          command = {
+            kind: 'create',
+            ...(task.status === 'not-started'
+              ? { taskLaunch: { planId: plan.id, taskId: task.id } }
+              : {}),
+            session: {
+              id: `goal-session_${crypto.randomUUID()}`,
+              profileId: plan.profileId,
+              sceneId: target.sceneId,
+              sceneVersion: target.sceneVersion,
+              level: selected.level,
+              status: 'active',
+              startedAt: at,
+              updatedAt: at,
+              completedGoals: [],
+              openingText: start.reply,
+              gradedDialogue: start.snapshot,
+              presentation: selectedPracticePresentation(
+                material.pack,
+                selected.variantId,
+              ),
+              provenance,
             },
-          },
+          }
         }
         pending.set(key, command)
       }
       const saved = await repo.practice.commit(command)
+      pending.delete(key)
+      if (saved.record.session.simulation) {
+        const href = savedSimulationHref(saved.record.session.id)
+        if (!href)
+          throw new Error('此保留记录不能直接链接，请在练习记录中查看。')
+        return href
+      }
       return buildLearningHref({
         kind: 'session',
         id: saved.record.session.id,

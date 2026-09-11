@@ -16,6 +16,11 @@ it('rejects a mismatched or empty warmup instead of granting by a completion fla
   ])
   if (event.type !== 'warmup-completed') throw new Error('fixture event')
   expect(qualifiesTaskCompletion(task, event)).toBe(true)
+  const historical = { ...event, recallResponses: undefined }
+  expect(qualifiesTaskCompletion(task, historical)).toBe(true)
+  expect(() => settleTaskCompletion(state, historical)).toThrow(
+    'WARMUP_RECALL_REQUIRED',
+  )
   expect(
     qualifiesTaskCompletion(task, {
       ...event,

@@ -123,6 +123,70 @@ describe.each([
 ] as const)(
   '%s goal creation and original completion transaction',
   (_, make) => {
+    it('restores current-only and legacy-only core grants but rejects mixed aliases in a cold destination', async () => {
+      const repos = make(),
+        { plan } = await goalFixture(repos)
+      await completeWarmup(repos, plan)
+      const backup = await repos.exportLearnerData()
+      for (const ruleId of ['goal-core', 'core-task']) {
+        const snapshot = structuredClone(backup)
+        snapshot.pointsLedger[0].ruleId = ruleId
+        const cold = createMemoryRepositories()
+        await cold.restoreLearnerData(
+          await cold.previewRestore(JSON.stringify(snapshot)),
+        )
+        expect(await cold.learning.balance(plan.profileId)).toBe(10)
+      }
+      backup.pointsLedger.push({
+        ...backup.pointsLedger[0],
+        id: 'duplicate-alias',
+        ruleId: 'core-task',
+      })
+      const cold = createMemoryRepositories()
+      await expect(cold.previewRestore(JSON.stringify(backup))).rejects.toThrow(
+        'DUPLICATE_LEDGER_GRANT',
+      )
+      expect(await cold.profiles.get()).toBeUndefined()
+    })
+    it('rejects fresh ID-only or empty recalls without a check-in or grant while reading and retrying legacy events', async () => {
+      const repos = make(),
+        { plan } = await goalFixture(repos)
+      const service = createGoalService(repos, fetch, () => goalAt(2))
+      await service.startWarmup(plan, plan.tasks[0])
+      const valid = service.warmupEvent(plan, plan.tasks[0], 'typed-recall', [
+        { id: 'coffee.word.black', kind: 'starter', text: 'black coffee' },
+      ])
+      if (valid.type !== 'warmup-completed') throw Error('fixture')
+      for (const responses of [
+        undefined,
+        [],
+        [{ id: 'coffee.word.black', kind: 'starter' as const, text: '   ' }],
+      ]) {
+        const invalid = { ...valid, recallResponses: responses }
+        await expect(service.finishWarmup(invalid)).rejects.toThrow()
+        await expect(repos.learning.recordEvent(invalid)).rejects.toThrow()
+        const state = await repos.learning.getState(plan.profileId)
+        expect(state.events).toEqual([])
+        expect(state.dailyPlans[0].tasks[0].status).toBe('started')
+        expect(state.pointsLedger).toEqual([])
+        expect(summarizeCheckIns(state.events, goalAt(2)).calendar).toEqual([])
+      }
+      await service.finishWarmup(valid)
+      const backup = await repos.exportLearnerData()
+      const legacy = backup.learningEvents.find(
+        (e) => e.type === 'warmup-completed',
+      )!
+      if (legacy.type !== 'warmup-completed') throw Error('fixture')
+      delete legacy.recallResponses
+      const cold = createMemoryRepositories()
+      await cold.restoreLearnerData(
+        await cold.previewRestore(JSON.stringify(backup)),
+      )
+      expect(
+        (await createGoalService(cold, fetch).finishWarmup(legacy)).applied,
+      ).toBe(false)
+      expect(await cold.learning.balance(plan.profileId)).toBe(10)
+    })
     it('settles two old plans on one actual Beijing day with no daily grant ceiling', async () => {
       const repos = make(),
         profile = await repos.profiles.ensureGuestProfile(),

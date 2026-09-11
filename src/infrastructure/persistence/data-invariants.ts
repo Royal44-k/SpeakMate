@@ -389,7 +389,10 @@ export function validateRelations(state: DataState): void {
           : event?.type === 'daily-plan-completed'
             ? stableId('plan', event.planId)
             : entry.eventId
-      return stableId(source, entry.ruleId)
+      return stableId(
+        source,
+        entry.ruleId === 'core-task' ? 'goal-core' : entry.ruleId,
+      )
     },
     'LEDGER_GRANT',
   )

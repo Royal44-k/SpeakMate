@@ -2,13 +2,19 @@ import { afterEach, expect, it, vi } from 'vitest'
 import { render, screen, within, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { GoalHome } from './goal-home'
-import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
+import {
+  createMemoryRepositories,
+  createIndexedDbRepositories,
+} from '@/infrastructure/persistence/repositories'
+import { deleteDatabase } from '@/infrastructure/persistence/db'
+import { createGoalService } from './goal-service'
 import { GET } from '@/app/content/v1/[category]/route'
 import { GoalHomeRoute } from './goal-home-route'
 import { SessionReportView } from '@/features/practice/session-report'
 import {
   goalFixture,
   sceneCandidate,
+  simulationCandidate,
   exhaust,
   goalAt,
 } from '@/infrastructure/persistence/goal-fixtures'
@@ -19,14 +25,121 @@ vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(query.value),
 }))
 const clock = () => '2026-09-11T01:00:00Z'
-afterEach(() => {
+afterEach(async () => {
   vi.restoreAllMocks()
   query.value = ''
+  await deleteDatabase()
 })
 const fetcher: typeof fetch = async (input) =>
   GET(new Request('https://local.test' + String(input)), {
     params: Promise.resolve({ category: String(input).split('/').at(-1)! }),
   })
+it.each([
+  ['memory', 'scene'],
+  ['memory', 'consolidation'],
+  ['indexeddb', 'scene'],
+  ['indexeddb', 'consolidation'],
+] as const)(
+  'reopens an explicitly stopped %s %s task as a new fixed run and genuinely settles once',
+  async (adapter, slot) => {
+    const repo =
+      adapter === 'memory'
+        ? createMemoryRepositories()
+        : createIndexedDbRepositories()
+    const { plan } = await goalFixture(repo),
+      index = slot === 'scene' ? 1 : 2
+    const service = createGoalService(repo, fetcher, () => goalAt(20))
+    if (slot === 'scene') await service.launchScene(plan, plan.tasks[index])
+    else {
+      const { session, material } = await simulationCandidate(repo, plan)
+      await repo.practice.commit({
+        kind: 'create',
+        session,
+        simulationMaterial: material,
+        taskLaunch: { planId: plan.id, taskId: plan.tasks[index].id },
+      })
+    }
+    const first = (await repo.sessions.list())[0]
+    await repo.practice.commit({
+      kind: 'stop',
+      expected: first,
+      at: goalAt(21),
+    })
+    const fixed = (await repo.learning.getDailyPlan(
+      plan.profileId,
+      plan.dateKey,
+    ))!.tasks[index]
+    const user = userEvent.setup(),
+      urls: string[] = []
+    render(
+      <GoalHome
+        repositories={repo}
+        fetcher={fetcher}
+        clock={() => goalAt(22)}
+        date={plan.dateKey}
+        navigate={(href) => {
+          urls.push(href)
+        }}
+      />,
+    )
+    const retry = await screen.findByRole('button', {
+      name: '重新开始固定任务',
+    })
+    expect(await repo.learning.balance(plan.profileId)).toBe(0)
+    await user.click(retry)
+    await waitFor(() => expect(urls).toHaveLength(1))
+    let next = (await repo.sessions.list()).find((s) => s.id !== first.id)!
+    expect(next).toBeDefined()
+    expect(next.provenance).toEqual(first.provenance)
+    expect(next.level).toBe(first.level)
+    expect((await repo.practice.read(first.id))!.session.status).toBe(
+      'abandoned',
+    )
+    expect(
+      (await repo.learning.getDailyPlan(plan.profileId, plan.dateKey))!.tasks[
+        index
+      ],
+    ).toEqual(fixed)
+    if (slot === 'consolidation') {
+      expect(next.simulation!.source).toEqual(first.simulation!.source)
+      expect(next.simulation!.descriptor).toEqual(first.simulation!.descriptor)
+      expect(urls[0]).toMatch(/^\/notebook\/simulation\?id=/)
+      next = (
+        await repo.practice.commit({
+          kind: 'recall',
+          expected: next,
+          text: 'for example',
+          at: goalAt(23),
+        })
+      ).record.session
+      next = (
+        await repo.practice.commit({
+          kind: 'compose',
+          expected: next,
+          text: 'For example, I read every day.',
+          at: goalAt(24),
+        })
+      ).record.session
+    }
+    const terminal = await exhaust(repo, next, 25)
+    const finish = {
+      kind: 'finish' as const,
+      expected: terminal,
+      at: goalAt(35),
+    }
+    await repo.practice.commit(finish)
+    await repo.practice.commit(finish)
+    expect(await repo.learning.balance(plan.profileId)).toBe(10)
+    const state = await repo.learning.getState(plan.profileId)
+    expect(state.pointsLedger).toHaveLength(1)
+    expect(state.dailyPlans[0].tasks[index]).toMatchObject({
+      target: fixed.target,
+      source: fixed.source,
+      status: 'completed',
+      swapUsed: false,
+    })
+  },
+)
 it('rejects malformed root goal parameters without creating a plan', () => {
   query.value = 'date=2026-02-30&task=scene'
   render(<GoalHomeRoute />)

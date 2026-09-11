@@ -155,6 +155,22 @@ export function GoalHome({
     )
   const points = summarizePoints(data.state.pointsLedger),
     stats = summarizeCheckIns(data.state.events, clock())
+  const stoppedTasks = new Set(
+    data.plan.tasks
+      .filter((task) => {
+        const runs = data.sessions.filter(
+          (s) =>
+            s.provenance?.planId === data.plan.id &&
+            s.provenance.sourceTaskId === task.id,
+        )
+        return (
+          task.status === 'started' &&
+          runs.length > 0 &&
+          runs.every((s) => s.status === 'abandoned')
+        )
+      })
+      .map((task) => task.id),
+  )
   if (materialTask)
     return (
       <GoalMaterialChoice
@@ -252,9 +268,11 @@ export function GoalHome({
               <p>
                 {task.status === 'completed'
                   ? '已完成'
-                  : task.status === 'started'
-                    ? '已开始，可继续'
-                    : '尚未开始'}
+                  : stoppedTasks.has(task.id)
+                    ? '上次练习已停止；固定目标与原记录保留，可重新练习。'
+                    : task.status === 'started'
+                      ? '已开始，可继续'
+                      : '尚未开始'}
               </p>
               <div className={styles.actions}>
                 {task.status !== 'completed' ? (
@@ -263,15 +281,19 @@ export function GoalHome({
                     disabled={busy || warmupActive}
                     onClick={() => void action(task)}
                   >
-                    {task.target.kind === 'warmup'
-                      ? '准备表达热身'
-                      : task.target.kind === 'scene'
-                        ? task.slot === 'extension'
-                          ? '开始可选拓展'
+                    {stoppedTasks.has(task.id)
+                      ? '重新开始固定任务'
+                      : task.target.kind === 'warmup'
+                        ? '准备表达热身'
+                        : task.target.kind === 'scene'
+                          ? task.slot === 'extension'
+                            ? '开始可选拓展'
+                            : task.status === 'started'
+                              ? '继续场景应用'
+                              : '开始场景应用'
                           : task.status === 'started'
-                            ? '继续场景应用'
-                            : '开始场景应用'
-                        : '选择巩固材料'}
+                            ? '继续记录簿巩固'
+                            : '选择巩固材料'}
                   </button>
                 ) : null}
                 {(task.target.kind === 'scene' ||

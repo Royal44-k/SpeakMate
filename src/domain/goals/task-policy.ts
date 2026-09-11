@@ -115,6 +115,24 @@ export function launchTask(
   }
 }
 
+/** Live evidence only. Historical snapshots may legitimately omit responses. */
+export function hasFreshRecallEvidence(event: LearningEvent): boolean {
+  if (event.type !== 'warmup-completed') return false
+  const ids = [
+    ...event.recalledNoteIds.map((id) => 'note:' + id),
+    ...event.recalledStarterExpressionIds.map((id) => 'starter:' + id),
+  ]
+  const responses = event.recallResponses
+  return (
+    !!responses &&
+    ids.length > 0 &&
+    new Set(ids).size === ids.length &&
+    responses.length === ids.length &&
+    new Set(responses.map((r) => r.kind + ':' + r.id)).size === ids.length &&
+    responses.every((r) => !!r.text.trim() && ids.includes(r.kind + ':' + r.id))
+  )
+}
+
 export function qualifiesTaskCompletion(
   task: DailyPlanTask,
   event: LearningEvent,
@@ -190,6 +208,8 @@ export function settleTaskCompletion(
   state: Readonly<LearningState>,
   event: LearningEvent,
 ): LearningEffects {
+  if (event.type === 'warmup-completed' && !hasFreshRecallEvidence(event))
+    throw new Error('WARMUP_RECALL_REQUIRED')
   if (!event.provenance) return {}
   const plan = state.dailyPlans.find((p) => p.id === event.provenance!.planId)
   const task = plan?.tasks.find((t) => t.id === event.provenance!.sourceTaskId)

@@ -6,9 +6,8 @@ import {
 } from './repositories'
 import { deleteDatabase } from './db'
 import { createDailyPlan } from '@/domain/goals/planner'
-import { settleTaskCompletion } from '@/domain/goals/task-policy'
+import { createGoalService } from '@/features/goals/goal-service'
 import { summarizePoints } from '@/domain/goals/statistics'
-import type { LearningEvent } from '@/domain/goals/types'
 import { REWARDS } from '@/domain/goals/rewards'
 afterEach(deleteDatabase)
 async function earn100(repos: Repositories) {
@@ -31,25 +30,19 @@ async function earn100(repos: Repositories) {
         t.id === task.id ? { ...t, status: 'started', startedAt: at } : t,
       ),
     }))
-    const event: LearningEvent = {
-      id: `earn-${n}`,
-      type: 'warmup-completed',
-      runId: `run-${n}`,
-      profileId: profile.id,
-      occurredAt: at,
-      dateKey: date,
-      provenance: {
-        planId: plan.id,
-        sourceTaskId: task.id,
-        planDate: date,
-        returnTo: '/',
-      },
-      recalledNoteIds: [],
-      recalledStarterExpressionIds:
-        task.target.kind === 'warmup' ? task.target.starterExpressionIds : [],
-    }
-    await repos.learning.recordEvent(event, (state) =>
-      settleTaskCompletion(state, event),
+    if (task.target.kind !== 'warmup') throw Error('fixture target')
+    const service = createGoalService(repos, fetch, () => at)
+    await service.finishWarmup(
+      service.warmupEvent(
+        plan,
+        task,
+        `run-${n}`,
+        task.target.starterExpressionIds.map((id) => ({
+          id,
+          kind: 'starter' as const,
+          text: 'black coffee',
+        })),
+      ),
     )
   }
   return profile
