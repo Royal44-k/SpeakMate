@@ -43,7 +43,6 @@ export function PracticeStage({
   )
   const practice = usePracticeSession(scene, sessionId, repository)
   const [captureBusy, setCaptureBusy] = useState(false)
-  const [simulationDraft, setSimulationDraft] = useState(false)
   const stageRef = useRef<HTMLElement>(null)
   const [feedbackOverride, setFeedbackOverride] = useState<boolean | null>(null)
   const expanded = feedbackOverride ?? practice.feedbackExpanded
@@ -56,7 +55,7 @@ export function PracticeStage({
       !!(practice.machine.draftTranscript || practice.audio))
   const busy =
     captureBusy ||
-    simulationDraft ||
+    !!practice.simulationDraft?.text ||
     processing ||
     reviewing ||
     ['recording', 'requesting-permission'].includes(status)
@@ -141,6 +140,27 @@ export function PracticeStage({
   })
 
   if (
+    practice.record?.session.simulation &&
+    (practice.simulationDraft?.text ||
+      (practice.record.session.status === 'active' &&
+        !practice.record.session.simulation.composition))
+  )
+    return (
+      <SimulationStep
+        simulation={practice.record.session.simulation}
+        draft={practice.simulationDraft}
+        active={practice.record.session.status === 'active'}
+        busy={processing}
+        reloading={practice.reloading}
+        error={practice.machine.errorMessage}
+        onSubmit={practice.submitSimulationStep}
+        onReload={practice.reloadSession}
+        onDraftChange={practice.updateSimulationDraft}
+        onDiscard={practice.discardSimulationDraft}
+      />
+    )
+
+  if (
     practice.record?.session.status === 'completed' ||
     status === 'completed' ||
     completed
@@ -170,22 +190,6 @@ export function PracticeStage({
             : '返回场景准备'}
         </a>
       </main>
-    )
-
-  if (
-    practice.record?.session.status === 'active' &&
-    practice.record.session.simulation &&
-    !practice.record.session.simulation.composition
-  )
-    return (
-      <SimulationStep
-        simulation={practice.record.session.simulation}
-        busy={processing}
-        error={practice.machine.errorMessage}
-        onSubmit={practice.submitSimulationStep}
-        onReload={practice.reloadSession}
-        onDraftChange={setSimulationDraft}
-      />
     )
 
   return (

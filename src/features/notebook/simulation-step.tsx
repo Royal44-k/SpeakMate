@@ -1,6 +1,6 @@
 'use client'
-import { useEffect, useState } from 'react'
 import type { PracticeSimulation } from '@/domain/practice/types'
+import type { SimulationDraft } from '@/features/practice/use-practice-session'
 import { ExitGuard } from '@/features/practice/exit-guard'
 import styles from './notebook.module.css'
 export function SimulationStep({
@@ -10,28 +10,34 @@ export function SimulationStep({
   onSubmit,
   onReload,
   onDraftChange,
+  draft,
+  active,
+  reloading,
+  onDiscard,
 }: {
   simulation: PracticeSimulation
   busy: boolean
   error?: string
-  onSubmit: (text: string) => Promise<boolean>
+  onSubmit: (text: string, phase: SimulationDraft['phase']) => Promise<boolean>
   onReload: () => Promise<void>
-  onDraftChange: (dirty: boolean) => void
+  onDraftChange: (phase: SimulationDraft['phase'], text: string) => void
+  draft?: SimulationDraft
+  active: boolean
+  reloading: boolean
+  onDiscard: () => void
 }) {
-  const [text, setText] = useState('')
-  const compose = !!simulation.recall
-  const [draftPhase, setDraftPhase] = useState(compose)
-  const staleDraft = !!text && draftPhase !== compose
-  useEffect(() => {
-    onDraftChange(!!text)
-    return () => onDraftChange(false)
-  }, [text, onDraftChange])
+  const text = draft?.text ?? ''
+  const phase = draft?.phase ?? (simulation.recall ? 'compose' : 'recall')
+  const compose = phase === 'compose'
+  const staleDraft =
+    !!text &&
+    (!active || !!simulation.composition || compose !== !!simulation.recall)
   return (
     <main className={styles.page}>
       <ExitGuard
         state={busy ? 'processing' : text ? 'draft' : 'clean'}
         fallbackHref={simulation.returnTo}
-        onConfirmExit={() => setText('')}
+        onConfirmExit={onDiscard}
       />
       <small>定向练习 · {compose ? '2 / 3 造句' : '1 / 3 回忆'}</small>
       <h1 data-page-title tabIndex={-1}>
@@ -59,33 +65,30 @@ export function SimulationStep({
           maxLength={20000}
           disabled={busy}
           onChange={(event) => {
-            setText(event.target.value)
-            setDraftPhase(compose)
+            onDraftChange(phase, event.target.value)
           }}
         />
       </label>
       {staleDraft ? (
         <p role="alert">
-          另一窗口已推进到下一步。这份输入仍保留，但不会自动当作新一步的答案；请编辑以重新确认，或取消本次输入。
+          本机保存的阶段已变化。这份输入仍保留为原来的
+          {compose ? '造句' : '回忆'}
+          草稿，不会当作其他步骤的答案；可保留并复制文字，或明确取消本次输入后查看最新进度。
         </p>
       ) : null}
       <button
         disabled={busy || !text.trim() || staleDraft}
-        onClick={() =>
-          void onSubmit(text).then((saved) => {
-            if (saved) setText('')
-          })
-        }
+        onClick={() => void onSubmit(text, phase)}
       >
         {compose ? '保存造句并应用' : '保存回忆并查看'}
       </button>
-      <button disabled={busy} onClick={() => setText('')}>
+      <button disabled={busy} onClick={onDiscard}>
         取消本次输入
       </button>
       {error ? (
         <>
           <p role="alert">{error}</p>
-          <button disabled={busy} onClick={() => void onReload()}>
+          <button disabled={busy || reloading} onClick={() => void onReload()}>
             读取最新进度
           </button>
         </>

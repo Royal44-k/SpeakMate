@@ -37,6 +37,7 @@ import { replaceCreatedSessionId } from '@/components/app-shell/learning-routes'
 
 const createId = (prefix: string) =>
   `${prefix}_${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`
+export type SimulationDraft = { phase: 'recall' | 'compose'; text: string }
 function errorMessage(error: unknown) {
   const code = error instanceof Error ? error.message : ''
   if (/STALE|CONFLICT/.test(code))
@@ -58,6 +59,7 @@ export function usePracticeSession(
     () => repositories ?? createIndexedDbRepositories(),
   )
   const [record, setRecord] = useState<PracticeRecord>()
+  const [simulationDraft, setSimulationDraft] = useState<SimulationDraft>()
   const recordRef = useRef<PracticeRecord | undefined>(undefined)
   const [machine, setMachine] = useState<PracticeState>(INITIAL_PRACTICE_STATE)
   const [ready, setReady] = useState(false)
@@ -574,6 +576,18 @@ export function usePracticeSession(
     machine,
     ready,
     reloading,
+    simulationDraft,
+    updateSimulationDraft: (phase: SimulationDraft['phase'], text: string) => {
+      if (submittingRef.current) return
+      invalidateRecoveryRead()
+      setSimulationDraft({ phase, text: text.slice(0, 20000) })
+    },
+    discardSimulationDraft: () => {
+      if (submittingRef.current) return
+      invalidateRecoveryRead()
+      pendingRef.current = undefined
+      setSimulationDraft(undefined)
+    },
     settingsError,
     addressError,
     feedbackExpanded: settings.feedbackExpanded,
@@ -636,7 +650,10 @@ export function usePracticeSession(
     submitTurn,
     submitAction,
     completeSession,
-    submitSimulationStep: async (text: string) => {
+    submitSimulationStep: async (
+      text: string,
+      phase: SimulationDraft['phase'],
+    ) => {
       const current = recordRef.current
       if (
         !current?.session.simulation ||
@@ -645,8 +662,9 @@ export function usePracticeSession(
       )
         return false
       const kind = current.session.simulation.recall ? 'compose' : 'recall'
+      if (phase !== kind || simulationDraft?.phase !== kind) return false
       const pending = pendingRef.current
-      return !!(await commit(
+      const saved = !!(await commit(
         pending?.kind === kind && pending.text === text.trim()
           ? pending
           : {
@@ -656,6 +674,8 @@ export function usePracticeSession(
               at: new Date().toISOString(),
             },
       ))
+      if (saved) setSimulationDraft(undefined)
+      return saved
     },
     stopSession,
     retryInitialization: () => {

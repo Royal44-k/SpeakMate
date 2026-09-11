@@ -3,6 +3,10 @@ import { GET } from '@/app/content/v1/[category]/route'
 import { createDialogue } from '@/domain/ai/graded-dialogue'
 import { projectMicroPractice } from '@/content/micro-practice'
 import type { PracticeSession } from '@/domain/practice/types'
+import {
+  newSimulation,
+  simulationOptions,
+} from '@/features/notebook/simulation-material'
 import { deleteDatabase } from './db'
 import {
   createMemoryRepositories,
@@ -134,6 +138,107 @@ describe.each([
   ['memory', createMemoryRepositories],
   ['indexeddb', createIndexedDbRepositories],
 ] as const)('%s simulation phases', (_name, make) => {
+  it('round-trips all five v2 targets and their old v1 snapshots through both cold adapters, rejecting malformed overrides', async () => {
+    const repo = make()
+    const profile = await repo.profiles.ensureGuestProfile()
+    const legacySessions: PracticeSession[] = []
+    for (const level of ['A1', 'A2', 'B1', 'B2', 'C1'] as const) {
+      const text = ['A1', 'A2'].includes(level)
+        ? 'on the side'
+        : 'No chilli, please.'
+      const source = {
+        id: `source-${level}`,
+        kind: 'turn' as const,
+        originalText: text,
+        sceneId: 'dining-02',
+        level,
+        createdAt: at(0),
+      }
+      const note = await repo.notebook.save({
+        id: `note-${level}`,
+        profileId: profile.id,
+        text,
+        kind: text === 'on the side' ? 'phrase' : 'sentence',
+        normalizedText: '',
+        notes: '',
+        tags: [],
+        favoriteIds: [],
+        sources: [source],
+        createdAt: at(0),
+        updatedAt: at(0),
+      })
+      const [option] = await simulationOptions(note, source, async () =>
+        GET(new Request('https://local.test'), {
+          params: Promise.resolve({ category: 'dining' }),
+        }),
+      )
+      if (option.descriptor.version !== 2) throw Error('fixture')
+      const session = newSimulation(note, source, option)
+      await repo.practice.commit({
+        kind: 'create',
+        session,
+        simulationMaterial: option,
+      })
+      const { targetQuestionOverride: _override, ...rest } = option.descriptor
+      expect(_override.id).toBe(`restaurant-order.${level}.chilli`)
+      legacySessions.push(
+        newSimulation(note, source, {
+          ...option,
+          descriptor: { ...rest, version: 1 },
+        }),
+      )
+    }
+    const backup = await repo.exportLearnerData()
+    const both = {
+      ...backup,
+      sessions: [...backup.sessions, ...legacySessions],
+    }
+    for (const makeDestination of [
+      createMemoryRepositories,
+      createIndexedDbRepositories,
+    ]) {
+      const destination = makeDestination()
+      await destination.clearLearnerData()
+      await destination.restoreLearnerData(
+        await destination.previewRestore(JSON.stringify(both)),
+      )
+      expect((await destination.exportLearnerData()).sessions).toHaveLength(
+        both.sessions.length,
+      )
+      for (const session of both.sessions)
+        expect((await destination.practice.read(session.id))!.session).toEqual(
+          session,
+        )
+      for (const mutation of [
+        'missing',
+        'wrong-fact',
+        'wrong-intent',
+        'wrong-pack',
+        'draft',
+        'v1-extra',
+      ] as const) {
+        const bad = structuredClone(both)
+        const session = bad.sessions[0]
+        const desc = session.simulation!.descriptor
+        if (desc.version !== 2) throw Error('fixture')
+        if (mutation === 'missing')
+          Reflect.deleteProperty(desc, 'targetQuestionOverride')
+        if (mutation === 'wrong-fact')
+          desc.targetQuestionOverride.answers[0].effects[0].key = 'meal'
+        if (mutation === 'wrong-intent')
+          desc.targetQuestionOverride.intent = 'other'
+        if (mutation === 'draft')
+          desc.targetQuestionOverride.answers[0].review.state = 'draft'
+        if (mutation === 'v1-extra') Reflect.set(desc, 'version', 1)
+        if (mutation === 'wrong-pack')
+          session.gradedDialogue!.pack.questions.at(-1)!.answers[0].text =
+            'Unrelated answer'
+        await expect(
+          destination.previewRestore(JSON.stringify(bad)),
+        ).rejects.toThrow()
+      }
+    }
+  })
   it('guards actual recall then composition before application, persists exact evidence and finishes without an empty award event', async () => {
     const repo = make()
     const { session, material } = await fixture(repo)

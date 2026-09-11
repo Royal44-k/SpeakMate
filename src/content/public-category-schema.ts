@@ -3,7 +3,11 @@ import { CEFR_LEVELS, SCENE_CATEGORIES } from '@/domain/scenes/types'
 import { gradedPackSchema } from './dialogues/graded/schema'
 import { gradedSceneManifest } from './dialogues/graded/manifest'
 import { analysisEntrySchema } from './analysis/schema'
-import { microPracticeSchema, projectMicroPractice } from './micro-practice'
+import {
+  microPracticeSchema,
+  projectMicroPractice,
+  currentMicroVersion,
+} from './micro-practice'
 
 export const publicCategorySchema = z
   .strictObject({
@@ -77,6 +81,7 @@ export const publicCategorySchema = z
         )
         if (
           !desc ||
+          desc.version !== currentMicroVersion(entry.id, pack.level) ||
           desc.targetQuestionIds.length !== targets.length ||
           targets.some((q) => !desc.targetQuestionIds.includes(q.id))
         )

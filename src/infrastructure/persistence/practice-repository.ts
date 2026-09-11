@@ -23,6 +23,7 @@ import {
 } from '@/content/dialogues/graded/schema'
 import {
   projectMicroPractice,
+  currentMicroVersion,
   microPracticeSchema,
   type MicroPracticeDescriptor,
 } from '@/content/micro-practice'
@@ -243,6 +244,11 @@ function validateSimulationCreate(
   const originalDescriptor = microPracticeSchema.parse(material.descriptor)
   if (
     originalPack.questions.length !== 12 ||
+    originalDescriptor.version !==
+      currentMicroVersion(
+        originalDescriptor.analysisEntryId,
+        originalDescriptor.level,
+      ) ||
     originalPack.contentVersion !== analysis.contentVersion ||
     originalPack.questions.some(
       (q) =>

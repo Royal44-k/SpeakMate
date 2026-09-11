@@ -1,4 +1,4 @@
-import type { GradedPack } from './dialogues/graded/schema'
+import type { GradedPack, GradedQuestion } from './dialogues/graded/schema'
 import type { AnalysisEntry } from './analysis/schema'
 /** Authored creation paths; never imported by a client. Review ledger is separate. */
 export const microPathDefinitions: Record<string, string[]> = {
@@ -77,6 +77,86 @@ const reviewedCategories: string[] = [
   'emergency',
   'dining',
 ]
+// Five bounded micro-only targets. Ordinary source questions are never mutated.
+const revisedTargets: Record<
+  string,
+  {
+    text: string
+    hintZh: string
+    answers: [string, string]
+    values: [string, string]
+  }
+> = {
+  'restaurant.phrase.on-the-side.A1': {
+    text: 'Chilli mixed into the pasta, or on the side?',
+    hintZh: '选择辣椒另放，或拌入少量辣椒。另放不等于完全不加。',
+    answers: ['Chilli on the side, please.', 'Please mix in a little chilli.'],
+    values: ['separate', 'mixed'],
+  },
+  'restaurant.phrase.on-the-side.A2': {
+    text: 'Would you like a little chilli mixed into your pasta, or served on the side?',
+    hintZh: '礼貌说明辣椒另放，或在意面中加入少量辣椒。',
+    answers: [
+      'Could I have the chilli on the side?',
+      'Could you add a little chilli to the pasta?',
+    ],
+    values: ['separate', 'mixed'],
+  },
+  'restaurant.sentence.no-chilli.B1': {
+    text: 'Would you like chilli in your pasta, or would you prefer none? Tell me your preference.',
+    hintZh: '说明完全不加辣椒或加入一些辣椒，并给出偏好的原因。',
+    answers: [
+      'I would like no chilli because I prefer the dish mild.',
+      'I would like some chilli because I enjoy a little heat.',
+    ],
+    values: ['no', 'add'],
+  },
+  'restaurant.sentence.no-chilli.B2': {
+    text: 'Would you like the chilli left out or a little added, while keeping the other ingredients unchanged?',
+    hintZh: '明确只省略辣椒或添加少量辣椒，其他配料保持不变。',
+    answers: [
+      'Please leave the chilli out; the other ingredients can stay as they are.',
+      'Please add a little chilli; the other ingredients can stay as they are.',
+    ],
+    values: ['no', 'add'],
+  },
+  'restaurant.sentence.no-chilli.C1': {
+    text: 'How would you make clear whether chilli should be omitted or added, without suggesting changes to the rest of the dish?',
+    hintZh: '强调省略的只是辣椒，或欢迎少量辣椒；不要把偏好说成改动整道菜。',
+    answers: [
+      'It is the chilli I would like omitted, not a request to simplify the entire dish.',
+      'A small amount of chilli is welcome; I am not asking for the dish to be completely mild.',
+    ],
+    values: ['no', 'add'],
+  },
+}
+function revisedTarget(
+  entryId: string,
+  pack: GradedPack,
+): GradedQuestion | undefined {
+  const material = revisedTargets[`${entryId}.${pack.level}`]
+  if (!material) return undefined
+  const original = pack.questions.find(
+    (q) => q.id === `restaurant-order.${pack.level}.chilli`,
+  )!
+  const review = {
+    state: 'model-reviewed' as const,
+    record: `micro-practice-review.md#dining-v2: ${entryId}.${pack.level}; complete effective path review, not teacher certification`,
+  }
+  return {
+    ...original,
+    text: material.text,
+    hintZh: material.hintZh,
+    answers: material.answers.map((text, index) => ({
+      id: original.answers[index].id,
+      text,
+      acceptedForms: [text],
+      effects: [{ key: 'chilli', value: material.values[index] }],
+      review,
+    })) as GradedQuestion['answers'],
+    review,
+  }
+}
 export function buildMicroPractices(
   packs: GradedPack[],
   analyses: AnalysisEntry[],
@@ -104,11 +184,14 @@ export function buildMicroPractices(
         })
         if (targets.some((question) => !questionIds.includes(question.id)))
           throw Error('MICRO_TARGET_MISSING')
+        const targetQuestionOverride = revisedTarget(entry.id, pack)
         return [
           {
             schemaVersion: 1 as const,
             id: `micro.${entry.id}.${pack.level}`,
-            version: 1 as const,
+            ...(targetQuestionOverride
+              ? { version: 2 as const, targetQuestionOverride }
+              : { version: 1 as const }),
             analysisEntryId: entry.id,
             sceneId: pack.sceneId,
             level: pack.level,
@@ -124,7 +207,7 @@ export function buildMicroPractices(
               state: reviewedCategories.includes(pack.category)
                 ? ('model-reviewed' as const)
                 : ('draft' as const),
-              record: `micro-practice-review.md#${pack.category}: ${pack.level} ${entry.id}; complete authored path review, not teacher certification`,
+              record: `micro-practice-review.md#${targetQuestionOverride ? 'dining-v2' : pack.category}: ${pack.level} ${entry.id}; complete authored path review, not teacher certification`,
             },
           },
         ]
