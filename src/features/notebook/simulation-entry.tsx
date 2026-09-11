@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import type { NotebookEntry } from '@/domain/notebook/types'
+import type { TaskProvenance } from '@/domain/goals/types'
 import {
   createIndexedDbRepositories,
   type Repositories,
@@ -28,12 +29,14 @@ export function SimulationEntry({
   repositories,
   fetcher = fetch,
   onCreated = openCreated,
+  taskProvenance,
 }: {
   noteId: string
   sourceId?: string
   repositories?: Repositories
   fetcher?: typeof fetch
-  onCreated?: (id: string) => void
+  onCreated?: (id: string) => void | Promise<void>
+  taskProvenance?: TaskProvenance
 }) {
   const [repo] = useState(() => repositories ?? createIndexedDbRepositories())
   const [note, setNote] = useState<NotebookEntry>()
@@ -124,7 +127,18 @@ export function SimulationEntry({
     try {
       pending.current ??= {
         kind: 'create',
-        session: newSimulation(note, source, option),
+        session: {
+          ...newSimulation(note, source, option),
+          ...(taskProvenance ? { provenance: taskProvenance } : {}),
+        },
+        ...(taskProvenance
+          ? {
+              taskLaunch: {
+                planId: taskProvenance.planId,
+                taskId: taskProvenance.sourceTaskId,
+              },
+            }
+          : {}),
         simulationMaterial: {
           analysis: option.analysis,
           sourcePack: option.sourcePack,
@@ -135,13 +149,14 @@ export function SimulationEntry({
       const saved = await repo.practice.commit(pending.current)
       setCreated(saved.record.session.id)
       try {
-        onCreated?.(saved.record.session.id)
+        await onCreated?.(saved.record.session.id)
       } catch {
         setAddressError(true)
       }
     } catch {
       setError(
-        '未能确认本机保存。请重试同一次创建，或返回重新读取词句；不会自动替换来源。',
+        (taskProvenance ? '词句已保存，练习尚未开始。' : '') +
+          '未能确认本机保存。请重试同一次创建，或返回重新读取词句；不会自动替换来源。',
       )
     } finally {
       lock.current = false
@@ -169,7 +184,7 @@ export function SimulationEntry({
     <main className={styles.page}>
       <ExitGuard
         state={busy ? 'processing' : 'clean'}
-        fallbackHref="/notebook"
+        fallbackHref={taskProvenance?.returnTo ?? '/notebook'}
         onConfirmExit={() => {}}
       />
       <h1 data-page-title tabIndex={-1}>
@@ -263,6 +278,9 @@ export function SimulationEntry({
         </>
       ) : null}
       <div className={styles.actions}>
+        {taskProvenance ? (
+          <a href={taskProvenance.returnTo}>返回原计划</a>
+        ) : null}
         <a href="/notebook">返回记录簿</a>
         <a href="/privacy">导出本机数据</a>
       </div>

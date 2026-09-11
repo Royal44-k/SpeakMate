@@ -27,6 +27,8 @@ describe('installed production offline artifact binding', () => {
         'notebook',
         'notebook/note',
         'notebook/simulation',
+        'rewards',
+        'guide',
       ])
         await put(`.next/server/app/${name}.html`, '<html>shell</html>')
       for (const name of [
@@ -83,6 +85,8 @@ describe('installed production offline artifact binding', () => {
           '/notebook',
           '/notebook/note',
           '/notebook/simulation',
+          '/rewards',
+          '/guide',
         ]),
       )
       expect(

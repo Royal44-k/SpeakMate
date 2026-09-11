@@ -134,7 +134,11 @@ describe.each([
       }
     } else restored = await repository.practice.read(session.id)
     expect(restored).toEqual(saved)
-    expect((await repository.exportLearnerData()).learningEvents).toEqual([])
+    const afterRestore = await repository.exportLearnerData()
+    expect(afterRestore.learningEvents).toHaveLength(
+      saved.session.status === 'completed' ? 1 : 0,
+    )
+    expect(afterRestore.pointsLedger).toEqual([])
   })
   it('serializes an advance against stop without dropping a committed input', async () => {
     const repository = make()
@@ -307,7 +311,14 @@ describe.each([
       ).record,
     ).toEqual(finished.record)
     await repository.practice.read(session.id)
-    expect((await repository.exportLearnerData()).learningEvents).toEqual([])
+    const afterRead = await repository.exportLearnerData()
+    expect(afterRead.learningEvents).toHaveLength(1)
+    expect(afterRead.learningEvents[0]).toMatchObject({
+      type: 'session-completed',
+      sessionId: session.id,
+      evidence: finished.record.session.completionEvidence,
+    })
+    expect(afterRead.pointsLedger).toEqual([])
     await expect(
       repository.practice.commit({
         kind: 'stop',

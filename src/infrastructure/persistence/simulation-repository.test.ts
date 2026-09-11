@@ -308,7 +308,13 @@ describe.each([
     expect(current.simulation).toEqual(retained)
     expect(current.completionEvidence?.requiredUserTurns).toBe(3)
     const backup = await repo.exportLearnerData()
-    expect(backup.learningEvents).toEqual([])
+    expect(backup.learningEvents).toHaveLength(1)
+    expect(backup.learningEvents[0]).toMatchObject({
+      type: 'simulation-completed',
+      sessionId: current.id,
+      compositionText: current.simulation?.composition?.text,
+      evidence: current.completionEvidence,
+    })
     expect(backup.pointsLedger).toEqual([])
     const missingEvidence = structuredClone(backup)
     delete missingEvidence.sessions[0].completionEvidence

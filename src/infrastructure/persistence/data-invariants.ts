@@ -1,8 +1,13 @@
 import type { LearningEvent } from '@/domain/goals/types'
-import { stableId } from './identity'
+import { stableId, canonical } from './identity'
 export { canonical } from './identity'
 import { normalizeNotebookText, notebookIdentityMap } from './notebook-data'
 import type { DataState } from './storage'
+import {
+  qualifiesTaskCompletion,
+  simulationSelection,
+} from '@/domain/goals/task-policy'
+import { rewardById } from '@/domain/goals/rewards'
 
 export function beijingDateKey(iso: string): string {
   return new Date(Date.parse(iso) + 8 * 60 * 60 * 1000)
@@ -179,6 +184,11 @@ export function validateRelations(state: DataState): void {
     )
     for (const task of plan.tasks) {
       requireValid(
+        task.target.kind !== 'simulation-choice' ||
+          task.status === 'not-started',
+        'MATERIAL_CHOICE_REQUIRED',
+      )
+      requireValid(
         task.optional === (task.slot === 'extension') &&
           (task.optional || task.enabled),
         'INVALID_OPTIONAL_SLOT',
@@ -225,14 +235,58 @@ export function validateRelations(state: DataState): void {
         warmup: 'warmup-completed',
         scene: 'session-completed',
         simulation: 'simulation-completed',
+        'simulation-choice': 'not-completable',
       }[task.target.kind]
       requireValid(event.type === expected, 'TASK_EVIDENCE_MISMATCH')
+      if (
+        event.type === 'warmup-completed' ||
+        ((event.type === 'session-completed' ||
+          event.type === 'simulation-completed') &&
+          event.evidence)
+      )
+        requireValid(
+          qualifiesTaskCompletion(task, event),
+          'TASK_EVIDENCE_MISMATCH',
+        )
     }
     if ('sessionId' in event && sessions.has(event.sessionId))
       requireValid(
         sessions.get(event.sessionId)?.profileId === event.profileId,
         'EVENT_OWNER_MISMATCH',
       )
+    if (
+      (event.type === 'session-completed' ||
+        event.type === 'simulation-completed') &&
+      event.evidence
+    ) {
+      requireValid(
+        event.evidence.sessionId === event.sessionId &&
+          event.evidence.confirmedAt === event.occurredAt,
+        'EVENT_EVIDENCE_MISMATCH',
+      )
+      const session = sessions.get(event.sessionId)
+      if (session) {
+        requireValid(
+          session.status === 'completed' &&
+            canonical(session.completionEvidence) ===
+              canonical(event.evidence) &&
+            canonical(session.provenance) === canonical(event.provenance),
+          'EVENT_EVIDENCE_MISMATCH',
+        )
+        if (event.type === 'simulation-completed')
+          requireValid(
+            session.simulation &&
+              event.compositionText === session.simulation.composition?.text &&
+              event.recallCompleted === !!session.simulation.recall &&
+              canonical(event.noteIds) ===
+                canonical(session.simulation.noteIds) &&
+              canonical(event.selection) ===
+                canonical(simulationSelection(session)),
+            'EVENT_EVIDENCE_MISMATCH',
+          )
+        else requireValid(!session.simulation, 'EVENT_EVIDENCE_MISMATCH')
+      }
+    }
     if (event.type === 'turn-completed' && turns.has(event.turnId))
       requireValid(
         turns.get(event.turnId)?.sessionId === event.sessionId,
@@ -367,7 +421,22 @@ export function validateRelations(state: DataState): void {
           task?.status === 'completed' && task.completionEventId === event.id,
           'UNSETTLED_TASK_GRANT',
         )
+        requireValid(
+          entry.ruleVersion === 1 &&
+            entry.delta === 10 &&
+            (task?.optional
+              ? entry.ruleId === 'goal-extension'
+              : ['goal-core', 'core-task'].includes(entry.ruleId)),
+          'INVALID_TASK_GRANT',
+        )
       }
+      if (event.type === 'daily-plan-completed')
+        requireValid(
+          entry.ruleVersion === 1 &&
+            entry.ruleId === 'goal-all-core' &&
+            entry.delta === 5,
+          'INVALID_BONUS_GRANT',
+        )
     } else
       requireValid(event.type === 'reward-redeemed', 'INVALID_REDEMPTION_EVENT')
     balance += entry.delta
@@ -375,6 +444,17 @@ export function validateRelations(state: DataState): void {
   }
   requireValid(balance >= 0, 'INSUFFICIENT_POINTS')
   for (const unlock of state.rewardUnlocks) {
+    const reward = rewardById(unlock.rewardId)
+    const spends = state.pointsLedger.filter(
+      (entry) => entry.eventId === unlock.eventId,
+    )
+    requireValid(
+      spends.length === 1 &&
+        spends[0].delta === -reward.price &&
+        spends[0].ruleId === 'reward-redeem' &&
+        spends[0].ruleVersion === 1,
+      'INVALID_REWARD_PRICE',
+    )
     owns(unlock.profileId)
     const event = events.get(unlock.eventId)
     requireValid(
@@ -394,4 +474,16 @@ export function validateRelations(state: DataState): void {
       state.rewardUnlocks.some((unlock) => unlock.eventId === event.id),
       'MISSING_REWARD_UNLOCK',
     )
+  for (const settings of state.settings)
+    for (const [id, kind] of [
+      [settings.appliedProfileStyle, 'profile'],
+      [settings.appliedGoalCover, 'cover'],
+    ] as const)
+      if (id) {
+        requireValid(
+          rewardById(id).kind === kind &&
+            state.rewardUnlocks.some((u) => u.rewardId === id),
+          'INVALID_APPLIED_REWARD',
+        )
+      }
 }

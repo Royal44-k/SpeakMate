@@ -24,11 +24,16 @@ import type {
   LearnerProfile,
 } from '@/domain/learning/types'
 import type { PracticeSession } from '@/domain/practice/types'
-import { createIndexedDbRepositories } from '@/infrastructure/persistence/repositories'
+import {
+  createIndexedDbRepositories,
+  type Repositories,
+} from '@/infrastructure/persistence/repositories'
 
 import styles from './learning-center.module.css'
 
-export function LearningCenter() {
+export function LearningCenter({
+  repositories: providedRepositories,
+}: { repositories?: Repositories } = {}) {
   const [profile, setProfile] = useState<LearnerProfile | null>(null)
   const [sessions, setSessions] = useState<PracticeSession[]>([])
   const [favorites, setFavorites] = useState<FavoriteExpression[]>([])
@@ -38,16 +43,19 @@ export function LearningCenter() {
   const [loadError, setLoadError] = useState(false)
   const [loadedAt] = useState(() => Date.now())
   const [retained, setRetained] = useState<PracticeRecord>()
+  const [profileStyle, setProfileStyle] = useState<string>()
 
   useEffect(() => {
     let active = true
     async function load() {
-      const repositories = createIndexedDbRepositories()
-      const [learner, savedSessions, savedFavorites] = await Promise.all([
-        repositories.profiles.ensureGuestProfile(),
-        repositories.sessions.list(),
-        repositories.favorites.list(),
-      ])
+      const repositories = providedRepositories ?? createIndexedDbRepositories()
+      const [learner, savedSessions, savedFavorites, settings] =
+        await Promise.all([
+          repositories.profiles.ensureGuestProfile(),
+          repositories.sessions.list(),
+          repositories.favorites.list(),
+          repositories.learning.getSettings(),
+        ])
       if (!active) return
       const latest = savedSessions.sort((a, b) =>
         b.updatedAt.localeCompare(a.updatedAt),
@@ -59,6 +67,7 @@ export function LearningCenter() {
       )
       if (!active) return
       setProfile(learner)
+      setProfileStyle(settings.appliedProfileStyle)
       setSessions(latest)
       setRecords(
         Object.fromEntries(
@@ -77,7 +86,7 @@ export function LearningCenter() {
     return () => {
       active = false
     }
-  }, [])
+  }, [providedRepositories])
 
   const completedThisWeek = useMemo(() => {
     const cutoff = loadedAt - 7 * 24 * 60 * 60 * 1_000
@@ -103,7 +112,7 @@ export function LearningCenter() {
   return (
     <AppShell activeDestination="me">
       <div className={styles.page}>
-        <header>
+        <header data-profile-style={profileStyle}>
           <div>
             <p>LEARNING CENTER</p>
             <h1 data-page-title tabIndex={-1}>

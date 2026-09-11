@@ -75,6 +75,8 @@ export const settingsSchema = z.strictObject({
   speechRate: z.number().min(0.1).max(10),
   autoPlayAi: z.boolean(),
   feedbackExpanded: z.boolean(),
+  appliedProfileStyle: idSchema.optional(),
+  appliedGoalCover: idSchema.optional(),
   updatedAt: isoSchema,
 })
 export const favoriteSchema = z.strictObject({
@@ -403,7 +405,17 @@ export const reviewSchema = z.strictObject({
   nextReviewAt: isoSchema,
   nextReviewDateKey: daySchema,
 })
+export const simulationSelectionSchema = z.strictObject({
+  schemaVersion: z.literal(1),
+  noteId: idSchema,
+  sourceId: idSchema,
+  sourceLevel: level,
+  descriptorId: idSchema,
+  descriptorVersion: z.union([z.literal(1), z.literal(2)]),
+  sourceContentVersion: positive,
+})
 const target = z.discriminatedUnion('kind', [
+  z.strictObject({ kind: z.literal('simulation-choice') }),
   z.strictObject({
     kind: z.literal('warmup'),
     noteIds: ids,
@@ -415,11 +427,21 @@ const target = z.discriminatedUnion('kind', [
     sceneId: idSchema,
     sceneVersion: positive,
     requiredUserTurns: positive,
+    selection: z
+      .strictObject({
+        schemaVersion: z.literal(1),
+        level,
+        mode: z.enum(['short', 'standard', 'extended']),
+        variantId: idSchema,
+        contentVersion: positive,
+      })
+      .optional(),
   }),
   z.strictObject({
     kind: z.literal('simulation'),
     noteIds: ids,
     requiredUserTurns: z.union([z.literal(3), z.literal(4), z.literal(5)]),
+    selection: simulationSelectionSchema.optional(),
   }),
 ])
 export const planSchema = z.strictObject({
@@ -484,6 +506,7 @@ export const eventSchema = z.discriminatedUnion('type', [
     ...eventBase,
     type: z.literal('session-completed'),
     sessionId: idSchema,
+    evidence: completionEvidenceSchema.optional(),
   }),
   z.strictObject({
     ...eventBase,
@@ -491,6 +514,17 @@ export const eventSchema = z.discriminatedUnion('type', [
     runId: idSchema,
     recalledNoteIds: ids,
     recalledStarterExpressionIds: ids,
+    recallResponses: z
+      .array(
+        z.strictObject({
+          id: idSchema,
+          kind: z.enum(['note', 'starter']),
+          text: textSchema.refine((value) => !!value.trim()),
+        }),
+      )
+      .min(1)
+      .max(1000)
+      .optional(),
   }),
   z.strictObject({
     ...eventBase,
@@ -501,6 +535,8 @@ export const eventSchema = z.discriminatedUnion('type', [
     recallCompleted: z.boolean(),
     compositionText: textSchema,
     completedUserTurns: nonnegative,
+    evidence: completionEvidenceSchema.optional(),
+    selection: simulationSelectionSchema.optional(),
   }),
   z.strictObject({
     ...eventBase,

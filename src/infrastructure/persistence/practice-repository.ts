@@ -28,6 +28,14 @@ import {
   type MicroPracticeDescriptor,
 } from '@/content/micro-practice'
 import { canonical } from './identity'
+import {
+  launchTask,
+  validateTaskSession,
+  practiceCompletionEvent,
+  settleTaskCompletion,
+} from '@/domain/goals/task-policy'
+import { learningState, appendImmutable } from './learning-repository'
+import { validateState } from './backup-merge'
 
 export interface PracticeRecord {
   session: PracticeSession
@@ -39,6 +47,7 @@ export type PracticeChange =
   | {
       kind: 'create'
       session: PracticeSession
+      taskLaunch?: { planId: string; taskId: string }
       simulationMaterial?: {
         analysis: AnalysisEntry
         sourcePack: GradedPack
@@ -334,7 +343,34 @@ export function createPracticeRepository(
           if (state.turns.some((turn) => turn.sessionId === candidate.id))
             fail('CREATE_CONFLICT')
           validateSimulationCreate(state, candidate, change.simulationMaterial)
+          if (change.taskLaunch) {
+            const plan = state.dailyPlans.find(
+              (p) => p.id === change.taskLaunch!.planId,
+            )
+            if (!plan) fail('TASK_PLAN_MISSING')
+            put(
+              state.dailyPlans,
+              launchTask(plan!, change.taskLaunch.taskId, candidate),
+            )
+          } else if (candidate.provenance) {
+            const plan = state.dailyPlans.find(
+              (p) => p.id === candidate.provenance!.planId,
+            )
+            const task = plan?.tasks.find(
+              (t) => t.id === candidate.provenance!.sourceTaskId,
+            )
+            if (
+              !plan ||
+              !task ||
+              task.status === 'not-started' ||
+              plan.profileId !== candidate.profileId ||
+              plan.dateKey !== candidate.provenance.planDate
+            )
+              fail('TASK_PROVENANCE_MISMATCH')
+            validateTaskSession(task!, candidate)
+          }
           put(state.sessions, candidate)
+          if (candidate.provenance || change.taskLaunch) validateState(state)
           return { applied: true, record: initial }
         }
         const expected = sessionSchema.parse(change.expected) as PracticeSession
@@ -471,10 +507,6 @@ export function createPracticeRepository(
             fail('SIMULATION_PHASE')
           const flow = practiceFlow(snapshot)
           if (!flow.basis) fail('FINISH_INELIGIBLE')
-          // Task 5 inserts its actual synchronous policy/event/plan/ledger effects
-          // HERE, inside this same storage.change after fresh evidence validation.
-          // Do not activate task-linked finish before that atomic integration exists.
-          if (current.provenance) fail('TASK_SETTLEMENT_NOT_CONNECTED')
           const completionEvidence = completionEvidenceSchema.parse({
             schemaVersion: 1,
             ruleVersion: 1,
@@ -505,6 +537,22 @@ export function createPracticeRepository(
           ),
         )
         put(state.sessions, next)
+        if (change.kind === 'finish') {
+          const event = practiceCompletionEvent(next)
+          const effects = settleTaskCompletion(
+            learningState(state, next.profileId),
+            event,
+          )
+          if (effects.dailyPlan) put(state.dailyPlans, effects.dailyPlan)
+          appendImmutable(state.learningEvents, [
+            event,
+            ...(effects.dailyPlanCompletion
+              ? [effects.dailyPlanCompletion]
+              : []),
+          ])
+          appendImmutable(state.pointsLedger, effects.pointsLedger ?? [])
+          validateState(state)
+        }
         return { applied: true, record: coherent }
       }),
   }

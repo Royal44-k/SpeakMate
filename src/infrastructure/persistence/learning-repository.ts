@@ -6,11 +6,23 @@ import type {
 } from '@/domain/goals/types'
 import type { ReviewRecord } from '@/domain/notebook/types'
 import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
-import { planSchema, eventSchema } from './backup-schemas'
+import {
+  planSchema,
+  eventSchema,
+  settingsSchema,
+  isoSchema,
+  profileSchema,
+} from './backup-schemas'
 import { validateState } from './backup-merge'
 import { canonical, learningEventId } from './data-invariants'
 import { put, type DataState, type LocalStoragePort } from './storage'
 import { notebookIdentityMap } from './notebook-data'
+import type { LearnerSettings, LearnerProfile } from '@/domain/learning/types'
+import { createDailyPlan, reconfigureDailyPlan } from '@/domain/goals/planner'
+import { DEFAULT_LEARNER_SETTINGS } from './learner-settings'
+import { rewardById } from '@/domain/goals/rewards'
+import { stableId } from './identity'
+import { beijingDateKey } from './data-invariants'
 
 export { learningEventId, beijingDateKey } from './data-invariants'
 export { stableId } from './identity'
@@ -22,6 +34,7 @@ export interface LearningState {
   rewardUnlocks: RewardUnlock[]
 }
 export interface LearningEffects {
+  dailyPlanCompletion?: Extract<LearningEvent, { type: 'daily-plan-completed' }>
   dailyPlan?: DailyPlan
   review?: ReviewRecord
   pointsLedger?: PointsLedgerEntry[]
@@ -30,6 +43,22 @@ export interface LearningEffects {
   turn?: PracticeTurn
 }
 export interface LearningRepository {
+  changeDailyMinutes(
+    profileId: string,
+    minutes: 5 | 10 | 15,
+    at: string,
+  ): Promise<{ profile: LearnerProfile; plan: DailyPlan }>
+  getSettings(): Promise<LearnerSettings>
+  redeemReward(
+    profileId: string,
+    rewardId: string,
+    at: string,
+  ): Promise<{ status: 'redeemed' | 'already-owned' }>
+  applyReward(
+    profileId: string,
+    rewardId: string,
+    at: string,
+  ): Promise<LearnerSettings>
   getState(profileId: string): Promise<LearningState>
   getDailyPlan(profileId: string, day: string): Promise<DailyPlan | undefined>
   ensureDailyPlan(candidate: DailyPlan): Promise<DailyPlan>
@@ -46,7 +75,7 @@ export interface LearningRepository {
   ): Promise<{ applied: boolean; state: LearningState }>
 }
 
-function learningState(state: DataState, id: string): LearningState {
+export function learningState(state: DataState, id: string): LearningState {
   const owned = <T extends { profileId: string }>(rows: T[]) =>
     structuredClone(rows.filter((row) => row.profileId === id))
   return {
@@ -110,7 +139,7 @@ function validatePlanUpdate(
       throw new Error('COMPLETION_REQUIRES_EVENT')
   }
 }
-function appendImmutable<T extends { id: string }>(
+export function appendImmutable<T extends { id: string }>(
   rows: T[],
   incoming: T[],
 ): void {
@@ -126,6 +155,107 @@ export function createLearningRepository(
   storage: LocalStoragePort,
 ): LearningRepository {
   return {
+    changeDailyMinutes: (profileId, minutes, at) =>
+      storage.change((state) => {
+        const current = state.profile.find((p) => p.id === profileId)
+        if (!current) throw new Error('PROFILE_NOT_FOUND')
+        const profile = profileSchema.parse({
+          ...current,
+          dailyMinutes: minutes,
+          updatedAt: at,
+        })
+        const existing = state.dailyPlans.find(
+          (p) => p.profileId === profileId && p.dateKey === beijingDateKey(at),
+        )
+        const plan = planSchema.parse(
+          existing
+            ? reconfigureDailyPlan(existing, minutes, at)
+            : createDailyPlan({
+                profile,
+                at,
+                notes: state.notebook,
+                reviews: state.reviews,
+                sessions: state.sessions,
+              }),
+        )
+        if (existing) validatePlanUpdate(existing, plan)
+        put(state.profile, profile)
+        put(state.dailyPlans, plan)
+        validateState(state)
+        return { profile, plan }
+      }),
+    getSettings: () =>
+      storage.read((state) => state.settings[0] ?? DEFAULT_LEARNER_SETTINGS),
+    redeemReward: (profileId, rewardId, at) =>
+      storage.change((state) => {
+        const reward = rewardById(rewardId)
+        if (!state.profile.some((p) => p.id === profileId))
+          throw new Error('PROFILE_NOT_FOUND')
+        if (
+          state.rewardUnlocks.some(
+            (u) => u.profileId === profileId && u.rewardId === rewardId,
+          )
+        )
+          return { status: 'already-owned' as const }
+        const timestamp = isoSchema.parse(at)
+        const balance = state.pointsLedger
+          .filter((r) => r.profileId === profileId)
+          .reduce((n, r) => n + r.delta, 0)
+        if (balance < reward.price) throw new Error('INSUFFICIENT_POINTS')
+        const event: LearningEvent = {
+          id: stableId('reward-redeemed', profileId, rewardId),
+          type: 'reward-redeemed',
+          profileId,
+          rewardId,
+          occurredAt: timestamp,
+          dateKey: beijingDateKey(timestamp),
+        }
+        appendImmutable(state.learningEvents, [event])
+        appendImmutable(state.pointsLedger, [
+          {
+            id: stableId('reward-spend', profileId, rewardId),
+            profileId,
+            eventId: event.id,
+            ruleId: 'reward-redeem',
+            ruleVersion: 1,
+            delta: -reward.price,
+            createdAt: timestamp,
+          },
+        ])
+        appendImmutable(state.rewardUnlocks, [
+          {
+            id: stableId('reward-owned', profileId, rewardId),
+            profileId,
+            eventId: event.id,
+            rewardId,
+            unlockedAt: timestamp,
+          },
+        ])
+        validateState(state)
+        return { status: 'redeemed' as const }
+      }),
+    applyReward: (profileId, rewardId, at) =>
+      storage.change((state) => {
+        const reward = rewardById(rewardId)
+        if (
+          !state.rewardUnlocks.some(
+            (u) => u.profileId === profileId && u.rewardId === rewardId,
+          )
+        )
+          throw new Error('REWARD_NOT_OWNED')
+        if (reward.kind === 'sheet') throw new Error('REWARD_NOT_APPLICABLE')
+        const settings = settingsSchema.parse({
+          ...DEFAULT_LEARNER_SETTINGS,
+          ...state.settings[0],
+          [reward.kind === 'profile'
+            ? 'appliedProfileStyle'
+            : 'appliedGoalCover']: rewardId,
+          updatedAt: at,
+        })
+        put(state.settings, settings)
+        validateState(state)
+        return settings
+      }),
     getState: (id) => storage.read((state) => learningState(state, id)),
     getDailyPlan: (id, day) =>
       storage.read((state) =>
@@ -186,6 +316,14 @@ export function createLearningRepository(
             state: learningState(state, event.profileId),
           }
         }
+        if (
+          (event.type === 'session-completed' ||
+            event.type === 'simulation-completed') &&
+          (event.evidence ||
+            state.sessions.find((session) => session.id === event.sessionId)
+              ?.gradedDialogue)
+        )
+          throw new Error('PRACTICE_GUARDED_WRITE_REQUIRED')
         const effects = derive(learningState(state, event.profileId))
         if (effects instanceof Promise)
           throw new Error('ASYNC_TRANSACTION_CALLBACK')
@@ -196,7 +334,14 @@ export function createLearningRepository(
             ...(effects.review ? [effects.review] : []),
           ].some(
             (item) =>
-              item.eventId !== event.id || item.profileId !== event.profileId,
+              (item.eventId !== event.id &&
+                !(
+                  effects.dailyPlanCompletion &&
+                  item.eventId === effects.dailyPlanCompletion.id &&
+                  'ruleId' in item &&
+                  item.ruleId === 'goal-all-core'
+                )) ||
+              item.profileId !== event.profileId,
           )
         )
           throw new Error('EFFECT_EVENT_MISMATCH')
@@ -235,6 +380,17 @@ export function createLearningRepository(
         if (effects.turn) put(state.turns, effects.turn)
         appendImmutable(state.pointsLedger, effects.pointsLedger ?? [])
         appendImmutable(state.rewardUnlocks, effects.rewardUnlocks ?? [])
+        if (effects.dailyPlanCompletion) {
+          const bonus = eventSchema.parse(effects.dailyPlanCompletion)
+          if (
+            bonus.type !== 'daily-plan-completed' ||
+            bonus.profileId !== event.profileId ||
+            bonus.planId !== effects.dailyPlan?.id ||
+            bonus.occurredAt !== event.occurredAt
+          )
+            throw new Error('BONUS_EVENT_MISMATCH')
+          appendImmutable(state.learningEvents, [bonus])
+        }
         state.learningEvents.push(event)
         validateState(state)
         return { applied: true, state: learningState(state, event.profileId) }

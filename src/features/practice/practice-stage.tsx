@@ -61,6 +61,7 @@ export function PracticeStage({
     ['recording', 'requesting-permission'].includes(status)
   const latest = view?.history.at(-1)
   const prepareHref =
+    practice.record?.session.provenance?.returnTo ??
     practice.record?.session.simulation?.returnTo ??
     exitHref ??
     buildLearningHref({
@@ -249,7 +250,11 @@ export function PracticeStage({
             轮。到上限可能仍有目标未确认，可结束后开启新一轮，不代表练习失败。
           </p>
         </section>
-        {[practice.settingsError, practice.speechError]
+        {[
+          practice.settingsError,
+          practice.speechError,
+          practice.foreground.error,
+        ]
           .filter(Boolean)
           .map((notice) => (
             <p key={notice} className={styles.storageNotice} role="status">

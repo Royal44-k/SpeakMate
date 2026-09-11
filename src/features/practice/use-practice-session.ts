@@ -34,6 +34,7 @@ import {
   loadLearnerSettings,
 } from '@/infrastructure/persistence/learner-settings'
 import { replaceCreatedSessionId } from '@/components/app-shell/learning-routes'
+import { useForegroundTime } from '@/features/goals/use-foreground-time'
 
 const createId = (prefix: string) =>
   `${prefix}_${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`
@@ -59,6 +60,12 @@ export function usePracticeSession(
     () => repositories ?? createIndexedDbRepositories(),
   )
   const [record, setRecord] = useState<PracticeRecord>()
+  const foreground = useForegroundTime(
+    repository,
+    record?.session.profileId,
+    record?.session.id,
+    record?.session.status === 'active',
+  )
   const [simulationDraft, setSimulationDraft] = useState<SimulationDraft>()
   const recordRef = useRef<PracticeRecord | undefined>(undefined)
   const [machine, setMachine] = useState<PracticeState>(INITIAL_PRACTICE_STATE)
@@ -570,6 +577,7 @@ export function usePracticeSession(
       )
     : undefined
   return {
+    foreground,
     sessionId: record?.session.id ?? requestedId,
     record,
     view,

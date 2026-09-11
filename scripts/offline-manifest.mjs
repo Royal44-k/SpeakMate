@@ -16,6 +16,8 @@ const SHELLS = [
   '/notebook',
   '/notebook/note',
   '/notebook/simulation',
+  '/rewards',
+  '/guide',
 ]
 const CATEGORIES = [
   'travel',

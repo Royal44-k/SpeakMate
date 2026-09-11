@@ -1,4 +1,5 @@
 import type { CefrLevel, SceneCategory } from '@/domain/scenes/types'
+import type { PracticeCompletionEvidence } from '@/domain/practice/graded-evidence'
 
 export type TaskSlot = 'warmup' | 'scene' | 'consolidation' | 'extension'
 export interface TaskProvenance {
@@ -9,6 +10,7 @@ export interface TaskProvenance {
   returnTo: string
 }
 export type TaskTarget =
+  | { kind: 'simulation-choice' }
   | {
       kind: 'warmup'
       noteIds: string[]
@@ -20,8 +22,30 @@ export type TaskTarget =
       sceneId: string
       sceneVersion: number
       requiredUserTurns: number
+      selection?: {
+        schemaVersion: 1
+        level: CefrLevel
+        mode: 'short' | 'standard' | 'extended'
+        variantId: string
+        contentVersion: number
+      }
     }
-  | { kind: 'simulation'; noteIds: string[]; requiredUserTurns: 3 | 4 | 5 }
+  | {
+      kind: 'simulation'
+      noteIds: string[]
+      requiredUserTurns: 3 | 4 | 5
+      selection?: SimulationSelection
+    }
+
+export interface SimulationSelection {
+  schemaVersion: 1
+  noteId: string
+  sourceId: string
+  sourceLevel: CefrLevel
+  descriptorId: string
+  descriptorVersion: 1 | 2
+  sourceContentVersion: number
+}
 
 export interface DailyPlanTask {
   id: string
@@ -66,12 +90,17 @@ export type LearningEvent = {
   provenance?: TaskProvenance
 } & (
   | { type: 'turn-completed'; sessionId: string; turnId: string }
-  | { type: 'session-completed'; sessionId: string }
+  | {
+      type: 'session-completed'
+      sessionId: string
+      evidence?: PracticeCompletionEvidence
+    }
   | {
       type: 'warmup-completed'
       runId: string
       recalledNoteIds: string[]
       recalledStarterExpressionIds: string[]
+      recallResponses?: { id: string; kind: 'note' | 'starter'; text: string }[]
     }
   | {
       type: 'simulation-completed'
@@ -81,6 +110,8 @@ export type LearningEvent = {
       recallCompleted: boolean
       compositionText: string
       completedUserTurns: number
+      evidence?: PracticeCompletionEvidence
+      selection?: SimulationSelection
     }
   | { type: 'review-completed'; noteId: string; reviewId: string }
   | { type: 'notebook-added'; noteId: string }

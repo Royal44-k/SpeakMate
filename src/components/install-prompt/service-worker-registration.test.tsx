@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import {
@@ -157,13 +157,15 @@ describe('ServiceWorkerRegistration', () => {
     render(<ServiceWorkerRegistrationComponent />)
 
     await screen.findByRole('status')
-    expect(document.documentElement).toHaveAttribute(
-      'data-update-notice-visible',
-      'true',
-    )
-    expect(
-      document.documentElement.style.getPropertyValue('--update-notice-height'),
-    ).not.toBe('')
+    await waitFor(() => {
+      expect(document.documentElement).toHaveAttribute(
+        'data-update-notice-visible',
+        'true',
+      )
+      expect(
+        document.documentElement.style.getPropertyValue('--update-notice-height'),
+      ).not.toBe('')
+    })
 
     fireEvent.click(screen.getByRole('button', { name: '稍后' }))
 

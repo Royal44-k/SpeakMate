@@ -379,5 +379,11 @@ it('uses real entry, local lookup and repository: explicit source launch creates
   expect(
     screen.getByRole('link', { name: '返回词句或记录簿' }),
   ).toHaveAttribute('href', '/notebook')
-  expect((await repo.exportLearnerData()).learningEvents).toEqual([])
+  const data = await repo.exportLearnerData()
+  expect(
+    data.learningEvents.filter(
+      (event) => event.type === 'simulation-completed',
+    ),
+  ).toHaveLength(1)
+  expect(data.pointsLedger).toEqual([])
 })

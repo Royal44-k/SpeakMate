@@ -26,5 +26,7 @@ export interface LearnerSettings {
   speechRate: number
   autoPlayAi: boolean
   feedbackExpanded: boolean
+  appliedProfileStyle?: string
+  appliedGoalCover?: string
   updatedAt: string
 }

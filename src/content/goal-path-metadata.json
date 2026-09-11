@@ -1,0 +1,2942 @@
+[
+  {
+    "sceneId": "emergency-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "desk",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "emergency-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "message",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "tutorial",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "study-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "workshop",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "conversation",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "social-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "consideration",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "team",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "work-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "handover",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "daily-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "travel-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "assistance",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planned",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planned",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planned",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planned",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "counter",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-01",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planned",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-02",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-03",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-04",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-05",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "A1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "A2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "B1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "B2",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "visit",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  },
+  {
+    "sceneId": "dining-06",
+    "level": "C1",
+    "contentVersion": 1,
+    "variantId": "planning",
+    "modes": { "short": 3, "standard": 6, "extended": 10 }
+  }
+]

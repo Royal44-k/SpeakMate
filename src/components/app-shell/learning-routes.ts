@@ -4,6 +4,7 @@ import {
   type CefrLevel,
 } from '@/domain/scenes/types'
 import type { DialogueMode } from '@/content/dialogues/graded/schema'
+import type { TaskSlot } from '@/domain/goals/types'
 
 type Options = {
   scene?: string
@@ -64,6 +65,8 @@ export function safeSourceHref(href?: string): string | undefined {
       '/me',
       '/privacy',
       '/install',
+      '/rewards',
+      '/guide',
       ...Object.values(paths),
     ].includes(url.pathname)
   )
@@ -78,27 +81,51 @@ export function safeSourceHref(href?: string): string | undefined {
     'category',
     'duration',
     'source',
+    'date',
+    'task',
   ]) {
     const values = url.searchParams.getAll(key)
     if (values.length !== 1) continue
     const value = values[0]
     const valid =
-      key === 'level'
-        ? CEFR_LEVELS.includes(value as CefrLevel)
-        : key === 'mode'
-          ? modes.includes(value)
-          : key === 'category'
-            ? SCENE_CATEGORIES.includes(
-                value as (typeof SCENE_CATEGORIES)[number],
-              )
-            : key === 'duration'
-              ? ['3', '5', '8', '10'].includes(value)
-              : key === 'scene'
-                ? value.length <= 100 && slug.test(value)
-                : opaque.test(value)
+      key === 'date'
+        ? url.pathname === '/' && validGoalDate(value)
+        : key === 'task'
+          ? url.pathname === '/' &&
+            ['warmup', 'scene', 'consolidation', 'extension'].includes(value)
+          : key === 'level'
+            ? CEFR_LEVELS.includes(value as CefrLevel)
+            : key === 'mode'
+              ? modes.includes(value)
+              : key === 'category'
+                ? SCENE_CATEGORIES.includes(
+                    value as (typeof SCENE_CATEGORIES)[number],
+                  )
+                : key === 'duration'
+                  ? ['3', '5', '8', '10'].includes(value)
+                  : key === 'scene'
+                    ? value.length <= 100 && slug.test(value)
+                    : opaque.test(value)
     if (valid) params.set(key, value)
   }
   return url.pathname + (params.size ? `?${params}` : '')
+}
+
+export function validGoalDate(date: string): boolean {
+  return (
+    /^\d{4}-\d{2}-\d{2}$/.test(date) &&
+    Number.isFinite(Date.parse(date + 'T00:00:00Z')) &&
+    new Date(date + 'T00:00:00Z').toISOString().slice(0, 10) === date
+  )
+}
+export function buildGoalHref(date: string, task?: TaskSlot): string {
+  if (
+    !validGoalDate(date) ||
+    (task !== undefined &&
+      !['warmup', 'scene', 'consolidation', 'extension'].includes(task))
+  )
+    throw new Error('目标来源参数无效。')
+  return `/?date=${date}${task ? `&task=${task}` : ''}`
 }
 
 export function parseLearningTarget(href: string): LearningTargetResult {

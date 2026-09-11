@@ -2,6 +2,22 @@ import { describe, expect, it, vi } from 'vitest'
 import * as routes from './learning-routes'
 
 describe('local learning route contract', () => {
+  it('keeps bounded original plan date and task through cross-shell sources without private text', () => {
+    const from = routes.buildGoalHref('2026-09-11', 'consolidation')
+    const href = routes.buildLearningHref({
+      kind: 'simulation',
+      id: 'saved-goal',
+      from,
+    })
+    expect(routes.parseLearningTarget(href)).toMatchObject({
+      status: 'valid',
+      target: { from },
+    })
+    expect(routes.safeSourceHref(from + '&text=private')).toBe(from)
+    expect(() => routes.buildGoalHref('2026-02-30', 'scene')).toThrow()
+    expect(routes.safeSourceHref('/rewards')).toBe('/rewards')
+    expect(routes.safeSourceHref('/guide')).toBe('/guide')
+  })
   it('separates supported stored record links from preserved IDs without loosening new routes', () => {
     for (const id of ['a'.repeat(121), '会话-旧记录', 'new']) {
       expect(routes.savedPracticeHref(id, 'session')).toBeUndefined()

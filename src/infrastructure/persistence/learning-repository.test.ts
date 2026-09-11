@@ -187,6 +187,14 @@ describe.each([
     const profile = await repository.profiles.ensureGuestProfile()
     await repository.learning.ensureDailyPlan(planFixture(profile.id))
     const first = completionFixture(profile.id)
+    await repository.learning.updateDailyPlan('plan_2026-09-08', (p) => ({
+      ...p,
+      tasks: p.tasks.map((t) =>
+        t.slot === 'warmup'
+          ? { ...t, status: 'started', startedAt: first.occurredAt }
+          : t,
+      ),
+    }))
     await repository.learning.recordEvent(first)
     const second: LearningEvent = {
       ...first,
@@ -217,6 +225,14 @@ describe.each([
     const profile = await repository.profiles.ensureGuestProfile()
     await repository.learning.ensureDailyPlan(planFixture(profile.id))
     const event = completionFixture(profile.id)
+    await repository.learning.updateDailyPlan('plan_2026-09-08', (p) => ({
+      ...p,
+      tasks: p.tasks.map((t) =>
+        t.slot === 'warmup'
+          ? { ...t, status: 'started', startedAt: event.occurredAt }
+          : t,
+      ),
+    }))
     await expect(
       repository.learning.recordEvent(event, () => ({
         pointsLedger: [
@@ -241,7 +257,7 @@ describe.each([
     expect((await repository.learning.getState(profile.id)).events).toEqual([])
   })
 
-  it('keeps redemption and unlock atomic, refuses overdraft, and retains only one owned reward', async () => {
+  it('rejects the pre-catalog synthetic reward atomically and preserves genuine earned state on restore', async () => {
     const repository = create()
     const profile = await repository.profiles.ensureGuestProfile()
     await repository.learning.ensureDailyPlan(planFixture(profile.id))
@@ -281,7 +297,7 @@ describe.each([
       occurredAt: '2026-09-09T00:00:00.000Z',
       dateKey: '2026-09-09',
     }
-    // Test-only prices exercise persistence atomicity; Task5 supplies actual catalogue policy.
+    // Task5 now rejects these old test-only prices. Real parallel catalog policy is covered in rewards.test.ts.
     const effects = {
       pointsLedger: [
         {
@@ -304,33 +320,19 @@ describe.each([
         },
       ],
     }
-    await Promise.all([
+    await expect(
       repository.learning.recordEvent(redeem, () => effects),
-      repository.learning.recordEvent(redeem, () => effects),
-    ])
-    expect(await repository.learning.balance(profile.id)).toBe(0)
+    ).rejects.toThrow('UNKNOWN_REWARD')
+    expect(await repository.learning.balance(profile.id)).toBe(10)
     expect(
       (await repository.learning.getState(profile.id)).rewardUnlocks,
-    ).toHaveLength(1)
-    const second: LearningEvent = {
-      ...redeem,
-      id: 'redeem_2',
-      rewardId: 'another_local_reward',
-    }
+    ).toHaveLength(0)
     await expect(
-      repository.learning.recordEvent(second, () => ({
-        pointsLedger: [
-          { ...effects.pointsLedger[0], id: 'spend_2', eventId: second.id },
-        ],
-        rewardUnlocks: [
-          {
-            ...effects.rewardUnlocks[0],
-            id: 'unlock_2',
-            eventId: second.id,
-            rewardId: 'another_local_reward',
-          },
-        ],
-      })),
+      repository.learning.redeemReward(
+        profile.id,
+        'profile-paper',
+        '2026-09-09T01:00:00Z',
+      ),
     ).rejects.toThrow('INSUFFICIENT_POINTS')
     const data = await repository.exportLearnerData()
     const fresh = createMemoryRepositories()
@@ -339,8 +341,8 @@ describe.each([
     )
     expect(
       (await fresh.learning.getState(profile.id)).rewardUnlocks,
-    ).toHaveLength(1)
-    expect(await fresh.learning.balance(profile.id)).toBe(0)
+    ).toHaveLength(0)
+    expect(await fresh.learning.balance(profile.id)).toBe(10)
     await repository.clearLearnerData()
     expect(
       Object.values(await repository.learning.getState(profile.id)).every(

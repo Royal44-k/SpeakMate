@@ -213,16 +213,25 @@ export function SessionReportView({
   return (
     <RecordCaptureFrame
       repositories={repository}
-      returnTo={record.session.simulation?.returnTo ?? '/me'}
+      returnTo={
+        record.session.provenance?.returnTo ??
+        record.session.simulation?.returnTo ??
+        '/me'
+      }
     >
       <main className={styles.report}>
         <MobilePageHeader
           title="本次复盘"
           eyebrow="SESSION RECORD"
-          fallbackHref="/me"
-          backLabel="返回我的练习"
+          fallbackHref={record.session.provenance?.returnTo ?? '/me'}
+          backLabel={record.session.provenance ? '返回原计划' : '返回我的练习'}
         />
         <header className={styles.scoreHeader}>
+          {record.session.provenance ? (
+            <a href={record.session.provenance.returnTo}>
+              返回 {record.session.provenance.planDate} 的原任务
+            </a>
+          ) : null}
           {record.session.simulation ? (
             <section>
               <h2>定向模拟练习记录</h2>

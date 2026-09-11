@@ -50,6 +50,7 @@ beforeEach(async () => {
   }
   const view = presentGradedPractice(session, [])
   state.value = {
+    foreground: { error: '', retry: vi.fn() },
     sessionId: session.id,
     record: { session, turns: [], status: 'ready' },
     view,
