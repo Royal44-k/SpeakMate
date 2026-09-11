@@ -5,6 +5,7 @@ import { StrictMode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ExitGuard, exitGuardState } from './exit-guard'
+import { SmartBackLink } from '@/components/app-shell/smart-back-link'
 import {
   documentNavigation,
   navigateLocalHref,
@@ -41,6 +42,93 @@ describe('exitGuardState', () => {
 })
 
 describe('ExitGuard', () => {
+  it.each(['draft', 'processing', 'confirmed'] as const)(
+    'marks the physical placeholder after %s release and returns safely after native Forward',
+    async (state) => {
+      vi.mocked(history.back).mockRestore()
+      vi.mocked(history.go).mockRestore()
+      history.replaceState({ custom: 'keep' }, '', '/notebook')
+      visitRoute('/notebook')
+      history.pushState({ custom: 'keep' }, '', '/session?id=S')
+      visitRoute('/session?id=S')
+      const base = history.state
+      const view = render(
+        <ExitGuard
+          state={state === 'confirmed' ? 'draft' : state}
+          fallbackHref="/notebook"
+        />,
+      )
+      const pop = () =>
+        new Promise<void>((resolve) =>
+          window.addEventListener('popstate', () => resolve(), { once: true }),
+        )
+      const cleared = pop()
+      if (state === 'confirmed') {
+        fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+        fireEvent.click(screen.getByRole('button', { name: '退出' }))
+        await act(async () => cleared)
+        expect(location.pathname).toBe('/notebook')
+        view.rerender(<ExitGuard state="clean" fallbackHref="/notebook" />)
+        await act(async () => {
+          const moved = pop()
+          history.forward()
+          await moved
+        })
+      } else {
+        view.rerender(<ExitGuard state="clean" fallbackHref="/notebook" />)
+        await act(async () => cleared)
+      }
+      expect(history.state).toEqual(base)
+      await act(async () => {
+        const moved = pop()
+        history.forward()
+        await moved
+      })
+      expect(location.pathname + location.search).toBe('/session?id=S')
+      expect(history.state).toMatchObject({
+        ...base,
+        __speakmateRoutePlaceholder: true,
+      })
+      expect(history.state.__speakmateExitGuard).toBeUndefined()
+      routerBack.mockImplementation(() => history.back())
+      const smart = render(
+        <SmartBackLink fallbackHref="/notebook" ariaLabel="返回原记录簿" />,
+      )
+      let handledBeforeBrowser = true
+      const boundary = (event: MouseEvent) => {
+        handledBeforeBrowser = event.defaultPrevented
+        event.preventDefault()
+      }
+      window.addEventListener('click', boundary)
+      try {
+        fireEvent.click(screen.getByRole('link', { name: '返回原记录簿' }))
+      } finally {
+        window.removeEventListener('click', boundary)
+      }
+      expect(handledBeforeBrowser).toBe(false)
+      expect(routerBack).not.toHaveBeenCalled()
+      smart.unmount()
+      vi.mocked(documentNavigation.replace).mockImplementation((href) =>
+        history.replaceState(null, '', href),
+      )
+      fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+      expect(location.pathname).toBe('/notebook')
+      expect(routerBack).not.toHaveBeenCalled()
+      await act(async () => {
+        const moved = pop()
+        history.back()
+        await moved
+      })
+      expect(location.pathname + location.search).toBe('/session?id=S')
+      expect(history.state).toEqual(base)
+      await act(async () => {
+        const moved = pop()
+        history.forward()
+        await moved
+      })
+      expect(location.pathname).toBe('/notebook')
+    },
+  )
   it.each(['timeout', 'unmount', 'mismatch'] as const)(
     'rejects saved navigation on %s without replaying its target on a later popstate',
     async (failure) => {
@@ -105,7 +193,11 @@ describe('ExitGuard', () => {
       </StrictMode>,
     )
     await act(async () => undefined)
-    expect(history.state).toEqual(base)
+    // back is stubbed in this older metadata test, so this is retained P, not S.
+    expect(history.state).toEqual({
+      ...base,
+      __speakmateRoutePlaceholder: true,
+    })
     expect(readRouteHistory().entries).toHaveLength(1)
   })
   it('keeps explicit draft confirmation usable when history state writes are denied', () => {

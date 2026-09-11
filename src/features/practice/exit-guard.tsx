@@ -55,7 +55,12 @@ function removeSentinel(state: unknown, id: string) {
   if (!state || typeof state !== 'object') return state
   const current = state as Record<string, unknown>
   if (current[SENTINEL_KEY] !== id) return state
-  const next = { ...current }
+  // Back cannot erase the forward-retained physical entry. It is not proof
+  // that one later Back reaches the previous app route, even with the same ID.
+  const next: Record<string, unknown> = {
+    ...current,
+    __speakmateRoutePlaceholder: true,
+  }
   delete next[SENTINEL_KEY]
   return next
 }

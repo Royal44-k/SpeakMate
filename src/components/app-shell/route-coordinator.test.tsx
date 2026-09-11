@@ -1,4 +1,11 @@
 import { act, render, fireEvent } from '@testing-library/react'
+import {
+  createContext,
+  useContext,
+  useState,
+  startTransition,
+  Suspense,
+} from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { RouteCoordinator } from './route-coordinator'
 import {
@@ -21,9 +28,13 @@ const route = vi.hoisted(() => ({
   pathname: '/scenes',
   query: 'level=C1&q=private',
 }))
+const HookRoute = createContext<{ pathname: string; query: string } | null>(
+  null,
+)
 vi.mock('next/navigation', () => ({
-  usePathname: () => route.pathname,
-  useSearchParams: () => new URLSearchParams(route.query),
+  usePathname: () => useContext(HookRoute)?.pathname ?? route.pathname,
+  useSearchParams: () =>
+    new URLSearchParams(useContext(HookRoute)?.query ?? route.query),
 }))
 afterEach(() => {
   sessionStorage.clear()
@@ -31,6 +42,99 @@ afterEach(() => {
   Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 })
 })
 describe('minimum local route restoration', () => {
+  it('waits for the native destination hook transition and late source DOM before consuming traversal restoration', async () => {
+    history.replaceState(null, '', '/notebook')
+    visitRoute('/notebook')
+    const destinationState = history.state
+    const destinationId = destinationState.__speakmateRouteEntry
+    history.pushState(null, '', '/session/report?id=B')
+    visitRoute('/session/report?id=B')
+    const before = readRouteHistory()
+    sessionStorage.setItem(
+      'speakmate-route-scroll-v1',
+      JSON.stringify([
+        ['/notebook', 650, '/notebook/note?id=A', destinationId],
+      ]),
+    )
+    let releaseRoute!: () => void
+    let routeReady = false
+    const waiting = new Promise<void>((resolve) => {
+      releaseRoute = () => {
+        routeReady = true
+        resolve()
+      }
+    })
+    let setPage!: (page: { pathname: string; query: string }) => void
+    let showSource!: (ready: boolean) => void
+    let sourceReady = false
+    const scroll = vi
+      .spyOn(window, 'scrollTo')
+      .mockImplementation((options: number | ScrollToOptions) => {
+        if (typeof options === 'object')
+          Object.defineProperty(window, 'scrollY', {
+            configurable: true,
+            value: Math.min(options.top ?? 0, sourceReady ? 1000 : 100),
+          })
+      })
+    function Page({ pathname }: { pathname: string }) {
+      const [ready, update] = useState(false)
+      showSource = (value) => {
+        sourceReady = value
+        update(value)
+      }
+      if (pathname === '/notebook' && !routeReady) throw waiting
+      return (
+        <main>
+          <h1 data-page-title tabIndex={-1}>
+            {pathname}
+          </h1>
+          {pathname === '/notebook' && ready ? (
+            <a href="/notebook/note?id=A">Destination-only source</a>
+          ) : null}
+        </main>
+      )
+    }
+    function Host() {
+      const [page, update] = useState({
+        pathname: '/session/report',
+        query: 'id=B',
+      })
+      setPage = update
+      return (
+        <Suspense fallback={<p>Loading destination</p>}>
+          <HookRoute.Provider value={page}>
+            <Page pathname={page.pathname} />
+            <RouteCoordinator />
+          </HookRoute.Provider>
+        </Suspense>
+      )
+    }
+    const view = render(<Host />)
+    scroll.mockClear()
+    await act(async () => {
+      // Native identity/address changes BEFORE Next's deferred hook/DOM commit.
+      history.replaceState(destinationState, '', '/notebook')
+      startTransition(() => setPage({ pathname: '/notebook', query: '' }))
+      window.dispatchEvent(
+        new PopStateEvent('popstate', { state: destinationState }),
+      )
+    })
+    expect(view.getByRole('heading').textContent).toBe('/session/report')
+    expect(readRouteHistory()).toEqual(before)
+    expect(scroll).not.toHaveBeenCalled()
+    await act(async () => releaseRoute())
+    expect(readRouteHistory().cursor).toBe(0)
+    expect(readRouteHistory().entries[0]).toEqual({
+      entryId: destinationId,
+      route: '/notebook',
+    })
+    expect(history.state.__speakmateRouteEntry).toBe(destinationId)
+    expect(window.scrollY).toBe(100)
+    await act(async () => showSource(true))
+    expect(window.scrollY).toBe(650)
+    expect(view.getByText('Destination-only source')).toHaveFocus()
+    expect(readRouteHistory().entries).toEqual(before.entries)
+  })
   it('commits an explicit slow document return only on pagehide and clears canceled or unrelated intent', async () => {
     route.pathname = '/session/report'
     route.query = 'id=B'
@@ -295,7 +399,7 @@ describe('minimum local route restoration', () => {
     expect(readRouteHistory().entries).toHaveLength(5)
     expect(scroll).toHaveBeenLastCalledWith({ top: 650, behavior: 'instant' })
     expect(document.activeElement?.textContent).toBe('source control')
-    history.replaceState(reportState, '')
+    history.replaceState(reportState, '', '/session/report?id=B')
     route.pathname = '/session/report'
     route.query = 'id=B'
     act(() =>
@@ -306,7 +410,7 @@ describe('minimum local route restoration', () => {
     view.rerender(show())
     expect(readRouteHistory().cursor).toBe(3)
     expect(scroll).toHaveBeenLastCalledWith({ top: 280, behavior: 'instant' })
-    history.replaceState(sourceState, '')
+    history.replaceState(sourceState, '', '/notebook')
     route.pathname = '/notebook'
     route.query = ''
     act(() =>

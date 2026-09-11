@@ -72,9 +72,11 @@ export function RouteCoordinator() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const announcementRef = useRef<HTMLSpanElement>(null)
+  const traversalPending = useRef(false)
   const [traversal, setTraversal] = useState(0)
   useEffect(() => {
     const changed = () => {
+      traversalPending.current = true
       cancelRouteNavigation()
       setTraversal((value) => value + 1)
     }
@@ -130,6 +132,13 @@ export function RouteCoordinator() {
     safeSourceHref(search ? `${pathname}?${search}` : pathname) ?? pathname
 
   useEffect(() => {
+    // Next restores native traversal in a transition. Do not pair the new
+    // history identity with still-rendered hooks/DOM from the previous route.
+    if (traversalPending.current) {
+      const destination = safeSourceHref(location.pathname + location.search)
+      if (destination !== route) return
+      traversalPending.current = false
+    }
     const nextHistory = visitRoute(route)
     const entryId = nativeEntryId()
 
