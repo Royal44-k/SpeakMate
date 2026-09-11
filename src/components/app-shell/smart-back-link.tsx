@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import type { MouseEvent } from 'react'
 
 import { canGoBackWithinApp } from './navigation-history'
+import { safeSourceHref } from './learning-routes'
 import styles from './mobile-page-header.module.css'
 
 const ROUTE_STACK_KEY = 'speakmate-route-stack'
@@ -17,8 +18,14 @@ function getRouteStack() {
     const parsedStack: unknown = storedStack ? JSON.parse(storedStack) : []
 
     return Array.isArray(parsedStack) &&
-      parsedStack.every((route) => typeof route === 'string')
-      ? parsedStack
+      parsedStack.length <= 24 &&
+      parsedStack.every(
+        (route) =>
+          typeof route === 'string' &&
+          route.length <= 2000 &&
+          safeSourceHref(route),
+      )
+      ? parsedStack.map((route) => safeSourceHref(route)!)
       : []
   } catch {
     return []
@@ -37,6 +44,7 @@ export function SmartBackLink({
   onGuardedBack?: () => void
 }) {
   const router = useRouter()
+  const source = safeSourceHref(fallbackHref) ?? '/'
 
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
     if (
@@ -58,7 +66,8 @@ export function SmartBackLink({
       return
     }
 
-    if (canGoBackWithinApp(getRouteStack())) {
+    const stack = getRouteStack()
+    if (canGoBackWithinApp(stack) && stack.at(-2) === source) {
       event.preventDefault()
       router.back()
     }
@@ -67,7 +76,7 @@ export function SmartBackLink({
   return (
     <a
       className={styles.backLink}
-      href={fallbackHref}
+      href={source}
       aria-label={ariaLabel}
       onClick={handleClick}
     >

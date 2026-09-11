@@ -138,6 +138,7 @@ export function NotebookHome({
                   key={note.id}
                   note={note}
                   repositories={repo}
+                  assistant={assistant}
                   onCompleted={() => setRetry((n) => n + 1)}
                 />
               ))

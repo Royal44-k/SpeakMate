@@ -7,14 +7,20 @@ export function AppShell({
   activeDestination,
   children,
   immersive = false,
+  contentOwnsMain = false,
 }: {
   activeDestination: AppDestination
   children: ReactNode
   immersive?: boolean
+  contentOwnsMain?: boolean
 }) {
   return (
     <div className={immersive ? styles.shellImmersive : styles.shell}>
-      <main className={styles.content}>{children}</main>
+      {contentOwnsMain ? (
+        <div className={styles.content}>{children}</div>
+      ) : (
+        <main className={styles.content}>{children}</main>
+      )}
       <BottomNavigation active={activeDestination} />
     </div>
   )

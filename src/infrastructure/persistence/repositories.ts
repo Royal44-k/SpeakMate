@@ -13,6 +13,8 @@ import type {
 } from '@/domain/goals/types'
 import type { OutboxItem } from './db'
 import { createGuestProfile } from './identity'
+import { createHistoryDeletion } from './history-deletion'
+import type { PracticeRecord } from './practice-repository'
 import {
   createPracticeRepository,
   assertHistoricalPracticeWrite,
@@ -52,6 +54,10 @@ export interface ProfileRepository {
   save(profile: LearnerProfile): Promise<void>
 }
 export interface SessionRepository {
+  deleteHistory(
+    expected: Pick<PracticeRecord, 'session' | 'turns'>,
+  ): Promise<string>
+  undoDeleteHistory(receipt: string): Promise<void>
   get(id: string): Promise<PracticeSession | undefined>
   list(): Promise<PracticeSession[]>
   save(session: PracticeSession): Promise<void>
@@ -122,6 +128,7 @@ function createRepositories(storage: LocalStoragePort): Repositories {
         }),
     },
     sessions: {
+      ...createHistoryDeletion(storage),
       get: (id) =>
         storage.read((state) =>
           state.sessions.find((session) => session.id === id),

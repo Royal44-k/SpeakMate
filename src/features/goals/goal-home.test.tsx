@@ -2,6 +2,7 @@ import { afterEach, expect, it, vi } from 'vitest'
 import { render, screen, within, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { GoalHome } from './goal-home'
+import { RouteCoordinator } from '@/components/app-shell/route-coordinator'
 import {
   createMemoryRepositories,
   createIndexedDbRepositories,
@@ -34,6 +35,96 @@ const fetcher: typeof fetch = async (input) =>
   GET(new Request('https://local.test' + String(input)), {
     params: Promise.resolve({ category: String(input).split('/').at(-1)! }),
   })
+it('positions an explicit task once without scrolling again after a settings refresh', async () => {
+  sessionStorage.clear()
+  query.value = 'task=scene'
+  const repo = createMemoryRepositories()
+  await repo.profiles.ensureGuestProfile()
+  const scroll = vi.fn()
+  const prior = HTMLElement.prototype.scrollIntoView
+  HTMLElement.prototype.scrollIntoView = scroll
+  try {
+    render(
+      <>
+        <GoalHome
+          repositories={repo}
+          fetcher={fetcher}
+          clock={clock}
+          focusTask="scene"
+        />
+        <RouteCoordinator />
+      </>,
+    )
+    await screen.findByRole('heading', { name: '今日目标' })
+    expect(scroll).toHaveBeenCalledTimes(1)
+    expect(document.activeElement).toBe(document.getElementById('task-scene'))
+    await userEvent.selectOptions(
+      screen.getByRole('combobox', { name: '每日安排' }),
+      '10',
+    )
+    await waitFor(() =>
+      expect(screen.getByRole('combobox', { name: '每日安排' })).toHaveValue(
+        '10',
+      ),
+    )
+    expect(scroll).toHaveBeenCalledTimes(1)
+  } finally {
+    HTMLElement.prototype.scrollIntoView = prior
+  }
+})
+it.each(['scene', 'consolidation'] as const)(
+  'explicitly starts a fresh fixed %s run after its source history was deleted',
+  async (slot) => {
+    const repo = createMemoryRepositories()
+    const { plan } = await goalFixture(repo)
+    const index = slot === 'scene' ? 1 : 2
+    const service = createGoalService(repo, fetcher, () => goalAt(20))
+    if (slot === 'scene') await service.launchScene(plan, plan.tasks[index])
+    else {
+      const { session, material } = await simulationCandidate(repo, plan)
+      await repo.practice.commit({
+        kind: 'create',
+        session,
+        simulationMaterial: material,
+        taskLaunch: { planId: plan.id, taskId: plan.tasks[index].id },
+      })
+    }
+    const first = (await repo.sessions.list())[0]
+    const fixed = (await repo.learning.getDailyPlan(
+      plan.profileId,
+      plan.dateKey,
+    ))!
+    await repo.sessions.deleteHistory((await repo.practice.read(first.id))!)
+    const urls: string[] = []
+    render(
+      <GoalHome
+        repositories={repo}
+        fetcher={fetcher}
+        date={plan.dateKey}
+        clock={() => goalAt(22)}
+        navigate={(href) => {
+          urls.push(href)
+        }}
+      />,
+    )
+    await userEvent.click(
+      await screen.findByRole('button', { name: '按原目标另开练习' }),
+    )
+    await waitFor(() => expect(urls).toHaveLength(1))
+    const next = (await repo.sessions.list())[0]
+    expect(next.id).not.toBe(first.id)
+    expect(next.provenance?.returnTo).toBe(`/?date=2026-09-10&task=${slot}`)
+    expect(next.provenance?.planId).toBe(plan.id)
+    expect(next.simulation?.source).toEqual(first.simulation?.source)
+    expect(next.simulation?.descriptor).toEqual(first.simulation?.descriptor)
+    expect(
+      (await repo.learning.getDailyPlan(plan.profileId, plan.dateKey))!.tasks[
+        index
+      ],
+    ).toEqual(fixed.tasks[index])
+    expect(await repo.learning.balance(plan.profileId)).toBe(0)
+  },
+)
 it.each([
   ['memory', 'scene'],
   ['memory', 'consolidation'],

@@ -65,12 +65,6 @@ export function GoalHome({
       'completed'
   useGoalInteraction(busy)
   useEffect(() => {
-    if (data && focusTask)
-      document
-        .getElementById(`task-${focusTask}`)
-        ?.scrollIntoView?.({ block: 'start' })
-  }, [data, focusTask])
-  useEffect(() => {
     let active = true
     void service
       .load(date)
@@ -171,6 +165,20 @@ export function GoalHome({
       })
       .map((task) => task.id),
   )
+  const missingRuns = new Set(
+    data.plan.tasks
+      .filter(
+        (task) =>
+          task.status === 'started' &&
+          task.target.kind !== 'warmup' &&
+          !data.sessions.some(
+            (session) =>
+              session.provenance?.planId === data.plan.id &&
+              session.provenance.sourceTaskId === task.id,
+          ),
+      )
+      .map((task) => task.id),
+  )
   if (materialTask)
     return (
       <GoalMaterialChoice
@@ -184,7 +192,7 @@ export function GoalHome({
       />
     )
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-focus-task={focusTask}>
       <header
         className={styles.header}
         data-cover={data.settings.appliedGoalCover}
@@ -254,6 +262,7 @@ export function GoalHome({
             <article
               key={task.id}
               id={`task-${task.slot}`}
+              tabIndex={-1}
               className={styles.card}
             >
               <p>{task.optional ? '按需选择 · +10' : '核心任务 · +10'}</p>
@@ -268,11 +277,13 @@ export function GoalHome({
               <p>
                 {task.status === 'completed'
                   ? '已完成'
-                  : stoppedTasks.has(task.id)
-                    ? '上次练习已停止；固定目标与原记录保留，可重新练习。'
-                    : task.status === 'started'
-                      ? '已开始，可继续'
-                      : '尚未开始'}
+                  : missingRuns.has(task.id)
+                    ? '原练习历史已删除；任务和积分未重置，可按原日期、等级与材料另开练习。'
+                    : stoppedTasks.has(task.id)
+                      ? '上次练习已停止；固定目标与原记录保留，可重新练习。'
+                      : task.status === 'started'
+                        ? '已开始，可继续'
+                        : '尚未开始'}
               </p>
               <div className={styles.actions}>
                 {task.status !== 'completed' ? (
@@ -281,19 +292,21 @@ export function GoalHome({
                     disabled={busy || warmupActive}
                     onClick={() => void action(task)}
                   >
-                    {stoppedTasks.has(task.id)
-                      ? '重新开始固定任务'
-                      : task.target.kind === 'warmup'
-                        ? '准备表达热身'
-                        : task.target.kind === 'scene'
-                          ? task.slot === 'extension'
-                            ? '开始可选拓展'
+                    {missingRuns.has(task.id)
+                      ? '按原目标另开练习'
+                      : stoppedTasks.has(task.id)
+                        ? '重新开始固定任务'
+                        : task.target.kind === 'warmup'
+                          ? '准备表达热身'
+                          : task.target.kind === 'scene'
+                            ? task.slot === 'extension'
+                              ? '开始可选拓展'
+                              : task.status === 'started'
+                                ? '继续场景应用'
+                                : '开始场景应用'
                             : task.status === 'started'
-                              ? '继续场景应用'
-                              : '开始场景应用'
-                          : task.status === 'started'
-                            ? '继续记录簿巩固'
-                            : '选择巩固材料'}
+                              ? '继续记录簿巩固'
+                              : '选择巩固材料'}
                   </button>
                 ) : null}
                 {(task.target.kind === 'scene' ||

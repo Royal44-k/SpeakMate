@@ -18,6 +18,8 @@ const SHELLS = [
   '/notebook/simulation',
   '/rewards',
   '/guide',
+  '/welcome',
+  '/auth',
 ]
 const CATEGORIES = [
   'travel',

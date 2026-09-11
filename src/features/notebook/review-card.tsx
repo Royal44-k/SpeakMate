@@ -1,18 +1,23 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { LearningAssistantProvider } from '@/content/analysis/provider'
+import { publicLearningAssistant } from '@/content/public-category'
 import type { NotebookEntry, ReviewRating } from '@/domain/notebook/types'
 import type { Repositories } from '@/infrastructure/persistence/repositories'
 import { reviewCompletion } from './review'
 import styles from './notebook.module.css'
 import { selectedNotebookSource } from './view-state'
+const publicAssistant = publicLearningAssistant()
 export function ReviewCard({
   note,
   repositories,
   onCompleted,
+  assistant = publicAssistant,
 }: {
   note: NotebookEntry
   repositories: Repositories
   onCompleted?: () => void
+  assistant?: LearningAssistantProvider
 }) {
   const [revealed, setRevealed] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -26,6 +31,52 @@ export function ReviewCard({
   const source =
     note.sources.find((item) => item.id === selectedNotebookSource(note.id)) ??
     note.sources[0]
+  const cueKey = JSON.stringify([note.id, note.text, note.kind, source])
+  const [cue, setCue] = useState<{ key: string; text: string }>()
+  useEffect(() => {
+    let active = true
+    const context = source?.originalText ?? ''
+    const escaped = note.text.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const masked = escaped
+      ? context.replace(new RegExp(escaped, 'gi'), '____')
+      : context
+    const fallback =
+      masked !== context && /[a-z]/i.test(masked.replaceAll('____', ''))
+        ? `保存时的上下文：${masked}`
+        : '暂无可用的非答案提示。请自行回忆，或查看原文后再练；没有生成释义。'
+    void assistant
+      .analyze({
+        text: note.text,
+        kind: note.kind,
+        sceneId: source?.sceneId,
+        questionId: source?.questionId,
+        level: source?.level ?? 'A1',
+      })
+      .then((result) => {
+        // Only an exact reviewed meaning describes this whole answer. Partial matches must not imply whole-expression coverage.
+        const meaning =
+          result.status === 'exact' ? result.entries[0]?.meaningZh : undefined
+        const safeMeaning =
+          meaning && escaped
+            ? meaning.replace(new RegExp(escaped, 'gi'), '____')
+            : undefined
+        if (active)
+          setCue({
+            key: cueKey,
+            text: safeMeaning ? `校审含义：${safeMeaning}` : fallback,
+          })
+      })
+      .catch(() => {
+        if (active)
+          setCue({
+            key: cueKey,
+            text: `${fallback} 本地提示资料暂不可用，可继续自评。`,
+          })
+      })
+    return () => {
+      active = false
+    }
+  }, [assistant, cueKey, note.text, note.kind, source])
   async function save(rating?: ReviewRating) {
     if (working.current) return
     working.current = true
@@ -84,6 +135,9 @@ export function ReviewCard({
         {source?.sceneTitleZh ?? source?.sceneId ?? '个人词句'}
         。先试着回想这条{note.kind === 'word' ? '单词' : '表达'}。
       </p>
+      {!revealed && !done ? (
+        <p>{cue?.key === cueKey ? cue.text : '正在读取本地回忆提示…'}</p>
+      ) : null}
       {done ? (
         <p role="status">{done}</p>
       ) : revealed ? (

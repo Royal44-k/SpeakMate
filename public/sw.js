@@ -302,6 +302,10 @@ function publicSource(href) {
       '/me',
       '/privacy',
       '/install',
+      '/welcome',
+      '/auth',
+      '/guide',
+      '/rewards',
       '/session',
       '/session/report',
       '/scenes/prepare',
@@ -320,23 +324,35 @@ function publicSource(href) {
     'category',
     'duration',
     'source',
+    'date',
+    'task',
   ]) {
     const values = url.searchParams.getAll(key)
     if (values.length !== 1) continue
     const value = values[0]
     const valid =
-      key === 'level'
-        ? /^(A1|A2|B1|B2|C1)$/.test(value)
-        : key === 'mode'
-          ? /^(short|standard|extended)$/.test(value)
-          : key === 'category'
-            ? /^(travel|dining|daily|work|social|study|emergency)$/.test(value)
-            : key === 'duration'
-              ? /^(3|5|8|10)$/.test(value)
-              : key === 'scene'
-                ? /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value) &&
-                  value.length <= 100
-                : /^[\w.:-]{1,120}$/.test(value)
+      key === 'date'
+        ? url.pathname === '/' &&
+          /^\d{4}-\d{2}-\d{2}$/.test(value) &&
+          Number.isFinite(Date.parse(value + 'T00:00:00Z')) &&
+          new Date(value + 'T00:00:00Z').toISOString().slice(0, 10) === value
+        : key === 'task'
+          ? url.pathname === '/' &&
+            ['warmup', 'scene', 'consolidation', 'extension'].includes(value)
+          : key === 'level'
+            ? /^(A1|A2|B1|B2|C1)$/.test(value)
+            : key === 'mode'
+              ? /^(short|standard|extended)$/.test(value)
+              : key === 'category'
+                ? /^(travel|dining|daily|work|social|study|emergency)$/.test(
+                    value,
+                  )
+                : key === 'duration'
+                  ? /^(3|5|8|10)$/.test(value)
+                  : key === 'scene'
+                    ? /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value) &&
+                      value.length <= 100
+                    : /^[\w.:-]{1,120}$/.test(value)
     if (valid) target.searchParams.set(key, value)
   }
   return target.pathname + target.search

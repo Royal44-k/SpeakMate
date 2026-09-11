@@ -91,7 +91,9 @@ export function DataControls({
     try {
       if (onExport) await onExport()
       else downloadJson(await repository.exportLearnerData())
-      setStatus('学习数据已导出。')
+      setStatus(
+        `最近生成导出：${new Date().toLocaleString('zh-CN')}。请在文件 App 确认文件已保存；生成下载请求不等于已安全备份。`,
+      )
     } catch (cause) {
       setStatus(null)
       setError(`数据导出没有完成，请稍后重试。${recoveryMessage(cause)}`)
@@ -124,7 +126,7 @@ export function DataControls({
       <h2 id="data-title">你的数据</h2>
       <p>练习记录默认只保存在这台设备。导出文件不包含原始录音。</p>
       <p>
-        建议每周导出备份。清理浏览器缓存或设备回收空间可能删除本地数据；浏览器即使允许持久存储也不能代替备份。本版没有跨设备自动同步。
+        建议每周及清理站点数据、升级或换设备前导出备份。清理浏览器数据或设备回收空间可能删除本地数据；浏览器即使允许持久存储也不能代替备份。本版没有跨设备自动同步。
       </p>
       <p>本地积分可自行修改，不代表经过验证的真实排行榜成绩。</p>
       <button
@@ -214,7 +216,9 @@ export function DataControls({
       </div>
       <div className={styles.dangerZone}>
         <h3>清空本机数据</h3>
-        <p>此操作无法撤销；若未来启用同步，不会自动删除云端账号数据。</p>
+        <p>
+          此操作无法撤销，将清空此浏览器内的学习记录、笔记、任务、积分与奖励。请先生成导出并确认文件已保存；本版没有云端副本。
+        </p>
         <label htmlFor="clear-confirmation">输入“清空”以确认</label>
         <input
           id="clear-confirmation"

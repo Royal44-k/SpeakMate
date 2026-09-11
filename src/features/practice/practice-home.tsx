@@ -88,7 +88,7 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
 
   if (loadError) {
     return (
-      <AppShell activeDestination="practice">
+      <AppShell activeDestination="practice" contentOwnsMain>
         <main className={styles.state}>
           <h1 data-page-title tabIndex={-1}>
             暂时无法读取练习记录
@@ -101,7 +101,7 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
 
   if (!data) {
     return (
-      <AppShell activeDestination="practice">
+      <AppShell activeDestination="practice" contentOwnsMain>
         <main className={styles.state} aria-busy="true">
           <p>正在准备今天的练习…</p>
         </main>
@@ -178,30 +178,6 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
             {levelError}
           </p>
         ) : null}
-        {recent ? (
-          <section className={styles.newPractice} aria-label="已保存练习">
-            <h2>上次的记录仍在</h2>
-            <p>
-              {recent.session.sceneSnapshot?.titleZh ??
-                SCENE_METADATA.find(
-                  (item) => item.id === recent.session.sceneId,
-                )?.titleZh ??
-                '历史场景'}{' '}
-              · 原记录 {recent.session.level}。新练习使用当前 {level}
-              ，不会改写原记录。
-            </p>
-            {recentHref ? (
-              <a href={recentHref}>
-                {recentLabel}
-                <ArrowRight aria-hidden size={20} />
-              </a>
-            ) : (
-              <button type="button" onClick={() => setRetained(recent)}>
-                在此查看保留记录（只读）
-              </button>
-            )}
-          </section>
-        ) : null}
         <section
           className={styles.recommendation}
           aria-labelledby="recommendation-title"
@@ -237,6 +213,30 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
             </a>
           </div>
         </section>
+        {recent ? (
+          <section className={styles.newPractice} aria-label="已保存练习">
+            <h2>上次的记录仍在</h2>
+            <p>
+              {recent.session.sceneSnapshot?.titleZh ??
+                SCENE_METADATA.find(
+                  (item) => item.id === recent.session.sceneId,
+                )?.titleZh ??
+                '历史场景'}{' '}
+              · 原记录 {recent.session.level}。新练习使用当前 {level}
+              ，不会改写原记录。
+            </p>
+            {recentHref ? (
+              <a href={recentHref}>
+                {recentLabel}
+                <ArrowRight aria-hidden size={20} />
+              </a>
+            ) : (
+              <button type="button" onClick={() => setRetained(recent)}>
+                在此查看保留记录（只读）
+              </button>
+            )}
+          </section>
+        ) : null}
         <section className={styles.explore}>
           <div>
             <p>还想练点别的？</p>

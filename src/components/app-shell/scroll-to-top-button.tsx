@@ -7,7 +7,8 @@ const buttonStyle = {
   position: 'fixed',
   zIndex: 19,
   right: 'max(18px, calc((100vw - var(--content-max)) / 2 + 18px))',
-  bottom: 'calc(var(--nav-height) + env(safe-area-inset-bottom) + 12px)',
+  bottom:
+    'calc(var(--footer-height, env(safe-area-inset-bottom)) + var(--update-clearance, 0px) + 12px)',
   display: 'grid',
   width: '48px',
   height: '48px',

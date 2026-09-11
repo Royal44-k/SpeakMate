@@ -3,6 +3,93 @@ import { expect, it, vi } from 'vitest'
 import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
 import { ReviewCard } from './review-card'
 import { reviewCompletion } from './review'
+import { localLearningAssistant } from '@/content/analysis/provider'
+it('distinguishes same-scene meanings locally without revealing either answer', async () => {
+  const repo = createMemoryRepositories()
+  const profile = await repo.profiles.ensureGuestProfile()
+  for (const [id, text] of [
+    ['one', 'black'],
+    ['two', 'receipt'],
+  ]) {
+    const note = await repo.notebook.save({
+      id,
+      text,
+      profileId: profile.id,
+      kind: 'word',
+      normalizedText: '',
+      notes: '',
+      tags: [],
+      favoriteIds: [],
+      sources: [
+        {
+          id: `source-${id}`,
+          kind: 'scene',
+          sceneId: 'dining-01',
+          sceneTitleZh: '咖啡点单',
+          level: 'A1',
+          originalText: text,
+          createdAt: '2026-09-11T00:00:00.000Z',
+        },
+      ],
+      createdAt: '2026-09-11T00:00:00.000Z',
+      updatedAt: '2026-09-11T00:00:00.000Z',
+    })
+    render(
+      <ReviewCard
+        note={note}
+        repositories={repo}
+        assistant={localLearningAssistant}
+      />,
+    )
+  }
+  expect(await screen.findByText(/不加奶/)).toBeVisible()
+  expect(await screen.findByText(/收据/)).toBeVisible()
+  expect(screen.queryByText(/black/)).not.toBeInTheDocument()
+  expect(screen.queryByText(/receipt/)).not.toBeInTheDocument()
+  expect((await repo.learning.getState(profile.id)).events).toHaveLength(0)
+})
+it('uses safely masked saved context or an honest unknown cue, never an invented definition', async () => {
+  const repo = createMemoryRepositories()
+  const profile = await repo.profiles.ensureGuestProfile()
+  const note = await repo.notebook.save({
+    id: 'unknown-cue',
+    text: 'purple comet',
+    profileId: profile.id,
+    kind: 'phrase',
+    normalizedText: '',
+    notes: '',
+    tags: [],
+    favoriteIds: [],
+    sources: [
+      {
+        id: 'context',
+        kind: 'manual',
+        originalText: 'I saw a purple comet today.',
+        createdAt: '2026-09-11T00:00:00.000Z',
+      },
+    ],
+    createdAt: '2026-09-11T00:00:00.000Z',
+    updatedAt: '2026-09-11T00:00:00.000Z',
+  })
+  const { rerender } = render(
+    <ReviewCard
+      note={note}
+      repositories={repo}
+      assistant={localLearningAssistant}
+    />,
+  )
+  expect(await screen.findByText(/I saw a ____ today\./)).toBeVisible()
+  expect(screen.queryByText(/purple comet/)).not.toBeInTheDocument()
+  rerender(
+    <ReviewCard
+      key="no-context"
+      note={{ ...note, sources: [] }}
+      repositories={repo}
+      assistant={localLearningAssistant}
+    />,
+  )
+  expect(await screen.findByText(/暂无可用的非答案提示/)).toBeVisible()
+})
 it('requires reveal and explicit self-rating, retries same event, and never awards for viewing', async () => {
   const repo = createMemoryRepositories()
   const profile = await repo.profiles.ensureGuestProfile()

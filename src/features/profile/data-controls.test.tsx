@@ -82,11 +82,13 @@ describe('DataControls', () => {
     expect(onClear).toHaveBeenCalledOnce()
   })
 
-  it('offers a versioned JSON export', () => {
+  it('offers a versioned JSON export without claiming verified file storage', async () => {
     const onExport = vi.fn()
     render(<DataControls onExport={onExport} onClear={vi.fn()} />)
     fireEvent.click(screen.getByRole('button', { name: '导出学习数据' }))
     expect(onExport).toHaveBeenCalledOnce()
+    expect(await screen.findByRole('status')).toHaveTextContent('最近生成导出')
+    expect(screen.getByRole('status')).toHaveTextContent('文件 App 确认')
   })
 
   it('does not claim deletion succeeded when storage rejects the request', async () => {

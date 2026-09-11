@@ -8,7 +8,7 @@ import { safeSourceHref, semanticRouteIdentity } from './learning-routes'
 
 const ROUTE_STACK_KEY = 'speakmate-route-stack'
 const SCROLL_KEY = 'speakmate-route-scroll-v1'
-function getScrolls(): Array<[string, number]> {
+function getScrolls(): Array<[string, number, string?]> {
   try {
     const values: unknown = JSON.parse(
       window.sessionStorage.getItem(SCROLL_KEY) ?? '[]',
@@ -18,7 +18,11 @@ function getScrolls(): Array<[string, number]> {
       values.every(
         (value) =>
           Array.isArray(value) &&
-          value.length === 2 &&
+          (value.length === 2 ||
+            (value.length === 3 &&
+              typeof value[2] === 'string' &&
+              value[2].length <= 2000 &&
+              !!safeSourceHref(value[2]))) &&
           typeof value[0] === 'string' &&
           value[0].length <= 2000 &&
           Number.isFinite(value[1]) &&
@@ -28,7 +32,17 @@ function getScrolls(): Array<[string, number]> {
       ? values
           .map(
             (value) =>
-              [safeSourceHref(value[0]) ?? '', value[1]] as [string, number],
+              (value[2]
+                ? [
+                    safeSourceHref(value[0]) ?? '',
+                    value[1],
+                    safeSourceHref(value[2]),
+                  ]
+                : [safeSourceHref(value[0]) ?? '', value[1]]) as [
+                string,
+                number,
+                string?,
+              ],
           )
           .filter((value) => !!value[0])
       : []
@@ -90,13 +104,19 @@ export function RouteCoordinator() {
     const saveScroll = () => {
       if (restoring) return
       const top = Math.max(0, Math.min(1000000, window.scrollY))
+      const focused =
+        document.activeElement instanceof HTMLAnchorElement
+          ? safeSourceHref(
+              document.activeElement.getAttribute('href') ?? undefined,
+            )
+          : undefined
       try {
         window.sessionStorage.setItem(
           SCROLL_KEY,
           JSON.stringify(
             [
               ...getScrolls().filter((value) => value[0] !== route),
-              [route, top],
+              focused ? [route, top, focused] : [route, top],
             ].slice(-24),
           ),
         )
@@ -106,6 +126,12 @@ export function RouteCoordinator() {
     }
     window.addEventListener('pagehide', saveScroll)
     window.addEventListener('scroll', saveScroll, { passive: true })
+    window.addEventListener('pointerdown', stopRestoring, { once: true })
+    window.addEventListener('keydown', stopRestoring, { once: true })
+    window.addEventListener('wheel', stopRestoring, {
+      once: true,
+      passive: true,
+    })
     const dispose = () => {
       stopRestoring()
       window.removeEventListener('pagehide', saveScroll)
@@ -118,24 +144,31 @@ export function RouteCoordinator() {
       nextHistory.kind !== 'forward' ||
       previousIdentity === semanticRouteIdentity(route)
     ) {
-      const top = getScrolls().find((value) => value[0] === route)?.[1]
+      const saved = getScrolls().find((value) => value[0] === route)
+      const top = saved?.[1]
       if (top !== undefined) {
         restoring = true
         const restore = () => {
           window.scrollTo({ top, behavior: 'instant' })
-          if (Math.abs(window.scrollY - top) < 2) stopRestoring()
+          const source = saved?.[2]
+          const control = source
+            ? Array.from(
+                document.querySelectorAll<HTMLAnchorElement>('a[href]'),
+              ).find(
+                (link) =>
+                  safeSourceHref(link.getAttribute('href') ?? undefined) ===
+                  source,
+              )
+            : undefined
+          control?.focus({ preventScroll: true })
+          if (Math.abs(window.scrollY - top) < 2 && (!source || control))
+            stopRestoring()
         }
         restore()
         if (restoring) {
           observer = new MutationObserver(restore)
           observer.observe(document.body, { childList: true, subtree: true })
           timer = setTimeout(stopRestoring, 3000)
-          window.addEventListener('pointerdown', stopRestoring, { once: true })
-          window.addEventListener('keydown', stopRestoring, { once: true })
-          window.addEventListener('wheel', stopRestoring, {
-            once: true,
-            passive: true,
-          })
         }
       }
       return dispose
@@ -147,7 +180,15 @@ export function RouteCoordinator() {
       if (announcementRef.current) {
         announcementRef.current.textContent = title.textContent?.trim() ?? ''
       }
-      title.focus({ preventScroll: true })
+      const task =
+        document.querySelector<HTMLElement>('[data-focus-task]')?.dataset
+          .focusTask
+      const card =
+        task && ['warmup', 'scene', 'consolidation', 'extension'].includes(task)
+          ? document.getElementById(`task-${task}`)
+          : undefined
+      ;(card ?? title).focus({ preventScroll: true })
+      card?.scrollIntoView?.({ block: 'start' })
       return true
     }
 

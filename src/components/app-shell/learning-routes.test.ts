@@ -2,6 +2,20 @@ import { describe, expect, it, vi } from 'vitest'
 import * as routes from './learning-routes'
 
 describe('local learning route contract', () => {
+  it('retains optional source in saved-record links without leaking personal search or weakening stored ID bounds', () => {
+    expect(routes.savedPracticeHref('A', 'report', '/me?q=secret')).toBe(
+      '/session/report?id=A&from=%2Fme',
+    )
+    expect(routes.savedNotebookHref('B', '/session/report?id=A')).toBe(
+      '/notebook/note?id=B&from=%2Fsession%2Freport%3Fid%3DA',
+    )
+    expect(routes.savedSimulationHref('S', '/notebook?q=secret')).toBe(
+      '/notebook/simulation?id=S&from=%2Fnotebook',
+    )
+    expect(routes.savedPracticeHref('旧编号', 'report', '/me')).toBeUndefined()
+    expect(routes.safeSourceHref('/welcome?text=secret')).toBe('/welcome')
+    expect(routes.safeSourceHref('/auth')).toBe('/auth')
+  })
   it('keeps bounded original plan date and task through cross-shell sources without private text', () => {
     const from = routes.buildGoalHref('2026-09-11', 'consolidation')
     const href = routes.buildLearningHref({

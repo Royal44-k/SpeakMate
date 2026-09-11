@@ -67,6 +67,8 @@ export function safeSourceHref(href?: string): string | undefined {
       '/install',
       '/rewards',
       '/guide',
+      '/welcome',
+      '/auth',
       ...Object.values(paths),
     ].includes(url.pathname)
   )
@@ -253,21 +255,28 @@ export function canonicalLegacyHref(
 export function savedPracticeHref(
   id: string,
   kind: 'session' | 'report',
+  from?: string,
 ): string | undefined {
   return opaque.test(id) && id !== 'new'
-    ? buildLearningHref({ kind, id })
+    ? buildLearningHref({ kind, id, from })
     : undefined
 }
 
-export function savedNotebookHref(id: string): string | undefined {
+export function savedNotebookHref(
+  id: string,
+  from?: string,
+): string | undefined {
   return opaque.test(id) && id !== 'new'
-    ? buildLearningHref({ kind: 'note', id })
+    ? buildLearningHref({ kind: 'note', id, from })
     : undefined
 }
 
-export function savedSimulationHref(id: string): string | undefined {
+export function savedSimulationHref(
+  id: string,
+  from?: string,
+): string | undefined {
   return opaque.test(id) && id !== 'new'
-    ? buildLearningHref({ kind: 'simulation', id })
+    ? buildLearningHref({ kind: 'simulation', id, from })
     : undefined
 }
 

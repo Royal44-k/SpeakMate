@@ -95,6 +95,13 @@ describe('PracticeHome', () => {
     expect(await screen.findByText('今天，开口说 15 分钟')).toBeVisible()
     expect(screen.getByText('C1')).toBeVisible()
     expect(screen.getByRole('heading', { name: '求职面试' })).toBeVisible()
+    expect(
+      screen
+        .getByRole('link', { name: /准备开始/ })
+        .compareDocumentPosition(
+          screen.getByRole('link', { name: /查看旧版记录/ }),
+        ) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
     expect(screen.getByRole('link', { name: /查看旧版记录/ })).toHaveAttribute(
       'href',
       '/session?id=session_resume',

@@ -9,6 +9,7 @@ import { publicLearningAssistant } from '@/content/public-category'
 import {
   savedNotebookHref,
   savedPracticeHref,
+  safeSourceHref,
 } from '@/components/app-shell/learning-routes'
 import { ExitGuard } from '@/features/practice/exit-guard'
 import { useNotebookEntry } from './use-notebook-entry'
@@ -21,10 +22,12 @@ function NotebookNoteContent({
   id,
   repositories,
   assistant = publicAssistant,
+  returnHref,
 }: {
   id: string
   repositories?: Repositories
   assistant?: LearningAssistantProvider
+  returnHref?: string
 }) {
   const [repo] = useState(() => repositories ?? createIndexedDbRepositories())
   const [mode, setMode] = useState<'note' | 'review' | 'simulation'>('note')
@@ -36,6 +39,7 @@ function NotebookNoteContent({
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
   const note = entry.note
+  const backHref = safeSourceHref(returnHref) ?? '/notebook'
   useEffect(() => {
     if (!editing && !busy) return
     const root = document.documentElement
@@ -104,7 +108,12 @@ function NotebookNoteContent({
         <h1 data-page-title tabIndex={-1}>
           词句复习
         </h1>
-        <ReviewCard key={note.id} note={note} repositories={repo} />
+        <ReviewCard
+          key={note.id}
+          note={note}
+          repositories={repo}
+          assistant={assistant}
+        />
         <button onClick={() => setMode('note')}>返回此词句</button>
       </main>
     )
@@ -118,7 +127,7 @@ function NotebookNoteContent({
     >
       <ExitGuard
         state={editing ? 'draft' : busy ? 'processing' : 'clean'}
-        fallbackHref="/notebook"
+        fallbackHref={backHref}
         onConfirmExit={() => setEditing(false)}
       />
       <small>
@@ -356,6 +365,7 @@ function NotebookNoteContent({
       ) : null}
       {error ? <p role="alert">{error}</p> : null}
       <div className={styles.actions}>
+        {backHref !== '/notebook' ? <a href={backHref}>返回来源页面</a> : null}
         <a href="/notebook">返回记录簿</a>
         <a href="/privacy">导出本机数据</a>
       </div>

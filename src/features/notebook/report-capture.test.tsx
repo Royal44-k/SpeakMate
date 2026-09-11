@@ -11,6 +11,7 @@ import { SessionReportView } from '@/features/practice/session-report'
 vi.mock('next/navigation', () => ({ useRouter: () => ({ back: vi.fn() }) }))
 afterEach(deleteDatabase)
 it('captures the actual historical work C1 learner question after advancing and retains it after source deletion into both backup destinations', async () => {
+  window.history.replaceState(null, '', '/session/report?id=source-work')
   const repo = createMemoryRepositories()
   const profile = await repo.profiles.ensureGuestProfile()
   const content = await localContentProvider.load({
@@ -72,6 +73,10 @@ it('captures the actual historical work C1 learner question after advancing and 
   fireEvent.click(screen.getByRole('button', { name: '保存词句' }))
   await screen.findByText('已记录')
   const backup = await repo.exportLearnerData()
+  expect(screen.getByRole('link', { name: '查看词句' })).toHaveAttribute(
+    'href',
+    `/notebook/note?id=${backup.notebook[0].id}&from=%2Fsession%2Freport%3Fid%3Dsource-work`,
+  )
   backup.sessions = []
   backup.turns = []
   for (const make of [createMemoryRepositories, createIndexedDbRepositories]) {

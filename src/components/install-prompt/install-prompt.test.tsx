@@ -1,16 +1,57 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { InstallPrompt } from './install-prompt'
 
 describe('InstallPrompt', () => {
+  afterEach(() => vi.restoreAllMocks())
+
+  it.each(['getItem', 'setItem'] as const)(
+    'keeps manual guidance and dismissal working when localStorage.%s throws',
+    (method) => {
+      vi.spyOn(Storage.prototype, method).mockImplementation(() => {
+        throw new DOMException('denied', 'SecurityError')
+      })
+      const { unmount } = render(
+        <InstallPrompt platform="ios" standalone={false} />,
+      )
+      expect(screen.getByRole('tab', { name: 'iPhone' })).toBeVisible()
+      fireEvent.click(screen.getByRole('button', { name: '关闭安装提示' }))
+      expect(
+        screen.queryByRole('button', { name: '关闭安装提示' }),
+      ).not.toBeInTheDocument()
+      unmount()
+      render(
+        <InstallPrompt platform="unknown" standalone={false} mode="page" />,
+      )
+      fireEvent.click(screen.getByRole('tab', { name: 'Android' }))
+      expect(screen.getByText(/安装应用或添加到主屏幕/)).toBeVisible()
+    },
+  )
+
+  it('retains manual guidance and reports a rejected native installation without claiming success', async () => {
+    render(<InstallPrompt platform="android" standalone={false} mode="page" />)
+    fireEvent(
+      window,
+      Object.assign(new Event('beforeinstallprompt'), {
+        prompt: async () => {
+          throw new Error('not available')
+        },
+        userChoice: Promise.resolve({ outcome: 'accepted' as const }),
+      }),
+    )
+    fireEvent.click(screen.getByRole('button', { name: '立即安装' }))
+    expect(await screen.findByRole('alert')).toHaveTextContent('手动')
+    expect(screen.queryByText('已安装到主屏幕')).not.toBeInTheDocument()
+    expect(screen.getByRole('tab', { name: 'iPhone' })).toBeVisible()
+  })
   it('keeps both manual guides available when the platform is unknown', () => {
     render(<InstallPrompt platform="unknown" standalone={false} mode="page" />)
 
     expect(screen.getByRole('tab', { name: 'iPhone' })).toBeVisible()
     expect(screen.getByRole('tab', { name: 'Android' })).toBeVisible()
-    expect(screen.getByText('打开 Safari 的分享菜单')).toBeVisible()
-    expect(screen.getByText('确认名称并点“添加”')).toBeVisible()
+    expect(screen.getByText(/更多.*共享/)).toBeVisible()
+    expect(screen.getByText(/网页 App.*添加/)).toBeVisible()
 
     fireEvent.click(screen.getByRole('tab', { name: 'Android' }))
 
@@ -76,14 +117,16 @@ describe('InstallPrompt', () => {
   it('gives iPhone users accurate Safari installation steps', () => {
     render(<InstallPrompt platform="ios" standalone={false} />)
 
-    expect(screen.getByText('打开 Safari 的分享菜单')).toBeVisible()
-    expect(screen.getByText('选择“添加到主屏幕”')).toBeVisible()
+    expect(screen.getByText(/更多.*共享/)).toBeVisible()
+    expect(screen.getByText(/添加到主屏幕.*编辑操作/)).toBeVisible()
   })
 
   it('hides installation guidance in standalone mode', () => {
     render(<InstallPrompt platform="ios" standalone />)
 
-    expect(screen.queryByText('添加 SpeakMate 到主屏幕')).not.toBeInTheDocument()
+    expect(
+      screen.queryByText('添加 SpeakMate 到主屏幕'),
+    ).not.toBeInTheDocument()
   })
 
   it('lets a visitor dismiss guidance without trapping focus', () => {
@@ -91,7 +134,9 @@ describe('InstallPrompt', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '暂时不用' }))
 
-    expect(screen.queryByText('添加 SpeakMate 到主屏幕')).not.toBeInTheDocument()
+    expect(
+      screen.queryByText('添加 SpeakMate 到主屏幕'),
+    ).not.toBeInTheDocument()
   })
 
   it('keeps installation guidance usable when display-mode media queries are unavailable', () => {

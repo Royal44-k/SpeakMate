@@ -4,7 +4,10 @@
 import { BookmarkSimple, SpinnerGap } from '@phosphor-icons/react'
 import { useEffect, useRef, useState } from 'react'
 import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
-import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import {
+  buildLearningHref,
+  safeSourceHref,
+} from '@/components/app-shell/learning-routes'
 import { presentGradedPractice } from '@/domain/practice/graded-presenter'
 import {
   createIndexedDbRepositories,
@@ -28,9 +31,11 @@ export function favoriteIdFor(sessionId: string, expression: string): string {
 export function SessionReportView({
   sessionId,
   repositories,
+  returnHref,
 }: {
   sessionId: string
   repositories?: Repositories
+  returnHref?: string
 }) {
   const [repository] = useState(
     () => repositories ?? createIndexedDbRepositories(),
@@ -215,6 +220,7 @@ export function SessionReportView({
       repositories={repository}
       returnTo={
         record.session.provenance?.returnTo ??
+        safeSourceHref(returnHref) ??
         record.session.simulation?.returnTo ??
         '/me'
       }
@@ -223,8 +229,21 @@ export function SessionReportView({
         <MobilePageHeader
           title="本次复盘"
           eyebrow="SESSION RECORD"
-          fallbackHref={record.session.provenance?.returnTo ?? '/me'}
-          backLabel={record.session.provenance ? '返回原计划' : '返回我的练习'}
+          fallbackHref={
+            record.session.provenance?.returnTo ??
+            safeSourceHref(returnHref) ??
+            record.session.simulation?.returnTo ??
+            '/me'
+          }
+          backLabel={
+            record.session.provenance
+              ? '返回原计划'
+              : safeSourceHref(returnHref)
+                ? '返回来源页面'
+                : record.session.simulation
+                  ? '返回词句或记录簿'
+                  : '返回我的练习'
+          }
         />
         <header className={styles.scoreHeader}>
           {record.session.provenance ? (

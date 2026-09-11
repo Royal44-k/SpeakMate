@@ -113,8 +113,17 @@ it('renders an actually owned complete original sheet and applies the owned cove
     ).toHaveAttribute('data-cover', 'cover-sky'),
   )
 })
-it('provides actual reward and guide static route consumers', () => {
-  expect(RewardsPage().type).toBe(RewardHome)
+it('provides actual reward and guide static route consumers', async () => {
+  const rewards = render(<RewardsPage />)
+  expect(
+    await screen.findByRole('heading', { name: '数字奖励' }),
+  ).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: '目标' })).toHaveAttribute(
+    'aria-current',
+    'page',
+  )
+  expect(screen.getAllByRole('main')).toHaveLength(1)
+  rewards.unmount()
   render(<GuidePage />)
   expect(
     screen.getByRole('heading', { name: '本机练习指南' }),

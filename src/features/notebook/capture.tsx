@@ -150,7 +150,12 @@ export function CaptureProvider({
       pending.current = false
     }
   }
-  const href = result && savedNotebookHref(result.entry.id)
+  const href =
+    result &&
+    savedNotebookHref(
+      result.entry.id,
+      window.location.pathname + window.location.search,
+    )
   return (
     <CaptureContext.Provider value={open}>
       {children}

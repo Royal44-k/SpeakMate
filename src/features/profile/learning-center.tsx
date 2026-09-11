@@ -8,8 +8,7 @@ import {
   Gear,
   ShieldCheck,
 } from '@phosphor-icons/react'
-import Link from 'next/link'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { AppShell } from '@/components/app-shell/app-shell'
 import { SCENE_METADATA } from '@/content/scenes/metadata'
@@ -44,11 +43,58 @@ export function LearningCenter({
   const [loadedAt] = useState(() => Date.now())
   const [retained, setRetained] = useState<PracticeRecord>()
   const [profileStyle, setProfileStyle] = useState<string>()
+  const [repo] = useState(
+    () => providedRepositories ?? createIndexedDbRepositories(),
+  )
+  const [attempt, setAttempt] = useState(0)
+  const [deleting, setDeleting] = useState<PracticeRecord>()
+  const [receipt, setReceipt] = useState<string>()
+  const [historyBusy, setHistoryBusy] = useState(false)
+  const [historyMessage, setHistoryMessage] = useState('')
+  const [historyError, setHistoryError] = useState('')
+  const deletionTitle = useRef<HTMLHeadingElement>(null)
+  const deletionTrigger = useRef<HTMLButtonElement>(null)
+  const undoButton = useRef<HTMLButtonElement>(null)
+  const historyTitle = useRef<HTMLHeadingElement>(null)
+  useEffect(() => {
+    if (deleting) deletionTitle.current?.focus()
+  }, [deleting])
+  useEffect(() => {
+    if (historyMessage && !historyBusy)
+      (receipt ? undoButton.current : historyTitle.current)?.focus()
+  }, [historyMessage, historyBusy, receipt])
+
+  async function changeHistory(undo = false) {
+    if (historyBusy || (!undo && !deleting) || (undo && !receipt)) return
+    setHistoryBusy(true)
+    setHistoryError('')
+    setHistoryMessage('')
+    try {
+      if (undo) {
+        await repo.sessions.undoDeleteHistory(receipt!)
+        setReceipt(undefined)
+        setHistoryMessage('本次历史已恢复；没有重复发放积分。')
+      } else {
+        setReceipt(await repo.sessions.deleteHistory(deleting!))
+        setDeleting(undefined)
+        setHistoryMessage(
+          '这条历史已删除，笔记、收藏和已记录的学习积分仍保留。刷新或离开后不保证可撤销。',
+        )
+      }
+      setAttempt((value) => value + 1)
+    } catch {
+      setHistoryError(
+        '操作未完成：记录可能已被另一窗口修改，或存储不可用。请重新读取后核对；没有覆盖其他记录。',
+      )
+    } finally {
+      setHistoryBusy(false)
+    }
+  }
 
   useEffect(() => {
     let active = true
     async function load() {
-      const repositories = providedRepositories ?? createIndexedDbRepositories()
+      const repositories = repo
       const [learner, savedSessions, savedFavorites, settings] =
         await Promise.all([
           repositories.profiles.ensureGuestProfile(),
@@ -61,12 +107,11 @@ export function LearningCenter({
         b.updatedAt.localeCompare(a.updatedAt),
       )
       const coherent = await Promise.all(
-        latest
-          .slice(0, 6)
-          .map((session) => repositories.practice.read(session.id)),
+        latest.map((session) => repositories.practice.read(session.id)),
       )
       if (!active) return
       setProfile(learner)
+      setLoadError(false)
       setProfileStyle(settings.appliedProfileStyle)
       setSessions(latest)
       setRecords(
@@ -86,7 +131,7 @@ export function LearningCenter({
     return () => {
       active = false
     }
-  }, [providedRepositories])
+  }, [repo, attempt])
 
   const completedThisWeek = useMemo(() => {
     const cutoff = loadedAt - 7 * 24 * 60 * 60 * 1_000
@@ -147,19 +192,21 @@ export function LearningCenter({
           <CloudSlash aria-hidden size={23} />
           <div>
             <h2>记录保存在本机</h2>
-            <p>无需登录即可免费使用；跨设备同步为可选功能。</p>
+            <p>无需登录即可免费使用；本版不连接账号、云端智能或自动同步。</p>
           </div>
-          <Link href="/auth">了解同步</Link>
+          <a href="/auth">本机数据说明</a>
         </section>
 
         <section className={styles.section} aria-labelledby="history-title">
           <div className={styles.sectionTitle}>
             <ClockCounterClockwise aria-hidden size={21} />
-            <h2 id="history-title">最近练习</h2>
+            <h2 id="history-title" ref={historyTitle} tabIndex={-1}>
+              完整练习历史
+            </h2>
           </div>
           {sessions.length > 0 ? (
             <div className={styles.list}>
-              {sessions.slice(0, 6).map((session) => {
+              {sessions.map((session) => {
                 const scene = SCENE_METADATA.find(
                   (item) => item.id === session.sceneId,
                 )
@@ -183,13 +230,14 @@ export function LearningCenter({
                             ? '继续练习'
                             : '待查看结束选项'
                 const href = session.simulation
-                  ? savedSimulationHref(session.id)
+                  ? savedSimulationHref(session.id, '/me')
                   : savedPracticeHref(
                       session.id,
                       session.status === 'completed' ||
                         session.status === 'abandoned'
                         ? 'report'
                         : 'session',
+                      '/me',
                     )
                 const content = (
                   <>
@@ -211,23 +259,42 @@ export function LearningCenter({
                     </time>
                   </>
                 )
-                return href ? (
-                  <a key={session.id} href={href}>
-                    {content}
-                  </a>
-                ) : (
+                return (
                   <div key={session.id}>
-                    {content}
-                    {record ? (
-                      <button type="button" onClick={() => setRetained(record)}>
-                        在此查看保留记录（只读）
-                      </button>
+                    {href ? (
+                      <a href={href}>{content}</a>
                     ) : (
-                      <p>
-                        记录暂时无法读取，请重试本页或
-                        <a href="/privacy">导出本机备份</a>；没有删除记录。
-                      </p>
+                      <>
+                        {content}
+                        {record ? (
+                          <button
+                            type="button"
+                            onClick={() => setRetained(record)}
+                          >
+                            在此查看保留记录（只读）
+                          </button>
+                        ) : (
+                          <p>
+                            记录暂时无法读取，请重试本页或
+                            <a href="/privacy">导出本机备份</a>；没有删除记录。
+                          </p>
+                        )}
+                      </>
                     )}
+                    {record ? (
+                      <button
+                        type="button"
+                        disabled={historyBusy}
+                        onClick={(event) => {
+                          deletionTrigger.current = event.currentTarget
+                          setDeleting(record)
+                          setHistoryError('')
+                        }}
+                        aria-label={`删除此练习：${session.sceneSnapshot?.titleZh ?? scene?.titleZh ?? '英语对话'}`}
+                      >
+                        删除此练习
+                      </button>
+                    ) : null}
                   </div>
                 )
               })}
@@ -236,6 +303,73 @@ export function LearningCenter({
             <p className={styles.empty}>完成第一场练习后，记录会出现在这里。</p>
           )}
         </section>
+
+        {deleting ? (
+          <section className={styles.section} aria-label="确认删除历史">
+            <h2 ref={deletionTitle} tabIndex={-1}>
+              删除这条历史？
+            </h2>
+            <p>
+              {deleting.session.sceneSnapshot?.titleZh ?? '英语对话'} ·{' '}
+              {deleting.session.level} · {deleting.session.updatedAt}
+            </p>
+            <p>
+              只删除本条会话及话轮；词句笔记及任务完成凭据可能仍含学习文字，收藏、计划与积分保留。彻底清除请前往隐私与数据明确确认。刷新或离开后不保证可撤销。
+            </p>
+            {deleting.session.status === 'active' ? (
+              <p>
+                这条练习尚未结束。删除后不能继续原记录；未完成任务只能按原固定目标另开。
+              </p>
+            ) : null}
+            <button
+              type="button"
+              disabled={historyBusy}
+              onClick={() => void changeHistory()}
+            >
+              确认删除这条历史
+            </button>
+            <button
+              type="button"
+              disabled={historyBusy}
+              onClick={() => {
+                setDeleting(undefined)
+                deletionTrigger.current?.focus()
+              }}
+            >
+              取消删除
+            </button>
+          </section>
+        ) : null}
+        {historyMessage ? (
+          <p className={styles.section} role="status">
+            {historyMessage}
+          </p>
+        ) : null}
+        {receipt ? (
+          <button
+            ref={undoButton}
+            className={styles.section}
+            type="button"
+            disabled={historyBusy}
+            onClick={() => void changeHistory(true)}
+          >
+            撤销本次删除
+          </button>
+        ) : null}
+        {historyError ? (
+          <section className={styles.section}>
+            <p role="alert">{historyError}</p>
+            <button
+              disabled={historyBusy}
+              onClick={() => {
+                setDeleting(undefined)
+                setAttempt((value) => value + 1)
+              }}
+            >
+              重新读取历史
+            </button>
+          </section>
+        ) : null}
 
         <section className={styles.section} aria-labelledby="favorite-title">
           <div className={styles.sectionTitle}>
@@ -257,27 +391,34 @@ export function LearningCenter({
         </section>
 
         <nav className={styles.settings} aria-label="设置与数据">
-          <Link href="/privacy">
+          <a href="/privacy">
             <ShieldCheck aria-hidden size={20} />
             <span>
               <strong>隐私与数据</strong>
               <small>导出、清空与数据说明</small>
             </span>
-          </Link>
-          <Link href="/install">
+          </a>
+          <a href="/install">
             <DownloadSimple aria-hidden size={20} />
             <span>
               <strong>安装到手机</strong>
               <small>查看 iPhone 与安卓步骤</small>
             </span>
-          </Link>
-          <Link href="/welcome">
+          </a>
+          <a href="/welcome">
             <Gear aria-hidden size={20} />
             <span>
               <strong>重新设置目标</strong>
               <small>修改水平、场景与每日时长</small>
             </span>
-          </Link>
+          </a>
+          <a href="/guide">
+            <Gear aria-hidden size={20} />
+            <span>
+              <strong>使用指南</strong>
+              <small>重新查看本机学习方法</small>
+            </span>
+          </a>
         </nav>
       </div>
     </AppShell>

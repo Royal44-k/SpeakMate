@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-import { fireEvent, render, screen } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import { axe } from 'jest-axe'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -28,7 +28,7 @@ describe('AppShell', () => {
     window.sessionStorage.clear()
   })
 
-  it('keeps three primary destinations reachable with the current page announced', () => {
+  it('keeps five ordered static document destinations reachable with the current page announced', () => {
     render(<AppShell activeDestination="practice">content</AppShell>)
 
     expect(screen.getByRole('navigation', { name: '主要导航' })).toBeVisible()
@@ -36,23 +36,51 @@ describe('AppShell', () => {
       'aria-current',
       'page',
     )
-    expect(screen.getAllByRole('link')).toHaveLength(3)
+    const links = within(screen.getByRole('navigation')).getAllByRole('link')
+    expect(
+      links.map((link) => [link.textContent, link.getAttribute('href')]),
+    ).toEqual([
+      ['目标', '/'],
+      ['练习', '/practice'],
+      ['场景', '/scenes'],
+      ['记录簿', '/notebook'],
+      ['我的', '/me'],
+    ])
   })
 
-  it('keeps three 44px navigation targets separated by an 8px gap', () => {
-    const navigationStyles = readFileSync(
-      'src/components/app-shell/app-shell.module.css',
-      'utf8',
+  it('publishes changing actual footer height including its safe area once, and clears it when absent', () => {
+    let resize = () => {}
+    vi.stubGlobal(
+      'ResizeObserver',
+      class {
+        constructor(callback: () => void) {
+          resize = callback
+        }
+        observe() {}
+        disconnect() {}
+      },
     )
-    const tokens = readFileSync('src/styles/tokens.css', 'utf8')
-
-    expect(navigationStyles).toMatch(
-      /\.navigation\s*{[^}]*grid-template-columns:\s*repeat\(3, 1fr\);[^}]*gap:\s*8px;/s,
+    let height = 84
+    const measure = vi
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockImplementation(() => ({ height }) as DOMRect)
+    const { unmount } = render(
+      <AppShell activeDestination="notebook">content</AppShell>,
     )
-    expect(navigationStyles).toMatch(
-      /\.navigationLink,\s*\.navigationLinkActive\s*{[^}]*min-width:\s*var\(--tap-target\);[^}]*min-height:\s*52px;/s,
-    )
-    expect(tokens).toMatch(/--tap-target:\s*44px;/)
+    expect(
+      document.documentElement.style.getPropertyValue('--footer-height'),
+    ).toBe('84px')
+    height = 132
+    act(() => resize())
+    expect(
+      document.documentElement.style.getPropertyValue('--footer-height'),
+    ).toBe('132px')
+    unmount()
+    expect(
+      document.documentElement.style.getPropertyValue('--footer-height'),
+    ).toBe('')
+    measure.mockRestore()
+    vi.unstubAllGlobals()
   })
 
   it('has no detectable accessibility violations in the shared shell', async () => {
@@ -70,10 +98,9 @@ describe('AppShell', () => {
       <MobilePageHeader title="隐私与数据" fallbackHref="/me" />,
     )
 
-    expect(screen.getByRole('link', { name: '返回隐私与数据' })).toHaveAttribute(
-      'href',
-      '/me',
-    )
+    expect(
+      screen.getByRole('link', { name: '返回隐私与数据' }),
+    ).toHaveAttribute('href', '/me')
     expect(screen.getByRole('heading', { name: '隐私与数据' })).toHaveAttribute(
       'data-page-title',
     )
@@ -91,6 +118,20 @@ describe('AppShell', () => {
     )
     expect(headerStyles).not.toMatch(/\.header h1\s*{[^}]*overflow:\s*hidden;/s)
     expect(headerStyles).not.toMatch(/\.header h1\s*{[^}]*text-overflow:/s)
+  })
+
+  it('honors explicit source when the previous local entry is a different detail', () => {
+    sessionStorage.setItem(
+      'speakmate-route-stack',
+      JSON.stringify([
+        '/notebook',
+        '/session/report?id=A',
+        '/notebook/note?id=B',
+      ]),
+    )
+    render(<SmartBackLink fallbackHref="/notebook" ariaLabel="返回来源" />)
+    fireEvent.click(screen.getByRole('link', { name: '返回来源' }))
+    expect(routerBack).not.toHaveBeenCalled()
   })
 
   it('uses browser back only when the current session has an in-app route', () => {

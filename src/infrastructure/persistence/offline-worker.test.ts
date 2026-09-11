@@ -16,6 +16,8 @@ function worker() {
     '/scenes/prepare': 'PREPARE',
     '/scenes': 'SCENES',
     '/practice': 'PRACTICE',
+    '/welcome': 'WELCOME',
+    '/auth': 'AUTH',
     '/_next/static/main.js': 'SCRIPT',
     '/_next/static/style.css': '@font-face{src:url(font.woff2)}',
     '/_next/static/font.woff2': 'FONT',
@@ -142,6 +144,70 @@ function worker() {
 }
 
 describe('document-only offline foundation', () => {
+  it.each([
+    '/welcome',
+    '/auth',
+    '/guide',
+    '/rewards',
+    '/?date=2026-09-10&task=scene',
+  ])(
+    'matches the typed known source projection for legacy entry from %s',
+    async (from) => {
+      const w = worker()
+      const href =
+        '/session/saved?from=' +
+        encodeURIComponent(
+          from + (from.includes('?') ? '&' : '?') + 'text=private',
+        )
+      const response = (await w.trigger('fetch', {
+        request: {
+          url: 'https://speakmate.test' + href,
+          method: 'GET',
+          mode: 'navigate',
+          destination: 'document',
+          headers: new Headers(),
+        },
+      })) as Response
+      const target = new URL(response.headers.get('location')!)
+      expect(target.pathname + target.search).toBe(canonicalLegacyHref(href))
+      expect(target.search).not.toContain('private')
+    },
+  )
+  it.each([
+    ['/welcome', 'WELCOME'],
+    ['/auth', 'AUTH'],
+  ])(
+    'returns its own offline %s document but never substitutes it for RSC',
+    async (path, body) => {
+      const w = worker()
+      await w.trigger('install')
+      w.setOffline()
+      const request = {
+        url: 'https://speakmate.test' + path,
+        method: 'GET',
+        mode: 'navigate',
+        destination: 'document',
+        headers: new Headers(),
+      }
+      const document = (await w.trigger('fetch', { request })) as Response
+      expect(await document.text()).toBe(body)
+      expect(
+        await w.trigger('fetch', {
+          request: {
+            ...request,
+            mode: 'cors',
+            destination: '',
+            headers: new Headers({ RSC: '1' }),
+          },
+        }),
+      ).toBeUndefined()
+      expect(
+        [...w.data.values()].some((cache) =>
+          cache.has('https://speakmate.test/content/v1/dining'),
+        ),
+      ).toBe(false)
+    },
+  )
   it.each([
     '/session/new?scene=coffee-order&level=',
     '/session/new?scene=coffee-order&mode=',

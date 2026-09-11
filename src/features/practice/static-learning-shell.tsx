@@ -42,12 +42,19 @@ export function StaticLearningShell({
     )
   const target = result.target
   if (target.kind === 'note')
-    return <NotebookNote key={target.id} id={target.id} />
+    return (
+      <NotebookNote key={target.id} id={target.id} returnHref={target.from} />
+    )
   if (target.kind === 'simulation')
     return target.id === 'new' ? (
       <SimulationEntry key={`new:${target.source}`} noteId={target.source!} />
     ) : (
-      <SessionResolver key={target.id} requestedId={target.id} simulationOnly />
+      <SessionResolver
+        key={target.id}
+        requestedId={target.id}
+        queryFrom={target.from}
+        simulationOnly
+      />
     )
   if (target.kind === 'session')
     return (
@@ -61,7 +68,13 @@ export function StaticLearningShell({
       />
     )
   if (target.kind === 'report')
-    return <SessionReportView key={target.id} sessionId={target.id} />
+    return (
+      <SessionReportView
+        key={target.id}
+        sessionId={target.id}
+        returnHref={target.from}
+      />
+    )
   if (target.kind === 'prepare') {
     const definition = SCENE_METADATA.find(
       (scene) => scene.slug === target.scene,

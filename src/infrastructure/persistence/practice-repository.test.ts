@@ -346,7 +346,12 @@ describe.each([
     ).rejects.toThrow(/GUARDED/)
     await expect(
       repository.learning.recordEvent(
-        completionFixture(session.profileId),
+        {
+          ...completionFixture(session.profileId),
+          recallResponses: [
+            { id: 'starter_1', kind: 'starter', text: 'Hello!' },
+          ],
+        },
         () => ({ session: { ...session, status: 'completed' } }),
       ),
     ).rejects.toThrow(/GUARDED/)

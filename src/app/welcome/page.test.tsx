@@ -5,9 +5,16 @@ import type { LearnerProfile } from '@/domain/learning/types'
 
 import WelcomePage from './page'
 
-const { ensureGuestProfile, routerPush } = vi.hoisted(() => ({
+const { ensureGuestProfile, routerPush, saveProfile } = vi.hoisted(() => ({
   ensureGuestProfile: vi.fn(),
   routerPush: vi.fn(),
+  saveProfile: vi.fn(),
+}))
+vi.mock('@/components/app-shell/learning-routes', async (original) => ({
+  ...(await original<
+    typeof import('@/components/app-shell/learning-routes')
+  >()),
+  navigateLocalHref: routerPush,
 }))
 
 vi.mock('next/navigation', () => ({
@@ -18,7 +25,7 @@ vi.mock('@/infrastructure/persistence/repositories', () => ({
   createIndexedDbRepositories: () => ({
     profiles: {
       ensureGuestProfile,
-      save: vi.fn(),
+      save: saveProfile,
     },
   }),
 }))
@@ -36,13 +43,30 @@ function completedProfile(): LearnerProfile {
 }
 
 describe('WelcomePage', () => {
+  it('saves locally then returns a completed editor to goals without creating a practice', async () => {
+    ensureGuestProfile.mockResolvedValue(completedProfile())
+    saveProfile.mockResolvedValue(undefined)
+    render(<WelcomePage />)
+    fireEvent.click(await screen.findByRole('button', { name: 'C1 高级' }))
+    fireEvent.click(screen.getByRole('button', { name: '职场' }))
+    fireEvent.click(screen.getByRole('button', { name: '保存设置' }))
+    await screen.findByRole('button', { name: '保存设置' })
+    expect(saveProfile).toHaveBeenCalledWith(
+      expect.objectContaining({ level: 'C1', onboardingCompleted: true }),
+    )
+    expect(routerPush).toHaveBeenCalledWith('/', true)
+  })
   it('keeps a labelled busy loading state while the guest profile is loading', () => {
     ensureGuestProfile.mockReturnValue(new Promise(() => undefined))
 
     render(<WelcomePage />)
 
-    expect(screen.getByRole('main', { name: '正在准备你的练习' })).toHaveAttribute('aria-busy', 'true')
-    expect(screen.getByRole('status')).toHaveTextContent('正在读取你的练习设置…')
+    expect(
+      screen.getByRole('main', { name: '正在准备你的练习' }),
+    ).toHaveAttribute('aria-busy', 'true')
+    expect(screen.getByRole('status')).toHaveTextContent(
+      '正在读取你的练习设置…',
+    )
     expect(
       screen.getByRole('heading', { name: '正在准备你的练习' }),
     ).not.toHaveAttribute('data-page-title')
@@ -53,16 +77,25 @@ describe('WelcomePage', () => {
 
     render(<WelcomePage />)
 
-    expect(await screen.findByRole('link', { name: '返回我的练习' })).toHaveAttribute('href', '/me')
-    expect(screen.getByRole('button', { name: 'B1 中级' })).toHaveAttribute('aria-pressed', 'true')
+    expect(
+      await screen.findByRole('link', { name: '返回我的练习' }),
+    ).toHaveAttribute('href', '/me')
+    expect(screen.getByRole('button', { name: 'B1 中级' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
   })
 
   it('explains a loading failure and retries the guest profile read', async () => {
-    ensureGuestProfile.mockRejectedValueOnce(new Error('IndexedDB unavailable')).mockResolvedValueOnce(completedProfile())
+    ensureGuestProfile
+      .mockRejectedValueOnce(new Error('IndexedDB unavailable'))
+      .mockResolvedValueOnce(completedProfile())
 
     render(<WelcomePage />)
 
-    expect(await screen.findByRole('alert')).toHaveTextContent('无法读取本地练习设置，请重试。')
+    expect(await screen.findByRole('alert')).toHaveTextContent(
+      '无法读取本地练习设置，请重试。',
+    )
     const errorTitle = screen.getByRole('heading', {
       name: '暂时无法准备练习',
     })
@@ -70,7 +103,11 @@ describe('WelcomePage', () => {
     expect(errorTitle).toHaveAttribute('tabindex', '-1')
     fireEvent.click(screen.getByRole('button', { name: '重试' }))
 
-    expect(screen.getByRole('main', { name: '正在准备你的练习' })).toHaveAttribute('aria-busy', 'true')
-    expect(await screen.findByRole('link', { name: '返回我的练习' })).toBeVisible()
+    expect(
+      screen.getByRole('main', { name: '正在准备你的练习' }),
+    ).toHaveAttribute('aria-busy', 'true')
+    expect(
+      await screen.findByRole('link', { name: '返回我的练习' }),
+    ).toBeVisible()
   })
 })

@@ -14,6 +14,16 @@
 html {
   min-width: 320px;
   background: var(--color-atlantic-950);
+  scroll-padding-bottom: calc(
+    var(--footer-height, 0px) + var(--update-clearance, 0px) + 20px
+  );
+}
+
+:root[data-footer-visible='true'] {
+  --footer-height: calc(var(--nav-height) + env(safe-area-inset-bottom));
+}
+:root[data-update-notice-visible='true'] {
+  --update-clearance: calc(var(--update-notice-height, 0px) + 24px);
 }
 
 body {
@@ -25,8 +35,8 @@ body {
 
 :root[data-update-notice-visible='true'] body {
   padding-bottom: calc(
-    var(--update-notice-height) + var(--nav-height) +
-      env(safe-area-inset-bottom) + 12px
+    var(--update-notice-height) +
+      var(--footer-height, env(safe-area-inset-bottom)) + 12px
   );
 }
 
@@ -111,13 +121,34 @@ a {
 }
 
 .landing-hero h1 {
-  max-width: 9ch;
+  width: 100%;
   margin: 0;
   color: var(--color-atlantic-950);
   font-family: var(--font-display);
-  font-size: clamp(3.2rem, 14vw, 5rem);
-  line-height: 0.98;
-  letter-spacing: -0.06em;
+  font-size: 1.6rem;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+.landing-hero h1 span {
+  display: block;
+  white-space: nowrap;
+}
+.landing-hero > a:not(.primary-link) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 12px;
+}
+@media (min-width: 375px) {
+  .landing-hero h1 {
+    font-size: 1.9rem;
+  }
+}
+@media (min-width: 430px) {
+  .landing-hero h1 {
+    font-size: 2.2rem;
+  }
 }
 
 .landing-copy {

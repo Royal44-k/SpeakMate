@@ -62,9 +62,14 @@ describe('SessionReportView', () => {
       <SessionReportView
         sessionId="partial-session"
         repositories={repositories}
+        returnHref="/notebook/note?id=source-note"
       />,
     )
     expect(await screen.findByText('部分结束 · 等待你确认结束')).toBeVisible()
+    expect(screen.getByRole('link', { name: '返回来源页面' })).toHaveAttribute(
+      'href',
+      '/notebook/note?id=source-note',
+    )
     expect(screen.getByText('未匹配表达：1 轮')).toBeVisible()
     expect(screen.getByText('帮助或停止操作：2 轮')).toBeVisible()
     expect(screen.queryByText(/这次没有明显错误/)).not.toBeInTheDocument()

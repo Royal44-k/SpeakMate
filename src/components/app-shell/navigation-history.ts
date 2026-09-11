@@ -3,8 +3,9 @@ const MAX_ROUTES = 24
 
 export function trackRoute(stack: string[], nextRoute: string) {
   if (stack.at(-1) === nextRoute) return { stack, kind: 'same' as const }
-  if (stack.at(-2) === nextRoute) {
-    return { stack: stack.slice(0, -1), kind: 'back' as const }
+  const previous = stack.lastIndexOf(nextRoute)
+  if (previous >= 0) {
+    return { stack: stack.slice(0, previous + 1), kind: 'back' as const }
   }
   if (
     stack.at(-1) &&

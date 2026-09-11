@@ -34,6 +34,25 @@ describe('exitGuardState', () => {
 })
 
 describe('ExitGuard', () => {
+  it.each(['getItem', 'setItem'] as const)(
+    'retains explicit confirmed exit when sessionStorage.%s throws',
+    async (method) => {
+      vi.spyOn(Storage.prototype, method).mockImplementation(() => {
+        throw new DOMException('denied', 'SecurityError')
+      })
+      const release = vi.fn()
+      render(
+        <ExitGuard state="draft" fallbackHref="/me" onConfirmExit={release} />,
+      )
+      fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+      fireEvent.click(screen.getByRole('button', { name: '退出' }))
+      fireEvent.popState(window, { state: null })
+      await waitFor(() =>
+        expect(documentNavigation.replace).toHaveBeenCalledWith('/me'),
+      )
+      expect(release).toHaveBeenCalledOnce()
+    },
+  )
   beforeEach(() => {
     routerBack.mockReset()
     routerReplace.mockReset()

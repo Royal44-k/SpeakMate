@@ -7,8 +7,37 @@ import type {
 } from '@/content/analysis/provider'
 import { NotebookNote } from './notebook-note'
 import { NotebookHome } from './notebook-home'
+import { AppShell } from '@/components/app-shell/app-shell'
 vi.mock('next/navigation', () => ({ useRouter: () => ({ back: vi.fn() }) }))
 beforeEach(() => sessionStorage.clear())
+it('keeps an explicit local return separate from saved source context and guards global navigation', async () => {
+  const repo = await fixture()
+  render(
+    <AppShell activeDestination="notebook" contentOwnsMain>
+      <NotebookNote
+        id="a"
+        repositories={repo}
+        assistant={{ analyze: async () => unknown }}
+        returnHref="/session/report?id=origin"
+      />
+    </AppShell>,
+  )
+  await screen.findByRole('heading', { name: 'blocker' })
+  expect(screen.getByRole('link', { name: '返回来源页面' })).toHaveAttribute(
+    'href',
+    '/session/report?id=origin',
+  )
+  expect((await repo.notebook.get('a'))?.sources).toHaveLength(2)
+  fireEvent.click(screen.getByRole('button', { name: '编辑词句' }))
+  fireEvent.change(screen.getByLabelText('个人备注'), {
+    target: { value: 'unsaved local draft' },
+  })
+  fireEvent.click(screen.getByRole('link', { name: '练习' }))
+  expect(await screen.findByRole('alertdialog')).toBeVisible()
+  fireEvent.click(screen.getByRole('button', { name: '继续练习' }))
+  expect(screen.getByLabelText('个人备注')).toHaveValue('unsaved local draft')
+  expect(screen.getByRole('link', { name: '练习' })).toHaveFocus()
+})
 it('shows a real due review queue with hidden recall and a distinct empty simulation list', async () => {
   const repo = await fixture()
   render(

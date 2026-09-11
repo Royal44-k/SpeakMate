@@ -2,7 +2,7 @@
   position: fixed;
   z-index: var(--z-notice);
   right: max(14px, env(safe-area-inset-right));
-  bottom: calc(var(--nav-height) + env(safe-area-inset-bottom) + 12px);
+  bottom: calc(var(--footer-height, env(safe-area-inset-bottom)) + 12px);
   left: max(14px, env(safe-area-inset-left));
   display: grid;
   grid-template-columns: 1fr auto auto;
@@ -28,7 +28,7 @@
 .update span {
   margin-top: 3px;
   color: var(--color-sky-100);
-  font-size: .72rem;
+  font-size: 0.72rem;
 }
 
 .update button {

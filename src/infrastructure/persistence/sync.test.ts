@@ -43,6 +43,7 @@ describe('mergeGuestData', () => {
       profileId: profile.id,
       recalledNoteIds: [],
       recalledStarterExpressionIds: ['starter'],
+      recallResponses: [{ id: 'starter', kind: 'starter', text: 'Hello!' }],
       occurredAt: '2026-09-09T00:00:00.000Z',
       dateKey: '2026-09-09',
     })
