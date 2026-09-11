@@ -2,13 +2,12 @@
 
 import { useMemo, useState } from 'react'
 
-import { SCENE_CATALOG } from '@/content/scenes/catalog'
-import { adaptScene } from '@/domain/scenes/adapt-scene'
+import { SCENE_METADATA } from '@/content/scenes/metadata'
 import { searchScenes } from '@/domain/scenes/search-scenes'
 import type { CefrLevel } from '@/domain/scenes/types'
 import { ScrollToTopButton } from '@/components/app-shell/scroll-to-top-button'
 import type { SceneFilterState } from './scene-filter-state'
-import { sceneLibraryHref } from './scene-filter-state'
+import { sceneLibraryHref, sceneFilterIdentity } from './scene-filter-state'
 import { SceneCard } from './scene-card'
 import { SceneFilters } from './scene-filters'
 import styles from './scene-library.module.css'
@@ -25,12 +24,12 @@ export function SceneLibrary({
   onLevelChange,
 }: SceneLibraryProps) {
   const [state, setState] = useState(initialState)
-  const incomingHref = sceneLibraryHref(initialState)
+  const incomingHref = sceneFilterIdentity(initialState)
   const [lastIncomingHref, setLastIncomingHref] = useState(incomingHref)
 
   if (incomingHref !== lastIncomingHref) {
     setLastIncomingHref(incomingHref)
-    if (sceneLibraryHref(state) !== incomingHref) {
+    if (sceneFilterIdentity(state) !== incomingHref) {
       setState(initialState)
     }
   }
@@ -45,7 +44,7 @@ export function SceneLibrary({
   }
 
   const scenes = useMemo(() => {
-    return searchScenes(SCENE_CATALOG, state.search)
+    return searchScenes(SCENE_METADATA, state.search)
       .filter((scene) => {
         if (state.category !== 'all' && scene.category !== state.category)
           return false
@@ -56,7 +55,7 @@ export function SceneLibrary({
           return false
         return true
       })
-      .map((scene) => adaptScene(scene, state.level))
+      .map((scene) => ({ ...scene, level: state.level }))
   }, [state])
   const hasActiveFilters =
     state.search.trim().length > 0 ||

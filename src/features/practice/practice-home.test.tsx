@@ -24,7 +24,7 @@ describe('PracticeHome', () => {
     expect(title).toHaveAttribute('tabindex', '-1')
   })
 
-  it('uses the saved level, duration, goal and recoverable session', async () => {
+  it('uses the saved profile and preserves old active practice as readonly history', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()
     await repositories.profiles.save({
@@ -51,13 +51,13 @@ describe('PracticeHome', () => {
     expect(await screen.findByText('今天，开口说 15 分钟')).toBeVisible()
     expect(screen.getByText('C1')).toBeVisible()
     expect(screen.getByRole('heading', { name: '求职面试' })).toBeVisible()
-    expect(screen.getByRole('link', { name: /继续本次对话/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /查看旧版记录/ })).toHaveAttribute(
       'href',
-      '/session/session_resume?scene=job-interview&level=C1',
+      '/session?id=session_resume',
     )
   })
 
-  it('prioritizes the latest resumable snapshot over a new recommendation', async () => {
+  it('does not force a new launch to an old snapshot level', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()
     const snapshot = {
@@ -88,9 +88,16 @@ describe('PracticeHome', () => {
     expect(
       await screen.findByRole('heading', { name: '酒店入住' }),
     ).toBeVisible()
-    expect(screen.getByRole('link', { name: /继续本次对话/ })).toHaveAttribute(
+    expect(screen.getByRole('link', { name: /查看旧版记录/ })).toHaveAttribute(
       'href',
-      '/session/older-version-session?scene=hotel-check-in&level=B2',
+      '/session?id=older-version-session',
     )
+    expect(screen.getByRole('link', { name: /准备开始/ })).toHaveAttribute(
+      'href',
+      '/scenes/prepare?scene=hotel-check-in&level=A1',
+    )
+    expect(
+      screen.queryByRole('link', { name: /继续本次对话/ }),
+    ).not.toBeInTheDocument()
   })
 })

@@ -24,12 +24,16 @@ export const c1 = coffeePack(
       'drink',
       'order',
       'The Americano is the more assertive option; the filter coffee is subtler. What sort of flavour are you after?',
-      '精确限定所说的 strong，不推断咖啡因作用。',
+      '直接区分风味偏好和咖啡因，不推断咖啡因作用。',
       'americano',
-      'The Americano sounds right. By strong, I mean a pronounced flavour rather than anything to do with caffeine.',
+      'The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.',
       'filter',
       'I would lean towards the filter coffee. I am after something nuanced, not necessarily something that makes an immediate impression.',
-      reviewed,
+      {
+        state: 'model-reviewed',
+        record:
+          'coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0',
+      },
     ],
     [
       'size',

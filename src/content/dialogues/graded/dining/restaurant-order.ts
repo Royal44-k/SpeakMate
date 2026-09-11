@@ -720,8 +720,12 @@ export const restaurantPacks = {
         'both',
         'A spoon would be useful, thank you. It is simply how I find this kind of meal easiest to manage.',
         'fork',
-        'A fork alone would suit me. I would not want you to read that as a comment on how the dish ought to be eaten.',
-        reviewed,
+        'A fork alone would suit me, thank you. I find it easier to manage the pasta that way, although I know some people prefer a spoon as well.',
+        {
+          state: 'model-reviewed',
+          record:
+            'dining-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0',
+        },
       ],
       [
         'bill',

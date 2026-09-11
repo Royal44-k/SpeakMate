@@ -14,6 +14,11 @@ import type {
 import type { OutboxItem } from './db'
 import { createGuestProfile } from './identity'
 import {
+  createPracticeRepository,
+  assertHistoricalPracticeWrite,
+  type PracticeRepository,
+} from './practice-repository'
+import {
   bridgeFavorite,
   createNotebookRepository,
   type NotebookRepository,
@@ -86,6 +91,7 @@ export interface LearnerDataExportV2 extends Omit<
 }
 export type LearnerDataExport = LearnerDataExportV1 | LearnerDataExportV2
 export interface Repositories {
+  practice: PracticeRepository
   profiles: ProfileRepository
   sessions: SessionRepository
   turns: TurnRepository
@@ -105,6 +111,7 @@ export interface Repositories {
 function createRepositories(storage: LocalStoragePort): Repositories {
   const notebook = createNotebookRepository(storage)
   return {
+    practice: createPracticeRepository(storage),
     profiles: {
       get: () => storage.read((state) => state.profile[0]),
       ensureGuestProfile: () =>
@@ -121,9 +128,10 @@ function createRepositories(storage: LocalStoragePort): Repositories {
         ),
       list: () => storage.read((state) => state.sessions),
       save: (session) =>
-        storage.change((state) =>
-          put(state.sessions, sessionSchema.parse(session) as PracticeSession),
-        ),
+        storage.change((state) => {
+          assertHistoricalPracticeWrite(state, session)
+          put(state.sessions, sessionSchema.parse(session) as PracticeSession)
+        }),
       findRecoverable: () =>
         storage.read(
           (state) =>
@@ -142,7 +150,10 @@ function createRepositories(storage: LocalStoragePort): Repositories {
             .sort((a, b) => a.index - b.index),
         ),
       save: (turn) =>
-        storage.change((state) => put(state.turns, turnSchema.parse(turn))),
+        storage.change((state) => {
+          assertHistoricalPracticeWrite(state, undefined, turn)
+          put(state.turns, turnSchema.parse(turn))
+        }),
     },
     favorites: {
       list: () => storage.read((state) => state.favorites),
@@ -173,6 +184,7 @@ function createRepositories(storage: LocalStoragePort): Repositories {
     ...createBackupPort(storage),
     saveTurnAndSession: (turn, session) =>
       storage.change((state) => {
+        assertHistoricalPracticeWrite(state, session, turn)
         if (turn.sessionId !== session.id)
           throw new Error('TURN_SESSION_MISMATCH')
         put(state.turns, turnSchema.parse(turn))

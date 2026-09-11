@@ -1,8 +1,10 @@
-import { SessionReportView } from '@/features/practice/session-report'
+import { Suspense } from 'react'
+import { LegacyLearningShell } from '@/features/practice/legacy-learning-shell'
 
-export const metadata = { title: '场景复盘' }
-
-export default async function ReportPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params
-  return <SessionReportView sessionId={id} />
+export default function LegacyPage() {
+  return (
+    <Suspense fallback={<main aria-busy="true">正在打开学习入口…</main>}>
+      <LegacyLearningShell />
+    </Suspense>
+  )
 }

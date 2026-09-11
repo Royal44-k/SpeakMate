@@ -1,47 +1,13 @@
 'use client'
 
-import { useSyncExternalStore } from 'react'
+import { Suspense } from 'react'
+import { LegacyLearningShell } from './legacy-learning-shell'
 
-import { SessionResolver } from './session-resolver'
-
-interface OfflineTarget {
-  id: string
-  scene?: string
-  level?: string
-  from?: string
-}
-
+/** Compatibility only. An unmatched old shell must never default to id=new. */
 export function OfflineSessionShell() {
-  const clientReady = useSyncExternalStore(
-    () => () => undefined,
-    () => true,
-    () => false,
-  )
-
-  if (!clientReady) {
-    return (
-      <main aria-busy="true" className="route-status">
-        正在恢复离线练习…
-      </main>
-    )
-  }
-
-  const url = new URL(window.location.href)
-  const match = url.pathname.match(/^\/session\/([^/]+)$/)
-  const target: OfflineTarget = {
-    id: match ? decodeURIComponent(match[1]) : 'new',
-    scene: url.searchParams.get('scene') ?? undefined,
-    level: url.searchParams.get('level') ?? undefined,
-    from: url.searchParams.get('from') ?? undefined,
-  }
-
   return (
-    <SessionResolver
-      requestedId={target.id}
-      queryScene={target.scene}
-      queryLevel={target.level}
-      queryFrom={target.from}
-      queryRound={url.searchParams.get('round') ?? undefined}
-    />
+    <Suspense fallback={<main aria-busy="true">正在检查旧版离线入口…</main>}>
+      <LegacyLearningShell />
+    </Suspense>
   )
 }

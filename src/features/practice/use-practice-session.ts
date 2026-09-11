@@ -1,16 +1,16 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
-
-import type { ConversationResult } from '@/domain/ai/contracts'
-import { localCoach } from '@/domain/ai/local-coach'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { createDialogue, type DialogueInput } from '@/domain/ai/graded-dialogue'
 import {
   INITIAL_PRACTICE_STATE,
   transitionPractice,
   type PracticeState,
 } from '@/domain/practice/machine'
-import type { PracticeSession, PracticeTurn } from '@/domain/practice/types'
-import type { AdaptedScene } from '@/domain/scenes/types'
+import type { PreparedPractice } from '@/domain/practice/prepared-practice'
+import type { PracticeSession } from '@/domain/practice/types'
+import { presentGradedPractice } from '@/domain/practice/graded-presenter'
+import { practiceFlow } from '@/domain/practice/graded-evidence'
 import { browserTts } from '@/infrastructure/audio/browser-tts'
 import {
   startLocalRecognition,
@@ -23,230 +23,214 @@ import {
 } from '@/infrastructure/audio/browser-recorder'
 import {
   createIndexedDbRepositories,
-  createMemoryRepositories,
   type Repositories,
 } from '@/infrastructure/persistence/repositories'
+import type {
+  PracticeChange,
+  PracticeRecord,
+} from '@/infrastructure/persistence/practice-repository'
 import {
   DEFAULT_LEARNER_SETTINGS,
   loadLearnerSettings,
 } from '@/infrastructure/persistence/learner-settings'
+import { replaceCreatedSessionId } from '@/components/app-shell/learning-routes'
 
-function createId(prefix: string) {
-  return `${prefix}_${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`
+const createId = (prefix: string) =>
+  `${prefix}_${globalThis.crypto?.randomUUID?.() ?? Math.random().toString(36).slice(2)}`
+function errorMessage(error: unknown) {
+  const code = error instanceof Error ? error.message : ''
+  if (/STALE|CONFLICT/.test(code))
+    return '这次练习已在别处变化。文字仍保留，请读取最新题目并重新确认后提交；不会自动把旧答案交给新问题。'
+  if (/NOT_RESUMABLE|DIALOGUE|INVALID|TERMINAL/.test(code))
+    return '保存的内容或状态不支持这次操作。记录已保留，请返回查看或重试读取。'
+  if (/SETTLEMENT/.test(code))
+    return '此任务的完成结算尚未接通，未标记完成，也未发放积分。'
+  return '本机保存暂时失败，文字仍保留。请重试；不会另建临时会话或清除记录。'
 }
 
-export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
-  const [machine, setMachine] = useState<PracticeState>(INITIAL_PRACTICE_STATE)
-  const [turns, setTurns] = useState<PracticeTurn[]>([])
-  const [latestResult, setLatestResult] = useState<ConversationResult | null>(
-    null,
+/** One pinned record; all lifecycle writes use the existing guarded repository. */
+export function usePracticeSession(
+  scene: PreparedPractice,
+  requestedId: string,
+  repositories?: Repositories,
+) {
+  const [repository] = useState(
+    () => repositories ?? createIndexedDbRepositories(),
   )
-  const [aiReply, setAiReply] = useState(scene.openingLines[0])
-  const [aiHint, setAiHint] = useState('先听对方说什么，再用自己的话回应。')
+  const [record, setRecord] = useState<PracticeRecord>()
+  const recordRef = useRef<PracticeRecord | undefined>(undefined)
+  const [machine, setMachine] = useState<PracticeState>(INITIAL_PRACTICE_STATE)
+  const [ready, setReady] = useState(false)
+  const [settings, setSettings] = useState(DEFAULT_LEARNER_SETTINGS)
+  const [settingsError, setSettingsError] = useState('')
+  const [addressError, setAddressError] = useState('')
+  const [speechError, setSpeechError] = useState<string | null>(null)
+  const [audio, setAudio] = useState<RecordedAudio | null>(null)
   const [elapsedSeconds, setElapsedSeconds] = useState(0)
   const [amplitude, setAmplitude] = useState(0)
-  const [audio, setAudio] = useState<RecordedAudio | null>(null)
-  const [sessionId, setSessionId] = useState(requestedId)
-  const [completedGoalIds, setCompletedGoalIds] = useState<string[]>([])
-  const [ready, setReady] = useState(false)
-  const [ephemeral, setEphemeral] = useState(false)
-  const [settings, setSettings] = useState(DEFAULT_LEARNER_SETTINGS)
-  const [speechError, setSpeechError] = useState<string | null>(null)
-  const [initialRepositories] = useState(createIndexedDbRepositories)
-  const repositoriesRef = useRef<Repositories>(initialRepositories)
+  const [changeQuestionId, setChangeQuestionId] = useState<string>()
+  const suggestionRef = useRef<string | undefined>(undefined)
   const recorderRef = useRef<BrowserRecorder | null>(null)
   const recognitionRef = useRef<LocalSpeechRecognition | null>(null)
   const recognitionControllerRef = useRef<AbortController | null>(null)
   const transcriptRef = useRef('')
   const elapsedTimerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const finishingRef = useRef(false)
-  const sessionRef = useRef<PracticeSession | null>(null)
-  const initializationRef = useRef<Promise<{
-    session: PracticeSession
-    savedTurns: PracticeTurn[]
-    ephemeral: boolean
-    settings: typeof DEFAULT_LEARNER_SETTINGS
-  }> | null>(null)
   const submittingRef = useRef(false)
   const mountedRef = useRef(false)
+  const initializationRef = useRef<Promise<PracticeRecord> | null>(null)
+  const creationRef = useRef<PracticeSession | undefined>(undefined)
+  const [initializationAttempt, setInitializationAttempt] = useState(0)
+  const pendingRef = useRef<PracticeChange | undefined>(undefined)
 
   const clearElapsedTimer = useCallback(() => {
     if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current)
     elapsedTimerRef.current = null
   }, [])
+  const releaseAudio = useCallback(() => {
+    clearElapsedTimer()
+    const recorder = recorderRef.current
+    recorderRef.current = null
+    recorder?.cancel()
+    recognitionControllerRef.current?.abort()
+    recognitionRef.current?.abort()
+    recognitionRef.current = null
+    browserTts.stop()
+  }, [clearElapsedTimer])
+  const applyRecord = useCallback((next: PracticeRecord, draft?: string) => {
+    recordRef.current = next
+    setRecord(next)
+    setMachine({
+      status:
+        next.session.status === 'completed'
+          ? 'completed'
+          : draft
+            ? 'reviewing'
+            : 'ready',
+      turnIndex: next.turns.length,
+      ...(draft ? { draftTranscript: draft } : {}),
+    })
+  }, [])
 
   useEffect(() => {
     let active = true
     mountedRef.current = true
-    sessionRef.current = null
-    transcriptRef.current = ''
-    async function loadWith(repositories: Repositories) {
-      const profile = await repositories.profiles.ensureGuestProfile()
-      let session =
-        requestedId === 'new'
-          ? undefined
-          : await repositories.sessions.get(requestedId)
-      if (!session) {
-        if (requestedId !== 'new') throw new Error('SESSION_NOT_FOUND')
-        const timestamp = new Date().toISOString()
-        const previous = (await repositories.sessions.list()).filter(
-          (item) => item.sceneId === scene.id && item.level === scene.level,
-        )
-        session = {
-          id: createId('session'),
-          profileId: profile.id,
-          sceneId: scene.id,
-          sceneVersion: scene.version,
-          sceneSnapshot: scene,
-          level: scene.level,
-          status: 'active',
-          startedAt: timestamp,
-          updatedAt: timestamp,
-          completedGoals: [],
-          openingText:
-            scene.openingLines[previous.length % scene.openingLines.length],
-        }
-        await repositories.sessions.save(session)
+    initializationRef.current ??= (async () => {
+      if (requestedId !== 'new') {
+        const saved = await repository.practice.read(requestedId)
+        if (!saved || saved.status !== 'ready')
+          throw new Error('PRACTICE_NOT_RESUMABLE')
+        return saved
       }
-      const savedTurns = await repositories.turns.listBySession(session.id)
-      return { session, savedTurns }
-    }
-    initializationRef.current ??= Promise.all([
-      loadWith(repositoriesRef.current),
-      loadLearnerSettings(),
-    ])
-      .then(([loaded, settings]) => ({
-        ...loaded,
-        settings,
-        ephemeral: false,
-      }))
-      .catch(async (error: unknown) => {
-        if (requestedId !== 'new') throw error
-        const memoryRepositories = createMemoryRepositories()
-        repositoriesRef.current = memoryRepositories
-        return {
-          ...(await loadWith(memoryRepositories)),
-          settings: DEFAULT_LEARNER_SETTINGS,
-          ephemeral: true,
-        }
+      const profile = await repository.profiles.ensureGuestProfile()
+      const start = createDialogue(scene.pack, {
+        mode: scene.mode,
+        variantId: scene.variantId,
       })
+      const timestamp = new Date().toISOString()
+      creationRef.current ??= {
+        id: createId('session'),
+        profileId: profile.id,
+        sceneId: scene.id,
+        sceneVersion: scene.version,
+        level: scene.level,
+        status: 'active' as const,
+        startedAt: timestamp,
+        updatedAt: timestamp,
+        completedGoals: [],
+        openingText: start.reply,
+        gradedDialogue: start.snapshot,
+        ...(scene.presentation ? { presentation: scene.presentation } : {}),
+      }
+      return (
+        await repository.practice.commit({
+          kind: 'create',
+          session: creationRef.current,
+        })
+      ).record
+    })()
     void initializationRef.current
-      .then(({ session, savedTurns, ephemeral, settings }) => {
+      .then((saved) => {
         if (!active) return
-        sessionRef.current = session
-        setSessionId(session.id)
-        setCompletedGoalIds(session.completedGoals)
-        setTurns(savedTurns)
-        const lastTurn = savedTurns.at(-1)
-        setAiReply(
-          lastTurn?.aiText ?? session.openingText ?? scene.openingLines[0],
-        )
-        setAiHint(
-          lastTurn?.result?.reply.hintZh ??
-            '先听对方说什么，再用自己的话回应。',
-        )
-        setLatestResult(
-          lastTurn?.result ??
-            (lastTurn?.feedback
-              ? {
-                  reply: {
-                    text: lastTurn.aiText,
-                    hintZh: '继续上次的话题。',
-                    emotion: 'neutral',
-                  },
-                  feedback: {
-                    heard: lastTurn.learnerText,
-                    corrected: lastTurn.feedback.corrected,
-                    naturalAlternative: lastTurn.feedback.natural,
-                    explanationZh: lastTurn.feedback.explanationZh,
-                    issueTags: lastTurn.feedback
-                      .tags as ConversationResult['feedback']['issueTags'],
-                  },
-                  progress: {
-                    completedGoalIds: session.completedGoals,
-                    shouldOfferCompletion:
-                      savedTurns.length >= scene.recommendedTurns ||
-                      session.completedGoals.length >= scene.goals.length,
-                  },
-                  provider: 'local',
-                  degraded: lastTurn.degraded ?? true,
-                }
-              : null),
-        )
-        setMachine({ status: 'ready', turnIndex: savedTurns.length })
-        setEphemeral(ephemeral)
-        setSettings(settings)
-        if (requestedId === 'new' && !ephemeral) {
-          const url = new URL(window.location.href)
-          const previousRoute = `${url.pathname}${url.search}`
-          url.pathname = `/session/${session.id}`
-          const nextRoute = `${url.pathname}${url.search}`
+        applyRecord(saved)
+        if (requestedId === 'new') {
           try {
-            const stack: unknown = JSON.parse(
-              window.sessionStorage.getItem('speakmate-route-stack') ?? '[]',
-            )
-            if (Array.isArray(stack) && stack.at(-1) === previousRoute) {
-              window.sessionStorage.setItem(
-                'speakmate-route-stack',
-                JSON.stringify([...stack.slice(0, -1), nextRoute]),
-              )
-            }
+            replaceCreatedSessionId(saved.session.id)
           } catch {
-            /* Session history is optional; IndexedDB keeps the actual record. */
+            setAddressError(
+              '练习已保存，但地址未更新。请使用本页的已保存练习入口继续；不要重新新建。',
+            )
           }
-          window.history.replaceState(window.history.state, '', nextRoute)
         }
         setReady(true)
+      })
+      .catch((error) => {
+        if (active)
+          setMachine((current) =>
+            transitionPractice(current, {
+              type: 'FAIL',
+              code: 'STORAGE_UNAVAILABLE',
+              message: errorMessage(error),
+            }),
+          )
+      })
+    // A settings failure must not rerun creation or swap repositories.
+    void loadLearnerSettings()
+      .then((saved) => {
+        if (active) setSettings(saved)
       })
       .catch(() => {
-        if (!active) return
-        setMachine((current) =>
-          transitionPractice(current, {
-            type: 'FAIL',
-            code: 'STORAGE_UNAVAILABLE',
-            message: '无法准备本次练习，请刷新页面后重试。',
-          }),
-        )
-        setReady(true)
+        if (active)
+          setSettingsError(
+            '设置暂时无法读取，使用本地默认设置；这不会另建或替换练习。',
+          )
       })
     return () => {
       active = false
       mountedRef.current = false
-      clearElapsedTimer()
-      const recorder = recorderRef.current
-      recorderRef.current = null
-      recorder?.cancel()
-      recognitionControllerRef.current?.abort()
-      recognitionRef.current?.abort()
-      browserTts.stop()
+      releaseAudio()
     }
-  }, [clearElapsedTimer, requestedId, scene])
+  }, [
+    applyRecord,
+    releaseAudio,
+    repository,
+    requestedId,
+    scene,
+    initializationAttempt,
+  ])
 
+  const canAnswer = () =>
+    ready &&
+    recordRef.current?.session.status === 'active' &&
+    recordRef.current.session.gradedDialogue?.state.outcome === 'active'
   const speak = useCallback(
     async (text: string) => {
       setSpeechError(null)
       try {
         await browserTts.speak(text, { rate: settings.speechRate })
       } catch (error) {
-        setSpeechError(
-          error instanceof Error &&
-            error.message === 'LOCAL_ENGLISH_VOICE_UNAVAILABLE'
-            ? '这台设备没有可用的本地英语音色，请直接阅读文字继续练习。'
-            : '本地朗读暂时不可用，请直接阅读文字继续练习。',
-        )
+        if (mountedRef.current)
+          setSpeechError(
+            error instanceof Error &&
+              error.message === 'LOCAL_ENGLISH_VOICE_UNAVAILABLE'
+              ? '这台设备没有可用的本地英语音色，请直接阅读文字继续练习。'
+              : '本地朗读暂时不可用，请直接阅读文字继续练习。',
+          )
       }
     },
     [settings.speechRate],
   )
 
   const finishRecording = useCallback(async () => {
-    if (finishingRef.current || !recorderRef.current) return
+    const recorder = recorderRef.current
+    if (finishingRef.current || !recorder) return
     finishingRef.current = true
     clearElapsedTimer()
     recognitionRef.current?.stop()
     recognitionControllerRef.current?.abort()
     try {
-      const recording = await recorderRef.current.stop()
+      const recording = await recorder.stop()
+      if (!mountedRef.current || recorderRef.current !== recorder) return
       setAudio(recording)
       setMachine((current) =>
         transitionPractice(current, {
@@ -255,25 +239,35 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
         }),
       )
     } catch (error) {
-      const message =
-        error instanceof Error ? error.message : '录音没有成功，请重试。'
-      setMachine((current) =>
-        transitionPractice(current, {
-          type: 'FAIL',
-          code: 'RECORDING_FAILED',
-          message,
-        }),
-      )
+      if (mountedRef.current && recorderRef.current === recorder)
+        setMachine((current) =>
+          transitionPractice(current, {
+            type: 'FAIL',
+            code: 'RECORDING_FAILED',
+            message:
+              error instanceof Error ? error.message : '录音没有成功，请重试。',
+          }),
+        )
     } finally {
-      recorderRef.current = null
-      recognitionRef.current = null
+      if (recorderRef.current === recorder) {
+        recorderRef.current = null
+        recognitionRef.current = null
+        setAmplitude(0)
+      }
       finishingRef.current = false
-      setAmplitude(0)
     }
   }, [clearElapsedTimer])
 
-  const startRecording = useCallback(async () => {
-    if (!ready || machine.turnIndex >= scene.recommendedTurns) return
+  async function startRecording() {
+    if (
+      !canAnswer() ||
+      submittingRef.current ||
+      recorderRef.current ||
+      !['ready', 'recoverable-error', 'permission-denied'].includes(
+        machine.status,
+      )
+    )
+      return
     browserTts.stop()
     transcriptRef.current = ''
     setElapsedSeconds(0)
@@ -291,55 +285,50 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
         recognitionRef.current = null
         setAmplitude(0)
         setAudio(null)
-        setMachine((current) => {
-          if (
-            current.status !== 'recording' &&
-            current.status !== 'requesting-permission'
-          )
-            return current
-          return transitionPractice(current, { type: 'CANCEL' })
-        })
+        setMachine((current) =>
+          ['recording', 'requesting-permission'].includes(current.status)
+            ? transitionPractice(current, { type: 'CANCEL' })
+            : current,
+        )
       },
     })
     recorderRef.current = recorder
-    const recognitionController = new AbortController()
+    const controller = new AbortController()
     recognitionControllerRef.current?.abort()
-    recognitionControllerRef.current = recognitionController
+    recognitionControllerRef.current = controller
     try {
       await recorder.start()
       if (!mountedRef.current) {
-        recognitionController.abort()
+        controller.abort()
         return
       }
       if (recorderRef.current !== recorder) {
         recorder.cancel()
-        recognitionController.abort()
+        controller.abort()
         return
       }
       setMachine((current) =>
         transitionPractice(current, { type: 'PERMISSION_GRANTED' }),
       )
-      elapsedTimerRef.current = setInterval(() => {
-        setElapsedSeconds((seconds) => Math.min(30, seconds + 1))
-      }, 1_000)
+      elapsedTimerRef.current = setInterval(
+        () => setElapsedSeconds((seconds) => Math.min(30, seconds + 1)),
+        1000,
+      )
       void startLocalRecognition({
         locale: 'en-US',
-        signal: recognitionController.signal,
+        signal: controller.signal,
         onTranscript: (transcript) => {
           transcriptRef.current = transcript
         },
       }).then((recognition) => {
-        if (
-          recognitionController.signal.aborted ||
-          recorderRef.current !== recorder
-        ) {
+        if (controller.signal.aborted || recorderRef.current !== recorder) {
           recognition?.abort()
           return
         }
         recognitionRef.current = recognition
       })
     } catch (error) {
-      recognitionController.abort()
+      controller.abort()
       if (!mountedRef.current || recorderRef.current !== recorder) return
       recorderRef.current = null
       const denied =
@@ -348,208 +337,285 @@ export function usePracticeSession(scene: AdaptedScene, requestedId: string) {
       const unsupported =
         error instanceof Error && error.message === 'RECORDING_UNSUPPORTED'
       setMachine((current) =>
-        transitionPractice(current, {
-          type: denied || unsupported ? 'PERMISSION_DENIED' : 'FAIL',
-          ...(denied || unsupported
-            ? {}
+        transitionPractice(
+          current,
+          denied || unsupported
+            ? { type: 'PERMISSION_DENIED' }
             : {
+                type: 'FAIL',
                 code: 'RECORDING_UNAVAILABLE',
                 message: '当前浏览器无法录音，请改用键盘输入。',
-              }),
-        } as Parameters<typeof transitionPractice>[1]),
+              },
+        ),
       )
     }
-  }, [
-    clearElapsedTimer,
-    finishRecording,
-    ready,
-    machine.turnIndex,
-    scene.recommendedTurns,
-  ])
-
-  const openKeyboard = useCallback(() => {
-    if (!ready || machine.turnIndex >= scene.recommendedTurns) return
-    if (machine.status === 'recording') {
-      recorderRef.current?.cancel()
-      recognitionControllerRef.current?.abort()
-      recognitionRef.current?.abort()
-      clearElapsedTimer()
+  }
+  function openKeyboard() {
+    if (!canAnswer() || submittingRef.current) return
+    if (recorderRef.current) {
+      releaseAudio()
       setMachine((current) => transitionPractice(current, { type: 'CANCEL' }))
     }
     setMachine((current) =>
-      transitionPractice(current, {
-        type: 'ENTER_TEXT',
-        transcript: current.draftTranscript ?? '',
-      }),
+      current.status === 'reviewing'
+        ? current
+        : transitionPractice(current, {
+            type: 'ENTER_TEXT',
+            transcript: current.draftTranscript ?? '',
+          }),
     )
-  }, [
-    clearElapsedTimer,
-    machine.status,
-    machine.turnIndex,
-    ready,
-    scene.recommendedTurns,
-  ])
+  }
 
-  const submitTurn = useCallback(async () => {
-    if (
-      !ready ||
-      submittingRef.current ||
-      machine.turnIndex >= scene.recommendedTurns
-    )
-      return
-    const learnerText = machine.draftTranscript?.trim() ?? ''
-    if (!learnerText) return
+  async function commit(change: PracticeChange) {
+    if (submittingRef.current) return
     submittingRef.current = true
-    const turnIndex = machine.turnIndex
-    setMachine((current) =>
-      transitionPractice(current, { type: 'SUBMIT', hasAudio: Boolean(audio) }),
-    )
-    setMachine((current) =>
-      transitionPractice(current, { type: 'SUBMISSION_ACCEPTED' }),
-    )
+    setMachine((current) => ({
+      ...current,
+      status: change.kind === 'finish' ? 'completing' : 'submitting',
+      errorMessage: undefined,
+    }))
+    pendingRef.current = change
     try {
-      const history = [
-        {
-          speaker: 'ai' as const,
-          text: sessionRef.current?.openingText ?? scene.openingLines[0],
-        },
-        ...turns.flatMap((turn) => [
-          { speaker: 'learner' as const, text: turn.learnerText },
-          { speaker: 'ai' as const, text: turn.aiText },
-        ]),
-      ]
-      const completedGoalIds = sessionRef.current?.completedGoals ?? []
-      const result = await localCoach.nextTurn({
-        scene,
-        learnerText,
-        history,
-        completedGoalIds,
-        turnIndex,
-      })
-      const now = new Date().toISOString()
-      const persistedLearnerText = result.feedback.heard.trim() || learnerText
-      const turn: PracticeTurn = {
-        id: `${sessionId}:turn:${turnIndex}`,
-        sessionId,
-        index: turnIndex,
-        learnerText: persistedLearnerText,
-        aiText: result.reply.text,
-        feedback: {
-          corrected: result.feedback.corrected ?? persistedLearnerText,
-          natural: result.feedback.naturalAlternative ?? persistedLearnerText,
-          explanationZh: result.feedback.explanationZh,
-          tags: result.feedback.issueTags,
-        },
-        degraded: result.degraded,
-        result,
-        createdAt: now,
-      }
-      if (!sessionRef.current) throw new Error('SESSION_NOT_READY')
-      const updatedSession: PracticeSession = {
-        ...sessionRef.current,
-        completedGoals: result.progress.completedGoalIds,
-        updatedAt: now,
-      }
-      await repositoriesRef.current.saveTurnAndSession(turn, updatedSession)
-      sessionRef.current = updatedSession
-      setCompletedGoalIds(updatedSession.completedGoals)
-      setTurns((items) =>
-        [...items.filter((item) => item.id !== turn.id), turn].sort(
-          (a, b) => a.index - b.index,
-        ),
-      )
-      setLatestResult(result)
-      setAiReply(result.reply.text)
-      setAiHint(result.reply.hintZh)
+      const saved = await repository.practice.commit(change)
+      if (!mountedRef.current) return
+      applyRecord(saved.record)
+      pendingRef.current = undefined
       setAudio(null)
-      setMachine((current) =>
-        transitionPractice(current, { type: 'RESULT_RECEIVED' }),
-      )
-      if (mountedRef.current && settings.autoPlayAi)
-        void speak(result.reply.text)
+      transcriptRef.current = ''
+      setChangeQuestionId(undefined)
+      suggestionRef.current = undefined
+      if (change.kind === 'advance' && settings.autoPlayAi)
+        void speak(saved.record.session.gradedDialogue!.state.reply)
     } catch (error) {
-      setMachine((current) =>
-        transitionPractice(current, {
-          type: 'FAIL',
-          code: 'LOCAL_COACH_UNAVAILABLE',
-          message: '这一轮暂时没有处理成功，请重试或修改文字。',
-        }),
-      )
+      if (mountedRef.current)
+        setMachine((current) =>
+          transitionPractice(current, {
+            type: 'FAIL',
+            code:
+              error instanceof Error ? error.message : 'STORAGE_UNAVAILABLE',
+            message: errorMessage(error),
+          }),
+        )
     } finally {
       submittingRef.current = false
     }
-  }, [
-    audio,
-    machine.draftTranscript,
-    machine.turnIndex,
-    scene,
-    sessionId,
-    turns,
-    ready,
-    settings.autoPlayAi,
-    speak,
-  ])
-
-  const completeSession = useCallback(async () => {
-    setMachine((current) => transitionPractice(current, { type: 'COMPLETE' }))
+  }
+  async function submitTurn() {
+    if (!canAnswer()) return
+    const text = machine.draftTranscript ?? ''
+    if (!text.trim()) return
+    const input: DialogueInput = changeQuestionId
+      ? {
+          action: 'change',
+          questionId: changeQuestionId,
+          text,
+          ...(suggestionRef.current
+            ? { suggestionId: suggestionRef.current }
+            : {}),
+        }
+      : {
+          action: 'answer',
+          text,
+          ...(suggestionRef.current
+            ? { suggestionId: suggestionRef.current }
+            : {}),
+        }
+    const pending = pendingRef.current
+    const attempt =
+      pending?.kind === 'advance' &&
+      JSON.stringify(pending.input) === JSON.stringify(input)
+        ? pending
+        : {
+            kind: 'advance' as const,
+            expected: recordRef.current!.session,
+            turnId: createId('turn'),
+            input,
+            at: new Date().toISOString(),
+          }
+    await commit(attempt)
+  }
+  async function submitAction(
+    action: 'clarify' | 'struggle' | 'off-topic' | 'refuse',
+  ) {
+    if (
+      !canAnswer() ||
+      machine.draftTranscript?.trim() ||
+      audio ||
+      recorderRef.current ||
+      [
+        'recording',
+        'requesting-permission',
+        'submitting',
+        'completing',
+      ].includes(machine.status)
+    )
+      return
+    const pending = pendingRef.current
+    await commit(
+      pending?.kind === 'advance' && pending.input.action === action
+        ? pending
+        : {
+            kind: 'advance',
+            expected: recordRef.current!.session,
+            turnId: createId('turn'),
+            input: { action, text: '' },
+            at: new Date().toISOString(),
+          },
+    )
+  }
+  async function completeSession() {
+    const current = recordRef.current
+    if (
+      !current ||
+      current.session.status !== 'active' ||
+      !practiceFlow(current.session.gradedDialogue!).basis
+    )
+      return
+    await commit(
+      pendingRef.current?.kind === 'finish'
+        ? pendingRef.current
+        : {
+            kind: 'finish',
+            expected: current.session,
+            at: new Date().toISOString(),
+          },
+    )
+  }
+  async function stopSession() {
+    const current = recordRef.current
+    if (!current || current.session.status !== 'active') return
+    releaseAudio()
+    await commit(
+      pendingRef.current?.kind === 'stop'
+        ? pendingRef.current
+        : {
+            kind: 'stop',
+            expected: current.session,
+            at: new Date().toISOString(),
+          },
+    )
+  }
+  async function reloadSession() {
+    if (!recordRef.current || submittingRef.current) return
     try {
-      if (!sessionRef.current) throw new Error('SESSION_NOT_READY')
-      const now = new Date().toISOString()
-      const completedSession: PracticeSession = {
-        ...sessionRef.current,
-        status: 'completed',
-        completedAt: now,
-        updatedAt: now,
-      }
-      await repositoriesRef.current.sessions.save(completedSession)
-      sessionRef.current = completedSession
-      setMachine((current) =>
-        transitionPractice(current, { type: 'SESSION_COMPLETED' }),
-      )
-    } catch {
-      setMachine((current) =>
-        transitionPractice(current, {
-          type: 'FAIL',
-          code: 'STORAGE_UNAVAILABLE',
-          message: '暂时无法保存完成状态，请返回后重试。',
-        }),
-      )
+      const next = await repository.practice.read(recordRef.current.session.id)
+      if (!mountedRef.current) return
+      if (!next || next.status !== 'ready')
+        throw new Error('PRACTICE_NOT_RESUMABLE')
+      pendingRef.current = undefined
+      setChangeQuestionId(undefined)
+      suggestionRef.current = undefined
+      applyRecord(next, machine.draftTranscript)
+    } catch (error) {
+      if (mountedRef.current)
+        setMachine((current) =>
+          transitionPractice(current, {
+            type: 'FAIL',
+            code: 'STORAGE_UNAVAILABLE',
+            message: errorMessage(error),
+          }),
+        )
     }
-  }, [])
-
-  const cancelReview = useCallback(() => {
+  }
+  function cancelReview() {
     setAudio(null)
     transcriptRef.current = ''
+    pendingRef.current = undefined
+    setChangeQuestionId(undefined)
+    suggestionRef.current = undefined
     setMachine((current) => transitionPractice(current, { type: 'CANCEL' }))
-  }, [])
-
+  }
+  const view = useMemo(
+    () =>
+      record?.status === 'ready'
+        ? presentGradedPractice(record.session, record.turns)
+        : undefined,
+    [record],
+  )
+  const target = changeQuestionId
+    ? record?.session.gradedDialogue?.pack.questions.find(
+        (question) => question.id === changeQuestionId,
+      )
+    : undefined
   return {
-    sessionId,
+    sessionId: record?.session.id ?? requestedId,
+    record,
+    view,
     machine,
     ready,
-    ephemeral,
+    settingsError,
+    addressError,
     feedbackExpanded: settings.feedbackExpanded,
     speechError,
-    turns,
-    completedGoalIds,
-    latestResult,
-    aiReply,
-    aiHint,
+    turns: record?.turns ?? [],
+    aiReply: record?.session.gradedDialogue?.state.reply ?? '',
+    aiHint: view?.currentQuestion?.hintZh ?? '',
     elapsedSeconds,
     amplitude,
     audio,
+    changeQuestionId,
+    targetQuestion: target,
+    suggestions: target?.answers ?? view?.currentQuestion?.answers ?? [],
     startRecording,
     stopRecording: finishRecording,
     openKeyboard,
-    updateTranscript: (transcript: string) =>
-      setMachine((current) =>
-        transitionPractice(current, { type: 'UPDATE_TRANSCRIPT', transcript }),
-      ),
+    updateTranscript: (text: string) => {
+      if (!submittingRef.current)
+        setMachine((current) =>
+          transitionPractice(current, {
+            type: 'UPDATE_TRANSCRIPT',
+            transcript: text.slice(0, 20000),
+          }),
+        )
+    },
+    chooseSuggestion: (id: string, text: string) => {
+      if (!canAnswer() || submittingRef.current) return
+      suggestionRef.current = id
+      setMachine((current) => ({
+        ...current,
+        status: 'reviewing',
+        draftTranscript: text,
+      }))
+    },
+    beginChange: (questionId: string) => {
+      if (!canAnswer() || submittingRef.current) return
+      const snapshot = recordRef.current!.session.gradedDialogue!
+      const question = snapshot.pack.questions.find(
+        (question) => question.id === questionId,
+      )
+      if (
+        !question ||
+        !snapshot.state.completedObjectives.includes(question.objective)
+      )
+        return
+      setChangeQuestionId(questionId)
+      suggestionRef.current = undefined
+      setMachine((current) => ({
+        ...current,
+        status: 'reviewing',
+        draftTranscript: '',
+      }))
+    },
     cancelReview,
     retry: () =>
       setMachine((current) => transitionPractice(current, { type: 'RETRY' })),
+    reloadSession,
     submitTurn,
-    speakReply: () => speak(aiReply),
+    submitAction,
     completeSession,
+    stopSession,
+    retryInitialization: () => {
+      if (ready) return
+      initializationRef.current = null
+      setMachine(INITIAL_PRACTICE_STATE)
+      setInitializationAttempt((value) => value + 1)
+    },
+    discardPending: () => {
+      releaseAudio()
+      setAudio(null)
+      transcriptRef.current = ''
+    },
+    speakReply: () =>
+      speak(recordRef.current?.session.gradedDialogue?.state.reply ?? ''),
   }
 }

@@ -41,7 +41,7 @@ describe('scene filter state', () => {
     ).toBe('category=social&level=B1&duration=5')
   })
 
-  it('preserves typed search text while parsing and trims it only for the URL', () => {
+  it('restores legacy typed search locally but never serializes it into new links', () => {
     expect(
       parseSceneFilterState(new URLSearchParams('q=%20hotel%20'), 'A2').search,
     ).toBe(' hotel ')
@@ -53,6 +53,6 @@ describe('scene filter state', () => {
         level: 'B1',
         duration: 'all',
       }),
-    ).toBe('/scenes?q=hotel&level=B1')
+    ).toBe('/scenes?level=B1')
   })
 })

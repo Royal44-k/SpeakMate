@@ -1,237 +1,182 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it, vi } from 'vitest'
-
+import { render, screen, waitFor } from '@testing-library/react'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
+import { localContentProvider } from '@/content/dialogues/graded/provider'
+import { createDialogue } from '@/domain/ai/graded-dialogue'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
 import { getSceneBySlug } from '@/content/scenes/catalog'
-
 import { SessionResolver } from './session-resolver'
-
 vi.mock('./practice-stage', () => ({
   PracticeStage: ({
     scene,
     sessionId,
-    completed = false,
+    completed,
     exitHref,
   }: {
-    scene: { slug: string; level: string }
+    scene: { slug: string; level: string; mode: string }
     sessionId: string
     completed?: boolean
     exitHref?: string
   }) => (
-    <div>{`${sessionId}:${scene.slug}:${scene.level}:${completed ? 'completed' : 'active'}:${exitHref ?? ''}`}</div>
+    <div>{`${sessionId}:${scene.slug}:${scene.level}:${scene.mode}:${completed ? 'completed' : 'active'}:${exitHref}`}</div>
   ),
 }))
-
-describe('SessionResolver', () => {
-  it('restores the stored scene version and level instead of trusting the URL', async () => {
-    const repositories = createMemoryRepositories()
-    const profile = await repositories.profiles.ensureGuestProfile()
-    await repositories.sessions.save({
-      id: 'saved-session',
+const loader = vi.hoisted(() => vi.fn())
+vi.mock('@/content/public-category', () => ({
+  publicContentProvider: () => ({ load: loader }),
+}))
+afterEach(() => {
+  vi.restoreAllMocks()
+  loader.mockReset()
+})
+async function graded(id: string, repositories = createMemoryRepositories()) {
+  const profile = await repositories.profiles.ensureGuestProfile()
+  const result = await localContentProvider.load({
+    sceneId: 'dining-01',
+    level: 'C1',
+  })
+  if (result.status !== 'available') throw new Error('fixture')
+  const start = createDialogue(result.pack, {
+    mode: 'short',
+    variantId: 'counter',
+  })
+  const record = await repositories.practice.commit({
+    kind: 'create',
+    session: {
+      id,
       profileId: profile.id,
-      sceneId: 'work-06',
+      sceneId: 'dining-01',
       sceneVersion: 1,
       level: 'C1',
       status: 'active',
-      startedAt: '2026-09-03T09:00:00.000Z',
-      updatedAt: '2026-09-03T09:05:00.000Z',
+      startedAt: '2026-09-10T00:00:00.000Z',
+      updatedAt: '2026-09-10T00:00:00.000Z',
       completedGoals: [],
-    })
-
+      openingText: start.reply,
+      gradedDialogue: start.snapshot,
+    },
+  })
+  return { repositories, record: record.record, pack: result.pack }
+}
+describe('SessionResolver pinned and historical resolution', () => {
+  it('restores pinned level/mode without catalog substitution or category fetch', async () => {
+    const { repositories } = await graded('saved')
     render(
       <SessionResolver
-        requestedId="saved-session"
+        requestedId="saved"
         queryScene="hotel-check-in"
         queryLevel="A1"
+        queryMode="extended"
         repositories={repositories}
       />,
     )
-
     expect(
       await screen.findByText(
-        'saved-session:job-interview:C1:active:/scenes/job-interview?level=C1',
+        'saved:coffee-order:C1:short:active:/scenes/prepare?scene=coffee-order&level=C1&mode=short',
       ),
     ).toBeVisible()
+    expect(loader).not.toHaveBeenCalled()
   })
-
-  it('rejects a saved session whose exact scene version is unavailable', async () => {
-    const repositories = createMemoryRepositories()
-    const profile = await repositories.profiles.ensureGuestProfile()
-    await repositories.sessions.save({
-      id: 'future-session',
-      profileId: profile.id,
-      sceneId: 'work-06',
-      sceneVersion: 99,
-      level: 'B2',
-      status: 'active',
-      startedAt: '2026-09-03T09:00:00.000Z',
-      updatedAt: '2026-09-03T09:05:00.000Z',
-      completedGoals: [],
-    })
-
-    render(
-      <SessionResolver
-        requestedId="future-session"
-        repositories={repositories}
-      />,
-    )
-
-    expect(await screen.findByRole('alert')).toHaveTextContent(
-      '暂时无法恢复这次练习',
-    )
-    const title = screen.getByRole('heading', {
-      level: 1,
-      name: '暂时无法恢复这次练习',
-    })
-    expect(title).toHaveAttribute('data-page-title')
-    expect(title).toHaveAttribute('tabindex', '-1')
-  })
-
-  it('restores an immutable scene snapshot when the catalog version is no longer present', async () => {
+  it('preserves an old unknown-version transcript read-only and offers explicit new practice', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()
     const snapshot = {
       ...adaptScene(getSceneBySlug('hotel-check-in')!, 'B2'),
       version: 99,
+      titleZh: '当时的酒店标题',
     }
     await repositories.sessions.save({
-      id: 'snapshot-session',
+      id: 'old',
       profileId: profile.id,
       sceneId: snapshot.id,
-      sceneVersion: snapshot.version,
+      sceneVersion: 99,
       sceneSnapshot: snapshot,
-      level: snapshot.level,
+      level: 'B2',
       status: 'active',
-      startedAt: '2026-09-04T09:00:00.000Z',
-      updatedAt: '2026-09-04T09:05:00.000Z',
+      startedAt: '2026-09-10T00:00:00.000Z',
+      updatedAt: '2026-09-10T00:01:00.000Z',
       completedGoals: [],
+      openingText: 'Old opening.',
     })
-
-    render(
-      <SessionResolver
-        requestedId="snapshot-session"
-        repositories={repositories}
-      />,
+    await repositories.turns.save({
+      id: 'old-turn',
+      sessionId: 'old',
+      index: 0,
+      learnerText: 'My old words.',
+      aiText: 'Saved reply.',
+      createdAt: '2026-09-10T00:01:00.000Z',
+    })
+    render(<SessionResolver requestedId="old" repositories={repositories} />)
+    expect(await screen.findByText('旧版练习记录（只读）')).toBeVisible()
+    expect(screen.getByText('当时的酒店标题')).toBeVisible()
+    expect(screen.getByText('My old words.')).toBeVisible()
+    expect(screen.getByText('Saved reply.')).toBeVisible()
+    expect(screen.getByRole('link', { name: '开始新版练习' })).toHaveAttribute(
+      'href',
+      '/scenes/prepare?scene=hotel-check-in&level=B2',
     )
-
-    expect(
-      await screen.findByText(
-        'snapshot-session:hotel-check-in:B2:active:/scenes/hotel-check-in?level=B2',
-      ),
-    ).toBeVisible()
+    expect(loader).not.toHaveBeenCalled()
+    expect((await repositories.sessions.get('old'))?.status).toBe('active')
   })
-
-  it('removes the old stage immediately while a different session is resolving', async () => {
-    const repositories = createMemoryRepositories()
-    const profile = await repositories.profiles.ensureGuestProfile()
-    await repositories.sessions.save({
-      id: 'first-session',
-      profileId: profile.id,
-      sceneId: 'travel-01',
-      sceneVersion: 1,
-      level: 'B1',
-      status: 'active',
-      startedAt: '2026-09-05T09:00:00.000Z',
-      updatedAt: '2026-09-05T09:05:00.000Z',
-      completedGoals: [],
-    })
-
-    let releaseSecond: (() => void) | undefined
-    const originalGet = repositories.sessions.get
-    repositories.sessions.get = async (id) => {
-      if (id === 'second-session') {
+  it('removes A immediately while B resolves and does not create a missing B', async () => {
+    const { repositories } = await graded('first')
+    const original = repositories.practice.read
+    let release!: () => void
+    repositories.practice.read = async (id) => {
+      if (id === 'second')
         await new Promise<void>((resolve) => {
-          releaseSecond = resolve
+          release = resolve
         })
-      }
-      return originalGet(id)
+      return original(id)
     }
-
-    const view = render(
-      <SessionResolver
-        requestedId="first-session"
-        repositories={repositories}
-      />,
+    const rendered = render(
+      <SessionResolver requestedId="first" repositories={repositories} />,
     )
-    expect(
-      await screen.findByText(
-        'first-session:airport-check-in:B1:active:/scenes/airport-check-in?level=B1',
-      ),
-    ).toBeVisible()
-
-    view.rerender(
-      <SessionResolver
-        requestedId="second-session"
-        repositories={repositories}
-      />,
+    await screen.findByText(/^first:coffee/)
+    rendered.rerender(
+      <SessionResolver requestedId="second" repositories={repositories} />,
     )
-
-    expect(screen.queryByText(/first-session:/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/^first:/)).not.toBeInTheDocument()
     expect(screen.getByText('正在恢复练习…')).toBeVisible()
-    releaseSecond?.()
+    release()
+    expect(await screen.findByRole('alert')).toHaveTextContent('记录不存在')
+    expect(await repositories.sessions.list()).toHaveLength(1)
   })
-
-  it('keeps a persisted completed session in its report-only stage on browser forward', async () => {
+  it('loads the explicit new selection and removes personal q from return source', async () => {
+    const { pack } = await graded('fixture')
+    loader.mockResolvedValue({ status: 'available', pack })
+    render(
+      <SessionResolver
+        requestedId="new"
+        queryScene="coffee-order"
+        queryLevel="C1"
+        queryMode="extended"
+        queryFrom="/scenes?q=private&category=dining&level=C1"
+        repositories={createMemoryRepositories()}
+      />,
+    )
+    expect(
+      await screen.findByText(
+        'new:coffee-order:C1:extended:active:/scenes/prepare?scene=coffee-order&level=C1&mode=extended&from=%2Fscenes%3Flevel%3DC1%26category%3Ddining',
+      ),
+    ).toBeVisible()
+    expect(loader).toHaveBeenCalledWith({ sceneId: 'dining-01', level: 'C1' })
+  })
+  it('fails unavailable packs visibly and retries without substituting another pack', async () => {
+    loader.mockRejectedValue(new Error('download unavailable'))
     const repositories = createMemoryRepositories()
-    const profile = await repositories.profiles.ensureGuestProfile()
-    await repositories.sessions.save({
-      id: 'completed-session',
-      profileId: profile.id,
-      sceneId: 'travel-01',
-      sceneVersion: 1,
-      level: 'B1',
-      status: 'completed',
-      startedAt: '2026-09-05T09:00:00.000Z',
-      updatedAt: '2026-09-05T09:05:00.000Z',
-      completedAt: '2026-09-05T09:05:00.000Z',
-      completedGoals: ['travel-01-goal-1'],
-    })
-
-    render(
-      <SessionResolver requestedId="completed-session" repositories={repositories} />,
-    )
-
-    expect(
-      await screen.findByText(
-        'completed-session:airport-check-in:B1:completed:/scenes/airport-check-in?level=B1',
-      ),
-    ).toBeVisible()
-  })
-
-  it('carries a validated filtered-library source into the session exit route', async () => {
     render(
       <SessionResolver
         requestedId="new"
-        queryScene="hotel-check-in"
-        queryLevel="B1"
-        queryFrom="/scenes?q=hotel&category=travel&level=B1&duration=5"
-        repositories={createMemoryRepositories()}
+        queryScene="coffee-order"
+        queryLevel="C1"
+        repositories={repositories}
       />,
     )
-
-    expect(
-      await screen.findByText(
-        'new:hotel-check-in:B1:active:/scenes/hotel-check-in?level=B1&from=%2Fscenes%3Fq%3Dhotel%26category%3Dtravel%26level%3DB1%26duration%3D5',
-      ),
-    ).toBeVisible()
-  })
-
-  it('rejects a lookalike scene source when building the session exit route', async () => {
-    render(
-      <SessionResolver
-        requestedId="new"
-        queryScene="hotel-check-in"
-        queryLevel="B1"
-        queryFrom="/scenes-bogus?level=B1"
-        repositories={createMemoryRepositories()}
-      />,
+    expect(await screen.findByRole('alert')).toHaveTextContent('下载')
+    expect(screen.getByRole('button', { name: '重试读取' })).toBeEnabled()
+    await waitFor(async () =>
+      expect(await repositories.sessions.list()).toHaveLength(0),
     )
-
-    expect(
-      await screen.findByText(
-        'new:hotel-check-in:B1:active:/scenes/hotel-check-in?level=B1',
-      ),
-    ).toBeVisible()
   })
 })

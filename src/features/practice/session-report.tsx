@@ -1,34 +1,18 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Binding offline-routing contract: cross-shell learning links require document navigation, never RSC prefetch. */
 'use client'
 
-import {
-  ArrowRight,
-  BookmarkSimple,
-  CheckCircle,
-  SpinnerGap,
-} from '@phosphor-icons/react'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-
+import { BookmarkSimple, SpinnerGap } from '@phosphor-icons/react'
+import { useEffect, useRef, useState } from 'react'
 import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
-import { SCENE_CATALOG } from '@/content/scenes/catalog'
-import {
-  buildSessionReport,
-  type SessionReport,
-} from '@/domain/practice/report'
-import type { PracticeSession } from '@/domain/practice/types'
+import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import { presentGradedPractice } from '@/domain/practice/graded-presenter'
 import {
   createIndexedDbRepositories,
   type Repositories,
 } from '@/infrastructure/persistence/repositories'
-
+import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
+import { HistoricalPracticeRecord } from './historical-practice-record'
 import styles from './session-report.module.css'
-
-const metricOrder = [
-  'grammar',
-  'vocabulary',
-  'naturalness',
-  'interaction',
-] as const
 
 export function favoriteIdFor(sessionId: string, expression: string): string {
   let hash = 2166136261
@@ -49,182 +33,271 @@ export function SessionReportView({
   const [repository] = useState(
     () => repositories ?? createIndexedDbRepositories(),
   )
-  const [report, setReport] = useState<SessionReport | null>(null)
-  const [session, setSession] = useState<PracticeSession | null>(null)
+  const [loaded, setLoaded] = useState<{
+    id: string
+    record?: PracticeRecord
+    error?: string
+  }>()
   const [savedExpressions, setSavedExpressions] = useState<string[]>([])
-  const [missing, setMissing] = useState(false)
-
+  const [saving, setSaving] = useState<string[]>([])
+  const [saveError, setSaveError] = useState('')
+  const pending = useRef(new Set<string>())
+  const activeId = useRef(sessionId)
   useEffect(() => {
     let active = true
-    async function load() {
-      const value = await repository.sessions.get(sessionId)
-      if (!value) {
-        if (active) setMissing(true)
-        return
-      }
-      const [turns, favorites] = await Promise.all([
-        repository.turns.listBySession(sessionId),
-        repository.favorites.list(),
-      ])
-      const scene = SCENE_CATALOG.find(
-        (item) =>
-          item.id === value.sceneId && item.version === value.sceneVersion,
-      )
-      if (!active) return
-      setSession(value)
-      const goalCount =
-        value.sceneSnapshot?.goals.length ?? scene?.goals.length ?? 0
-      setReport(buildSessionReport(value, turns, goalCount))
-      setSavedExpressions(
-        favorites
-          .filter((favorite) => favorite.sceneId === value.sceneId)
-          .map((favorite) => favorite.expression),
-      )
-    }
-    void load().catch(() => active && setMissing(true))
+    activeId.current = sessionId
+    void repository.practice
+      .read(sessionId)
+      .then((record) => {
+        if (!active) return
+        setLoaded({
+          id: sessionId,
+          ...(record ? { record } : { error: '找不到这次练习' }),
+        })
+        if (!record) return
+        void repository.favorites
+          .list()
+          .then((favorites) => {
+            if (active)
+              setSavedExpressions(
+                favorites
+                  .filter((item) => item.sceneId === record.session.sceneId)
+                  .map((item) => item.expression),
+              )
+          })
+          .catch(() => {
+            if (active) setSaveError('收藏状态暂时无法读取；对话记录仍可查看。')
+          })
+      })
+      .catch(() => {
+        if (active) setLoaded({ id: sessionId, error: '本机记录暂时无法读取' })
+      })
     return () => {
       active = false
+      activeId.current = ''
     }
   }, [repository, sessionId])
-
+  const record = loaded?.id === sessionId ? loaded.record : undefined
   async function saveExpression(expression: string) {
-    if (savedExpressions.includes(expression)) return
-    const now = new Date().toISOString()
-    await repository.favorites.save({
-      id: favoriteIdFor(sessionId, expression),
-      expression,
-      sceneId: session?.sceneId,
-      createdAt: now,
-      updatedAt: now,
-    })
-    setSavedExpressions((values) => [...values, expression])
+    if (
+      !record ||
+      pending.current.has(expression) ||
+      savedExpressions.includes(expression)
+    )
+      return
+    const id = record.session.id
+    pending.current.add(expression)
+    setSaving((values) => [...values, expression])
+    setSaveError('')
+    try {
+      const now = new Date().toISOString()
+      await repository.favorites.save({
+        id: favoriteIdFor(id, expression),
+        expression,
+        sceneId: record.session.sceneId,
+        createdAt: now,
+        updatedAt: now,
+      })
+      if (activeId.current === id)
+        setSavedExpressions((values) => [...values, expression])
+    } catch {
+      if (activeId.current === id)
+        setSaveError('收藏未保存，请重试；原文没有被删除。')
+    } finally {
+      pending.current.delete(expression)
+      if (activeId.current === id)
+        setSaving((values) => values.filter((value) => value !== expression))
+    }
   }
-
-  if (missing)
+  if (loaded?.id === sessionId && loaded.error)
     return (
-      <main className={styles.empty}>
-        <h1 data-page-title tabIndex={-1}>找不到这次练习</h1>
-        <p>记录可能已在本机被清空。</p>
-        <Link href="/practice">返回练习</Link>
+      <main className={styles.empty} role="alert">
+        <h1 data-page-title tabIndex={-1}>
+          {loaded.error}
+        </h1>
+        <p>没有新建、清除或自动完成任何记录。可返回本机记录检查或恢复备份。</p>
+        <a href="/me">返回我的练习</a>
       </main>
     )
-  if (!report)
+  if (!record)
     return (
       <main className={styles.loading} role="status">
         <SpinnerGap aria-hidden size={24} />
         正在整理复盘…
       </main>
     )
-
+  if (record.status === 'recovery')
+    return (
+      <main className={styles.empty} role="alert">
+        <h1 data-page-title tabIndex={-1}>
+          这份记录暂时无法复盘
+        </h1>
+        <p>
+          {record.message} 原记录仍保留，请导出备份后检查，不会补造缺失对话。
+        </p>
+        <a href="/me">返回我的练习</a>
+      </main>
+    )
+  const view =
+    record.status === 'ready'
+      ? presentGradedPractice(record.session, record.turns)
+      : undefined
+  const expressions = [
+    ...new Set(
+      record.turns
+        .map((turn) => turn.learnerText)
+        .filter((text) => text.trim()),
+    ),
+  ]
+  const expressionSection = (
+    <section className={styles.expressions} aria-labelledby="expression-title">
+      <h2 id="expression-title">你保存的表达</h2>
+      <p>保留原文供回看与收藏，不因没有问题标签就判定为好表达。</p>
+      {expressions.length ? (
+        expressions.map((expression) => (
+          <article key={expression}>
+            <p lang="en">{expression}</p>
+            <button
+              type="button"
+              aria-label={`${savedExpressions.includes(expression) ? '已收藏' : '收藏'}表达：${expression}`}
+              disabled={
+                savedExpressions.includes(expression) ||
+                saving.includes(expression)
+              }
+              onClick={() => void saveExpression(expression)}
+            >
+              <BookmarkSimple
+                aria-hidden
+                size={20}
+                weight={
+                  savedExpressions.includes(expression) ? 'fill' : 'regular'
+                }
+              />
+            </button>
+          </article>
+        ))
+      ) : (
+        <p>本轮没有保存非空表达。</p>
+      )}
+      {saveError ? <p role="alert">{saveError}</p> : null}
+    </section>
+  )
+  if (!view)
+    return (
+      <HistoricalPracticeRecord record={record}>
+        {expressionSection}
+      </HistoricalPracticeRecord>
+    )
+  const workflow =
+    record.session.status === 'completed'
+      ? '已确认结束并保存'
+      : record.session.status === 'abandoned'
+        ? '已停止，未记作完成'
+        : view.outcome === 'active'
+          ? '仍可继续'
+          : '等待你确认结束'
+  const outcome =
+    view.outcome === 'achieved'
+      ? '所选目标已确认'
+      : view.outcome === 'partial'
+        ? '部分结束'
+        : view.outcome === 'declined'
+          ? '明确停止'
+          : '进行中'
+  const resumeHref = buildLearningHref({ kind: 'session', id: sessionId })
   return (
     <main className={styles.report}>
       <MobilePageHeader
         title="本次复盘"
-        eyebrow="SESSION REPORT"
+        eyebrow="SESSION RECORD"
         fallbackHref="/me"
         backLabel="返回我的练习"
       />
       <header className={styles.scoreHeader}>
-        <span>
-          <CheckCircle aria-hidden size={24} weight="fill" />
-          SESSION COMPLETE
-        </span>
         <h2>
-          {report.completionPercent}%<small>任务完成</small>
+          {outcome} · {workflow}
         </h2>
-        <p>分数来自本轮文字与任务完成情况，不包含没有声学依据的发音评分。</p>
+        <p>流程状态与表达覆盖分开记录，不提供语法、词汇、自然度或发音分数。</p>
       </header>
-
-      <section className={styles.metrics} aria-labelledby="metric-title">
-        <h2 id="metric-title">表达概览</h2>
-        <div>
-          {metricOrder.map((key) => {
-            const detail = report.metricDetails[key]
-            return (
-              <article key={key}>
-                <span>{detail.label}</span>
-                <strong>
-                  {detail.score}
-                  <small>/4</small>
-                </strong>
-                <p>{detail.description}</p>
-              </article>
-            )
-          })}
-        </div>
+      <section className={styles.improve}>
+        <h2>本地覆盖与流程</h2>
+        <p>
+          已匹配表达：
+          {
+            view.history.filter((turn) => turn.confirmation === 'exact').length
+          }{' '}
+          轮
+        </p>
+        <p>
+          未匹配表达：
+          {
+            view.history.filter((turn) => turn.confirmation === 'unknown')
+              .length
+          }{' '}
+          轮
+        </p>
+        <p>
+          帮助或停止操作：
+          {
+            view.history.filter((turn) => turn.confirmation === 'repair').length
+          }{' '}
+          轮
+        </p>
+        <p>
+          已提交 {view.flow.submittedTurns} / {view.flow.requiredUserTurns}{' '}
+          轮，其中非空表达 {view.flow.expressionTurns}{' '}
+          轮。匹配只确认本题已收录表达；未收录不代表说错，帮助操作不证明表达正确。
+        </p>
+        {record.session.status === 'active' ? (
+          <a href={resumeHref}>
+            {view.canFinish
+              ? '返回练习并确认结束'
+              : view.canAnswer
+                ? '返回继续练习'
+                : '返回查看结束选项'}
+          </a>
+        ) : null}
       </section>
-
-      <section
-        className={styles.expressions}
-        aria-labelledby="expression-title"
-      >
-        <h2 id="expression-title">本场好表达</h2>
-        {report.bestExpressions.length > 0 ? (
-          report.bestExpressions.map((expression) => (
-            <ExpressionFavorite
-              key={expression}
-              expression={expression}
-              saved={savedExpressions.includes(expression)}
-              onSave={saveExpression}
-            />
-          ))
-        ) : (
-          <p className={styles.emptyCopy}>再完成一轮，就能在这里积累好表达。</p>
-        )}
+      <section className={styles.improve}>
+        <h2>{view.presentation.counterpartZh}</h2>
+        <p>{view.presentation.frameZh}</p>
+        <p className={styles.material}>{view.situationZh}</p>
       </section>
-
-      <section className={styles.improve} aria-labelledby="improve-title">
-        <h2 id="improve-title">下一次更进一步</h2>
-        {report.improvementThemes.length > 0 ? (
-          <ul>
-            {report.improvementThemes.map((theme) => (
-              <li key={theme}>{theme}</li>
+      <section className={styles.improve}>
+        <h2>原始对话与本题反馈</h2>
+        {view.opening.map((block, index) => (
+          <p key={`opening-${index}`} lang="en">
+            {block.text}
+          </p>
+        ))}
+        {view.history.map((turn) => (
+          <article key={turn.turnId}>
+            <h3>第 {view.history.indexOf(turn) + 1} 轮</h3>
+            <p>你：{turn.learner.text || '帮助或停止操作（没有表达文字）'}</p>
+            {turn.assistant.map((block, index) => (
+              <p key={index} lang="en">
+                {block.text}
+              </p>
             ))}
-          </ul>
-        ) : (
-          <p>这次没有明显错误，下一步尝试加入更多具体细节。</p>
-        )}
-        <aside>
-          <span>NEXT MOVE</span>
-          <p>{report.nextAction}</p>
-        </aside>
+            <p>{turn.feedback.text}</p>
+            {turn.references.length ? (
+              <details>
+                <summary>当时对应题目的参考表达</summary>
+                {turn.references.map((reference) => (
+                  <p key={reference.id} lang="en">
+                    {reference.text}
+                  </p>
+                ))}
+              </details>
+            ) : null}
+          </article>
+        ))}
       </section>
-
+      {expressionSection}
       <nav className={styles.actions} aria-label="复盘后操作">
-        <Link href="/practice">回到今日练习</Link>
-        <Link href="/scenes">
-          换个场景
-          <ArrowRight aria-hidden size={19} />
-        </Link>
+        <a href="/practice">回到今日练习</a>
+        <a href="/scenes">换个场景</a>
       </nav>
     </main>
-  )
-}
-
-function ExpressionFavorite({
-  expression,
-  saved,
-  onSave,
-}: {
-  expression: string
-  saved: boolean
-  onSave: (expression: string) => Promise<void>
-}) {
-  return (
-    <article>
-      <p>“{expression}”</p>
-      <button
-        type="button"
-        aria-label={`${saved ? '已收藏' : '收藏'}表达：${expression}`}
-        disabled={saved}
-        onClick={() => void onSave(expression)}
-      >
-        <BookmarkSimple
-          aria-hidden
-          size={20}
-          weight={saved ? 'fill' : 'regular'}
-        />
-      </button>
-    </article>
   )
 }

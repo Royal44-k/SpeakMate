@@ -715,13 +715,17 @@ export const haircutPacks = {
       [
         'wash',
         'choose-wash',
-        'Would you like washing to be included in the scope of the service under discussion?',
-        '自然范围说明。',
+        'Would you prefer to include a wash before the cut, or leave that out of the appointment?',
+        '具体说明是否洗发；不预设后续造型、产品或可用时间。',
         'yes',
-        'Yes, please include a wash in what we are discussing, so I can consider the service as a whole.',
+        'Yes, I would prefer a wash before the cut, though I would like to check how much it adds to the price before deciding.',
         'no',
-        'No, I would prefer to exclude washing and keep the service focused on the other elements.',
-        c1,
+        'No wash for me, thank you. I would rather spend the time discussing the cut and how to look after it.',
+        {
+          state: 'model-reviewed',
+          record:
+            'daily-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0',
+        },
       ],
       [
         'dry',

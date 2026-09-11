@@ -1,6 +1,11 @@
 import { z } from 'zod'
 import { CEFR_LEVELS, SCENE_CATEGORIES } from '@/domain/scenes/types'
 import { dialogueSnapshotSchema } from '@/domain/ai/graded-dialogue'
+import {
+  practicePresentationSchema,
+  completionEvidenceSchema,
+  practiceFlow,
+} from '@/domain/practice/graded-evidence'
 
 export const MAX_BACKUP_BYTES = 10 * 1024 * 1024
 export const textSchema = z.string().max(20_000)
@@ -165,8 +170,42 @@ export const sessionSchema = z
     openingText: textSchema.optional(),
     provenance: provenanceSchema.optional(),
     gradedDialogue: dialogueSnapshotSchema.optional(),
+    presentation: practicePresentationSchema.optional(),
+    completionEvidence: completionEvidenceSchema.optional(),
   })
   .superRefine((session, ctx) => {
+    const evidence = session.completionEvidence
+    if (session.presentation && !session.gradedDialogue)
+      ctx.addIssue({
+        code: 'custom',
+        message: 'PRESENTATION_REQUIRES_GRADED_SNAPSHOT',
+      })
+    if (evidence) {
+      const snapshot = session.gradedDialogue
+      const flow = snapshot ? practiceFlow(snapshot) : undefined
+      if (
+        !snapshot ||
+        session.status !== 'completed' ||
+        evidence.confirmedAt !== session.completedAt ||
+        evidence.sessionId !== session.id ||
+        evidence.sceneId !== session.sceneId ||
+        evidence.sceneVersion !== session.sceneVersion ||
+        evidence.level !== session.level ||
+        evidence.contentVersion !== snapshot.pack.contentVersion ||
+        evidence.engineVersion !== snapshot.state.engineVersion ||
+        evidence.mode !== snapshot.state.mode ||
+        evidence.variantId !== snapshot.state.variantId ||
+        evidence.outcome !== snapshot.state.outcome ||
+        evidence.basis !== flow?.basis ||
+        evidence.submittedTurns !== flow?.submittedTurns ||
+        evidence.expressionTurns !== flow?.expressionTurns ||
+        evidence.requiredUserTurns !== flow?.requiredUserTurns
+      )
+        ctx.addIssue({
+          code: 'custom',
+          message: 'COMPLETION_EVIDENCE_MISMATCH',
+        })
+    }
     const pack = session.gradedDialogue?.pack
     if (
       pack &&

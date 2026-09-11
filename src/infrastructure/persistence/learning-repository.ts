@@ -214,6 +214,23 @@ export function createLearningRepository(
             throw new Error('REVIEW_SCHEDULE_STALE')
           appendImmutable(state.reviews, [effects.review])
         }
+        if (
+          effects.session?.gradedDialogue ||
+          [
+            effects.session?.id,
+            effects.turn?.sessionId,
+            effects.turn
+              ? state.turns.find((turn) => turn.id === effects.turn!.id)
+                  ?.sessionId
+              : undefined,
+          ].some(
+            (id) =>
+              id &&
+              state.sessions.find((session) => session.id === id)
+                ?.gradedDialogue,
+          )
+        )
+          throw new Error('PRACTICE_GUARDED_WRITE_REQUIRED')
         if (effects.session) put(state.sessions, effects.session)
         if (effects.turn) put(state.turns, effects.turn)
         appendImmutable(state.pointsLedger, effects.pointsLedger ?? [])

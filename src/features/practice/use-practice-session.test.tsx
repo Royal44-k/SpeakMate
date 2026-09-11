@@ -8,6 +8,9 @@ import type { BrowserRecorder } from '@/infrastructure/audio/browser-recorder'
 import { getDatabase } from '@/infrastructure/persistence/db'
 import { createIndexedDbRepositories } from '@/infrastructure/persistence/repositories'
 import { usePracticeSession } from './use-practice-session'
+import { localContentProvider } from '@/content/dialogues/graded/provider'
+import type { PreparedPractice } from '@/domain/practice/prepared-practice'
+import type { AdaptedScene } from '@/domain/scenes/types'
 
 const recorderHarness = vi.hoisted(() => ({
   recorder: null as BrowserRecorder | null,
@@ -15,7 +18,9 @@ const recorderHarness = vi.hoisted(() => ({
 
 vi.mock('@/infrastructure/audio/browser-recorder', async (importOriginal) => {
   const actual =
-    await importOriginal<typeof import('@/infrastructure/audio/browser-recorder')>()
+    await importOriginal<
+      typeof import('@/infrastructure/audio/browser-recorder')
+    >()
   return {
     ...actual,
     createRecorder: () => {
@@ -25,14 +30,25 @@ vi.mock('@/infrastructure/audio/browser-recorder', async (importOriginal) => {
   }
 })
 
-const scene = adaptScene(getSceneBySlug('coffee-order')!, 'C1')
+let scene: AdaptedScene & PreparedPractice
 const repositories = createIndexedDbRepositories()
 beforeEach(async () => {
   await repositories.clearLearnerData()
+  const content = await localContentProvider.load({
+    sceneId: 'dining-01',
+    level: 'C1',
+  })
+  if (content.status !== 'available') throw new Error('fixture missing')
+  scene = {
+    ...adaptScene(getSceneBySlug('coffee-order')!, 'C1'),
+    pack: content.pack,
+    mode: 'short',
+    variantId: 'counter',
+  }
   window.history.replaceState(
     null,
     '',
-    '/session/new?scene=coffee-order&level=C1',
+    '/session?id=new&scene=coffee-order&level=C1&mode=short',
   )
 })
 
@@ -45,6 +61,36 @@ afterEach(() => {
 })
 
 describe('practice session lifecycle', () => {
+  it('retries a failed initial save with the exact same creation candidate', async () => {
+    const commit = vi
+      .spyOn(repositories.practice, 'commit')
+      .mockRejectedValueOnce(new Error('QuotaExceededError'))
+    const practice = renderHook(() =>
+      usePracticeSession(scene, 'new', repositories),
+    )
+    await waitFor(() =>
+      expect(practice.result.current.machine.status).toBe('recoverable-error'),
+    )
+    const first = commit.mock.calls[0][0]
+    act(() => practice.result.current.retryInitialization())
+    await waitFor(() => expect(practice.result.current.ready).toBe(true))
+    expect(commit.mock.calls[1][0]).toEqual(first)
+    expect(await repositories.sessions.list()).toHaveLength(1)
+  })
+  it('pins the selected short path and exact engine opening instead of the legacy catalog opening', async () => {
+    const practice = renderHook(() => usePracticeSession(scene, 'new'))
+    await waitFor(() => expect(practice.result.current.ready).toBe(true))
+    const saved = await repositories.sessions.get(
+      practice.result.current.sessionId,
+    )
+    expect(saved?.gradedDialogue?.state).toMatchObject({
+      mode: 'short',
+      variantId: 'counter',
+      turns: [],
+    })
+    expect(saved?.openingText).toBe(saved?.gradedDialogue?.state.reply)
+    expect(saved?.openingText).not.toBe(scene.openingLines[0])
+  })
   it('creates exactly one session in StrictMode, and a second new round preserves the first', async () => {
     const wrapper = ({ children }: { children: ReactNode }) => (
       <StrictMode>{children}</StrictMode>
@@ -56,24 +102,28 @@ describe('practice session lifecycle', () => {
     const id = first.result.current.sessionId
     const opening = first.result.current.aiReply
     expect(await repositories.sessions.list()).toHaveLength(1)
-    expect(window.location.pathname).toBe(`/session/${id}`)
+    expect(window.location.pathname).toBe('/session')
+    expect(new URLSearchParams(window.location.search).get('id')).toBe(id)
+    expect(new URLSearchParams(window.location.search).get('mode')).toBe(
+      'short',
+    )
     first.unmount()
     window.history.replaceState(
       null,
       '',
-      '/session/new?scene=coffee-order&level=C1',
+      '/session?id=new&scene=coffee-order&level=C1&mode=short',
     )
     const second = renderHook(() => usePracticeSession(scene, 'new'), {
       wrapper,
     })
     await waitFor(() => expect(second.result.current.ready).toBe(true))
     expect(second.result.current.sessionId).not.toBe(id)
-    expect(second.result.current.aiReply).not.toBe(opening)
+    expect(second.result.current.aiReply).toBe(opening) // Same explicitly selected variant, not an invented rotation.
     expect(await repositories.sessions.list()).toHaveLength(2)
     expect(await repositories.sessions.get(id)).toBeDefined()
   })
 
-  it('persists confirmed text through the local coach without an API request', async () => {
+  it('persists confirmed text through the local graded engine without an API request', async () => {
     const fetchSpy = vi.fn()
     vi.stubGlobal('fetch', fetchSpy)
     vi.spyOn(browserTts, 'speak').mockResolvedValue()
@@ -81,7 +131,9 @@ describe('practice session lifecycle', () => {
     await waitFor(() => expect(practice.result.current.ready).toBe(true))
 
     act(() => practice.result.current.openKeyboard())
-    act(() => practice.result.current.updateTranscript('A small latte, please.'))
+    act(() =>
+      practice.result.current.updateTranscript('A small latte, please.'),
+    )
     await act(async () => practice.result.current.submitTurn())
 
     await waitFor(() =>
@@ -92,8 +144,82 @@ describe('practice session lifecycle', () => {
     )
     expect(savedTurns).toHaveLength(1)
     expect(savedTurns[0].learnerText).toBe('A small latte, please.')
-    expect(savedTurns[0].result?.provider).toBe('local')
+    expect(savedTurns[0].result).toBeUndefined()
+    expect(
+      practice.result.current.record?.session.gradedDialogue?.state.turns[0],
+    ).toMatchObject({ action: 'answer', text: 'A small latte, please.' })
     expect(fetchSpy).not.toHaveBeenCalled()
+  })
+
+  it('uses edited suggestion text and restores terminal partial without accepting another turn', async () => {
+    vi.spyOn(browserTts, 'speak').mockResolvedValue()
+    const fetchSpy = vi.fn()
+    vi.stubGlobal('fetch', fetchSpy)
+    const practice = renderHook(() => usePracticeSession(scene, 'new'))
+    await waitFor(() => expect(practice.result.current.ready).toBe(true))
+    const id = practice.result.current.sessionId
+    const answer = practice.result.current.suggestions[0]
+    act(() => practice.result.current.chooseSuggestion(answer.id, answer.text))
+    act(() =>
+      practice.result.current.updateTranscript(
+        'I did not say that; these are different words.',
+      ),
+    )
+    await act(async () => practice.result.current.submitTurn())
+    expect(practice.result.current.view?.history[0].confirmation).toBe(
+      'unknown',
+    )
+    await act(async () => practice.result.current.submitAction('clarify'))
+    await act(async () => practice.result.current.submitAction('struggle'))
+    expect(practice.result.current.view).toMatchObject({
+      outcome: 'partial',
+      canAnswer: false,
+      canFinish: true,
+    })
+    expect(practice.result.current.record?.session.status).toBe('active')
+    await act(async () => practice.result.current.submitAction('clarify'))
+    act(() => practice.result.current.openKeyboard())
+    expect(practice.result.current.turns).toHaveLength(3)
+    expect(practice.result.current.machine.status).toBe('ready')
+    practice.unmount()
+    const changedToday = {
+      ...scene,
+      pack: { ...scene.pack, contentVersion: 2 },
+    }
+    const restored = renderHook(() => usePracticeSession(changedToday, id))
+    await waitFor(() => expect(restored.result.current.ready).toBe(true))
+    expect(
+      restored.result.current.record?.session.gradedDialogue?.pack
+        .contentVersion,
+    ).toBe(1)
+    expect(restored.result.current.view?.canAnswer).toBe(false)
+    await act(async () => restored.result.current.completeSession())
+    expect(restored.result.current.record?.session.status).toBe('completed')
+    expect(
+      restored.result.current.record?.session.completionEvidence?.outcome,
+    ).toBe('partial')
+    expect(fetchSpy).not.toHaveBeenCalled()
+  })
+
+  it('keeps the same attempted turn and draft after storage failure for an exact retry', async () => {
+    vi.spyOn(browserTts, 'speak').mockResolvedValue()
+    const practice = renderHook(() =>
+      usePracticeSession(scene, 'new', repositories),
+    )
+    await waitFor(() => expect(practice.result.current.ready).toBe(true))
+    const commit = vi.spyOn(repositories.practice, 'commit')
+    commit.mockRejectedValueOnce(new DOMException('Full', 'QuotaExceededError'))
+    act(() => practice.result.current.openKeyboard())
+    act(() => practice.result.current.updateTranscript('Uncollected words'))
+    await act(async () => practice.result.current.submitTurn())
+    const first = commit.mock.calls[0][0]
+    expect(practice.result.current.machine.draftTranscript).toBe(
+      'Uncollected words',
+    )
+    expect(practice.result.current.turns).toHaveLength(0)
+    await act(async () => practice.result.current.submitTurn())
+    expect(commit.mock.calls[1][0]).toEqual(first)
+    expect(practice.result.current.turns).toHaveLength(1)
   })
 
   it('keeps audio-only input at confirmation without upload or ASR fallback', async () => {
@@ -131,7 +257,9 @@ describe('practice session lifecycle', () => {
   })
 
   it('does not autoplay a reply when the persisted setting is off', async () => {
-    await (await getDatabase()).put('settings', {
+    await (
+      await getDatabase()
+    ).put('settings', {
       id: 'settings',
       speechRate: 0.8,
       autoPlayAi: false,
@@ -153,7 +281,9 @@ describe('practice session lifecycle', () => {
   })
 
   it('uses the persisted speech rate for manual reply playback', async () => {
-    await (await getDatabase()).put('settings', {
+    await (
+      await getDatabase()
+    ).put('settings', {
       id: 'settings',
       speechRate: 0.8,
       autoPlayAi: false,
@@ -254,7 +384,9 @@ describe('practice session lifecycle', () => {
   })
 
   it('exposes a readable status when manual local speech is unavailable', async () => {
-    await (await getDatabase()).put('settings', {
+    await (
+      await getDatabase()
+    ).put('settings', {
       id: 'settings',
       speechRate: 1,
       autoPlayAi: false,

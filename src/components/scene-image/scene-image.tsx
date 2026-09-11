@@ -29,6 +29,7 @@ export function SceneImage({
     <span className={`${styles.frame} ${className}`}>
       <Image
         src={src}
+        unoptimized
         alt={image.altZh}
         fill
         priority={priority}

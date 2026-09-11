@@ -1,180 +1,214 @@
 'use client'
 
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
-
-import { SCENE_CATALOG, getSceneBySlug } from '@/content/scenes/catalog'
-import type { PracticeSession } from '@/domain/practice/types'
-import { adaptScene } from '@/domain/scenes/adapt-scene'
-import {
-  CEFR_LEVELS,
-  type AdaptedScene,
-  type CefrLevel,
-} from '@/domain/scenes/types'
+import { SCENE_METADATA } from '@/content/scenes/metadata'
+import { publicContentProvider } from '@/content/public-category'
+import { selectedPracticePresentation } from '@/content/scenes/practice-presentation'
+import type { PreparedPractice } from '@/domain/practice/prepared-practice'
+import { CEFR_LEVELS, type CefrLevel } from '@/domain/scenes/types'
+import { modeSchema } from '@/content/dialogues/graded/schema'
 import {
   createIndexedDbRepositories,
   type Repositories,
 } from '@/infrastructure/persistence/repositories'
-import { isSceneLibraryHref } from '@/features/scenes/scene-filter-state'
-
+import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
+import {
+  buildLearningHref,
+  safeSourceHref,
+} from '@/components/app-shell/learning-routes'
 import { PracticeStage } from './practice-stage'
+import { HistoricalPracticeRecord } from './historical-practice-record'
 import styles from './session-resolver.module.css'
 
-interface SessionResolverProps {
+interface Props {
   requestedId: string
   queryScene?: string
   queryLevel?: string
+  queryMode?: string
   queryFrom?: string
   queryRound?: string
   repositories?: Repositories
 }
-
-type Resolution =
-  | { status: 'loading' }
-  | {
-      status: 'ready'
-      requestKey: string
-      scene: AdaptedScene
-      sessionId: string
-      completed: boolean
-    }
-  | { status: 'error'; requestKey: string; message: string }
-
-function queryLevelOrDefault(value?: string): CefrLevel {
-  return CEFR_LEVELS.includes(value as CefrLevel) ? (value as CefrLevel) : 'A2'
-}
-
-function restoreScene(session: PracticeSession): AdaptedScene | undefined {
-  if (
-    session.sceneSnapshot &&
-    session.sceneSnapshot.id === session.sceneId &&
-    session.sceneSnapshot.version === session.sceneVersion &&
-    session.sceneSnapshot.level === session.level
-  ) {
-    return session.sceneSnapshot
-  }
-  const definition = SCENE_CATALOG.find(
-    (scene) =>
-      scene.id === session.sceneId && scene.version === session.sceneVersion,
-  )
-  return definition ? adaptScene(definition, session.level) : undefined
-}
-
+type Resolution = { requestKey: string } & (
+  | { status: 'ready'; scene: PreparedPractice; completed: boolean }
+  | { status: 'historical'; record: PracticeRecord }
+  | { status: 'error'; message: string }
+)
 export function SessionResolver({
   requestedId,
   queryScene,
   queryLevel,
+  queryMode,
   queryFrom,
   queryRound,
   repositories,
-}: SessionResolverProps) {
+}: Props) {
   const [repository] = useState(
     () => repositories ?? createIndexedDbRepositories(),
   )
-  const [resolution, setResolution] = useState<Resolution>({
-    status: 'loading',
-  })
+  const [resolution, setResolution] = useState<Resolution>()
+  const [retry, setRetry] = useState(0)
   const requestKey =
     requestedId === 'new'
-      ? `new:${queryScene ?? 'hotel-check-in'}:${queryLevelOrDefault(queryLevel)}:${queryRound?.slice(0, 100) ?? ''}`
+      ? JSON.stringify([
+          requestedId,
+          queryScene,
+          queryLevel,
+          queryMode,
+          queryRound,
+        ])
       : `session:${requestedId}`
-
   useEffect(() => {
     let active = true
-    const resolve = async () => {
+    async function resolve() {
       if (requestedId === 'new') {
-        const definition = getSceneBySlug(queryScene ?? 'hotel-check-in')
-        if (!definition) {
-          if (active)
-            setResolution({
-              status: 'error',
-              requestKey,
-              message: '这个练习场景不存在或已下线。',
-            })
-          return
-        }
-        if (active) {
-          setResolution({
-            status: 'ready',
-            requestKey,
-            scene: adaptScene(definition, queryLevelOrDefault(queryLevel)),
-            sessionId: requestedId,
-            completed: false,
-          })
-        }
-        return
-      }
-
-      try {
-        const session = await repository.sessions.get(requestedId)
-        const scene = session ? restoreScene(session) : undefined
-        if (!session || !scene) {
-          if (active) {
-            setResolution({
-              status: 'error',
-              requestKey,
-              message:
-                '暂时无法恢复这次练习：记录不存在，或对应的场景版本已不可用。',
-            })
-          }
-          return
+        const metadata = SCENE_METADATA.find((item) => item.slug === queryScene)
+        if (
+          !metadata ||
+          (queryLevel && !CEFR_LEVELS.includes(queryLevel as CefrLevel))
+        )
+          throw new Error('场景或等级无效，未新建任何记录。')
+        const mode = modeSchema.parse(queryMode ?? 'standard')
+        const level = (queryLevel ?? 'A2') as CefrLevel
+        const result = await publicContentProvider().load({
+          sceneId: metadata.id,
+          level,
+        })
+        if (
+          result.status !== 'available' ||
+          result.pack.sceneId !== metadata.id ||
+          result.pack.level !== level
+        )
+          throw new Error(
+            '所选语料尚未下载或不可用，请重试；不会替换为别的场景或等级。',
+          )
+        const variantId = result.pack.variants[0].id
+        const scene = {
+          ...metadata,
+          level,
+          mode,
+          variantId,
+          pack: result.pack,
+          presentation: selectedPracticePresentation(result.pack, variantId),
         }
         if (active)
           setResolution({
             status: 'ready',
             requestKey,
             scene,
-            sessionId: session.id,
-            completed: session.status === 'completed',
+            completed: false,
           })
-      } catch {
-        if (active) {
-          setResolution({
-            status: 'error',
-            requestKey,
-            message: '暂时无法恢复这次练习，请刷新页面后重试。',
-          })
-        }
+        return
       }
+      const saved = await repository.practice.read(requestedId)
+      if (!saved)
+        throw new Error(
+          '记录不存在。请检查本机记录或备份，不会把缺失的 ID 当作新建。',
+        )
+      if (saved.status === 'historical') {
+        if (active)
+          setResolution({ status: 'historical', requestKey, record: saved })
+        return
+      }
+      if (saved.status !== 'ready')
+        throw new Error(
+          saved.message ??
+            '保存的分级状态无法继续，原始记录仍保留，可导出备份后检查。',
+        )
+      const metadata = SCENE_METADATA.find(
+        (item) => item.id === saved.session.sceneId,
+      )
+      if (!metadata)
+        throw new Error(
+          '此历史场景没有可用的显示入口，记录仍保留，请查看备份。',
+        )
+      const snapshot = saved.session.gradedDialogue!
+      const scene: PreparedPractice = {
+        ...metadata,
+        version: saved.session.sceneVersion,
+        level: saved.session.level,
+        pack: snapshot.pack,
+        mode: snapshot.state.mode,
+        variantId: snapshot.state.variantId,
+        ...(saved.session.presentation
+          ? { presentation: saved.session.presentation }
+          : {}),
+      }
+      if (active)
+        setResolution({
+          status: 'ready',
+          requestKey,
+          scene,
+          completed: saved.session.status === 'completed',
+        })
     }
-    void resolve()
+    void resolve().catch((error) => {
+      if (active)
+        setResolution({
+          status: 'error',
+          requestKey,
+          message:
+            requestedId === 'new'
+              ? `所选语料下载或验证失败。${error instanceof Error ? error.message : '请重试。'}`
+              : error instanceof Error
+                ? error.message
+                : '本机读取失败，请重试，记录不会被清除。',
+        })
+    })
     return () => {
       active = false
     }
-  }, [queryLevel, queryScene, repository, requestKey, requestedId])
-
-  if (resolution.status === 'loading' || resolution.requestKey !== requestKey) {
+  }, [
+    queryLevel,
+    queryMode,
+    queryScene,
+    repository,
+    requestKey,
+    requestedId,
+    retry,
+  ])
+  if (!resolution || resolution.requestKey !== requestKey)
     return (
       <main className={styles.state} aria-busy="true">
         正在恢复练习…
       </main>
     )
-  }
-
-  if (resolution.status === 'error') {
+  if (resolution.status === 'error')
     return (
       <main className={styles.state} role="alert">
         <h1 data-page-title tabIndex={-1}>
           暂时无法恢复这次练习
         </h1>
         <p>{resolution.message}</p>
-        <Link href="/practice">返回今日练习</Link>
+        <button
+          type="button"
+          onClick={() => {
+            setResolution(undefined)
+            setRetry((value) => value + 1)
+          }}
+        >
+          重试读取
+        </button>
+        <a href="/practice">返回今日练习</a>
+        <a href="/me">查看本机记录与备份</a>
       </main>
     )
-  }
-
+  if (resolution.status === 'historical')
+    return <HistoricalPracticeRecord record={resolution.record} />
   return (
     <PracticeStage
-      key={`${resolution.requestKey}:${resolution.scene.id}:${resolution.scene.version}:${resolution.scene.level}`}
+      key={requestKey}
       scene={resolution.scene}
-      sessionId={resolution.sessionId}
+      sessionId={requestedId}
       completed={resolution.completed}
-      exitHref={
-        `/scenes/${resolution.scene.slug}?level=${resolution.scene.level}` +
-        (isSceneLibraryHref(queryFrom)
-          ? `&from=${encodeURIComponent(queryFrom)}`
-          : '')
-      }
+      repositories={repository}
+      exitHref={buildLearningHref({
+        kind: 'prepare',
+        scene: resolution.scene.slug,
+        level: resolution.scene.level,
+        mode: resolution.scene.mode,
+        from: safeSourceHref(queryFrom),
+      })}
     />
   )
 }

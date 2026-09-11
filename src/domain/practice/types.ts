@@ -2,6 +2,10 @@ import type { AdaptedScene, CefrLevel } from '@/domain/scenes/types'
 import type { ConversationResult } from '@/domain/ai/contracts'
 import type { TaskProvenance } from '@/domain/goals/types'
 import type { DialogueSnapshot } from '@/domain/ai/graded-dialogue'
+import type {
+  PracticePresentation,
+  PracticeCompletionEvidence,
+} from './graded-evidence'
 
 export type PracticeSessionStatus = 'active' | 'completed' | 'abandoned'
 
@@ -20,6 +24,8 @@ export interface PracticeSession {
   openingText?: string
   provenance?: TaskProvenance
   gradedDialogue?: DialogueSnapshot
+  presentation?: PracticePresentation
+  completionEvidence?: PracticeCompletionEvidence
 }
 
 export interface TurnFeedback {

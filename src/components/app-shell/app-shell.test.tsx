@@ -213,7 +213,7 @@ describe('AppShell', () => {
 
     expect(search).toHaveFocus()
     expect(window.sessionStorage.getItem('speakmate-route-stack')).toBe(
-      JSON.stringify(['/scenes?q=hotel&level=B1']),
+      JSON.stringify(['/scenes?level=B1']),
     )
   })
 })

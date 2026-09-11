@@ -1,9 +1,11 @@
+/* eslint-disable @next/next/no-html-link-for-pages -- Binding offline-routing contract: cross-shell learning links require document navigation, never RSC prefetch. */
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { StrictMode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ExitGuard, exitGuardState } from './exit-guard'
+import { documentNavigation } from '@/components/app-shell/learning-routes'
 
 const { routerBack, routerReplace } = vi.hoisted(() => ({
   routerBack: vi.fn(),
@@ -38,6 +40,7 @@ describe('ExitGuard', () => {
     window.sessionStorage.clear()
     vi.spyOn(window.history, 'back').mockImplementation(() => undefined)
     vi.spyOn(window.history, 'go').mockImplementation(() => undefined)
+    vi.spyOn(documentNavigation, 'replace').mockImplementation(() => undefined)
     window.history.replaceState(null, '', '/session/session-draft')
   })
 
@@ -63,6 +66,26 @@ describe('ExitGuard', () => {
 
     expect(dialog).not.toBeInTheDocument()
     expect(routerReplace).not.toHaveBeenCalled()
+  })
+
+  it('guards other document links and cancels without discarding the draft', async () => {
+    const onConfirmExit = vi.fn()
+    render(
+      <>
+        <ExitGuard
+          state="draft"
+          fallbackHref="/practice"
+          onConfirmExit={onConfirmExit}
+        />
+        <a href="/scenes">场景库文档入口</a>
+      </>,
+    )
+    fireEvent.click(screen.getByText('场景库文档入口'))
+    expect(screen.getByRole('alertdialog')).toBeVisible()
+    fireEvent.click(screen.getByRole('button', { name: '继续练习' }))
+    expect(onConfirmExit).not.toHaveBeenCalled()
+    expect(documentNavigation.replace).not.toHaveBeenCalled()
+    expect(screen.getByText('场景库文档入口')).toHaveFocus()
   })
 
   it('keeps the exit modal isolated and traps focus until cancellation', async () => {
@@ -122,8 +145,8 @@ describe('ExitGuard', () => {
     fireEvent.popState(window, { state: null })
 
     expect(onConfirmExit).toHaveBeenCalledTimes(1)
-    expect(routerReplace).toHaveBeenCalledWith(
-      '/scenes/hotel-check-in?level=B1',
+    expect(documentNavigation.replace).toHaveBeenCalledWith(
+      '/scenes/prepare?scene=hotel-check-in&level=B1',
     )
   })
 

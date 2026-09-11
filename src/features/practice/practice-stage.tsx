@@ -1,289 +1,444 @@
 'use client'
 
-import { Check, Headphones, Lightbulb, SpinnerGap } from '@phosphor-icons/react'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-
+import { Check, Headphones, SpinnerGap } from '@phosphor-icons/react'
+import { useEffect, useRef, useState } from 'react'
 import { FeedbackSheet } from '@/components/feedback-sheet/feedback-sheet'
 import { SceneImage } from '@/components/scene-image/scene-image'
 import { SpeechControl } from '@/components/speech-control/speech-control'
-import type { AdaptedScene } from '@/domain/scenes/types'
-import { replySuggestions } from '@/domain/ai/dialogue-guide'
-
+import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import type { PreparedPractice } from '@/domain/practice/prepared-practice'
+import type { Repositories } from '@/infrastructure/persistence/repositories'
 import { ExitGuard, exitGuardState } from './exit-guard'
 import styles from './practice-stage.module.css'
 import { TextReviewDock } from './text-review-dock'
 import { usePracticeSession } from './use-practice-session'
+
+const actionLabels = {
+  clarify: '请再解释一下',
+  struggle: '我需要表达提示',
+  'off-topic': '帮我回到当前问题',
+  refuse: '停止本次练习',
+} as const
 
 export function PracticeStage({
   scene,
   sessionId,
   completed = false,
   exitHref,
+  repositories,
 }: {
-  scene: AdaptedScene
+  scene: PreparedPractice
   sessionId: string
   completed?: boolean
   exitHref?: string
+  repositories?: Repositories
 }) {
-  const practice = usePracticeSession(scene, sessionId)
-  const resolvedExitHref =
-    exitHref ?? `/scenes/${scene.slug}?level=${scene.level}`
-  const [feedbackOverride, setFeedbackOverride] = useState<boolean | null>(
-    null,
-  )
-  const feedbackExpanded =
-    feedbackOverride ?? Boolean(practice.feedbackExpanded)
+  const practice = usePracticeSession(scene, sessionId, repositories)
+  const stageRef = useRef<HTMLElement>(null)
+  const [feedbackOverride, setFeedbackOverride] = useState<boolean | null>(null)
+  const expanded = feedbackOverride ?? practice.feedbackExpanded
   const status = practice.machine.status
-  const isReviewing =
+  const view = practice.view
+  const processing = ['submitting', 'receiving', 'completing'].includes(status)
+  const reviewing =
     status === 'reviewing' ||
     (status === 'recoverable-error' &&
-      Boolean(practice.machine.draftTranscript || practice.audio))
-  const hasTranscript = Boolean(practice.machine.draftTranscript?.trim())
-  const canSubmit =
-    hasTranscript
-  const completedGoals = practice.completedGoalIds ?? []
-  const turnLimitReached = practice.machine.turnIndex >= scene.recommendedTurns
-  const canComplete =
-    turnLimitReached ||
-    Boolean(practice.latestResult?.progress.shouldOfferCompletion) ||
-    completedGoals.length >= scene.goals.length
-  const suggestions = replySuggestions(
-    scene,
-    practice.aiReply,
-    completedGoals,
-    practice.turns.map((turn) => turn.learnerText),
-  )
-  const dockMode = isReviewing
-    ? 'text'
-    : ['submitting', 'receiving', 'completing'].includes(status)
-      ? 'processing'
-      : 'speech'
-  const interactionBusy =
-    status === 'recording' ||
-    isReviewing ||
-    status === 'submitting' ||
-    status === 'receiving' ||
-    status === 'completing'
-  const guardState = exitGuardState(
-    status,
-    practice.machine.draftTranscript ?? '',
-    Boolean(practice.audio),
-  )
-
+      !!(practice.machine.draftTranscript || practice.audio))
+  const busy =
+    processing ||
+    reviewing ||
+    ['recording', 'requesting-permission'].includes(status)
+  const latest = view?.history.at(-1)
+  const prepareHref =
+    exitHref ??
+    buildLearningHref({
+      kind: 'prepare',
+      scene: scene.slug,
+      level: scene.level,
+      mode: scene.mode,
+    })
+  const reportHref = buildLearningHref({
+    kind: 'report',
+    id: practice.sessionId,
+  })
+  const nextHref = buildLearningHref({
+    kind: 'session',
+    id: 'new',
+    scene: scene.slug,
+    level: scene.level,
+    mode: scene.mode,
+    round: practice.sessionId,
+  })
   useEffect(() => {
-    if (!interactionBusy) return
+    if (!busy) return
     const root = document.documentElement
-    const previousValue = root.dataset.interactionBusy
+    const previous = root.dataset.interactionBusy
     root.dataset.interactionBusy = 'true'
-
     return () => {
-      if (previousValue === undefined) {
-        delete root.dataset.interactionBusy
-      } else {
-        root.dataset.interactionBusy = previousValue
-      }
+      if (previous === undefined) delete root.dataset.interactionBusy
+      else root.dataset.interactionBusy = previous
     }
-  }, [interactionBusy])
+  }, [busy])
+  useEffect(() => {
+    const stage = stageRef.current
+    const dock = stage?.querySelector<HTMLElement>('[data-practice-dock]')
+    if (!stage || !dock) return
+    const measure = () =>
+      stage.style.setProperty(
+        '--practice-dock-space',
+        `${Math.ceil(dock.getBoundingClientRect().height) + 24}px`,
+      )
+    measure()
+    const observer =
+      typeof ResizeObserver === 'function'
+        ? new ResizeObserver(measure)
+        : undefined
+    observer?.observe(dock)
+    window.addEventListener('resize', measure)
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener('resize', measure)
+      stage.style.removeProperty('--practice-dock-space')
+    }
+  }, [practice.ready, status, view?.canAnswer])
 
-  if (status === 'completed' || completed) {
+  if (
+    practice.record?.session.status === 'completed' ||
+    status === 'completed' ||
+    completed
+  )
     return (
       <main className={styles.completed}>
         <span>
-          <Check aria-hidden size={34} weight="bold" />
+          <Check aria-hidden size={34} />
         </span>
-        <p>SESSION COMPLETE</p>
+        <p>PRACTICE SAVED</p>
         <h1 data-page-title tabIndex={-1}>
-          这次真的开口了。
+          这轮已保存。
         </h1>
-        <p>练习已保存在本机，现在可以查看可解释的表达复盘。</p>
-        <Link href={`/session/${practice.sessionId}/report`}>查看本次复盘</Link>
-        <Link
-          href={`/session/new?scene=${scene.slug}&level=${scene.level}&round=${practice.sessionId}`}
-        >
-          再练一轮新对话
-        </Link>
+        <p>
+          {view?.outcome === 'achieved'
+            ? '所选流程的目标已由本地收录表达确认。'
+            : '本轮已结束，仍有目标未确认。'}{' '}
+          这不是语言能力评分，也不代表真实服务已完成。
+        </p>
+        <a href={reportHref}>查看本次复盘</a>
+        <a href={nextHref}>再练一轮新对话</a>
+        <a href={prepareHref}>返回场景准备</a>
       </main>
     )
-  }
+
+  if (!practice.ready)
+    return (
+      <main
+        className={styles.state ?? styles.dialogue}
+        aria-busy={status !== 'recoverable-error'}
+      >
+        <h1 data-page-title tabIndex={-1}>
+          {status === 'recoverable-error'
+            ? '暂时无法打开练习'
+            : '正在准备对话舞台…'}
+        </h1>
+        {practice.machine.errorMessage ? (
+          <>
+            <p role="alert">{practice.machine.errorMessage}</p>
+            <button type="button" onClick={practice.retryInitialization}>
+              重试打开同一练习
+            </button>
+          </>
+        ) : null}
+        <a href={prepareHref}>返回场景准备</a>
+      </main>
+    )
 
   return (
-    <main className={styles.stage}>
+    <main ref={stageRef} className={styles.stage}>
       <header className={styles.topbar}>
-        <ExitGuard state={guardState} fallbackHref={resolvedExitHref} />
+        <ExitGuard
+          state={exitGuardState(
+            status,
+            practice.machine.draftTranscript ?? '',
+            !!practice.audio,
+          )}
+          fallbackHref={prepareHref}
+          onConfirmExit={practice.discardPending}
+        />
         <div>
           <p>SpeakMate</p>
           <h1 data-page-title tabIndex={-1}>
             Dialogue Stage
           </h1>
-          <small>场景对话练习 · {scene.titleZh}</small>
+          <small>情境演练 · {scene.titleZh}</small>
         </div>
         <span>
           <strong>
-            {Math.min(practice.machine.turnIndex + 1, scene.recommendedTurns)} /{' '}
-            {scene.recommendedTurns}
+            {view!.flow.submittedTurns} / {view!.flow.requiredUserTurns}
           </strong>
-          <small>{scene.level} · 对话轮次</small>
+          <small>{scene.level} · 已提交轮次</small>
         </span>
       </header>
-
-      <div
-        className={styles.progress}
-        role="progressbar"
-        aria-label={`已完成 ${completedGoals.length} 个任务目标`}
-        aria-valuemin={0}
-        aria-valuemax={scene.goals.length}
-        aria-valuenow={completedGoals.length}
-      >
-        {scene.goals.map((goal) => (
-          <span
-            key={goal.id}
-            className={
-              completedGoals.includes(goal.id)
-                ? styles.progressDone
-                : styles.progressTodo
-            }
-          />
-        ))}
-      </div>
-
-      <section className={styles.sceneStrip} aria-label="当前对话场景">
+      <section className={styles.sceneStrip} aria-label="当前练习场景">
         <SceneImage
           image={scene.image}
           priority
           className={styles.sceneImage}
         />
-        <span className={styles.roleCaption}>你是：{scene.learnerRole}</span>
       </section>
-
-      {practice.ephemeral ? (
-        <p className={styles.storageNotice} role="status">
-          本机存储当前不可用；你仍可练习，但关闭页面后本次记录可能丢失。
+      <section className={styles.context} aria-label="完整情境与材料">
+        <h2>{view!.presentation.counterpartZh}</h2>
+        <p>{view!.presentation.frameZh}</p>
+        <p>{view!.situationZh}</p>
+        <p>
+          帮助和改答也占用轮次；还可提交{' '}
+          {Math.max(
+            0,
+            view!.flow.requiredUserTurns - view!.flow.submittedTurns,
+          )}{' '}
+          轮。到上限可能仍有目标未确认，可结束后开启新一轮，不代表练习失败。
+        </p>
+      </section>
+      {[practice.settingsError, practice.speechError]
+        .filter(Boolean)
+        .map((notice) => (
+          <p key={notice} className={styles.storageNotice} role="status">
+            {notice}
+          </p>
+        ))}
+      {practice.addressError ? (
+        <p className={styles.storageNotice} role="alert">
+          {practice.addressError}{' '}
+          <a
+            href={buildLearningHref({
+              kind: 'session',
+              id: practice.sessionId,
+            })}
+          >
+            打开已保存练习
+          </a>
         </p>
       ) : null}
-
-      <section className={styles.dialogue} aria-live="polite">
-        <div className={styles.speakerLine}>
-          <span>本地助手 · {scene.aiRole}</span>
-          <div>
-            {practice.latestResult?.degraded ? <em>本地规则反馈</em> : null}
-            <button
-              type="button"
-              aria-label="播放本地助手回复"
-              onClick={() => void practice.speakReply().catch(() => undefined)}
-            >
-              <Headphones aria-hidden size={21} />
-            </button>
-          </div>
-        </div>
-        <blockquote>“{practice.aiReply}”</blockquote>
-        <p className={styles.hint}>{practice.aiHint}</p>
-      </section>
-
-      {practice.speechError ? (
-        <p className={styles.storageNotice} role="status">
-          {practice.speechError}
-        </p>
-      ) : null}
-
-      {!canComplete && practice.ready ? (
-        <details
-          key={practice.machine.turnIndex}
-          className={styles.replySupport}
-        >
-          <summary>下一句怎么说？</summary>
-          <p>选择一种表达思路，再结合对方的问题，用自己的话回应。</p>
-          {suggestions.length ? (
-            suggestions.map((suggestion) => (
-              <div key={suggestion.text}>
-                <span>{suggestion.label}</span>
-                <p lang="en">{suggestion.text}</p>
-              </div>
-            ))
-          ) : (
-            <p>
-              这些参考表达你已经练过了。试着更换一个细节或补充原因，不必重复原句。
+      {view!.history.length ? (
+        <details className={styles.replySupport}>
+          <summary>本轮对话记录（{view!.history.length} 轮）</summary>
+          {view!.opening.map((block, index) => (
+            <p key={`opening-${index}`} lang="en">
+              情境提问：{block.text}
             </p>
-          )}
+          ))}
+          {view!.history.map((turn) => (
+            <div key={turn.turnId}>
+              <p>
+                你：
+                {turn.learner.text ||
+                  actionLabels[turn.input.action as keyof typeof actionLabels]}
+              </p>
+              {turn.assistant.map((block, index) => (
+                <p key={index} lang="en">
+                  情境回复：{block.text}
+                </p>
+              ))}
+            </div>
+          ))}
         </details>
       ) : null}
-
-      {practice.latestResult ? (
+      <section
+        className={styles.dialogue}
+        aria-label={view!.canAnswer ? '当前问题' : '本轮结尾'}
+        aria-live="polite"
+      >
+        <div className={styles.speakerLine}>
+          <span>本地编写的情境问答</span>
+          <button
+            type="button"
+            aria-label="播放本地助手回复"
+            disabled={processing}
+            onClick={() => void practice.speakReply()}
+          >
+            <Headphones aria-hidden size={21} />
+          </button>
+        </div>
+        <blockquote lang="en">{practice.aiReply}</blockquote>
+        {view!.canAnswer ? (
+          <p className={styles.hint}>{practice.aiHint}</p>
+        ) : null}
+      </section>
+      {view!.canAnswer ? (
+        <details
+          key={practice.changeQuestionId ?? view!.currentQuestion!.id}
+          className={styles.replySupport}
+        >
+          <summary>
+            {practice.changeQuestionId ? '改答参考表达' : '本题参考表达'}
+          </summary>
+          <p>
+            仅对应这道题。可选后编辑，最终按你确认的文字匹配，不按按钮或答案编号认定。
+          </p>
+          {practice.targetQuestion ? (
+            <p>{practice.targetQuestion.text}</p>
+          ) : null}
+          {practice.suggestions.map((answer, index) => (
+            <div key={answer.id}>
+              <p lang="en">{answer.text}</p>
+              <button
+                type="button"
+                disabled={
+                  processing ||
+                  ['recording', 'requesting-permission'].includes(status)
+                }
+                onClick={() =>
+                  practice.chooseSuggestion(answer.id, answer.text)
+                }
+              >
+                使用参考 {index + 1} 并确认
+              </button>
+            </div>
+          ))}
+        </details>
+      ) : null}
+      {latest ? (
         <div className={styles.feedbackHolder}>
           <FeedbackSheet
-            feedback={practice.latestResult.feedback}
-            expanded={feedbackExpanded}
-            contentId={`turn-feedback-${practice.machine.turnIndex}`}
-            onToggle={() => setFeedbackOverride(!feedbackExpanded)}
+            graded={{
+              confirmation: latest.confirmation,
+              text: latest.learner.text,
+              explanationZh: latest.feedback.text,
+            }}
+            expanded={expanded}
+            contentId={`feedback-${latest.turnId}`}
+            onToggle={() => setFeedbackOverride(!expanded)}
           />
         </div>
-      ) : (
-        <aside className={styles.firstHint}>
-          <Lightbulb aria-hidden size={20} />
-          <p>
-            <strong>情境提示：</strong>
-            第一次可先用键盘组织一句，再尝试录音。反馈只指出最影响沟通的问题。
-          </p>
-        </aside>
-      )}
-
-      {status === 'recoverable-error' && !isReviewing ? (
+      ) : null}
+      {practice.machine.errorMessage ? (
         <section className={styles.error} role="alert">
           <p>{practice.machine.errorMessage}</p>
-          <button type="button" onClick={practice.retry}>
-            返回继续
+          <button
+            type="button"
+            disabled={processing}
+            onClick={() => void practice.reloadSession()}
+          >
+            读取最新记录并重新确认
           </button>
         </section>
       ) : null}
-
-      {!practice.ready ? (
-        <div className={styles.loading} role="status">
-          正在准备对话舞台…
-        </div>
-      ) : null}
-
-      <div className={styles.practiceDock}>
-        {canComplete && status === 'ready' ? (
-          <div className={styles.endDock}>
-            <p>本轮已完成，复盘后可以开启新对话。</p>
+      {view!.canAnswer ? (
+        <section className={styles.actions} aria-label="帮助与调整">
+          {(['clarify', 'struggle', 'off-topic'] as const).map((action) => (
             <button
+              key={action}
               type="button"
-              onClick={() => void practice.completeSession()}
+              disabled={busy}
+              onClick={() => void practice.submitAction(action)}
             >
-              完成场景并查看复盘
+              {actionLabels[action]}
             </button>
-          </div>
-        ) : dockMode === 'text' ? (
-          <TextReviewDock
-            transcript={practice.machine.draftTranscript ?? ''}
-            canSubmit={canSubmit}
-            errorMessage={practice.machine.errorMessage}
-            hasAudio={Boolean(practice.audio)}
-            audio={practice.audio?.blob}
-            onChange={practice.updateTranscript}
-            onCancel={practice.cancelReview}
-            onSubmit={() => void practice.submitTurn()}
-          />
-        ) : dockMode === 'processing' ? (
+          ))}
+          {view!.history
+            .filter(
+              (turn) =>
+                turn.confirmation === 'exact' && turn.learner.source.questionId,
+            )
+            .filter(
+              (turn, index, all) =>
+                all.findIndex(
+                  (other) =>
+                    other.learner.source.questionId ===
+                    turn.learner.source.questionId,
+                ) === index,
+            )
+            .map((turn) => (
+              <button
+                key={turn.turnId}
+                type="button"
+                disabled={busy}
+                onClick={() =>
+                  practice.beginChange(turn.learner.source.questionId!)
+                }
+              >
+                修改第 {view!.history.indexOf(turn) + 1} 轮已确认回答
+              </button>
+            ))}
+        </section>
+      ) : null}
+      {practice.record!.session.status === 'active' ? (
+        <button
+          className={styles.completeButton}
+          type="button"
+          disabled={busy}
+          onClick={() =>
+            void (view!.canAnswer
+              ? practice.submitAction('refuse')
+              : practice.stopSession())
+          }
+        >
+          停止本次练习
+        </button>
+      ) : (
+        <p className={styles.context}>
+          这次练习已停止，未记作完成。<a href={reportHref}>查看本次记录</a>
+          <a href={nextHref}>开启新一轮</a>
+        </p>
+      )}
+      {processing ? (
+        <div data-practice-dock className={styles.practiceDock}>
           <div className={styles.processingDock} aria-disabled="true">
             <SpinnerGap aria-hidden size={22} />
             <span role="status">
               {status === 'completing'
                 ? '正在保存练习…'
-                : '正在理解并准备下一句…'}
+                : '正在本机保存并准备下一句…'}
             </span>
           </div>
-        ) : (
-          <SpeechControl
-            status={status}
-            elapsedSeconds={practice.elapsedSeconds}
-            amplitude={practice.amplitude}
-            onStart={() => void practice.startRecording()}
-            onStop={() => void practice.stopRecording()}
-            onOpenKeyboard={practice.openKeyboard}
-          />
-        )}
-      </div>
+        </div>
+      ) : !view!.canAnswer ? (
+        <div className={styles.endDock}>
+          <p>
+            {view!.outcome === 'partial'
+              ? '本轮已到上限，仍有目标未确认。'
+              : view!.outcome === 'achieved'
+                ? '所选流程的目标已确认，请确认结束。'
+                : '练习已停止。'}
+          </p>
+          {view!.canFinish ? (
+            <button
+              type="button"
+              onClick={() => void practice.completeSession()}
+            >
+              确认结束并保存复盘
+            </button>
+          ) : (
+            <p>
+              {practice.record!.session.provenance
+                ? '任务结算尚未接通，不能在此标记任务完成。'
+                : '仅帮助或停止操作不能记作完成。'}
+            </p>
+          )}
+        </div>
+      ) : (
+        <div data-practice-dock className={styles.practiceDock}>
+          {reviewing ? (
+            <TextReviewDock
+              transcript={practice.machine.draftTranscript ?? ''}
+              canSubmit={!!practice.machine.draftTranscript?.trim()}
+              errorMessage={practice.machine.errorMessage}
+              hasAudio={!!practice.audio}
+              audio={practice.audio?.blob}
+              onChange={practice.updateTranscript}
+              onCancel={practice.cancelReview}
+              onSubmit={() => void practice.submitTurn()}
+            />
+          ) : (
+            <SpeechControl
+              status={status}
+              elapsedSeconds={practice.elapsedSeconds}
+              amplitude={practice.amplitude}
+              onStart={() => void practice.startRecording()}
+              onStop={() => void practice.stopRecording()}
+              onOpenKeyboard={practice.openKeyboard}
+            />
+          )}
+        </div>
+      )}
     </main>
   )
 }

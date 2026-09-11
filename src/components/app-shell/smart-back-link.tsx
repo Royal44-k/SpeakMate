@@ -1,7 +1,6 @@
 'use client'
 
 import { ArrowLeft } from '@phosphor-icons/react'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import type { MouseEvent } from 'react'
 
@@ -17,7 +16,8 @@ function getRouteStack() {
     const storedStack = window.sessionStorage.getItem(ROUTE_STACK_KEY)
     const parsedStack: unknown = storedStack ? JSON.parse(storedStack) : []
 
-    return Array.isArray(parsedStack) && parsedStack.every((route) => typeof route === 'string')
+    return Array.isArray(parsedStack) &&
+      parsedStack.every((route) => typeof route === 'string')
       ? parsedStack
       : []
   } catch {
@@ -39,7 +39,14 @@ export function SmartBackLink({
   const router = useRouter()
 
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
       return
     }
 
@@ -58,8 +65,13 @@ export function SmartBackLink({
   }
 
   return (
-    <Link className={styles.backLink} href={fallbackHref} aria-label={ariaLabel} onClick={handleClick}>
+    <a
+      className={styles.backLink}
+      href={fallbackHref}
+      aria-label={ariaLabel}
+      onClick={handleClick}
+    >
       <ArrowLeft aria-hidden size={22} weight="bold" />
-    </Link>
+    </a>
   )
 }

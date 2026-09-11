@@ -1,16 +1,16 @@
 'use client'
 
 import { ArrowRight, Clock, Headphones, Sparkle } from '@phosphor-icons/react'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 import { AppShell } from '@/components/app-shell/app-shell'
 import { SceneImage } from '@/components/scene-image/scene-image'
-import { SCENE_CATALOG } from '@/content/scenes/catalog'
+import { SCENE_METADATA } from '@/content/scenes/metadata'
+import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
 import { recommendScene } from '@/domain/learning/recommendation'
 import type { LearnerProfile } from '@/domain/learning/types'
 import type { PracticeSession } from '@/domain/practice/types'
-import { adaptScene } from '@/domain/scenes/adapt-scene'
 import { CEFR_LEVELS, type CefrLevel } from '@/domain/scenes/types'
 import {
   createIndexedDbRepositories,
@@ -26,6 +26,7 @@ interface PracticeHomeProps {
 interface PracticeHomeData {
   profile: LearnerProfile
   sessions: PracticeSession[]
+  recent?: PracticeRecord
 }
 
 export function PracticeHome({ repositories }: PracticeHomeProps) {
@@ -62,7 +63,13 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
       try {
         const profile = await repository.profiles.ensureGuestProfile()
         const sessions = await repository.sessions.list()
-        if (active) setData({ profile, sessions })
+        const latest = [...sessions]
+          .filter((session) => session.status === 'active')
+          .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
+        const recent = latest
+          ? await repository.practice.read(latest.id)
+          : undefined
+        if (active) setData({ profile, sessions, recent })
       } catch {
         if (active) setLoadError(true)
       }
@@ -96,30 +103,20 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     )
   }
 
-  const latestActive = [...data.sessions]
-    .filter((session) => session.status === 'active')
-    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
-  const catalogDefinition = latestActive
-    ? SCENE_CATALOG.find(
-        (item) =>
-          item.id === latestActive.sceneId &&
-          item.version === latestActive.sceneVersion,
-      )
-    : undefined
-  const recoverableScene =
-    latestActive?.sceneSnapshot ??
-    (latestActive && catalogDefinition
-      ? adaptScene(catalogDefinition, latestActive.level)
-      : undefined)
-  const recommendation =
-    recommendScene(data.profile, SCENE_CATALOG, data.sessions) ??
-    SCENE_CATALOG[0]
-  const recoverable = recoverableScene ? latestActive : undefined
-  const level = recoverableScene?.level ?? data.profile.level
-  const scene = recoverableScene ?? adaptScene(recommendation, level)
-  const href = recoverable
-    ? `/session/${recoverable.id}?scene=${scene.slug}&level=${level}`
-    : `/scenes/${scene.slug}?level=${level}`
+  const scene =
+    recommendScene(data.profile, SCENE_METADATA, data.sessions) ??
+    SCENE_METADATA[0]
+  const level = data.profile.level
+  const recent = data.recent
+  const recentLabel =
+    recent?.status === 'historical'
+      ? '查看旧版记录'
+      : recent?.status === 'recovery'
+        ? '查看保留记录'
+        : recent?.session.gradedDialogue?.state.outcome === 'active'
+          ? '继续本次对话'
+          : '返回查看结束选项'
+  const href = buildLearningHref({ kind: 'prepare', scene: scene.slug, level })
 
   return (
     <AppShell activeDestination="practice">
@@ -155,19 +152,27 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
             {levelError}
           </p>
         ) : null}
-        {recoverable ? (
-          <section className={styles.newPractice} aria-label="新一轮练习">
-            <h2>换个开场，再练一次</h2>
+        {recent ? (
+          <section className={styles.newPractice} aria-label="已保存练习">
+            <h2>上次的记录仍在</h2>
             <p>
-              {scene.titleZh} · 使用当前 {data.profile.level}{' '}
-              水平。原对话保留，随时可以继续。
+              {recent.session.sceneSnapshot?.titleZh ??
+                SCENE_METADATA.find(
+                  (item) => item.id === recent.session.sceneId,
+                )?.titleZh ??
+                '历史场景'}{' '}
+              · 原记录 {recent.session.level}。新练习使用当前 {level}
+              ，不会改写原记录。
             </p>
-            <Link
-              href={`/session/new?scene=${scene.slug}&level=${data.profile.level}`}
+            <a
+              href={buildLearningHref({
+                kind: 'session',
+                id: recent.session.id,
+              })}
             >
-              开启新一轮对话
+              {recentLabel}
               <ArrowRight aria-hidden size={20} />
-            </Link>
+            </a>
           </section>
         ) : null}
         <section
@@ -182,38 +187,35 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
             />
             <span className={styles.badge}>
               <Sparkle aria-hidden size={16} weight="fill" />
-              {recoverable ? '继续练习' : '今日推荐'}
+              今日推荐
             </span>
           </div>
           <div className={styles.body}>
             <p>{scene.titleEn}</p>
             <h2 id="recommendation-title">{scene.titleZh}</h2>
             <div className={styles.meta}>
-              <span>
-                {recoverable ? '原对话' : '练习水平'} {level}
-              </span>
+              <span>新练习水平 {level}</span>
               <span>
                 <Clock aria-hidden size={16} />
                 {scene.estimatedMinutes} 分钟
               </span>
               <span>
-                <Headphones aria-hidden size={16} />
-                {scene.recommendedTurns} 轮
+                <Headphones aria-hidden size={16} />3 种长度
               </span>
             </div>
             <p className={styles.summary}>{scene.summaryZh}</p>
-            <Link href={href}>
-              {recoverable ? '继续本次对话' : '准备开始'}
+            <a href={href}>
+              准备开始
               <ArrowRight aria-hidden size={20} weight="bold" />
-            </Link>
+            </a>
           </div>
         </section>
         <section className={styles.explore}>
           <div>
             <p>还想练点别的？</p>
-            <h2>{SCENE_CATALOG.length} 个场景，覆盖生活里的每一次开口。</h2>
+            <h2>{SCENE_METADATA.length} 个场景，练习不同情境的表达。</h2>
           </div>
-          <Link href={`/scenes?level=${data.profile.level}`}>浏览全部场景</Link>
+          <a href={`/scenes?level=${data.profile.level}`}>浏览全部场景</a>
         </section>
       </div>
     </AppShell>

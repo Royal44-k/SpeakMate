@@ -2,11 +2,13 @@ import type { LearnerProfile } from './types'
 import type { PracticeSession } from '@/domain/practice/types'
 import type { SceneDefinition } from '@/domain/scenes/types'
 
-export function recommendScene(
+export function recommendScene<
+  T extends Pick<SceneDefinition, 'id' | 'category' | 'status'>,
+>(
   profile: LearnerProfile,
-  scenes: readonly SceneDefinition[],
+  scenes: readonly T[],
   history: readonly PracticeSession[],
-): SceneDefinition | undefined {
+): T | undefined {
   const active = [...history]
     .filter((session) => session.status === 'active')
     .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]

@@ -1,15 +1,15 @@
+import { semanticRouteIdentity } from './learning-routes'
 const MAX_ROUTES = 24
-
-function pathnameOf(route: string) {
-  return route.split(/[?#]/, 1)[0]
-}
 
 export function trackRoute(stack: string[], nextRoute: string) {
   if (stack.at(-1) === nextRoute) return { stack, kind: 'same' as const }
   if (stack.at(-2) === nextRoute) {
     return { stack: stack.slice(0, -1), kind: 'back' as const }
   }
-  if (stack.at(-1) && pathnameOf(stack.at(-1)!) === pathnameOf(nextRoute)) {
+  if (
+    stack.at(-1) &&
+    semanticRouteIdentity(stack.at(-1)!) === semanticRouteIdentity(nextRoute)
+  ) {
     return {
       stack: [...stack.slice(0, -1), nextRoute],
       kind: 'same' as const,

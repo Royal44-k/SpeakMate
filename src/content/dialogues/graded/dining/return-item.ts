@@ -743,13 +743,17 @@ export const returnPacks = {
       [
         'carry',
         'assistance',
-        'Would help with the box make a meaningful difference, or would it be unnecessary intervention?',
+        'Would you appreciate a hand with the box, or would you prefer to carry it yourself?',
         '接受或拒绝帮助有自然理由。',
         'help',
-        'It would make a difference because my hands are full; help with the box would be enough without taking over the whole visit.',
+        'A hand with the box would be welcome, as my hands are full. I can manage the rest once we get to the counter.',
         'self',
-        'I can manage the box myself, thank you. There is no practical obstacle that needs intervention.',
-        reviewed,
+        'I can manage the box myself, thank you. It is light enough for me to carry, so there is no need to trouble you.',
+        {
+          state: 'model-reviewed',
+          record:
+            'dining-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0',
+        },
       ],
       [
         'desk',

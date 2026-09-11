@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 
 import { CEFR_LEVELS, type CefrLevel } from '@/domain/scenes/types'
 import {
@@ -10,7 +10,8 @@ import {
 } from '@/infrastructure/persistence/repositories'
 
 import {
-  parseSceneFilterState,
+  restoreSceneFilters,
+  rememberSceneFilters,
   sceneLibraryHref,
   type SceneFilterState,
 } from './scene-filter-state'
@@ -27,7 +28,6 @@ function isLevel(value: string | null): value is CefrLevel {
 export function SceneLibraryRoute({
   profileRepository,
 }: SceneLibraryRouteProps) {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const levelParam = searchParams.get('level')
   const [profiles] = useState(
@@ -82,6 +82,21 @@ export function SceneLibraryRoute({
       ? profileFallback.level
       : undefined
 
+  const publicQuery = searchParams.toString()
+  useEffect(() => {
+    if (!fallbackLevel || !new URLSearchParams(publicQuery).has('q')) return
+    const restored = restoreSceneFilters(
+      new URLSearchParams(publicQuery),
+      fallbackLevel,
+    )
+    rememberSceneFilters(restored)
+    try {
+      window.history.replaceState(null, '', sceneLibraryHref(restored))
+    } catch {
+      /* Existing input still works; future links remain private-free. */
+    }
+  }, [publicQuery, fallbackLevel])
+
   if (!fallbackLevel) {
     return (
       <main aria-busy="true" aria-label="场景库加载中">
@@ -90,7 +105,7 @@ export function SceneLibraryRoute({
     )
   }
 
-  const initialState = parseSceneFilterState(
+  const initialState = restoreSceneFilters(
     new URLSearchParams(searchParams.toString()),
     fallbackLevel,
   )
@@ -99,8 +114,9 @@ export function SceneLibraryRoute({
     next: SceneFilterState,
     source: 'search' | 'filter',
   ) {
+    rememberSceneFilters(next)
     const replace = () =>
-      router.replace(sceneLibraryHref(next), { scroll: false })
+      window.history.replaceState(null, '', sceneLibraryHref(next))
 
     if (searchTimer.current) clearTimeout(searchTimer.current)
     if (source === 'search') {

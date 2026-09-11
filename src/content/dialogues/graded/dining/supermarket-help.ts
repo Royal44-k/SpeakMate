@@ -636,10 +636,14 @@ export const supermarketPacks = {
         'What should we locate first, before narrowing the choice down to a particular pack?',
         '先确定产品类别。',
         'rice',
-        'Rice is the starting point. I am asking for the section, not yet endorsing a particular brand or size.',
+        'Rice, please. I would like to find the section first, then compare the brands and pack sizes before deciding.',
         'pasta',
         'Pasta, please. Once I can see the range, I can make a more informed choice about the pack.',
-        reviewed,
+        {
+          state: 'model-reviewed',
+          record:
+            'dining-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0',
+        },
       ],
       [
         'navigation',

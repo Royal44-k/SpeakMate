@@ -1,5 +1,15 @@
 # Remaining dining — item reading ledger
 
+## task-3i-polish
+
+2026-09-11, Codex implementation agent, limited model-assisted reading; teacher0. The three affected C1 rows were reset to draft with the prose edits, then final question, hint, both answers and value effects were reopened together before renewing only those row attestations. Read the relevant C1 context/neighbor choices and both self-contained situations; no new category-wide reread claim.
+
+- `restaurant-order.C1.cutlery` + `.a/.b`: changed only `.b` English. Personal ease using a fork and a concession to others' spoon preference replace defensive commentary about the proper way to eat. Both offered dishes are pasta, so either meal choice supports this preference; both/fork effects unchanged.
+- `return-item.C1.carry` + `.a/.b`: changed question and both answers. A hand with the box versus carrying it oneself is concrete and polite; hands full versus box light enough provides a relevant qualification. This planning path discusses visiting a counter, not an approved refund; help does not imply inspection/processing. Original help/self facts remain single effects, and the following counter-position choice stays open.
+- `supermarket-help.C1.product` + `.a/.b`: changed only `.a`. The brief's brand-endorsement sentence is actually `product.a`, not `brand.a`; rice-section-first then comparing brand/pack size preserves the rice choice without preselecting brand/size. Both product options are in aisle3 with both pack sizes and brand types; the unchanged pasta response has parallel sequencing.
+
+Actual scoped reread:3Q/6A, including the unchanged companion wording, not new content or a general C1 assessment. Accepted forms remain generated exactly from final authored answers; IDs/effects/paths/versions unchanged. Independent Task3I rereview pending.
+
 Reader: Codex implementation agent. Method: model-assisted postdraft source reading, including every question, its own two answers and effects, level rationale, situations, endings, repairs and both path orders. Date: 2026-09-09. Human teacher reads: **0**. No source wording copied; source basis is local evidence document's CEFR oral-interaction/goods-and-services/clarification design mapping, not certification. No medical or legal advice.
 
 ## restaurant-order

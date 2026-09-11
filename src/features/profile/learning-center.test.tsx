@@ -13,13 +13,18 @@ vi.mock('@/components/app-shell/app-shell', () => ({
   AppShell: ({ children }: { children: ReactNode }) => <>{children}</>,
 }))
 
-vi.mock('@/infrastructure/persistence/repositories', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/infrastructure/persistence/repositories')>()),
-  createIndexedDbRepositories: () => repositoryState.value,
-}))
+vi.mock(
+  '@/infrastructure/persistence/repositories',
+  async (importOriginal) => ({
+    ...(await importOriginal<
+      typeof import('@/infrastructure/persistence/repositories')
+    >()),
+    createIndexedDbRepositories: () => repositoryState.value,
+  }),
+)
 
 describe('LearningCenter session routes', () => {
-  it('keeps active sessions in the stage and completed sessions in their reports', async () => {
+  it('labels old active records readonly and uses canonical completed reports', async () => {
     const repositories = createMemoryRepositories()
     repositoryState.value = repositories
     const profile = await repositories.profiles.ensureGuestProfile()
@@ -50,11 +55,10 @@ describe('LearningCenter session routes', () => {
     render(<LearningCenter />)
 
     expect(
-      await screen.findByRole('link', { name: /继续练习/ }),
-    ).toHaveAttribute('href', '/session/active-session')
-    expect(screen.getByRole('link', { name: /已完成/ })).toHaveAttribute(
-      'href',
-      '/session/completed-session/report',
-    )
+      await screen.findByRole('link', { name: /旧版未结束记录/ }),
+    ).toHaveAttribute('href', '/session?id=active-session')
+    expect(
+      screen.getByRole('link', { name: /旧版已结束记录/ }),
+    ).toHaveAttribute('href', '/session/report?id=completed-session')
   })
 })

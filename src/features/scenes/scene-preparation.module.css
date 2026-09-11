@@ -3,6 +3,45 @@
   padding: 0 18px calc(86px + env(safe-area-inset-bottom));
   background: var(--color-paper);
 }
+.preparation p,
+.preparation blockquote {
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.material {
+  white-space: pre-wrap;
+}
+.lengths {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 14px;
+}
+.lengths label {
+  display: flex;
+  min-height: 48px;
+  gap: 12px;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+}
+.lengths input {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--color-atlantic-950);
+}
+.preparation button {
+  min-height: 44px;
+  padding: 10px 14px;
+  font: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-sky-50);
+  color: var(--color-atlantic-950);
+  cursor: pointer;
+}
 .preparation > :first-child {
   margin-inline: -18px;
 }

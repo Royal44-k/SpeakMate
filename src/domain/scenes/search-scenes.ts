@@ -76,8 +76,18 @@ function oneEditApart(a: string, b: string) {
   return edits + (i < a.length || j < b.length ? 1 : 0) <= 1
 }
 
-export function searchScenes(
-  scenes: readonly SceneDefinition[],
+type SearchableScene = Pick<
+  SceneDefinition,
+  'slug' | 'titleZh' | 'titleEn' | 'summaryZh'
+> &
+  Partial<
+    Pick<
+      SceneDefinition,
+      'learnerRole' | 'aiRole' | 'goals' | 'keywords' | 'exampleExpressions'
+    >
+  >
+export function searchScenes<T extends SearchableScene>(
+  scenes: readonly T[],
   input: string,
 ) {
   const query = normalizeSearch(input)
@@ -93,9 +103,9 @@ export function searchScenes(
           scene.summaryZh,
           scene.learnerRole,
           scene.aiRole,
-          ...scene.goals.map((goal) => goal.labelZh),
-          ...Object.values(scene.keywords).flat(),
-          ...Object.values(scene.exampleExpressions).flat(),
+          ...(scene.goals ?? []).map((goal) => goal.labelZh),
+          ...Object.values(scene.keywords ?? {}).flat(),
+          ...Object.values(scene.exampleExpressions ?? {}).flat(),
           aliases[scene.slug] ?? '',
         ].join(' '),
       )

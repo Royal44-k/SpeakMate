@@ -1,5 +1,9 @@
 # Daily-life corpus: actual reading record
 
+## task-3i-polish
+
+2026-09-11, Codex implementation agent, scoped model-assisted reread; teacher0. Reset `haircut-request.C1.wash` Q/.a/.b to draft with its question/hint/both-answer changes. Reopened the final row and read it with C1 rationale, both situations and length/reference/finish/product/time/price neighbors before renewing this row alone. Concrete include-wash preference with price clarification versus spending the time on cut/upkeep discussion replaces bureaucratic service-scope language. The yes answer is an intended wash, conditional on discussing price, not service authorization; no-wash does not presume wet hair, forbid a styled finish or decide styling products. Neither fixes a deadline, so later limit/flexible time remains coherent. The planning variant omits wash and is unchanged. IDs, yes/no effects, paths and versions unchanged. Actual scoped reread1Q/2A, not all daily content or teacher certification. Independent Task3I review pending.
+
 Date: 2026-09-10. Reader: Codex Task3D implementation agent. Method: model-assisted postdraft reading, not human teacher review or CEFR certification. BASE fb0ebfa0c76b41f772dda4d81ab49aff03da306c; contentVersion1, engineVersion1, snapshotVersion1. Historical scene-definition versions are independent and unchanged.
 
 Fix1 supersession: the original reading and verification below describe commit 60c22a1. Independent review subsequently held six units (72Q/144A) for missing listening context and unnatural report-method padding. The new `fix1` section records seven revised/reread units, including directions A2 affected by shared situation changes. Source model-review status is not an independent gate pass.

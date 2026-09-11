@@ -37,7 +37,7 @@ describe.each([
     const run = advanceDialogue(started.snapshot, {
       text: 'An Americano, please.',
     })
-    await repository.sessions.save({
+    const pilotSession = {
       ...legacy,
       id: 'pilot-session',
       level: 'A1',
@@ -71,7 +71,21 @@ describe.each([
         status: 'published',
       },
       gradedDialogue: run.snapshot,
-    })
+    }
+    // Preserve the shape-valid pre-integration sample through the backup port;
+    // ordinary runtime writes can no longer bypass guarded graded commits.
+    const staged = await repository.exportLearnerData()
+    await repository.restoreLearnerData(
+      await repository.previewRestore(
+        JSON.stringify({
+          ...staged,
+          sessions: [...staged.sessions, pilotSession],
+        }),
+      ),
+    )
+    expect((await repository.practice.read('pilot-session'))?.status).toBe(
+      'recovery',
+    )
     const exported = await repository.exportLearnerData()
     expect(exported.sessions.find((s) => s.id === legacy.id)).toEqual(legacy)
     for (const kind of ['question', 'answer', 'variant'] as const) {

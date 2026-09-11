@@ -1,7 +1,47 @@
 .stage {
   min-height: 100dvh;
-  padding-bottom: 230px;
+  padding-bottom: var(--practice-dock-space, 230px);
   background: var(--color-paper);
+}
+.context {
+  margin: 20px 22px;
+  color: var(--color-atlantic-950);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.context h2 {
+  font-size: 1.1rem;
+}
+.context p {
+  white-space: pre-wrap;
+}
+.context a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  margin-right: 14px;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 22px;
+}
+.actions button,
+.replySupport button {
+  min-height: 44px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: var(--color-sky-50);
+  color: var(--color-atlantic-950);
+  font: inherit;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.stage button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 .topbar {
   display: grid;
@@ -29,10 +69,8 @@
 .topbar p,
 .topbar h1,
 .topbar small {
-  overflow: hidden;
   margin: 0;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
 }
 .topbar p {
   color: var(--color-sky-100);
@@ -307,6 +345,8 @@
   font-weight: 750;
 }
 .practiceDock {
+  max-height: calc(100dvh - 60px);
+  overflow-y: auto;
   position: fixed;
   z-index: 6;
   bottom: 0;

@@ -512,7 +512,7 @@ describe('original social corpus', () => {
             'no alternative plan or future contact has been agreed',
           )
         })
-        it(`opinion disagreement and unanswered clarification ${level}/${first}/${second}`, async () => {
+        it(`opinion disagreement/unanswered clarification state traversal; B1 close.a wording only ${level}/${first}/${second}`, async () => {
           const r = await localContentProvider.load({
             sceneId: 'social-05',
             level,

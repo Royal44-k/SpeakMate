@@ -6,12 +6,85 @@ import { vi } from 'vitest'
 import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
 
 import { SessionReportView } from './session-report'
+import { localContentProvider } from '@/content/dialogues/graded/provider'
+import { createDialogue } from '@/domain/ai/graded-dialogue'
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ back: vi.fn() }),
 }))
 
 describe('SessionReportView', () => {
+  it('reports partial coverage truthfully and never finishes on report open or reload', async () => {
+    const repositories = createMemoryRepositories()
+    const profile = await repositories.profiles.ensureGuestProfile()
+    const content = await localContentProvider.load({
+      sceneId: 'dining-01',
+      level: 'C1',
+    })
+    if (content.status !== 'available') throw new Error('fixture')
+    const start = createDialogue(content.pack, {
+      mode: 'short',
+      variantId: 'counter',
+    })
+    let record = (
+      await repositories.practice.commit({
+        kind: 'create',
+        session: {
+          id: 'partial-session',
+          profileId: profile.id,
+          sceneId: 'dining-01',
+          sceneVersion: 1,
+          level: 'C1',
+          status: 'active',
+          startedAt: '2026-09-10T00:00:00.000Z',
+          updatedAt: '2026-09-10T00:00:00.000Z',
+          completedGoals: [],
+          openingText: start.reply,
+          gradedDialogue: start.snapshot,
+        },
+      })
+    ).record
+    for (let index = 0; index < 3; index++)
+      record = (
+        await repositories.practice.commit({
+          kind: 'advance',
+          expected: record.session,
+          turnId: `partial-${index}`,
+          input:
+            index === 0
+              ? { action: 'answer', text: 'Uncollected words.' }
+              : { action: 'clarify', text: '' },
+          at: `2026-09-10T00:0${index + 1}:00.000Z`,
+        })
+      ).record
+    const commit = vi.spyOn(repositories.practice, 'commit')
+    const rendered = render(
+      <SessionReportView
+        sessionId="partial-session"
+        repositories={repositories}
+      />,
+    )
+    expect(await screen.findByText('部分结束 · 等待你确认结束')).toBeVisible()
+    expect(screen.getByText('未匹配表达：1 轮')).toBeVisible()
+    expect(screen.getByText('帮助或停止操作：2 轮')).toBeVisible()
+    expect(screen.queryByText(/这次没有明显错误/)).not.toBeInTheDocument()
+    expect(screen.queryByText('/4')).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: '返回练习并确认结束' }),
+    ).toHaveAttribute('href', '/session?id=partial-session')
+    rendered.unmount()
+    render(
+      <SessionReportView
+        sessionId="partial-session"
+        repositories={repositories}
+      />,
+    )
+    await screen.findByText('部分结束 · 等待你确认结束')
+    expect(commit).not.toHaveBeenCalled()
+    expect(
+      (await repositories.practice.read('partial-session'))?.session.status,
+    ).toBe('active')
+  })
   it('exposes a missing report as the focusable page title', async () => {
     render(
       <SessionReportView
@@ -103,6 +176,10 @@ describe('SessionReportView', () => {
         repositories={repositories}
       />,
     )
+
+    expect(
+      await screen.findByText('当时的规则反馈（非新版评估）'),
+    ).toBeInTheDocument()
 
     await user.click(
       await screen.findByRole('button', { name: `收藏表达：${expression}` }),

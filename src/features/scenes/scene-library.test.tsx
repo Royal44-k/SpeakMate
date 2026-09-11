@@ -10,6 +10,11 @@ import { SceneLibrary } from './scene-library'
 import { ScenePreparation } from './scene-preparation'
 import { getSceneBySlug } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
+import { localContentProvider } from '@/content/dialogues/graded/provider'
+
+vi.mock('@/content/public-category', () => ({
+  publicContentProvider: () => localContentProvider,
+}))
 
 const initialState = {
   search: '',
@@ -59,6 +64,8 @@ describe('SceneLibrary', () => {
   beforeEach(() => {
     navigation.search = ''
     routerReplace.mockReset()
+    window.sessionStorage.clear()
+    window.history.replaceState(null, '', '/scenes')
   })
 
   afterEach(() => {
@@ -134,7 +141,7 @@ describe('SceneLibrary', () => {
     expect(await screen.findByText(/当前 B2/)).toBeVisible()
   })
 
-  it('debounces search URL writes for 250 ms', async () => {
+  it('debounces public history updates without sending typed search to the router', async () => {
     vi.useFakeTimers()
     await renderReadyRoute()
 
@@ -151,9 +158,9 @@ describe('SceneLibrary', () => {
     await act(async () => {
       vi.advanceTimersByTime(1)
     })
-    expect(routerReplace).toHaveBeenCalledWith('/scenes?q=hotel&level=B1', {
-      scroll: false,
-    })
+    expect(window.location.href).toMatch(/\/scenes\?level=B1$/)
+    expect(routerReplace).not.toHaveBeenCalled()
+    expect(screen.getByLabelText('搜索场景')).toHaveValue('hotel')
   })
 
   it('writes only the latest search after continuous input', async () => {
@@ -170,10 +177,9 @@ describe('SceneLibrary', () => {
     await act(async () => {
       vi.advanceTimersByTime(250)
     })
-    expect(routerReplace).toHaveBeenCalledTimes(1)
-    expect(routerReplace).toHaveBeenCalledWith('/scenes?q=hotel&level=B1', {
-      scroll: false,
-    })
+    expect(routerReplace).not.toHaveBeenCalled()
+    expect(window.location.search).toBe('?level=B1')
+    expect(screen.getByLabelText('搜索场景')).toHaveValue('hotel')
   })
 
   it('preserves live search whitespace and focus when its normalized URL arrives', async () => {
@@ -186,12 +192,10 @@ describe('SceneLibrary', () => {
     await act(async () => {
       vi.advanceTimersByTime(250)
     })
-    expect(routerReplace).toHaveBeenLastCalledWith(
-      '/scenes?q=hotel&level=B1',
-      { scroll: false },
-    )
+    expect(routerReplace).not.toHaveBeenCalled()
+    expect(window.location.search).toBe('?level=B1')
 
-    navigation.search = 'q=hotel&level=B1'
+    navigation.search = 'level=B1'
     view.rerender(
       <SceneLibraryRoute
         profileRepository={createMemoryRepositories().profiles}
@@ -275,16 +279,14 @@ describe('SceneLibrary', () => {
     })
     fireEvent.click(screen.getByRole('button', { name: '社交' }))
 
-    expect(routerReplace).toHaveBeenCalledTimes(1)
-    expect(routerReplace).toHaveBeenCalledWith(
-      '/scenes?q=hotel&category=social&level=B1',
-      { scroll: false },
-    )
+    expect(routerReplace).not.toHaveBeenCalled()
+    expect(window.location.search).toBe('?category=social&level=B1')
 
     await act(async () => {
       vi.advanceTimersByTime(250)
     })
-    expect(routerReplace).toHaveBeenCalledTimes(1)
+    expect(routerReplace).not.toHaveBeenCalled()
+    expect(window.location.search).toBe('?category=social&level=B1')
   })
 
   it('cancels a pending search URL write when unmounted', async () => {
@@ -325,7 +327,7 @@ describe('SceneLibrary', () => {
     fireEvent.click(screen.getByRole('button', { name: 'C1' }))
     expect(screen.getByText('C1')).toBeVisible()
     expect(screen.getAllByTestId('scene-card')[0]).toHaveTextContent(
-      '5 个关键词',
+      '3 种练习长度',
     )
   })
 
@@ -356,7 +358,9 @@ describe('SceneLibrary', () => {
       'aria-pressed',
       'true',
     )
-    expect(screen.getByText(/个匹配场景 · 当前 B1 · 社交 · 5 分钟/)).toBeVisible()
+    expect(
+      screen.getByText(/个匹配场景 · 当前 B1 · 社交 · 5 分钟/),
+    ).toBeVisible()
 
     fireEvent.click(screen.getByRole('button', { name: '清除筛选' }))
 
@@ -368,7 +372,9 @@ describe('SceneLibrary', () => {
       'aria-pressed',
       'true',
     )
-    expect(screen.queryByRole('button', { name: '清除筛选' })).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('button', { name: '清除筛选' }),
+    ).not.toBeInTheDocument()
   })
 
   it('links the complete scene card back to the current library state', () => {
@@ -439,7 +445,10 @@ describe('SceneLibrary', () => {
     })
     fireEvent.scroll(categoryGroup)
 
-    expect(categoryGroup.parentElement).toHaveAttribute('data-at-start', 'false')
+    expect(categoryGroup.parentElement).toHaveAttribute(
+      'data-at-start',
+      'false',
+    )
     expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'false')
 
     categoryGroup.scrollLeft = 200
@@ -476,7 +485,10 @@ describe('SceneLibrary', () => {
     vi.stubGlobal(
       'ResizeObserver',
       class ResizeObserver {
-        private observation = { callback: vi.fn() as ResizeObserverCallback, target: undefined as Element | undefined }
+        private observation = {
+          callback: vi.fn() as ResizeObserverCallback,
+          target: undefined as Element | undefined,
+        }
 
         constructor(callback: ResizeObserverCallback) {
           this.observation.callback = callback
@@ -508,7 +520,10 @@ describe('SceneLibrary', () => {
       categoryObservation!.callback([], {} as ResizeObserver)
     })
 
-    expect(categoryGroup.parentElement).toHaveAttribute('data-at-start', 'false')
+    expect(categoryGroup.parentElement).toHaveAttribute(
+      'data-at-start',
+      'false',
+    )
     expect(categoryGroup.parentElement).toHaveAttribute('data-at-end', 'false')
   })
 
@@ -563,7 +578,7 @@ describe('SceneLibrary', () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, behavior: 'auto' })
   })
 
-  it('renders a source-aware mobile header before the scene hero', () => {
+  it('renders a source-aware mobile header before the scene hero', async () => {
     const scene = getSceneBySlug('first-small-talk')
     if (!scene) throw new Error('Scene fixture is missing')
 
@@ -575,19 +590,16 @@ describe('SceneLibrary', () => {
     )
 
     const backLink = screen.getByRole('link', { name: '返回初次寒暄' })
-    expect(backLink).toHaveAttribute(
-      'href',
-      '/scenes?category=social&level=B1',
-    )
+    expect(backLink).toHaveAttribute('href', '/scenes?level=B1&category=social')
     expect(screen.getByText('SCENE BRIEF')).toBeVisible()
     expect(backLink.closest('header')?.nextElementSibling).toContainElement(
       screen.getByAltText('轻松社交活动中的两人交谈'),
     )
     expect(
-      screen.getByRole('link', { name: '进入对话舞台' }),
+      await screen.findByRole('link', { name: '进入对话舞台' }),
     ).toHaveAttribute(
       'href',
-      '/session/new?scene=first-small-talk&level=B1&from=%2Fscenes%3Fcategory%3Dsocial%26level%3DB1',
+      '/session?id=new&scene=first-small-talk&level=B1&mode=standard&from=%2Fscenes%3Flevel%3DB1%26category%3Dsocial',
     )
   })
 
