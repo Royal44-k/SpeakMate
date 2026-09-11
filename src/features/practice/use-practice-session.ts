@@ -82,6 +82,12 @@ export function usePracticeSession(
   const creationRef = useRef<PracticeSession | undefined>(undefined)
   const [initializationAttempt, setInitializationAttempt] = useState(0)
   const pendingRef = useRef<PracticeChange | undefined>(undefined)
+  const recoveryReadRef = useRef(0)
+  const [reloading, setReloading] = useState(false)
+  const invalidateRecoveryRead = useCallback(() => {
+    recoveryReadRef.current += 1
+    setReloading(false)
+  }, [])
 
   const clearElapsedTimer = useCallback(() => {
     if (elapsedTimerRef.current) clearInterval(elapsedTimerRef.current)
@@ -97,20 +103,26 @@ export function usePracticeSession(
     recognitionRef.current = null
     browserTts.stop()
   }, [clearElapsedTimer])
-  const applyRecord = useCallback((next: PracticeRecord, draft?: string) => {
-    recordRef.current = next
-    setRecord(next)
-    setMachine({
-      status:
-        next.session.status === 'completed'
-          ? 'completed'
-          : draft
-            ? 'reviewing'
-            : 'ready',
-      turnIndex: next.turns.length,
-      ...(draft ? { draftTranscript: draft } : {}),
-    })
-  }, [])
+  const applyRecord = useCallback(
+    (next: PracticeRecord, preserveDraft = false) => {
+      recordRef.current = next
+      setRecord(next)
+      setMachine((current) => {
+        const draft = preserveDraft ? current.draftTranscript : undefined
+        return {
+          status:
+            next.session.status === 'completed'
+              ? 'completed'
+              : draft
+                ? 'reviewing'
+                : 'ready',
+          turnIndex: next.turns.length,
+          ...(draft ? { draftTranscript: draft } : {}),
+        }
+      })
+    },
+    [],
+  )
 
   useEffect(() => {
     let active = true
@@ -188,6 +200,7 @@ export function usePracticeSession(
     return () => {
       active = false
       mountedRef.current = false
+      recoveryReadRef.current += 1
       releaseAudio()
     }
   }, [
@@ -268,6 +281,7 @@ export function usePracticeSession(
       )
     )
       return
+    invalidateRecoveryRead()
     browserTts.stop()
     transcriptRef.current = ''
     setElapsedSeconds(0)
@@ -368,6 +382,7 @@ export function usePracticeSession(
 
   async function commit(change: PracticeChange) {
     if (submittingRef.current) return
+    invalidateRecoveryRead()
     submittingRef.current = true
     setMachine((current) => ({
       ...current,
@@ -497,17 +512,25 @@ export function usePracticeSession(
   }
   async function reloadSession() {
     if (!recordRef.current || submittingRef.current) return
+    const expected = recordRef.current
+    const generation = ++recoveryReadRef.current
+    const ownsRead = () =>
+      mountedRef.current &&
+      generation === recoveryReadRef.current &&
+      recordRef.current === expected
+    setReloading(true)
     try {
-      const next = await repository.practice.read(recordRef.current.session.id)
-      if (!mountedRef.current) return
+      const next = await repository.practice.read(expected.session.id)
+      if (!ownsRead()) return
       if (!next || next.status !== 'ready')
         throw new Error('PRACTICE_NOT_RESUMABLE')
       pendingRef.current = undefined
       setChangeQuestionId(undefined)
       suggestionRef.current = undefined
-      applyRecord(next, machine.draftTranscript)
+      // Read the latest React draft, not the closure from the recovery click.
+      applyRecord(next, true)
     } catch (error) {
-      if (mountedRef.current)
+      if (ownsRead())
         setMachine((current) =>
           transitionPractice(current, {
             type: 'FAIL',
@@ -515,9 +538,13 @@ export function usePracticeSession(
             message: errorMessage(error),
           }),
         )
+    } finally {
+      if (mountedRef.current && generation === recoveryReadRef.current)
+        setReloading(false)
     }
   }
   function cancelReview() {
+    invalidateRecoveryRead()
     setAudio(null)
     transcriptRef.current = ''
     pendingRef.current = undefined
@@ -543,6 +570,7 @@ export function usePracticeSession(
     view,
     machine,
     ready,
+    reloading,
     settingsError,
     addressError,
     feedbackExpanded: settings.feedbackExpanded,
@@ -570,6 +598,7 @@ export function usePracticeSession(
     },
     chooseSuggestion: (id: string, text: string) => {
       if (!canAnswer() || submittingRef.current) return
+      invalidateRecoveryRead()
       suggestionRef.current = id
       setMachine((current) => ({
         ...current,
@@ -588,6 +617,7 @@ export function usePracticeSession(
         !snapshot.state.completedObjectives.includes(question.objective)
       )
         return
+      invalidateRecoveryRead()
       setChangeQuestionId(questionId)
       suggestionRef.current = undefined
       setMachine((current) => ({
@@ -611,6 +641,7 @@ export function usePracticeSession(
       setInitializationAttempt((value) => value + 1)
     },
     discardPending: () => {
+      invalidateRecoveryRead()
       releaseAudio()
       setAudio(null)
       transcriptRef.current = ''

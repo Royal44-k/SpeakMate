@@ -174,9 +174,9 @@ export function buildLearningHref(target: LearningTarget): string {
       key in target
         ? (target as unknown as Record<string, string>)[key]
         : undefined
-    if (value) {
+    if (value !== undefined) {
       const safe = key === 'from' ? safeSourceHref(value) : value
-      if (safe) params.set(key, safe)
+      if (safe !== undefined) params.set(key, safe)
     }
   }
   const href = paths[target.kind] + `?${params}`
@@ -220,6 +220,16 @@ export function canonicalLegacyHref(
   } catch {
     return undefined
   }
+}
+
+/** Storage accepts older IDs beyond new-route bounds. Never rewrite or throw on them. */
+export function savedPracticeHref(
+  id: string,
+  kind: 'session' | 'report',
+): string | undefined {
+  return opaque.test(id) && id !== 'new'
+    ? buildLearningHref({ kind, id })
+    : undefined
 }
 
 export function semanticRouteIdentity(href: string): string {

@@ -61,6 +61,60 @@ afterEach(() => {
 })
 
 describe('practice session lifecycle', () => {
+  it.each(['edit', 'cancel', 'submit'] as const)(
+    'does not let a delayed recovery read undo a later %s',
+    async (action) => {
+      const practice = renderHook(() =>
+        usePracticeSession(scene, 'new', repositories),
+      )
+      await waitFor(() => expect(practice.result.current.ready).toBe(true))
+      act(() => practice.result.current.openKeyboard())
+      act(() => practice.result.current.updateTranscript('Draft A'))
+      vi.spyOn(repositories.practice, 'commit').mockRejectedValueOnce(
+        new Error('PRACTICE_STALE'),
+      )
+      await act(() => practice.result.current.submitTurn())
+      expect(practice.result.current.machine.status).toBe('recoverable-error')
+      const original = practice.result.current.record!
+      let resolveRead!: (value: typeof original) => void
+      vi.spyOn(repositories.practice, 'read').mockReturnValueOnce(
+        new Promise((resolve) => {
+          resolveRead = resolve
+        }),
+      )
+      let pending!: Promise<void>
+      act(() => {
+        pending = practice.result.current.reloadSession()
+      })
+      act(() => practice.result.current.updateTranscript('Draft B'))
+      if (action === 'cancel') act(() => practice.result.current.cancelReview())
+      if (action === 'submit')
+        await act(() => practice.result.current.submitTurn())
+      await act(async () => {
+        resolveRead(original)
+        await pending
+      })
+      if (action === 'edit') {
+        expect(practice.result.current.machine.draftTranscript).toBe('Draft B')
+        expect(practice.result.current.machine.status).toBe('reviewing')
+      } else {
+        expect(practice.result.current.machine.draftTranscript).toBeUndefined()
+        expect(practice.result.current.machine.status).toBe('ready')
+      }
+      if (action === 'submit') {
+        expect(practice.result.current.record?.turns).toHaveLength(1)
+        expect(practice.result.current.record?.turns[0].learnerText).toBe(
+          'Draft B',
+        )
+        expect(
+          (await repositories.practice.read(original.session.id))?.turns,
+        ).toHaveLength(1)
+      } else
+        expect(
+          await repositories.turns.listBySession(original.session.id),
+        ).toHaveLength(0)
+    },
+  )
   it('retries a failed initial save with the exact same creation candidate', async () => {
     const commit = vi
       .spyOn(repositories.practice, 'commit')

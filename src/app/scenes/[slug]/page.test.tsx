@@ -34,6 +34,17 @@ async function renderPage({
 }
 
 describe('scene detail page return route', () => {
+  it('shows recovery instead of forwarding a present-empty level', async () => {
+    navigation.replace.mockClear()
+    await renderPage({ level: '' })
+    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
+      '无法恢复',
+    )
+    expect(
+      screen.queryByRole('link', { name: '继续打开' }),
+    ).not.toBeInTheDocument()
+    expect(navigation.replace).not.toHaveBeenCalled()
+  })
   it('preserves a scene-library source including its filter query', async () => {
     await renderPage({
       level: 'B1',

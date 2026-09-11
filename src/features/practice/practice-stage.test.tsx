@@ -55,6 +55,7 @@ beforeEach(async () => {
     view,
     machine: { status: 'ready', turnIndex: 0, draftTranscript: '' },
     ready: true,
+    reloading: false,
     turns: [],
     aiReply: start.reply,
     aiHint: view.currentQuestion!.hintZh,

@@ -57,18 +57,6 @@ export function PracticeStage({
       level: scene.level,
       mode: scene.mode,
     })
-  const reportHref = buildLearningHref({
-    kind: 'report',
-    id: practice.sessionId,
-  })
-  const nextHref = buildLearningHref({
-    kind: 'session',
-    id: 'new',
-    scene: scene.slug,
-    level: scene.level,
-    mode: scene.mode,
-    round: practice.sessionId,
-  })
   useEffect(() => {
     if (!busy) return
     const root = document.documentElement
@@ -102,6 +90,43 @@ export function PracticeStage({
     }
   }, [practice.ready, status, view?.canAnswer])
 
+  if (!practice.ready)
+    return (
+      <main
+        className={styles.state ?? styles.dialogue}
+        aria-busy={status !== 'recoverable-error'}
+      >
+        <h1 data-page-title tabIndex={-1}>
+          {status === 'recoverable-error'
+            ? '暂时无法打开练习'
+            : '正在准备对话舞台…'}
+        </h1>
+        {practice.machine.errorMessage ? (
+          <>
+            <p role="alert">{practice.machine.errorMessage}</p>
+            <button type="button" onClick={practice.retryInitialization}>
+              重试打开同一练习
+            </button>
+          </>
+        ) : null}
+        <a href={prepareHref}>返回场景准备</a>
+      </main>
+    )
+
+  // Record-only links must wait until the creation effect supplies a saved ID.
+  const reportHref = buildLearningHref({
+    kind: 'report',
+    id: practice.sessionId,
+  })
+  const nextHref = buildLearningHref({
+    kind: 'session',
+    id: 'new',
+    scene: scene.slug,
+    level: scene.level,
+    mode: scene.mode,
+    round: practice.sessionId,
+  })
+
   if (
     practice.record?.session.status === 'completed' ||
     status === 'completed' ||
@@ -124,29 +149,6 @@ export function PracticeStage({
         </p>
         <a href={reportHref}>查看本次复盘</a>
         <a href={nextHref}>再练一轮新对话</a>
-        <a href={prepareHref}>返回场景准备</a>
-      </main>
-    )
-
-  if (!practice.ready)
-    return (
-      <main
-        className={styles.state ?? styles.dialogue}
-        aria-busy={status !== 'recoverable-error'}
-      >
-        <h1 data-page-title tabIndex={-1}>
-          {status === 'recoverable-error'
-            ? '暂时无法打开练习'
-            : '正在准备对话舞台…'}
-        </h1>
-        {practice.machine.errorMessage ? (
-          <>
-            <p role="alert">{practice.machine.errorMessage}</p>
-            <button type="button" onClick={practice.retryInitialization}>
-              重试打开同一练习
-            </button>
-          </>
-        ) : null}
         <a href={prepareHref}>返回场景准备</a>
       </main>
     )
@@ -314,12 +316,17 @@ export function PracticeStage({
           <p>{practice.machine.errorMessage}</p>
           <button
             type="button"
-            disabled={processing}
+            disabled={processing || practice.reloading}
             onClick={() => void practice.reloadSession()}
           >
             读取最新记录并重新确认
           </button>
         </section>
+      ) : null}
+      {practice.reloading ? (
+        <p role="status">
+          正在读取最新记录；你仍可编辑。取消或提交后，将忽略这次迟到的读取结果。
+        </p>
       ) : null}
       {view!.canAnswer ? (
         <section className={styles.actions} aria-label="帮助与调整">

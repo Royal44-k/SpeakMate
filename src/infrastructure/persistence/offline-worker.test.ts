@@ -2,6 +2,10 @@ import { readFileSync } from 'node:fs'
 import { createHash, webcrypto } from 'node:crypto'
 import { runInNewContext } from 'node:vm'
 import { describe, expect, it, vi } from 'vitest'
+import {
+  canonicalLegacyHref,
+  parseLearningTarget,
+} from '@/components/app-shell/learning-routes'
 
 function worker() {
   const origin = 'https://speakmate.test'
@@ -138,6 +142,37 @@ function worker() {
 }
 
 describe('document-only offline foundation', () => {
+  it.each([
+    '/session/new?scene=coffee-order&level=',
+    '/session/new?scene=coffee-order&mode=',
+    '/session/new?scene=coffee-order&round=',
+    '/session/saved?level=',
+    '/session/saved?mode=',
+    '/session/saved?round=',
+    '/scenes/coffee-order?level=',
+    '/scenes/coffee-order?mode=',
+  ])(
+    'matches online recovery for present-empty legacy options: %s',
+    async (href) => {
+      const w = worker()
+      w.setOffline()
+      const response = (await w.trigger('fetch', {
+        request: {
+          url: 'https://speakmate.test' + href,
+          method: 'GET',
+          mode: 'navigate',
+          destination: 'document',
+          headers: new Headers(),
+        },
+      })) as Response
+      const location = new URL(response.headers.get('location')!)
+      expect(response.status).toBe(302)
+      expect(
+        parseLearningTarget(location.pathname + location.search).status,
+      ).toBe('invalid')
+      expect(canonicalLegacyHref(href)).toBeUndefined()
+    },
+  )
   it('pairs a versioned category/build proof with headers only on its actual verified response', async () => {
     const w = worker()
     const receive = vi.fn()

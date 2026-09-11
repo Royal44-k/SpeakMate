@@ -17,6 +17,9 @@
 .sectionTitle { display: flex; gap: 8px; align-items: center; margin-bottom: 11px; color: var(--color-atlantic-800); }
 .sectionTitle h2 { margin: 0; color: var(--color-ink-950); font-size: 1rem; }
 .list { display: grid; gap: 8px; overflow: hidden; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-white); }
+.list > div { display: grid; gap: 8px; padding: 10px 13px; }
+.list > div > span { display: grid; gap: 3px; }
+.list button { min-height: var(--tap-target); padding: 10px 13px; white-space: normal; }
 .list a { display: flex; min-height: 64px; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--color-border); padding: 10px 13px; text-decoration: none; }
 .list a:last-child { border-bottom: 0; }
 .list a > span { display: grid; gap: 3px; }

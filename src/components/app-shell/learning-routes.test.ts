@@ -2,6 +2,44 @@ import { describe, expect, it, vi } from 'vitest'
 import * as routes from './learning-routes'
 
 describe('local learning route contract', () => {
+  it('separates supported stored record links from preserved IDs without loosening new routes', () => {
+    for (const id of ['a'.repeat(121), '会话-旧记录', 'new']) {
+      expect(routes.savedPracticeHref(id, 'session')).toBeUndefined()
+      expect(routes.savedPracticeHref(id, 'report')).toBeUndefined()
+    }
+    expect(routes.savedPracticeHref('ordinary-A', 'session')).toBe(
+      '/session?id=ordinary-A',
+    )
+    expect(routes.savedPracticeHref('ordinary-A', 'report')).toBe(
+      '/session/report?id=ordinary-A',
+    )
+    expect(routes.parseLearningTarget('/session/report?id=new').status).toBe(
+      'invalid',
+    )
+  })
+  it.each([
+    '/session/new?scene=coffee-order&level=',
+    '/session/new?scene=coffee-order&mode=',
+    '/session/new?scene=coffee-order&round=',
+    '/session/saved?level=',
+    '/session/saved?mode=',
+    '/session/saved?round=',
+    '/scenes/coffee-order?level=',
+    '/scenes/coffee-order?mode=',
+  ])(
+    'rejects present-empty legacy options without creating defaults: %s',
+    (href) => {
+      expect(routes.canonicalLegacyHref(href)).toBeUndefined()
+    },
+  )
+  it('still permits absent legacy options', () => {
+    expect(routes.canonicalLegacyHref('/session/new?scene=coffee-order')).toBe(
+      '/session?id=new&scene=coffee-order',
+    )
+    expect(routes.canonicalLegacyHref('/scenes/coffee-order')).toBe(
+      '/scenes/prepare?scene=coffee-order',
+    )
+  })
   it('does not repair an invalid new target into a valid creation by navigation fallback', () => {
     window.history.replaceState(null, '', '/session?id=A')
     expect(() =>

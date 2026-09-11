@@ -1,4 +1,5 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, fireEvent } from '@testing-library/react'
+import { historicalIdBackup } from '../../../tests/fixtures/historical-id'
 import { describe, expect, it } from 'vitest'
 
 import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
@@ -8,6 +9,49 @@ import { getSceneBySlug } from '@/content/scenes/catalog'
 import { PracticeHome } from './practice-home'
 
 describe('PracticeHome', () => {
+  it.each(['a'.repeat(121), '会话-旧记录'])(
+    'retains imported non-route ID %s with in-place full readonly access and export',
+    async (id) => {
+      const repositories = createMemoryRepositories()
+      const backup = historicalIdBackup(id)
+      await repositories.restoreLearnerData(
+        await repositories.previewRestore(JSON.stringify(backup)),
+      )
+      render(<PracticeHome repositories={repositories} />)
+      fireEvent.click(
+        await screen.findByRole('button', { name: /在此查看保留记录/ }),
+      )
+      expect(
+        screen.getByRole('heading', { name: '保留的练习记录（只读）' }),
+      ).toBeVisible()
+      expect(screen.getByText(/编号不能直接链接或从此路由续练/)).toBeVisible()
+      expect(screen.getByText(backup.sessions[0].openingText)).toBeVisible()
+      expect(
+        screen.getByText(backup.turns[0].learnerText, {
+          selector: 'p[lang="en"]',
+        }),
+      ).toBeVisible()
+      expect(screen.getByText(backup.turns[0].aiText)).toBeVisible()
+      fireEvent.click(screen.getByText('当时的规则反馈（非新版评估）'))
+      expect(
+        screen.getByText(backup.turns[0].feedback.explanationZh),
+      ).toBeVisible()
+      expect(
+        screen.getByRole('link', { name: '导出本机备份' }),
+      ).toHaveAttribute('href', '/privacy')
+      expect(
+        screen.getByRole('link', { name: '开始新版练习' }),
+      ).toHaveAttribute('href', '/scenes/prepare?scene=coffee-order&level=C1')
+      const exported = await repositories.exportLearnerData()
+      expect(exported.sessions).toEqual(backup.sessions)
+      expect(exported.turns).toEqual(backup.turns)
+      expect(exported.favorites).toEqual(backup.favorites)
+      fireEvent.click(screen.getByRole('button', { name: '返回本页列表' }))
+      expect(
+        screen.getByRole('button', { name: /在此查看保留记录/ }),
+      ).toBeVisible()
+    },
+  )
   it('exposes its asynchronous failure as the focusable page title', async () => {
     const repositories = createMemoryRepositories()
     repositories.profiles.ensureGuestProfile = async () => {

@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import golden from '../../../tests/fixtures/learner-export-v1.json'
+import { historicalIdBackup } from '../../../tests/fixtures/historical-id'
 import {
   createMemoryRepositories,
   createIndexedDbRepositories,
@@ -16,6 +17,30 @@ describe.each([
   ['memory', createMemoryRepositories],
   ['indexeddb', createIndexedDbRepositories],
 ] as const)('%s graded snapshots', (_name, create) => {
+  it.each(['a'.repeat(121), '会话-旧记录'])(
+    'round-trips accepted historical ID %s without narrowing or rewriting references',
+    async (id) => {
+      const repository = create()
+      const fixture = historicalIdBackup(id)
+      await repository.restoreLearnerData(
+        await repository.previewRestore(JSON.stringify(fixture)),
+      )
+      const exported = await repository.exportLearnerData()
+      const destination = createMemoryRepositories()
+      await destination.restoreLearnerData(
+        await destination.previewRestore(JSON.stringify(exported)),
+      )
+      expect((await destination.practice.read(id))?.session).toEqual(
+        fixture.sessions[0],
+      )
+      expect((await destination.practice.read(id))?.turns).toEqual(
+        fixture.turns,
+      )
+      expect((await destination.exportLearnerData()).favorites).toEqual(
+        fixture.favorites,
+      )
+    },
+  )
   it('round-trips a pinned selected pack and state without changing a legacy golden record', async () => {
     const repository = create()
     await repository.restoreLearnerData(

@@ -13,7 +13,8 @@ import { useEffect, useMemo, useState } from 'react'
 
 import { AppShell } from '@/components/app-shell/app-shell'
 import { SCENE_METADATA } from '@/content/scenes/metadata'
-import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import { savedPracticeHref } from '@/components/app-shell/learning-routes'
+import { HistoricalPracticeRecord } from '@/features/practice/historical-practice-record'
 import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
 import type {
   FavoriteExpression,
@@ -33,6 +34,7 @@ export function LearningCenter() {
   >({})
   const [loadError, setLoadError] = useState(false)
   const [loadedAt] = useState(() => Date.now())
+  const [retained, setRetained] = useState<PracticeRecord>()
 
   useEffect(() => {
     let active = true
@@ -83,6 +85,17 @@ export function LearningCenter() {
     ).length
   }, [loadedAt, sessions])
   const completed = sessions.filter((session) => session.status === 'completed')
+
+  if (retained)
+    return (
+      <AppShell activeDestination="me">
+        <HistoricalPracticeRecord record={retained} unlinked>
+          <button type="button" onClick={() => setRetained(undefined)}>
+            返回本页列表
+          </button>
+        </HistoricalPracticeRecord>
+      </AppShell>
+    )
 
   return (
     <AppShell activeDestination="me">
@@ -157,18 +170,15 @@ export function LearningCenter() {
                           : session.gradedDialogue?.state.outcome === 'active'
                             ? '继续练习'
                             : '待查看结束选项'
-                return (
-                  <a
-                    key={session.id}
-                    href={buildLearningHref({
-                      kind:
-                        session.status === 'completed' ||
-                        session.status === 'abandoned'
-                          ? 'report'
-                          : 'session',
-                      id: session.id,
-                    })}
-                  >
+                const href = savedPracticeHref(
+                  session.id,
+                  session.status === 'completed' ||
+                    session.status === 'abandoned'
+                    ? 'report'
+                    : 'session',
+                )
+                const content = (
+                  <>
                     <span>
                       <strong>
                         {session.sceneSnapshot?.titleZh ??
@@ -185,7 +195,26 @@ export function LearningCenter() {
                         day: 'numeric',
                       })}
                     </time>
+                  </>
+                )
+                return href ? (
+                  <a key={session.id} href={href}>
+                    {content}
                   </a>
+                ) : (
+                  <div key={session.id}>
+                    {content}
+                    {record ? (
+                      <button type="button" onClick={() => setRetained(record)}>
+                        在此查看保留记录（只读）
+                      </button>
+                    ) : (
+                      <p>
+                        记录暂时无法读取，请重试本页或
+                        <a href="/privacy">导出本机备份</a>；没有删除记录。
+                      </p>
+                    )}
+                  </div>
                 )
               })}
             </div>

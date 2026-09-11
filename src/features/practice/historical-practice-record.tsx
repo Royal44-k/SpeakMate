@@ -9,16 +9,19 @@ import type { ReactNode } from 'react'
 export function HistoricalPracticeRecord({
   record,
   children,
+  unlinked = false,
 }: {
   record: PracticeRecord
   children?: ReactNode
+  unlinked?: boolean
 }) {
   const { session, turns } = record
   const scene = SCENE_METADATA.find((item) => item.id === session.sceneId)
+  const Root = unlinked ? 'section' : 'main'
   return (
-    <main className={styles.report}>
+    <Root className={styles.report}>
       <h1 data-page-title tabIndex={-1}>
-        旧版练习记录（只读）
+        {unlinked ? '保留的练习记录（只读）' : '旧版练习记录（只读）'}
       </h1>
       <h2>{session.sceneSnapshot?.titleZh ?? scene?.titleZh ?? '历史场景'}</h2>
       <p>
@@ -28,8 +31,22 @@ export function HistoricalPracticeRecord({
           : session.status === 'abandoned'
             ? '当时已停止'
             : '当时未结束'}
-        。旧版流程不再继续运行；原文、时间和当时保存的反馈仍保留，不换成新题库，也不把旧关键词目标算作新版确认事实。
+        。
+        {unlinked
+          ? '此编号不能直接链接或从此路由续练。此处只读展示原文、时间和当时保存的反馈；另行开始新版练习不会改写本记录或引用。'
+          : '旧版流程不再继续运行；原文、时间和当时保存的反馈仍保留，不换成新题库，也不把旧关键词目标算作新版确认事实。'}
       </p>
+      {unlinked ? (
+        <>
+          {record.status === 'recovery' ? (
+            <p role="alert">
+              {record.message ??
+                '保存状态需要检查；这里只读保留原文，不执行或修复该记录。'}
+            </p>
+          ) : null}
+          <a href="/privacy">导出本机备份</a>
+        </>
+      ) : null}
       <p>
         开始：{session.startedAt}；最后保存：{session.updatedAt}
       </p>
@@ -79,6 +96,6 @@ export function HistoricalPracticeRecord({
         <a href="/practice">回到今日练习</a>
         <a href="/scenes">换个场景</a>
       </nav>
-    </main>
+    </Root>
   )
 }

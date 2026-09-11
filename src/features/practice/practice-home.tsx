@@ -6,7 +6,11 @@ import { useEffect, useState } from 'react'
 import { AppShell } from '@/components/app-shell/app-shell'
 import { SceneImage } from '@/components/scene-image/scene-image'
 import { SCENE_METADATA } from '@/content/scenes/metadata'
-import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import {
+  buildLearningHref,
+  savedPracticeHref,
+} from '@/components/app-shell/learning-routes'
+import { HistoricalPracticeRecord } from './historical-practice-record'
 import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
 import { recommendScene } from '@/domain/learning/recommendation'
 import type { LearnerProfile } from '@/domain/learning/types'
@@ -37,6 +41,7 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
   const [loadError, setLoadError] = useState(false)
   const [levelError, setLevelError] = useState('')
   const [savingLevel, setSavingLevel] = useState(false)
+  const [retained, setRetained] = useState<PracticeRecord>()
 
   async function changeLevel(level: CefrLevel) {
     if (!data || savingLevel) return
@@ -108,6 +113,9 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
     SCENE_METADATA[0]
   const level = data.profile.level
   const recent = data.recent
+  const recentHref = recent
+    ? savedPracticeHref(recent.session.id, 'session')
+    : undefined
   const recentLabel =
     recent?.status === 'historical'
       ? '查看旧版记录'
@@ -117,6 +125,17 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
           ? '继续本次对话'
           : '返回查看结束选项'
   const href = buildLearningHref({ kind: 'prepare', scene: scene.slug, level })
+
+  if (retained)
+    return (
+      <AppShell activeDestination="practice">
+        <HistoricalPracticeRecord record={retained} unlinked>
+          <button type="button" onClick={() => setRetained(undefined)}>
+            返回本页列表
+          </button>
+        </HistoricalPracticeRecord>
+      </AppShell>
+    )
 
   return (
     <AppShell activeDestination="practice">
@@ -164,15 +183,16 @@ export function PracticeHome({ repositories }: PracticeHomeProps) {
               · 原记录 {recent.session.level}。新练习使用当前 {level}
               ，不会改写原记录。
             </p>
-            <a
-              href={buildLearningHref({
-                kind: 'session',
-                id: recent.session.id,
-              })}
-            >
-              {recentLabel}
-              <ArrowRight aria-hidden size={20} />
-            </a>
+            {recentHref ? (
+              <a href={recentHref}>
+                {recentLabel}
+                <ArrowRight aria-hidden size={20} />
+              </a>
+            ) : (
+              <button type="button" onClick={() => setRetained(recent)}>
+                在此查看保留记录（只读）
+              </button>
+            )}
           </section>
         ) : null}
         <section
