@@ -212,6 +212,7 @@ export function SessionResolver({
       sessionId={requestedId}
       completed={resolution.completed}
       repositories={repository}
+      returnHref={safeSourceHref(queryFrom)}
       exitHref={buildLearningHref({
         kind: 'prepare',
         scene: resolution.scene.slug,

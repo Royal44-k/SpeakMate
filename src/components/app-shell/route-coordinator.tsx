@@ -1,14 +1,19 @@
 'use client'
 
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { trackRoute } from './navigation-history'
-import { safeSourceHref, semanticRouteIdentity } from './learning-routes'
+import {
+  visitRoute,
+  nativeEntryId,
+  prepareRouteNavigation,
+  commitPendingNavigation,
+  cancelRouteNavigation,
+} from './navigation-history'
+import { safeSourceHref } from './learning-routes'
 
-const ROUTE_STACK_KEY = 'speakmate-route-stack'
 const SCROLL_KEY = 'speakmate-route-scroll-v1'
-function getScrolls(): Array<[string, number, string?]> {
+function getScrolls(): Array<[string, number, string?, string?]> {
   try {
     const values: unknown = JSON.parse(
       window.sessionStorage.getItem(SCROLL_KEY) ?? '[]',
@@ -19,10 +24,14 @@ function getScrolls(): Array<[string, number, string?]> {
         (value) =>
           Array.isArray(value) &&
           (value.length === 2 ||
-            (value.length === 3 &&
+            ((value.length === 3 ||
+              (value.length === 4 &&
+                typeof value[3] === 'string' &&
+                /^[\w-]{1,100}$/.test(value[3]))) &&
               typeof value[2] === 'string' &&
               value[2].length <= 2000 &&
-              !!safeSourceHref(value[2]))) &&
+              (!!safeSourceHref(value[2]) ||
+                (value.length === 4 && value[2] === '')))) &&
           typeof value[0] === 'string' &&
           value[0].length <= 2000 &&
           Number.isFinite(value[1]) &&
@@ -32,15 +41,23 @@ function getScrolls(): Array<[string, number, string?]> {
       ? values
           .map(
             (value) =>
-              (value[2]
+              (value.length === 4
                 ? [
                     safeSourceHref(value[0]) ?? '',
                     value[1],
-                    safeSourceHref(value[2]),
+                    safeSourceHref(value[2]) ?? '',
+                    value[3],
                   ]
-                : [safeSourceHref(value[0]) ?? '', value[1]]) as [
+                : value[2]
+                  ? [
+                      safeSourceHref(value[0]) ?? '',
+                      value[1],
+                      safeSourceHref(value[2]),
+                    ]
+                  : [safeSourceHref(value[0]) ?? '', value[1]]) as [
                 string,
                 number,
+                string?,
                 string?,
               ],
           )
@@ -51,47 +68,70 @@ function getScrolls(): Array<[string, number, string?]> {
   }
 }
 
-function getRouteStack() {
-  try {
-    const storedStack = window.sessionStorage.getItem(ROUTE_STACK_KEY)
-    const parsedStack: unknown = storedStack ? JSON.parse(storedStack) : []
-
-    return Array.isArray(parsedStack) &&
-      parsedStack.length <= 24 &&
-      parsedStack.every(
-        (route) => typeof route === 'string' && route.length <= 2000,
-      )
-      ? parsedStack
-          .map((route) => safeSourceHref(route))
-          .filter((route): route is string => !!route)
-      : []
-  } catch {
-    return []
-  }
-}
-
 export function RouteCoordinator() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const announcementRef = useRef<HTMLSpanElement>(null)
+  const [traversal, setTraversal] = useState(0)
+  useEffect(() => {
+    const changed = () => {
+      cancelRouteNavigation()
+      setTraversal((value) => value + 1)
+    }
+    const leaving = (event: BeforeUnloadEvent) => {
+      queueMicrotask(() => {
+        if (event.defaultPrevented) cancelRouteNavigation()
+      })
+    }
+    const clicked = (event: MouseEvent) => {
+      if (
+        event.defaultPrevented ||
+        event.button ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      )
+        return
+      const link =
+        event.target instanceof Element
+          ? event.target.closest<HTMLAnchorElement>('a[href]')
+          : null
+      if (!link || link.target === '_blank' || link.hasAttribute('download'))
+        return
+      const target = new URL(link.href, location.href)
+      prepareRouteNavigation(
+        target.origin === location.origin
+          ? target.pathname + target.search
+          : '/',
+        link.hasAttribute('data-return-to-source') ? 'return' : 'forward',
+        false,
+      )
+    }
+    window.addEventListener('popstate', changed)
+    window.addEventListener('pageshow', changed)
+    document.addEventListener('click', clicked)
+    window.addEventListener('pagehide', commitPendingNavigation)
+    window.addEventListener('pointerdown', cancelRouteNavigation, true)
+    window.addEventListener('keydown', cancelRouteNavigation, true)
+    window.addEventListener('beforeunload', leaving)
+    return () => {
+      window.removeEventListener('popstate', changed)
+      window.removeEventListener('pageshow', changed)
+      document.removeEventListener('click', clicked)
+      window.removeEventListener('pagehide', commitPendingNavigation)
+      window.removeEventListener('pointerdown', cancelRouteNavigation, true)
+      window.removeEventListener('keydown', cancelRouteNavigation, true)
+      window.removeEventListener('beforeunload', leaving)
+    }
+  }, [])
   const search = searchParams.toString()
   const route =
     safeSourceHref(search ? `${pathname}?${search}` : pathname) ?? pathname
 
   useEffect(() => {
-    const currentHistory = getRouteStack()
-    const previousIdentity = currentHistory.at(-1)
-      ? semanticRouteIdentity(currentHistory.at(-1)!)
-      : undefined
-    const nextHistory = trackRoute(currentHistory, route)
-    try {
-      window.sessionStorage.setItem(
-        ROUTE_STACK_KEY,
-        JSON.stringify(nextHistory.stack),
-      )
-    } catch {
-      /* Navigation remains usable; no saved-position claim. */
-    }
+    const nextHistory = visitRoute(route)
+    const entryId = nativeEntryId()
 
     let observer: MutationObserver | undefined
     let timer: ReturnType<typeof setTimeout> | undefined
@@ -115,8 +155,14 @@ export function RouteCoordinator() {
           SCROLL_KEY,
           JSON.stringify(
             [
-              ...getScrolls().filter((value) => value[0] !== route),
-              focused ? [route, top, focused] : [route, top],
+              ...getScrolls().filter((value) =>
+                entryId ? value[3] !== entryId : value[0] !== route,
+              ),
+              entryId
+                ? [route, top, focused ?? '', entryId]
+                : focused
+                  ? [route, top, focused]
+                  : [route, top],
             ].slice(-24),
           ),
         )
@@ -140,11 +186,17 @@ export function RouteCoordinator() {
       window.removeEventListener('keydown', stopRestoring)
       window.removeEventListener('wheel', stopRestoring)
     }
-    if (
-      nextHistory.kind !== 'forward' ||
-      previousIdentity === semanticRouteIdentity(route)
-    ) {
-      const saved = getScrolls().find((value) => value[0] === route)
+    if (nextHistory.kind === 'same') return dispose
+    if (nextHistory.kind === 'traverse' || nextHistory.kind === 'return') {
+      const saved = getScrolls()
+        .reverse()
+        .find((value) =>
+          nextHistory.kind === 'return'
+            ? value[0] === route
+            : value[3]
+              ? value[3] === entryId
+              : value[0] === route,
+        )
       const top = saved?.[1]
       if (top !== undefined) {
         restoring = true
@@ -199,7 +251,7 @@ export function RouteCoordinator() {
     })
     observer.observe(document.body, { childList: true, subtree: true })
     return dispose
-  }, [pathname, route])
+  }, [pathname, route, traversal])
 
   return (
     <span

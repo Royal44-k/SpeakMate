@@ -24,7 +24,7 @@ export function WarmupFlow({
   task: DailyPlanTask
   materials: Awaited<ReturnType<GoalService['warmupMaterials']>>
   onComplete: () => void
-  onStarted: () => void
+  onStarted: () => void | Promise<void>
 }) {
   const [hidden, setHidden] = useState(false),
     [done, setDone] = useState(false),
@@ -46,7 +46,7 @@ export function WarmupFlow({
     setError('')
     try {
       await service.startWarmup(plan, task)
-      onStarted()
+      await onStarted()
       setHidden(true)
     } catch (e) {
       setError(e instanceof Error ? e.message : '本机保存失败，请重试。')
@@ -87,7 +87,9 @@ export function WarmupFlow({
         onConfirmExit={() => setTexts(materials.map(() => ''))}
       />
       <h2>表达热身</h2>
-      <a href={buildGoalHref(plan.dateKey, task.slot)}>返回目标列表</a>
+      <a data-return-to-source href={buildGoalHref(plan.dateKey, task.slot)}>
+        返回目标列表
+      </a>
       <p>
         {hidden
           ? '看中文提示，主动写出回忆。不要求与参考一字不差。'

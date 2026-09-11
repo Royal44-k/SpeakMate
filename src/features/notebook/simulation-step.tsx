@@ -5,6 +5,7 @@ import { ExitGuard } from '@/features/practice/exit-guard'
 import styles from './notebook.module.css'
 export function SimulationStep({
   simulation,
+  returnHref,
   busy,
   error,
   onSubmit,
@@ -16,6 +17,7 @@ export function SimulationStep({
   onDiscard,
 }: {
   simulation: PracticeSimulation
+  returnHref?: string
   busy: boolean
   error?: string
   onSubmit: (text: string, phase: SimulationDraft['phase']) => Promise<boolean>
@@ -36,7 +38,7 @@ export function SimulationStep({
     <main className={styles.page}>
       <ExitGuard
         state={busy ? 'processing' : text ? 'draft' : 'clean'}
-        fallbackHref={simulation.returnTo}
+        fallbackHref={returnHref ?? simulation.returnTo}
         onConfirmExit={onDiscard}
       />
       <small>定向练习 · {compose ? '2 / 3 造句' : '1 / 3 回忆'}</small>
@@ -93,7 +95,9 @@ export function SimulationStep({
           </button>
         </>
       ) : null}
-      <a href={simulation.returnTo}>返回词句或记录簿</a>
+      <a data-return-to-source href={simulation.returnTo}>
+        返回词句或记录簿
+      </a>
     </main>
   )
 }

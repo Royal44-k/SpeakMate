@@ -5,6 +5,14 @@ import {
 } from '@/domain/scenes/types'
 import type { DialogueMode } from '@/content/dialogues/graded/schema'
 import type { TaskSlot } from '@/domain/goals/types'
+import {
+  prepareRouteNavigation,
+  commitPendingNavigation,
+  replaceRouteIdentity,
+  ROUTE_ENTRY_KEY,
+  releaseForSavedNavigation,
+  cancelRouteNavigation,
+} from './navigation-history'
 
 type Options = {
   scene?: string
@@ -300,11 +308,12 @@ export function semanticRouteIdentity(href: string): string {
 }
 
 /** Call only after the existing exit guard has released pending audio/draft work. */
-export function navigateLearning(target: LearningTarget, replace = false) {
-  const href = buildLearningHref(target)
-  if (window.location.pathname === paths[target.kind])
-    window.history[replace ? 'replaceState' : 'pushState'](null, '', href)
-  else documentNavigation[replace ? 'replace' : 'assign'](href)
+export function navigateLearning(
+  target: LearningTarget,
+  replace = false,
+  saved = false,
+) {
+  return navigateLocalHref(buildLearningHref(target), replace, 'forward', saved)
 }
 
 export const documentNavigation = {
@@ -312,7 +321,40 @@ export const documentNavigation = {
   replace: (href: string) => window.location.replace(href),
 }
 
-export function navigateLocalHref(href: string, replace = false) {
+/** Optional same-page public filter URL: denial must not navigate away from local input. */
+export function replaceLocalFilterHref(href: string): boolean {
+  const parsed = parseLearningTarget(href)
+  const pathname = localUrl(href)?.pathname
+  if (
+    pathname !== '/scenes' &&
+    !(pathname === '/scenes/prepare' && parsed.status === 'valid')
+  )
+    return false
+  const safe =
+    parsed.status === 'valid'
+      ? buildLearningHref(parsed.target)
+      : safeSourceHref(href)
+  if (!safe || new URL(safe, base).pathname !== window.location.pathname)
+    return false
+  cancelRouteNavigation()
+  const state = { ...history.state }
+  delete state.__NA
+  delete state._N
+  try {
+    window.history.replaceState(state, '', safe)
+    replaceRouteIdentity(safe)
+    return true
+  } catch {
+    return false
+  }
+}
+
+export function navigateLocalHref(
+  href: string,
+  replace = false,
+  intent: 'return' | 'forward' = 'forward',
+  saved = false,
+): void | Promise<void> {
   const canonical = canonicalLegacyHref(href) ?? href
   const parsed = parseLearningTarget(canonical)
   if (
@@ -325,13 +367,29 @@ export function navigateLocalHref(href: string, replace = false) {
       ? buildLearningHref(parsed.target)
       : safeSourceHref(canonical)
   if (!safe) throw new Error('返回入口无效。')
-  if (new URL(safe, base).pathname === window.location.pathname)
-    window.history[replace ? 'replaceState' : 'pushState'](null, '', safe)
-  else documentNavigation[replace ? 'replace' : 'assign'](safe)
+  const released = saved ? releaseForSavedNavigation(safe) : undefined
+  if (released)
+    return released.then(() => navigateLocalHref(safe, replace, intent))
+  prepareRouteNavigation(safe, intent, replace)
+  if (new URL(safe, base).pathname === window.location.pathname) {
+    // Let Next's installed native-history wrapper copy its internal fields and notify hooks.
+    const state = { ...history.state }
+    delete state.__NA
+    delete state._N
+    delete state.__speakmateExitGuard
+    delete state.__speakmateRoutePlaceholder
+    if (!replace || intent === 'return') delete state[ROUTE_ENTRY_KEY]
+    commitPendingNavigation()
+    try {
+      window.history[replace ? 'replaceState' : 'pushState'](state, '', safe)
+    } catch {
+      prepareRouteNavigation(safe, 'forward', replace)
+      documentNavigation[replace ? 'replace' : 'assign'](safe)
+    }
+  } else documentNavigation[replace ? 'replace' : 'assign'](safe)
 }
 
-export function replaceCreatedSessionId(id: string) {
-  const previousHref = window.location.pathname + window.location.search
+export function replaceCreatedSessionId(id: string): void | Promise<void> {
   const current = parseLearningTarget(
     window.location.pathname + window.location.search,
   )
@@ -342,30 +400,13 @@ export function replaceCreatedSessionId(id: string) {
   )
     throw new Error('当前不是新建练习入口。')
   const href = buildLearningHref({ ...current.target, id })
-  window.history.replaceState(null, '', href)
-  try {
-    const key = 'speakmate-route-stack'
-    const stack: unknown = JSON.parse(
-      window.sessionStorage.getItem(key) ?? '[]',
-    )
-    if (
-      Array.isArray(stack) &&
-      stack.length <= 24 &&
-      stack.every((value) => typeof value === 'string' && value.length <= 2000)
-    ) {
-      const clean = stack
-        .map((value) => safeSourceHref(value))
-        .filter((value): value is string => !!value)
-      const prior =
-        clean.at(-1) === safeSourceHref(previousHref)
-          ? clean.slice(0, -1)
-          : clean
-      window.sessionStorage.setItem(
-        key,
-        JSON.stringify([...prior, href].slice(-24)),
-      )
-    }
-  } catch {
-    /* The committed record and address remain usable without UI storage. */
-  }
+  const released = releaseForSavedNavigation(href)
+  if (released) return released.then(() => replaceCreatedSessionId(id))
+  const state = { ...history.state }
+  delete state.__NA
+  delete state._N
+  delete state.__speakmateExitGuard
+  delete state.__speakmateRoutePlaceholder
+  window.history.replaceState(state, '', href)
+  replaceRouteIdentity(href)
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { replaceLocalFilterHref } from '@/components/app-shell/learning-routes'
 
 import { CEFR_LEVELS, type CefrLevel } from '@/domain/scenes/types'
 import {
@@ -90,11 +91,7 @@ export function SceneLibraryRoute({
       fallbackLevel,
     )
     rememberSceneFilters(restored)
-    try {
-      window.history.replaceState(null, '', sceneLibraryHref(restored))
-    } catch {
-      /* Existing input still works; future links remain private-free. */
-    }
+    replaceLocalFilterHref(sceneLibraryHref(restored))
   }, [publicQuery, fallbackLevel])
 
   if (!fallbackLevel) {
@@ -115,8 +112,7 @@ export function SceneLibraryRoute({
     source: 'search' | 'filter',
   ) {
     rememberSceneFilters(next)
-    const replace = () =>
-      window.history.replaceState(null, '', sceneLibraryHref(next))
+    const replace = () => replaceLocalFilterHref(sceneLibraryHref(next))
 
     if (searchTimer.current) clearTimeout(searchTimer.current)
     if (source === 'search') {

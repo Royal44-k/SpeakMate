@@ -1,13 +1,21 @@
 import { StrictMode } from 'react'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, expect, it, vi } from 'vitest'
 import { GET } from '@/app/content/v1/[category]/route'
 import { createIndexedDbRepositories } from '@/infrastructure/persistence/repositories'
 import { deleteDatabase } from '@/infrastructure/persistence/db'
 import { StaticLearningShell } from '@/features/practice/static-learning-shell'
+import { RouteCoordinator } from '@/components/app-shell/route-coordinator'
+import { SmartBackLink } from '@/components/app-shell/smart-back-link'
+import { documentNavigation } from '@/components/app-shell/learning-routes'
+import {
+  visitRoute,
+  readRouteHistory,
+} from '@/components/app-shell/navigation-history'
 vi.mock('next/navigation', () => ({
   useSearchParams: () => new URLSearchParams(window.location.search),
-  useRouter: () => ({ back: vi.fn() }),
+  usePathname: () => window.location.pathname,
+  useRouter: () => ({ back: () => history.back() }),
 }))
 afterEach(async () => {
   vi.unstubAllGlobals()
@@ -65,7 +73,9 @@ it('uses the actual static new route and IndexedDB: chooses the canonical note s
       }),
     )
   vi.stubGlobal('fetch', fetcher)
-  window.history.replaceState(
+  window.history.replaceState(null, '', '/notebook/note?id=canonical')
+  visitRoute('/notebook/note?id=canonical')
+  window.history.pushState(
     null,
     '',
     '/notebook/simulation?id=new&source=canonical',
@@ -73,6 +83,7 @@ it('uses the actual static new route and IndexedDB: chooses the canonical note s
   const first = render(
     <StrictMode>
       <StaticLearningShell kind="simulation" />
+      <RouteCoordinator />
     </StrictMode>,
   )
   await screen.findByLabelText('本次使用的来源')
@@ -96,6 +107,71 @@ it('uses the actual static new route and IndexedDB: chooses the canonical note s
   expect(session.simulation?.source.snapshot.sceneId).toBe('work-05')
   expect(new URLSearchParams(window.location.search).get('id')).toBe(session.id)
   expect(new URLSearchParams(window.location.search).get('source')).toBeNull()
+  window.history.back()
+  await waitFor(() => expect(window.location.pathname).toBe('/notebook/note'))
+  expect(new URLSearchParams(window.location.search).get('id')).toBe(
+    'canonical',
+  )
+  window.history.forward()
+  await waitFor(() =>
+    expect(new URLSearchParams(window.location.search).get('id')).toBe(
+      session.id,
+    ),
+  )
+  // Native History cannot erase the forward placeholder. It must carry the saved
+  // address and same app identity, never revive id=new or create another session.
+  const savedEntry = history.state.__speakmateRouteEntry
+  await act(async () => {
+    const moved = new Promise((resolve) =>
+      window.addEventListener('popstate', resolve, { once: true }),
+    )
+    history.forward()
+    await moved
+  })
+  expect(new URLSearchParams(location.search).get('id')).toBe(session.id)
+  expect(history.state.__speakmateRouteEntry).toBe(savedEntry)
+  expect(readRouteHistory().entries).toHaveLength(2)
+  const nativeBack = vi.spyOn(history, 'back')
+  const smart = render(
+    <SmartBackLink
+      fallbackHref="/notebook/note?id=canonical"
+      ariaLabel="占位返回来源"
+    />,
+  )
+  // jsdom has no document navigation: assert the actual anchor permits its safe
+  // default destination, not an inferred native Back into the duplicate S.
+  const allowed = fireEvent.click(
+    screen.getByRole('link', { name: '占位返回来源' }),
+  )
+  expect(allowed).toBe(true)
+  expect(nativeBack).not.toHaveBeenCalled()
+  smart.unmount()
+  const destination = vi
+    .spyOn(documentNavigation, 'replace')
+    .mockImplementation((href) => {
+      history.replaceState(null, '', href)
+      window.dispatchEvent(
+        new PopStateEvent('popstate', { state: history.state }),
+      )
+    })
+  fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+  expect(destination).toHaveBeenCalledWith('/notebook/note?id=canonical')
+  expect(nativeBack).not.toHaveBeenCalled()
+  expect(location.pathname + location.search).toBe(
+    '/notebook/note?id=canonical',
+  )
+  destination.mockRestore()
+  nativeBack.mockRestore()
+  history.back()
+  await waitFor(() =>
+    expect(new URLSearchParams(location.search).get('id')).toBe(session.id),
+  )
+  history.forward()
+  await waitFor(() => expect(location.pathname).toBe('/notebook/note'))
+  history.back()
+  await waitFor(() =>
+    expect(new URLSearchParams(location.search).get('id')).toBe(session.id),
+  )
   first.unmount()
   render(<StaticLearningShell kind="simulation" />)
   await screen.findByRole('heading', { name: '先回忆，再查看原文' })

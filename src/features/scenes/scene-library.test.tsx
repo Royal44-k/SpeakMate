@@ -11,6 +11,10 @@ import { ScenePreparation } from './scene-preparation'
 import { getSceneBySlug } from '@/content/scenes/catalog'
 import { adaptScene } from '@/domain/scenes/adapt-scene'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
+import {
+  visitRoute,
+  readRouteHistory,
+} from '@/components/app-shell/navigation-history'
 
 vi.mock('@/content/public-category', () => ({
   publicContentProvider: () => localContentProvider,
@@ -61,6 +65,42 @@ async function renderReadyRoute(level: LearnerProfile['level'] = 'B1') {
 }
 
 describe('SceneLibrary', () => {
+  it('keeps the same identified native entry through local filters and legacy private-query removal', async () => {
+    history.replaceState(
+      { custom: 'keep' },
+      '',
+      '/scenes?level=B1&q=private-words',
+    )
+    visitRoute('/scenes?level=B1')
+    const entry = history.state.__speakmateRouteEntry
+    navigation.search = 'level=B1&q=private-words'
+    await renderReadyRoute('B1')
+    expect(history.state).toMatchObject({
+      custom: 'keep',
+      __speakmateRouteEntry: entry,
+    })
+    expect(location.search).not.toContain('private-words')
+    fireEvent.click(screen.getByRole('button', { name: 'C1' }))
+    expect(history.state).toMatchObject({
+      custom: 'keep',
+      __speakmateRouteEntry: entry,
+    })
+    expect(readRouteHistory().entries).toHaveLength(1)
+    const denied = vi.spyOn(history, 'replaceState').mockImplementation(() => {
+      throw new Error('denied')
+    })
+    try {
+      fireEvent.click(screen.getByRole('button', { name: 'A2' }))
+      expect(screen.getByRole('button', { name: 'A2' })).toHaveAttribute(
+        'aria-pressed',
+        'true',
+      )
+      expect(screen.getByRole('searchbox')).toHaveValue('private-words')
+      expect(location.pathname).toBe('/scenes')
+    } finally {
+      denied.mockRestore()
+    }
+  })
   beforeEach(() => {
     navigation.search = ''
     routerReplace.mockReset()
@@ -280,13 +320,13 @@ describe('SceneLibrary', () => {
     fireEvent.click(screen.getByRole('button', { name: '社交' }))
 
     expect(routerReplace).not.toHaveBeenCalled()
-    expect(window.location.search).toBe('?category=social&level=B1')
+    expect(window.location.search).toBe('?level=B1&category=social')
 
     await act(async () => {
       vi.advanceTimersByTime(250)
     })
     expect(routerReplace).not.toHaveBeenCalled()
-    expect(window.location.search).toBe('?category=social&level=B1')
+    expect(window.location.search).toBe('?level=B1&category=social')
   })
 
   it('cancels a pending search URL write when unmounted', async () => {

@@ -5,7 +5,14 @@ import { StrictMode } from 'react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ExitGuard, exitGuardState } from './exit-guard'
-import { documentNavigation } from '@/components/app-shell/learning-routes'
+import {
+  documentNavigation,
+  navigateLocalHref,
+} from '@/components/app-shell/learning-routes'
+import {
+  visitRoute,
+  readRouteHistory,
+} from '@/components/app-shell/navigation-history'
 
 const { routerBack, routerReplace } = vi.hoisted(() => ({
   routerBack: vi.fn(),
@@ -34,6 +41,85 @@ describe('exitGuardState', () => {
 })
 
 describe('ExitGuard', () => {
+  it.each(['timeout', 'unmount', 'mismatch'] as const)(
+    'rejects saved navigation on %s without replaying its target on a later popstate',
+    async (failure) => {
+      vi.useFakeTimers()
+      const view = render(
+        <ExitGuard state="processing" fallbackHref="/practice" />,
+      )
+      const operation = Promise.resolve(
+        navigateLocalHref('/me', true, 'forward', true),
+      )
+      const rejected = expect(operation).rejects.toThrow()
+      await expect(
+        Promise.resolve(navigateLocalHref('/me', true, 'forward', true)),
+      ).rejects.toThrow()
+      const competing = document.createElement('a')
+      competing.href = '/rewards'
+      competing.textContent = 'Competing destination'
+      document.body.append(competing)
+      fireEvent.click(competing)
+      expect(screen.queryByRole('alertdialog')).not.toBeInTheDocument()
+      competing.remove()
+      if (failure === 'unmount') view.unmount()
+      else if (failure === 'timeout')
+        await act(async () => vi.advanceTimersByTime(1501))
+      else fireEvent.popState(window, { state: { unexpected: true } })
+      await rejected
+      fireEvent.popState(window, { state: null })
+      expect(documentNavigation.replace).not.toHaveBeenCalled()
+      expect(history.back).toHaveBeenCalledTimes(1)
+      vi.useRealTimers()
+    },
+  )
+  it('does not let a saved-navigation flag bypass a live draft guard', async () => {
+    render(<ExitGuard state="draft" fallbackHref="/practice" />)
+    await expect(
+      Promise.resolve(navigateLocalHref('/me', true, 'forward', true)),
+    ).rejects.toThrow()
+    expect(history.back).not.toHaveBeenCalled()
+    expect(documentNavigation.replace).not.toHaveBeenCalled()
+  })
+  it('preserves native route and Next state through sentinel creation, cancel and cleanup without adding an app entry', async () => {
+    history.replaceState(
+      { __NA: true, __PRIVATE_NEXTJS_INTERNALS_TREE: ['tree'], custom: 7 },
+      '',
+    )
+    visitRoute('/session?id=session-draft')
+    const base = history.state
+    const view = render(
+      <StrictMode>
+        <ExitGuard state="draft" fallbackHref="/me" />
+      </StrictMode>,
+    )
+    expect(history.state).toMatchObject(base)
+    expect(history.state.__speakmateExitGuard).toBeDefined()
+    expect(readRouteHistory().entries).toHaveLength(1)
+    fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+    fireEvent.click(screen.getByRole('button', { name: '继续练习' }))
+    expect(history.state).toMatchObject(base)
+    view.rerender(
+      <StrictMode>
+        <ExitGuard state="clean" fallbackHref="/me" />
+      </StrictMode>,
+    )
+    await act(async () => undefined)
+    expect(history.state).toEqual(base)
+    expect(readRouteHistory().entries).toHaveLength(1)
+  })
+  it('keeps explicit draft confirmation usable when history state writes are denied', () => {
+    vi.spyOn(history, 'pushState').mockImplementation(() => {
+      throw new DOMException('denied', 'SecurityError')
+    })
+    render(<ExitGuard state="draft" fallbackHref="/me" />)
+    fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))
+    fireEvent.click(screen.getByRole('button', { name: '继续练习' }))
+    expect(screen.getByRole('link', { name: '退出本次练习' })).toHaveAttribute(
+      'href',
+      '/me',
+    )
+  })
   it.each(['getItem', 'setItem'] as const)(
     'retains explicit confirmed exit when sessionStorage.%s throws',
     async (method) => {
@@ -181,6 +267,9 @@ describe('ExitGuard', () => {
     )
     const fallbackHref =
       '/scenes/hotel-check-in?level=B1&from=%2Fscenes%3Fcategory%3Dtravel%26level%3DB1'
+    visitRoute(fallbackHref)
+    history.replaceState(null, '')
+    visitRoute('/session?id=session-draft')
     render(<ExitGuard state="draft" fallbackHref={fallbackHref} />)
 
     await user.click(screen.getByRole('link', { name: '退出本次练习' }))
@@ -300,6 +389,9 @@ describe('ExitGuard', () => {
         '/session/new?scene=hotel-check-in&level=B1',
       ]),
     )
+    visitRoute(fallbackHref)
+    history.replaceState(null, '')
+    visitRoute('/session?id=session-draft')
     render(<ExitGuard state="clean" fallbackHref={fallbackHref} />)
 
     fireEvent.click(screen.getByRole('link', { name: '退出本次练习' }))

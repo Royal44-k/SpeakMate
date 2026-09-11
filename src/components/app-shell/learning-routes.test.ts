@@ -89,7 +89,7 @@ describe('local learning route contract', () => {
       ),
     ).toBeUndefined()
   })
-  it('keeps an unrelated prior stack entry when new creation was not yet tracked', () => {
+  it('does not invent native identities for legacy context when new creation was not yet tracked', () => {
     sessionStorage.setItem(
       'speakmate-route-stack',
       JSON.stringify(['/scenes?level=C1']),
@@ -102,10 +102,10 @@ describe('local learning route contract', () => {
     routes.replaceCreatedSessionId('saved-B')
     expect(
       JSON.parse(sessionStorage.getItem('speakmate-route-stack')!),
-    ).toEqual([
-      '/scenes?level=C1',
-      '/session?id=saved-B&scene=coffee-order&level=C1',
-    ])
+    ).toEqual(['/scenes?level=C1'])
+    expect(window.location.search).toBe(
+      '?id=saved-B&scene=coffee-order&level=C1',
+    )
   })
   it.each([
     '/session',
@@ -153,7 +153,7 @@ describe('local learning route contract', () => {
     const replace = vi.spyOn(window.history, 'replaceState')
     routes.replaceCreatedSessionId('saved-A')
     expect(replace).toHaveBeenLastCalledWith(
-      null,
+      { secret: 'framework' },
       '',
       '/session?id=saved-A&scene=coffee-order&level=B1&mode=short&round=r1&from=%2Fpractice',
     )

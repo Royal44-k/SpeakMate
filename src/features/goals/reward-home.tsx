@@ -213,7 +213,9 @@ export function RewardHome({ repositories }: { repositories?: Repositories }) {
       </section>
       <DemoRanking />
       <div className={styles.actions}>
-        <a href="/">返回今日目标</a>
+        <a data-return-to-source href="/">
+          返回今日目标
+        </a>
         <a href="/me">查看我的个人卡</a>
         <a href="/guide">本机练习指南</a>
       </div>

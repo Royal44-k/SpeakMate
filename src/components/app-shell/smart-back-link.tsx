@@ -4,33 +4,11 @@ import { ArrowLeft } from '@phosphor-icons/react'
 import { useRouter } from 'next/navigation'
 import type { MouseEvent } from 'react'
 
-import { canGoBackWithinApp } from './navigation-history'
+import { canReturnToRoute } from './navigation-history'
 import { safeSourceHref } from './learning-routes'
 import styles from './mobile-page-header.module.css'
 
-const ROUTE_STACK_KEY = 'speakmate-route-stack'
-
 type GuardState = 'clean' | 'draft' | 'recording' | 'processing'
-
-function getRouteStack() {
-  try {
-    const storedStack = window.sessionStorage.getItem(ROUTE_STACK_KEY)
-    const parsedStack: unknown = storedStack ? JSON.parse(storedStack) : []
-
-    return Array.isArray(parsedStack) &&
-      parsedStack.length <= 24 &&
-      parsedStack.every(
-        (route) =>
-          typeof route === 'string' &&
-          route.length <= 2000 &&
-          safeSourceHref(route),
-      )
-      ? parsedStack.map((route) => safeSourceHref(route)!)
-      : []
-  } catch {
-    return []
-  }
-}
 
 export function SmartBackLink({
   fallbackHref,
@@ -66,8 +44,7 @@ export function SmartBackLink({
       return
     }
 
-    const stack = getRouteStack()
-    if (canGoBackWithinApp(stack) && stack.at(-2) === source) {
+    if (canReturnToRoute(source)) {
       event.preventDefault()
       router.back()
     }
@@ -75,6 +52,7 @@ export function SmartBackLink({
 
   return (
     <a
+      data-return-to-source
       className={styles.backLink}
       href={source}
       aria-label={ariaLabel}

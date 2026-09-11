@@ -8,6 +8,7 @@ import { AppShell } from './app-shell'
 import { MobilePageHeader } from './mobile-page-header'
 import { RouteCoordinator } from './route-coordinator'
 import { SmartBackLink } from './smart-back-link'
+import { visitRoute, readRouteHistory } from './navigation-history'
 
 const { navigation, routerBack } = vi.hoisted(() => ({
   navigation: { pathname: '/scenes', search: 'level=B1' },
@@ -26,6 +27,7 @@ describe('AppShell', () => {
     navigation.search = 'level=B1'
     routerBack.mockReset()
     window.sessionStorage.clear()
+    window.history.replaceState(null, '')
   })
 
   it('keeps five ordered static document destinations reachable with the current page announced', () => {
@@ -135,10 +137,9 @@ describe('AppShell', () => {
   })
 
   it('uses browser back only when the current session has an in-app route', () => {
-    window.sessionStorage.setItem(
-      'speakmate-route-stack',
-      JSON.stringify(['/scenes', '/scenes/hotel-check-in']),
-    )
+    visitRoute('/scenes')
+    window.history.replaceState(null, '')
+    visitRoute('/scenes/prepare?scene=hotel-check-in')
     render(<MobilePageHeader title="酒店入住" fallbackHref="/scenes" />)
 
     fireEvent.click(screen.getByRole('link', { name: '返回酒店入住' }))
@@ -194,9 +195,9 @@ describe('AppShell', () => {
       </>,
     )
 
-    expect(window.sessionStorage.getItem('speakmate-route-stack')).toBe(
-      JSON.stringify(['/scenes?level=B1']),
-    )
+    expect(readRouteHistory().entries.map((e) => e.route)).toEqual([
+      '/scenes?level=B1',
+    ])
     expect(screen.getByRole('heading', { name: '场景库' })).toHaveFocus()
     expect(screen.getByRole('status')).toHaveTextContent('场景库')
   })
@@ -214,6 +215,7 @@ describe('AppShell', () => {
     screen.getByRole('button', { name: '持久操作' }).focus()
     navigation.pathname = '/scenes/hotel-check-in'
     navigation.search = ''
+    window.history.replaceState(null, '')
 
     rerender(
       <>
@@ -253,8 +255,8 @@ describe('AppShell', () => {
     )
 
     expect(search).toHaveFocus()
-    expect(window.sessionStorage.getItem('speakmate-route-stack')).toBe(
-      JSON.stringify(['/scenes?level=B1']),
-    )
+    expect(readRouteHistory().entries.map((e) => e.route)).toEqual([
+      '/scenes?level=B1',
+    ])
   })
 })

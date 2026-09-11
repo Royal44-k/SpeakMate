@@ -5,7 +5,10 @@ import { useEffect, useRef, useState } from 'react'
 import { FeedbackSheet } from '@/components/feedback-sheet/feedback-sheet'
 import { SceneImage } from '@/components/scene-image/scene-image'
 import { SpeechControl } from '@/components/speech-control/speech-control'
-import { buildLearningHref } from '@/components/app-shell/learning-routes'
+import {
+  buildLearningHref,
+  safeSourceHref,
+} from '@/components/app-shell/learning-routes'
 import type { PreparedPractice } from '@/domain/practice/prepared-practice'
 import {
   createIndexedDbRepositories,
@@ -30,12 +33,14 @@ export function PracticeStage({
   sessionId,
   completed = false,
   exitHref,
+  returnHref,
   repositories,
 }: {
   scene: PreparedPractice
   sessionId: string
   completed?: boolean
   exitHref?: string
+  returnHref?: string
   repositories?: Repositories
 }) {
   const [repository] = useState(
@@ -62,6 +67,7 @@ export function PracticeStage({
   const latest = view?.history.at(-1)
   const prepareHref =
     practice.record?.session.provenance?.returnTo ??
+    safeSourceHref(returnHref) ??
     practice.record?.session.simulation?.returnTo ??
     exitHref ??
     buildLearningHref({
@@ -149,6 +155,7 @@ export function PracticeStage({
     return (
       <SimulationStep
         simulation={practice.record.session.simulation}
+        returnHref={prepareHref}
         draft={practice.simulationDraft}
         active={practice.record.session.status === 'active'}
         busy={processing}
@@ -185,11 +192,17 @@ export function PracticeStage({
         {!practice.record?.session.simulation ? (
           <a href={nextHref}>再练一轮新对话</a>
         ) : null}
-        <a href={prepareHref}>
-          {practice.record?.session.simulation
-            ? '返回词句或记录簿'
-            : '返回场景准备'}
+        <a data-return-to-source href={prepareHref}>
+          返回来源页面
         </a>
+        {practice.record?.session.simulation ? (
+          <a
+            data-return-to-source
+            href={practice.record.session.simulation.returnTo}
+          >
+            返回词句或记录簿
+          </a>
+        ) : null}
       </main>
     )
 
@@ -224,6 +237,14 @@ export function PracticeStage({
             <small>{scene.level} · 已提交轮次</small>
           </span>
         </header>
+        {practice.record?.session.simulation ? (
+          <a
+            data-return-to-source
+            href={practice.record.session.simulation.returnTo}
+          >
+            返回词句或记录簿
+          </a>
+        ) : null}
         <section className={styles.sceneStrip} aria-label="当前练习场景">
           <SceneImage
             image={scene.image}

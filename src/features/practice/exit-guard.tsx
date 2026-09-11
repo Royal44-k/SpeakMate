@@ -13,6 +13,11 @@ import { createPortal } from 'react-dom'
 
 import type { PracticeStatus } from '@/domain/practice/machine'
 import {
+  canReturnToRoute,
+  registerSavedNavigationRelease,
+  ROUTE_ENTRY_KEY,
+} from '@/components/app-shell/navigation-history'
+import {
   navigateLocalHref,
   safeSourceHref,
 } from '@/components/app-shell/learning-routes'
@@ -22,35 +27,6 @@ import styles from './practice-stage.module.css'
 export type ExitGuardState = 'clean' | 'draft' | 'recording' | 'processing'
 
 const SENTINEL_KEY = '__speakmateExitGuard'
-const ROUTE_STACK_KEY = 'speakmate-route-stack'
-
-function getRouteStack() {
-  try {
-    const stored = window.sessionStorage.getItem(ROUTE_STACK_KEY)
-    const parsed: unknown = stored ? JSON.parse(stored) : []
-    return Array.isArray(parsed) &&
-      parsed.every((route) => typeof route === 'string')
-      ? parsed
-      : []
-  } catch {
-    return []
-  }
-}
-
-function canReturnToExactRoute(fallbackHref: string) {
-  return getRouteStack().at(-2) === fallbackHref
-}
-
-function resetRouteStack(fallbackHref: string) {
-  try {
-    window.sessionStorage.setItem(
-      ROUTE_STACK_KEY,
-      JSON.stringify([fallbackHref]),
-    )
-  } catch {
-    /* Explicit fallback remains available. */
-  }
-}
 
 export function exitGuardState(
   status: PracticeStatus,
@@ -68,23 +44,30 @@ export function exitGuardState(
   return 'clean'
 }
 
-function sentinelState(_state: unknown, id: string) {
-  return { [SENTINEL_KEY]: id }
+function sentinelState(state: unknown, id: string) {
+  return {
+    ...(state && typeof state === 'object' ? state : {}),
+    [SENTINEL_KEY]: id,
+  }
 }
 
 function removeSentinel(state: unknown, id: string) {
   if (!state || typeof state !== 'object') return state
   const current = state as Record<string, unknown>
   if (current[SENTINEL_KEY] !== id) return state
-  return null
+  const next = { ...current }
+  delete next[SENTINEL_KEY]
+  return next
 }
 
 function GuardedExit({
   fallbackHref,
   onConfirmExit,
+  state,
 }: {
   fallbackHref: string
   onConfirmExit?: () => void
+  state: ExitGuardState
 }) {
   const router = useRouter()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -92,6 +75,7 @@ function GuardedExit({
   const continueButtonRef = useRef<HTMLButtonElement>(null)
   const triggerRef = useRef<HTMLAnchorElement>(null)
   const requestedHrefRef = useRef<string | undefined>(undefined)
+  const requestedReturnRef = useRef(true)
   const requestedTriggerRef = useRef<HTMLAnchorElement | null>(null)
   const restoreFocusRef = useRef(false)
   const confirmingRef = useRef(false)
@@ -99,15 +83,38 @@ function GuardedExit({
   const sentinelIdRef = useRef<string | undefined>(undefined)
   const sentinelCurrentRef = useRef(false)
   const cleanupVersionRef = useRef(0)
+  const stateRef = useRef(state)
+  const navigationRelease = useRef<
+    | {
+        resolve: () => void
+        reject: (error: Error) => void
+        timer: ReturnType<typeof setTimeout>
+        sourceId: unknown
+      }
+    | undefined
+  >(undefined)
+  const releaseAttempted = useRef(false)
   const fallbackHrefRef = useRef(fallbackHref)
   const onConfirmExitRef = useRef(onConfirmExit)
-  const replaceRef = useRef((href: string) => navigateLocalHref(href, true))
+  const replaceRef = useRef((href: string) =>
+    navigateLocalHref(
+      href,
+      true,
+      requestedReturnRef.current ? 'return' : 'forward',
+    ),
+  )
 
   useLayoutEffect(() => {
+    stateRef.current = state
     fallbackHrefRef.current = fallbackHref
     onConfirmExitRef.current = onConfirmExit
-    replaceRef.current = (href: string) => navigateLocalHref(href, true)
-  }, [fallbackHref, onConfirmExit, router.replace])
+    replaceRef.current = (href: string) =>
+      navigateLocalHref(
+        href,
+        true,
+        requestedReturnRef.current ? 'return' : 'forward',
+      )
+  }, [fallbackHref, onConfirmExit, router.replace, state])
 
   useLayoutEffect(() => {
     cleanupVersionRef.current += 1
@@ -115,6 +122,7 @@ function GuardedExit({
       sentinelIdRef.current ??
       `practice-exit-${globalThis.crypto?.randomUUID?.() ?? Date.now()}`
     const currentHref = `${window.location.pathname}${window.location.search}${window.location.hash}`
+    const sourceId = window.history.state?.[ROUTE_ENTRY_KEY]
     sentinelIdRef.current = sentinelId
 
     if (
@@ -122,13 +130,55 @@ function GuardedExit({
         SENTINEL_KEY
       ] !== sentinelId
     ) {
-      window.history.pushState(
-        sentinelState(window.history.state, sentinelId),
-        '',
-        currentHref,
-      )
+      try {
+        window.history.pushState(
+          sentinelState(window.history.state, sentinelId),
+          '',
+          currentHref,
+        )
+      } catch {
+        /* Explicit confirmation and beforeunload still guard drafts. */
+      }
     }
-    sentinelCurrentRef.current = true
+    sentinelCurrentRef.current = history.state?.[SENTINEL_KEY] === sentinelId
+    const unregisterRelease = registerSavedNavigationRelease((target) => {
+      if (
+        stateRef.current !== 'processing' ||
+        confirmingRef.current ||
+        navigationRelease.current ||
+        !sentinelCurrentRef.current ||
+        history.state?.[SENTINEL_KEY] !== sentinelId
+      )
+        return Promise.reject(
+          new Error('当前输入尚未释放，请保留已保存记录并重试入口。'),
+        )
+      return new Promise<void>((resolve, reject) => {
+        releaseAttempted.current = true
+        const timer = setTimeout(() => {
+          navigationRelease.current = undefined
+          reject(
+            new Error('等待返回原历史条目超时；记录已保存，请使用保留入口。'),
+          )
+        }, 1500)
+        navigationRelease.current = { resolve, reject, timer, sourceId }
+        confirmingRef.current = true
+        try {
+          // A forward-retained placeholder must never retain the obsolete id=new URL.
+          const placeholder = {
+            ...history.state,
+            __speakmateRoutePlaceholder: true,
+          }
+          delete placeholder[SENTINEL_KEY]
+          history.replaceState(placeholder, '', target)
+          sentinelCurrentRef.current = false
+          history.back()
+        } catch {
+          clearTimeout(timer)
+          navigationRelease.current = undefined
+          reject(new Error('浏览器历史不可用；记录已保存，请使用保留入口。'))
+        }
+      })
+    })
 
     function handleBeforeUnload(event: BeforeUnloadEvent) {
       if (confirmingRef.current) return
@@ -138,20 +188,39 @@ function GuardedExit({
 
     function handlePopState(event: PopStateEvent) {
       sentinelCurrentRef.current = false
+      const pending = navigationRelease.current
+      if (pending) {
+        clearTimeout(pending.timer)
+        navigationRelease.current = undefined
+        if (
+          `${location.pathname}${location.search}${location.hash}` !==
+            currentHref ||
+          event.state?.[ROUTE_ENTRY_KEY] !== pending.sourceId ||
+          event.state?.[SENTINEL_KEY]
+        )
+          pending.reject(new Error('返回条目不匹配；没有执行旧跳转。'))
+        else pending.resolve()
+        return
+      }
+      if (releaseAttempted.current) return
       if (confirmingRef.current) {
         if (returningToPreviousRef.current) return
-        resetRouteStack(fallbackHrefRef.current)
         replaceRef.current(fallbackHrefRef.current)
         return
       }
 
-      window.history.pushState(
-        sentinelState(event.state, sentinelId),
-        '',
-        currentHref,
-      )
-      sentinelCurrentRef.current = true
+      try {
+        window.history.pushState(
+          sentinelState(event.state, sentinelId),
+          '',
+          currentHref,
+        )
+      } catch {
+        /* Fall back to explicit guarded links. */
+      }
+      sentinelCurrentRef.current = history.state?.[SENTINEL_KEY] === sentinelId
       requestedHrefRef.current = undefined
+      requestedReturnRef.current = true
       requestedTriggerRef.current = null
       setDialogOpen(true)
     }
@@ -185,7 +254,9 @@ function GuardedExit({
       if (!href || href === currentHref) return
       event.preventDefault()
       event.stopPropagation()
+      if (releaseAttempted.current) return
       requestedHrefRef.current = href
+      requestedReturnRef.current = anchor.hasAttribute('data-return-to-source')
       requestedTriggerRef.current = anchor
       setDialogOpen(true)
     }
@@ -195,6 +266,13 @@ function GuardedExit({
     document.addEventListener('click', handleDocumentClick, true)
 
     return () => {
+      unregisterRelease()
+      const pending = navigationRelease.current
+      if (pending) {
+        clearTimeout(pending.timer)
+        navigationRelease.current = undefined
+        pending.reject(new Error('页面已卸载；没有执行旧跳转。'))
+      }
       window.removeEventListener('beforeunload', handleBeforeUnload)
       window.removeEventListener('popstate', handlePopState)
       document.removeEventListener('click', handleDocumentClick, true)
@@ -281,7 +359,9 @@ function GuardedExit({
     }
 
     event.preventDefault()
+    if (releaseAttempted.current) return
     requestedHrefRef.current = undefined
+    requestedReturnRef.current = true
     requestedTriggerRef.current = null
     setDialogOpen(true)
   }
@@ -336,9 +416,8 @@ function GuardedExit({
     if (requestedHrefRef.current)
       fallbackHrefRef.current = requestedHrefRef.current
     onConfirmExitRef.current?.()
-    returningToPreviousRef.current = canReturnToExactRoute(
-      fallbackHrefRef.current,
-    )
+    returningToPreviousRef.current =
+      requestedReturnRef.current && canReturnToRoute(fallbackHrefRef.current)
     const sentinelId = sentinelIdRef.current
     if (
       sentinelId &&
@@ -364,7 +443,6 @@ function GuardedExit({
       router.back()
       return
     }
-    resetRouteStack(fallbackHrefRef.current)
     replaceRef.current(fallbackHrefRef.current)
   }
 
@@ -436,7 +514,11 @@ export function ExitGuard({
   }
 
   return (
-    <GuardedExit fallbackHref={fallbackHref} onConfirmExit={onConfirmExit} />
+    <GuardedExit
+      state={state}
+      fallbackHref={fallbackHref}
+      onConfirmExit={onConfirmExit}
+    />
   )
 }
 
@@ -456,12 +538,11 @@ function CleanExit({ fallbackHref }: { fallbackHref: string }) {
     }
 
     event.preventDefault()
-    if (canReturnToExactRoute(fallbackHref)) {
+    if (canReturnToRoute(fallbackHref)) {
       router.back()
       return
     }
-    resetRouteStack(fallbackHref)
-    navigateLocalHref(fallbackHref, true)
+    navigateLocalHref(fallbackHref, true, 'return')
   }
 
   return (

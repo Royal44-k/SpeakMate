@@ -171,19 +171,19 @@ export function usePracticeSession(
       ).record
     })()
     void initializationRef.current
-      .then((saved) => {
+      .then(async (saved) => {
         if (!active) return
         applyRecord(saved)
         if (requestedId === 'new') {
           try {
-            replaceCreatedSessionId(saved.session.id)
+            await replaceCreatedSessionId(saved.session.id)
           } catch {
             setAddressError(
               '练习已保存，但地址未更新。请使用本页的已保存练习入口继续；不要重新新建。',
             )
           }
         }
-        setReady(true)
+        if (active) setReady(true)
       })
       .catch((error) => {
         if (active)

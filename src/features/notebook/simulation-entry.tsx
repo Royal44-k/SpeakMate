@@ -22,7 +22,7 @@ import {
 import styles from './notebook.module.css'
 
 const openCreated = (id: string) =>
-  navigateLearning({ kind: 'simulation', id }, true)
+  navigateLearning({ kind: 'simulation', id }, true, true)
 export function SimulationEntry({
   noteId,
   sourceId,
@@ -147,12 +147,12 @@ export function SimulationEntry({
       }
       setHasPending(true)
       const saved = await repo.practice.commit(pending.current)
-      setCreated(saved.record.session.id)
       try {
         await onCreated?.(saved.record.session.id)
       } catch {
         setAddressError(true)
       }
+      setCreated(saved.record.session.id)
     } catch {
       setError(
         (taskProvenance ? '词句已保存，练习尚未开始。' : '') +
@@ -279,9 +279,13 @@ export function SimulationEntry({
       ) : null}
       <div className={styles.actions}>
         {taskProvenance ? (
-          <a href={taskProvenance.returnTo}>返回原计划</a>
+          <a data-return-to-source href={taskProvenance.returnTo}>
+            返回原计划
+          </a>
         ) : null}
-        <a href="/notebook">返回记录簿</a>
+        <a data-return-to-source href="/notebook">
+          返回记录簿
+        </a>
         <a href="/privacy">导出本机数据</a>
       </div>
     </main>

@@ -36,9 +36,6 @@ export function LearningCenter({
   const [profile, setProfile] = useState<LearnerProfile | null>(null)
   const [sessions, setSessions] = useState<PracticeSession[]>([])
   const [favorites, setFavorites] = useState<FavoriteExpression[]>([])
-  const [records, setRecords] = useState<
-    Record<string, PracticeRecord | undefined>
-  >({})
   const [loadError, setLoadError] = useState(false)
   const [loadedAt] = useState(() => Date.now())
   const [retained, setRetained] = useState<PracticeRecord>()
@@ -56,6 +53,24 @@ export function LearningCenter({
   const deletionTrigger = useRef<HTMLButtonElement>(null)
   const undoButton = useRef<HTMLButtonElement>(null)
   const historyTitle = useRef<HTMLHeadingElement>(null)
+  const selectedRead = useRef(false)
+  async function readSelected(id: string, action: 'view' | 'delete') {
+    if (selectedRead.current || historyBusy) return
+    selectedRead.current = true
+    setHistoryBusy(true)
+    setHistoryError('')
+    try {
+      const record = await repo.practice.read(id)
+      if (!record) throw new Error('HISTORY_MISSING')
+      if (action === 'view') setRetained(record)
+      else setDeleting(record)
+    } catch {
+      setHistoryError('这条记录暂时无法读取，请重试；没有删除或覆盖记录。')
+    } finally {
+      selectedRead.current = false
+      setHistoryBusy(false)
+    }
+  }
   useEffect(() => {
     if (deleting) deletionTitle.current?.focus()
   }, [deleting])
@@ -106,21 +121,10 @@ export function LearningCenter({
       const latest = savedSessions.sort((a, b) =>
         b.updatedAt.localeCompare(a.updatedAt),
       )
-      const coherent = await Promise.all(
-        latest.map((session) => repositories.practice.read(session.id)),
-      )
-      if (!active) return
       setProfile(learner)
       setLoadError(false)
       setProfileStyle(settings.appliedProfileStyle)
       setSessions(latest)
-      setRecords(
-        Object.fromEntries(
-          coherent
-            .filter((record): record is PracticeRecord => !!record)
-            .map((record) => [record.session.id, record]),
-        ),
-      )
       setFavorites(
         savedFavorites.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)),
       )
@@ -210,25 +214,21 @@ export function LearningCenter({
                 const scene = SCENE_METADATA.find(
                   (item) => item.id === session.sceneId,
                 )
-                const record = records[session.id]
-                const label =
-                  record?.status === 'recovery'
-                    ? '保留记录，需检查'
-                    : record?.status === 'historical'
-                      ? session.status === 'completed'
-                        ? '旧版已结束记录（只读）'
-                        : session.status === 'abandoned'
-                          ? '旧版已停止记录（只读）'
-                          : '旧版未结束记录（只读）'
-                      : session.status === 'completed'
-                        ? session.gradedDialogue?.state.outcome === 'partial'
-                          ? '已结束，部分目标未确认'
-                          : '已结束，所选目标已确认'
-                        : session.status === 'abandoned'
-                          ? '已停止，未记作完成'
-                          : session.gradedDialogue?.state.outcome === 'active'
-                            ? '继续练习'
-                            : '待查看结束选项'
+                const label = !session.gradedDialogue
+                  ? session.status === 'completed'
+                    ? '旧版已结束记录（只读）'
+                    : session.status === 'abandoned'
+                      ? '旧版已停止记录（只读）'
+                      : '旧版未结束记录（只读）'
+                  : session.status === 'completed'
+                    ? session.gradedDialogue?.state.outcome === 'partial'
+                      ? '已结束，部分目标未确认'
+                      : '已结束，所选目标已确认'
+                    : session.status === 'abandoned'
+                      ? '已停止，未记作完成'
+                      : session.gradedDialogue?.state.outcome === 'active'
+                        ? '继续练习'
+                        : '待查看结束选项'
                 const href = session.simulation
                   ? savedSimulationHref(session.id, '/me')
                   : savedPracticeHref(
@@ -266,35 +266,26 @@ export function LearningCenter({
                     ) : (
                       <>
                         {content}
-                        {record ? (
-                          <button
-                            type="button"
-                            onClick={() => setRetained(record)}
-                          >
-                            在此查看保留记录（只读）
-                          </button>
-                        ) : (
-                          <p>
-                            记录暂时无法读取，请重试本页或
-                            <a href="/privacy">导出本机备份</a>；没有删除记录。
-                          </p>
-                        )}
+                        <button
+                          type="button"
+                          disabled={historyBusy}
+                          onClick={() => void readSelected(session.id, 'view')}
+                        >
+                          在此查看保留记录（只读）
+                        </button>
                       </>
                     )}
-                    {record ? (
-                      <button
-                        type="button"
-                        disabled={historyBusy}
-                        onClick={(event) => {
-                          deletionTrigger.current = event.currentTarget
-                          setDeleting(record)
-                          setHistoryError('')
-                        }}
-                        aria-label={`删除此练习：${session.sceneSnapshot?.titleZh ?? scene?.titleZh ?? '英语对话'}`}
-                      >
-                        删除此练习
-                      </button>
-                    ) : null}
+                    <button
+                      type="button"
+                      disabled={historyBusy}
+                      onClick={(event) => {
+                        deletionTrigger.current = event.currentTarget
+                        void readSelected(session.id, 'delete')
+                      }}
+                      aria-label={`删除此练习：${session.sceneSnapshot?.titleZh ?? scene?.titleZh ?? '英语对话'}`}
+                    >
+                      删除此练习
+                    </button>
                   </div>
                 )
               })}

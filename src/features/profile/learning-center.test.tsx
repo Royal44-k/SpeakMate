@@ -1,6 +1,12 @@
 import type { ReactNode } from 'react'
 
-import { render, screen, fireEvent, within } from '@testing-library/react'
+import {
+  render,
+  screen,
+  fireEvent,
+  within,
+  waitFor,
+} from '@testing-library/react'
 import { historicalIdBackup } from '../../../tests/fixtures/historical-id'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -25,6 +31,69 @@ vi.mock(
 )
 
 describe('LearningCenter session routes', () => {
+  it('keeps large retained history reachable with no eager transcripts and one selected read at a time', async () => {
+    const repo = createMemoryRepositories()
+    const backup = historicalIdBackup('旧的完整记录')
+    backup.sessions.push(
+      ...Array.from({ length: 120 }, (_, n) => ({
+        ...backup.sessions[0],
+        id: `recent-${n}`,
+        updatedAt: '2026-09-12T00:00:00.000Z',
+      })),
+    )
+    await repo.restoreLearnerData(
+      await repo.previewRestore(JSON.stringify(backup)),
+    )
+    const old = (await repo.sessions.get('旧的完整记录'))!
+    const original = repo.practice.read
+    let active = 0,
+      max = 0
+    const reads = vi
+      .spyOn(repo.practice, 'read')
+      .mockImplementation(async (id) => {
+        active++
+        max = Math.max(max, active)
+        try {
+          return await original(id)
+        } finally {
+          active--
+        }
+      })
+    render(<LearningCenter repositories={repo} />)
+    const history = await screen.findByRole('region', { name: '完整练习历史' })
+    await waitFor(() =>
+      expect(
+        within(history).getAllByRole('button', { name: /删除此练习/ }),
+      ).toHaveLength(121),
+    )
+    expect(reads).toHaveBeenCalledTimes(0)
+    const older = screen.getByRole('button', { name: /在此查看保留记录/ })
+    fireEvent.click(older)
+    fireEvent.click(older)
+    expect(await screen.findByText(backup.turns[0].aiText)).toBeVisible()
+    expect(reads).toHaveBeenCalledTimes(1)
+    expect(max).toBe(1)
+    expect(screen.getByRole('link', { name: '导出本机备份' })).toHaveAttribute(
+      'href',
+      '/privacy',
+    )
+    fireEvent.click(screen.getByRole('button', { name: '返回本页列表' }))
+    fireEvent.click(
+      within(screen.getByRole('region', { name: '完整练习历史' }))
+        .getAllByRole('button', { name: /删除此练习/ })
+        .at(-1)!,
+    )
+    await screen.findByRole('heading', { name: '删除这条历史？' })
+    expect(reads).toHaveBeenCalledTimes(2)
+    fireEvent.click(screen.getByRole('button', { name: '确认删除这条历史' }))
+    await screen.findByRole('button', { name: '撤销本次删除' })
+    expect(await repo.sessions.get(old.id)).toBeUndefined()
+    fireEvent.click(screen.getByRole('button', { name: '撤销本次删除' }))
+    await screen.findByText(/本次历史已恢复/)
+    expect((await repo.exportLearnerData()).turns).toEqual(backup.turns)
+    expect(await repo.sessions.get(old.id)).toEqual(old)
+    expect(reads).toHaveBeenCalledTimes(2)
+  }, 15000)
   it('shows every history row, confirms deletion, preserves saved notes and offers real undo', async () => {
     const repo = createMemoryRepositories()
     repositoryState.value = repo
@@ -45,7 +114,7 @@ describe('LearningCenter session routes', () => {
       within(history).getAllByRole('button', { name: /删除此练习/ })[0],
     )
     expect(
-      screen.getByRole('heading', { name: '删除这条历史？' }),
+      await screen.findByRole('heading', { name: '删除这条历史？' }),
     ).toHaveFocus()
     fireEvent.click(screen.getByRole('button', { name: '取消删除' }))
     expect(
@@ -55,7 +124,9 @@ describe('LearningCenter session routes', () => {
     fireEvent.click(
       within(history).getAllByRole('button', { name: /删除此练习/ })[0],
     )
-    fireEvent.click(screen.getByRole('button', { name: '确认删除这条历史' }))
+    fireEvent.click(
+      await screen.findByRole('button', { name: '确认删除这条历史' }),
+    )
     expect(
       await screen.findByRole('button', { name: '撤销本次删除' }),
     ).toBeVisible()
@@ -75,7 +146,7 @@ describe('LearningCenter session routes', () => {
     )
     render(<LearningCenter />)
     fireEvent.click(await screen.findByRole('button', { name: /删除此练习/ }))
-    expect(screen.getByText(/这条练习尚未结束/)).toBeVisible()
+    expect(await screen.findByText(/这条练习尚未结束/)).toBeVisible()
     await repo.sessions.save({
       ...(await repo.sessions.get('active-history'))!,
       updatedAt: '2026-09-12T00:00:00.000Z',
@@ -103,7 +174,7 @@ describe('LearningCenter session routes', () => {
         await screen.findByRole('button', { name: /在此查看保留记录/ }),
       )
       expect(
-        screen.getByRole('heading', { name: '保留的练习记录（只读）' }),
+        await screen.findByRole('heading', { name: '保留的练习记录（只读）' }),
       ).toBeVisible()
       expect(screen.getByText(/编号不能直接链接或从此路由续练/)).toBeVisible()
       expect(screen.getByText(backup.sessions[0].openingText)).toBeVisible()

@@ -6,6 +6,7 @@ import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
 import {
   buildLearningHref,
   safeSourceHref,
+  replaceLocalFilterHref,
 } from '@/components/app-shell/learning-routes'
 import { useOfflineReadiness } from '@/components/app-shell/offline-readiness'
 import { SceneImage } from '@/components/scene-image/scene-image'
@@ -113,9 +114,7 @@ export function ScenePreparation({
               onChange={() => {
                 setSelectedMode(value)
                 if (window.location.pathname === '/scenes/prepare')
-                  window.history.replaceState(
-                    null,
-                    '',
+                  replaceLocalFilterHref(
                     buildLearningHref({
                       kind: 'prepare',
                       scene: scene.slug,

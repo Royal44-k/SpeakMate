@@ -192,7 +192,9 @@ function NotebookNoteContent({
               entry.sourceExists === false ? (
                 <p>原练习已删除</p>
               ) : entry.sourceExists && sourceHref ? (
-                <a href={sourceHref}>返回来源练习</a>
+                <a data-return-to-source href={sourceHref}>
+                  返回来源练习
+                </a>
               ) : (
                 <p>来源无法直接打开；保存时的原文仍保留。</p>
               )
@@ -365,8 +367,14 @@ function NotebookNoteContent({
       ) : null}
       {error ? <p role="alert">{error}</p> : null}
       <div className={styles.actions}>
-        {backHref !== '/notebook' ? <a href={backHref}>返回来源页面</a> : null}
-        <a href="/notebook">返回记录簿</a>
+        {backHref !== '/notebook' ? (
+          <a data-return-to-source href={backHref}>
+            返回来源页面
+          </a>
+        ) : null}
+        <a data-return-to-source href="/notebook">
+          返回记录簿
+        </a>
         <a href="/privacy">导出本机数据</a>
       </div>
     </main>

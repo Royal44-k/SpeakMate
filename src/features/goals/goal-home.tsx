@@ -34,7 +34,7 @@ export function GoalHome({
   repositories,
   fetcher = fetch,
   clock = nowIso,
-  navigate = navigateLocalHref,
+  navigate = (href) => navigateLocalHref(href, false, 'forward', true),
   date,
   focusTask,
 }: {
@@ -251,7 +251,7 @@ export function GoalHome({
           materials={warmup.materials}
           onComplete={() => setRetry((n) => n + 1)}
           onStarted={() => {
-            void navigate(buildGoalHref(data.plan.dateKey, 'warmup'))
+            return navigate(buildGoalHref(data.plan.dateKey, 'warmup'))
           }}
         />
       ) : null}

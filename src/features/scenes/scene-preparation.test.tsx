@@ -3,6 +3,10 @@ import { describe, expect, it, vi } from 'vitest'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import { SCENE_METADATA } from '@/content/scenes/metadata'
 import { ScenePreparation } from './scene-preparation'
+import {
+  visitRoute,
+  readRouteHistory,
+} from '@/components/app-shell/navigation-history'
 const loader = vi.hoisted(() => vi.fn())
 vi.mock('@/content/public-category', () => ({
   publicContentProvider: () => ({ load: loader }),
@@ -16,6 +20,13 @@ describe('graded preparation', () => {
     })
     if (result.status !== 'available') throw new Error('fixture')
     loader.mockResolvedValue(result)
+    history.replaceState(
+      { custom: 'keep' },
+      '',
+      '/scenes/prepare?scene=coffee-order&level=C1',
+    )
+    visitRoute('/scenes/prepare?scene=coffee-order&level=C1')
+    const entry = history.state.__speakmateRouteEntry
     render(
       <ScenePreparation
         scene={{
@@ -31,6 +42,11 @@ describe('graded preparation', () => {
     ).toBeVisible()
     expect(screen.getByRole('radio', { name: /简短/ })).toBeChecked()
     fireEvent.click(screen.getByRole('radio', { name: /深入/ }))
+    expect(history.state).toMatchObject({
+      custom: 'keep',
+      __speakmateRouteEntry: entry,
+    })
+    expect(readRouteHistory().entries).toHaveLength(1)
     const href = screen
       .getByRole('link', { name: '进入对话舞台' })
       .getAttribute('href')!
@@ -39,6 +55,19 @@ describe('graded preparation', () => {
     expect(href).not.toContain('q%3D')
     expect(screen.getByText(/至少一次非空表达/)).toBeVisible()
     expect(screen.queryByText('本次任务')).not.toBeInTheDocument()
+    const denied = vi.spyOn(history, 'replaceState').mockImplementation(() => {
+      throw new Error('denied')
+    })
+    try {
+      fireEvent.click(screen.getByRole('radio', { name: /标准/ }))
+      expect(screen.getByRole('radio', { name: /标准/ })).toBeChecked()
+      expect(
+        screen.getByRole('link', { name: '进入对话舞台' }),
+      ).toHaveAttribute('href', expect.stringContaining('mode=standard'))
+      expect(location.pathname).toBe('/scenes/prepare')
+    } finally {
+      denied.mockRestore()
+    }
   })
   it('distinguishes unavailable content from unknown analysis and supports explicit retry', async () => {
     loader.mockRejectedValueOnce(new Error('offline'))

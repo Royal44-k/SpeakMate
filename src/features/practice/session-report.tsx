@@ -247,7 +247,7 @@ export function SessionReportView({
         />
         <header className={styles.scoreHeader}>
           {record.session.provenance ? (
-            <a href={record.session.provenance.returnTo}>
+            <a data-return-to-source href={record.session.provenance.returnTo}>
               返回 {record.session.provenance.planDate} 的原任务
             </a>
           ) : null}
@@ -268,7 +268,12 @@ export function SessionReportView({
                 {record.session.simulation.descriptor.version}；来源语料 v
                 {record.session.simulation.descriptor.sourceContentVersion}。
               </p>
-              <a href={record.session.simulation.returnTo}>返回词句或记录簿</a>
+              <a
+                data-return-to-source
+                href={record.session.simulation.returnTo}
+              >
+                返回词句或记录簿
+              </a>
             </section>
           ) : null}
           <h2>

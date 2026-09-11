@@ -174,7 +174,9 @@ export function GoalMaterialChoice({
         ) : null}
       </section>
       {error ? <p role="alert">{error}</p> : null}
-      <a href={returnTo}>返回原计划</a>
+      <a data-return-to-source href={returnTo}>
+        返回原计划
+      </a>
       <a href="/install">查看离线与更新</a>
     </main>
   )
