@@ -1,0 +1,1324 @@
+{
+  "dailyPlans": [
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-01",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-01T02:00:00.000Z",
+          "completedAt": "2026-07-01T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_d72c8fb3-2372-4958-93d3-c59164df8db6"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-05",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "assistance",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-05"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-01T02:00:00.000Z",
+      "updatedAt": "2026-07-01T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-02",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-02T02:00:00.000Z",
+          "completedAt": "2026-07-02T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_d6b8c3b1-484c-43bb-9af9-257b3457d790"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-02",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-02"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-02T02:00:00.000Z",
+      "updatedAt": "2026-07-02T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-03",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-03T02:00:00.000Z",
+          "completedAt": "2026-07-03T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_614806ec-436c-4174-bd73-c1e62bba29db"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-06",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "assistance",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-06"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-03T02:00:00.000Z",
+      "updatedAt": "2026-07-03T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-04",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-04T02:00:00.000Z",
+          "completedAt": "2026-07-04T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_dedc8fc8-6dc4-40f3-9206-e51da76e8f5d"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-03",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-03"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-04T02:00:00.000Z",
+      "updatedAt": "2026-07-04T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-05",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-05T02:00:00.000Z",
+          "completedAt": "2026-07-05T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_0c2479fd-2ddc-40b8-8b12-e85ec760ffc3"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-01",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "assistance",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-01"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-05T02:00:00.000Z",
+      "updatedAt": "2026-07-05T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-06",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-06T02:00:00.000Z",
+          "completedAt": "2026-07-06T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_ec05d91f-db8c-4d36-ac52-c36b001eb492"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-04",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-04"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-06T02:00:00.000Z",
+      "updatedAt": "2026-07-06T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-07",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-07T02:00:00.000Z",
+          "completedAt": "2026-07-07T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_dd50badd-74c9-406f-9e44-1af0287f222e"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-02",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "assistance",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-02"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-07T02:00:00.000Z",
+      "updatedAt": "2026-07-07T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-08",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-08T02:00:00.000Z",
+          "completedAt": "2026-07-08T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_79772722-e587-4588-866b-45a04166e38a"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-05",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-05"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-08T02:00:00.000Z",
+      "updatedAt": "2026-07-08T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-09",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-09T02:00:00.000Z",
+          "completedAt": "2026-07-09T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_0bd9ea50-9955-4a09-bc10-483833c51cb9"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-03",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "assistance",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-03"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-09T02:00:00.000Z",
+      "updatedAt": "2026-07-09T02:00:00.000Z"
+    },
+    {
+      "id": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "dateKey": "2026-07-10",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-07-10T02:00:00.000Z",
+          "completedAt": "2026-07-10T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_71d29439-2487-452e-a02e-4f6f494772e4"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-02",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "assistance",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-02"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-07-10T02:00:00.000Z",
+      "updatedAt": "2026-07-10T02:00:00.000Z"
+    }
+  ],
+  "favorites": [],
+  "learningEvents": [
+    {
+      "id": "15:reward-redeemed|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|16:profile-atlantic",
+      "type": "reward-redeemed",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "rewardId": "profile-atlantic",
+      "occurredAt": "2026-07-10T02:00:00.000Z",
+      "dateKey": "2026-07-10"
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_0bd9ea50-9955-4a09-bc10-483833c51cb9",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-09T02:00:00.000Z",
+      "dateKey": "2026-07-09",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09|6:warmup",
+        "planDate": "2026-07-09",
+        "returnTo": "/?date=2026-07-09&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_0bd9ea50-9955-4a09-bc10-483833c51cb9",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_0c2479fd-2ddc-40b8-8b12-e85ec760ffc3",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-05T02:00:00.000Z",
+      "dateKey": "2026-07-05",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05|6:warmup",
+        "planDate": "2026-07-05",
+        "returnTo": "/?date=2026-07-05&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_0c2479fd-2ddc-40b8-8b12-e85ec760ffc3",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_614806ec-436c-4174-bd73-c1e62bba29db",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-03T02:00:00.000Z",
+      "dateKey": "2026-07-03",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03|6:warmup",
+        "planDate": "2026-07-03",
+        "returnTo": "/?date=2026-07-03&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_614806ec-436c-4174-bd73-c1e62bba29db",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_71d29439-2487-452e-a02e-4f6f494772e4",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-10T02:00:00.000Z",
+      "dateKey": "2026-07-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10|6:warmup",
+        "planDate": "2026-07-10",
+        "returnTo": "/?date=2026-07-10&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_71d29439-2487-452e-a02e-4f6f494772e4",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_79772722-e587-4588-866b-45a04166e38a",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-08T02:00:00.000Z",
+      "dateKey": "2026-07-08",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08|6:warmup",
+        "planDate": "2026-07-08",
+        "returnTo": "/?date=2026-07-08&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_79772722-e587-4588-866b-45a04166e38a",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_d6b8c3b1-484c-43bb-9af9-257b3457d790",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-02T02:00:00.000Z",
+      "dateKey": "2026-07-02",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02|6:warmup",
+        "planDate": "2026-07-02",
+        "returnTo": "/?date=2026-07-02&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_d6b8c3b1-484c-43bb-9af9-257b3457d790",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_d72c8fb3-2372-4958-93d3-c59164df8db6",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-01T02:00:00.000Z",
+      "dateKey": "2026-07-01",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01|6:warmup",
+        "planDate": "2026-07-01",
+        "returnTo": "/?date=2026-07-01&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_d72c8fb3-2372-4958-93d3-c59164df8db6",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_dd50badd-74c9-406f-9e44-1af0287f222e",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-07T02:00:00.000Z",
+      "dateKey": "2026-07-07",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07|6:warmup",
+        "planDate": "2026-07-07",
+        "returnTo": "/?date=2026-07-07&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_dd50badd-74c9-406f-9e44-1af0287f222e",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_dedc8fc8-6dc4-40f3-9206-e51da76e8f5d",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-04T02:00:00.000Z",
+      "dateKey": "2026-07-04",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04|6:warmup",
+        "planDate": "2026-07-04",
+        "returnTo": "/?date=2026-07-04&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_dedc8fc8-6dc4-40f3-9206-e51da76e8f5d",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "16:warmup-completed|43:warmup_ec05d91f-db8c-4d36-ac52-c36b001eb492",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "occurredAt": "2026-07-06T02:00:00.000Z",
+      "dateKey": "2026-07-06",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06",
+        "sourceTaskId": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06|6:warmup",
+        "planDate": "2026-07-06",
+        "returnTo": "/?date=2026-07-06&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_ec05d91f-db8c-4d36-ac52-c36b001eb492",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    }
+  ],
+  "notebook": [],
+  "outbox": [],
+  "pointsLedger": [
+    {
+      "id": "12:reward-spend|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|16:profile-atlantic",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "15:reward-redeemed|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|16:profile-atlantic",
+      "ruleId": "reward-redeem",
+      "ruleVersion": 1,
+      "delta": -100,
+      "createdAt": "2026-07-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-01|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_d72c8fb3-2372-4958-93d3-c59164df8db6",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-01T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-02|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_d6b8c3b1-484c-43bb-9af9-257b3457d790",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-02T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-03|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_614806ec-436c-4174-bd73-c1e62bba29db",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-03T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-04|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_dedc8fc8-6dc4-40f3-9206-e51da76e8f5d",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-04T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-05|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_0c2479fd-2ddc-40b8-8b12-e85ec760ffc3",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-05T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-06|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_ec05d91f-db8c-4d36-ac52-c36b001eb492",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-06T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-07|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_dd50badd-74c9-406f-9e44-1af0287f222e",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-07T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-08|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_79772722-e587-4588-866b-45a04166e38a",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-08T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-09|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_0bd9ea50-9955-4a09-bc10-483833c51cb9",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-09T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10|85:73:10:daily-plan|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|10:2026-07-10|6:warmup|9:goal-core",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "16:warmup-completed|43:warmup_71d29439-2487-452e-a02e-4f6f494772e4",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-07-10T02:00:00.000Z"
+    }
+  ],
+  "profile": [
+    {
+      "id": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "level": "A2",
+      "goals": [
+        "travel"
+      ],
+      "dailyMinutes": 5,
+      "onboardingCompleted": true,
+      "createdAt": "2026-07-01T02:00:00.000Z",
+      "updatedAt": "2026-07-01T02:00:00.000Z"
+    }
+  ],
+  "reviews": [],
+  "rewardUnlocks": [
+    {
+      "id": "12:reward-owned|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|16:profile-atlantic",
+      "profileId": "guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd",
+      "eventId": "15:reward-redeemed|42:guest_56f4383b-41a8-4813-8ed4-f9cf274b7bbd|16:profile-atlantic",
+      "rewardId": "profile-atlantic",
+      "unlockedAt": "2026-07-10T02:00:00.000Z"
+    }
+  ],
+  "sessions": [],
+  "settings": [],
+  "turns": []
+}

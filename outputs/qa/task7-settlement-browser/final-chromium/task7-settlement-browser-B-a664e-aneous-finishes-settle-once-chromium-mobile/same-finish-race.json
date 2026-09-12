@@ -1,0 +1,1567 @@
+{
+  "dailyPlans": [
+    {
+      "id": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "dateKey": "2026-09-10",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-10T02:00:00.000Z",
+          "completedAt": "2026-09-10T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_590db304-776c-4aa7-86ea-599538747286"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-01",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-10T02:00:00.000Z",
+          "completedAt": "2026-09-10T02:00:00.000Z",
+          "completionEventId": "17:session-completed|49:goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "主动回忆并造句，完成所选 3 次提交的应用流程后确认结束",
+          "target": {
+            "kind": "simulation",
+            "noteIds": [
+              "d46b0f99-1667-4315-b769-253836a466e9"
+            ],
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "noteId": "d46b0f99-1667-4315-b769-253836a466e9",
+              "sourceId": "2e3bcb64-c4d6-4361-b097-cd3b8f6b368c",
+              "sourceLevel": "A2",
+              "descriptorId": "micro.coffee.word.black.A2",
+              "descriptorVersion": 1,
+              "sourceContentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": [
+              "d46b0f99-1667-4315-b769-253836a466e9"
+            ],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-10T02:00:00.000Z",
+          "completedAt": "2026-09-10T02:00:00.000Z",
+          "completionEventId": "20:simulation-completed|47:simulation_cb54a33a-7e11-4108-a554-258533a5fd71"
+        }
+      ],
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "favorites": [],
+  "learningEvents": [
+    {
+      "id": "16:warmup-completed|43:warmup_590db304-776c-4aa7-86ea-599538747286",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|6:warmup",
+        "planDate": "2026-09-10",
+        "returnTo": "/?date=2026-09-10&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_590db304-776c-4aa7-86ea-599538747286",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember a useful expression."
+        }
+      ]
+    },
+    {
+      "id": "17:session-completed|49:goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|5:scene",
+        "planDate": "2026-09-10",
+        "returnTo": "/?date=2026-09-10&task=scene"
+      },
+      "type": "session-completed",
+      "sessionId": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "evidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+        "sceneId": "travel-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 1,
+        "outcome": "partial",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      }
+    },
+    {
+      "id": "20:simulation-completed|47:simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|13:consolidation",
+        "planDate": "2026-09-10",
+        "sourceNoteId": "d46b0f99-1667-4315-b769-253836a466e9",
+        "returnTo": "/?date=2026-09-10&task=consolidation"
+      },
+      "sessionId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "evidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+        "sceneId": "dining-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 1,
+        "outcome": "partial",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      },
+      "type": "simulation-completed",
+      "runId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "noteIds": [
+        "d46b0f99-1667-4315-b769-253836a466e9"
+      ],
+      "recallCompleted": true,
+      "compositionText": "I would like black coffee, please.",
+      "completedUserTurns": 3,
+      "selection": {
+        "schemaVersion": 1,
+        "noteId": "d46b0f99-1667-4315-b769-253836a466e9",
+        "sourceId": "2e3bcb64-c4d6-4361-b097-cd3b8f6b368c",
+        "sourceLevel": "A2",
+        "descriptorId": "micro.coffee.word.black.A2",
+        "descriptorVersion": 1,
+        "sourceContentVersion": 1
+      }
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|20:daily-plan-completed",
+      "type": "daily-plan-completed",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "planId": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10"
+    }
+  ],
+  "notebook": [
+    {
+      "id": "d46b0f99-1667-4315-b769-253836a466e9",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "kind": "word",
+      "text": "black",
+      "normalizedText": "black",
+      "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+      "notes": "",
+      "tags": [],
+      "sources": [
+        {
+          "id": "2e3bcb64-c4d6-4361-b097-cd3b8f6b368c",
+          "kind": "scene",
+          "originalText": "black",
+          "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "createdAt": "2026-09-10T02:00:00.000Z"
+        }
+      ],
+      "favoriteIds": [],
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "outbox": [],
+  "pointsLedger": [
+    {
+      "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|13:goal-all-core",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "eventId": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|20:daily-plan-completed",
+      "ruleId": "goal-all-core",
+      "ruleVersion": 1,
+      "delta": 5,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|84:73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|5:scene|9:goal-core",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "eventId": "17:session-completed|49:goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|85:73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|6:warmup|9:goal-core",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "eventId": "16:warmup-completed|43:warmup_590db304-776c-4aa7-86ea-599538747286",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|93:73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|13:consolidation|9:goal-core",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "eventId": "20:simulation-completed|47:simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "profile": [
+    {
+      "id": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "level": "A2",
+      "goals": [
+        "travel"
+      ],
+      "dailyMinutes": 5,
+      "onboardingCompleted": true,
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "reviews": [],
+  "rewardUnlocks": [],
+  "sessions": [
+    {
+      "id": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "sceneId": "travel-01",
+      "sceneVersion": 1,
+      "level": "A2",
+      "status": "completed",
+      "startedAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z",
+      "completedAt": "2026-09-10T02:00:00.000Z",
+      "completedGoals": [],
+      "openingText": "Which would you like to hand over first, your passport or the confirmation?",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|5:scene",
+        "planDate": "2026-09-10",
+        "returnTo": "/?date=2026-09-10&task=scene"
+      },
+      "gradedDialogue": {
+        "schemaVersion": 1,
+        "pack": {
+          "schemaVersion": 1,
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "sceneId": "travel-01",
+          "category": "travel",
+          "level": "A2",
+          "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-09 to 2026-09-10",
+          "rationale": {
+            "canDoZh": "连贯完成值机信息交换，说明简单偏好并请求核实。",
+            "complexityZh": "连接证件顺序、重量和信息呈现，保持未出票状态。",
+            "scaffoldingZh": "给出具体数值，问句提供有限选项与因果支架。",
+            "registerZh": "常用礼貌请求；能够拒绝额外消费。",
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+            ]
+          },
+          "questions": [
+            {
+              "id": "airport-check-in.A2.document",
+              "text": "Which would you like to hand over first, your passport or the confirmation?",
+              "intent": "identify",
+              "objective": "document",
+              "hintZh": "两份都存在，只选先后。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.document.a",
+                  "text": "I will show my passport first.",
+                  "acceptedForms": [
+                    "I will show my passport first."
+                  ],
+                  "effects": [
+                    {
+                      "key": "document",
+                      "value": "passport"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.document, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.document.b",
+                  "text": "I have the confirmation open on my phone.",
+                  "acceptedForms": [
+                    "I have the confirmation open on my phone."
+                  ],
+                  "effects": [
+                    {
+                      "key": "document",
+                      "value": "booking"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.document, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.document, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.flight",
+              "text": "Which detail on SM204 would you like me to check with you?",
+              "intent": "verify",
+              "objective": "flight",
+              "hintZh": "可核对目的地或时间。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.flight.a",
+                  "text": "Please check that it goes to Oslo.",
+                  "acceptedForms": [
+                    "Please check that it goes to Oslo."
+                  ],
+                  "effects": [
+                    {
+                      "key": "flight",
+                      "value": "destination"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.flight, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.flight.b",
+                  "text": "Please check the four o’clock departure.",
+                  "acceptedForms": [
+                    "Please check the four o’clock departure."
+                  ],
+                  "effects": [
+                    {
+                      "key": "flight",
+                      "value": "time"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.flight, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.flight, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.bag",
+              "text": "How would you like to handle your eighteen-kilo suitcase?",
+              "intent": "declare",
+              "objective": "bag",
+              "hintZh": "限额20千克为虚构条件，背包随身。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.bag.a",
+                  "text": "I would like to check it in.",
+                  "acceptedForms": [
+                    "I would like to check it in."
+                  ],
+                  "effects": [
+                    {
+                      "key": "bag",
+                      "value": "check"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.bag, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.bag.b",
+                  "text": "Could you confirm that it is within the allowance first?",
+                  "acceptedForms": [
+                    "Could you confirm that it is within the allowance first?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "bag",
+                      "value": "confirm"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.bag, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.bag, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.seat",
+              "text": "Which seat would make the journey easier for you?",
+              "intent": "prefer",
+              "objective": "seat",
+              "hintZh": "说明简单偏好原因。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.seat.a",
+                  "text": "A window seat, because I like the view.",
+                  "acceptedForms": [
+                    "A window seat, because I like the view."
+                  ],
+                  "effects": [
+                    {
+                      "key": "seat",
+                      "value": "window"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.seat, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.seat.b",
+                  "text": "An aisle seat, so I can get up easily.",
+                  "acceptedForms": [
+                    "An aisle seat, so I can get up easily."
+                  ],
+                  "effects": [
+                    {
+                      "key": "seat",
+                      "value": "aisle"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.seat, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.seat, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.weight",
+              "text": "Would you like to read the scale yourself or hear the weight again?",
+              "intent": "clarify",
+              "objective": "weight",
+              "hintZh": "同一重量可换说明方式。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.weight.a",
+                  "text": "I would like to read the display myself.",
+                  "acceptedForms": [
+                    "I would like to read the display myself."
+                  ],
+                  "effects": [
+                    {
+                      "key": "weight",
+                      "value": "read"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.weight, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.weight.b",
+                  "text": "Could you say the weight once more?",
+                  "acceptedForms": [
+                    "Could you say the weight once more?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "weight",
+                      "value": "repeat"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.weight, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.weight, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.packing",
+              "text": "Was anyone with you when you packed your case?",
+              "intent": "explain",
+              "objective": "packing",
+              "hintZh": "自己整理不排除朋友在场。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.packing.a",
+                  "text": "No, I packed it on my own.",
+                  "acceptedForms": [
+                    "No, I packed it on my own."
+                  ],
+                  "effects": [
+                    {
+                      "key": "packing",
+                      "value": "alone"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.packing, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.packing.b",
+                  "text": "My friend was there, but I chose what to pack.",
+                  "acceptedForms": [
+                    "My friend was there, but I chose what to pack."
+                  ],
+                  "effects": [
+                    {
+                      "key": "packing",
+                      "value": "friend"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.packing, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.packing, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.tag",
+              "text": "What would you check first on the practice baggage label?",
+              "intent": "check-label",
+              "objective": "tag",
+              "hintZh": "姓名与目的地都可核对。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.tag.a",
+                  "text": "I would check the spelling of Alex Chen.",
+                  "acceptedForms": [
+                    "I would check the spelling of Alex Chen."
+                  ],
+                  "effects": [
+                    {
+                      "key": "tag",
+                      "value": "name"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.tag, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.tag.b",
+                  "text": "I would check that Oslo is printed on it.",
+                  "acceptedForms": [
+                    "I would check that Oslo is printed on it."
+                  ],
+                  "effects": [
+                    {
+                      "key": "tag",
+                      "value": "destination"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.tag, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.tag, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.notice",
+              "text": "How would you prefer to read the boarding instructions?",
+              "intent": "request",
+              "objective": "notice",
+              "hintZh": "只请求说明。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.notice.a",
+                  "text": "Could I have a printed copy to keep?",
+                  "acceptedForms": [
+                    "Could I have a printed copy to keep?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "notice",
+                      "value": "paper"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.notice, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.notice.b",
+                  "text": "The screen is easier for me to read.",
+                  "acceptedForms": [
+                    "The screen is easier for me to read."
+                  ],
+                  "effects": [
+                    {
+                      "key": "notice",
+                      "value": "screen"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.notice, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.notice, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.fee",
+              "text": "Would you like information about the optional seat upgrade?",
+              "intent": "decline-extra",
+              "objective": "fee",
+              "hintZh": "可以询价，也可以拒绝。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.fee.a",
+                  "text": "Yes, but please tell me the cost before I decide.",
+                  "acceptedForms": [
+                    "Yes, but please tell me the cost before I decide."
+                  ],
+                  "effects": [
+                    {
+                      "key": "fee",
+                      "value": "ask"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.fee, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.fee.b",
+                  "text": "No, thanks. I do not need an upgrade.",
+                  "acceptedForms": [
+                    "No, thanks. I do not need an upgrade."
+                  ],
+                  "effects": [
+                    {
+                      "key": "fee",
+                      "value": "no"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.fee, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.fee, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.next",
+              "text": "Where will you check for a possible gate change?",
+              "intent": "confirm-next",
+              "objective": "next",
+              "hintZh": "不承诺实际航班状态。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.next.a",
+                  "text": "I will look at the departure board.",
+                  "acceptedForms": [
+                    "I will look at the departure board."
+                  ],
+                  "effects": [
+                    {
+                      "key": "next",
+                      "value": "board"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.next, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.next.b",
+                  "text": "I will ask a member of staff near the gate.",
+                  "acceptedForms": [
+                    "I will ask a member of staff near the gate."
+                  ],
+                  "effects": [
+                    {
+                      "key": "next",
+                      "value": "desk"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.next, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.next, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.collection",
+              "text": "How could we help you with the arrival baggage information?",
+              "intent": "locate",
+              "objective": "collection",
+              "hintZh": "选择阅读或口头说明。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.collection.a",
+                  "text": "Please show me where the information is written.",
+                  "acceptedForms": [
+                    "Please show me where the information is written."
+                  ],
+                  "effects": [
+                    {
+                      "key": "collection",
+                      "value": "written"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.collection, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.collection.b",
+                  "text": "Could you explain where to check after arrival?",
+                  "acceptedForms": [
+                    "Could you explain where to check after arrival?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "collection",
+                      "value": "explain"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.collection, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.collection, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "airport-check-in.A2.route",
+              "text": "Would you prefer a marked route or a short explanation of the way?",
+              "intent": "navigate",
+              "objective": "route",
+              "hintZh": "指向登机区域，不假定特定登机口。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "airport-check-in.A2.route.a",
+                  "text": "Please mark the gate area on a map.",
+                  "acceptedForms": [
+                    "Please mark the gate area on a map."
+                  ],
+                  "effects": [
+                    {
+                      "key": "route",
+                      "value": "map"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.route, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "airport-check-in.A2.route.b",
+                  "text": "A short explanation would help me more.",
+                  "acceptedForms": [
+                    "A short explanation would help me more."
+                  ],
+                  "effects": [
+                    {
+                      "key": "route",
+                      "value": "spoken"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#airport-check-in — airport-check-in.A2.route, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — airport-check-in.A2.route, Codex postdraft reading 2026-09-10"
+              }
+            }
+          ],
+          "variants": [
+            {
+              "id": "counter",
+              "situationZh": "虚构机场值机柜台。你是Alex Chen，今天乘SM204直飞Oslo，16:00起飞；有护照、电子订位确认、一只18千克箱子和小背包。箱子已由自己整理。此练习柜台允许一只20千克内托运行李，不讨论真实航空政策。座位、标签、提醒方式仍可选择。短练只表达证件、航班核对和行李需求，不代表已值机。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "airport-check-in.A2.document",
+                    "airport-check-in.A2.flight",
+                    "airport-check-in.A2.bag"
+                  ],
+                  "achievedClosing": "That completes this check-in conversation practice. Your stated requests are recorded for the exercise; no boarding pass or baggage tag has been issued.",
+                  "partialClosing": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place."
+                },
+                "standard": {
+                  "questionIds": [
+                    "airport-check-in.A2.document",
+                    "airport-check-in.A2.flight",
+                    "airport-check-in.A2.bag",
+                    "airport-check-in.A2.seat",
+                    "airport-check-in.A2.weight",
+                    "airport-check-in.A2.packing"
+                  ],
+                  "achievedClosing": "That completes this check-in conversation practice. Your stated requests are recorded for the exercise; no boarding pass or baggage tag has been issued.",
+                  "partialClosing": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place."
+                },
+                "extended": {
+                  "questionIds": [
+                    "airport-check-in.A2.document",
+                    "airport-check-in.A2.flight",
+                    "airport-check-in.A2.bag",
+                    "airport-check-in.A2.seat",
+                    "airport-check-in.A2.weight",
+                    "airport-check-in.A2.packing",
+                    "airport-check-in.A2.tag",
+                    "airport-check-in.A2.notice",
+                    "airport-check-in.A2.fee",
+                    "airport-check-in.A2.next"
+                  ],
+                  "achievedClosing": "That completes this check-in conversation practice. Your stated requests are recorded for the exercise; no boarding pass or baggage tag has been issued.",
+                  "partialClosing": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+              }
+            },
+            {
+              "id": "assistance",
+              "situationZh": "虚构机场协助柜台。你是Alex Chen，今天乘SM204直飞Oslo，16:00起飞；有护照和电子订位确认，一只自己整理的18千克箱子及小背包。练习柜台的一件20千克托运额度是情境条件，不是真实规则。你需要额外核对行李提取和去登机口的方法；所有选择只是讨论，未签发登机牌。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "airport-check-in.A2.document",
+                    "airport-check-in.A2.bag",
+                    "airport-check-in.A2.flight"
+                  ],
+                  "achievedClosing": "That completes this check-in conversation practice. Your stated requests are recorded for the exercise; no boarding pass or baggage tag has been issued.",
+                  "partialClosing": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place."
+                },
+                "standard": {
+                  "questionIds": [
+                    "airport-check-in.A2.document",
+                    "airport-check-in.A2.bag",
+                    "airport-check-in.A2.flight",
+                    "airport-check-in.A2.seat",
+                    "airport-check-in.A2.weight",
+                    "airport-check-in.A2.packing"
+                  ],
+                  "achievedClosing": "That completes this check-in conversation practice. Your stated requests are recorded for the exercise; no boarding pass or baggage tag has been issued.",
+                  "partialClosing": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place."
+                },
+                "extended": {
+                  "questionIds": [
+                    "airport-check-in.A2.document",
+                    "airport-check-in.A2.bag",
+                    "airport-check-in.A2.flight",
+                    "airport-check-in.A2.seat",
+                    "airport-check-in.A2.weight",
+                    "airport-check-in.A2.packing",
+                    "airport-check-in.A2.tag",
+                    "airport-check-in.A2.notice",
+                    "airport-check-in.A2.collection",
+                    "airport-check-in.A2.route"
+                  ],
+                  "achievedClosing": "That completes this check-in conversation practice. Your stated requests are recorded for the exercise; no boarding pass or baggage tag has been issued.",
+                  "partialClosing": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#airport-check-in — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+              }
+            }
+          ],
+          "repairs": {
+            "clarify": "I can repeat the current check-in question. Please use the displayed choices if they fit.",
+            "struggle": "Take your time. A short answer about the current travel detail is enough.",
+            "offTopic": "Let us return to the current check-in detail.",
+            "unknown": "That wording is not in this local exercise. I have not confirmed a document, bag or seat from it.",
+            "changed": "Your earlier request has been revised within the exercise only.",
+            "refusedClosing": "We will stop this check-in practice here. No travel arrangements have been changed."
+          }
+        },
+        "state": {
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "mode": "short",
+          "variantId": "counter",
+          "currentQuestionId": null,
+          "facts": [
+            {
+              "key": "document",
+              "value": "passport",
+              "questionId": "airport-check-in.A2.document",
+              "answerId": "airport-check-in.A2.document.a",
+              "turnIndex": 0
+            }
+          ],
+          "completedObjectives": [
+            "document"
+          ],
+          "completedIntents": [
+            "identify"
+          ],
+          "askedQuestionIds": [
+            "airport-check-in.A2.document",
+            "airport-check-in.A2.flight"
+          ],
+          "turns": [
+            {
+              "action": "answer",
+              "text": "I will show my passport first.",
+              "suggestionId": "airport-check-in.A2.document.a"
+            },
+            {
+              "action": "struggle",
+              "text": ""
+            },
+            {
+              "action": "struggle",
+              "text": ""
+            }
+          ],
+          "outcome": "partial",
+          "reply": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place.",
+          "confirmation": "repair"
+        }
+      },
+      "presentation": {
+        "schemaVersion": 1,
+        "counterpartZh": "值机工作人员角色",
+        "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+      },
+      "completionEvidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+        "sceneId": "travel-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 1,
+        "outcome": "partial",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      }
+    },
+    {
+      "id": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "profileId": "guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a",
+      "sceneId": "dining-01",
+      "sceneVersion": 1,
+      "level": "A2",
+      "status": "completed",
+      "startedAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z",
+      "completedGoals": [],
+      "openingText": "We have Americanos and filter coffee. What would you like today?",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_0af18faa-af39-4d70-97c5-e4b8a8f72e0a|10:2026-09-10|13:consolidation",
+        "planDate": "2026-09-10",
+        "sourceNoteId": "d46b0f99-1667-4315-b769-253836a466e9",
+        "returnTo": "/?date=2026-09-10&task=consolidation"
+      },
+      "gradedDialogue": {
+        "schemaVersion": 1,
+        "pack": {
+          "schemaVersion": 1,
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "sceneId": "dining-01",
+          "category": "dining",
+          "level": "A2",
+          "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+          "rationale": {
+            "canDoZh": "处理常见柜台交换，在点单中表达简单偏好及下一步安排。",
+            "complexityZh": "连接选择与一个日常原因，区分制作时间、取餐方式及实际付款。",
+            "scaffoldingZh": "问题给出可用选项；参考回答提供 because 或简单补充句，不要求即兴论证。",
+            "registerZh": "友好、直接且礼貌，可婉拒推销或提出个人安排。",
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ]
+          },
+          "questions": [
+            {
+              "id": "coffee.A2.drink",
+              "text": "We have Americanos and filter coffee. What would you like today?",
+              "intent": "order",
+              "objective": "drink",
+              "hintZh": "选一种在售咖啡，可补充简单原因。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.drink.a",
+                  "text": "An Americano, please. I like a strong coffee.",
+                  "acceptedForms": [
+                    "An Americano, please. I like a strong coffee."
+                  ],
+                  "effects": [
+                    {
+                      "key": "drink",
+                      "value": "americano"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.drink.b",
+                  "text": "I would like a filter coffee today, please.",
+                  "acceptedForms": [
+                    "I would like a filter coffee today, please."
+                  ],
+                  "effects": [
+                    {
+                      "key": "drink",
+                      "value": "filter"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            },
+            {
+              "id": "coffee.A2.size",
+              "text": "Would you prefer a small drink or a large one?",
+              "intent": "quantity",
+              "objective": "size",
+              "hintZh": "按需要选择杯型，不改变饮品种类。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.size.a",
+                  "text": "A small one, please. I do not have much time.",
+                  "acceptedForms": [
+                    "A small one, please. I do not have much time."
+                  ],
+                  "effects": [
+                    {
+                      "key": "size",
+                      "value": "small"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.size.b",
+                  "text": "A large one, please. I have a long morning ahead.",
+                  "acceptedForms": [
+                    "A large one, please. I have a long morning ahead."
+                  ],
+                  "effects": [
+                    {
+                      "key": "size",
+                      "value": "large"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            },
+            {
+              "id": "coffee.A2.milk",
+              "text": "Would you like to keep it black, or add some oat milk?",
+              "intent": "customize",
+              "objective": "milk",
+              "hintZh": "black 在这里是不加奶；不要按颜色泛解。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.milk.a",
+                  "text": "Black, please. I do not usually have milk in coffee.",
+                  "acceptedForms": [
+                    "Black, please. I do not usually have milk in coffee."
+                  ],
+                  "effects": [
+                    {
+                      "key": "milk",
+                      "value": "none"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.milk.b",
+                  "text": "Some oat milk, please. I like a milder taste.",
+                  "acceptedForms": [
+                    "Some oat milk, please. I like a milder taste."
+                  ],
+                  "effects": [
+                    {
+                      "key": "milk",
+                      "value": "oat"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            }
+          ],
+          "variants": [
+            {
+              "id": "counter",
+              "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                },
+                "standard": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                },
+                "extended": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+              }
+            }
+          ],
+          "repairs": {
+            "clarify": "Of course. Here are the choices again.",
+            "struggle": "Take your time. Start with one of the example answers.",
+            "offTopic": "We can come back to that later. Let us finish this drink choice.",
+            "unknown": "Your words are saved for this practice, but this local lesson cannot confirm their meaning.",
+            "changed": "That earlier choice has been updated.",
+            "refusedClosing": "That is fine. We will stop this practice without completing the order."
+          }
+        },
+        "state": {
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "mode": "short",
+          "variantId": "counter",
+          "currentQuestionId": null,
+          "facts": [
+            {
+              "key": "drink",
+              "value": "americano",
+              "questionId": "coffee.A2.drink",
+              "answerId": "coffee.A2.drink.a",
+              "turnIndex": 0
+            }
+          ],
+          "completedObjectives": [
+            "drink"
+          ],
+          "completedIntents": [
+            "order"
+          ],
+          "askedQuestionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.size"
+          ],
+          "turns": [
+            {
+              "action": "answer",
+              "text": "An Americano, please. I like a strong coffee.",
+              "suggestionId": "coffee.A2.drink.a"
+            },
+            {
+              "action": "struggle",
+              "text": ""
+            },
+            {
+              "action": "struggle",
+              "text": ""
+            }
+          ],
+          "outcome": "partial",
+          "reply": "This short practice has ended with some goals still open. No real service or decision has been made.",
+          "confirmation": "repair"
+        }
+      },
+      "presentation": {
+        "schemaVersion": 1,
+        "counterpartZh": "咖啡师角色",
+        "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+      },
+      "simulation": {
+        "schemaVersion": 1,
+        "noteIds": [
+          "d46b0f99-1667-4315-b769-253836a466e9"
+        ],
+        "source": {
+          "noteId": "d46b0f99-1667-4315-b769-253836a466e9",
+          "sourceId": "2e3bcb64-c4d6-4361-b097-cd3b8f6b368c",
+          "snapshot": {
+            "id": "2e3bcb64-c4d6-4361-b097-cd3b8f6b368c",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          },
+          "noteText": "black",
+          "noteKind": "word"
+        },
+        "returnTo": "/notebook/note?id=d46b0f99-1667-4315-b769-253836a466e9",
+        "descriptor": {
+          "schemaVersion": 1,
+          "id": "micro.coffee.word.black.A2",
+          "analysisEntryId": "coffee.word.black",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "sourceContentVersion": 1,
+          "sourceVariantId": "counter",
+          "targetQuestionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.milk"
+          ],
+          "questionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.size",
+            "coffee.A2.milk"
+          ],
+          "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+          "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made.",
+          "review": {
+            "state": "model-reviewed",
+            "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+          },
+          "version": 1
+        },
+        "target": {
+          "coverage": "exact",
+          "text": "black",
+          "kind": "word",
+          "meaningZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "example": "I usually have my coffee black.",
+          "substitution": "I usually have milk in my coffee."
+        },
+        "recall": {
+          "text": "black",
+          "completedAt": "2026-09-10T02:00:00.000Z"
+        },
+        "composition": {
+          "text": "I would like black coffee, please.",
+          "completedAt": "2026-09-10T02:00:00.000Z"
+        }
+      },
+      "completedAt": "2026-09-10T02:00:00.000Z",
+      "completionEvidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+        "sceneId": "dining-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 1,
+        "outcome": "partial",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      }
+    }
+  ],
+  "settings": [],
+  "turns": [
+    {
+      "id": "turn_35c5bed7-2727-4ca8-b2a5-ec4546012cf4",
+      "sessionId": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "index": 2,
+      "learnerText": "",
+      "aiText": "We have practised part of the check-in conversation. Any unconfirmed details remain open; no check-in has taken place.",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_66813156-3db0-4b5d-bef2-c8cd537f5ae6",
+      "sessionId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "index": 0,
+      "learnerText": "An Americano, please. I like a strong coffee.",
+      "aiText": "Would you prefer a small drink or a large one?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_810f46a3-6376-41f6-80eb-6c0c5f662ba4",
+      "sessionId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "index": 2,
+      "learnerText": "",
+      "aiText": "This short practice has ended with some goals still open. No real service or decision has been made.",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_a5449faf-3598-4e23-a21d-a3e5b61d0c4c",
+      "sessionId": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "index": 0,
+      "learnerText": "I will show my passport first.",
+      "aiText": "Which detail on SM204 would you like me to check with you?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_c060175b-909d-4e8a-a061-4b1fbce7d380",
+      "sessionId": "goal-session_57614e1b-9be5-4331-a46c-cf2f679b4e5b",
+      "index": 1,
+      "learnerText": "",
+      "aiText": "Take your time. A short answer about the current travel detail is enough.\n可核对目的地或时间。\nWhich detail on SM204 would you like me to check with you?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_e842b9ef-9d8d-4cec-8cdf-7854508fd8b3",
+      "sessionId": "simulation_cb54a33a-7e11-4108-a554-258533a5fd71",
+      "index": 1,
+      "learnerText": "",
+      "aiText": "Take your time. Start with one of the example answers.\n按需要选择杯型，不改变饮品种类。\nWould you prefer a small drink or a large one?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    }
+  ]
+}

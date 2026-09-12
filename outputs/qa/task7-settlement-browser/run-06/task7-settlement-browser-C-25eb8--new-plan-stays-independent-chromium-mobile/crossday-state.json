@@ -1,0 +1,1336 @@
+{
+  "foreground": [
+    {
+      "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:0",
+      "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+      "occurredAt": "2026-09-10T15:58:00.000Z",
+      "dateKey": "2026-09-10",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+      "segmentId": "0",
+      "startedAt": "2026-09-10T15:58:00.000Z",
+      "endedAt": "2026-09-10T15:58:15.000Z",
+      "durationMs": 15000
+    },
+    {
+      "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:1",
+      "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+      "occurredAt": "2026-09-10T15:58:15.000Z",
+      "dateKey": "2026-09-10",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+      "segmentId": "1",
+      "startedAt": "2026-09-10T15:58:15.000Z",
+      "endedAt": "2026-09-10T15:58:30.000Z",
+      "durationMs": 15000
+    },
+    {
+      "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:2",
+      "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+      "occurredAt": "2026-09-10T15:59:30.000Z",
+      "dateKey": "2026-09-10",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+      "segmentId": "2",
+      "startedAt": "2026-09-10T15:59:30.000Z",
+      "endedAt": "2026-09-10T16:00:00.000Z",
+      "durationMs": 30000
+    },
+    {
+      "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:3",
+      "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+      "occurredAt": "2026-09-10T16:00:00.000Z",
+      "dateKey": "2026-09-11",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+      "segmentId": "3",
+      "startedAt": "2026-09-10T16:00:00.000Z",
+      "endedAt": "2026-09-10T16:03:00.000Z",
+      "durationMs": 180000
+    }
+  ],
+  "totals": {
+    "2026-09-10": 60000,
+    "2026-09-11": 180000
+  },
+  "final": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "dateKey": "2026-09-09",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "completed",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 1,
+            "startedAt": "2026-09-09T02:00:01.537Z",
+            "completedAt": "2026-09-10T16:03:00.000Z",
+            "completionEventId": "16:warmup-completed|43:warmup_3c2a3399-0155-4641-9415-0c3cddaea37d"
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-04",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-04"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-09T02:00:01.085Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "dateKey": "2026-09-10",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "completed",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-03",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-03"
+            },
+            "progress": 1,
+            "startedAt": "2026-09-10T15:58:00.000Z",
+            "completedAt": "2026-09-10T16:03:00.000Z",
+            "completionEventId": "17:session-completed|49:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee"
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-10T15:58:00.000Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-11",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "dateKey": "2026-09-11",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-11|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-11|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-04",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "counter",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-04"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-11|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-10T16:03:00.000Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [
+      {
+        "id": "16:warmup-completed|43:warmup_3c2a3399-0155-4641-9415-0c3cddaea37d",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "occurredAt": "2026-09-10T16:03:00.000Z",
+        "dateKey": "2026-09-11",
+        "provenance": {
+          "planId": "10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09",
+          "sourceTaskId": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09|6:warmup",
+          "planDate": "2026-09-09",
+          "returnTo": "/?date=2026-09-09&task=warmup"
+        },
+        "type": "warmup-completed",
+        "runId": "warmup_3c2a3399-0155-4641-9415-0c3cddaea37d",
+        "recalledNoteIds": [],
+        "recalledStarterExpressionIds": [
+          "coffee.word.black"
+        ],
+        "recallResponses": [
+          {
+            "id": "coffee.word.black",
+            "kind": "starter",
+            "text": "I remember a useful expression."
+          }
+        ]
+      },
+      {
+        "id": "17:session-completed|49:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "occurredAt": "2026-09-10T16:03:00.000Z",
+        "dateKey": "2026-09-11",
+        "provenance": {
+          "planId": "10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10",
+          "sourceTaskId": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|5:scene",
+          "planDate": "2026-09-10",
+          "returnTo": "/?date=2026-09-10&task=scene"
+        },
+        "sessionId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "evidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+          "sceneId": "travel-03",
+          "sceneVersion": 1,
+          "level": "A2",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "assistance",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 1,
+          "outcome": "partial",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-10T16:03:00.000Z"
+        },
+        "type": "session-completed"
+      },
+      {
+        "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:0",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "occurredAt": "2026-09-10T15:58:00.000Z",
+        "dateKey": "2026-09-10",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+        "segmentId": "0",
+        "startedAt": "2026-09-10T15:58:00.000Z",
+        "endedAt": "2026-09-10T15:58:15.000Z",
+        "durationMs": 15000
+      },
+      {
+        "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:1",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "occurredAt": "2026-09-10T15:58:15.000Z",
+        "dateKey": "2026-09-10",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+        "segmentId": "1",
+        "startedAt": "2026-09-10T15:58:15.000Z",
+        "endedAt": "2026-09-10T15:58:30.000Z",
+        "durationMs": 15000
+      },
+      {
+        "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:2",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "occurredAt": "2026-09-10T15:59:30.000Z",
+        "dateKey": "2026-09-10",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+        "segmentId": "2",
+        "startedAt": "2026-09-10T15:59:30.000Z",
+        "endedAt": "2026-09-10T16:00:00.000Z",
+        "durationMs": 30000
+      },
+      {
+        "id": "42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|86:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47|1:3",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "occurredAt": "2026-09-10T16:00:00.000Z",
+        "dateKey": "2026-09-11",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee_928ab813-74a4-4b2d-bcf6-298fcfe80b47",
+        "segmentId": "3",
+        "startedAt": "2026-09-10T16:00:00.000Z",
+        "endedAt": "2026-09-10T16:03:00.000Z",
+        "durationMs": 180000
+      }
+    ],
+    "notebook": [],
+    "outbox": [],
+    "pointsLedger": [
+      {
+        "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09|85:73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-09|6:warmup|9:goal-core",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "eventId": "16:warmup-completed|43:warmup_3c2a3399-0155-4641-9415-0c3cddaea37d",
+        "ruleId": "goal-core",
+        "ruleVersion": 1,
+        "delta": 10,
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|84:73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|5:scene|9:goal-core",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "eventId": "17:session-completed|49:goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "ruleId": "goal-core",
+        "ruleVersion": 1,
+        "delta": 10,
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      }
+    ],
+    "profile": [
+      {
+        "id": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "level": "B2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-09T02:00:00.288Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [
+      {
+        "id": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "profileId": "guest_a311c0c6-cd15-4813-b924-0f050e936fd2",
+        "sceneId": "travel-03",
+        "sceneVersion": 1,
+        "level": "A2",
+        "status": "completed",
+        "startedAt": "2026-09-10T15:58:00.000Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z",
+        "completedGoals": [],
+        "openingText": "Is the remaining connection time clear, or should I say it again?",
+        "provenance": {
+          "planId": "10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10",
+          "sourceTaskId": "73:10:daily-plan|42:guest_a311c0c6-cd15-4813-b924-0f050e936fd2|10:2026-09-10|5:scene",
+          "planDate": "2026-09-10",
+          "returnTo": "/?date=2026-09-10&task=scene"
+        },
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "travel-03",
+            "category": "travel",
+            "level": "A2",
+            "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-09 to 2026-09-10",
+            "rationale": {
+              "canDoZh": "解释延误后需求，提出路线和费用核对请求。",
+              "complexityZh": "处理多个待核实项目，保留修改行程的选择权。",
+              "scaffoldingZh": "固定剩余时间；可用先后和简单条件句。",
+              "registerZh": "常用服务表达，直接而不命令。",
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ]
+            },
+            "questions": [
+              {
+                "id": "flight-connection.A2.time",
+                "text": "Is the remaining connection time clear, or should I say it again?",
+                "intent": "state-problem",
+                "objective": "time",
+                "hintZh": "25分钟已给，理解可不同。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.time.a",
+                    "text": "Please say it again more slowly.",
+                    "acceptedForms": [
+                      "Please say it again more slowly."
+                    ],
+                    "effects": [
+                      {
+                        "key": "time",
+                        "value": "repeat"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.time, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.time.b",
+                    "text": "Yes, I understand that only twenty-five minutes remain.",
+                    "acceptedForms": [
+                      "Yes, I understand that only twenty-five minutes remain."
+                    ],
+                    "effects": [
+                      {
+                        "key": "time",
+                        "value": "clear"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.time, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.time, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.check",
+                "text": "Where would you like to look for the latest connection information first?",
+                "intent": "seek-information",
+                "objective": "check",
+                "hintZh": "不把旧信息当现在状态。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.check.a",
+                    "text": "Let us look at the gate display first.",
+                    "acceptedForms": [
+                      "Let us look at the gate display first."
+                    ],
+                    "effects": [
+                      {
+                        "key": "check",
+                        "value": "display"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.check, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.check.b",
+                    "text": "I would like to ask the transfer desk first.",
+                    "acceptedForms": [
+                      "I would like to ask the transfer desk first."
+                    ],
+                    "effects": [
+                      {
+                        "key": "check",
+                        "value": "desk"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.check, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.check, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.priority",
+                "text": "What is your main concern when we discuss possible alternatives?",
+                "intent": "prioritise",
+                "objective": "priority",
+                "hintZh": "费用与时间优先不同。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.priority.a",
+                    "text": "I would like to arrive in Oslo today.",
+                    "acceptedForms": [
+                      "I would like to arrive in Oslo today."
+                    ],
+                    "effects": [
+                      {
+                        "key": "priority",
+                        "value": "today"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.priority, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.priority.b",
+                    "text": "I need to avoid paying extra if possible.",
+                    "acceptedForms": [
+                      "I need to avoid paying extra if possible."
+                    ],
+                    "effects": [
+                      {
+                        "key": "priority",
+                        "value": "cost"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.priority, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.priority, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.evidence",
+                "text": "Which travel document will you use to start the enquiry?",
+                "intent": "provide-detail",
+                "objective": "evidence",
+                "hintZh": "不是出示护照敏感数据。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.evidence.a",
+                    "text": "I will show the boarding information on my phone.",
+                    "acceptedForms": [
+                      "I will show the boarding information on my phone."
+                    ],
+                    "effects": [
+                      {
+                        "key": "evidence",
+                        "value": "boarding"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.evidence, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.evidence.b",
+                    "text": "I will start with the receipt for my checked bag.",
+                    "acceptedForms": [
+                      "I will start with the receipt for my checked bag."
+                    ],
+                    "effects": [
+                      {
+                        "key": "evidence",
+                        "value": "bag"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.evidence, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.evidence, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.route",
+                "text": "What kind of alternative route would you like information about?",
+                "intent": "clarify-route",
+                "objective": "route",
+                "hintZh": "询问不接受改票。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.route.a",
+                    "text": "Could you check for a direct flight to Oslo?",
+                    "acceptedForms": [
+                      "Could you check for a direct flight to Oslo?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "route",
+                        "value": "direct"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.route, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.route.b",
+                    "text": "Could you check a route with another connection?",
+                    "acceptedForms": [
+                      "Could you check a route with another connection?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "route",
+                        "value": "connect"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.route, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.route, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.consent",
+                "text": "What must you know before agreeing to a possible change?",
+                "intent": "withhold-consent",
+                "objective": "consent",
+                "hintZh": "保留未同意。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.consent.a",
+                    "text": "Please tell me the total price before I agree.",
+                    "acceptedForms": [
+                      "Please tell me the total price before I agree."
+                    ],
+                    "effects": [
+                      {
+                        "key": "consent",
+                        "value": "price"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.consent, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.consent.b",
+                    "text": "Please show me all the flight times first.",
+                    "acceptedForms": [
+                      "Please show me all the flight times first."
+                    ],
+                    "effects": [
+                      {
+                        "key": "consent",
+                        "value": "times"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.consent, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.consent, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.luggage",
+                "text": "How would you like to begin checking where the suitcase should go?",
+                "intent": "trace-bag",
+                "objective": "luggage",
+                "hintZh": "不确认已运送。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.luggage.a",
+                    "text": "Please read the destination on the bag tag with me.",
+                    "acceptedForms": [
+                      "Please read the destination on the bag tag with me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "luggage",
+                        "value": "tag"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.luggage, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.luggage.b",
+                    "text": "Let us ask staff to check the baggage details.",
+                    "acceptedForms": [
+                      "Let us ask staff to check the baggage details."
+                    ],
+                    "effects": [
+                      {
+                        "key": "luggage",
+                        "value": "staff"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.luggage, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.luggage, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.help",
+                "text": "How would you prefer to find the transfer service area?",
+                "intent": "navigate",
+                "objective": "help",
+                "hintZh": "选择支架。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.help.a",
+                    "text": "Please mark the service area on a map.",
+                    "acceptedForms": [
+                      "Please mark the service area on a map."
+                    ],
+                    "effects": [
+                      {
+                        "key": "help",
+                        "value": "map"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.help, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.help.b",
+                    "text": "Could you give me simple directions from here?",
+                    "acceptedForms": [
+                      "Could you give me simple directions from here?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "help",
+                        "value": "directions"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.help, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.help, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.message",
+                "text": "When would you like to update the person expecting you in Oslo?",
+                "intent": "update-contact",
+                "objective": "message",
+                "hintZh": "事实未确认时也可通知延误。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.message.a",
+                    "text": "I will tell them now that my connection is uncertain.",
+                    "acceptedForms": [
+                      "I will tell them now that my connection is uncertain."
+                    ],
+                    "effects": [
+                      {
+                        "key": "message",
+                        "value": "now"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.message, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.message.b",
+                    "text": "I will wait until I have clearer information.",
+                    "acceptedForms": [
+                      "I will wait until I have clearer information."
+                    ],
+                    "effects": [
+                      {
+                        "key": "message",
+                        "value": "later"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.message, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.message, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.next",
+                "text": "What will you do while waiting for an answer about your options?",
+                "intent": "plan-next",
+                "objective": "next",
+                "hintZh": "不是航班等待确认。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.next.a",
+                    "text": "I will stay near the transfer desk.",
+                    "acceptedForms": [
+                      "I will stay near the transfer desk."
+                    ],
+                    "effects": [
+                      {
+                        "key": "next",
+                        "value": "desk"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.next, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.next.b",
+                    "text": "I will check the board for any new information.",
+                    "acceptedForms": [
+                      "I will check the board for any new information."
+                    ],
+                    "effects": [
+                      {
+                        "key": "next",
+                        "value": "board"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.next, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.next, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.overnight",
+                "text": "If travel today is not possible, which information would help first?",
+                "intent": "consider-fallback",
+                "objective": "overnight",
+                "hintZh": "假设未发生。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.overnight.a",
+                    "text": "I would ask where I could stay for the night.",
+                    "acceptedForms": [
+                      "I would ask where I could stay for the night."
+                    ],
+                    "effects": [
+                      {
+                        "key": "overnight",
+                        "value": "stay"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.overnight, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.overnight.b",
+                    "text": "I would ask about the next day’s flights.",
+                    "acceptedForms": [
+                      "I would ask about the next day’s flights."
+                    ],
+                    "effects": [
+                      {
+                        "key": "overnight",
+                        "value": "flight"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.overnight, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.overnight, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "flight-connection.A2.record",
+                "text": "How would you keep the details so you can check them later?",
+                "intent": "keep-record",
+                "objective": "record",
+                "hintZh": "非已改票证明。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "flight-connection.A2.record.a",
+                    "text": "I would write down the times and flight numbers.",
+                    "acceptedForms": [
+                      "I would write down the times and flight numbers."
+                    ],
+                    "effects": [
+                      {
+                        "key": "record",
+                        "value": "note"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.record, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "flight-connection.A2.record.b",
+                    "text": "I would take a photo of the information with permission.",
+                    "acceptedForms": [
+                      "I would take a photo of the information with permission."
+                    ],
+                    "effects": [
+                      {
+                        "key": "record",
+                        "value": "photo"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#flight-connection — flight-connection.A2.record, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — flight-connection.A2.record, Codex postdraft reading 2026-09-10"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "counter",
+                "situationZh": "虚构机场信息协助点，尚未到转机柜台。你是Alex Chen，现有行程今天由Helsinki转SM310去Oslo；前段延误，余下转机时间只有25分钟。Oslo有接待人等你。你有可在手机或纸上查看的登机信息和托运行李凭条，但行李去向待核实。协助人员只能讨论查询方案，未改票。短练明确剩余时间、查询渠道和行程优先级。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "flight-connection.A2.time",
+                      "flight-connection.A2.check",
+                      "flight-connection.A2.priority"
+                    ],
+                    "achievedClosing": "You have completed this connection enquiry practice. Any proposed route, baggage handling or ticket change still needs confirmation from the relevant staff.",
+                    "partialClosing": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "flight-connection.A2.time",
+                      "flight-connection.A2.check",
+                      "flight-connection.A2.priority",
+                      "flight-connection.A2.evidence",
+                      "flight-connection.A2.route",
+                      "flight-connection.A2.consent"
+                    ],
+                    "achievedClosing": "You have completed this connection enquiry practice. Any proposed route, baggage handling or ticket change still needs confirmation from the relevant staff.",
+                    "partialClosing": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "flight-connection.A2.time",
+                      "flight-connection.A2.check",
+                      "flight-connection.A2.priority",
+                      "flight-connection.A2.evidence",
+                      "flight-connection.A2.route",
+                      "flight-connection.A2.consent",
+                      "flight-connection.A2.luggage",
+                      "flight-connection.A2.help",
+                      "flight-connection.A2.message",
+                      "flight-connection.A2.next"
+                    ],
+                    "achievedClosing": "You have completed this connection enquiry practice. Any proposed route, baggage handling or ticket change still needs confirmation from the relevant staff.",
+                    "partialClosing": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+                }
+              },
+              {
+                "id": "assistance",
+                "situationZh": "虚构机场信息协助点，尚未到转机柜台。你是Alex Chen，前段延误后在Helsinki只剩25分钟衔接今天SM310去Oslo；有手机及纸质登机信息和行李凭条，Oslo的接待人在等你。你需额外讨论无法确认当天衔接时的过夜查询与材料记录。候选替代航班没有可用座位或价格保证；25分钟并非建议的转机标准。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "flight-connection.A2.time",
+                      "flight-connection.A2.check",
+                      "flight-connection.A2.priority"
+                    ],
+                    "achievedClosing": "You have completed this connection enquiry practice. Any proposed route, baggage handling or ticket change still needs confirmation from the relevant staff.",
+                    "partialClosing": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "flight-connection.A2.time",
+                      "flight-connection.A2.check",
+                      "flight-connection.A2.priority",
+                      "flight-connection.A2.evidence",
+                      "flight-connection.A2.route",
+                      "flight-connection.A2.consent"
+                    ],
+                    "achievedClosing": "You have completed this connection enquiry practice. Any proposed route, baggage handling or ticket change still needs confirmation from the relevant staff.",
+                    "partialClosing": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "flight-connection.A2.time",
+                      "flight-connection.A2.check",
+                      "flight-connection.A2.priority",
+                      "flight-connection.A2.evidence",
+                      "flight-connection.A2.route",
+                      "flight-connection.A2.consent",
+                      "flight-connection.A2.luggage",
+                      "flight-connection.A2.help",
+                      "flight-connection.A2.overnight",
+                      "flight-connection.A2.record"
+                    ],
+                    "achievedClosing": "You have completed this connection enquiry practice. Any proposed route, baggage handling or ticket change still needs confirmation from the relevant staff.",
+                    "partialClosing": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#flight-connection — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "We can clarify the current connection question before discussing another detail.",
+              "struggle": "Focus on one part of the journey. You can use a short answer or ask for repetition.",
+              "offTopic": "Let us return to the connection enquiry.",
+              "unknown": "I have not matched that wording to a reviewed answer or confirmed a travel change.",
+              "changed": "Your preference has changed in the practice record; no ticket has been altered.",
+              "refusedClosing": "We will end the connection practice here. No travel changes have been made."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "assistance",
+            "currentQuestionId": null,
+            "facts": [
+              {
+                "key": "time",
+                "value": "repeat",
+                "questionId": "flight-connection.A2.time",
+                "answerId": "flight-connection.A2.time.a",
+                "turnIndex": 0
+              }
+            ],
+            "completedObjectives": [
+              "time"
+            ],
+            "completedIntents": [
+              "state-problem"
+            ],
+            "askedQuestionIds": [
+              "flight-connection.A2.time",
+              "flight-connection.A2.check"
+            ],
+            "turns": [
+              {
+                "action": "answer",
+                "text": "Please say it again more slowly.",
+                "suggestionId": "flight-connection.A2.time.a"
+              },
+              {
+                "action": "struggle",
+                "text": ""
+              },
+              {
+                "action": "struggle",
+                "text": ""
+              }
+            ],
+            "outcome": "partial",
+            "reply": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved.",
+            "confirmation": "repair"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "转机服务台之前的信息协助点角色",
+          "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+        },
+        "completedAt": "2026-09-10T16:03:00.000Z",
+        "completionEvidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+          "sceneId": "travel-03",
+          "sceneVersion": 1,
+          "level": "A2",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "assistance",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 1,
+          "outcome": "partial",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-10T16:03:00.000Z"
+        }
+      }
+    ],
+    "settings": [],
+    "turns": [
+      {
+        "id": "turn_042b93ec-1858-424f-9761-6eea3d2f3182",
+        "sessionId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "index": 0,
+        "learnerText": "Please say it again more slowly.",
+        "aiText": "Where would you like to look for the latest connection information first?",
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "turn_3fd21882-1a78-44c2-8c8b-f5ea3d5c9076",
+        "sessionId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "index": 1,
+        "learnerText": "",
+        "aiText": "Focus on one part of the journey. You can use a short answer or ask for repetition.\n不把旧信息当现在状态。\nWhere would you like to look for the latest connection information first?",
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "turn_b1bf0149-11a3-4784-82be-7f13afc68561",
+        "sessionId": "goal-session_6dad5923-c870-4c75-9afa-4fb0791d30ee",
+        "index": 2,
+        "learnerText": "",
+        "aiText": "We have covered only part of the connection enquiry. Unconfirmed flight and baggage details remain unresolved.",
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      }
+    ]
+  },
+  "visibilityMethod": "document signal injection; no OS app switching"
+}

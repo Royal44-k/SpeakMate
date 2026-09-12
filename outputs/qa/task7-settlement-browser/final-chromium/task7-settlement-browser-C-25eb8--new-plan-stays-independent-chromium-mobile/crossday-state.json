@@ -1,0 +1,1336 @@
+{
+  "foreground": [
+    {
+      "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:0",
+      "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+      "occurredAt": "2026-09-10T15:58:00.000Z",
+      "dateKey": "2026-09-10",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+      "segmentId": "0",
+      "startedAt": "2026-09-10T15:58:00.000Z",
+      "endedAt": "2026-09-10T15:58:15.000Z",
+      "durationMs": 15000
+    },
+    {
+      "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:1",
+      "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+      "occurredAt": "2026-09-10T15:58:15.000Z",
+      "dateKey": "2026-09-10",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+      "segmentId": "1",
+      "startedAt": "2026-09-10T15:58:15.000Z",
+      "endedAt": "2026-09-10T15:58:30.000Z",
+      "durationMs": 15000
+    },
+    {
+      "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:2",
+      "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+      "occurredAt": "2026-09-10T15:59:30.000Z",
+      "dateKey": "2026-09-10",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+      "segmentId": "2",
+      "startedAt": "2026-09-10T15:59:30.000Z",
+      "endedAt": "2026-09-10T16:00:00.000Z",
+      "durationMs": 30000
+    },
+    {
+      "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:3",
+      "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+      "occurredAt": "2026-09-10T16:00:00.000Z",
+      "dateKey": "2026-09-11",
+      "type": "foreground-time-recorded",
+      "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+      "segmentId": "3",
+      "startedAt": "2026-09-10T16:00:00.000Z",
+      "endedAt": "2026-09-10T16:03:00.000Z",
+      "durationMs": 180000
+    }
+  ],
+  "totals": {
+    "2026-09-10": 60000,
+    "2026-09-11": 180000
+  },
+  "final": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "dateKey": "2026-09-09",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "completed",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 1,
+            "startedAt": "2026-09-09T02:00:01.295Z",
+            "completedAt": "2026-09-10T16:03:00.000Z",
+            "completionEventId": "16:warmup-completed|43:warmup_ab7b5fe5-b8a7-4804-abe6-c4cd49a44adc"
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-01",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-09T02:00:00.788Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "dateKey": "2026-09-10",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "completed",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-06",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-06"
+            },
+            "progress": 1,
+            "startedAt": "2026-09-10T15:58:00.000Z",
+            "completedAt": "2026-09-10T16:03:00.000Z",
+            "completionEventId": "17:session-completed|49:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00"
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-10T15:58:00.000Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-11",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "dateKey": "2026-09-11",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-11|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-11|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-01",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "counter",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-11|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-10T16:03:00.000Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [
+      {
+        "id": "16:warmup-completed|43:warmup_ab7b5fe5-b8a7-4804-abe6-c4cd49a44adc",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "occurredAt": "2026-09-10T16:03:00.000Z",
+        "dateKey": "2026-09-11",
+        "provenance": {
+          "planId": "10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09",
+          "sourceTaskId": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09|6:warmup",
+          "planDate": "2026-09-09",
+          "returnTo": "/?date=2026-09-09&task=warmup"
+        },
+        "type": "warmup-completed",
+        "runId": "warmup_ab7b5fe5-b8a7-4804-abe6-c4cd49a44adc",
+        "recalledNoteIds": [],
+        "recalledStarterExpressionIds": [
+          "coffee.word.black"
+        ],
+        "recallResponses": [
+          {
+            "id": "coffee.word.black",
+            "kind": "starter",
+            "text": "I remember a useful expression."
+          }
+        ]
+      },
+      {
+        "id": "17:session-completed|49:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "occurredAt": "2026-09-10T16:03:00.000Z",
+        "dateKey": "2026-09-11",
+        "provenance": {
+          "planId": "10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10",
+          "sourceTaskId": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|5:scene",
+          "planDate": "2026-09-10",
+          "returnTo": "/?date=2026-09-10&task=scene"
+        },
+        "sessionId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "evidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+          "sceneId": "travel-06",
+          "sceneVersion": 1,
+          "level": "A2",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "assistance",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 1,
+          "outcome": "partial",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-10T16:03:00.000Z"
+        },
+        "type": "session-completed"
+      },
+      {
+        "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:0",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "occurredAt": "2026-09-10T15:58:00.000Z",
+        "dateKey": "2026-09-10",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+        "segmentId": "0",
+        "startedAt": "2026-09-10T15:58:00.000Z",
+        "endedAt": "2026-09-10T15:58:15.000Z",
+        "durationMs": 15000
+      },
+      {
+        "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:1",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "occurredAt": "2026-09-10T15:58:15.000Z",
+        "dateKey": "2026-09-10",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+        "segmentId": "1",
+        "startedAt": "2026-09-10T15:58:15.000Z",
+        "endedAt": "2026-09-10T15:58:30.000Z",
+        "durationMs": 15000
+      },
+      {
+        "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:2",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "occurredAt": "2026-09-10T15:59:30.000Z",
+        "dateKey": "2026-09-10",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+        "segmentId": "2",
+        "startedAt": "2026-09-10T15:59:30.000Z",
+        "endedAt": "2026-09-10T16:00:00.000Z",
+        "durationMs": 30000
+      },
+      {
+        "id": "42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|86:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1|1:3",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "occurredAt": "2026-09-10T16:00:00.000Z",
+        "dateKey": "2026-09-11",
+        "type": "foreground-time-recorded",
+        "runId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00_9d48253c-3c69-4e01-bbd4-19f9af3518f1",
+        "segmentId": "3",
+        "startedAt": "2026-09-10T16:00:00.000Z",
+        "endedAt": "2026-09-10T16:03:00.000Z",
+        "durationMs": 180000
+      }
+    ],
+    "notebook": [],
+    "outbox": [],
+    "pointsLedger": [
+      {
+        "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09|85:73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-09|6:warmup|9:goal-core",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "eventId": "16:warmup-completed|43:warmup_ab7b5fe5-b8a7-4804-abe6-c4cd49a44adc",
+        "ruleId": "goal-core",
+        "ruleVersion": 1,
+        "delta": 10,
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|84:73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|5:scene|9:goal-core",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "eventId": "17:session-completed|49:goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "ruleId": "goal-core",
+        "ruleVersion": 1,
+        "delta": 10,
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      }
+    ],
+    "profile": [
+      {
+        "id": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "level": "B2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-09T02:00:00.225Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [
+      {
+        "id": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "profileId": "guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a",
+        "sceneId": "travel-06",
+        "sceneVersion": 1,
+        "level": "A2",
+        "status": "completed",
+        "startedAt": "2026-09-10T15:58:00.000Z",
+        "updatedAt": "2026-09-10T16:03:00.000Z",
+        "completedGoals": [],
+        "openingText": "How would you like to confirm which room you are in?",
+        "provenance": {
+          "planId": "10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10",
+          "sourceTaskId": "73:10:daily-plan|42:guest_a6b0768a-327c-4771-8a86-e026ed3bfa7a|10:2026-09-10|5:scene",
+          "planDate": "2026-09-10",
+          "returnTo": "/?date=2026-09-10&task=scene"
+        },
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "travel-06",
+            "category": "travel",
+            "level": "A2",
+            "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-09 to 2026-09-10",
+            "rationale": {
+              "canDoZh": "说明故障经过和影响，协商等待与反馈方式。",
+              "complexityZh": "区分维修请求和换房查询，各后续问题都可兼容。",
+              "scaffoldingZh": "固定房号和非紧急故障，支持简单原因和if句。",
+              "registerZh": "自然求助，明确访问前联系和时间偏好。",
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ]
+            },
+            "questions": [
+              {
+                "id": "hotel-room-problem.A2.room",
+                "text": "How would you like to confirm which room you are in?",
+                "intent": "identify-room",
+                "objective": "room",
+                "hintZh": "房号不因方式变化。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.room.a",
+                    "text": "My room number is 204.",
+                    "acceptedForms": [
+                      "My room number is 204."
+                    ],
+                    "effects": [
+                      {
+                        "key": "room",
+                        "value": "say"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.room, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.room.b",
+                    "text": "I can show the card marked 204.",
+                    "acceptedForms": [
+                      "I can show the card marked 204."
+                    ],
+                    "effects": [
+                      {
+                        "key": "room",
+                        "value": "show"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.room, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.room, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.problem",
+                "text": "Can you describe what the air conditioning is doing?",
+                "intent": "describe-problem",
+                "objective": "problem",
+                "hintZh": "均表示没有制冷，前者明确不启动。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.problem.a",
+                    "text": "It does not turn on when I try to use it.",
+                    "acceptedForms": [
+                      "It does not turn on when I try to use it."
+                    ],
+                    "effects": [
+                      {
+                        "key": "problem",
+                        "value": "stopped"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.problem, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.problem.b",
+                    "text": "It is running, but the air is warm.",
+                    "acceptedForms": [
+                      "It is running, but the air is warm."
+                    ],
+                    "effects": [
+                      {
+                        "key": "problem",
+                        "value": "warm"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.problem, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.problem, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.request",
+                "text": "Which possibility would you like reception to check first?",
+                "intent": "request-remedy",
+                "objective": "request",
+                "hintZh": "不假定选择已经安排。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.request.a",
+                    "text": "Please check whether someone can repair it.",
+                    "acceptedForms": [
+                      "Please check whether someone can repair it."
+                    ],
+                    "effects": [
+                      {
+                        "key": "request",
+                        "value": "repair"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.request, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.request.b",
+                    "text": "Please check whether I could change rooms.",
+                    "acceptedForms": [
+                      "Please check whether I could change rooms."
+                    ],
+                    "effects": [
+                      {
+                        "key": "request",
+                        "value": "room"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.request, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.request, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.start",
+                "text": "When did you first realise the room was not cooling down?",
+                "intent": "give-time",
+                "objective": "start",
+                "hintZh": "发现时间不同。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.start.a",
+                    "text": "I only noticed the problem a few minutes ago.",
+                    "acceptedForms": [
+                      "I only noticed the problem a few minutes ago."
+                    ],
+                    "effects": [
+                      {
+                        "key": "start",
+                        "value": "now"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.start, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.start.b",
+                    "text": "I noticed it earlier this evening.",
+                    "acceptedForms": [
+                      "I noticed it earlier this evening."
+                    ],
+                    "effects": [
+                      {
+                        "key": "start",
+                        "value": "earlier"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.start, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.start, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.remote",
+                "text": "What happened to the remote’s screen when you tried it?",
+                "intent": "explain-attempt",
+                "objective": "remote",
+                "hintZh": "不据屏幕诊断。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.remote.a",
+                    "text": "The screen lit up, but the room did not get cooler.",
+                    "acceptedForms": [
+                      "The screen lit up, but the room did not get cooler."
+                    ],
+                    "effects": [
+                      {
+                        "key": "remote",
+                        "value": "lit"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.remote, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.remote.b",
+                    "text": "The screen stayed dark when I tried it.",
+                    "acceptedForms": [
+                      "The screen stayed dark when I tried it."
+                    ],
+                    "effects": [
+                      {
+                        "key": "remote",
+                        "value": "dark"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.remote, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.remote, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.wait",
+                "text": "Would a reply in about twenty minutes be suitable?",
+                "intent": "negotiate-time",
+                "objective": "wait",
+                "hintZh": "是回复是否有空，不是技术人员到达。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.wait.a",
+                    "text": "Yes, I can wait that long for an update.",
+                    "acceptedForms": [
+                      "Yes, I can wait that long for an update."
+                    ],
+                    "effects": [
+                      {
+                        "key": "wait",
+                        "value": "wait"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.wait, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.wait.b",
+                    "text": "Could I have an earlier update, please?",
+                    "acceptedForms": [
+                      "Could I have an earlier update, please?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "wait",
+                        "value": "sooner"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.wait, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.wait, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.access",
+                "text": "How should staff contact you before any possible visit?",
+                "intent": "set-boundary",
+                "objective": "access",
+                "hintZh": "请求非进入许可。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.access.a",
+                    "text": "Please ask them to knock before coming in.",
+                    "acceptedForms": [
+                      "Please ask them to knock before coming in."
+                    ],
+                    "effects": [
+                      {
+                        "key": "access",
+                        "value": "knock"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.access, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.access.b",
+                    "text": "Please ask them to call me before coming.",
+                    "acceptedForms": [
+                      "Please ask them to call me before coming."
+                    ],
+                    "effects": [
+                      {
+                        "key": "access",
+                        "value": "call"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.access, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.access, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.impact",
+                "text": "How is the room temperature affecting your evening?",
+                "intent": "explain-impact",
+                "objective": "impact",
+                "hintZh": "说明影响。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.impact.a",
+                    "text": "I want to rest, but the room feels too warm.",
+                    "acceptedForms": [
+                      "I want to rest, but the room feels too warm."
+                    ],
+                    "effects": [
+                      {
+                        "key": "impact",
+                        "value": "rest"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.impact, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.impact.b",
+                    "text": "I need to work, and the heat makes it difficult.",
+                    "acceptedForms": [
+                      "I need to work, and the heat makes it difficult."
+                    ],
+                    "effects": [
+                      {
+                        "key": "impact",
+                        "value": "work"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.impact, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.impact, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.alternative",
+                "text": "What would you want to know about a possible replacement room?",
+                "intent": "compare-option",
+                "objective": "alternative",
+                "hintZh": "并不确认接受换房。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.alternative.a",
+                    "text": "I would want to know whether it is quiet.",
+                    "acceptedForms": [
+                      "I would want to know whether it is quiet."
+                    ],
+                    "effects": [
+                      {
+                        "key": "alternative",
+                        "value": "quiet"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.alternative, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.alternative.b",
+                    "text": "I would want to know whether there is an extra charge.",
+                    "acceptedForms": [
+                      "I would want to know whether there is an extra charge."
+                    ],
+                    "effects": [
+                      {
+                        "key": "alternative",
+                        "value": "cost"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.alternative, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.alternative, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.contact",
+                "text": "How would you prefer to receive news from reception?",
+                "intent": "confirm-next",
+                "objective": "contact",
+                "hintZh": "只选择更新渠道。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.contact.a",
+                    "text": "Please call me when there is an update.",
+                    "acceptedForms": [
+                      "Please call me when there is an update."
+                    ],
+                    "effects": [
+                      {
+                        "key": "contact",
+                        "value": "phone"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.contact, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.contact.b",
+                    "text": "Please send a message so I can read it.",
+                    "acceptedForms": [
+                      "Please send a message so I can read it."
+                    ],
+                    "effects": [
+                      {
+                        "key": "contact",
+                        "value": "message"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.contact, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.contact, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.record",
+                "text": "How can we help you check that the problem description is correct?",
+                "intent": "keep-record",
+                "objective": "record",
+                "hintZh": "不把报告当修复。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.record.a",
+                    "text": "Please give me a written note of the problem.",
+                    "acceptedForms": [
+                      "Please give me a written note of the problem."
+                    ],
+                    "effects": [
+                      {
+                        "key": "record",
+                        "value": "written"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.record, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.record.b",
+                    "text": "Could you read the description back to me?",
+                    "acceptedForms": [
+                      "Could you read the description back to me?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "record",
+                        "value": "read"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.record, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.record, Codex postdraft reading 2026-09-10"
+                }
+              },
+              {
+                "id": "hotel-room-problem.A2.followup",
+                "text": "What will you do if you do not receive an update?",
+                "intent": "plan-followup",
+                "objective": "followup",
+                "hintZh": "未来条件。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "hotel-room-problem.A2.followup.a",
+                    "text": "I will call reception to ask again.",
+                    "acceptedForms": [
+                      "I will call reception to ask again."
+                    ],
+                    "effects": [
+                      {
+                        "key": "followup",
+                        "value": "call"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.followup, Codex postdraft reading 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "hotel-room-problem.A2.followup.b",
+                    "text": "I will come to the desk for an update.",
+                    "acceptedForms": [
+                      "I will come to the desk for an update."
+                    ],
+                    "effects": [
+                      {
+                        "key": "followup",
+                        "value": "desk"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.followup, Codex postdraft reading 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — hotel-room-problem.A2.followup, Codex postdraft reading 2026-09-10"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "counter",
+                "situationZh": "虚构Harbour Hotel求助对话。你是Alex Chen，住204房；空调没有制冷，已试过遥控器，没有漏水、烟或异味，不涉及紧急维修指令。现在20:00，前台说可询问技术人员，预计20分钟后才能回复是否有空；换房有无空房待查。你在描述问题和提出方案，不代表修复、退款或换房已经发生。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "hotel-room-problem.A2.room",
+                      "hotel-room-problem.A2.problem",
+                      "hotel-room-problem.A2.request"
+                    ],
+                    "achievedClosing": "That completes the room-problem conversation practice. The reported problem and requests are recorded for the exercise; no repair, room move or refund has occurred.",
+                    "partialClosing": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "hotel-room-problem.A2.room",
+                      "hotel-room-problem.A2.problem",
+                      "hotel-room-problem.A2.request",
+                      "hotel-room-problem.A2.start",
+                      "hotel-room-problem.A2.remote",
+                      "hotel-room-problem.A2.wait"
+                    ],
+                    "achievedClosing": "That completes the room-problem conversation practice. The reported problem and requests are recorded for the exercise; no repair, room move or refund has occurred.",
+                    "partialClosing": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "hotel-room-problem.A2.room",
+                      "hotel-room-problem.A2.problem",
+                      "hotel-room-problem.A2.request",
+                      "hotel-room-problem.A2.start",
+                      "hotel-room-problem.A2.remote",
+                      "hotel-room-problem.A2.wait",
+                      "hotel-room-problem.A2.access",
+                      "hotel-room-problem.A2.impact",
+                      "hotel-room-problem.A2.alternative",
+                      "hotel-room-problem.A2.contact"
+                    ],
+                    "achievedClosing": "That completes the room-problem conversation practice. The reported problem and requests are recorded for the exercise; no repair, room move or refund has occurred.",
+                    "partialClosing": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+                }
+              },
+              {
+                "id": "assistance",
+                "situationZh": "虚构Harbour Hotel协助对话。Alex Chen住204房，空调不制冷，遥控器已试过，无漏水、烟和异味。现在20:00，技术人员能否来仍待核实，前台预计20分钟后才能回复；其他房间是否可用未知。你还需讨论跟进记录和未解决时如何再联系，不进行拆修，也不假装已安排服务。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "hotel-room-problem.A2.room",
+                      "hotel-room-problem.A2.problem",
+                      "hotel-room-problem.A2.request"
+                    ],
+                    "achievedClosing": "That completes the room-problem conversation practice. The reported problem and requests are recorded for the exercise; no repair, room move or refund has occurred.",
+                    "partialClosing": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "hotel-room-problem.A2.room",
+                      "hotel-room-problem.A2.problem",
+                      "hotel-room-problem.A2.request",
+                      "hotel-room-problem.A2.start",
+                      "hotel-room-problem.A2.remote",
+                      "hotel-room-problem.A2.wait"
+                    ],
+                    "achievedClosing": "That completes the room-problem conversation practice. The reported problem and requests are recorded for the exercise; no repair, room move or refund has occurred.",
+                    "partialClosing": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "hotel-room-problem.A2.room",
+                      "hotel-room-problem.A2.problem",
+                      "hotel-room-problem.A2.request",
+                      "hotel-room-problem.A2.start",
+                      "hotel-room-problem.A2.remote",
+                      "hotel-room-problem.A2.wait",
+                      "hotel-room-problem.A2.access",
+                      "hotel-room-problem.A2.impact",
+                      "hotel-room-problem.A2.record",
+                      "hotel-room-problem.A2.followup"
+                    ],
+                    "achievedClosing": "That completes the room-problem conversation practice. The reported problem and requests are recorded for the exercise; no repair, room move or refund has occurred.",
+                    "partialClosing": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "travel-review.md#hotel-room-problem — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "We can clarify the current room-problem question without assuming a repair has been arranged.",
+              "struggle": "A short description is enough. Use the fictional room details and ask for repetition if needed.",
+              "offTopic": "Let us return to the problem in the fictional room.",
+              "unknown": "That wording is unconfirmed in this local exercise. It has not triggered a repair or a room change.",
+              "changed": "Your earlier request has been revised in the exercise only.",
+              "refusedClosing": "We will stop the room-problem practice. No service has been arranged or cancelled."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "assistance",
+            "currentQuestionId": null,
+            "facts": [
+              {
+                "key": "room",
+                "value": "say",
+                "questionId": "hotel-room-problem.A2.room",
+                "answerId": "hotel-room-problem.A2.room.a",
+                "turnIndex": 0
+              }
+            ],
+            "completedObjectives": [
+              "room"
+            ],
+            "completedIntents": [
+              "identify-room"
+            ],
+            "askedQuestionIds": [
+              "hotel-room-problem.A2.room",
+              "hotel-room-problem.A2.problem"
+            ],
+            "turns": [
+              {
+                "action": "answer",
+                "text": "My room number is 204.",
+                "suggestionId": "hotel-room-problem.A2.room.a"
+              },
+              {
+                "action": "struggle",
+                "text": ""
+              },
+              {
+                "action": "struggle",
+                "text": ""
+              }
+            ],
+            "outcome": "partial",
+            "reply": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open.",
+            "confirmation": "repair"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "酒店工作人员角色",
+          "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+        },
+        "completedAt": "2026-09-10T16:03:00.000Z",
+        "completionEvidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+          "sceneId": "travel-06",
+          "sceneVersion": 1,
+          "level": "A2",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "assistance",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 1,
+          "outcome": "partial",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-10T16:03:00.000Z"
+        }
+      }
+    ],
+    "settings": [],
+    "turns": [
+      {
+        "id": "turn_40d215b4-cb04-4fbc-822d-d9c7e79c7760",
+        "sessionId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "index": 1,
+        "learnerText": "",
+        "aiText": "A short description is enough. Use the fictional room details and ask for repetition if needed.\n均表示没有制冷，前者明确不启动。\nCan you describe what the air conditioning is doing?",
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "turn_7c22926c-a14c-4c04-ba70-5f32ada56a81",
+        "sessionId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "index": 0,
+        "learnerText": "My room number is 204.",
+        "aiText": "Can you describe what the air conditioning is doing?",
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      },
+      {
+        "id": "turn_b50f4a54-07e4-4fe6-870b-c214067370df",
+        "sessionId": "goal-session_834ae612-66b2-45d1-b90d-0967e6e30d00",
+        "index": 2,
+        "learnerText": "",
+        "aiText": "We have practised part of reporting the room problem. Unconfirmed access, timing and alternatives remain open.",
+        "createdAt": "2026-09-10T16:03:00.000Z"
+      }
+    ]
+  },
+  "visibilityMethod": "document signal injection; no OS app switching"
+}
