@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
   createIndexedDbRepositories,
   type Repositories,
@@ -38,6 +38,7 @@ function NotebookNoteContent({
   const [tags, setTags] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const speechRequest = useRef(0)
   const note = entry.note
   const backHref = safeSourceHref(returnHref) ?? '/notebook'
   useEffect(() => {
@@ -50,7 +51,38 @@ function NotebookNoteContent({
       else root.dataset.interactionBusy = previous
     }
   }, [editing, busy])
-  useEffect(() => () => browserTts.stop(), [])
+  useEffect(
+    () => () => {
+      speechRequest.current += 1
+      browserTts.stop()
+    },
+    [mode, editing, note?.text],
+  )
+  function stopReading() {
+    speechRequest.current += 1
+    browserTts.stop()
+  }
+  async function readAloud() {
+    if (!note) return
+    stopReading()
+    const request = speechRequest.current
+    setError('')
+    let settings
+    try {
+      settings = await repo.learning.getSettings()
+    } catch {
+      if (request === speechRequest.current)
+        setError('本机语音设置暂时无法读取，未开始朗读。请重试；原文仍可阅读。')
+      return
+    }
+    if (request !== speechRequest.current) return
+    try {
+      await browserTts.speak(note.text, { rate: settings.speechRate })
+    } catch {
+      if (request === speechRequest.current)
+        setError('本机英语音色不可用，请直接看原文跟读；不会改用云端声音。')
+    }
+  }
   async function save() {
     if (!note || busy) return
     setBusy(true)
@@ -264,21 +296,10 @@ function NotebookNoteContent({
             >
               开始自我回忆
             </button>
-            <button
-              disabled={editing || busy}
-              onClick={() =>
-                void browserTts
-                  .speak(note.text)
-                  .catch(() =>
-                    setError(
-                      '本机英语音色不可用，请直接看原文跟读；不会改用云端声音。',
-                    ),
-                  )
-              }
-            >
+            <button disabled={editing || busy} onClick={() => void readAloud()}>
               本地跟读原文
             </button>
-            <button onClick={() => browserTts.stop()}>停止朗读</button>
+            <button onClick={stopReading}>停止朗读</button>
             {entry.analysis?.result?.status !== 'unknown' &&
             entry.analysis?.result?.entries.length ? (
               <button

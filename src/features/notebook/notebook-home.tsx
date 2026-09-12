@@ -43,9 +43,7 @@ export function NotebookHome({
       .list()
       .then(async (notes) => {
         const [heads, sessions] = await Promise.all([
-          Promise.all(
-            notes.map((note) => repo.learning.getReviewSchedule(note.id)),
-          ),
+          repo.learning.getReviewSchedules(notes.map((note) => note.id)),
           repo.sessions.list(),
         ])
         if (active) {

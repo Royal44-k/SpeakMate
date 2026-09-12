@@ -84,7 +84,37 @@ export function SessionResolver({
           throw new Error(
             '所选语料尚未下载或不可用，请重试；不会替换为别的场景或等级。',
           )
-        const variantId = result.pack.variants[0].id
+        let variantId = result.pack.variants[0].id
+        if (queryRound) {
+          const [previous, profile] = await Promise.all([
+            repository.practice.read(queryRound),
+            repository.profiles.get(),
+          ])
+          const snapshot = previous?.session.gradedDialogue
+          if (
+            !previous ||
+            previous.status !== 'ready' ||
+            !profile ||
+            previous.session.profileId !== profile.id ||
+            previous.session.sceneId !== metadata.id ||
+            previous.session.level !== level ||
+            previous.session.provenance ||
+            previous.session.simulation ||
+            !snapshot ||
+            snapshot.state.mode !== mode ||
+            snapshot.pack.contentVersion !== result.pack.contentVersion
+          )
+            throw new Error(
+              '上一轮记录缺失或与本次自由练习不匹配，请返回场景准备；未修改上一轮。',
+            )
+          const index = result.pack.variants.findIndex(
+            (variant) => variant.id === snapshot.state.variantId,
+          )
+          if (index < 0)
+            throw new Error('上一轮情境不在当前校审资料中，请返回场景准备。')
+          variantId =
+            result.pack.variants[(index + 1) % result.pack.variants.length].id
+        }
         const scene = {
           ...metadata,
           level,
@@ -165,6 +195,7 @@ export function SessionResolver({
   }, [
     queryLevel,
     queryMode,
+    queryRound,
     queryScene,
     repository,
     requestKey,

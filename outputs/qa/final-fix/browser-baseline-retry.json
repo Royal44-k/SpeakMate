@@ -1,0 +1,17 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/final-fix.spec.ts",
+    "--project=chromium-mobile",
+    "--output=outputs/qa/final-fix/baseline-retry-chromium",
+    "--reporter=line"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T11:42:17.076Z",
+  "endedAt": "2026-09-12T11:42:38.218Z",
+  "exitCode": 1,
+  "stdout": "\nRunning 1 test using 1 worker\n\n\n\n[1/1] [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:5:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source\n  1) [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:5:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source \n\n    TimeoutError: locator.click: Timeout 10000ms exceeded.\n    Call log:\n      - waiting for getByRole('button', { name: '确认结束本次练习' })\n\n\n      12 |   page,\n      13 |   context,\n    > 14 |   baseURL,\n         |           ^\n      15 | }, info) => {\n      16 |   test.setTimeout(150000)\n      17 |   const finishNetwork = await protect(context, baseURL!)\n        at D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3\\tests\\e2e\\final-fix.spec.ts:14:58\n\n    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────\n    outputs\\qa\\final-fix\\baseline-retry-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\test-failed-1.png\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n    Error Context: outputs\\qa\\final-fix\\baseline-retry-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\error-context.md\n\n    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────\n    outputs\\qa\\final-fix\\baseline-retry-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\trace.zip\n    Usage:\n\n        npx playwright show-trace outputs\\qa\\final-fix\\baseline-retry-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n\n  1 failed\n    [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:5:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source \n",
+  "stderr": "(node:22252) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

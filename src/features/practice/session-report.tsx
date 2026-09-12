@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- Binding offline-routing contract: cross-shell learning links require document navigation, never RSC prefetch. */
 'use client'
 
-import { BookmarkSimple, SpinnerGap } from '@phosphor-icons/react'
-import { useEffect, useRef, useState } from 'react'
+import { SpinnerGap } from '@phosphor-icons/react'
+import { useEffect, useState } from 'react'
 import { MobilePageHeader } from '@/components/app-shell/mobile-page-header'
 import {
   buildLearningHref,
@@ -16,7 +16,7 @@ import {
 import type { PracticeRecord } from '@/infrastructure/persistence/practice-repository'
 import { HistoricalPracticeRecord } from './historical-practice-record'
 import styles from './session-report.module.css'
-import { CaptureText } from '@/features/notebook/capture'
+import { CaptureExpression, CaptureText } from '@/features/notebook/capture'
 import { RecordCaptureFrame } from '@/features/notebook/record-capture-frame'
 
 export function favoriteIdFor(sessionId: string, expression: string): string {
@@ -45,14 +45,8 @@ export function SessionReportView({
     record?: PracticeRecord
     error?: string
   }>()
-  const [savedExpressions, setSavedExpressions] = useState<string[]>([])
-  const [saving, setSaving] = useState<string[]>([])
-  const [saveError, setSaveError] = useState('')
-  const pending = useRef(new Set<string>())
-  const activeId = useRef(sessionId)
   useEffect(() => {
     let active = true
-    activeId.current = sessionId
     void repository.practice
       .read(sessionId)
       .then((record) => {
@@ -61,61 +55,15 @@ export function SessionReportView({
           id: sessionId,
           ...(record ? { record } : { error: '找不到这次练习' }),
         })
-        if (!record) return
-        void repository.favorites
-          .list()
-          .then((favorites) => {
-            if (active)
-              setSavedExpressions(
-                favorites
-                  .filter((item) => item.sceneId === record.session.sceneId)
-                  .map((item) => item.expression),
-              )
-          })
-          .catch(() => {
-            if (active) setSaveError('收藏状态暂时无法读取；对话记录仍可查看。')
-          })
       })
       .catch(() => {
         if (active) setLoaded({ id: sessionId, error: '本机记录暂时无法读取' })
       })
     return () => {
       active = false
-      activeId.current = ''
     }
   }, [repository, sessionId])
   const record = loaded?.id === sessionId ? loaded.record : undefined
-  async function saveExpression(expression: string) {
-    if (
-      !record ||
-      pending.current.has(expression) ||
-      savedExpressions.includes(expression)
-    )
-      return
-    const id = record.session.id
-    pending.current.add(expression)
-    setSaving((values) => [...values, expression])
-    setSaveError('')
-    try {
-      const now = new Date().toISOString()
-      await repository.favorites.save({
-        id: favoriteIdFor(id, expression),
-        expression,
-        sceneId: record.session.sceneId,
-        createdAt: now,
-        updatedAt: now,
-      })
-      if (activeId.current === id)
-        setSavedExpressions((values) => [...values, expression])
-    } catch {
-      if (activeId.current === id)
-        setSaveError('收藏未保存，请重试；原文没有被删除。')
-    } finally {
-      pending.current.delete(expression)
-      if (activeId.current === id)
-        setSaving((values) => values.filter((value) => value !== expression))
-    }
-  }
   if (loaded?.id === sessionId && loaded.error)
     return (
       <main className={styles.empty} role="alert">
@@ -164,29 +112,28 @@ export function SessionReportView({
         expressions.map((expression) => (
           <article key={expression}>
             <p lang="en">{expression}</p>
-            <button
-              type="button"
-              aria-label={`${savedExpressions.includes(expression) ? '已收藏' : '收藏'}表达：${expression}`}
-              disabled={
-                savedExpressions.includes(expression) ||
-                saving.includes(expression)
+            <CaptureExpression
+              text={expression}
+              sources={
+                view
+                  ? view.history
+                      .filter((turn) => turn.learner.text === expression)
+                      .map((turn) => turn.learner.source)
+                  : record.turns
+                      .filter((turn) => turn.learnerText === expression)
+                      .map((turn) => ({
+                        sessionId: record.session.id,
+                        sceneId: record.session.sceneId,
+                        level: record.session.level,
+                        turnId: turn.id,
+                      }))
               }
-              onClick={() => void saveExpression(expression)}
-            >
-              <BookmarkSimple
-                aria-hidden
-                size={20}
-                weight={
-                  savedExpressions.includes(expression) ? 'fill' : 'regular'
-                }
-              />
-            </button>
+            />
           </article>
         ))
       ) : (
         <p>本轮没有保存非空表达。</p>
       )}
-      {saveError ? <p role="alert">{saveError}</p> : null}
     </section>
   )
   if (!view)

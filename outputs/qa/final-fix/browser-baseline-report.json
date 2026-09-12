@@ -1,0 +1,17 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/final-fix.spec.ts",
+    "--project=chromium-mobile",
+    "--output=outputs/qa/final-fix/baseline-report-chromium",
+    "--reporter=line"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T11:47:52.935Z",
+  "endedAt": "2026-09-12T11:48:09.222Z",
+  "exitCode": 1,
+  "stdout": "\nRunning 1 test using 1 worker\n\n\n\n[1/1] [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:11:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source\n  1) [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:11:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source \n\n    Error: expect(locator).toBeVisible() failed\n\n    Locator: getByRole('dialog')\n    Expected: visible\n    Timeout: 8000ms\n    Error: element(s) not found\n\n    Call log:\n      - Expect \"toBeVisible\" with timeout 8000ms\n      - waiting for getByRole('dialog')\n\n\n      56 |     }\n      57 |     await bookmark.click()\n    > 58 |     await expect(page.getByRole('dialog')).toBeVisible()\n         |                                            ^\n      59 |     await expect(page.getByRole('dialog')).toContainText(\n      60 |       'coffee-order.C1.drink',\n      61 |     )\n        at D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3\\tests\\e2e\\final-fix.spec.ts:58:44\n\n    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────\n    outputs\\qa\\final-fix\\baseline-report-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\test-failed-1.png\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n    Error Context: outputs\\qa\\final-fix\\baseline-report-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\error-context.md\n\n    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────\n    outputs\\qa\\final-fix\\baseline-report-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\trace.zip\n    Usage:\n\n        npx playwright show-trace outputs\\qa\\final-fix\\baseline-report-chromium\\final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n\n  1 failed\n    [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:11:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source \n",
+  "stderr": "(node:28540) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

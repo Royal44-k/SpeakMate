@@ -1,0 +1,12 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "scripts/offline-manifest.mjs"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T11:53:15.082Z",
+  "endedAt": "2026-09-12T11:53:15.342Z",
+  "exitCode": 0,
+  "stdout": "{\n  \"buildId\": \"gjS0ezQtWpwSGn3KMi8kq\",\n  \"shells\": 16,\n  \"assets\": 70,\n  \"sharedBytes\": 5020339,\n  \"categories\": [\n    {\n      \"url\": \"/content/v1/travel\",\n      \"bytes\": 754091\n    },\n    {\n      \"url\": \"/content/v1/dining\",\n      \"bytes\": 859537\n    },\n    {\n      \"url\": \"/content/v1/daily\",\n      \"bytes\": 761324\n    },\n    {\n      \"url\": \"/content/v1/work\",\n      \"bytes\": 870083\n    },\n    {\n      \"url\": \"/content/v1/social\",\n      \"bytes\": 670297\n    },\n    {\n      \"url\": \"/content/v1/study\",\n      \"bytes\": 687260\n    },\n    {\n      \"url\": \"/content/v1/emergency\",\n      \"bytes\": 808499\n    }\n  ]\n}\n",
+  "stderr": ""
+}

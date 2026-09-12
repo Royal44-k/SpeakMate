@@ -1,0 +1,1685 @@
+{
+  "original": {
+    "id": "session_77c008d5-7fac-4b3b-992f-08d0eb434901",
+    "profileId": "guest_f16099f4-54c6-4978-a426-cd5f96681388",
+    "sceneId": "dining-01",
+    "sceneVersion": 1,
+    "level": "C1",
+    "status": "completed",
+    "startedAt": "2026-09-12T12:06:59.518Z",
+    "updatedAt": "2026-09-12T12:07:00.959Z",
+    "completedGoals": [],
+    "openingText": "The Americano is the more assertive option; the filter coffee is subtler. What sort of flavour are you after?",
+    "gradedDialogue": {
+      "schemaVersion": 1,
+      "pack": {
+        "schemaVersion": 1,
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "sceneId": "dining-01",
+        "category": "dining",
+        "level": "C1",
+        "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+        "rationale": {
+          "canDoZh": "在熟悉的服务场景中精确限定偏好，澄清容易混同的概念，并以得体语气处理取舍。",
+          "complexityZh": "不是给简单句加长：区分强烈风味与刺激感、单价与实际价值、制作与交付时点、记录与报销要求。",
+          "scaffoldingZh": "保留有限选项以确保本地确定性；参考回答展示限定、重新表述与克制异议，不能代表完整 C1 能力测评。",
+          "registerZh": "自然但精准的口语，不用正式公文或刻意生僻词冒充高级表达。",
+          "sourceBasis": [
+            "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+          ]
+        },
+        "questions": [
+          {
+            "id": "coffee.C1.drink",
+            "text": "The Americano is the more assertive option; the filter coffee is subtler. What sort of flavour are you after?",
+            "intent": "order",
+            "objective": "drink",
+            "hintZh": "直接区分风味偏好和咖啡因，不推断咖啡因作用。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.drink.a",
+                "text": "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.",
+                "acceptedForms": [
+                  "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine."
+                ],
+                "effects": [
+                  {
+                    "key": "drink",
+                    "value": "americano"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0"
+                }
+              },
+              {
+                "id": "coffee.C1.drink.b",
+                "text": "I would lean towards the filter coffee. I am after something nuanced, not necessarily something that makes an immediate impression.",
+                "acceptedForms": [
+                  "I would lean towards the filter coffee. I am after something nuanced, not necessarily something that makes an immediate impression."
+                ],
+                "effects": [
+                  {
+                    "key": "drink",
+                    "value": "filter"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0"
+            }
+          },
+          {
+            "id": "coffee.C1.size",
+            "text": "The larger cup works out better per millilitre, though that may not make it better value for you. Which size would you prefer?",
+            "intent": "quantity",
+            "objective": "size",
+            "hintZh": "回应对方对价值的限定，并区分单价与自身效用。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.size.a",
+                "text": "Small, please. The lower unit price is beside the point if I end up leaving half of it.",
+                "acceptedForms": [
+                  "Small, please. The lower unit price is beside the point if I end up leaving half of it."
+                ],
+                "effects": [
+                  {
+                    "key": "size",
+                    "value": "small"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.size.b",
+                "text": "Large would actually be worthwhile in my case. I have a long break, so I am not buying more than I can enjoy.",
+                "acceptedForms": [
+                  "Large would actually be worthwhile in my case. I have a long break, so I am not buying more than I can enjoy."
+                ],
+                "effects": [
+                  {
+                    "key": "size",
+                    "value": "large"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.service",
+            "text": "There is space to sit in, although I cannot promise it will remain quiet. Would staying or taking it away suit you better?",
+            "intent": "serving",
+            "objective": "service",
+            "hintZh": "不把当前空位误解为未来安静保证。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.service.a",
+                "text": "I will stay. I am not expecting silence; I just need somewhere to pause between appointments.",
+                "acceptedForms": [
+                  "I will stay. I am not expecting silence; I just need somewhere to pause between appointments."
+                ],
+                "effects": [
+                  {
+                    "key": "service",
+                    "value": "here"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.service.b",
+                "text": "I will take it away, then. It is not the bustle itself that bothers me, but I do need to concentrate today.",
+                "acceptedForms": [
+                  "I will take it away, then. It is not the bustle itself that bothers me, but I do need to concentrate today."
+                ],
+                "effects": [
+                  {
+                    "key": "service",
+                    "value": "takeaway"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.milk",
+            "text": "We can leave it black or soften it with oat milk. Do you have a preference, bearing in mind that the flavour will change?",
+            "intent": "customize",
+            "objective": "milk",
+            "hintZh": "承认配料改变风味，精确表达优先事项。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.milk.a",
+                "text": "Black, please. I would rather experience the coffee as it is, even if that means a little more bitterness.",
+                "acceptedForms": [
+                  "Black, please. I would rather experience the coffee as it is, even if that means a little more bitterness."
+                ],
+                "effects": [
+                  {
+                    "key": "milk",
+                    "value": "none"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.milk.b",
+                "text": "Oat milk would suit me. Preserving every flavour note matters less to me than having a drink I find pleasantly rounded.",
+                "acceptedForms": [
+                  "Oat milk would suit me. Preserving every flavour note matters less to me than having a drink I find pleasantly rounded."
+                ],
+                "effects": [
+                  {
+                    "key": "milk",
+                    "value": "oat"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.sweetener",
+            "text": "We can leave the sugar out or add a single portion. Are you looking to preserve the bitterness or temper it a little?",
+            "intent": "preference",
+            "objective": "sweetener",
+            "hintZh": "temper 指适度缓和，不等于完全消除。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.sweetener.a",
+                "text": "Leave it out, please. I am not trying to eliminate the bitterness; within reason, it is part of what I enjoy.",
+                "acceptedForms": [
+                  "Leave it out, please. I am not trying to eliminate the bitterness; within reason, it is part of what I enjoy."
+                ],
+                "effects": [
+                  {
+                    "key": "sweetener",
+                    "value": "none"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.sweetener.b",
+                "text": "A single portion, please. I want to take the edge off rather than turn it into a sweet drink.",
+                "acceptedForms": [
+                  "A single portion, please. I want to take the edge off rather than turn it into a sweet drink."
+                ],
+                "effects": [
+                  {
+                    "key": "sweetener",
+                    "value": "one"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.payment",
+            "text": "Cash and card are equally welcome, with no surcharge either way. Do you have a preference?",
+            "intent": "payment",
+            "objective": "payment",
+            "hintZh": "不凭空引入支付限制，可解释个人记账策略。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.payment.a",
+                "text": "Cash, please. It is a personal budgeting habit, rather than any objection to paying electronically.",
+                "acceptedForms": [
+                  "Cash, please. It is a personal budgeting habit, rather than any objection to paying electronically."
+                ],
+                "effects": [
+                  {
+                    "key": "payment",
+                    "value": "cash"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.payment.b",
+                "text": "I will use my card. Having a traceable total is useful, even though it does not replace a detailed receipt.",
+                "acceptedForms": [
+                  "I will use my card. Having a traceable total is useful, even though it does not replace a detailed receipt."
+                ],
+                "effects": [
+                  {
+                    "key": "payment",
+                    "value": "card"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.receipt",
+            "text": "An itemised receipt is available if you need one; otherwise we can avoid printing it. What would be appropriate?",
+            "intent": "record",
+            "objective": "receipt",
+            "hintZh": "选择凭证不保证公司报销，区分用途与批准结果。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.receipt.a",
+                "text": "Please print it. I may be able to claim the expense, but I will need the itemised record before I can check.",
+                "acceptedForms": [
+                  "Please print it. I may be able to claim the expense, but I will need the itemised record before I can check."
+                ],
+                "effects": [
+                  {
+                    "key": "receipt",
+                    "value": "yes"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.receipt.b",
+                "text": "There is no need to print it. This is a personal purchase, so a separate itemised record would serve little purpose.",
+                "acceptedForms": [
+                  "There is no need to print it. This is a personal purchase, so a separate itemised record would serve little purpose."
+                ],
+                "effects": [
+                  {
+                    "key": "receipt",
+                    "value": "no"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.name",
+            "text": "For collection, we can use a name or an order number. Which would you be more comfortable having called out?",
+            "intent": "identify",
+            "objective": "name",
+            "hintZh": "有分寸地处理隐私，不把不同偏好当成对抗。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.name.a",
+                "text": "Sam is fine. I am comfortable using a first name here, and I will be listening for it.",
+                "acceptedForms": [
+                  "Sam is fine. I am comfortable using a first name here, and I will be listening for it."
+                ],
+                "effects": [
+                  {
+                    "key": "name",
+                    "value": "sam"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.name.b",
+                "text": "An order number, please. It is a minor preference, but I would rather not have my name called across the room.",
+                "acceptedForms": [
+                  "An order number, please. It is a minor preference, but I would rather not have my name called across the room."
+                ],
+                "effects": [
+                  {
+                    "key": "name",
+                    "value": "number"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.cooling",
+            "text": "We could add a little cold water for immediate drinking, at the cost of some concentration. Would that be a worthwhile trade-off?",
+            "intent": "temperature",
+            "objective": "cooling",
+            "hintZh": "concentration 是饮品浓度；表明接受或不接受代价。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.cooling.a",
+                "text": "In this case, yes. I would rather enjoy it now than preserve the exact concentration and have to leave it untouched.",
+                "acceptedForms": [
+                  "In this case, yes. I would rather enjoy it now than preserve the exact concentration and have to leave it untouched."
+                ],
+                "effects": [
+                  {
+                    "key": "cooling",
+                    "value": "water"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.cooling.b",
+                "text": "Not for me, thanks. I can give it time to cool, so there is no real need to compromise the flavour.",
+                "acceptedForms": [
+                  "Not for me, thanks. I can give it time to cool, so there is no real need to compromise the flavour."
+                ],
+                "effects": [
+                  {
+                    "key": "cooling",
+                    "value": "unchanged"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.food",
+            "text": "There are cookies available as an optional extra. Would one be useful, or shall we leave the order as it stands?",
+            "intent": "upsell",
+            "objective": "food",
+            "hintZh": "得体接受或婉拒提议，明确是否更改订单。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.food.a",
+                "text": "On balance, I will add one. I may not need it immediately, but it will tide me over until a late lunch.",
+                "acceptedForms": [
+                  "On balance, I will add one. I may not need it immediately, but it will tide me over until a late lunch."
+                ],
+                "effects": [
+                  {
+                    "key": "food",
+                    "value": "cookie"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.food.b",
+                "text": "Let us leave it as it stands. I appreciate the suggestion, but adding food would be more out of habit than hunger.",
+                "acceptedForms": [
+                  "Let us leave it as it stands. I appreciate the suggestion, but adding food would be more out of habit than hunger."
+                ],
+                "effects": [
+                  {
+                    "key": "food",
+                    "value": "none"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.timing",
+            "text": "We can begin now or in ten minutes; that is the preparation start, not a guaranteed collection time. Which would you prefer?",
+            "intent": "schedule",
+            "objective": "timing",
+            "hintZh": "明确承认开始制作与保证取餐时间不同。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.timing.a",
+                "text": "Please begin now. I would rather build in a little leeway than treat the preparation time as a firm collection promise.",
+                "acceptedForms": [
+                  "Please begin now. I would rather build in a little leeway than treat the preparation time as a firm collection promise."
+                ],
+                "effects": [
+                  {
+                    "key": "timing",
+                    "value": "now"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.timing.b",
+                "text": "In ten minutes would be preferable. I understand it will take a little longer after that, and my schedule allows for it.",
+                "acceptedForms": [
+                  "In ten minutes would be preferable. I understand it will take a little longer after that, and my schedule allows for it."
+                ],
+                "effects": [
+                  {
+                    "key": "timing",
+                    "value": "later"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.cup",
+            "text": "We can fill a clean cup you have brought or provide one appropriate for your order. What would be most practical today?",
+            "intent": "sustainability",
+            "objective": "cup",
+            "hintZh": "避免把环保立场绝对化，也不假定自带容器。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.cup.a",
+                "text": "I have a clean reusable cup with me, so using that seems the sensible option without complicating the order.",
+                "acceptedForms": [
+                  "I have a clean reusable cup with me, so using that seems the sensible option without complicating the order."
+                ],
+                "effects": [
+                  {
+                    "key": "cup",
+                    "value": "own"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.cup.b",
+                "text": "Please provide one today. I generally favour reusables, but insisting on one I have not brought would not achieve much.",
+                "acceptedForms": [
+                  "Please provide one today. I generally favour reusables, but insisting on one I have not brought would not achieve much."
+                ],
+                "effects": [
+                  {
+                    "key": "cup",
+                    "value": "shop"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          }
+        ],
+        "variants": [
+          {
+            "id": "counter",
+            "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+            "modes": {
+              "short": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.size",
+                  "coffee.C1.service"
+                ],
+                "achievedClosing": "Your drink, size and serving choice are noted. This practice is complete; no real order has been placed.",
+                "partialClosing": "This practice has ended with some order details still unconfirmed. No real order has been placed."
+              },
+              "standard": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.size",
+                  "coffee.C1.service",
+                  "coffee.C1.milk",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.payment"
+                ],
+                "achievedClosing": "Your order preferences and payment method are noted. This practice is complete; no payment has been taken.",
+                "partialClosing": "This practice has ended with some preferences still unconfirmed. No payment has been taken."
+              },
+              "extended": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.size",
+                  "coffee.C1.service",
+                  "coffee.C1.milk",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.payment",
+                  "coffee.C1.receipt",
+                  "coffee.C1.name",
+                  "coffee.C1.cooling",
+                  "coffee.C1.food"
+                ],
+                "achievedClosing": "Your order and collection preferences are noted, including temperature handling and the snack decision. This practice is complete; no real order has been placed.",
+                "partialClosing": "This practice has ended with some order or collection details still unconfirmed. No real order has been placed."
+              }
+            },
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "planned",
+            "situationZh": "安排取餐：同一在售菜单及默认热黑咖啡；先确认饮品、堂食/外带、杯型。拓展练安排现在/稍后出杯和杯具方案，替代现场版的降温及点心，并非随机拼接。",
+            "modes": {
+              "short": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.service",
+                  "coffee.C1.size"
+                ],
+                "achievedClosing": "Your drink and serving arrangements are noted. This short practice is complete; no real order has been placed.",
+                "partialClosing": "This short practice has ended with serving arrangements still partly unconfirmed. No real order has been placed."
+              },
+              "standard": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.service",
+                  "coffee.C1.size",
+                  "coffee.C1.payment",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.milk"
+                ],
+                "achievedClosing": "Your serving arrangements, preferences and payment method are noted. This practice is complete; no payment has been taken.",
+                "partialClosing": "This practice has ended with some serving or payment preferences still unconfirmed. No payment has been taken."
+              },
+              "extended": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.service",
+                  "coffee.C1.size",
+                  "coffee.C1.payment",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.milk",
+                  "coffee.C1.timing",
+                  "coffee.C1.cup",
+                  "coffee.C1.receipt",
+                  "coffee.C1.name"
+                ],
+                "achievedClosing": "Your order, preparation time, cup choice and collection details are noted. This practice is complete; no real booking or order has been made.",
+                "partialClosing": "This practice has ended with some preparation or collection details still unconfirmed. No real booking or order has been made."
+              }
+            },
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          }
+        ],
+        "repairs": {
+          "clarify": "Of course. Let us make the outstanding choice explicit.",
+          "struggle": "There is no need to force a polished answer. Use a reviewed example, or retain your own wording for later reflection.",
+          "offTopic": "That is outside the scope of this local coffee lesson. Let us return to the detail still awaiting a decision.",
+          "unknown": "Your exact wording is retained. There is no reviewed match in this local lesson, so neither a semantic judgment nor a correction is being inferred.",
+          "changed": "The supported revision is recorded; independent decisions stand, while dependent details are reconsidered.",
+          "refusedClosing": "Understood. We will end the practice with the order incomplete, without treating that decision as successful completion."
+        }
+      },
+      "state": {
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "currentQuestionId": null,
+        "facts": [
+          {
+            "key": "drink",
+            "value": "americano",
+            "questionId": "coffee.C1.drink",
+            "answerId": "coffee.C1.drink.a",
+            "turnIndex": 0
+          },
+          {
+            "key": "size",
+            "value": "small",
+            "questionId": "coffee.C1.size",
+            "answerId": "coffee.C1.size.a",
+            "turnIndex": 1
+          },
+          {
+            "key": "service",
+            "value": "here",
+            "questionId": "coffee.C1.service",
+            "answerId": "coffee.C1.service.a",
+            "turnIndex": 2
+          }
+        ],
+        "completedObjectives": [
+          "drink",
+          "size",
+          "service"
+        ],
+        "completedIntents": [
+          "order",
+          "quantity",
+          "serving"
+        ],
+        "askedQuestionIds": [
+          "coffee.C1.drink",
+          "coffee.C1.size",
+          "coffee.C1.service"
+        ],
+        "turns": [
+          {
+            "action": "answer",
+            "text": "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.",
+            "suggestionId": "coffee.C1.drink.a"
+          },
+          {
+            "action": "answer",
+            "text": "Small, please. The lower unit price is beside the point if I end up leaving half of it.",
+            "suggestionId": "coffee.C1.size.a"
+          },
+          {
+            "action": "answer",
+            "text": "I will stay. I am not expecting silence; I just need somewhere to pause between appointments.",
+            "suggestionId": "coffee.C1.service.a"
+          }
+        ],
+        "outcome": "achieved",
+        "reply": "Your drink, size and serving choice are noted. This practice is complete; no real order has been placed.",
+        "confirmation": "exact"
+      }
+    },
+    "presentation": {
+      "schemaVersion": 1,
+      "counterpartZh": "咖啡师角色",
+      "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+    },
+    "completedAt": "2026-09-12T12:07:00.959Z",
+    "completionEvidence": {
+      "schemaVersion": 1,
+      "ruleVersion": 1,
+      "sessionId": "session_77c008d5-7fac-4b3b-992f-08d0eb434901",
+      "sceneId": "dining-01",
+      "sceneVersion": 1,
+      "level": "C1",
+      "contentVersion": 1,
+      "engineVersion": 1,
+      "mode": "short",
+      "variantId": "counter",
+      "requiredUserTurns": 3,
+      "submittedTurns": 3,
+      "expressionTurns": 3,
+      "outcome": "achieved",
+      "basis": "path-cap",
+      "confirmedAt": "2026-09-12T12:07:00.959Z"
+    }
+  },
+  "next": {
+    "id": "session_fec5daa7-1c65-4220-8910-cc6706cb1962",
+    "profileId": "guest_f16099f4-54c6-4978-a426-cd5f96681388",
+    "sceneId": "dining-01",
+    "sceneVersion": 1,
+    "level": "C1",
+    "status": "active",
+    "startedAt": "2026-09-12T12:07:03.816Z",
+    "updatedAt": "2026-09-12T12:07:03.816Z",
+    "completedGoals": [],
+    "openingText": "The Americano is the more assertive option; the filter coffee is subtler. What sort of flavour are you after?",
+    "gradedDialogue": {
+      "schemaVersion": 1,
+      "pack": {
+        "schemaVersion": 1,
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "sceneId": "dining-01",
+        "category": "dining",
+        "level": "C1",
+        "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+        "rationale": {
+          "canDoZh": "在熟悉的服务场景中精确限定偏好，澄清容易混同的概念，并以得体语气处理取舍。",
+          "complexityZh": "不是给简单句加长：区分强烈风味与刺激感、单价与实际价值、制作与交付时点、记录与报销要求。",
+          "scaffoldingZh": "保留有限选项以确保本地确定性；参考回答展示限定、重新表述与克制异议，不能代表完整 C1 能力测评。",
+          "registerZh": "自然但精准的口语，不用正式公文或刻意生僻词冒充高级表达。",
+          "sourceBasis": [
+            "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+          ]
+        },
+        "questions": [
+          {
+            "id": "coffee.C1.drink",
+            "text": "The Americano is the more assertive option; the filter coffee is subtler. What sort of flavour are you after?",
+            "intent": "order",
+            "objective": "drink",
+            "hintZh": "直接区分风味偏好和咖啡因，不推断咖啡因作用。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.drink.a",
+                "text": "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.",
+                "acceptedForms": [
+                  "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine."
+                ],
+                "effects": [
+                  {
+                    "key": "drink",
+                    "value": "americano"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0"
+                }
+              },
+              {
+                "id": "coffee.C1.drink.b",
+                "text": "I would lean towards the filter coffee. I am after something nuanced, not necessarily something that makes an immediate impression.",
+                "acceptedForms": [
+                  "I would lean towards the filter coffee. I am after something nuanced, not necessarily something that makes an immediate impression."
+                ],
+                "effects": [
+                  {
+                    "key": "drink",
+                    "value": "filter"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "coffee-pilot-review.md#task-3i-polish — affected question and both answers reread with selected context by Codex implementation agent, 2026-09-11; teacher0"
+            }
+          },
+          {
+            "id": "coffee.C1.size",
+            "text": "The larger cup works out better per millilitre, though that may not make it better value for you. Which size would you prefer?",
+            "intent": "quantity",
+            "objective": "size",
+            "hintZh": "回应对方对价值的限定，并区分单价与自身效用。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.size.a",
+                "text": "Small, please. The lower unit price is beside the point if I end up leaving half of it.",
+                "acceptedForms": [
+                  "Small, please. The lower unit price is beside the point if I end up leaving half of it."
+                ],
+                "effects": [
+                  {
+                    "key": "size",
+                    "value": "small"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.size.b",
+                "text": "Large would actually be worthwhile in my case. I have a long break, so I am not buying more than I can enjoy.",
+                "acceptedForms": [
+                  "Large would actually be worthwhile in my case. I have a long break, so I am not buying more than I can enjoy."
+                ],
+                "effects": [
+                  {
+                    "key": "size",
+                    "value": "large"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.service",
+            "text": "There is space to sit in, although I cannot promise it will remain quiet. Would staying or taking it away suit you better?",
+            "intent": "serving",
+            "objective": "service",
+            "hintZh": "不把当前空位误解为未来安静保证。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.service.a",
+                "text": "I will stay. I am not expecting silence; I just need somewhere to pause between appointments.",
+                "acceptedForms": [
+                  "I will stay. I am not expecting silence; I just need somewhere to pause between appointments."
+                ],
+                "effects": [
+                  {
+                    "key": "service",
+                    "value": "here"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.service.b",
+                "text": "I will take it away, then. It is not the bustle itself that bothers me, but I do need to concentrate today.",
+                "acceptedForms": [
+                  "I will take it away, then. It is not the bustle itself that bothers me, but I do need to concentrate today."
+                ],
+                "effects": [
+                  {
+                    "key": "service",
+                    "value": "takeaway"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.milk",
+            "text": "We can leave it black or soften it with oat milk. Do you have a preference, bearing in mind that the flavour will change?",
+            "intent": "customize",
+            "objective": "milk",
+            "hintZh": "承认配料改变风味，精确表达优先事项。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.milk.a",
+                "text": "Black, please. I would rather experience the coffee as it is, even if that means a little more bitterness.",
+                "acceptedForms": [
+                  "Black, please. I would rather experience the coffee as it is, even if that means a little more bitterness."
+                ],
+                "effects": [
+                  {
+                    "key": "milk",
+                    "value": "none"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.milk.b",
+                "text": "Oat milk would suit me. Preserving every flavour note matters less to me than having a drink I find pleasantly rounded.",
+                "acceptedForms": [
+                  "Oat milk would suit me. Preserving every flavour note matters less to me than having a drink I find pleasantly rounded."
+                ],
+                "effects": [
+                  {
+                    "key": "milk",
+                    "value": "oat"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.sweetener",
+            "text": "We can leave the sugar out or add a single portion. Are you looking to preserve the bitterness or temper it a little?",
+            "intent": "preference",
+            "objective": "sweetener",
+            "hintZh": "temper 指适度缓和，不等于完全消除。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.sweetener.a",
+                "text": "Leave it out, please. I am not trying to eliminate the bitterness; within reason, it is part of what I enjoy.",
+                "acceptedForms": [
+                  "Leave it out, please. I am not trying to eliminate the bitterness; within reason, it is part of what I enjoy."
+                ],
+                "effects": [
+                  {
+                    "key": "sweetener",
+                    "value": "none"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.sweetener.b",
+                "text": "A single portion, please. I want to take the edge off rather than turn it into a sweet drink.",
+                "acceptedForms": [
+                  "A single portion, please. I want to take the edge off rather than turn it into a sweet drink."
+                ],
+                "effects": [
+                  {
+                    "key": "sweetener",
+                    "value": "one"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.payment",
+            "text": "Cash and card are equally welcome, with no surcharge either way. Do you have a preference?",
+            "intent": "payment",
+            "objective": "payment",
+            "hintZh": "不凭空引入支付限制，可解释个人记账策略。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.payment.a",
+                "text": "Cash, please. It is a personal budgeting habit, rather than any objection to paying electronically.",
+                "acceptedForms": [
+                  "Cash, please. It is a personal budgeting habit, rather than any objection to paying electronically."
+                ],
+                "effects": [
+                  {
+                    "key": "payment",
+                    "value": "cash"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.payment.b",
+                "text": "I will use my card. Having a traceable total is useful, even though it does not replace a detailed receipt.",
+                "acceptedForms": [
+                  "I will use my card. Having a traceable total is useful, even though it does not replace a detailed receipt."
+                ],
+                "effects": [
+                  {
+                    "key": "payment",
+                    "value": "card"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.receipt",
+            "text": "An itemised receipt is available if you need one; otherwise we can avoid printing it. What would be appropriate?",
+            "intent": "record",
+            "objective": "receipt",
+            "hintZh": "选择凭证不保证公司报销，区分用途与批准结果。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.receipt.a",
+                "text": "Please print it. I may be able to claim the expense, but I will need the itemised record before I can check.",
+                "acceptedForms": [
+                  "Please print it. I may be able to claim the expense, but I will need the itemised record before I can check."
+                ],
+                "effects": [
+                  {
+                    "key": "receipt",
+                    "value": "yes"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.receipt.b",
+                "text": "There is no need to print it. This is a personal purchase, so a separate itemised record would serve little purpose.",
+                "acceptedForms": [
+                  "There is no need to print it. This is a personal purchase, so a separate itemised record would serve little purpose."
+                ],
+                "effects": [
+                  {
+                    "key": "receipt",
+                    "value": "no"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.name",
+            "text": "For collection, we can use a name or an order number. Which would you be more comfortable having called out?",
+            "intent": "identify",
+            "objective": "name",
+            "hintZh": "有分寸地处理隐私，不把不同偏好当成对抗。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.name.a",
+                "text": "Sam is fine. I am comfortable using a first name here, and I will be listening for it.",
+                "acceptedForms": [
+                  "Sam is fine. I am comfortable using a first name here, and I will be listening for it."
+                ],
+                "effects": [
+                  {
+                    "key": "name",
+                    "value": "sam"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.name.b",
+                "text": "An order number, please. It is a minor preference, but I would rather not have my name called across the room.",
+                "acceptedForms": [
+                  "An order number, please. It is a minor preference, but I would rather not have my name called across the room."
+                ],
+                "effects": [
+                  {
+                    "key": "name",
+                    "value": "number"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.cooling",
+            "text": "We could add a little cold water for immediate drinking, at the cost of some concentration. Would that be a worthwhile trade-off?",
+            "intent": "temperature",
+            "objective": "cooling",
+            "hintZh": "concentration 是饮品浓度；表明接受或不接受代价。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.cooling.a",
+                "text": "In this case, yes. I would rather enjoy it now than preserve the exact concentration and have to leave it untouched.",
+                "acceptedForms": [
+                  "In this case, yes. I would rather enjoy it now than preserve the exact concentration and have to leave it untouched."
+                ],
+                "effects": [
+                  {
+                    "key": "cooling",
+                    "value": "water"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.cooling.b",
+                "text": "Not for me, thanks. I can give it time to cool, so there is no real need to compromise the flavour.",
+                "acceptedForms": [
+                  "Not for me, thanks. I can give it time to cool, so there is no real need to compromise the flavour."
+                ],
+                "effects": [
+                  {
+                    "key": "cooling",
+                    "value": "unchanged"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.food",
+            "text": "There are cookies available as an optional extra. Would one be useful, or shall we leave the order as it stands?",
+            "intent": "upsell",
+            "objective": "food",
+            "hintZh": "得体接受或婉拒提议，明确是否更改订单。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.food.a",
+                "text": "On balance, I will add one. I may not need it immediately, but it will tide me over until a late lunch.",
+                "acceptedForms": [
+                  "On balance, I will add one. I may not need it immediately, but it will tide me over until a late lunch."
+                ],
+                "effects": [
+                  {
+                    "key": "food",
+                    "value": "cookie"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.food.b",
+                "text": "Let us leave it as it stands. I appreciate the suggestion, but adding food would be more out of habit than hunger.",
+                "acceptedForms": [
+                  "Let us leave it as it stands. I appreciate the suggestion, but adding food would be more out of habit than hunger."
+                ],
+                "effects": [
+                  {
+                    "key": "food",
+                    "value": "none"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.timing",
+            "text": "We can begin now or in ten minutes; that is the preparation start, not a guaranteed collection time. Which would you prefer?",
+            "intent": "schedule",
+            "objective": "timing",
+            "hintZh": "明确承认开始制作与保证取餐时间不同。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.timing.a",
+                "text": "Please begin now. I would rather build in a little leeway than treat the preparation time as a firm collection promise.",
+                "acceptedForms": [
+                  "Please begin now. I would rather build in a little leeway than treat the preparation time as a firm collection promise."
+                ],
+                "effects": [
+                  {
+                    "key": "timing",
+                    "value": "now"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.timing.b",
+                "text": "In ten minutes would be preferable. I understand it will take a little longer after that, and my schedule allows for it.",
+                "acceptedForms": [
+                  "In ten minutes would be preferable. I understand it will take a little longer after that, and my schedule allows for it."
+                ],
+                "effects": [
+                  {
+                    "key": "timing",
+                    "value": "later"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "coffee.C1.cup",
+            "text": "We can fill a clean cup you have brought or provide one appropriate for your order. What would be most practical today?",
+            "intent": "sustainability",
+            "objective": "cup",
+            "hintZh": "避免把环保立场绝对化，也不假定自带容器。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "coffee.C1.cup.a",
+                "text": "I have a clean reusable cup with me, so using that seems the sensible option without complicating the order.",
+                "acceptedForms": [
+                  "I have a clean reusable cup with me, so using that seems the sensible option without complicating the order."
+                ],
+                "effects": [
+                  {
+                    "key": "cup",
+                    "value": "own"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.C1.cup.b",
+                "text": "Please provide one today. I generally favour reusables, but insisting on one I have not brought would not achieve much.",
+                "acceptedForms": [
+                  "Please provide one today. I generally favour reusables, but insisting on one I have not brought would not achieve much."
+                ],
+                "effects": [
+                  {
+                    "key": "cup",
+                    "value": "shop"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          }
+        ],
+        "variants": [
+          {
+            "id": "counter",
+            "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+            "modes": {
+              "short": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.size",
+                  "coffee.C1.service"
+                ],
+                "achievedClosing": "Your drink, size and serving choice are noted. This practice is complete; no real order has been placed.",
+                "partialClosing": "This practice has ended with some order details still unconfirmed. No real order has been placed."
+              },
+              "standard": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.size",
+                  "coffee.C1.service",
+                  "coffee.C1.milk",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.payment"
+                ],
+                "achievedClosing": "Your order preferences and payment method are noted. This practice is complete; no payment has been taken.",
+                "partialClosing": "This practice has ended with some preferences still unconfirmed. No payment has been taken."
+              },
+              "extended": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.size",
+                  "coffee.C1.service",
+                  "coffee.C1.milk",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.payment",
+                  "coffee.C1.receipt",
+                  "coffee.C1.name",
+                  "coffee.C1.cooling",
+                  "coffee.C1.food"
+                ],
+                "achievedClosing": "Your order and collection preferences are noted, including temperature handling and the snack decision. This practice is complete; no real order has been placed.",
+                "partialClosing": "This practice has ended with some order or collection details still unconfirmed. No real order has been placed."
+              }
+            },
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          },
+          {
+            "id": "planned",
+            "situationZh": "安排取餐：同一在售菜单及默认热黑咖啡；先确认饮品、堂食/外带、杯型。拓展练安排现在/稍后出杯和杯具方案，替代现场版的降温及点心，并非随机拼接。",
+            "modes": {
+              "short": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.service",
+                  "coffee.C1.size"
+                ],
+                "achievedClosing": "Your drink and serving arrangements are noted. This short practice is complete; no real order has been placed.",
+                "partialClosing": "This short practice has ended with serving arrangements still partly unconfirmed. No real order has been placed."
+              },
+              "standard": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.service",
+                  "coffee.C1.size",
+                  "coffee.C1.payment",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.milk"
+                ],
+                "achievedClosing": "Your serving arrangements, preferences and payment method are noted. This practice is complete; no payment has been taken.",
+                "partialClosing": "This practice has ended with some serving or payment preferences still unconfirmed. No payment has been taken."
+              },
+              "extended": {
+                "questionIds": [
+                  "coffee.C1.drink",
+                  "coffee.C1.service",
+                  "coffee.C1.size",
+                  "coffee.C1.payment",
+                  "coffee.C1.sweetener",
+                  "coffee.C1.milk",
+                  "coffee.C1.timing",
+                  "coffee.C1.cup",
+                  "coffee.C1.receipt",
+                  "coffee.C1.name"
+                ],
+                "achievedClosing": "Your order, preparation time, cup choice and collection details are noted. This practice is complete; no real booking or order has been made.",
+                "partialClosing": "This practice has ended with some preparation or collection details still unconfirmed. No real booking or order has been made."
+              }
+            },
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#c1 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+            }
+          }
+        ],
+        "repairs": {
+          "clarify": "Of course. Let us make the outstanding choice explicit.",
+          "struggle": "There is no need to force a polished answer. Use a reviewed example, or retain your own wording for later reflection.",
+          "offTopic": "That is outside the scope of this local coffee lesson. Let us return to the detail still awaiting a decision.",
+          "unknown": "Your exact wording is retained. There is no reviewed match in this local lesson, so neither a semantic judgment nor a correction is being inferred.",
+          "changed": "The supported revision is recorded; independent decisions stand, while dependent details are reconsidered.",
+          "refusedClosing": "Understood. We will end the practice with the order incomplete, without treating that decision as successful completion."
+        }
+      },
+      "state": {
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "mode": "short",
+        "variantId": "planned",
+        "currentQuestionId": "coffee.C1.drink",
+        "facts": [],
+        "completedObjectives": [],
+        "completedIntents": [],
+        "askedQuestionIds": [
+          "coffee.C1.drink"
+        ],
+        "turns": [],
+        "outcome": "active",
+        "reply": "The Americano is the more assertive option; the filter coffee is subtler. What sort of flavour are you after?",
+        "confirmation": "none"
+      }
+    },
+    "presentation": {
+      "schemaVersion": 1,
+      "counterpartZh": "咖啡师角色",
+      "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+    }
+  },
+  "notebook": [
+    {
+      "id": "fbdf2abd-8e7d-482a-ada6-bb51feee3bd7",
+      "profileId": "guest_f16099f4-54c6-4978-a426-cd5f96681388",
+      "kind": "sentence",
+      "text": "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.",
+      "normalizedText": "the americano sounds right. i am after a pronounced flavour, rather than choosing it for the caffeine",
+      "notes": "",
+      "tags": [],
+      "sources": [
+        {
+          "id": "20c2d15c-988c-481d-ae86-eca59a127fef",
+          "kind": "turn",
+          "originalText": "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.",
+          "sceneId": "dining-01",
+          "level": "C1",
+          "sessionId": "session_77c008d5-7fac-4b3b-992f-08d0eb434901",
+          "turnId": "turn_f93e092a-4927-4bfb-a38a-a71d7449453a",
+          "questionId": "coffee.C1.drink",
+          "createdAt": "2026-09-12T12:07:02.342Z"
+        },
+        {
+          "id": "9448ce1f-a3d5-4c8e-b7a5-a3e91598f2b8",
+          "kind": "turn",
+          "originalText": "The Americano sounds right. I am after a pronounced flavour, rather than choosing it for the caffeine.",
+          "sceneId": "dining-01",
+          "level": "C1",
+          "sessionId": "session_77c008d5-7fac-4b3b-992f-08d0eb434901",
+          "turnId": "turn_f93e092a-4927-4bfb-a38a-a71d7449453a",
+          "questionId": "coffee.C1.drink",
+          "createdAt": "2026-09-12T12:07:02.818Z"
+        }
+      ],
+      "favoriteIds": [],
+      "createdAt": "2026-09-12T12:07:02.342Z",
+      "updatedAt": "2026-09-12T12:07:02.818Z"
+    }
+  ],
+  "layout": [
+    {
+      "rect": {
+        "x": 248,
+        "y": 390.34375,
+        "width": 44,
+        "height": 44,
+        "top": 390.34375,
+        "right": 292,
+        "bottom": 434.34375,
+        "left": 248
+      },
+      "text": "16px",
+      "clientWidth": 320,
+      "scrollWidth": 320
+    },
+    {
+      "rect": {
+        "x": 318,
+        "y": 390.34375,
+        "width": 44,
+        "height": 44,
+        "top": 390.34375,
+        "right": 362,
+        "bottom": 434.34375,
+        "left": 318
+      },
+      "text": "32px",
+      "clientWidth": 390,
+      "scrollWidth": 390
+    }
+  ]
+}

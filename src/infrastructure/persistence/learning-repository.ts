@@ -69,6 +69,7 @@ export interface LearningRepository {
   ): Promise<DailyPlan>
   listReviews(noteId: string): Promise<ReviewRecord[]>
   getReviewSchedule(noteId: string): Promise<ReviewRecord | undefined>
+  getReviewSchedules(noteIds: string[]): Promise<(ReviewRecord | undefined)[]>
   balance(profileId: string): Promise<number>
   recordEvent(
     event: LearningEvent,
@@ -295,6 +296,28 @@ export function createLearningRepository(
     listReviews: (id) => storage.read((state) => reviewsForNote(state, id)),
     getReviewSchedule: (id) =>
       storage.read((state) => reviewsForNote(state, id).at(-1)),
+    getReviewSchedules: (ids) =>
+      storage.read((state) => {
+        const identities = notebookIdentityMap(state.notebook)
+        const heads = new Map<string, ReviewRecord>()
+        for (const review of state.reviews) {
+          const note = identities.get(review.noteId)
+          if (!note) continue
+          const previous = heads.get(note.id)
+          if (
+            !previous ||
+            Date.parse(review.reviewedAt) > Date.parse(previous.reviewedAt) ||
+            (Date.parse(review.reviewedAt) ===
+              Date.parse(previous.reviewedAt) &&
+              review.id > previous.id)
+          )
+            heads.set(note.id, review)
+        }
+        return ids.map((id) => {
+          const note = identities.get(id)
+          return note ? heads.get(note.id) : undefined
+        })
+      }),
     balance: (id) =>
       storage.read((state) =>
         state.pointsLedger

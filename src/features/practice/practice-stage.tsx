@@ -173,7 +173,10 @@ export function PracticeStage({
     scene: scene.slug,
     level: scene.level,
     mode: scene.mode,
-    round: practice.sessionId,
+    round:
+      practice.record?.session.provenance || practice.record?.session.simulation
+        ? undefined
+        : practice.sessionId,
   })
 
   if (

@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from 'react'
 import { createPortal } from 'react-dom'
+import { BookmarkSimple } from '@phosphor-icons/react'
 import type { Repositories } from '@/infrastructure/persistence/repositories'
 import type { PracticeCaptureSource } from '@/domain/practice/graded-presenter'
 import type {
@@ -21,6 +22,7 @@ type Capture = {
   text: string
   wholeText: string
   source: Partial<PracticeCaptureSource>
+  sources?: Partial<PracticeCaptureSource>[]
   trigger: HTMLElement
 }
 const CaptureContext = createContext<((capture: Capture) => void) | null>(null)
@@ -103,13 +105,15 @@ export function CaptureProvider({
     try {
       const profile = await repositories.profiles.ensureGuestProfile()
       const at = new Date().toISOString()
-      const source: NotebookSourceSnapshot = {
-        ...original.source,
+      const sources: NotebookSourceSnapshot[] = (
+        original.sources ?? [original.source]
+      ).map((source) => ({
+        ...source,
         id: crypto.randomUUID(),
-        kind: original.source.sessionId ? 'turn' : 'manual',
+        kind: source.sessionId ? 'turn' : 'manual',
         originalText: original.wholeText,
         createdAt: at,
-      }
+      }))
       const saved = await repositories.notebook.capture({
         id: crypto.randomUUID(),
         profileId: profile.id,
@@ -119,7 +123,7 @@ export function CaptureProvider({
         notes: '',
         tags: [],
         favoriteIds: [],
-        sources: [source],
+        sources,
         createdAt: at,
         updatedAt: at,
       })
@@ -206,13 +210,16 @@ export function CaptureProvider({
               }}
             >
               <h2 id="capture-title">记录词句预览</h2>
-              <p>
-                来源：{capture.source.sceneId ?? '手动记录'} ·{' '}
-                {capture.source.level ?? '等级未保存'}
-                {capture.source.questionId
-                  ? ` · ${capture.source.questionId}`
-                  : ' · 题目语境未保存'}
-              </p>
+              {(capture.sources ?? [capture.source]).map((source, index) => (
+                <p key={index}>
+                  来源：{source.sceneId ?? '手动记录'} ·{' '}
+                  {source.level ?? '等级未保存'}
+                  {source.questionId
+                    ? ` · ${source.questionId}`
+                    : ' · 题目语境未保存'}
+                  {source.turnId ? ` · ${source.turnId}` : ''}
+                </p>
+              ))}
               <label>
                 待存原文
                 <textarea
@@ -300,7 +307,39 @@ export function CaptureProvider({
   )
 }
 function structuredCapture(capture: Capture): Capture {
-  return { ...capture, source: structuredClone(capture.source) }
+  return {
+    ...capture,
+    source: structuredClone(capture.source),
+    ...(capture.sources ? { sources: structuredClone(capture.sources) } : {}),
+  }
+}
+/** Whole-expression shortcut shares the same preview, atomic capture and undo. */
+export function CaptureExpression({
+  text,
+  sources,
+}: {
+  text: string
+  sources: Partial<PracticeCaptureSource>[]
+}) {
+  const open = useContext(CaptureContext)
+  if (!open) return null
+  return (
+    <button
+      type="button"
+      aria-label={`收藏表达：${text}`}
+      onClick={(event) =>
+        open({
+          text,
+          wholeText: text,
+          source: sources[0] ?? {},
+          sources,
+          trigger: event.currentTarget,
+        })
+      }
+    >
+      <BookmarkSimple aria-hidden size={20} />
+    </button>
+  )
 }
 export function CaptureText({
   text,

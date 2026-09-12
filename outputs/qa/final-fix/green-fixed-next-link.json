@@ -1,0 +1,17 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "node_modules/vitest/vitest.mjs",
+    "run",
+    "src/features/practice/session-rounds.test.tsx",
+    "src/features/practice/practice-stage.test.tsx",
+    "--maxWorkers=1",
+    "--pool=threads"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T12:04:54.879Z",
+  "endedAt": "2026-09-12T12:05:26.039Z",
+  "exitCode": 0,
+  "stdout": "\n RUN  v4.1.11 D:/Codex-chat/SpeakMate/.worktrees/speakmate-3\n\n\n Test Files  2 passed (2)\n      Tests  23 passed (23)\n   Start at  20:04:55\n   Duration  30.47s (transform 1.01s, setup 972ms, import 23.16s, tests 2.59s, environment 3.09s)\n\n",
+  "stderr": ""
+}

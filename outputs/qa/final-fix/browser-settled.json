@@ -1,0 +1,18 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "node_modules/@playwright/test/cli.js",
+    "test",
+    "tests/e2e/final-fix.spec.ts",
+    "--project=chromium-mobile",
+    "--project=webkit-iphone",
+    "--workers=1",
+    "--output=outputs/qa/final-fix/settled"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T12:08:47.575Z",
+  "endedAt": "2026-09-12T12:09:20.305Z",
+  "exitCode": 0,
+  "stdout": "\nRunning 2 tests using 1 worker\n\n  ok 1 [chromium-mobile] › tests\\e2e\\final-fix.spec.ts:11:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source (5.9s)\n  ok 2 [webkit-iphone] › tests\\e2e\\final-fix.spec.ts:11:1 › consecutive reviewed round, contextual bookmark preview/undo, and notebook source (23.3s)\n\n  2 passed (32.0s)\n",
+  "stderr": "(node:25176) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:16616) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+}

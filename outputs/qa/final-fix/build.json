@@ -1,0 +1,13 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "node_modules/next/dist/bin/next",
+    "build"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T11:52:40.108Z",
+  "endedAt": "2026-09-12T11:53:14.948Z",
+  "exitCode": 0,
+  "stdout": "▲ Next.js 16.3.4 (Turbopack)\n✓ Running next.config.ts took 67ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 6.3s\n  Running TypeScript ...\n  Finished TypeScript in 14.2s ...\n  Collecting page data using 15 workers ...\n  Generating static pages using 15 workers (0/32) ...\n  Generating static pages using 15 workers (8/32) \r\n  Generating static pages using 15 workers (16/32) \r\n  Generating static pages using 15 workers (24/32) \r\n✓ Generating static pages using 15 workers (32/32) in 1731ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n├ ƒ /api/v1/capabilities\n├ ƒ /api/v1/health\n├ ƒ /api/v1/turns\n├ ○ /auth\n├   /content/v1/[category]\n│ ├ ● /content/v1/travel\n│ ├ ● /content/v1/dining\n│ ├ ● /content/v1/daily\n│ └ ● [+4 more paths]\n├ ○ /guide\n├ ○ /install\n├ ○ /manifest.webmanifest\n├ ○ /me\n├ ○ /notebook\n├ ○ /notebook/note\n├ ○ /notebook/simulation\n├ ○ /offline/session\n├ ○ /practice\n├ ○ /practice/today\n├ ○ /privacy\n├ ○ /recovery\n├ ○ /rewards\n├ ○ /scenes\n├ ƒ /scenes/[slug]\n├ ○ /scenes/prepare\n├ ○ /session\n├ ƒ /session/[id]\n├ ƒ /session/[id]/report\n├ ○ /session/report\n└ ○ /welcome\n\n\n○  (Static)   prerendered as static content\n●  (SSG)      prerendered as static HTML (uses generateStaticParams)\nƒ  (Dynamic)  server-rendered on demand\n\n",
+  "stderr": ""
+}

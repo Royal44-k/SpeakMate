@@ -1,6 +1,12 @@
-import { act, fireEvent, render, screen } from '@testing-library/react'
-import { beforeEach, it, expect, vi } from 'vitest'
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { afterEach, beforeEach, it, expect, vi } from 'vitest'
 import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
+import {
+  createMemoryStorage,
+  type LocalStoragePort,
+} from '@/infrastructure/persistence/storage'
+import { createLearningRepository } from '@/infrastructure/persistence/learning-repository'
+import { createNotebookRepository } from '@/infrastructure/persistence/notebook-repository'
 import type {
   AnalysisResult,
   LearningAssistantProvider,
@@ -10,6 +16,214 @@ import { NotebookHome } from './notebook-home'
 import { AppShell } from '@/components/app-shell/app-shell'
 vi.mock('next/navigation', () => ({ useRouter: () => ({ back: vi.fn() }) }))
 beforeEach(() => sessionStorage.clear())
+afterEach(() => {
+  vi.restoreAllMocks()
+  vi.unstubAllGlobals()
+})
+
+function voicePlatform(localService = true) {
+  class Utterance extends EventTarget {
+    rate = 1
+    voice?: SpeechSynthesisVoice
+    constructor(public text: string) {
+      super()
+    }
+  }
+  const played: Utterance[] = []
+  vi.stubGlobal('SpeechSynthesisUtterance', Utterance)
+  vi.stubGlobal('speechSynthesis', {
+    cancel() {},
+    getVoices: () => [{ lang: 'en-US', localService }],
+    speak: (utterance: Utterance) => {
+      played.push(utterance)
+    },
+  })
+  return played
+}
+it.each([0.8, 1.15])(
+  'reads a real stored %s rate at the notebook read-aloud entrance',
+  async (speechRate) => {
+    const repo = await fixture()
+    const backup = await repo.exportLearnerData()
+    backup.settings = {
+      id: 'settings',
+      speechRate: speechRate as 0.8 | 1.15,
+      autoPlayAi: false,
+      feedbackExpanded: false,
+      updatedAt: '2026-09-12T00:00:00.000Z',
+    }
+    await repo.restoreLearnerData(
+      await repo.previewRestore(JSON.stringify(backup)),
+    )
+    const played = voicePlatform()
+    render(
+      <NotebookNote
+        id="a"
+        repositories={repo}
+        assistant={{ analyze: async () => unknown }}
+      />,
+    )
+    fireEvent.click(await screen.findByRole('button', { name: '本地跟读原文' }))
+    await waitFor(() => expect(played).toHaveLength(1))
+    expect(played[0]).toMatchObject({
+      text: 'blocker',
+      rate: speechRate,
+      voice: { localService: true },
+    })
+  },
+)
+it.each(['stop', 'unmount'])(
+  'does not play a late settings read after %s',
+  async (action) => {
+    const repo = await fixture()
+    const stored = repo.learning.getSettings()
+    let release!: () => void
+    repo.learning.getSettings = async () => {
+      await new Promise<void>((resolve) => {
+        release = resolve
+      })
+      return stored
+    }
+    const played = voicePlatform()
+    const view = render(
+      <NotebookNote
+        id="a"
+        repositories={repo}
+        assistant={{ analyze: async () => unknown }}
+      />,
+    )
+    fireEvent.click(await screen.findByRole('button', { name: '本地跟读原文' }))
+    await waitFor(() => expect(typeof release).toBe('function'))
+    if (action === 'stop')
+      fireEvent.click(screen.getByRole('button', { name: '停止朗读' }))
+    else view.unmount()
+    await act(async () => {
+      release?.()
+      await stored
+    })
+    expect(played).toHaveLength(0)
+  },
+)
+it('reports settings read failure without playing a default success', async () => {
+  const repo = await fixture()
+  repo.learning.getSettings = async () => {
+    throw new Error('storage denied')
+  }
+  const played = voicePlatform()
+  render(
+    <NotebookNote
+      id="a"
+      repositories={repo}
+      assistant={{ analyze: async () => unknown }}
+    />,
+  )
+  fireEvent.click(await screen.findByRole('button', { name: '本地跟读原文' }))
+  expect(await screen.findByRole('alert')).toHaveTextContent('语音设置')
+  expect(played).toHaveLength(0)
+})
+it('never substitutes a remote voice in the actual note entrance', async () => {
+  const repo = await fixture()
+  const played = voicePlatform(false)
+  render(
+    <NotebookNote
+      id="a"
+      repositories={repo}
+      assistant={{ analyze: async () => unknown }}
+    />,
+  )
+  fireEvent.click(await screen.findByRole('button', { name: '本地跟读原文' }))
+  expect(await screen.findByRole('alert')).toHaveTextContent('不会改用云端声音')
+  expect(played).toHaveLength(0)
+})
+it('loads many notebook schedule heads in one bounded storage read and preserves alias, tie ordering and deleted-note behavior', async () => {
+  const repo = await fixture()
+  const base = (await repo.notebook.get('a'))!
+  const storage = createMemoryStorage()
+  await storage.change((state) => {
+    state.notebook = Array.from({ length: 40 }, (_, n) => ({
+      ...base,
+      id: `note-${n}`,
+      text: `word-${n}`,
+      normalizedText: `word-${n}`,
+      aliasIds: [`alias-${n}`],
+      sources: [],
+      updatedAt: `2026-09-11T00:00:${String(n).padStart(2, '0')}.000Z`,
+    }))
+    state.notebook[39].deletedAt = '2026-09-12T00:00:00.000Z'
+    state.sessions = Array.from({ length: 12 }, (_, n) => ({
+      id: `history-${n}`,
+      profileId: base.profileId,
+      sceneId: 'work-02',
+      sceneVersion: 1,
+      level: 'C1',
+      status: 'completed',
+      startedAt: '2026-09-11T00:00:00.000Z',
+      updatedAt: '2026-09-11T00:05:00.000Z',
+      completedAt: '2026-09-11T00:05:00.000Z',
+      completedGoals: [],
+    }))
+    state.reviews = [
+      { id: 'a', noteId: 'note-0', nextReviewAt: '2000-01-01T00:00:00.000Z' },
+      { id: 'z', noteId: 'alias-0', nextReviewAt: '2099-01-01T00:00:00.000Z' },
+      {
+        id: 'future',
+        noteId: 'alias-1',
+        nextReviewAt: '2099-01-01T00:00:00.000Z',
+      },
+      {
+        id: 'deleted',
+        noteId: 'alias-39',
+        nextReviewAt: '2099-01-01T00:00:00.000Z',
+      },
+    ].map((row) => ({
+      ...row,
+      profileId: base.profileId,
+      eventId: row.id,
+      rating: 'remember',
+      reviewedAt: '2026-09-11T00:00:00.000Z',
+      dateKey: '2026-09-11',
+      scheduleStep: 0,
+      intervalDays: 1,
+      nextReviewDateKey: row.nextReviewAt.slice(0, 10),
+    }))
+  })
+  let reads = 0
+  const counted: LocalStoragePort = {
+    change: storage.change,
+    read: (select) => {
+      reads++
+      return storage.read(select)
+    },
+  }
+  repo.notebook = createNotebookRepository(counted)
+  repo.learning = createLearningRepository(counted)
+  render(
+    <NotebookHome
+      repositories={repo}
+      assistant={{ analyze: async () => unknown }}
+    />,
+  )
+  await screen.findByText('word-0')
+  expect(reads).toBe(2) // notebook list + one aggregate head read, independent of note count
+  expect(screen.queryByText('word-39')).not.toBeInTheDocument()
+  expect(
+    (
+      await repo.learning.getReviewSchedules([
+        'alias-0',
+        'note-0',
+        'missing',
+        'alias-39',
+        'note-2',
+      ])
+    ).map((head) => head?.id),
+  ).toEqual(['z', 'z', undefined, 'deleted', undefined])
+  fireEvent.click(screen.getByRole('tab', { name: '待复习' }))
+  await waitFor(() =>
+    expect(
+      screen.getAllByRole('button', { name: '已尝试回忆，查看原文' }),
+    ).toHaveLength(37),
+  )
+})
 it('keeps an explicit local return separate from saved source context and guards global navigation', async () => {
   const repo = await fixture()
   render(

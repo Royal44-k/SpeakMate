@@ -66,12 +66,13 @@ describe('SessionReportView', () => {
         />,
       )
       await screen.findByText('定向模拟练习记录')
-      expect(
-        screen.getByRole('link', { name: '返回记录簿' }),
-      ).toHaveAttribute('href', '/notebook')
-      expect(
-        screen.getByRole('link', { name: '返回记录簿' }),
-      ).toHaveAttribute('data-return-to-source')
+      expect(screen.getByRole('link', { name: '返回记录簿' })).toHaveAttribute(
+        'href',
+        '/notebook',
+      )
+      expect(screen.getByRole('link', { name: '返回记录簿' })).toHaveAttribute(
+        'data-return-to-source',
+      )
       expect(
         screen.getAllByRole('link', { name: '返回词句或记录簿' }).at(-1),
       ).toHaveAttribute('href', returnTo)
@@ -210,7 +211,7 @@ describe('SessionReportView', () => {
     )
   })
 
-  it('announces a saved expression after its favorite is persisted', async () => {
+  it('previews and announces the historical expression with known context without inventing a question', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()
     const expression = 'Could you tell me when breakfast starts?'
@@ -256,14 +257,23 @@ describe('SessionReportView', () => {
     await user.click(
       await screen.findByRole('button', { name: `收藏表达：${expression}` }),
     )
-
+    expect(await screen.findByRole('dialog')).toHaveTextContent(
+      '题目语境未保存',
+    )
+    expect(await repositories.notebook.list()).toHaveLength(0)
+    await user.click(screen.getByRole('button', { name: '保存词句' }))
     await waitFor(async () => {
-      expect(
-        screen.getByRole('button', { name: `已收藏表达：${expression}` }),
-      ).toBeDisabled()
-      expect(await repositories.favorites.list()).toEqual([
-        expect.objectContaining({ expression }),
-      ])
+      expect(screen.getByText('已记录')).toBeVisible()
+      const [note] = await repositories.notebook.list()
+      expect(note.text).toBe(expression)
+      expect(note.sources[0]).toMatchObject({
+        sessionId: 'favorite-session',
+        turnId: 'favorite-turn',
+        sceneId: 'travel-01',
+        level: 'B1',
+        originalText: expression,
+      })
+      expect(note.sources[0].questionId).toBeUndefined()
     })
   })
 })

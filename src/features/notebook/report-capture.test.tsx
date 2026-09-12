@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import {
+  fireEvent,
+  render,
+  screen,
+  within,
+  waitFor,
+} from '@testing-library/react'
 import { afterEach, expect, it, vi } from 'vitest'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import { createDialogue } from '@/domain/ai/graded-dialogue'
@@ -10,87 +16,130 @@ import { deleteDatabase } from '@/infrastructure/persistence/db'
 import { SessionReportView } from '@/features/practice/session-report'
 vi.mock('next/navigation', () => ({ useRouter: () => ({ back: vi.fn() }) }))
 afterEach(deleteDatabase)
-it('captures the actual historical work C1 learner question after advancing and retains it after source deletion into both backup destinations', async () => {
-  window.history.replaceState(null, '', '/session/report?id=source-work')
-  const repo = createMemoryRepositories()
-  const profile = await repo.profiles.ensureGuestProfile()
-  const content = await localContentProvider.load({
-    sceneId: 'work-05',
-    level: 'C1',
-  })
-  if (content.status !== 'available') throw Error('fixture')
-  const start = createDialogue(content.pack, {
-    mode: 'extended',
-    variantId: content.pack.variants[0].id,
-  })
-  let record = (
-    await repo.practice.commit({
-      kind: 'create',
-      session: {
-        id: 'source-work',
-        profileId: profile.id,
-        sceneId: 'work-05',
-        sceneVersion: 1,
-        level: 'C1',
-        status: 'active',
-        startedAt: '2026-09-11T00:00:00.000Z',
-        updatedAt: '2026-09-11T00:00:00.000Z',
-        completedGoals: [],
-        openingText: start.reply,
-        gradedDialogue: start.snapshot,
-      },
+it.each(['detailed', 'bookmark'])(
+  'captures actual per-text work C1 sources through %s and retains them after history deletion into both backup destinations',
+  async (action) => {
+    const expression =
+      action === 'bookmark'
+        ? 'Could we test that assumption? The saving may depend on someone doing extra consolidation work that the proposal has not yet assigned.'
+        : 'Could we test that assumption?'
+    window.history.replaceState(null, '', '/session/report?id=source-work')
+    const repo = createMemoryRepositories()
+    const profile = await repo.profiles.ensureGuestProfile()
+    const content = await localContentProvider.load({
+      sceneId: 'work-05',
+      level: 'C1',
     })
-  ).record
-  for (let n = 1; n <= 6; n++) {
-    const q = record.session.gradedDialogue!.pack.questions.find(
-      (q) => q.id === record.session.gradedDialogue!.state.currentQuestionId,
-    )!
-    record = (
+    if (content.status !== 'available') throw Error('fixture')
+    const start = createDialogue(content.pack, {
+      mode: 'extended',
+      variantId: content.pack.variants[0].id,
+    })
+    let record = (
       await repo.practice.commit({
-        kind: 'advance',
-        expected: record.session,
-        turnId: `work-${n}`,
-        input: {
-          text: n === 5 ? 'Could we test that assumption?' : q.answers[0].text,
+        kind: 'create',
+        session: {
+          id: 'source-work',
+          profileId: profile.id,
+          sceneId: 'work-05',
+          sceneVersion: 1,
+          level: 'C1',
+          status: 'active',
+          startedAt: '2026-09-11T00:00:00.000Z',
+          updatedAt: '2026-09-11T00:00:00.000Z',
+          completedGoals: [],
+          openingText: start.reply,
+          gradedDialogue: start.snapshot,
         },
-        at: `2026-09-11T00:0${n}:00.000Z`,
       })
     ).record
-  }
-  expect(record.session.gradedDialogue!.state.currentQuestionId).not.toBe(
-    'meeting-disagreement.C1.assumption',
-  )
-  render(<SessionReportView sessionId="source-work" repositories={repo} />)
-  await screen.findByText('原始对话与本题反馈')
-  const block = screen
-    .getAllByText('Could we test that assumption?')
-    .find((node) => node.closest('[data-capture-block]'))
-    ?.closest('[data-capture-block]')
-  expect(block).toBeTruthy()
-  fireEvent.click(
-    within(block as HTMLElement).getByRole('button', { name: '记录词句' }),
-  )
-  fireEvent.click(screen.getByRole('button', { name: '保存词句' }))
-  await screen.findByText('已记录')
-  const backup = await repo.exportLearnerData()
-  expect(screen.getByRole('link', { name: '查看词句' })).toHaveAttribute(
-    'href',
-    `/notebook/note?id=${backup.notebook[0].id}&from=%2Fsession%2Freport%3Fid%3Dsource-work`,
-  )
-  backup.sessions = []
-  backup.turns = []
-  for (const make of [createMemoryRepositories, createIndexedDbRepositories]) {
-    const destination = make()
-    await destination.restoreLearnerData(
-      await destination.previewRestore(JSON.stringify(backup)),
+    for (let n = 1; n <= 6; n++) {
+      const q = record.session.gradedDialogue!.pack.questions.find(
+        (q) => q.id === record.session.gradedDialogue!.state.currentQuestionId,
+      )!
+      record = (
+        await repo.practice.commit({
+          kind: 'advance',
+          expected: record.session,
+          turnId: `work-${n}`,
+          input: {
+            text:
+              n === 5 || (action === 'bookmark' && n === 6)
+                ? expression
+                : q.answers[0].text,
+          },
+          at: `2026-09-11T00:0${n}:00.000Z`,
+        })
+      ).record
+    }
+    expect(record.session.gradedDialogue!.state.currentQuestionId).not.toBe(
+      'meeting-disagreement.C1.assumption',
     )
-    const [note] = await destination.notebook.list()
-    expect(note.sources[0]).toMatchObject({
-      sessionId: 'source-work',
-      turnId: 'work-5',
-      questionId: 'meeting-disagreement.C1.assumption',
-      originalText: 'Could we test that assumption?',
-    })
-    expect(await destination.practice.read('source-work')).toBeUndefined()
-  }
-})
+    render(<SessionReportView sessionId="source-work" repositories={repo} />)
+    await screen.findByText('原始对话与本题反馈')
+    const block = screen
+      .getAllByText(expression)
+      .find((node) => node.closest('[data-capture-block]'))
+      ?.closest('[data-capture-block]')
+    expect(block).toBeTruthy()
+    const trigger =
+      action === 'bookmark'
+        ? screen.getByRole('button', { name: `收藏表达：${expression}` })
+        : within(block as HTMLElement).getByRole('button', { name: '记录词句' })
+    fireEvent.click(trigger)
+    expect(await screen.findByRole('dialog')).toHaveTextContent(
+      'meeting-disagreement.C1.assumption',
+    )
+    expect(await repo.notebook.list()).toHaveLength(0)
+    fireEvent.click(screen.getByRole('button', { name: '保存词句' }))
+    await screen.findByText('已记录')
+    const original = (await repo.notebook.list())[0]
+    if (action === 'bookmark') {
+      expect(original.sources).toHaveLength(2)
+      expect(
+        original.sources.map((source) => [source.turnId, source.questionId]),
+      ).toEqual([
+        ['work-5', 'meeting-disagreement.C1.assumption'],
+        ['work-6', 'meeting-disagreement.C1.alternative'],
+      ])
+      fireEvent.click(trigger)
+      fireEvent.click(await screen.findByRole('button', { name: '保存词句' }))
+      await screen.findByText('已存在，已补充来源')
+      expect((await repo.notebook.list())[0].id).toBe(original.id)
+      fireEvent.click(screen.getByRole('button', { name: '撤销记录' }))
+      await screen.findByText('已撤销本次记录。')
+      await waitFor(async () =>
+        expect(await repo.notebook.get(original.id)).toEqual(original),
+      )
+      fireEvent.click(trigger)
+      fireEvent.click(await screen.findByRole('button', { name: '保存词句' }))
+      await screen.findByText('已存在，已补充来源')
+    }
+    await repo.sessions.deleteHistory(record)
+    const backup = await repo.exportLearnerData()
+    expect(screen.getByRole('link', { name: '查看词句' })).toHaveAttribute(
+      'href',
+      `/notebook/note?id=${backup.notebook[0].id}&from=%2Fsession%2Freport%3Fid%3Dsource-work`,
+    )
+    expect(backup.sessions).toEqual([])
+    expect(backup.turns).toEqual([])
+    for (const make of [
+      createMemoryRepositories,
+      createIndexedDbRepositories,
+    ]) {
+      const destination = make()
+      await destination.restoreLearnerData(
+        await destination.previewRestore(JSON.stringify(backup)),
+      )
+      const [note] = await destination.notebook.list()
+      expect(note.sources[0]).toMatchObject({
+        sessionId: 'source-work',
+        turnId: 'work-5',
+        questionId: 'meeting-disagreement.C1.assumption',
+        originalText: expression,
+      })
+      expect(await destination.practice.read('source-work')).toBeUndefined()
+      expect(note).toEqual(backup.notebook[0])
+    }
+  },
+)

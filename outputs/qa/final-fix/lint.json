@@ -1,0 +1,25 @@
+{
+  "command": ".superpowers/sdd/2026-09-09-speakmate-3/runtimes/node-v22.23.2-win-x64/node.exe",
+  "args": [
+    "node_modules/eslint/bin/eslint.js",
+    "src/features/practice/session-resolver.tsx",
+    "src/features/practice/session-rounds.test.tsx",
+    "src/features/practice/session-report.tsx",
+    "src/features/practice/session-report-view.test.tsx",
+    "src/features/notebook/capture.tsx",
+    "src/features/notebook/notebook-note.tsx",
+    "src/features/notebook/notebook-home.tsx",
+    "src/features/notebook/notebook-entry.test.tsx",
+    "src/features/notebook/report-capture.test.tsx",
+    "src/infrastructure/persistence/learning-repository.ts",
+    "tests/e2e/final-fix.spec.ts",
+    "outputs/qa/final-fix/run-evidence.mjs",
+    "--max-warnings=0"
+  ],
+  "cwd": "D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3",
+  "startedAt": "2026-09-12T11:49:04.666Z",
+  "endedAt": "2026-09-12T11:50:34.008Z",
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}
