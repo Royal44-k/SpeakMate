@@ -1,0 +1,3086 @@
+{
+  "old": "o3l7OUHwGtKTlz9pnpxMi",
+  "latest": "in2pG1ng-2S7-GB53eqAC",
+  "lazy": [
+    {
+      "url": "/_next/static/chunks/05sjr8pmbtsur.js",
+      "status": 200,
+      "sha256": "f0704ee4d6cbb664c4087f13fd9aa16346233b28fbe4b9d4831f11ee1049f696",
+      "expected": "f0704ee4d6cbb664c4087f13fd9aa16346233b28fbe4b9d4831f11ee1049f696"
+    },
+    {
+      "url": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "status": 200,
+      "sha256": "c21209742ee9b2fae6d001f85babb7464fc97fdbcd5f37a40a5dee3847d507f5",
+      "expected": "c21209742ee9b2fae6d001f85babb7464fc97fdbcd5f37a40a5dee3847d507f5"
+    },
+    {
+      "url": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "status": 200,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "expected": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "url": "/_next/static/chunks/0gymv9ybqx8aj.js",
+      "status": 200,
+      "sha256": "9fc32510cb6b3071e3b13898ecd408b5c1c5c19cfff099b9b5bf223760ba09f5",
+      "expected": "9fc32510cb6b3071e3b13898ecd408b5c1c5c19cfff099b9b5bf223760ba09f5"
+    },
+    {
+      "url": "/_next/static/chunks/0j8ei7txik68j.js",
+      "status": 200,
+      "sha256": "89fa4bf0b2ffcc8eadb05d8c945807cb4b660560e43807412ff8945a681b0cb6",
+      "expected": "89fa4bf0b2ffcc8eadb05d8c945807cb4b660560e43807412ff8945a681b0cb6"
+    },
+    {
+      "url": "/_next/static/chunks/0kh157s6n9m85.js",
+      "status": 200,
+      "sha256": "7011e47f90960d123784ecfa5617e1e472ed9ad9c6e3dda73702a8be0bb5051c",
+      "expected": "7011e47f90960d123784ecfa5617e1e472ed9ad9c6e3dda73702a8be0bb5051c"
+    },
+    {
+      "url": "/_next/static/chunks/0p9yvsyvmmfeq.js",
+      "status": 200,
+      "sha256": "ab963cc4c036d6f92b0d14aa230c43501810cd5153d2e5d2978a18b54a764bf1",
+      "expected": "ab963cc4c036d6f92b0d14aa230c43501810cd5153d2e5d2978a18b54a764bf1"
+    },
+    {
+      "url": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200,
+      "sha256": "13bf169638a172c181ac268995bbfd59db337e4b61f42a2ef1879305e0806e6c",
+      "expected": "13bf169638a172c181ac268995bbfd59db337e4b61f42a2ef1879305e0806e6c"
+    },
+    {
+      "url": "/_next/static/chunks/0ty9k-pko4_kb.js",
+      "status": 200,
+      "sha256": "a692e7acb8ca6fa8b67ad0b1cd823d4c7915d771d06a6e0864e8bb535e764d86",
+      "expected": "a692e7acb8ca6fa8b67ad0b1cd823d4c7915d771d06a6e0864e8bb535e764d86"
+    },
+    {
+      "url": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200,
+      "sha256": "41068cdfecf54b6b090d8ffc138f697a4fdb3b78bd2579b6879ede1d0ff023de",
+      "expected": "41068cdfecf54b6b090d8ffc138f697a4fdb3b78bd2579b6879ede1d0ff023de"
+    },
+    {
+      "url": "/_next/static/chunks/0uk8jt_1s-e95.js",
+      "status": 200,
+      "sha256": "57be76f1a8f22591627f927bcc4152b8532231bbeacddc958f28f353edfeffe4",
+      "expected": "57be76f1a8f22591627f927bcc4152b8532231bbeacddc958f28f353edfeffe4"
+    },
+    {
+      "url": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200,
+      "sha256": "5ec636b99e7e5a0c8cd46ac044976589168b13d9e2e7e3d005d06dd6cbac7398",
+      "expected": "5ec636b99e7e5a0c8cd46ac044976589168b13d9e2e7e3d005d06dd6cbac7398"
+    },
+    {
+      "url": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200,
+      "sha256": "f781a6396105bb2c5c069f2fc959ded145559f2dce5b02018fc111d625fb6995",
+      "expected": "f781a6396105bb2c5c069f2fc959ded145559f2dce5b02018fc111d625fb6995"
+    },
+    {
+      "url": "/_next/static/chunks/15xbu68-4kmdd.js",
+      "status": 200,
+      "sha256": "a2b72645461481eb9f739428c55598f2c67e02d914b403933cd3a9f8661bc2d2",
+      "expected": "a2b72645461481eb9f739428c55598f2c67e02d914b403933cd3a9f8661bc2d2"
+    },
+    {
+      "url": "/_next/static/chunks/1av7cy6tre0f4.js",
+      "status": 200,
+      "sha256": "365fda48717233366af05cd4b74c4a07831363522d1e5477e5285f04a85798d2",
+      "expected": "365fda48717233366af05cd4b74c4a07831363522d1e5477e5285f04a85798d2"
+    },
+    {
+      "url": "/_next/static/chunks/1cr_w82fr6hzp.js",
+      "status": 200,
+      "sha256": "7abf80060d8a1cff3f6683c42961bfcb497db8ca1101feae551aaa501b6cd939",
+      "expected": "7abf80060d8a1cff3f6683c42961bfcb497db8ca1101feae551aaa501b6cd939"
+    },
+    {
+      "url": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "status": 200,
+      "sha256": "f35bde0eacc3643bb3f68e4be717359e7f10fa13398e08f955d5cc090db40e95",
+      "expected": "f35bde0eacc3643bb3f68e4be717359e7f10fa13398e08f955d5cc090db40e95"
+    },
+    {
+      "url": "/_next/static/chunks/1k6xx-rl81k0c.js",
+      "status": 200,
+      "sha256": "ca2428fce5284eed01701d463c19aea123971c48de96b38f70a6bc6152a015a7",
+      "expected": "ca2428fce5284eed01701d463c19aea123971c48de96b38f70a6bc6152a015a7"
+    },
+    {
+      "url": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "status": 200,
+      "sha256": "76cd587d99a18b2c9388d1b6eace69bcad39c22f8425241ee40b5f130f020cba",
+      "expected": "76cd587d99a18b2c9388d1b6eace69bcad39c22f8425241ee40b5f130f020cba"
+    },
+    {
+      "url": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200,
+      "sha256": "2c8afdf58a9b1b7dfbb63e3e56a0d4f70059418ca8cfda509c290da346fa7a2a",
+      "expected": "2c8afdf58a9b1b7dfbb63e3e56a0d4f70059418ca8cfda509c290da346fa7a2a"
+    },
+    {
+      "url": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200,
+      "sha256": "9b7a31d2620c92eecba2e25eeef5bb68fb0d972ee805a2142581438cfda3efaf",
+      "expected": "9b7a31d2620c92eecba2e25eeef5bb68fb0d972ee805a2142581438cfda3efaf"
+    },
+    {
+      "url": "/_next/static/chunks/2ka0totmurnj1.js",
+      "status": 200,
+      "sha256": "1e1e35c289d290e51383ccdc3a0ddcefc7ddba090b6ccce0d4e36259b56393f1",
+      "expected": "1e1e35c289d290e51383ccdc3a0ddcefc7ddba090b6ccce0d4e36259b56393f1"
+    },
+    {
+      "url": "/_next/static/chunks/2kdyww1yqxlnf.js",
+      "status": 200,
+      "sha256": "926a6b89e34bfbd005874043abb131ee67a7aed1cabaf5f0aa020921854e3098",
+      "expected": "926a6b89e34bfbd005874043abb131ee67a7aed1cabaf5f0aa020921854e3098"
+    },
+    {
+      "url": "/_next/static/chunks/2quitcivzi819.js",
+      "status": 200,
+      "sha256": "937e72db6126e6d43495b42474896af079b646eecb1bc79cec10acb673da1531",
+      "expected": "937e72db6126e6d43495b42474896af079b646eecb1bc79cec10acb673da1531"
+    },
+    {
+      "url": "/_next/static/chunks/3_usd5ad8fosk.css",
+      "status": 200,
+      "sha256": "6556f3e9c42f35b7ebba876c31a5d608cf128afddaaf0b3600d6fb22092acc9d",
+      "expected": "6556f3e9c42f35b7ebba876c31a5d608cf128afddaaf0b3600d6fb22092acc9d"
+    },
+    {
+      "url": "/_next/static/chunks/32tn7a1d0dfka.js",
+      "status": 200,
+      "sha256": "58fa38df90d47c6734f4d4847aedb800fb9ca37c501cd3cc0ab8d7ea8c68d9fd",
+      "expected": "58fa38df90d47c6734f4d4847aedb800fb9ca37c501cd3cc0ab8d7ea8c68d9fd"
+    },
+    {
+      "url": "/_next/static/chunks/369v10xz-wfzd.js",
+      "status": 200,
+      "sha256": "a46a8909d9293fe5d64c4d1aac9ef139a0f191023bcf8a9e0d6d1265ac71d3c3",
+      "expected": "a46a8909d9293fe5d64c4d1aac9ef139a0f191023bcf8a9e0d6d1265ac71d3c3"
+    },
+    {
+      "url": "/_next/static/chunks/393yxdl-5-2r2.css",
+      "status": 200,
+      "sha256": "003f1e5857c76b0b6a5780cfb5901986ba8b0aa111215b83da27a8f18f9310c2",
+      "expected": "003f1e5857c76b0b6a5780cfb5901986ba8b0aa111215b83da27a8f18f9310c2"
+    },
+    {
+      "url": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200,
+      "sha256": "fc6858abd08468daa3365f82dbb973cb648c787763a7994cb0ed4abdd66c3902",
+      "expected": "fc6858abd08468daa3365f82dbb973cb648c787763a7994cb0ed4abdd66c3902"
+    },
+    {
+      "url": "/_next/static/chunks/3f__1h-j75apl.js",
+      "status": 200,
+      "sha256": "3d43384964ff404332733737488b29920a8218098fec9b19646b2e223874957d",
+      "expected": "3d43384964ff404332733737488b29920a8218098fec9b19646b2e223874957d"
+    },
+    {
+      "url": "/_next/static/chunks/3f_y3kur09m-m.js",
+      "status": 200,
+      "sha256": "fa0b95597da1e42aa4e65dcedcc2e9b65c4513ed378827d937488c4796947c23",
+      "expected": "fa0b95597da1e42aa4e65dcedcc2e9b65c4513ed378827d937488c4796947c23"
+    },
+    {
+      "url": "/_next/static/chunks/3i70920u9gqmy.js",
+      "status": 200,
+      "sha256": "0f035d1dad11b9dc485e6b911b91675c82b895dba4c6e0ee75e6bfcce70c204f",
+      "expected": "0f035d1dad11b9dc485e6b911b91675c82b895dba4c6e0ee75e6bfcce70c204f"
+    },
+    {
+      "url": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200,
+      "sha256": "53f9a9d9bc5cb86e70ce4df114af8f712b08b71f6ffaeae19e44ce2b76ba9e44",
+      "expected": "53f9a9d9bc5cb86e70ce4df114af8f712b08b71f6ffaeae19e44ce2b76ba9e44"
+    },
+    {
+      "url": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200,
+      "sha256": "4344e85ccf04c814c870bb279bd5728d25b1002cc93828d8c37c59e0f62cb061",
+      "expected": "4344e85ccf04c814c870bb279bd5728d25b1002cc93828d8c37c59e0f62cb061"
+    },
+    {
+      "url": "/_next/static/chunks/444ijkz8o2hp6.css",
+      "status": 200,
+      "sha256": "165d6f8f96f8abccbdd294aee4cc480106073d925e8253f206df9a2cb8f482ab",
+      "expected": "165d6f8f96f8abccbdd294aee4cc480106073d925e8253f206df9a2cb8f482ab"
+    },
+    {
+      "url": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200,
+      "sha256": "c19bbf86403cc9b532488ac3c16cde6c2df1f3d49ef49d52f97f0a8a1f602560",
+      "expected": "c19bbf86403cc9b532488ac3c16cde6c2df1f3d49ef49d52f97f0a8a1f602560"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-400-normal.1y9apvljb2g4s.woff",
+      "status": 200,
+      "sha256": "d990cc7e8f51893d4ba74c18fb0ca04e31d9c791c2c0dfbe95b7fa8e64c0b2c2",
+      "expected": "d990cc7e8f51893d4ba74c18fb0ca04e31d9c791c2c0dfbe95b7fa8e64c0b2c2"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-400-normal.3966srz6ua9nl.woff2",
+      "status": 200,
+      "sha256": "7fff1bb22e5773f0d1a55d3093068b6dac4539e8bb3ac23fb9f0a729df2c7bb4",
+      "expected": "7fff1bb22e5773f0d1a55d3093068b6dac4539e8bb3ac23fb9f0a729df2c7bb4"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-700-normal.1on3xg---ibgx.woff",
+      "status": 200,
+      "sha256": "bd414ee6698edb13ec58b3084b68c1804eeb55acb6b65f628822320dcd1e5431",
+      "expected": "bd414ee6698edb13ec58b3084b68c1804eeb55acb6b65f628822320dcd1e5431"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200,
+      "sha256": "3787a5a419171630e6890cfa47c4da067474d005cd0ff8dc11ec090fdc3ee2b8",
+      "expected": "3787a5a419171630e6890cfa47c4da067474d005cd0ff8dc11ec090fdc3ee2b8"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-800-normal.2yhcvw6l_9tek.woff",
+      "status": 200,
+      "sha256": "8ac1acb3ce8849a2fb0160f778099fc48a440d4f50b6121cd66e628816c2fb2b",
+      "expected": "8ac1acb3ce8849a2fb0160f778099fc48a440d4f50b6121cd66e628816c2fb2b"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "status": 200,
+      "sha256": "2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce",
+      "expected": "2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-ext-400-normal.0rpobyvjmamnh.woff2",
+      "status": 200,
+      "sha256": "1eb62753e2922d13801bed22f0a35af396035da04958d4d7fcead522fbaae4ea",
+      "expected": "1eb62753e2922d13801bed22f0a35af396035da04958d4d7fcead522fbaae4ea"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-ext-400-normal.3yj28lypgqt1q.woff",
+      "status": 200,
+      "sha256": "45609841ea21cbe16e61681ab0e32fce48234556e7f3f2c2e88ba59a372e62a1",
+      "expected": "45609841ea21cbe16e61681ab0e32fce48234556e7f3f2c2e88ba59a372e62a1"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-ext-700-normal.1qvxqej4sgmo7.woff2",
+      "status": 200,
+      "sha256": "9d351bd9222bfab90f943850f8039aa73cdb40e0a6cfe4127308a48bef59d5f5",
+      "expected": "9d351bd9222bfab90f943850f8039aa73cdb40e0a6cfe4127308a48bef59d5f5"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-ext-700-normal.2ujo9d6x5hgkq.woff",
+      "status": 200,
+      "sha256": "8d78002905fb21f0e72ec892f8d6d435a793991c480eb421901fd15046500470",
+      "expected": "8d78002905fb21f0e72ec892f8d6d435a793991c480eb421901fd15046500470"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2ilznutl-gkih.woff",
+      "status": 200,
+      "sha256": "58d8c3f5d736b15a3d7f4c429a10b1c8526bb0cedd5a9173d6427664ed38d6b2",
+      "expected": "58d8c3f5d736b15a3d7f4c429a10b1c8526bb0cedd5a9173d6427664ed38d6b2"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2qbk6mf928vn4.woff2",
+      "status": 200,
+      "sha256": "22539b785b3cbcee08e0722ff37fa16a18e71e4482d9078f7da79da1258e7614",
+      "expected": "22539b785b3cbcee08e0722ff37fa16a18e71e4482d9078f7da79da1258e7614"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-vietnamese-400-normal.24d76vaxd5do6.woff2",
+      "status": 200,
+      "sha256": "9e7e7207af0d66872b3d480231a7f767fbc3424d42c46b41d372b40c3f0b423a",
+      "expected": "9e7e7207af0d66872b3d480231a7f767fbc3424d42c46b41d372b40c3f0b423a"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-vietnamese-400-normal.2xfe7s8liyrco.woff",
+      "status": 200,
+      "sha256": "268a53178e7d0a13860827dc5e1b13069a6e9214201a35fd0b607601455898b6",
+      "expected": "268a53178e7d0a13860827dc5e1b13069a6e9214201a35fd0b607601455898b6"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-vietnamese-700-normal.30aknk5meqo_4.woff2",
+      "status": 200,
+      "sha256": "6c554f2decc277ef760244c5ee6b5a85840862966e2ad4d02a1bdcdfefb9afa2",
+      "expected": "6c554f2decc277ef760244c5ee6b5a85840862966e2ad4d02a1bdcdfefb9afa2"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-vietnamese-700-normal.3f_ld5jwq496k.woff",
+      "status": 200,
+      "sha256": "48655769b329d1902e1bb76a6af596323ae438ec293bb149289ec7d6da12453f",
+      "expected": "48655769b329d1902e1bb76a6af596323ae438ec293bb149289ec7d6da12453f"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0bnijc5a116ah.woff2",
+      "status": 200,
+      "sha256": "87b35049bcb491c02a45d740cb88abd709e73cda023fbe5e28eefbff6649cdfe",
+      "expected": "87b35049bcb491c02a45d740cb88abd709e73cda023fbe5e28eefbff6649cdfe"
+    },
+    {
+      "url": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0x2bwntxagcoi.woff",
+      "status": 200,
+      "sha256": "f2fcbe27267e2f68442b7fb77baf146e51eb85162e417291138436743b62d00c",
+      "expected": "f2fcbe27267e2f68442b7fb77baf146e51eb85162e417291138436743b62d00c"
+    },
+    {
+      "url": "/_next/static/o3l7OUHwGtKTlz9pnpxMi/_buildManifest.js",
+      "status": 200,
+      "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+      "expected": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea"
+    },
+    {
+      "url": "/_next/static/o3l7OUHwGtKTlz9pnpxMi/_clientMiddlewareManifest.js",
+      "status": 200,
+      "sha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+      "expected": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a"
+    },
+    {
+      "url": "/_next/static/o3l7OUHwGtKTlz9pnpxMi/_ssgManifest.js",
+      "status": 200,
+      "sha256": "815683a8e5a0be0be4defaf3fa6210dc5ac482f408ad79e24d6a8c05b617b14c",
+      "expected": "815683a8e5a0be0be4defaf3fa6210dc5ac482f408ad79e24d6a8c05b617b14c"
+    },
+    {
+      "url": "/icons/icon-192.png",
+      "status": 200,
+      "sha256": "4c399a9abddabd35cce9610c8f2f86960888d00e08f3894dcbafef065e16573e",
+      "expected": "4c399a9abddabd35cce9610c8f2f86960888d00e08f3894dcbafef065e16573e"
+    },
+    {
+      "url": "/icons/icon-512.png",
+      "status": 200,
+      "sha256": "85441f7eb27769dbb1237bb5d29838d20e98aa1489b498b0040ca600b7f9111c",
+      "expected": "85441f7eb27769dbb1237bb5d29838d20e98aa1489b498b0040ca600b7f9111c"
+    },
+    {
+      "url": "/icons/icon-maskable-512.png",
+      "status": 200,
+      "sha256": "d5079841e1dfbe3ef2774c297f6a64d590d9c2dd052ff64aae78fad49e66e4b9",
+      "expected": "d5079841e1dfbe3ef2774c297f6a64d590d9c2dd052ff64aae78fad49e66e4b9"
+    },
+    {
+      "url": "/icons/speakmate-icon-master.png",
+      "status": 200,
+      "sha256": "db42e4d8c3a3645230549598dcd00d443eb9ce786b71e83860ea81bf1d5516f1",
+      "expected": "db42e4d8c3a3645230549598dcd00d443eb9ce786b71e83860ea81bf1d5516f1"
+    },
+    {
+      "url": "/icons/speakmate-maskable-master.png",
+      "status": 200,
+      "sha256": "5c958bb7623c682b5aa2035b16501fe741f379ad5e02fdc450c3770a77215ca2",
+      "expected": "5c958bb7623c682b5aa2035b16501fe741f379ad5e02fdc450c3770a77215ca2"
+    },
+    {
+      "url": "/scenes/travel.webp",
+      "status": 200,
+      "sha256": "1943dc932837d542318fe1aa5f626ad9e18a47b34fc6f0dc30ef53228334e88e",
+      "expected": "1943dc932837d542318fe1aa5f626ad9e18a47b34fc6f0dc30ef53228334e88e"
+    },
+    {
+      "url": "/scenes/dining.webp",
+      "status": 200,
+      "sha256": "5c4fbb2dce1df7dd91db164e8d33cf2368ee5157fb202bd8f1137bc08f84d30c",
+      "expected": "5c4fbb2dce1df7dd91db164e8d33cf2368ee5157fb202bd8f1137bc08f84d30c"
+    },
+    {
+      "url": "/scenes/daily.webp",
+      "status": 200,
+      "sha256": "756a4618ed1f2a4b6169304a51e12e5f6c2cefbbde587cf4be84637140e08405",
+      "expected": "756a4618ed1f2a4b6169304a51e12e5f6c2cefbbde587cf4be84637140e08405"
+    },
+    {
+      "url": "/scenes/work.webp",
+      "status": 200,
+      "sha256": "eb7cd700a4fbc632e6105eabc3e1918e6ca6dc472e1c8feb0b4919008b087574",
+      "expected": "eb7cd700a4fbc632e6105eabc3e1918e6ca6dc472e1c8feb0b4919008b087574"
+    },
+    {
+      "url": "/scenes/social.webp",
+      "status": 200,
+      "sha256": "b3492ce5871d4bd5056a0fa55a9b71dfa60869a37d6156c7bce8a30f380fb713",
+      "expected": "b3492ce5871d4bd5056a0fa55a9b71dfa60869a37d6156c7bce8a30f380fb713"
+    },
+    {
+      "url": "/scenes/study.webp",
+      "status": 200,
+      "sha256": "b7916f1c65d7d385b1623ade687f9b98b40b879a34e0d14b4842bf38cbcfc5a2",
+      "expected": "b7916f1c65d7d385b1623ade687f9b98b40b879a34e0d14b4842bf38cbcfc5a2"
+    },
+    {
+      "url": "/scenes/emergency.webp",
+      "status": 200,
+      "sha256": "4a063e593d9091411384a4f9deaf84f8eb2d4e080f258ef0b1bf7c340a7c43f5",
+      "expected": "4a063e593d9091411384a4f9deaf84f8eb2d4e080f258ef0b1bf7c340a7c43f5"
+    },
+    {
+      "url": "/scenes/hotel.webp",
+      "status": 200,
+      "sha256": "305b23554679689b4b0b8c66566dbcf3cf80d315b56f1b3fcc2dea52aa50e9c9",
+      "expected": "305b23554679689b4b0b8c66566dbcf3cf80d315b56f1b3fcc2dea52aa50e9c9"
+    }
+  ],
+  "layout": {
+    "width": 390,
+    "height": 844,
+    "nav": {
+      "top": 742.6875,
+      "bottom": 844,
+      "left": 0,
+      "right": 390,
+      "height": 101.3125,
+      "width": 390
+    },
+    "notice": {
+      "top": 511,
+      "bottom": 730,
+      "left": 14,
+      "right": 376,
+      "height": 219,
+      "width": 362
+    },
+    "links": [
+      {
+        "link": {
+          "top": 751.6875,
+          "bottom": 844,
+          "left": 12,
+          "right": 82,
+          "height": 92.3125,
+          "width": 70
+        },
+        "text": {
+          "top": 794.265625,
+          "bottom": 827.421875,
+          "left": 23.3125,
+          "right": 70.6875,
+          "height": 33.15625,
+          "width": 47.375
+        }
+      },
+      {
+        "link": {
+          "top": 751.6875,
+          "bottom": 844,
+          "left": 86,
+          "right": 156,
+          "height": 92.3125,
+          "width": 70
+        },
+        "text": {
+          "top": 794.265625,
+          "bottom": 827.421875,
+          "left": 97.3125,
+          "right": 144.6875,
+          "height": 33.15625,
+          "width": 47.375
+        }
+      },
+      {
+        "link": {
+          "top": 751.6875,
+          "bottom": 844,
+          "left": 160,
+          "right": 230,
+          "height": 92.3125,
+          "width": 70
+        },
+        "text": {
+          "top": 794.265625,
+          "bottom": 827.421875,
+          "left": 171.3125,
+          "right": 218.6875,
+          "height": 33.15625,
+          "width": 47.375
+        }
+      },
+      {
+        "link": {
+          "top": 751.6875,
+          "bottom": 844,
+          "left": 234,
+          "right": 304,
+          "height": 92.3125,
+          "width": 70
+        },
+        "text": {
+          "top": 777.6875,
+          "bottom": 844,
+          "left": 234,
+          "right": 304,
+          "height": 66.3125,
+          "width": 70
+        }
+      },
+      {
+        "link": {
+          "top": 751.6875,
+          "bottom": 844,
+          "left": 308,
+          "right": 378,
+          "height": 92.3125,
+          "width": 70
+        },
+        "text": {
+          "top": 794.265625,
+          "bottom": 827.421875,
+          "left": 319.3125,
+          "right": 366.6875,
+          "height": 33.15625,
+          "width": 47.375
+        }
+      }
+    ]
+  },
+  "combined": {
+    "top": {
+      "top": 470,
+      "bottom": 518,
+      "left": 324,
+      "right": 372
+    },
+    "notice": {
+      "top": 542,
+      "bottom": 730,
+      "left": 14,
+      "right": 376
+    },
+    "nav": {
+      "top": 742.6875,
+      "bottom": 844,
+      "left": 0,
+      "right": 390
+    }
+  },
+  "racedBuild": "o3l7OUHwGtKTlz9pnpxMi",
+  "cachesKept": [
+    "speakmate-build-v1-o3l7OUHwGtKTlz9pnpxMi",
+    "speakmate-build-v1-in2pG1ng-2S7-GB53eqAC"
+  ],
+  "after": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_56a2a044-e1ca-40aa-80f9-91d312d2018e|10:2026-09-12",
+        "profileId": "guest_56a2a044-e1ca-40aa-80f9-91d312d2018e",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_56a2a044-e1ca-40aa-80f9-91d312d2018e|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_56a2a044-e1ca-40aa-80f9-91d312d2018e|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-05",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-05"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_56a2a044-e1ca-40aa-80f9-91d312d2018e|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T08:40:25.746Z",
+        "updatedAt": "2026-09-12T08:40:25.746Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [
+      {
+        "id": "42:guest_56a2a044-e1ca-40aa-80f9-91d312d2018e|84:simulation_b915f69c-daa5-44fd-8d76-a619077526c5_d371d076-2e73-4f6c-8757-a46e33ceed35|1:0",
+        "profileId": "guest_56a2a044-e1ca-40aa-80f9-91d312d2018e",
+        "occurredAt": "2026-09-12T08:40:33.272Z",
+        "dateKey": "2026-09-12",
+        "type": "foreground-time-recorded",
+        "runId": "simulation_b915f69c-daa5-44fd-8d76-a619077526c5_d371d076-2e73-4f6c-8757-a46e33ceed35",
+        "segmentId": "0",
+        "startedAt": "2026-09-12T08:40:33.272Z",
+        "endedAt": "2026-09-12T08:40:33.554Z",
+        "durationMs": 281
+      }
+    ],
+    "notebook": [
+      {
+        "id": "acc36db4-e97b-4a36-a058-533c8b2c0db2",
+        "profileId": "guest_56a2a044-e1ca-40aa-80f9-91d312d2018e",
+        "kind": "word",
+        "text": "black",
+        "normalizedText": "black",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "bce2da25-cb1b-4d91-8164-50336aa12bc6",
+            "kind": "turn",
+            "originalText": "We have Americanos and filter coffee. What would you like today?",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "sessionId": "session_89fef86d-7163-43de-8895-903b0e1f1ab5",
+            "questionId": "coffee.A2.drink",
+            "createdAt": "2026-09-12T08:40:26.705Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T08:40:26.705Z",
+        "updatedAt": "2026-09-12T08:40:26.705Z"
+      }
+    ],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_56a2a044-e1ca-40aa-80f9-91d312d2018e",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T08:40:25.059Z",
+        "updatedAt": "2026-09-12T08:40:25.525Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [
+      {
+        "id": "session_89fef86d-7163-43de-8895-903b0e1f1ab5",
+        "profileId": "guest_56a2a044-e1ca-40aa-80f9-91d312d2018e",
+        "sceneId": "dining-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "status": "active",
+        "startedAt": "2026-09-12T08:40:26.468Z",
+        "updatedAt": "2026-09-12T08:40:26.468Z",
+        "completedGoals": [],
+        "openingText": "We have Americanos and filter coffee. What would you like today?",
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "dining-01",
+            "category": "dining",
+            "level": "A2",
+            "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+            "rationale": {
+              "canDoZh": "处理常见柜台交换，在点单中表达简单偏好及下一步安排。",
+              "complexityZh": "连接选择与一个日常原因，区分制作时间、取餐方式及实际付款。",
+              "scaffoldingZh": "问题给出可用选项；参考回答提供 because 或简单补充句，不要求即兴论证。",
+              "registerZh": "友好、直接且礼貌，可婉拒推销或提出个人安排。",
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ]
+            },
+            "questions": [
+              {
+                "id": "coffee.A2.drink",
+                "text": "We have Americanos and filter coffee. What would you like today?",
+                "intent": "order",
+                "objective": "drink",
+                "hintZh": "选一种在售咖啡，可补充简单原因。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.drink.a",
+                    "text": "An Americano, please. I like a strong coffee.",
+                    "acceptedForms": [
+                      "An Americano, please. I like a strong coffee."
+                    ],
+                    "effects": [
+                      {
+                        "key": "drink",
+                        "value": "americano"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.drink.b",
+                    "text": "I would like a filter coffee today, please.",
+                    "acceptedForms": [
+                      "I would like a filter coffee today, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "drink",
+                        "value": "filter"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.size",
+                "text": "Would you prefer a small drink or a large one?",
+                "intent": "quantity",
+                "objective": "size",
+                "hintZh": "按需要选择杯型，不改变饮品种类。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.size.a",
+                    "text": "A small one, please. I do not have much time.",
+                    "acceptedForms": [
+                      "A small one, please. I do not have much time."
+                    ],
+                    "effects": [
+                      {
+                        "key": "size",
+                        "value": "small"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.size.b",
+                    "text": "A large one, please. I have a long morning ahead.",
+                    "acceptedForms": [
+                      "A large one, please. I have a long morning ahead."
+                    ],
+                    "effects": [
+                      {
+                        "key": "size",
+                        "value": "large"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.service",
+                "text": "Are you staying here, or taking your drink away?",
+                "intent": "serving",
+                "objective": "service",
+                "hintZh": "交代堂食或外带以及简单行程。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.service.a",
+                    "text": "I am staying here. I would like to sit by the window.",
+                    "acceptedForms": [
+                      "I am staying here. I would like to sit by the window."
+                    ],
+                    "effects": [
+                      {
+                        "key": "service",
+                        "value": "here"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.service.b",
+                    "text": "I am taking it away. I need to catch a bus.",
+                    "acceptedForms": [
+                      "I am taking it away. I need to catch a bus."
+                    ],
+                    "effects": [
+                      {
+                        "key": "service",
+                        "value": "takeaway"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.milk",
+                "text": "Would you like to keep it black, or add some oat milk?",
+                "intent": "customize",
+                "objective": "milk",
+                "hintZh": "black 在这里是不加奶；不要按颜色泛解。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.milk.a",
+                    "text": "Black, please. I do not usually have milk in coffee.",
+                    "acceptedForms": [
+                      "Black, please. I do not usually have milk in coffee."
+                    ],
+                    "effects": [
+                      {
+                        "key": "milk",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.milk.b",
+                    "text": "Some oat milk, please. I like a milder taste.",
+                    "acceptedForms": [
+                      "Some oat milk, please. I like a milder taste."
+                    ],
+                    "effects": [
+                      {
+                        "key": "milk",
+                        "value": "oat"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.sweetener",
+                "text": "Would you like one sugar, or would you prefer it without sugar?",
+                "intent": "preference",
+                "objective": "sweetener",
+                "hintZh": "有意识地选择甜度；不暗示店员已加糖。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.sweetener.a",
+                    "text": "Without sugar, please. I do not like sweet coffee.",
+                    "acceptedForms": [
+                      "Without sugar, please. I do not like sweet coffee."
+                    ],
+                    "effects": [
+                      {
+                        "key": "sweetener",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.sweetener.b",
+                    "text": "One sugar, please. That is enough for me.",
+                    "acceptedForms": [
+                      "One sugar, please. That is enough for me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "sweetener",
+                        "value": "one"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.payment",
+                "text": "You can pay by cash or card. Which would you like to use?",
+                "intent": "payment",
+                "objective": "payment",
+                "hintZh": "选择支付方式；不要把模拟回答当成支付完成。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.payment.a",
+                    "text": "I will pay in cash. I have some change.",
+                    "acceptedForms": [
+                      "I will pay in cash. I have some change."
+                    ],
+                    "effects": [
+                      {
+                        "key": "payment",
+                        "value": "cash"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.payment.b",
+                    "text": "By card, please. I do not have any cash today.",
+                    "acceptedForms": [
+                      "By card, please. I do not have any cash today."
+                    ],
+                    "effects": [
+                      {
+                        "key": "payment",
+                        "value": "card"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.receipt",
+                "text": "Do you need a paper receipt for this order?",
+                "intent": "record",
+                "objective": "receipt",
+                "hintZh": "说明是否需要纸质收据。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.receipt.a",
+                    "text": "Yes, please. I need to keep a record of what I spend.",
+                    "acceptedForms": [
+                      "Yes, please. I need to keep a record of what I spend."
+                    ],
+                    "effects": [
+                      {
+                        "key": "receipt",
+                        "value": "yes"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.receipt.b",
+                    "text": "No, thank you. I do not need a paper receipt.",
+                    "acceptedForms": [
+                      "No, thank you. I do not need a paper receipt."
+                    ],
+                    "effects": [
+                      {
+                        "key": "receipt",
+                        "value": "no"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.name",
+                "text": "May I have a name to call when your drink is ready?",
+                "intent": "identify",
+                "objective": "name",
+                "hintZh": "使用模拟名字，或选择订单号码保护隐私。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.name.a",
+                    "text": "You can call Sam. That is easy to remember.",
+                    "acceptedForms": [
+                      "You can call Sam. That is easy to remember."
+                    ],
+                    "effects": [
+                      {
+                        "key": "name",
+                        "value": "sam"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.name.b",
+                    "text": "Could you call my order number instead, please?",
+                    "acceptedForms": [
+                      "Could you call my order number instead, please?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "name",
+                        "value": "number"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.cooling",
+                "text": "The drink will be hot. Would a little cold water help?",
+                "intent": "temperature",
+                "objective": "cooling",
+                "hintZh": "不更换为冰咖啡，只决定是否略微降温。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.cooling.a",
+                    "text": "Yes, please add a little. I want to drink it soon.",
+                    "acceptedForms": [
+                      "Yes, please add a little. I want to drink it soon."
+                    ],
+                    "effects": [
+                      {
+                        "key": "cooling",
+                        "value": "water"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.cooling.b",
+                    "text": "No, thank you. I can wait for it to cool.",
+                    "acceptedForms": [
+                      "No, thank you. I can wait for it to cool."
+                    ],
+                    "effects": [
+                      {
+                        "key": "cooling",
+                        "value": "unchanged"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.food",
+                "text": "Would you like to add a cookie, or is the drink enough?",
+                "intent": "upsell",
+                "objective": "food",
+                "hintZh": "接受加购，或礼貌拒绝并给出简单理由。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.food.a",
+                    "text": "A cookie would be nice. I have not had a snack today.",
+                    "acceptedForms": [
+                      "A cookie would be nice. I have not had a snack today."
+                    ],
+                    "effects": [
+                      {
+                        "key": "food",
+                        "value": "cookie"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.food.b",
+                    "text": "Just the drink, thanks. I have already eaten.",
+                    "acceptedForms": [
+                      "Just the drink, thanks. I have already eaten."
+                    ],
+                    "effects": [
+                      {
+                        "key": "food",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.timing",
+                "text": "Would you like your drink made now or in ten minutes?",
+                "intent": "schedule",
+                "objective": "timing",
+                "hintZh": "决定制作时点，而不是声称已经制作完。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.timing.a",
+                    "text": "Please make it now. I am ready to collect it.",
+                    "acceptedForms": [
+                      "Please make it now. I am ready to collect it."
+                    ],
+                    "effects": [
+                      {
+                        "key": "timing",
+                        "value": "now"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.timing.b",
+                    "text": "In ten minutes, please. I need to make a quick phone call.",
+                    "acceptedForms": [
+                      "In ten minutes, please. I need to make a quick phone call."
+                    ],
+                    "effects": [
+                      {
+                        "key": "timing",
+                        "value": "later"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.cup",
+                "text": "Do you have your own cup, or shall we provide one?",
+                "intent": "sustainability",
+                "objective": "cup",
+                "hintZh": "自带杯或店内杯具均不改变之前的堂食/外带选择。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.cup.a",
+                    "text": "I have my own cup. Here it is, and it is clean.",
+                    "acceptedForms": [
+                      "I have my own cup. Here it is, and it is clean."
+                    ],
+                    "effects": [
+                      {
+                        "key": "cup",
+                        "value": "own"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.cup.b",
+                    "text": "Please provide one. I left my cup at home.",
+                    "acceptedForms": [
+                      "Please provide one. I left my cup at home."
+                    ],
+                    "effects": [
+                      {
+                        "key": "cup",
+                        "value": "shop"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "counter",
+                "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.size",
+                      "coffee.A2.service"
+                    ],
+                    "achievedClosing": "Your drink, size and serving choice are noted. This practice is complete; no real order has been placed.",
+                    "partialClosing": "This practice has ended with some order details still unconfirmed. No real order has been placed."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.size",
+                      "coffee.A2.service",
+                      "coffee.A2.milk",
+                      "coffee.A2.sweetener",
+                      "coffee.A2.payment"
+                    ],
+                    "achievedClosing": "Your order preferences and payment method are noted. This practice is complete; no payment has been taken.",
+                    "partialClosing": "This practice has ended with some preferences still unconfirmed. No payment has been taken."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.size",
+                      "coffee.A2.service",
+                      "coffee.A2.milk",
+                      "coffee.A2.sweetener",
+                      "coffee.A2.payment",
+                      "coffee.A2.receipt",
+                      "coffee.A2.name",
+                      "coffee.A2.cooling",
+                      "coffee.A2.food"
+                    ],
+                    "achievedClosing": "Your order and collection preferences are noted, including temperature handling and the snack decision. This practice is complete; no real order has been placed.",
+                    "partialClosing": "This practice has ended with some order or collection details still unconfirmed. No real order has been placed."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "planned",
+                "situationZh": "安排取餐：同一在售菜单及默认热黑咖啡；先确认饮品、堂食/外带、杯型。拓展练安排现在/稍后出杯和杯具方案，替代现场版的降温及点心，并非随机拼接。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.service",
+                      "coffee.A2.size"
+                    ],
+                    "achievedClosing": "Your drink and serving arrangements are noted. This short practice is complete; no real order has been placed.",
+                    "partialClosing": "This short practice has ended with serving arrangements still partly unconfirmed. No real order has been placed."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.service",
+                      "coffee.A2.size",
+                      "coffee.A2.payment",
+                      "coffee.A2.sweetener",
+                      "coffee.A2.milk"
+                    ],
+                    "achievedClosing": "Your serving arrangements, preferences and payment method are noted. This practice is complete; no payment has been taken.",
+                    "partialClosing": "This practice has ended with some serving or payment preferences still unconfirmed. No payment has been taken."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.service",
+                      "coffee.A2.size",
+                      "coffee.A2.payment",
+                      "coffee.A2.sweetener",
+                      "coffee.A2.milk",
+                      "coffee.A2.timing",
+                      "coffee.A2.cup",
+                      "coffee.A2.receipt",
+                      "coffee.A2.name"
+                    ],
+                    "achievedClosing": "Your order, preparation time, cup choice and collection details are noted. This practice is complete; no real booking or order has been made.",
+                    "partialClosing": "This practice has ended with some preparation or collection details still unconfirmed. No real booking or order has been made."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "Of course. Here are the choices again.",
+              "struggle": "Take your time. Start with one of the example answers.",
+              "offTopic": "We can come back to that later. Let us finish this drink choice.",
+              "unknown": "Your words are saved for this practice, but this local lesson cannot confirm their meaning.",
+              "changed": "That earlier choice has been updated.",
+              "refusedClosing": "That is fine. We will stop this practice without completing the order."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "counter",
+            "currentQuestionId": "coffee.A2.drink",
+            "facts": [],
+            "completedObjectives": [],
+            "completedIntents": [],
+            "askedQuestionIds": [
+              "coffee.A2.drink"
+            ],
+            "turns": [],
+            "outcome": "active",
+            "reply": "We have Americanos and filter coffee. What would you like today?",
+            "confirmation": "none"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "咖啡师角色",
+          "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+        }
+      },
+      {
+        "id": "simulation_b915f69c-daa5-44fd-8d76-a619077526c5",
+        "profileId": "guest_56a2a044-e1ca-40aa-80f9-91d312d2018e",
+        "sceneId": "dining-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "status": "active",
+        "startedAt": "2026-09-12T08:40:33.111Z",
+        "updatedAt": "2026-09-12T08:40:33.111Z",
+        "completedGoals": [],
+        "openingText": "We have Americanos and filter coffee. What would you like today?",
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "dining-01",
+            "category": "dining",
+            "level": "A2",
+            "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+            "rationale": {
+              "canDoZh": "处理常见柜台交换，在点单中表达简单偏好及下一步安排。",
+              "complexityZh": "连接选择与一个日常原因，区分制作时间、取餐方式及实际付款。",
+              "scaffoldingZh": "问题给出可用选项；参考回答提供 because 或简单补充句，不要求即兴论证。",
+              "registerZh": "友好、直接且礼貌，可婉拒推销或提出个人安排。",
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ]
+            },
+            "questions": [
+              {
+                "id": "coffee.A2.drink",
+                "text": "We have Americanos and filter coffee. What would you like today?",
+                "intent": "order",
+                "objective": "drink",
+                "hintZh": "选一种在售咖啡，可补充简单原因。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.drink.a",
+                    "text": "An Americano, please. I like a strong coffee.",
+                    "acceptedForms": [
+                      "An Americano, please. I like a strong coffee."
+                    ],
+                    "effects": [
+                      {
+                        "key": "drink",
+                        "value": "americano"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.drink.b",
+                    "text": "I would like a filter coffee today, please.",
+                    "acceptedForms": [
+                      "I would like a filter coffee today, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "drink",
+                        "value": "filter"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.size",
+                "text": "Would you prefer a small drink or a large one?",
+                "intent": "quantity",
+                "objective": "size",
+                "hintZh": "按需要选择杯型，不改变饮品种类。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.size.a",
+                    "text": "A small one, please. I do not have much time.",
+                    "acceptedForms": [
+                      "A small one, please. I do not have much time."
+                    ],
+                    "effects": [
+                      {
+                        "key": "size",
+                        "value": "small"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.size.b",
+                    "text": "A large one, please. I have a long morning ahead.",
+                    "acceptedForms": [
+                      "A large one, please. I have a long morning ahead."
+                    ],
+                    "effects": [
+                      {
+                        "key": "size",
+                        "value": "large"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              },
+              {
+                "id": "coffee.A2.milk",
+                "text": "Would you like to keep it black, or add some oat milk?",
+                "intent": "customize",
+                "objective": "milk",
+                "hintZh": "black 在这里是不加奶；不要按颜色泛解。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "coffee.A2.milk.a",
+                    "text": "Black, please. I do not usually have milk in coffee.",
+                    "acceptedForms": [
+                      "Black, please. I do not usually have milk in coffee."
+                    ],
+                    "effects": [
+                      {
+                        "key": "milk",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  },
+                  {
+                    "id": "coffee.A2.milk.b",
+                    "text": "Some oat milk, please. I like a milder taste.",
+                    "acceptedForms": [
+                      "Some oat milk, please. I like a milder taste."
+                    ],
+                    "effects": [
+                      {
+                        "key": "milk",
+                        "value": "oat"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "counter",
+                "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.size",
+                      "coffee.A2.milk"
+                    ],
+                    "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                    "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.size",
+                      "coffee.A2.milk"
+                    ],
+                    "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                    "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "coffee.A2.drink",
+                      "coffee.A2.size",
+                      "coffee.A2.milk"
+                    ],
+                    "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                    "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "Of course. Here are the choices again.",
+              "struggle": "Take your time. Start with one of the example answers.",
+              "offTopic": "We can come back to that later. Let us finish this drink choice.",
+              "unknown": "Your words are saved for this practice, but this local lesson cannot confirm their meaning.",
+              "changed": "That earlier choice has been updated.",
+              "refusedClosing": "That is fine. We will stop this practice without completing the order."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "counter",
+            "currentQuestionId": "coffee.A2.drink",
+            "facts": [],
+            "completedObjectives": [],
+            "completedIntents": [],
+            "askedQuestionIds": [
+              "coffee.A2.drink"
+            ],
+            "turns": [],
+            "outcome": "active",
+            "reply": "We have Americanos and filter coffee. What would you like today?",
+            "confirmation": "none"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "咖啡师角色",
+          "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+        },
+        "simulation": {
+          "schemaVersion": 1,
+          "noteIds": [
+            "acc36db4-e97b-4a36-a058-533c8b2c0db2"
+          ],
+          "source": {
+            "noteId": "acc36db4-e97b-4a36-a058-533c8b2c0db2",
+            "sourceId": "bce2da25-cb1b-4d91-8164-50336aa12bc6",
+            "snapshot": {
+              "id": "bce2da25-cb1b-4d91-8164-50336aa12bc6",
+              "kind": "turn",
+              "originalText": "We have Americanos and filter coffee. What would you like today?",
+              "sceneId": "dining-01",
+              "level": "A2",
+              "sessionId": "session_89fef86d-7163-43de-8895-903b0e1f1ab5",
+              "questionId": "coffee.A2.drink",
+              "createdAt": "2026-09-12T08:40:26.705Z"
+            },
+            "noteText": "black",
+            "noteKind": "word"
+          },
+          "returnTo": "/notebook/note?id=acc36db4-e97b-4a36-a058-533c8b2c0db2",
+          "descriptor": {
+            "schemaVersion": 1,
+            "id": "micro.coffee.word.black.A2",
+            "analysisEntryId": "coffee.word.black",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "sourceContentVersion": 1,
+            "sourceVariantId": "counter",
+            "targetQuestionIds": [
+              "coffee.A2.drink",
+              "coffee.A2.milk"
+            ],
+            "questionIds": [
+              "coffee.A2.drink",
+              "coffee.A2.size",
+              "coffee.A2.milk"
+            ],
+            "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+            "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made.",
+            "review": {
+              "state": "model-reviewed",
+              "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+            },
+            "version": 1
+          },
+          "target": {
+            "coverage": "exact",
+            "text": "black",
+            "kind": "word",
+            "meaningZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "example": "I usually have my coffee black.",
+            "substitution": "I usually have milk in my coffee."
+          }
+        }
+      }
+    ],
+    "settings": [],
+    "turns": []
+  },
+  "transport": [
+    {
+      "upstream": 3133,
+      "path": "/welcome",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/393yxdl-5-2r2.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/sw.js?v=3.0.0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/offline-build.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/install",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/practice",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/privacy",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/session/report",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/prepare",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/notebook",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/notebook/note",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/notebook/simulation",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/rewards",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/guide",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/welcome",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/auth",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/05sjr8pmbtsur.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0gymv9ybqx8aj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0j8ei7txik68j.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0kh157s6n9m85.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0p9yvsyvmmfeq.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0ty9k-pko4_kb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0uk8jt_1s-e95.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/15xbu68-4kmdd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1av7cy6tre0f4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1cr_w82fr6hzp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1k6xx-rl81k0c.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/2ka0totmurnj1.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/2kdyww1yqxlnf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/2quitcivzi819.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3_usd5ad8fosk.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/32tn7a1d0dfka.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/369v10xz-wfzd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/393yxdl-5-2r2.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3f_y3kur09m-m.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3i70920u9gqmy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/444ijkz8o2hp6.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-400-normal.1y9apvljb2g4s.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-400-normal.3966srz6ua9nl.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.1on3xg---ibgx.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/393yxdl-5-2r2.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.2yhcvw6l_9tek.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/chunks/1av7cy6tre0f4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-400-normal.0rpobyvjmamnh.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-400-normal.3yj28lypgqt1q.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-700-normal.1qvxqej4sgmo7.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-700-normal.2ujo9d6x5hgkq.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2ilznutl-gkih.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2qbk6mf928vn4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-400-normal.24d76vaxd5do6.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-400-normal.2xfe7s8liyrco.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-700-normal.30aknk5meqo_4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-700-normal.3f_ld5jwq496k.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0bnijc5a116ah.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0x2bwntxagcoi.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/o3l7OUHwGtKTlz9pnpxMi/_buildManifest.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/o3l7OUHwGtKTlz9pnpxMi/_clientMiddlewareManifest.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/o3l7OUHwGtKTlz9pnpxMi/_ssgManifest.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/icons/icon-192.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/icons/icon-512.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/icons/icon-maskable-512.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/icons/speakmate-icon-master.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/icons/speakmate-maskable-master.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/travel.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/dining.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/daily.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/work.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/social.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/study.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/emergency.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/scenes/hotel.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3133,
+      "path": "/content/v1/dining",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/sw.js?v=3.0.0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/offline-build.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/install",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/practice",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/privacy",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/session/report",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/prepare",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/notebook",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/notebook/note",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/notebook/simulation",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/rewards",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/guide",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/welcome",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/auth",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/05sjr8pmbtsur.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0gymv9ybqx8aj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0j8ei7txik68j.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0kh157s6n9m85.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0p9yvsyvmmfeq.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0ty9k-pko4_kb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0uk8jt_1s-e95.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/15xbu68-4kmdd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/1cr_w82fr6hzp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/1k6xx-rl81k0c.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/2ka0totmurnj1.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/2kdyww1yqxlnf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/2quitcivzi819.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3_usd5ad8fosk.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/32tn7a1d0dfka.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/35vtzgf4r-0ee.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/369v10xz-wfzd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3f_y3kur09m-m.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3i70920u9gqmy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/444ijkz8o2hp6.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/in2pG1ng-2S7-GB53eqAC/_buildManifest.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/in2pG1ng-2S7-GB53eqAC/_clientMiddlewareManifest.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/in2pG1ng-2S7-GB53eqAC/_ssgManifest.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-400-normal.1y9apvljb2g4s.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-400-normal.3966srz6ua9nl.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.1on3xg---ibgx.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.2yhcvw6l_9tek.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-400-normal.0rpobyvjmamnh.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-400-normal.3yj28lypgqt1q.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-700-normal.1qvxqej4sgmo7.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-700-normal.2ujo9d6x5hgkq.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2ilznutl-gkih.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2qbk6mf928vn4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-400-normal.24d76vaxd5do6.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-400-normal.2xfe7s8liyrco.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-700-normal.30aknk5meqo_4.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-700-normal.3f_ld5jwq496k.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0bnijc5a116ah.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0x2bwntxagcoi.woff",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/icons/icon-192.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/icons/icon-512.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/icons/icon-maskable-512.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/icons/speakmate-icon-master.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/icons/speakmate-maskable-master.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/travel.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/dining.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/daily.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/work.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/study.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/social.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/emergency.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/scenes/hotel.webp",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/sw.js?v=3.0.0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/offline-build.js",
+      "method": "GET",
+      "status": 304
+    },
+    {
+      "upstream": 3130,
+      "path": "/sw.js?v=3.0.0",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "upstream": 3130,
+      "path": "/offline-build.js",
+      "method": "GET",
+      "status": 304
+    }
+  ],
+  "oldManifestHash": "dd821de5f9918a55f53cd74146013267753b48197467ca1b823a0dacfb83fd04"
+}

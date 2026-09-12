@@ -15,12 +15,15 @@ export function GET() {
   return NextResponse.json({
     status: 'ok',
     version: packageJson.version,
+    mode:
+      process.env.NEXT_PUBLIC_RECOVERY_ONLY === 'true'
+        ? 'recovery-readonly'
+        : 'local-learning',
     aiMode: resolved.cloudflare ? resolved.mode : 'local',
-    buildSha:
-      (
-        process.env.VERCEL_GIT_COMMIT_SHA ||
-        process.env.SPEAKMATE_RELEASE_SHA ||
-        'local'
-      ).slice(0, 12),
+    buildSha: (
+      process.env.VERCEL_GIT_COMMIT_SHA ||
+      process.env.SPEAKMATE_RELEASE_SHA ||
+      'local'
+    ).slice(0, 12),
   })
 }

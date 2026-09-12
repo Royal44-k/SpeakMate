@@ -2,6 +2,7 @@ node_modules/
 .pnpm-store/
 .worktrees/
 .next/
+.next-recovery/
 out/
 coverage/
 playwright-report/

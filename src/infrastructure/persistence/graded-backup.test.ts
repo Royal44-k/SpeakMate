@@ -1,11 +1,11 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import golden from '../../../tests/fixtures/learner-export-v1.json'
 import { historicalIdBackup } from '../../../tests/fixtures/historical-id'
 import {
   createMemoryRepositories,
   createIndexedDbRepositories,
 } from './repositories'
-import { deleteDatabase } from './db'
+import { deleteDatabase, getDatabase } from './db'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import { createDialogue, advanceDialogue } from '@/domain/ai/graded-dialogue'
 
@@ -112,6 +112,8 @@ describe.each([
       'recovery',
     )
     const exported = await repository.exportLearnerData()
+    // IndexedDB getAll is key-ordered; memory preserves insertion order.
+    exported.sessions.sort((a, b) => a.id.localeCompare(b.id))
     expect(exported.sessions.find((s) => s.id === legacy.id)).toEqual(legacy)
     for (const kind of ['question', 'answer', 'variant'] as const) {
       const invalid = structuredClone(exported)
@@ -131,7 +133,9 @@ describe.each([
       const after = await repository.exportLearnerData()
       expect({ ...after, exportedAt: before.exportedAt }).toEqual(before)
     }
-    const destination = createMemoryRepositories()
+    // Exercise the real destination transaction, not only the memory adapter.
+    await deleteDatabase()
+    const destination = createIndexedDbRepositories()
     await destination.restoreLearnerData(
       await destination.previewRestore(JSON.stringify(exported)),
     )
@@ -197,5 +201,19 @@ describe.each([
     await expect(
       destination.previewRestore(JSON.stringify(mismatch)),
     ).rejects.toThrow(/GRADED_SNAPSHOT_MISMATCH/)
+    const beforeReopen = await destination.exportLearnerData()
+    expect({ ...beforeReopen, exportedAt: exported.exportedAt }).toEqual(
+      exported,
+    )
+    ;(await getDatabase()).close()
+    vi.resetModules()
+    const reopened = (
+      await import('./repositories')
+    ).createIndexedDbRepositories()
+    const afterReopen = await reopened.exportLearnerData()
+    expect({ ...afterReopen, exportedAt: exported.exportedAt }).toEqual(
+      exported,
+    )
+    ;(await (await import('./db')).getDatabase()).close()
   })
 })

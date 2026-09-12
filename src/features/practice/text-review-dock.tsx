@@ -1,8 +1,23 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 import styles from './text-review-dock.module.css'
+
+function LocalRecordingAudio({ audio }: { audio: Blob }) {
+  const element = useRef<HTMLAudioElement>(null)
+  useEffect(() => {
+    const player = element.current
+    if (!player || typeof URL.createObjectURL !== 'function') return
+    const url = URL.createObjectURL(audio)
+    player.src = url
+    return () => {
+      player.removeAttribute('src')
+      URL.revokeObjectURL(url)
+    }
+  }, [audio])
+  return <audio ref={element} controls aria-label="回听本次录音" />
+}
 
 export function TextReviewDock({
   transcript,
@@ -23,23 +38,8 @@ export function TextReviewDock({
   onCancel: () => void
   onSubmit: () => void
 }) {
-  const [audioUrl, setAudioUrl] = useState<string | null>(null)
-
-  useEffect(() => {
-    if (!audio || typeof URL.createObjectURL !== 'function') {
-      setAudioUrl(null)
-      return
-    }
-    const url = URL.createObjectURL(audio)
-    setAudioUrl(url)
-    return () => URL.revokeObjectURL(url)
-  }, [audio])
-
   return (
-    <section
-      className={styles.dock}
-      aria-labelledby="text-review-dock-title"
-    >
+    <section className={styles.dock} aria-labelledby="text-review-dock-title">
       <div className={styles.inner}>
         <div className={styles.heading}>
           <span>YOUR TURN</span>
@@ -55,10 +55,12 @@ export function TextReviewDock({
           onChange={(event) => onChange(event.target.value)}
         />
         {errorMessage ? <p role="alert">{errorMessage}</p> : null}
-        {hasAudio && !transcript.trim() ? (
+        {hasAudio ? (
           <>
             <p>录音仅用于本机回听。请输入或确认英文内容后才能提交。</p>
-            {audioUrl ? <audio controls src={audioUrl} aria-label="回听本次录音" /> : null}
+            {audio && typeof URL.createObjectURL === 'function' ? (
+              <LocalRecordingAudio audio={audio} />
+            ) : null}
           </>
         ) : null}
         <div className={styles.actions}>

@@ -1,0 +1,709 @@
+{
+  "original": {
+    "id": "simulation_08e7b8b0-ffe7-4d15-82b7-373a71b17b7b",
+    "profileId": "guest_48023e37-23a7-4f70-8b15-e67d0636f97b",
+    "sceneId": "dining-02",
+    "sceneVersion": 1,
+    "level": "A1",
+    "status": "active",
+    "startedAt": "2026-09-12T08:11:46.986Z",
+    "updatedAt": "2026-09-12T08:11:46.986Z",
+    "completedGoals": [],
+    "openingText": "Tomato pasta or mushroom pasta?",
+    "gradedDialogue": {
+      "schemaVersion": 1,
+      "pack": {
+        "schemaVersion": 1,
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "sceneId": "dining-02",
+        "category": "dining",
+        "level": "A1",
+        "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-09",
+        "rationale": {
+          "canDoZh": "在服务员给出具体选项后，表达一餐的基本需要。",
+          "complexityZh": "一次决定一个项目，前三轮只选择主食、份量和饮品。",
+          "scaffoldingZh": "明确二选一及中文提示；拓展增加简单服务请求，不要求解释。",
+          "registerZh": "简短礼貌柜台表达，能用简单否定拒绝额外项目。",
+          "sourceBasis": [
+            "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+          ]
+        },
+        "questions": [
+          {
+            "id": "restaurant-order.A1.meal",
+            "text": "Tomato pasta or mushroom pasta?",
+            "intent": "order",
+            "objective": "meal",
+            "hintZh": "选番茄意面或蘑菇意面。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "restaurant-order.A1.meal.a",
+                "text": "Tomato pasta, please.",
+                "acceptedForms": [
+                  "Tomato pasta, please."
+                ],
+                "effects": [
+                  {
+                    "key": "meal",
+                    "value": "tomato"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              },
+              {
+                "id": "restaurant-order.A1.meal.b",
+                "text": "Mushroom pasta, please.",
+                "acceptedForms": [
+                  "Mushroom pasta, please."
+                ],
+                "effects": [
+                  {
+                    "key": "meal",
+                    "value": "mushroom"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+            }
+          },
+          {
+            "id": "restaurant-order.A1.portion",
+            "text": "A small portion or a regular portion?",
+            "intent": "quantity",
+            "objective": "portion",
+            "hintZh": "选择份量。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "restaurant-order.A1.portion.a",
+                "text": "A small portion, please.",
+                "acceptedForms": [
+                  "A small portion, please."
+                ],
+                "effects": [
+                  {
+                    "key": "portion",
+                    "value": "small"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              },
+              {
+                "id": "restaurant-order.A1.portion.b",
+                "text": "A regular portion, please.",
+                "acceptedForms": [
+                  "A regular portion, please."
+                ],
+                "effects": [
+                  {
+                    "key": "portion",
+                    "value": "regular"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+            }
+          },
+          {
+            "id": "restaurant-order.A1.chilli",
+            "text": "Would you like chilli on your pasta?",
+            "intent": "customize",
+            "objective": "chilli",
+            "hintZh": "两种意面都可加辣椒。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "restaurant-order.A1.chilli.a",
+                "text": "Yes, a little chilli, please.",
+                "acceptedForms": [
+                  "Yes, a little chilli, please."
+                ],
+                "effects": [
+                  {
+                    "key": "chilli",
+                    "value": "yes"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              },
+              {
+                "id": "restaurant-order.A1.chilli.b",
+                "text": "No chilli, please.",
+                "acceptedForms": [
+                  "No chilli, please."
+                ],
+                "effects": [
+                  {
+                    "key": "chilli",
+                    "value": "no"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+            }
+          }
+        ],
+        "variants": [
+          {
+            "id": "visit",
+            "situationZh": "虚构餐厅，你与同行者用餐，分别选择自己的主食。顾客与服务员面谈：番茄意面和蘑菇意面均有货，均可选小份/普通份、辣椒、配菜和面包；默认不加辣椒、无配菜。无气水/气泡水免费，餐食约20分钟，吧台可安排较安静座位。短练仅选自己的主食、份量和饮品，标准再谈定制，拓展加现场服务细节；只是练习，不下单或扣款。",
+            "modes": {
+              "short": {
+                "questionIds": [
+                  "restaurant-order.A1.meal",
+                  "restaurant-order.A1.portion",
+                  "restaurant-order.A1.chilli"
+                ],
+                "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+              },
+              "standard": {
+                "questionIds": [
+                  "restaurant-order.A1.meal",
+                  "restaurant-order.A1.portion",
+                  "restaurant-order.A1.chilli"
+                ],
+                "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+              },
+              "extended": {
+                "questionIds": [
+                  "restaurant-order.A1.meal",
+                  "restaurant-order.A1.portion",
+                  "restaurant-order.A1.chilli"
+                ],
+                "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+              }
+            },
+            "review": {
+              "state": "model-reviewed",
+              "record": "micro-practice-review.md#dining-v2: A1 restaurant.phrase.on-the-side; complete authored path review, not teacher certification"
+            }
+          }
+        ],
+        "repairs": {
+          "clarify": "I can explain that menu choice again.",
+          "struggle": "Take your time; the two examples show possible replies.",
+          "offTopic": "Let us return to the meal arrangements.",
+          "unknown": "Your words are saved, but that meal choice is not confirmed.",
+          "changed": "That meal preference has been updated in the practice.",
+          "refusedClosing": "We can stop here. No order has been placed, and the practice is closed."
+        }
+      },
+      "state": {
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "mode": "short",
+        "variantId": "visit",
+        "currentQuestionId": "restaurant-order.A1.meal",
+        "facts": [],
+        "completedObjectives": [],
+        "completedIntents": [],
+        "askedQuestionIds": [
+          "restaurant-order.A1.meal"
+        ],
+        "turns": [],
+        "outcome": "active",
+        "reply": "Tomato pasta or mushroom pasta?",
+        "confirmation": "none"
+      }
+    },
+    "presentation": {
+      "schemaVersion": 1,
+      "counterpartZh": "餐厅服务员角色",
+      "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+    },
+    "simulation": {
+      "schemaVersion": 1,
+      "noteIds": [
+        "legacy-micro-note"
+      ],
+      "source": {
+        "noteId": "legacy-micro-note",
+        "sourceId": "legacy-micro-source",
+        "snapshot": {
+          "id": "legacy-micro-source",
+          "kind": "turn",
+          "originalText": "Tomato pasta or mushroom pasta?",
+          "sceneId": "dining-02",
+          "level": "A1",
+          "sessionId": "session_dabb5ed8-5c08-4fd5-919a-ea4ccb5a4183",
+          "questionId": "restaurant-order.A1.meal",
+          "createdAt": "2026-09-12T07:55:12.130Z"
+        },
+        "noteText": "on the side",
+        "noteKind": "phrase"
+      },
+      "returnTo": "/notebook/note?id=legacy-micro-note",
+      "descriptor": {
+        "schemaVersion": 1,
+        "id": "micro.restaurant.phrase.on-the-side.A1",
+        "analysisEntryId": "restaurant.phrase.on-the-side",
+        "sceneId": "dining-02",
+        "level": "A1",
+        "sourceContentVersion": 1,
+        "sourceVariantId": "visit",
+        "targetQuestionIds": [
+          "restaurant-order.A1.chilli"
+        ],
+        "questionIds": [
+          "restaurant-order.A1.meal",
+          "restaurant-order.A1.portion",
+          "restaurant-order.A1.chilli"
+        ],
+        "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+        "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made.",
+        "review": {
+          "state": "model-reviewed",
+          "record": "micro-practice-review.md#dining-v2: A1 restaurant.phrase.on-the-side; complete authored path review, not teacher certification"
+        },
+        "version": 1
+      },
+      "target": {
+        "coverage": "exact",
+        "text": "on the side",
+        "kind": "phrase",
+        "meaningZh": "此处指配料单独盛放，而不是混进主菜。",
+        "example": "Chilli on the side, please.",
+        "substitution": "No chilli, please."
+      },
+      "recall": {
+        "text": "Historical saved recall.",
+        "completedAt": "2026-09-12T08:11:46.986Z"
+      },
+      "composition": {
+        "text": "Historical saved composition.",
+        "completedAt": "2026-09-12T08:11:46.986Z"
+      }
+    }
+  },
+  "completed": {
+    "id": "simulation_08e7b8b0-ffe7-4d15-82b7-373a71b17b7b",
+    "profileId": "guest_48023e37-23a7-4f70-8b15-e67d0636f97b",
+    "sceneId": "dining-02",
+    "sceneVersion": 1,
+    "level": "A1",
+    "status": "completed",
+    "startedAt": "2026-09-12T08:11:46.986Z",
+    "updatedAt": "2026-09-12T08:11:49.790Z",
+    "completedGoals": [],
+    "openingText": "Tomato pasta or mushroom pasta?",
+    "gradedDialogue": {
+      "schemaVersion": 1,
+      "pack": {
+        "schemaVersion": 1,
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "sceneId": "dining-02",
+        "category": "dining",
+        "level": "A1",
+        "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-09",
+        "rationale": {
+          "canDoZh": "在服务员给出具体选项后，表达一餐的基本需要。",
+          "complexityZh": "一次决定一个项目，前三轮只选择主食、份量和饮品。",
+          "scaffoldingZh": "明确二选一及中文提示；拓展增加简单服务请求，不要求解释。",
+          "registerZh": "简短礼貌柜台表达，能用简单否定拒绝额外项目。",
+          "sourceBasis": [
+            "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+          ]
+        },
+        "questions": [
+          {
+            "id": "restaurant-order.A1.meal",
+            "text": "Tomato pasta or mushroom pasta?",
+            "intent": "order",
+            "objective": "meal",
+            "hintZh": "选番茄意面或蘑菇意面。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "restaurant-order.A1.meal.a",
+                "text": "Tomato pasta, please.",
+                "acceptedForms": [
+                  "Tomato pasta, please."
+                ],
+                "effects": [
+                  {
+                    "key": "meal",
+                    "value": "tomato"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              },
+              {
+                "id": "restaurant-order.A1.meal.b",
+                "text": "Mushroom pasta, please.",
+                "acceptedForms": [
+                  "Mushroom pasta, please."
+                ],
+                "effects": [
+                  {
+                    "key": "meal",
+                    "value": "mushroom"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+            }
+          },
+          {
+            "id": "restaurant-order.A1.portion",
+            "text": "A small portion or a regular portion?",
+            "intent": "quantity",
+            "objective": "portion",
+            "hintZh": "选择份量。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "restaurant-order.A1.portion.a",
+                "text": "A small portion, please.",
+                "acceptedForms": [
+                  "A small portion, please."
+                ],
+                "effects": [
+                  {
+                    "key": "portion",
+                    "value": "small"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              },
+              {
+                "id": "restaurant-order.A1.portion.b",
+                "text": "A regular portion, please.",
+                "acceptedForms": [
+                  "A regular portion, please."
+                ],
+                "effects": [
+                  {
+                    "key": "portion",
+                    "value": "regular"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+            }
+          },
+          {
+            "id": "restaurant-order.A1.chilli",
+            "text": "Would you like chilli on your pasta?",
+            "intent": "customize",
+            "objective": "chilli",
+            "hintZh": "两种意面都可加辣椒。",
+            "requires": [],
+            "answers": [
+              {
+                "id": "restaurant-order.A1.chilli.a",
+                "text": "Yes, a little chilli, please.",
+                "acceptedForms": [
+                  "Yes, a little chilli, please."
+                ],
+                "effects": [
+                  {
+                    "key": "chilli",
+                    "value": "yes"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              },
+              {
+                "id": "restaurant-order.A1.chilli.b",
+                "text": "No chilli, please.",
+                "acceptedForms": [
+                  "No chilli, please."
+                ],
+                "effects": [
+                  {
+                    "key": "chilli",
+                    "value": "no"
+                  }
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+                }
+              }
+            ],
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services, information exchange and clarification scales. Design reference only; original English, not certification."
+            ],
+            "review": {
+              "state": "model-reviewed",
+              "record": "src/content/dialogues/graded/dining/dining-review.md#restaurant-order — Codex implementation agent; model-assisted postdraft reading 2026-09-09; teacher0"
+            }
+          }
+        ],
+        "variants": [
+          {
+            "id": "visit",
+            "situationZh": "虚构餐厅，你与同行者用餐，分别选择自己的主食。顾客与服务员面谈：番茄意面和蘑菇意面均有货，均可选小份/普通份、辣椒、配菜和面包；默认不加辣椒、无配菜。无气水/气泡水免费，餐食约20分钟，吧台可安排较安静座位。短练仅选自己的主食、份量和饮品，标准再谈定制，拓展加现场服务细节；只是练习，不下单或扣款。",
+            "modes": {
+              "short": {
+                "questionIds": [
+                  "restaurant-order.A1.meal",
+                  "restaurant-order.A1.portion",
+                  "restaurant-order.A1.chilli"
+                ],
+                "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+              },
+              "standard": {
+                "questionIds": [
+                  "restaurant-order.A1.meal",
+                  "restaurant-order.A1.portion",
+                  "restaurant-order.A1.chilli"
+                ],
+                "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+              },
+              "extended": {
+                "questionIds": [
+                  "restaurant-order.A1.meal",
+                  "restaurant-order.A1.portion",
+                  "restaurant-order.A1.chilli"
+                ],
+                "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+              }
+            },
+            "review": {
+              "state": "model-reviewed",
+              "record": "micro-practice-review.md#dining-v2: A1 restaurant.phrase.on-the-side; complete authored path review, not teacher certification"
+            }
+          }
+        ],
+        "repairs": {
+          "clarify": "I can explain that menu choice again.",
+          "struggle": "Take your time; the two examples show possible replies.",
+          "offTopic": "Let us return to the meal arrangements.",
+          "unknown": "Your words are saved, but that meal choice is not confirmed.",
+          "changed": "That meal preference has been updated in the practice.",
+          "refusedClosing": "We can stop here. No order has been placed, and the practice is closed."
+        }
+      },
+      "state": {
+        "engineVersion": 1,
+        "contentVersion": 1,
+        "mode": "short",
+        "variantId": "visit",
+        "currentQuestionId": null,
+        "facts": [
+          {
+            "key": "meal",
+            "value": "tomato",
+            "questionId": "restaurant-order.A1.meal",
+            "answerId": "restaurant-order.A1.meal.a",
+            "turnIndex": 0
+          },
+          {
+            "key": "portion",
+            "value": "small",
+            "questionId": "restaurant-order.A1.portion",
+            "answerId": "restaurant-order.A1.portion.a",
+            "turnIndex": 1
+          },
+          {
+            "key": "chilli",
+            "value": "yes",
+            "questionId": "restaurant-order.A1.chilli",
+            "answerId": "restaurant-order.A1.chilli.a",
+            "turnIndex": 2
+          }
+        ],
+        "completedObjectives": [
+          "meal",
+          "portion",
+          "chilli"
+        ],
+        "completedIntents": [
+          "order",
+          "quantity",
+          "customize"
+        ],
+        "askedQuestionIds": [
+          "restaurant-order.A1.meal",
+          "restaurant-order.A1.portion",
+          "restaurant-order.A1.chilli"
+        ],
+        "turns": [
+          {
+            "action": "answer",
+            "text": "Tomato pasta, please.",
+            "suggestionId": "restaurant-order.A1.meal.a"
+          },
+          {
+            "action": "answer",
+            "text": "A small portion, please.",
+            "suggestionId": "restaurant-order.A1.portion.a"
+          },
+          {
+            "action": "answer",
+            "text": "Yes, a little chilli, please.",
+            "suggestionId": "restaurant-order.A1.chilli.a"
+          }
+        ],
+        "outcome": "achieved",
+        "reply": "This short practice is complete. No real service or decision has been made.",
+        "confirmation": "exact"
+      }
+    },
+    "presentation": {
+      "schemaVersion": 1,
+      "counterpartZh": "餐厅服务员角色",
+      "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+    },
+    "simulation": {
+      "schemaVersion": 1,
+      "noteIds": [
+        "legacy-micro-note"
+      ],
+      "source": {
+        "noteId": "legacy-micro-note",
+        "sourceId": "legacy-micro-source",
+        "snapshot": {
+          "id": "legacy-micro-source",
+          "kind": "turn",
+          "originalText": "Tomato pasta or mushroom pasta?",
+          "sceneId": "dining-02",
+          "level": "A1",
+          "sessionId": "session_dabb5ed8-5c08-4fd5-919a-ea4ccb5a4183",
+          "questionId": "restaurant-order.A1.meal",
+          "createdAt": "2026-09-12T07:55:12.130Z"
+        },
+        "noteText": "on the side",
+        "noteKind": "phrase"
+      },
+      "returnTo": "/notebook/note?id=legacy-micro-note",
+      "descriptor": {
+        "schemaVersion": 1,
+        "id": "micro.restaurant.phrase.on-the-side.A1",
+        "analysisEntryId": "restaurant.phrase.on-the-side",
+        "sceneId": "dining-02",
+        "level": "A1",
+        "sourceContentVersion": 1,
+        "sourceVariantId": "visit",
+        "targetQuestionIds": [
+          "restaurant-order.A1.chilli"
+        ],
+        "questionIds": [
+          "restaurant-order.A1.meal",
+          "restaurant-order.A1.portion",
+          "restaurant-order.A1.chilli"
+        ],
+        "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+        "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made.",
+        "review": {
+          "state": "model-reviewed",
+          "record": "micro-practice-review.md#dining-v2: A1 restaurant.phrase.on-the-side; complete authored path review, not teacher certification"
+        },
+        "version": 1
+      },
+      "target": {
+        "coverage": "exact",
+        "text": "on the side",
+        "kind": "phrase",
+        "meaningZh": "此处指配料单独盛放，而不是混进主菜。",
+        "example": "Chilli on the side, please.",
+        "substitution": "No chilli, please."
+      },
+      "recall": {
+        "text": "Historical saved recall.",
+        "completedAt": "2026-09-12T08:11:46.986Z"
+      },
+      "composition": {
+        "text": "Historical saved composition.",
+        "completedAt": "2026-09-12T08:11:46.986Z"
+      }
+    },
+    "completedAt": "2026-09-12T08:11:49.790Z",
+    "completionEvidence": {
+      "schemaVersion": 1,
+      "ruleVersion": 1,
+      "sessionId": "simulation_08e7b8b0-ffe7-4d15-82b7-373a71b17b7b",
+      "sceneId": "dining-02",
+      "sceneVersion": 1,
+      "level": "A1",
+      "contentVersion": 1,
+      "engineVersion": 1,
+      "mode": "short",
+      "variantId": "visit",
+      "requiredUserTurns": 3,
+      "submittedTurns": 3,
+      "expressionTurns": 3,
+      "outcome": "achieved",
+      "basis": "path-cap",
+      "confirmedAt": "2026-09-12T08:11:49.790Z"
+    }
+  }
+}

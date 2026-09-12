@@ -29,6 +29,8 @@ import {
 } from '@/infrastructure/persistence/repositories'
 
 import styles from './learning-center.module.css'
+import { DemoRanking } from './demo-ranking'
+import { summarizePoints } from '@/domain/goals/statistics'
 
 export function LearningCenter({
   repositories: providedRepositories,
@@ -40,6 +42,7 @@ export function LearningCenter({
   const [loadedAt] = useState(() => Date.now())
   const [retained, setRetained] = useState<PracticeRecord>()
   const [profileStyle, setProfileStyle] = useState<string>()
+  const [points, setPoints] = useState<ReturnType<typeof summarizePoints>>()
   const [repo] = useState(
     () => providedRepositories ?? createIndexedDbRepositories(),
   )
@@ -117,6 +120,7 @@ export function LearningCenter({
           repositories.favorites.list(),
           repositories.learning.getSettings(),
         ])
+      const learning = await repositories.learning.getState(learner.id)
       if (!active) return
       const latest = savedSessions.sort((a, b) =>
         b.updatedAt.localeCompare(a.updatedAt),
@@ -124,6 +128,7 @@ export function LearningCenter({
       setProfile(learner)
       setLoadError(false)
       setProfileStyle(settings.appliedProfileStyle)
+      setPoints(summarizePoints(learning.pointsLedger))
       setSessions(latest)
       setFavorites(
         savedFavorites.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)),
@@ -185,6 +190,18 @@ export function LearningCenter({
             <span>收藏表达</span>
           </article>
         </section>
+
+        {points ? (
+          <section className={styles.section} aria-label="本机个人成绩">
+            <h2>我的练习积分</h2>
+            <p>
+              累计获得 {points.earned} · 可兑换余额 {points.available}
+            </p>
+            <a className={styles.sectionLink} href="/rewards">
+              查看数字奖励
+            </a>
+          </section>
+        ) : null}
 
         {loadError ? (
           <p role="alert">
@@ -411,6 +428,9 @@ export function LearningCenter({
             </span>
           </a>
         </nav>
+        <div className={styles.section}>
+          <DemoRanking />
+        </div>
       </div>
     </AppShell>
   )

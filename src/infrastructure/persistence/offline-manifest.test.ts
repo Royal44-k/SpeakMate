@@ -76,6 +76,7 @@ describe('installed production offline artifact binding', () => {
         )
       }
       const manifest = await createOfflineManifest(fixture)
+      expect(manifest.shells.map((entry: { url: string }) => entry.url)).not.toContain('/recovery')
       expect(manifest.buildId).toMatch(/^[\w-]+$/)
       expect(
         manifest.shells.map((entry: { url: string }) => entry.url),

@@ -1,0 +1,692 @@
+[
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-chromium-mobile/final-local-state.json",
+    "bytes": 70447,
+    "sha256": "c2d4337b05df54eb65b087390f83ce1305c3e1740b795f29a0ce86514395c3cb",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-chromium-mobile/network.json",
+    "bytes": 48567,
+    "sha256": "3845aceed8623b9f2bbda16cd28a7722cc7c9ef807cb7dbfa56f8f97acab8cc9",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-chromium-mobile/prepared-readiness.json",
+    "bytes": 256,
+    "sha256": "c26b223169f0fec7325380345684ac702641a25c3fd40a5484b004783086a5e4",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-chromium-mobile/synthetic-completed-backup.json",
+    "bytes": 46474,
+    "sha256": "29238db6c51951bca6426e8f980a36bc964a2b958d359a3c72cb53bbc7ccb16e",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-chromium-mobile/warmup-entered.png",
+    "bytes": 169985,
+    "sha256": "066e7a399448977a5dae3165ed4b250e23b704ea3cb7e995e409f2380313d43b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-chromium-mobile/final-local-state.json",
+    "bytes": 70459,
+    "sha256": "d3b50721804d6eec4d01b1dfa86f345e4896d72eae8fcc1ca40153f2e176e38d",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-chromium-mobile/network.json",
+    "bytes": 41576,
+    "sha256": "4a03915e86e763c75a0ef627a5f80aee28df3e0559d0d54204299dd15f702891",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-chromium-mobile/synthetic-completed-backup.json",
+    "bytes": 46486,
+    "sha256": "a2a9451291b241b2da881f64c95523d02761c1abf5187eb62185450aa60964d5",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-chromium-mobile/warmup-entered.png",
+    "bytes": 169985,
+    "sha256": "066e7a399448977a5dae3165ed4b250e23b704ea3cb7e995e409f2380313d43b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-storage-D-actual-com-dfc8f-ugh-history-delete-and-undo-chromium-mobile/after-source-delete.json",
+    "bytes": 21878,
+    "sha256": "8a573b43862cd6b9ea164e821f3232c80706cb17b6e538ba25dd6e6ba469ad6c",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/task7-storage-D-actual-com-dfc8f-ugh-history-delete-and-undo-chromium-mobile/retained-state.json",
+    "bytes": 31229,
+    "sha256": "58c755f1ada76d3b72dc443792a67170140b48fb90ed1ddc31981237231a165d",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/pwa-shows-iPhone-add-to-home-screen-instructions-webkit-iphone/error-context.md",
+    "bytes": 5241,
+    "sha256": "e8f83f503392f8217dc4b043abcad302f32e7baf39f2e56c3760a901d6e33104",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/pwa-shows-iPhone-add-to-home-screen-instructions-webkit-iphone/test-failed-1.png",
+    "bytes": 206237,
+    "sha256": "abf2e7c9c1c5c9e0556b4fbda12d24468d0697f36f613b42a8871347749c7a10",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-webkit-iphone/final-local-state.json",
+    "bytes": 69726,
+    "sha256": "078c7790a1c9d8b21e7032bb0a3ad4c2003bcc4e634a46c8190e44156bbab5bd",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-webkit-iphone/network.json",
+    "bytes": 32133,
+    "sha256": "eb1094336d4077fa24c0eefd5a868162be4a4b29b167e982f7305f96408eebe7",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-webkit-iphone/synthetic-completed-backup.json",
+    "bytes": 45753,
+    "sha256": "026d153be8b75b1597da0c209af309e52ac7f29cc66dde5713726b28e162b893",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-webkit-iphone/warmup-entered.png",
+    "bytes": 117035,
+    "sha256": "8a45860450938c15a93407af97057f12cd57a323872eb9f0a9709696afe1cdd6",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/me-390.png",
+    "bytes": 318194,
+    "sha256": "fcbd91fd5a3eb4b3c8ae8ef10d562f951be3dd6c1c72aafe6e08cbce1d9eae3b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/me-text-200.png",
+    "bytes": 178499,
+    "sha256": "9ad8448a3b90e393e7eab9582a7cde853c5624c8fe501ea4c588064bc6d3a0e7",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/measurements.json",
+    "bytes": 33717,
+    "sha256": "9c7a8cde8693874ef3817ce1baa69c3a5e48ba256ddf0297e6a7f62c57477b12",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/question-320-568.png",
+    "bytes": 136137,
+    "sha256": "cd98f5aa2d8680af35aa6726d36a9f0ce72fd716f1eb7d043d32d92d8edf8c1b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/question-390-430.png",
+    "bytes": 128098,
+    "sha256": "3f9547c1440266102dddb056a678002dede5f4d567b5697d8a2cb999c4a5e9ca",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/question-390-844.png",
+    "bytes": 188698,
+    "sha256": "e7d4644da303ed0ebf4f9d02f5c3da19c06149b160ca9659f44820fc89376bf5",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/typing-320-568.png",
+    "bytes": 112660,
+    "sha256": "619b1b5377da6bcc4b1e4199b7c526aaa73145f761ccd896cb27abf9556f7a14",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/typing-390-430.png",
+    "bytes": 98992,
+    "sha256": "6bf59ba5174bcf9c52cb3e684520fa834af217774197c926dda2306abaeb61b0",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/typing-390-844.png",
+    "bytes": 164386,
+    "sha256": "1d86f3ce6f45ebcabba2d94dbdf0a28b1c08265398e0ec0c23dff862fe7fcd95",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/deep-entry-first-frame-audit.json",
+    "bytes": 5452,
+    "sha256": "f324dc71ac0cb0c1da572983ec9d23f34ccdfea358e00e1f34d11adbca1851f8",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/network.json",
+    "bytes": 58435,
+    "sha256": "cde52fecf248ad646248c4d1df84b9e526bb4fb9a95d8b5154b450d2fbfa3fda",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/normal-before-recovery.json",
+    "bytes": 40399,
+    "sha256": "bfdd15697873ac47345a3dc22a5ed3496d21af7d1b34bc5e1e19e9e1cad0c34e",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/owned-servers.log",
+    "bytes": 635,
+    "sha256": "a8955b13ff9f890c0581eeaa83d389bd5a217f8e086a0d0dd97e346e5b640ed9",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/recovery-complete.json",
+    "bytes": 40399,
+    "sha256": "2acdbf9c200813c9463874ae730cb0dcd654ed6a62952a15768f44adacb79968",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-1-network.json",
+    "bytes": 1327,
+    "sha256": "dd135ac7a744c90b019ebad8ea618681450a3f97c152ead2eda5a4fdebe0bd91",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-3-network.json",
+    "bytes": 1327,
+    "sha256": "dd135ac7a744c90b019ebad8ea618681450a3f97c152ead2eda5a4fdebe0bd91",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-corrupt-network.json",
+    "bytes": 1327,
+    "sha256": "dd135ac7a744c90b019ebad8ea618681450a3f97c152ead2eda5a4fdebe0bd91",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-incomplete-network.json",
+    "bytes": 1327,
+    "sha256": "dd135ac7a744c90b019ebad8ea618681450a3f97c152ead2eda5a4fdebe0bd91",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-null-network.json",
+    "bytes": 1327,
+    "sha256": "dd135ac7a744c90b019ebad8ea618681450a3f97c152ead2eda5a4fdebe0bd91",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/same-origin-all12.json",
+    "bytes": 59597,
+    "sha256": "422c7e676c30c6b441eaf5e1788af3be6a0dd2fcf71de0d3f0f56db7e964b5fb",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/server-down-shell.json",
+    "bytes": 116,
+    "sha256": "23e5f6abc80a5d421fe6225c1231a93de1988228a234635bcba5c41f1287e0a6",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/unknown-native-registration.json",
+    "bytes": 164,
+    "sha256": "e733b84aa4fa11da3d4fdeb70ac9b142b27182784165e4dedbff9732f71705e3",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/unknown-registration-network.json",
+    "bytes": 2798,
+    "sha256": "ce60f7e82b24dd413fe99ca6b22e26e4ce3a3424481690354bb5e2e0b6dc30c6",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/final-local-state.json",
+    "bytes": 70305,
+    "sha256": "7ae3c40415dd07ff57dbfd91215abe72a814041d47ebac532ae34cd7499ac5b6",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/network.json",
+    "bytes": 39281,
+    "sha256": "cec9414c8a031f83370ac71a317e302580db429992965c8e57ead0d680ed7d5f",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/owned-server.log",
+    "bytes": 317,
+    "sha256": "cbb7e871b33a70129e64fd01723f5cfec9ca04f24f53c7e091e96fbc6e5f830e",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/prepared-readiness.json",
+    "bytes": 256,
+    "sha256": "c26b223169f0fec7325380345684ac702641a25c3fd40a5484b004783086a5e4",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/server-unreachable.json",
+    "bytes": 83,
+    "sha256": "7a190e9a416d213adc5bb464caf42593930e129aec873395e611bfac99994dfa",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/synthetic-completed-backup.json",
+    "bytes": 46332,
+    "sha256": "67fa266089dd5f8839481b1ec4cd2e66f21858408c6965c8b3dc8971fd8aa268",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/warmup-entered.png",
+    "bytes": 117035,
+    "sha256": "8a45860450938c15a93407af97057f12cd57a323872eb9f0a9709696afe1cdd6",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-03/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/communication-boundaries.json",
+    "bytes": 92201,
+    "sha256": "6e70c1717e75193700df55d56f3f69c3e60be57365f3fa86459783c29881a479",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-03/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/network.json",
+    "bytes": 30803,
+    "sha256": "54862cea82a34dd0e93ee131c057489f04e6f80b82c04922163ac7018f0d89f5",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/network.json",
+    "bytes": 54508,
+    "sha256": "8feb180c24efcd3b41b90628a304994763db211ccec45d7dc6f6a1da4af3063a",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/source-phase-history.json",
+    "bytes": 114500,
+    "sha256": "0a41621dd8924e218aa72607ec4ca7f5385c792878878e370be958c23d068b48",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-71868-recovery-cannot-undo-submit-chromium-mobile/network.json",
+    "bytes": 22285,
+    "sha256": "87deaa7ffc35b89b266305f62bb58337fe9aaf6ddff54924fc2cb64b1b41c209",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-71868-recovery-cannot-undo-submit-chromium-mobile/phase-abort-recovery.json",
+    "bytes": 117629,
+    "sha256": "72503a9ea358a7ab5855e9fc1387abfc11ff0e910cf39e6bd9d6ec9ff922084e",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-74b3c-l-recovery-cannot-undo-edit-chromium-mobile/network.json",
+    "bytes": 22047,
+    "sha256": "e96e77e4b6ddba9f998989b7c8998d1fda9950dd989ac696967dbcfb312957e6",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-74b3c-l-recovery-cannot-undo-edit-chromium-mobile/phase-abort-recovery.json",
+    "bytes": 117483,
+    "sha256": "eabbbd67b70228fff77c7902bacffb77d91175ad90741f4d12b8408f83f8e125",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-a83d4-recovery-cannot-undo-cancel-chromium-mobile/network.json",
+    "bytes": 22047,
+    "sha256": "9bd8b252fb33597cc105dbeab7a733fe8f9c85f437786b45255bf2403dc0a1c3",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-a83d4-recovery-cannot-undo-cancel-chromium-mobile/phase-abort-recovery.json",
+    "bytes": 117491,
+    "sha256": "9de9b9903f63175ffbb59aad55ad5add3f9ad2e097a29b9e32621c774907e4bb",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-04/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/native-scroll.json",
+    "bytes": 48341,
+    "sha256": "d56940c362915e324200d37e0789577a213a88292d996d05c9e067a163e707c0",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-04/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/network.json",
+    "bytes": 33635,
+    "sha256": "29cc304a5bb182040eec57580a9b6cbf85a9c5084e6991648c346281ead75487",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-04/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/nonzero-restored.png",
+    "bytes": 95899,
+    "sha256": "19c29549e2ac06ae67634c7191fce70fac5ebe2188b99d82ebd29a7718b9e054",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/coverage-02/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/actual-before-collision.json",
+    "bytes": 27996,
+    "sha256": "9ddc41f7054c3451f5804cabe14f02f2d1a84312cf983f378c973b90dc20f87b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/coverage-02/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/network.json",
+    "bytes": 21351,
+    "sha256": "9dcdac56f50205e6455dd9cbacef25fe14fc3c9a489852f0c28b966c753d5fa3",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/coverage-02/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/partial-unknown-collision.json",
+    "bytes": 76585,
+    "sha256": "bea32c9f9b083593172944c3122e0f0c51c0e908aa064e61d19993f1088207e5",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/coverage-02/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/restored-network.json",
+    "bytes": 18263,
+    "sha256": "e0ba4c579b9f206ff9030f3059da7dc3c3f65d1c78cb11c22bf73800350b7172",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-F--c74b3-mposes-and-explicitly-stops-chromium-mobile/network.json",
+    "bytes": 24331,
+    "sha256": "b76ec4d08c973bcc957f0fb549326aae1e6b637e59cfb292d75a5e4cc6aa5346",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-F--c74b3-mposes-and-explicitly-stops-chromium-mobile/other-window-stopped.json",
+    "bytes": 60578,
+    "sha256": "a2cad1ce19ab987199840c5fcd9276962fe8dd562abd3c234e41551af7efbd33",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-F--fea75-mposes-and-explicitly-stops-chromium-mobile/network.json",
+    "bytes": 24331,
+    "sha256": "540b64f12bd9447042df2682ee1f0dc815be1450ea51f28429d0eb02443fcfbe",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-F--fea75-mposes-and-explicitly-stops-chromium-mobile/other-window-stopped.json",
+    "bytes": 60580,
+    "sha256": "df8de2cb71f86de29dad6ac35041482a98e5e8fe80d53ae99dcb3a873deda56b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-H--3b7d8-ins-independently-reachable-chromium-mobile/me-phase-returns.json",
+    "bytes": 59129,
+    "sha256": "1c74c7f71ac44776b05f31aa35d656f63bd4e273272e0c6219bcbd73ecd7f792",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-H--3b7d8-ins-independently-reachable-chromium-mobile/network.json",
+    "bytes": 44979,
+    "sha256": "f47fd68c6cbe4255ab3dc4745c8c95ba8e9e88866dcae94060d190743b760e68",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-1b32c-l-recovery-cannot-undo-edit-chromium-mobile/network.json",
+    "bytes": 22047,
+    "sha256": "4c6edefb6a4ac1a3b3107a2ad3e12f75534da409fad3f52d3498dc0be381b6a0",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-1b32c-l-recovery-cannot-undo-edit-chromium-mobile/phase-abort-recovery.json",
+    "bytes": 117205,
+    "sha256": "224014ec027c2dac88fff2bc9ffa128ec4356b3a6c04edb0b5fbdae602a9b900",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-8500c-recovery-cannot-undo-cancel-chromium-mobile/network.json",
+    "bytes": 22047,
+    "sha256": "73b9a2381afda5948b00603aae53e468bca5e6a8378c91900c5dedbba63d7b77",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-8500c-recovery-cannot-undo-cancel-chromium-mobile/phase-abort-recovery.json",
+    "bytes": 117213,
+    "sha256": "6555bec26b4a209fa24be8e3ad85773247d371d1513c273d3a80e90fc2f02114",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-eb752-recovery-cannot-undo-submit-chromium-mobile/network.json",
+    "bytes": 22047,
+    "sha256": "b4d09c7ef35266f57d05e7ebce986276cb3e03354235dc1bb83cd46ad6af1f5a",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-eb752-recovery-cannot-undo-submit-chromium-mobile/phase-abort-recovery.json",
+    "bytes": 117346,
+    "sha256": "5fc062ee9727af095c3520a5c4a88c0a7abdf2ecc1e8b055085c9e7c0ad0eee7",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-02/task7-cache-privacy-SW-pri-8dc69-nts-images-remain-available-chromium-mobile/cache-privacy.json",
+    "bytes": 113151,
+    "sha256": "43bd9e0200f6dfc6e6007823226ca0abb70c10cb60f25d461972382723d8cc76",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-02/task7-cache-privacy-SW-pri-8dc69-nts-images-remain-available-chromium-mobile/network.json",
+    "bytes": 79726,
+    "sha256": "1706d9d69d62e80efc1a6464861ad6fa0011972820372b711d3484a1c940454a",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-04/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/native-activation.json",
+    "bytes": 28744,
+    "sha256": "ca7d0252f87e3d33336fb96469abe5b586567e4fd326c87aafdf00cf521f2bbe",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-04/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/native-category-fault.json",
+    "bytes": 8982,
+    "sha256": "d42a953a29b07f0879d3e67ea20c414d9c0c007c17ecd353832882e5f0f07b88",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-04/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/native-category-fault.png",
+    "bytes": 175575,
+    "sha256": "9072839189e305f73877f294dc75d759bec98cc131a4605bccc9c41bb8e59676",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-04/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/network.json",
+    "bytes": 23149,
+    "sha256": "30ab84e29bcb628441064ae1709de967185e1e27396ab4218bbc007a8a0fe070",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/error-context.md",
+    "bytes": 9666,
+    "sha256": "806bbdfdf96a9d28217e770eef78f8fe1f75a8ad785efa2d8634bb4b3b452f49",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/test-failed-1.png",
+    "bytes": 176016,
+    "sha256": "1fc418a7e78f118c640a69512ae5834b877679cae931187c391c86d62f7037a8",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/native-category-fault.json",
+    "bytes": 8985,
+    "sha256": "488f89f5a4cd2dcedce515d80564cc88dd22e84a36e2355bdfb3f68cf41cb585",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/native-category-fault.png",
+    "bytes": 175625,
+    "sha256": "ff0891b68e0d7c64f9f6be49c36b0a556e1ead3e047b12c5cac9db2015cebd98",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/network.json",
+    "bytes": 13568,
+    "sha256": "bf3ff37b32e7a7b2b4c0385dc27d750799ac18be263e37b0650c6368b2e61a02",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/update-capture-06/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/network.json",
+    "bytes": 58244,
+    "sha256": "c10d8c779c346ce3bc05e32b50727f26a990d832651979f219563ec527c96154",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/update-capture-06/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/real-update.json",
+    "bytes": 109648,
+    "sha256": "8410ba8fb5a9c560f54ed0039354dc8c67e02811400086a531ae60cbc97c663c",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/update-capture-06/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/update-top-text200.png",
+    "bytes": 633178,
+    "sha256": "dd0d40ac52d2e3dc5d575c49db743a16b73dd696ec11db09ae4b65f4dd46bef9",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/update-capture-06/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/waiting-update-text200.png",
+    "bytes": 250823,
+    "sha256": "7bfba0626211c141f017cf945fcb05b3a74dbfa36412e0fcae028333f7ffe2a0",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-03/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/actual-v1-reexport.json",
+    "bytes": 14475,
+    "sha256": "b1051209fe6d55c446d7813cfd914fc7bc86a4c926afdc0909218e6fc5a6d8cf",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-03/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/legacy-micro.json",
+    "bytes": 30248,
+    "sha256": "e45c91cdf5f42c5eada4c52faf748262cf749ce60a48aec4f02f7ff6aeb7cd47",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-03/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/network.json",
+    "bytes": 17744,
+    "sha256": "64a8ab522d362a58f1a9522ed85ff9d8386e5e0de841a4dc3a91e219fa9f760d",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/retained-05/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/actual-121-session-backup.json",
+    "bytes": 2929305,
+    "sha256": "1260a8bf1c0420c188c1e35655a2f26618abaee31b7bc475c512ebf2c9402639",
+    "selectedForGit": false
+  },
+  {
+    "path": "outputs/qa/task7/retained-05/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/network.json",
+    "bytes": 15171,
+    "sha256": "18c0ea5bab3fdac63282f958fd4c887df9e937da3b69e7b987870e7c7ce858bf",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/retained-05/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/retained-readability.json",
+    "bytes": 2494,
+    "sha256": "454a54e8f45316e4f69600fd47d16b4cf0e4139673f80d0b3e4821fd55ad6948",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/offline-service-worker-she-0e914-privacy-safe-offline-routes-chromium-mobile/error-context.md",
+    "bytes": 21430,
+    "sha256": "b59722975129bc4a28b5f9d3470c69d5da6fcca319a84303f43b1d87cc2c1471",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/actual-near-cap-backup.json",
+    "bytes": 9917267,
+    "sha256": "3111a68fd2a3791c14fb378f2d7a996a73ed758e3efb604d1f8777f5f344ca42",
+    "selectedForGit": false
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/capacity-result.json",
+    "bytes": 222,
+    "sha256": "dfd75e5cdde5aa686dd556f038c9502a2bd9fb5b1af4e01614b16a4672ca2806",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/network.json",
+    "bytes": 21205,
+    "sha256": "0f4be7f91ff7291d926ba440732f1cde5924e8f6b32ac93ab57464ecf72a1051",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/in2-fh/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/network.json",
+    "bytes": 69080,
+    "sha256": "631968ea52bec7bdd00d3f2b91ebd3c0a6cf356908907c365d77660b12e9d431",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/in2-fh/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/v2-five-real-simulations.json",
+    "bytes": 102508,
+    "sha256": "417fe178dfcdb7d727436844035d714269b91dfacec9cc024a2af97df739aa35",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/in2-fh/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/error-context.md",
+    "bytes": 10495,
+    "sha256": "9554cb601a333df7c902a29470cd9801f9a9d6b31e0ade821398d48a91b8fb96",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/in2-fh/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/test-failed-1.png",
+    "bytes": 128238,
+    "sha256": "eb7934292f459642014f0d874cdf74561a51218cf9f48f1c8686399cceeea246",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/terminal-red/error-context.md",
+    "bytes": 13147,
+    "sha256": "767cc693882619ffcb5d871b92c2693996de0b82043ccdfac5d7afad57c11cd1",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/terminal-red/test-failed-1.png",
+    "bytes": 157157,
+    "sha256": "f3dd2a17fd66d3ecb36f7d36d836bcc45907b3c9396bf55bbfdde57e98ea0d55",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/terminal-red/warmup-entered.png",
+    "bytes": 169985,
+    "sha256": "066e7a399448977a5dae3165ed4b250e23b704ea3cb7e995e409f2380313d43b",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/error-context.md",
+    "bytes": 9518,
+    "sha256": "16fcef807c91d3791cb3e35b5610ebd55b8720d184fc873f7c67564ff6d6f533",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/test-failed-1.png",
+    "bytes": 148109,
+    "sha256": "c6adf956e22dcd9f58fdcf16a1934461022e98b89db13df219aebc5c4bcb505c",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/error-context.md",
+    "bytes": 7531,
+    "sha256": "cb5eb6cfb68abe4db1ae926dd5f0f935501194515fe394df73681e8c6f598b87",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/test-failed-1.png",
+    "bytes": 664906,
+    "sha256": "62269287f45a1e9d38127d75309f7f738b32dbfebd896edc47795757c04f813e",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/webkit-offline-red/prepared-readiness.json",
+    "bytes": 256,
+    "sha256": "117a292df1ad883a5a516c95bac81b0a4dad9104450c3c570b10d0c84758f9cc",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/webkit-offline-red/public-shell-diagnostic.json",
+    "bytes": 1581,
+    "sha256": "9b7d244df09c8174284d6d59adfd6ae1f4865f023652c1efc8e4f4b11372cfe3",
+    "selectedForGit": true
+  },
+  {
+    "path": "outputs/qa/task7/webkit-offline-red/test-failed-1.png",
+    "bytes": 36560,
+    "sha256": "2b1303b786b5f1bdcfe8d32d2199869976bd44ba16b093bee058309d8ca3ef54",
+    "selectedForGit": true
+  }
+]

@@ -1,0 +1,265 @@
+{
+  "fault": "controller-change",
+  "oldBuild": "o3l7OUHwGtKTlz9pnpxMi",
+  "evidence": {
+    "armed": false,
+    "held": true,
+    "released": false,
+    "url": "http://127.0.0.1:3134/content/v1/dining",
+    "headers": {
+      "cache-control": "s-maxage=31536000",
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+      "content-type": "application/json",
+      "date": "Sat, 12 Sep 2026 08:39:23 GMT",
+      "keep-alive": "timeout=5",
+      "permissions-policy": "camera=(), geolocation=(), microphone=(self)",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "transfer-encoding": "chunked",
+      "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-nextjs-cache": "HIT",
+      "x-speakmate-build": "o3l7OUHwGtKTlz9pnpxMi",
+      "x-speakmate-category-sha256": "5c848ed89aae124a64bc51a7b5f51a2dda491b1e225723908649ba6906c10ef1"
+    },
+    "bytes": 859537,
+    "sha256": "5c848ed89aae124a64bc51a7b5f51a2dda491b1e225723908649ba6906c10ef1",
+    "started": 387.09999999962747,
+    "elapsedMs": 718.5
+  },
+  "before": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12",
+        "profileId": "guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-06",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-06"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T08:39:22.917Z",
+        "updatedAt": "2026-09-12T08:39:22.917Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T08:39:22.241Z",
+        "updatedAt": "2026-09-12T08:39:22.726Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [],
+    "settings": [],
+    "turns": []
+  },
+  "after": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12",
+        "profileId": "guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-06",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-06"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T08:39:22.917Z",
+        "updatedAt": "2026-09-12T08:39:22.917Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_82f85418-3f0e-43c0-a1de-6c4b2d70457a",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T08:39:22.241Z",
+        "updatedAt": "2026-09-12T08:39:22.726Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [],
+    "settings": [],
+    "turns": []
+  }
+}

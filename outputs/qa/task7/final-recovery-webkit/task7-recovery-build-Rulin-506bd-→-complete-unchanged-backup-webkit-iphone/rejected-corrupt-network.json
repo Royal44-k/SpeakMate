@@ -1,0 +1,53 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/recovery"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/08-6f4dk7ygpy.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3131/manifest.webmanifest"
+    }
+  ],
+  "errors": []
+}

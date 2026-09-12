@@ -103,6 +103,7 @@ export function RewardHome({ repositories }: { repositories?: Repositories }) {
       <ExitGuard
         state={busy ? 'processing' : 'clean'}
         fallbackHref="/"
+        ariaLabel="返回今日目标"
         onConfirmExit={() => {}}
       />
       <header className={styles.header}>

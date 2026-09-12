@@ -121,6 +121,7 @@ export async function createOfflineManifest(root) {
 }
 
 if (
+  process.env.NEXT_PUBLIC_RECOVERY_ONLY !== 'true' &&
   process.argv[1] &&
   import.meta.url === pathToFileURL(resolve(process.argv[1])).href
 ) {

@@ -1,0 +1,1968 @@
+{
+  "socialId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+  "healthId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+  "before": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_16ec4484-aa7d-490c-96d0-043d9a693972|10:2026-09-12",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_16ec4484-aa7d-490c-96d0-043d9a693972|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_16ec4484-aa7d-490c-96d0-043d9a693972|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-04",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-04"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_16ec4484-aa7d-490c-96d0-043d9a693972|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T08:53:24.566Z",
+        "updatedAt": "2026-09-12T08:53:24.566Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [
+      {
+        "id": "17:session-completed|44:session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "occurredAt": "2026-09-12T08:53:27.959Z",
+        "dateKey": "2026-09-12",
+        "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+        "evidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+          "sceneId": "emergency-03",
+          "sceneVersion": 1,
+          "level": "A1",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "desk",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 3,
+          "outcome": "achieved",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-12T08:53:27.959Z"
+        },
+        "type": "session-completed"
+      },
+      {
+        "id": "17:session-completed|44:session_27f7726d-cac8-4a68-baec-0c661d11db73",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "occurredAt": "2026-09-12T08:53:26.234Z",
+        "dateKey": "2026-09-12",
+        "sessionId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+        "evidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+          "sceneId": "social-04",
+          "sceneVersion": 1,
+          "level": "A1",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "conversation",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 3,
+          "outcome": "achieved",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-12T08:53:26.234Z"
+        },
+        "type": "session-completed"
+      },
+      {
+        "id": "42:guest_16ec4484-aa7d-490c-96d0-043d9a693972|81:session_24280a8c-af39-463a-ba17-40ac9c06a8da_a0e87cd4-6d6e-4dda-a9ac-67ee9f6511b3|1:0",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "occurredAt": "2026-09-12T08:53:26.851Z",
+        "dateKey": "2026-09-12",
+        "type": "foreground-time-recorded",
+        "runId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da_a0e87cd4-6d6e-4dda-a9ac-67ee9f6511b3",
+        "segmentId": "0",
+        "startedAt": "2026-09-12T08:53:26.851Z",
+        "endedAt": "2026-09-12T08:53:28.000Z",
+        "durationMs": 1149
+      },
+      {
+        "id": "42:guest_16ec4484-aa7d-490c-96d0-043d9a693972|81:session_27f7726d-cac8-4a68-baec-0c661d11db73_97120e29-ec49-4402-91ba-159e9d9d0d86|1:0",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "occurredAt": "2026-09-12T08:53:25.161Z",
+        "dateKey": "2026-09-12",
+        "type": "foreground-time-recorded",
+        "runId": "session_27f7726d-cac8-4a68-baec-0c661d11db73_97120e29-ec49-4402-91ba-159e9d9d0d86",
+        "segmentId": "0",
+        "startedAt": "2026-09-12T08:53:25.161Z",
+        "endedAt": "2026-09-12T08:53:26.280Z",
+        "durationMs": 1119
+      }
+    ],
+    "notebook": [
+      {
+        "id": "0a436555-cd6c-49be-b449-9edc7035c1d5",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "kind": "phrase",
+        "text": "synthetic fictional request",
+        "normalizedText": "synthetic fictional request",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "f2f0683a-3f5d-4f15-8550-99cecac5df20",
+            "kind": "turn",
+            "originalText": "What do you want to ask the clinic for?",
+            "sceneId": "emergency-03",
+            "level": "A1",
+            "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+            "questionId": "doctor-appointment.A1.purpose",
+            "createdAt": "2026-09-12T08:53:27.044Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T08:53:27.044Z",
+        "updatedAt": "2026-09-12T08:53:27.044Z"
+      }
+    ],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T08:53:23.964Z",
+        "updatedAt": "2026-09-12T08:53:24.384Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [
+      {
+        "id": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "sceneId": "emergency-03",
+        "sceneVersion": 1,
+        "level": "A1",
+        "status": "completed",
+        "startedAt": "2026-09-12T08:53:26.816Z",
+        "updatedAt": "2026-09-12T08:53:27.959Z",
+        "completedGoals": [],
+        "openingText": "What do you want to ask the clinic for?",
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "emergency-03",
+            "category": "emergency",
+            "level": "A1",
+            "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-10",
+            "rationale": {
+              "canDoZh": "借助时段卡提出简单预约需要。",
+              "complexityZh": "逐次选目的、时间和形式，不判断医疗需求等级。",
+              "scaffoldingZh": "虚构选项可见，短问短答和中文提示支持。",
+              "registerZh": "基础礼貌接待口语，可说不能或不知道。",
+              "sourceBasis": [
+                "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+              ]
+            },
+            "questions": [
+              {
+                "id": "doctor-appointment.A1.purpose",
+                "text": "What do you want to ask the clinic for?",
+                "intent": "state-booking-purpose",
+                "objective": "purpose",
+                "hintZh": "只是提出请求。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.purpose.a",
+                    "text": "I want an appointment.",
+                    "acceptedForms": [
+                      "I want an appointment."
+                    ],
+                    "effects": [
+                      {
+                        "key": "purpose",
+                        "value": "visit"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.purpose"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.purpose.b",
+                    "text": "I want information about appointments.",
+                    "acceptedForms": [
+                      "I want information about appointments."
+                    ],
+                    "effects": [
+                      {
+                        "key": "purpose",
+                        "value": "information"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.purpose"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.purpose"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.time",
+                "text": "Which time on the card do you prefer?",
+                "intent": "request-time",
+                "objective": "time",
+                "hintZh": "虚构时段不是预约确认。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.time.a",
+                    "text": "Tuesday morning, please.",
+                    "acceptedForms": [
+                      "Tuesday morning, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "time",
+                        "value": "tuesday"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.time"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.time.b",
+                    "text": "Thursday afternoon, please.",
+                    "acceptedForms": [
+                      "Thursday afternoon, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "time",
+                        "value": "thursday"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.time"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.time"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.format",
+                "text": "Do you prefer a phone call or a visit?",
+                "intent": "request-format",
+                "objective": "format",
+                "hintZh": "表达形式偏好。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.format.a",
+                    "text": "A phone call, please.",
+                    "acceptedForms": [
+                      "A phone call, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "format",
+                        "value": "phone"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.format"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.format.b",
+                    "text": "A visit, please.",
+                    "acceptedForms": [
+                      "A visit, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "format",
+                        "value": "visit"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.format"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.format"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.constraint",
+                "text": "Can you come before nine?",
+                "intent": "state-availability",
+                "objective": "constraint",
+                "hintZh": "独立说明时间限制。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.constraint.a",
+                    "text": "Yes, I can come before nine.",
+                    "acceptedForms": [
+                      "Yes, I can come before nine."
+                    ],
+                    "effects": [
+                      {
+                        "key": "constraint",
+                        "value": "yes"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.constraint"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.constraint.b",
+                    "text": "No, I cannot come before nine.",
+                    "acceptedForms": [
+                      "No, I cannot come before nine."
+                    ],
+                    "effects": [
+                      {
+                        "key": "constraint",
+                        "value": "no"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.constraint"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.constraint"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.access",
+                "text": "Do you need information about the clinic entrance?",
+                "intent": "request-access-information",
+                "objective": "access",
+                "hintZh": "不要求真实位置。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.access.a",
+                    "text": "Yes, I need a picture.",
+                    "acceptedForms": [
+                      "Yes, I need a picture."
+                    ],
+                    "effects": [
+                      {
+                        "key": "access",
+                        "value": "yes"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.access"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.access.b",
+                    "text": "No, I have a picture.",
+                    "acceptedForms": [
+                      "No, I have a picture."
+                    ],
+                    "effects": [
+                      {
+                        "key": "access",
+                        "value": "no"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.access"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.access"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.privacy",
+                "text": "Do you want to share personal details in this practice?",
+                "intent": "set-information-boundary",
+                "objective": "privacy",
+                "hintZh": "可以保留隐私。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.privacy.a",
+                    "text": "I want to use made-up details.",
+                    "acceptedForms": [
+                      "I want to use made-up details."
+                    ],
+                    "effects": [
+                      {
+                        "key": "privacy",
+                        "value": "fiction"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.privacy"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.privacy.b",
+                    "text": "No personal details, please.",
+                    "acceptedForms": [
+                      "No personal details, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "privacy",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.privacy"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.privacy"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.reply",
+                "text": "Would you like a short reply or a detailed reply?",
+                "intent": "choose-reply-style",
+                "objective": "reply",
+                "hintZh": "模拟回信形式。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.reply.a",
+                    "text": "A short reply, please.",
+                    "acceptedForms": [
+                      "A short reply, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "reply",
+                        "value": "short"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.reply"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.reply.b",
+                    "text": "A detailed reply, please.",
+                    "acceptedForms": [
+                      "A detailed reply, please."
+                    ],
+                    "effects": [
+                      {
+                        "key": "reply",
+                        "value": "detailed"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.reply"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.reply"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.notice",
+                "text": "Do you want to ask about changing a time?",
+                "intent": "ask-change-information",
+                "objective": "notice",
+                "hintZh": "未预约也可以先询问变更方式。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.notice.a",
+                    "text": "Yes, I want to ask about changes.",
+                    "acceptedForms": [
+                      "Yes, I want to ask about changes."
+                    ],
+                    "effects": [
+                      {
+                        "key": "notice",
+                        "value": "yes"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.notice"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.notice.b",
+                    "text": "No, not now.",
+                    "acceptedForms": [
+                      "No, not now."
+                    ],
+                    "effects": [
+                      {
+                        "key": "notice",
+                        "value": "no"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.notice"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.notice"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.question",
+                "text": "For a possible visit, what would you like to ask about arriving?",
+                "intent": "ask-arrival-information",
+                "objective": "question",
+                "hintZh": "只问，不捏造诊所流程。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.question.a",
+                    "text": "Where should I go?",
+                    "acceptedForms": [
+                      "Where should I go?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "question",
+                        "value": "where"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.question"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.question.b",
+                    "text": "When should I arrive?",
+                    "acceptedForms": [
+                      "When should I arrive?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "question",
+                        "value": "when"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.question"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.question"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.clarify",
+                "text": "Which word on the card is unclear?",
+                "intent": "clarify-time-label",
+                "objective": "clarify",
+                "hintZh": "明确示例词已呈现。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.clarify.a",
+                    "text": "I do not know “arrival”.",
+                    "acceptedForms": [
+                      "I do not know “arrival”."
+                    ],
+                    "effects": [
+                      {
+                        "key": "clarify",
+                        "value": "arrival"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.clarify"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.clarify.b",
+                    "text": "I do not know “appointment”.",
+                    "acceptedForms": [
+                      "I do not know “appointment”."
+                    ],
+                    "effects": [
+                      {
+                        "key": "clarify",
+                        "value": "appointment"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.clarify"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.clarify"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.record",
+                "text": "Do you have paper for your request?",
+                "intent": "prepare-request-notes",
+                "objective": "record",
+                "hintZh": "只说明物件是否在手。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.record.a",
+                    "text": "Yes, I have paper.",
+                    "acceptedForms": [
+                      "Yes, I have paper."
+                    ],
+                    "effects": [
+                      {
+                        "key": "record",
+                        "value": "paper"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.record"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.record.b",
+                    "text": "No, I need some paper.",
+                    "acceptedForms": [
+                      "No, I need some paper."
+                    ],
+                    "effects": [
+                      {
+                        "key": "record",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.record"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.record"
+                }
+              },
+              {
+                "id": "doctor-appointment.A1.next",
+                "text": "Do you want to write or say an appointment request?",
+                "intent": "finish-request",
+                "objective": "next",
+                "hintZh": "计划表达，不假定已有书面请求。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "doctor-appointment.A1.next.a",
+                    "text": "I want to write one.",
+                    "acceptedForms": [
+                      "I want to write one."
+                    ],
+                    "effects": [
+                      {
+                        "key": "next",
+                        "value": "write"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.next"
+                    }
+                  },
+                  {
+                    "id": "doctor-appointment.A1.next.b",
+                    "text": "I want to say one.",
+                    "acceptedForms": [
+                      "I want to say one."
+                    ],
+                    "effects": [
+                      {
+                        "key": "next",
+                        "value": "say"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "emergency-review.md: doctor-appointment.A1.next"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume: overall oral interaction pp.70–71, information exchange, obtaining goods and services, clarification; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Original graded design interpreted in docs/research/2026-09-09-local-learning-evidence.md; not certification.",
+                  "Communication-only editorial boundaries: docs/research/2026-09-09-health-corpus-boundaries.md (2026-09-09). Official communication facts and jurisdiction limits are distinct from editorial inferences. No diagnosis, dosage, triage, safety assurance or real service."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1.next"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "desk",
+                "situationZh": "虚构诊所预约英语演练；练习搭档扮演接待员。纸卡仅展示供练习选择的周二上午、周四下午以及电话或当面咨询形式，不是真实空位或临床推荐。示例卡写有 arrival time 和 appointment time 两个栏位，但没有默认时间。你可以使用参考答案的虚构偏好，不提供真实姓名、证件、联系方式或病历。本轮仅准备预约请求，不做分诊、不确认真实预约、不联系医疗或紧急服务。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "doctor-appointment.A1.purpose",
+                      "doctor-appointment.A1.time",
+                      "doctor-appointment.A1.next"
+                    ],
+                    "achievedClosing": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+                    "partialClosing": "Some appointment-request details remain unconfirmed in this practice. No real appointment was booked or service contacted."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "doctor-appointment.A1.purpose",
+                      "doctor-appointment.A1.time",
+                      "doctor-appointment.A1.format",
+                      "doctor-appointment.A1.constraint",
+                      "doctor-appointment.A1.reply",
+                      "doctor-appointment.A1.next"
+                    ],
+                    "achievedClosing": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+                    "partialClosing": "Some appointment-request details remain unconfirmed in this practice. No real appointment was booked or service contacted."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "doctor-appointment.A1.purpose",
+                      "doctor-appointment.A1.time",
+                      "doctor-appointment.A1.format",
+                      "doctor-appointment.A1.constraint",
+                      "doctor-appointment.A1.access",
+                      "doctor-appointment.A1.privacy",
+                      "doctor-appointment.A1.reply",
+                      "doctor-appointment.A1.notice",
+                      "doctor-appointment.A1.question",
+                      "doctor-appointment.A1.next"
+                    ],
+                    "achievedClosing": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+                    "partialClosing": "Some appointment-request details remain unconfirmed in this practice. No real appointment was booked or service contacted."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1 variants"
+                }
+              },
+              {
+                "id": "message",
+                "situationZh": "虚构诊所留言练习。接待员角色帮助整理尚未发送的预约请求，纸上有周二上午与周四下午两项示例时段，以及电话和当面形式。arrival time 与 appointment time 是示例表的不同栏位。重点在于时间限制、需询问事项及回信形式；所有选项只是练习素材，不代表可用名额。不填写真实身份或联系方式，不发送留言，不作分诊或联系真实医疗和紧急服务。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "doctor-appointment.A1.purpose",
+                      "doctor-appointment.A1.clarify",
+                      "doctor-appointment.A1.next"
+                    ],
+                    "achievedClosing": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+                    "partialClosing": "Some appointment-request details remain unconfirmed in this practice. No real appointment was booked or service contacted."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "doctor-appointment.A1.purpose",
+                      "doctor-appointment.A1.time",
+                      "doctor-appointment.A1.clarify",
+                      "doctor-appointment.A1.record",
+                      "doctor-appointment.A1.reply",
+                      "doctor-appointment.A1.next"
+                    ],
+                    "achievedClosing": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+                    "partialClosing": "Some appointment-request details remain unconfirmed in this practice. No real appointment was booked or service contacted."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "doctor-appointment.A1.purpose",
+                      "doctor-appointment.A1.time",
+                      "doctor-appointment.A1.format",
+                      "doctor-appointment.A1.constraint",
+                      "doctor-appointment.A1.clarify",
+                      "doctor-appointment.A1.record",
+                      "doctor-appointment.A1.reply",
+                      "doctor-appointment.A1.notice",
+                      "doctor-appointment.A1.question",
+                      "doctor-appointment.A1.next"
+                    ],
+                    "achievedClosing": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+                    "partialClosing": "Some appointment-request details remain unconfirmed in this practice. No real appointment was booked or service contacted."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "emergency-review.md: doctor-appointment.A1 variants"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "You can ask which appointment detail this question is about.",
+              "struggle": "You can use one of the fictional time or request examples.",
+              "offTopic": "We can return to preparing the appointment request.",
+              "unknown": "That wording is not covered locally, so no appointment detail has been confirmed.",
+              "changed": "Your new request replaces the previous choice in this practice.",
+              "refusedClosing": "The appointment practice has stopped. No real appointment was booked or service contacted."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "desk",
+            "currentQuestionId": null,
+            "facts": [
+              {
+                "key": "purpose",
+                "value": "visit",
+                "questionId": "doctor-appointment.A1.purpose",
+                "answerId": "doctor-appointment.A1.purpose.a",
+                "turnIndex": 0
+              },
+              {
+                "key": "time",
+                "value": "tuesday",
+                "questionId": "doctor-appointment.A1.time",
+                "answerId": "doctor-appointment.A1.time.a",
+                "turnIndex": 1
+              },
+              {
+                "key": "next",
+                "value": "write",
+                "questionId": "doctor-appointment.A1.next",
+                "answerId": "doctor-appointment.A1.next.a",
+                "turnIndex": 2
+              }
+            ],
+            "completedObjectives": [
+              "purpose",
+              "time",
+              "next"
+            ],
+            "completedIntents": [
+              "state-booking-purpose",
+              "request-time",
+              "finish-request"
+            ],
+            "askedQuestionIds": [
+              "doctor-appointment.A1.purpose",
+              "doctor-appointment.A1.time",
+              "doctor-appointment.A1.next"
+            ],
+            "turns": [
+              {
+                "action": "answer",
+                "text": "I want an appointment.",
+                "suggestionId": "doctor-appointment.A1.purpose.a"
+              },
+              {
+                "action": "answer",
+                "text": "Tuesday morning, please.",
+                "suggestionId": "doctor-appointment.A1.time.a"
+              },
+              {
+                "action": "answer",
+                "text": "I want to write one.",
+                "suggestionId": "doctor-appointment.A1.next.a"
+              }
+            ],
+            "outcome": "achieved",
+            "reply": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+            "confirmation": "exact"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "模拟接待员（未发送询问）",
+          "frameZh": "这是已编写的虚构语言演练，不是医疗、报警、救援或物业服务。没有拨号或发送消息，不诊断、不判断安全、不确认预约或服务。只使用情境中的虚构材料，不提供真实身份、地址或医疗资料。"
+        },
+        "completedAt": "2026-09-12T08:53:27.959Z",
+        "completionEvidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+          "sceneId": "emergency-03",
+          "sceneVersion": 1,
+          "level": "A1",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "desk",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 3,
+          "outcome": "achieved",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-12T08:53:27.959Z"
+        }
+      },
+      {
+        "id": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+        "profileId": "guest_16ec4484-aa7d-490c-96d0-043d9a693972",
+        "sceneId": "social-04",
+        "sceneVersion": 1,
+        "level": "A1",
+        "status": "completed",
+        "startedAt": "2026-09-12T08:53:25.113Z",
+        "updatedAt": "2026-09-12T08:53:26.234Z",
+        "completedGoals": [],
+        "openingText": "How will you say no to Saturday dinner?",
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "social-04",
+            "category": "social",
+            "level": "A1",
+            "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-10",
+            "rationale": {
+              "canDoZh": "用简单句明确不参加，选择是否给理由，并结束拒绝消息。",
+              "complexityZh": "已决定拒绝，只处理表达选择，不要求反复证明理由。",
+              "scaffoldingZh": "由朋友协助拟稿，短问句和直接可用的句子。",
+              "registerZh": "友好而明确；不说原因也是完整回答。",
+              "sourceBasis": [
+                "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+              ]
+            },
+            "questions": [
+              {
+                "id": "polite-refusal.A1.decline",
+                "text": "How will you say no to Saturday dinner?",
+                "intent": "state-refusal",
+                "objective": "decline",
+                "hintZh": "明确不参加，不用含糊的也许。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.decline.a",
+                    "text": "I cannot come to dinner on Saturday.",
+                    "acceptedForms": [
+                      "I cannot come to dinner on Saturday."
+                    ],
+                    "effects": [
+                      {
+                        "key": "decline",
+                        "value": "cannot"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.decline.b",
+                    "text": "Thank you, but I will not join you on Saturday.",
+                    "acceptedForms": [
+                      "Thank you, but I will not join you on Saturday."
+                    ],
+                    "effects": [
+                      {
+                        "key": "decline",
+                        "value": "decline"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.thanks",
+                "text": "What would you like to thank Casey for?",
+                "intent": "express-appreciation",
+                "objective": "thanks",
+                "hintZh": "感谢邀请或想到你，不等于答应。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.thanks.a",
+                    "text": "Thank you for inviting me.",
+                    "acceptedForms": [
+                      "Thank you for inviting me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "thanks",
+                        "value": "invite"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.thanks.b",
+                    "text": "Thank you for thinking of me.",
+                    "acceptedForms": [
+                      "Thank you for thinking of me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "thanks",
+                        "value": "think"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.reason",
+                "text": "Do you want to give a reason or keep it private?",
+                "intent": "choose-disclosure",
+                "objective": "reason",
+                "hintZh": "原因完全自愿。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.reason.a",
+                    "text": "I have other plans.",
+                    "acceptedForms": [
+                      "I have other plans."
+                    ],
+                    "effects": [
+                      {
+                        "key": "reason",
+                        "value": "busy"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.reason.b",
+                    "text": "I'd rather not say.",
+                    "acceptedForms": [
+                      "I'd rather not say."
+                    ],
+                    "effects": [
+                      {
+                        "key": "reason",
+                        "value": "private"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.clarity",
+                "text": "A different example says, 'I cannot come this weekend.' Can you name one day?",
+                "intent": "clarify-example-date",
+                "objective": "clarity",
+                "hintZh": "单独例句：把 this weekend 换成具体星期，不修改你先前对周六的明确拒绝。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.clarity.a",
+                    "text": "I cannot come on Saturday.",
+                    "acceptedForms": [
+                      "I cannot come on Saturday."
+                    ],
+                    "effects": [
+                      {
+                        "key": "clarity",
+                        "value": "saturday"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.clarity.b",
+                    "text": "I cannot come on Sunday.",
+                    "acceptedForms": [
+                      "I cannot come on Sunday."
+                    ],
+                    "effects": [
+                      {
+                        "key": "clarity",
+                        "value": "sunday"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.alternative",
+                "text": "Would you like to suggest another plan?",
+                "intent": "choose-alternative",
+                "objective": "alternative",
+                "hintZh": "提出替代只是提议，可以不提。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.alternative.a",
+                    "text": "No, I do not want to suggest another plan.",
+                    "acceptedForms": [
+                      "No, I do not want to suggest another plan."
+                    ],
+                    "effects": [
+                      {
+                        "key": "alternative",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.alternative.b",
+                    "text": "I would like to suggest tea another day.",
+                    "acceptedForms": [
+                      "I would like to suggest tea another day."
+                    ],
+                    "effects": [
+                      {
+                        "key": "alternative",
+                        "value": "tea"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.contact",
+                "text": "May Casey contact you about future dinners?",
+                "intent": "set-contact",
+                "objective": "contact",
+                "hintZh": "本次拒绝不自动答应未来联系。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.contact.a",
+                    "text": "Yes, future invitations are welcome.",
+                    "acceptedForms": [
+                      "Yes, future invitations are welcome."
+                    ],
+                    "effects": [
+                      {
+                        "key": "contact",
+                        "value": "yes"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.contact.b",
+                    "text": "No, please do not send me more dinner invitations.",
+                    "acceptedForms": [
+                      "No, please do not send me more dinner invitations."
+                    ],
+                    "effects": [
+                      {
+                        "key": "contact",
+                        "value": "no"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.boundary",
+                "text": "If someone keeps asking, what could you say?",
+                "intent": "state-boundary",
+                "objective": "boundary",
+                "hintZh": "假设有人追问，不要求实际已发生。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.boundary.a",
+                    "text": "My answer is still no.",
+                    "acceptedForms": [
+                      "My answer is still no."
+                    ],
+                    "effects": [
+                      {
+                        "key": "boundary",
+                        "value": "firm"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.boundary.b",
+                    "text": "Please stop asking me.",
+                    "acceptedForms": [
+                      "Please stop asking me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "boundary",
+                        "value": "stop"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.channel",
+                "text": "Would you send your reply privately or in the group?",
+                "intent": "choose-channel",
+                "objective": "channel",
+                "hintZh": "选择拟发送渠道。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.channel.a",
+                    "text": "I would send a private message.",
+                    "acceptedForms": [
+                      "I would send a private message."
+                    ],
+                    "effects": [
+                      {
+                        "key": "channel",
+                        "value": "private"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.channel.b",
+                    "text": "I would reply in the group.",
+                    "acceptedForms": [
+                      "I would reply in the group."
+                    ],
+                    "effects": [
+                      {
+                        "key": "channel",
+                        "value": "group"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.check",
+                "text": "Do you want to read the draft yourself or hear it aloud?",
+                "intent": "review-draft",
+                "objective": "check",
+                "hintZh": "审阅尚未发送的回复。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.check.a",
+                    "text": "I want to read it myself.",
+                    "acceptedForms": [
+                      "I want to read it myself."
+                    ],
+                    "effects": [
+                      {
+                        "key": "check",
+                        "value": "read"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.check.b",
+                    "text": "Please read it aloud to me.",
+                    "acceptedForms": [
+                      "Please read it aloud to me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "check",
+                        "value": "hear"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.close",
+                "text": "How would you end the dinner reply?",
+                "intent": "close-refusal",
+                "objective": "close",
+                "hintZh": "可祝福或请对方按不出席安排，不假定理解已发生。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.close.a",
+                    "text": "Enjoy your dinner.",
+                    "acceptedForms": [
+                      "Enjoy your dinner."
+                    ],
+                    "effects": [
+                      {
+                        "key": "close",
+                        "value": "enjoy"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.close.b",
+                    "text": "Please make your dinner plans without me.",
+                    "acceptedForms": [
+                      "Please make your dinner plans without me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "close",
+                        "value": "plan"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.privacy",
+                "text": "Should a group reply include personal details?",
+                "intent": "protect-reason",
+                "objective": "privacy",
+                "hintZh": "可不写私事或另外决定。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.privacy.a",
+                    "text": "No, leave personal details out.",
+                    "acceptedForms": [
+                      "No, leave personal details out."
+                    ],
+                    "effects": [
+                      {
+                        "key": "privacy",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.privacy.b",
+                    "text": "I will decide about personal details in a private message.",
+                    "acceptedForms": [
+                      "I will decide about personal details in a private message."
+                    ],
+                    "effects": [
+                      {
+                        "key": "privacy",
+                        "value": "separate"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "polite-refusal.A1.silence",
+                "text": "After sending a clear no, would you need another reply?",
+                "intent": "avoid-reassurance-demand",
+                "objective": "silence",
+                "hintZh": "前瞻发送之后，不假设已发出。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "polite-refusal.A1.silence.a",
+                    "text": "No, I would not need another reply.",
+                    "acceptedForms": [
+                      "No, I would not need another reply."
+                    ],
+                    "effects": [
+                      {
+                        "key": "silence",
+                        "value": "no"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  },
+                  {
+                    "id": "polite-refusal.A1.silence.b",
+                    "text": "I would only need to know the message arrived.",
+                    "acceptedForms": [
+                      "I would only need to know the message arrived."
+                    ],
+                    "effects": [
+                      {
+                        "key": "silence",
+                        "value": "receipt"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction and conversation pp.70–71; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original social practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "conversation",
+                "situationZh": "虚构拒绝表达练习：朋友 Casey 邀你周六参加家中晚餐，你决定不参加。对话中的另一位朋友 Dana 帮你拟回复，不扮演纠缠邀请者。你可以选用虚构理由，也可以完全不说原因。后续问题是审阅边界和消息内容，不是再次劝你参加；尚未发送回复或约定替代计划。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "polite-refusal.A1.decline",
+                      "polite-refusal.A1.reason",
+                      "polite-refusal.A1.close"
+                    ],
+                    "achievedClosing": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+                    "partialClosing": "We will stop this draft here. Some wording choices remain open; your decision not to attend is not an agreement to an alternative."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "polite-refusal.A1.decline",
+                      "polite-refusal.A1.thanks",
+                      "polite-refusal.A1.reason",
+                      "polite-refusal.A1.alternative",
+                      "polite-refusal.A1.contact",
+                      "polite-refusal.A1.close"
+                    ],
+                    "achievedClosing": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+                    "partialClosing": "We will stop this draft here. Some wording choices remain open; your decision not to attend is not an agreement to an alternative."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "polite-refusal.A1.decline",
+                      "polite-refusal.A1.thanks",
+                      "polite-refusal.A1.reason",
+                      "polite-refusal.A1.clarity",
+                      "polite-refusal.A1.alternative",
+                      "polite-refusal.A1.contact",
+                      "polite-refusal.A1.boundary",
+                      "polite-refusal.A1.channel",
+                      "polite-refusal.A1.check",
+                      "polite-refusal.A1.close"
+                    ],
+                    "achievedClosing": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+                    "partialClosing": "We will stop this draft here. Some wording choices remain open; your decision not to attend is not an agreement to an alternative."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              },
+              {
+                "id": "consideration",
+                "situationZh": "同一虚构晚餐拒绝，Dana 帮你写一段适合群消息的回复。重点是避免“也许”被误认成同意、保护私人理由和控制后续联系。Casey 未被设定为已接受你的拒绝；只练如何表达，不要求你证明拒绝合理，也不需要真实隐私。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "polite-refusal.A1.decline",
+                      "polite-refusal.A1.clarity",
+                      "polite-refusal.A1.close"
+                    ],
+                    "achievedClosing": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+                    "partialClosing": "We will stop this draft here. Some wording choices remain open; your decision not to attend is not an agreement to an alternative."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "polite-refusal.A1.decline",
+                      "polite-refusal.A1.reason",
+                      "polite-refusal.A1.privacy",
+                      "polite-refusal.A1.silence",
+                      "polite-refusal.A1.check",
+                      "polite-refusal.A1.close"
+                    ],
+                    "achievedClosing": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+                    "partialClosing": "We will stop this draft here. Some wording choices remain open; your decision not to attend is not an agreement to an alternative."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "polite-refusal.A1.decline",
+                      "polite-refusal.A1.thanks",
+                      "polite-refusal.A1.reason",
+                      "polite-refusal.A1.clarity",
+                      "polite-refusal.A1.privacy",
+                      "polite-refusal.A1.alternative",
+                      "polite-refusal.A1.silence",
+                      "polite-refusal.A1.boundary",
+                      "polite-refusal.A1.check",
+                      "polite-refusal.A1.close"
+                    ],
+                    "achievedClosing": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+                    "partialClosing": "We will stop this draft here. Some wording choices remain open; your decision not to attend is not an agreement to an alternative."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "social-review.md: fix1 polite-refusal.A1 complete-unit reread 2026-09-10"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "We can clarify the wording question; your refusal is not being challenged.",
+              "struggle": "A short no is enough. You do not need to give a private reason.",
+              "offTopic": "We can return to writing the refusal, if you still want to practise.",
+              "unknown": "I have not matched that wording locally, so no draft choice is confirmed.",
+              "changed": "The revised wording replaces the earlier choice in this practice.",
+              "refusedClosing": "We will stop practising. You do not owe an explanation for stopping."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "conversation",
+            "currentQuestionId": null,
+            "facts": [
+              {
+                "key": "decline",
+                "value": "cannot",
+                "questionId": "polite-refusal.A1.decline",
+                "answerId": "polite-refusal.A1.decline.a",
+                "turnIndex": 0
+              },
+              {
+                "key": "reason",
+                "value": "private",
+                "questionId": "polite-refusal.A1.reason",
+                "answerId": "polite-refusal.A1.reason.b",
+                "turnIndex": 1
+              },
+              {
+                "key": "close",
+                "value": "enjoy",
+                "questionId": "polite-refusal.A1.close",
+                "answerId": "polite-refusal.A1.close.a",
+                "turnIndex": 2
+              }
+            ],
+            "completedObjectives": [
+              "decline",
+              "reason",
+              "close"
+            ],
+            "completedIntents": [
+              "state-refusal",
+              "choose-disclosure",
+              "close-refusal"
+            ],
+            "askedQuestionIds": [
+              "polite-refusal.A1.decline",
+              "polite-refusal.A1.reason",
+              "polite-refusal.A1.close"
+            ],
+            "turns": [
+              {
+                "action": "answer",
+                "text": "I cannot come to dinner on Saturday.",
+                "suggestionId": "polite-refusal.A1.decline.a"
+              },
+              {
+                "action": "answer",
+                "text": "I'd rather not say.",
+                "suggestionId": "polite-refusal.A1.reason.b"
+              },
+              {
+                "action": "answer",
+                "text": "Enjoy your dinner.",
+                "suggestionId": "polite-refusal.A1.close.a"
+              }
+            ],
+            "outcome": "achieved",
+            "reply": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+            "confirmation": "exact"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "朋友 Dana（协助练习婉拒 Casey）",
+          "frameZh": "这是已编写的社交角色与回应演练；邀请、婉拒和道歉是在与伙伴排练，不在场的收件人不会收到信息。情境说明中的人物与前提保持适用。"
+        },
+        "completedAt": "2026-09-12T08:53:26.234Z",
+        "completionEvidence": {
+          "schemaVersion": 1,
+          "ruleVersion": 1,
+          "sessionId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+          "sceneId": "social-04",
+          "sceneVersion": 1,
+          "level": "A1",
+          "contentVersion": 1,
+          "engineVersion": 1,
+          "mode": "short",
+          "variantId": "conversation",
+          "requiredUserTurns": 3,
+          "submittedTurns": 3,
+          "expressionTurns": 3,
+          "outcome": "achieved",
+          "basis": "path-cap",
+          "confirmedAt": "2026-09-12T08:53:26.234Z"
+        }
+      }
+    ],
+    "settings": [],
+    "turns": [
+      {
+        "id": "turn_001e8860-eb0a-44b5-a63e-62fd632f6bf3",
+        "sessionId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+        "index": 1,
+        "learnerText": "I'd rather not say.",
+        "aiText": "How would you end the dinner reply?",
+        "createdAt": "2026-09-12T08:53:25.897Z"
+      },
+      {
+        "id": "turn_926b3139-7be1-4542-801f-78e9f76c6afa",
+        "sessionId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+        "index": 0,
+        "learnerText": "I cannot come to dinner on Saturday.",
+        "aiText": "Do you want to give a reason or keep it private?",
+        "createdAt": "2026-09-12T08:53:25.545Z"
+      },
+      {
+        "id": "turn_bd06d092-363a-4644-8152-b24a5b943a6f",
+        "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+        "index": 1,
+        "learnerText": "Tuesday morning, please.",
+        "aiText": "Do you want to write or say an appointment request?",
+        "createdAt": "2026-09-12T08:53:27.629Z"
+      },
+      {
+        "id": "turn_beaf0931-d021-45bd-b73d-25ecf99e5f1f",
+        "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+        "index": 0,
+        "learnerText": "I want an appointment.",
+        "aiText": "Which time on the card do you prefer?",
+        "createdAt": "2026-09-12T08:53:27.368Z"
+      },
+      {
+        "id": "turn_c93765fe-0f86-4fa5-be59-c47919e17713",
+        "sessionId": "session_24280a8c-af39-463a-ba17-40ac9c06a8da",
+        "index": 2,
+        "learnerText": "I want to write one.",
+        "aiText": "The appointment-request practice is complete. Preferred times and formats are requests only. No real appointment was booked or medical or emergency service contacted.",
+        "createdAt": "2026-09-12T08:53:27.862Z"
+      },
+      {
+        "id": "turn_df7a10ae-7e5d-4f65-b41f-abccdb0e9520",
+        "sessionId": "session_27f7726d-cac8-4a68-baec-0c661d11db73",
+        "index": 2,
+        "learnerText": "Enjoy your dinner.",
+        "aiText": "The refusal practice is complete. A no needs no private explanation, and no alternative plan or future contact has been agreed with Casey.",
+        "createdAt": "2026-09-12T08:53:26.141Z"
+      }
+    ]
+  },
+  "returnedUrl": "http://127.0.0.1:3130/notebook",
+  "legacyArray": "safe return; not precise history reconstruction"
+}

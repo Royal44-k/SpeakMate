@@ -112,10 +112,10 @@ describe('graded practice stage', () => {
     })
     act(() => resize())
     expect(
-      view.container
-        .querySelector('main')
-        ?.style.getPropertyValue('--practice-dock-space'),
+      document.documentElement.style.getPropertyValue('--practice-dock-space'),
     ).toBe('474px')
+    view.unmount()
+    expect(document.documentElement.style.getPropertyValue('--practice-dock-space')).toBe('')
   })
   it('shows full selected material before its exact question and only the current pair', () => {
     render(<PracticeStage scene={scene} sessionId="session-text" />)
@@ -154,7 +154,7 @@ describe('graded practice stage', () => {
     ).toBeEnabled()
     expect(state.value.completeSession).not.toHaveBeenCalled()
   })
-  it('does not offer completion for repair-only terminal or task provenance without settlement', () => {
+  it('does not offer completion for an ineligible repair-only terminal', () => {
     state.value.view = {
       ...state.value.view,
       canAnswer: false,

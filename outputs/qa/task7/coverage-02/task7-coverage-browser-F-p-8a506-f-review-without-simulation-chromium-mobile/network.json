@@ -1,0 +1,769 @@
+{
+  "requests": [
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/welcome"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1t63d5j5ybktp.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/sw.js?v=3.0.0"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/offline-build.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/install"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/practice"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/me"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/privacy"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/session"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/session/report"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/prepare"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/notebook"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/notebook/note"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/notebook/simulation"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/rewards"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/guide"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/welcome"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/auth"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/05sjr8pmbtsur.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0byem7pgxo8tl.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0cz1d0mv5g_q7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0gymv9ybqx8aj.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0j8ei7txik68j.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0kh157s6n9m85.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0p9yvsyvmmfeq.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ty9k-pko4_kb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0uk8jt_1s-e95.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/15xbu68-4kmdd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1cr_w82fr6hzp.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1f-tjzvjph-kz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1k6xx-rl81k0c.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1t63d5j5ybktp.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ka0totmurnj1.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2kdyww1yqxlnf.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2quitcivzi819.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3_usd5ad8fosk.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/32tn7a1d0dfka.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/35vtzgf4r-0ee.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/369v10xz-wfzd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3f__1h-j75apl.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3f_y3kur09m-m.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3i70920u9gqmy.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/444ijkz8o2hp6.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0byem7pgxo8tl.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1f-tjzvjph-kz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3f__1h-j75apl.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/35vtzgf4r-0ee.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/in2pG1ng-2S7-GB53eqAC/_buildManifest.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/in2pG1ng-2S7-GB53eqAC/_clientMiddlewareManifest.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/in2pG1ng-2S7-GB53eqAC/_ssgManifest.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-400-normal.1y9apvljb2g4s.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-400-normal.3966srz6ua9nl.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.1on3xg---ibgx.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-800-normal.2yhcvw6l_9tek.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-ext-400-normal.0rpobyvjmamnh.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-ext-400-normal.3yj28lypgqt1q.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-ext-700-normal.1qvxqej4sgmo7.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-ext-700-normal.2ujo9d6x5hgkq.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-ext-800-normal.2ilznutl-gkih.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-ext-800-normal.2qbk6mf928vn4.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-vietnamese-400-normal.24d76vaxd5do6.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-vietnamese-400-normal.2xfe7s8liyrco.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-vietnamese-700-normal.30aknk5meqo_4.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-vietnamese-700-normal.3f_ld5jwq496k.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-vietnamese-800-normal.0bnijc5a116ah.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-vietnamese-800-normal.0x2bwntxagcoi.woff"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/icons/icon-192.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/icons/icon-512.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/icons/icon-maskable-512.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/icons/speakmate-icon-master.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/icons/speakmate-maskable-master.png"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/travel.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/dining.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/daily.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/work.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/social.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/study.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/emergency.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/hotel.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/prepare?scene=coffee-order&level=A2&mode=short"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0byem7pgxo8tl.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1f-tjzvjph-kz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3i70920u9gqmy.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/35vtzgf4r-0ee.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/dining.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/content/v1/dining"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/content/v1/dining"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/session?id=new&scene=coffee-order&level=A2&mode=short&from=%2Fscenes%3Flevel%3DA2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0byem7pgxo8tl.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/1f-tjzvjph-kz.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3i70920u9gqmy.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/35vtzgf4r-0ee.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/content/v1/dining"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes/dining.webp"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/scenes?level=A2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/05sjr8pmbtsur.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0gymv9ybqx8aj.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/privacy"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0zamryq0l0hvx.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2lxrl8ozb4bpf.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0s_qzh3tmpjuq.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0byem7pgxo8tl.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3_usd5ad8fosk.css"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3975li07a8vmd.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/2ctnbfx2eluvn.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/turbopack-0amjhcr75c_13.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0ua11xoxryjca.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3snsmalxbiba2.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/26pr3y298l-c7.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/0uk8jt_1s-e95.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/3rbmq3v81gqvb.js"
+    },
+    {
+      "method": "GET",
+      "url": "http://127.0.0.1:3130/_next/static/chunks/13s1ysi9udn9g.js"
+    }
+  ],
+  "errors": []
+}

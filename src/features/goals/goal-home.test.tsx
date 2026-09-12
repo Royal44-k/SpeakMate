@@ -282,6 +282,12 @@ it('renders the actual zero-point plan and completes a real hidden-reference war
   ).toEqual([])
   await user.click(screen.getByRole('button', { name: '准备表达热身' }))
   await screen.findByText('black', { exact: true })
+  expect(
+    within(screen.getByRole('region', { name: '表达热身流程' })).getByRole(
+      'heading',
+      { name: '表达热身' },
+    ),
+  ).toHaveFocus()
   await user.click(screen.getByRole('button', { name: '隐藏参考，开始回忆' }))
   expect(screen.queryByText('black', { exact: true })).not.toBeInTheDocument()
   expect(screen.getByRole('button', { name: '确认完成热身' })).toBeDisabled()

@@ -1,27 +1,83 @@
 import { expect, test } from '@playwright/test'
+import vm from 'node:vm'
+import { createHash } from 'node:crypto'
 
-test('service worker shell contains the privacy-safe offline routes', async ({
+test('current build prepares exact privacy-safe shells while categories stay separate', async ({
   request,
+  page,
 }) => {
-  const response = await request.get('/sw.js')
-  const source = await response.text()
-  expect(source).toContain('speakmate-v2.3.0-shell-r1')
-  for (const path of [
-    "'/'",
-    "'/install'",
-    "'/scenes'",
-    "'/offline/session'",
-    "'/manifest.webmanifest'",
-  ]) {
-    expect(source).toContain(path)
+  const response = await request.get('/offline-build.js')
+  expect(response.ok()).toBe(true)
+  const sandbox = {
+    self: {} as {
+      SPEAKMATE_OFFLINE?: {
+        schemaVersion: number
+        buildId: string
+        shells: { url: string; sha256: string }[]
+      }
+    },
   }
-  expect(source).toContain("pathname.startsWith('/scenes/')")
-  expect(source).toContain("pathname.startsWith('/session/')")
-  expect(source).toContain("networkFirst(request, '/offline/session', false)")
-  expect(source).toContain("url.pathname.startsWith('/api/')")
-  expect(source).toContain("request.destination === 'audio'")
-  expect(source).toContain("event.data?.type === 'SKIP_WAITING'")
-  expect(source).toContain('3_000')
+  vm.runInNewContext(await response.text(), sandbox)
+  const manifest = sandbox.self.SPEAKMATE_OFFLINE!
+  expect(manifest.schemaVersion).toBe(1)
+  const paths = manifest.shells.map((shell) => shell.url)
+  for (const path of [
+    '/',
+    '/install',
+    '/scenes',
+    '/session',
+    '/session/report',
+    '/notebook',
+    '/notebook/note',
+    '/notebook/simulation',
+  ])
+    expect(paths).toContain(path)
+  expect(paths).not.toContain('/recovery')
+  for (const shell of manifest.shells) {
+    const actual = await request.get(shell.url)
+    expect(actual.status()).toBe(200)
+    expect(actual.headers()['content-type']).toContain('text/html')
+    expect(
+      createHash('sha256')
+        .update(await actual.body())
+        .digest('hex'),
+    ).toBe(shell.sha256)
+  }
+  await page.goto('/install')
+  await page.waitForFunction(
+    () => !!navigator.serviceWorker.controller,
+    undefined,
+    { timeout: 20000 },
+  )
+  const status = await page.evaluate(
+    () =>
+      new Promise<{
+        buildId: string
+        shellReady: boolean
+        categories: Record<string, boolean>
+      }>((resolve, reject) => {
+        const worker = navigator.serviceWorker.controller!
+        const timeout = setTimeout(
+          () => reject(new Error('Offline readiness response missing')),
+          5000,
+        )
+        const receive = (event: MessageEvent) => {
+          if (
+            event.source === worker &&
+            event.data?.type === 'OFFLINE_STATUS'
+          ) {
+            clearTimeout(timeout)
+            navigator.serviceWorker.removeEventListener('message', receive)
+            resolve(event.data)
+          }
+        }
+        navigator.serviceWorker.addEventListener('message', receive)
+        worker.postMessage({ type: 'OFFLINE_STATUS' })
+      }),
+  )
+  expect(status.buildId).toBe(manifest.buildId)
+  expect(status.shellReady).toBe(true)
+  expect(Object.values(status.categories)).toEqual(Array(7).fill(false))
 })
 
 test('installed public shell remains available after the network goes offline', async ({
@@ -90,7 +146,11 @@ test('visited scene library and local session shell recover offline', async ({
 
   await context.setOffline(false)
   await page.goto('/session/new?scene=hotel-check-in&level=B1')
-  await expect(page.getByText('正在准备对话舞台…')).toBeHidden()
+  await expect(page.getByRole('group', { name: '当前应答问题' })).toBeVisible()
+  await page.waitForFunction(() => {
+    const id = new URL(location.href).searchParams.get('id')
+    return !!id && id !== 'new'
+  })
   const sessionId = await page.evaluate(async () => {
     const database = await new Promise<IDBDatabase>((resolve, reject) => {
       const request = indexedDB.open('speakmate-v1')

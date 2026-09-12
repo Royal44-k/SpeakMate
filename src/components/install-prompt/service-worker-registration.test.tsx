@@ -141,7 +141,7 @@ describe('ServiceWorkerRegistration', () => {
     render(<ServiceWorkerRegistrationComponent />)
 
     await screen.findByRole('status')
-    expect(register).toHaveBeenCalledWith('/sw.js?v=2.3.0', {
+    expect(register).toHaveBeenCalledWith('/sw.js?v=3.0.0', {
       updateViaCache: 'none',
     })
   })

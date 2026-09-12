@@ -49,6 +49,8 @@ export function PracticeStage({
   const practice = usePracticeSession(scene, sessionId, repository)
   const [captureBusy, setCaptureBusy] = useState(false)
   const stageRef = useRef<HTMLElement>(null)
+  const questionRef = useRef<HTMLDivElement>(null)
+  const enteredQuestionFor = useRef<string | undefined>(undefined)
   const [feedbackOverride, setFeedbackOverride] = useState<boolean | null>(null)
   const expanded = feedbackOverride ?? practice.feedbackExpanded
   const status = practice.machine.status
@@ -90,8 +92,12 @@ export function PracticeStage({
     const stage = stageRef.current
     const dock = stage?.querySelector<HTMLElement>('[data-practice-dock]')
     if (!stage || !dock) return
+    // The capture notice is a sibling after main and needs the same measured
+    // clearance. Publish once from this original dock owner, not a second timer.
+    const root = document.documentElement
+    const previous = root.style.getPropertyValue('--practice-dock-space')
     const measure = () =>
-      stage.style.setProperty(
+      root.style.setProperty(
         '--practice-dock-space',
         `${Math.ceil(dock.getBoundingClientRect().height) + 24}px`,
       )
@@ -105,9 +111,33 @@ export function PracticeStage({
     return () => {
       observer?.disconnect()
       window.removeEventListener('resize', measure)
-      stage.style.removeProperty('--practice-dock-space')
+      if (previous) root.style.setProperty('--practice-dock-space', previous)
+      else root.style.removeProperty('--practice-dock-space')
     }
   }, [practice.ready, status, view?.canAnswer])
+
+  useEffect(() => {
+    const question = questionRef.current
+    if (
+      !practice.ready ||
+      !view?.canAnswer ||
+      !question ||
+      enteredQuestionFor.current === practice.sessionId
+    )
+      return
+    enteredQuestionFor.current = practice.sessionId
+    // Keep existing drafts and capture dialogs in control of their own focus.
+    if (busy) return
+    question.focus({ preventScroll: true })
+    question.scrollIntoView?.({ block: 'start', behavior: 'instant' })
+  }, [
+    practice.ready,
+    practice.sessionId,
+    view?.canAnswer,
+    practice.record?.session.simulation?.composition,
+    practice.simulationDraft?.text,
+    busy,
+  ])
 
   if (!practice.ready)
     return (
@@ -341,9 +371,22 @@ export function PracticeStage({
               <Headphones aria-hidden size={21} />
             </button>
           </div>
-          {(latest?.assistant ?? view!.opening).map((block, index) => (
-            <CaptureText key={index} {...block} />
-          ))}
+          {(latest?.assistant ?? view!.opening).map((block, index) => {
+            const current =
+              view!.canAnswer &&
+              block.source.questionId === view!.currentQuestion?.id
+            return (
+              <div
+                key={index}
+                ref={current ? questionRef : undefined}
+                role={current ? 'group' : undefined}
+                aria-label={current ? '当前应答问题' : undefined}
+                tabIndex={current ? -1 : undefined}
+              >
+                <CaptureText {...block} />
+              </div>
+            )
+          })}
           {view!.canAnswer ? (
             <p className={styles.hint}>{practice.aiHint}</p>
           ) : null}
@@ -510,11 +553,7 @@ export function PracticeStage({
                 确认结束并保存复盘
               </button>
             ) : (
-              <p>
-                {practice.record!.session.provenance
-                  ? '任务结算尚未接通，不能在此标记任务完成。'
-                  : '仅帮助或停止操作不能记作完成。'}
-              </p>
+              <p>仅帮助、停止或尚未完成必要阶段的操作不能记作完成。</p>
             )}
           </div>
         ) : (

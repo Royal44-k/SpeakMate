@@ -1,0 +1,7 @@
+[
+  {
+    "scope": "http://127.0.0.1:3131/",
+    "active": "http://127.0.0.1:3131/sw.js?v=3.0.0",
+    "waiting": "http://127.0.0.1:3131/sw.js?v=unknown-task7"
+  }
+]

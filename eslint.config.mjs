@@ -7,9 +7,14 @@ export default defineConfig([
   ...nextTypescript,
   globalIgnores([
     '.worktrees/**',
+    // Private orchestration/runtime snapshots are generated, not app source.
+    '.superpowers/**',
     '.next/**',
+    '.next-recovery/**',
     'coverage/**',
     'playwright-report/**',
     'test-results/**',
+    // Interrupted browser runs retain downloaded, minified trace resources.
+    'outputs/**/.playwright-artifacts-*/**',
   ]),
 ])

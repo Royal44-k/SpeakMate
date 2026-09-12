@@ -1,0 +1,267 @@
+{
+  "normalBuild": "AtPYHPSa17zmdWZFKkUAi",
+  "recoveryBuild": "fSQ0KjjPzm1yRggFV4QwF",
+  "manifestSha256": "a6f69e857c05491a29e035163a2948c94557aafa699574c5f481807841e754dc",
+  "shellCount": 16,
+  "assetCount": 70,
+  "sharedBytes": 5014664,
+  "categoryBytes": 5411091,
+  "unit": {
+    "total": 6409,
+    "passed": 6408,
+    "failed": 1,
+    "pending": 0,
+    "fileCountFromStdout": 104,
+    "started": "2026-09-12T08:42:19.412Z",
+    "durationSecondsFromStdout": 203.56,
+    "failedAssertions": [
+      {
+        "file": "D:/Codex-chat/SpeakMate/.worktrees/speakmate-3/src/features/scenes/scene-library.test.tsx",
+        "title": "SceneLibrary renders a source-aware mobile header before the scene hero",
+        "failure": [
+          "TestingLibraryElementError: Unable to find an accessible element with the role \"link\" and name \"返回初次寒暄\"\n\nHere are the accessible roles:\n\n  article:\n\n  Name \"\":\n  \u001b[36m<article\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_preparation_48ff96\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  banner:\n\n  Name \"\":\n  \u001b[36m<header\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_header_9f4709\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  Name \"\":\n  \u001b[36m<header\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_intro_48ff96\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  link:\n\n  Name \"返回场景库\":\n  \u001b[36m<a\u001b[39m\n    \u001b[33maria-label\u001b[39m=\u001b[32m\"返回场景库\"\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_backLink_9f4709\"\u001b[39m\n    \u001b[33mdata-return-to-source\u001b[39m=\u001b[32m\"true\"\u001b[39m\n    \u001b[33mhref\u001b[39m=\u001b[32m\"/scenes?level=B1&category=social\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  paragraph:\n\n  Name \"\":\n  \u001b[36m<p />\u001b[39m\n\n  Name \"\":\n  \u001b[36m<p />\u001b[39m\n\n  Name \"\":\n  \u001b[36m<p\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_summary_48ff96\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  heading:\n\n  Name \"初次寒暄\":\n  \u001b[36m<h1\u001b[39m\n    \u001b[33mdata-page-title\u001b[39m=\u001b[32m\"true\"\u001b[39m\n    \u001b[33mtabindex\u001b[39m=\u001b[32m\"-1\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  Name \"初次寒暄\":\n  \u001b[36m<h2\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_sceneTitle_48ff96\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  img:\n\n  Name \"轻松社交活动中的两人交谈\":\n  \u001b[36m<img\u001b[39m\n    \u001b[33malt\u001b[39m=\u001b[32m\"轻松社交活动中的两人交谈\"\u001b[39m\n    \u001b[33mdata-nimg\u001b[39m=\u001b[32m\"fill\"\u001b[39m\n    \u001b[33mdecoding\u001b[39m=\u001b[32m\"async\"\u001b[39m\n    \u001b[33msrc\u001b[39m=\u001b[32m\"/scenes/social.webp\"\u001b[39m\n    \u001b[33mstyle\u001b[39m=\u001b[32m\"position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-position: 50% 45%; color: transparent;\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  group:\n\n  Name \"选择练习长度\":\n  \u001b[36m<fieldset\u001b[39m\n    \u001b[33mclass\u001b[39m=\u001b[32m\"_lengths_48ff96\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  radio:\n\n  Name \"简短 · 约 3 轮约 3–5 分钟\":\n  \u001b[36m<input\u001b[39m\n    \u001b[33mname\u001b[39m=\u001b[32m\"length\"\u001b[39m\n    \u001b[33mtype\u001b[39m=\u001b[32m\"radio\"\u001b[39m\n    \u001b[33mvalue\u001b[39m=\u001b[32m\"short\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  Name \"标准 · 约 6 轮约 5–8 分钟\":\n  \u001b[36m<input\u001b[39m\n    \u001b[33mchecked\u001b[39m=\u001b[32m\"\"\u001b[39m\n    \u001b[33mname\u001b[39m=\u001b[32m\"length\"\u001b[39m\n    \u001b[33mtype\u001b[39m=\u001b[32m\"radio\"\u001b[39m\n    \u001b[33mvalue\u001b[39m=\u001b[32m\"standard\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  Name \"深入 · 约 10 轮约 8–12 分钟\":\n  \u001b[36m<input\u001b[39m\n    \u001b[33mname\u001b[39m=\u001b[32m\"length\"\u001b[39m\n    \u001b[33mtype\u001b[39m=\u001b[32m\"radio\"\u001b[39m\n    \u001b[33mvalue\u001b[39m=\u001b[32m\"extended\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n  status:\n\n  Name \"\":\n  \u001b[36m<p\u001b[39m\n    \u001b[33mrole\u001b[39m=\u001b[32m\"status\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  Name \"\":\n  \u001b[36m<p\u001b[39m\n    \u001b[33mrole\u001b[39m=\u001b[32m\"status\"\u001b[39m\n  \u001b[36m/>\u001b[39m\n\n  --------------------------------------------------\n\nIgnored nodes: comments, script, style\n\u001b[36m<body>\u001b[39m\n  \u001b[36m<div>\u001b[39m\n    \u001b[36m<article\u001b[39m\n      \u001b[33mclass\u001b[39m=\u001b[32m\"_preparation_48ff96\"\u001b[39m\n    \u001b[36m>\u001b[39m\n      \u001b[36m<header\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"_header_9f4709\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<a\u001b[39m\n          \u001b[33maria-label\u001b[39m=\u001b[32m\"返回场景库\"\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"_backLink_9f4709\"\u001b[39m\n          \u001b[33mdata-return-to-source\u001b[39m=\u001b[32m\"true\"\u001b[39m\n          \u001b[33mhref\u001b[39m=\u001b[32m\"/scenes?level=B1&category=social\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[36m<svg\u001b[39m\n            \u001b[33maria-hidden\u001b[39m=\u001b[32m\"true\"\u001b[39m\n            \u001b[33mfill\u001b[39m=\u001b[32m\"currentColor\"\u001b[39m\n            \u001b[33mheight\u001b[39m=\u001b[32m\"22\"\u001b[39m\n            \u001b[33mviewBox\u001b[39m=\u001b[32m\"0 0 256 256\"\u001b[39m\n            \u001b[33mwidth\u001b[39m=\u001b[32m\"22\"\u001b[39m\n            \u001b[33mxmlns\u001b[39m=\u001b[32m\"http://www.w3.org/2000/svg\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[36m<path\u001b[39m\n              \u001b[33md\u001b[39m=\u001b[32m\"M228,128a12,12,0,0,1-12,12H69l51.52,51.51a12,12,0,0,1-17,17l-72-72a12,12,0,0,1,0-17l72-72a12,12,0,0,1,17,17L69,116H216A12,12,0,0,1,228,128Z\"\u001b[39m\n            \u001b[36m/>\u001b[39m\n          \u001b[36m</svg>\u001b[39m\n        \u001b[36m</a>\u001b[39m\n        \u001b[36m<div>\u001b[39m\n          \u001b[36m<p>\u001b[39m\n            \u001b[0mSCENE BRIEF\u001b[0m\n          \u001b[36m</p>\u001b[39m\n          \u001b[36m<h1\u001b[39m\n            \u001b[33mdata-page-title\u001b[39m=\u001b[32m\"true\"\u001b[39m\n            \u001b[33mtabindex\u001b[39m=\u001b[32m\"-1\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[0m初次寒暄\u001b[0m\n          \u001b[36m</h1>\u001b[39m\n        \u001b[36m</div>\u001b[39m\n      \u001b[36m</header>\u001b[39m\n      \u001b[36m<div\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"_hero_48ff96\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<span\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"_frame_b69d8d \"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[36m<img\u001b[39m\n            \u001b[33malt\u001b[39m=\u001b[32m\"轻松社交活动中的两人交谈\"\u001b[39m\n            \u001b[33mdata-nimg\u001b[39m=\u001b[32m\"fill\"\u001b[39m\n            \u001b[33mdecoding\u001b[39m=\u001b[32m\"async\"\u001b[39m\n            \u001b[33msrc\u001b[39m=\u001b[32m\"/scenes/social.webp\"\u001b[39m\n            \u001b[33mstyle\u001b[39m=\u001b[32m\"position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; object-position: 50% 45%; color: transparent;\"\u001b[39m\n          \u001b[36m/>\u001b[39m\n        \u001b[36m</span>\u001b[39m\n        \u001b[36m<div\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"_heroMeta_48ff96\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[36m<span>\u001b[39m\n            \u001b[0mSOCIAL\u001b[0m\n          \u001b[36m</span>\u001b[39m\n          \u001b[36m<span>\u001b[39m\n            \u001b[0mB1\u001b[0m\n          \u001b[36m</span>\u001b[39m\n        \u001b[36m</div>\u001b[39m\n      \u001b[36m</div>\u001b[39m\n      \u001b[36m<header\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"_intro_48ff96\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<p>\u001b[39m\n          \u001b[0mFirst-time small talk\u001b[0m\n        \u001b[36m</p>\u001b[39m\n        \u001b[36m<h2\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"_sceneTitle_48ff96\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[0m初次寒暄\u001b[0m\n        \u001b[36m</h2>\u001b[39m\n        \u001b[36m<div\u001b[39m\n          \u001b[33mclass\u001b[39m=\u001b[32m\"_duration_48ff96\"\u001b[39m\n        \u001b[36m>\u001b[39m\n          \u001b[36m<svg\u001b[39m\n            \u001b[33maria-hidden\u001b[39m=\u001b[32m\"true\"\u001b[39m\n            \u001b[33mfill\u001b[39m=\u001b[32m\"currentColor\"\u001b[39m\n            \u001b[33mheight\u001b[39m=\u001b[32m\"17\"\u001b[39m\n            \u001b[33mviewBox\u001b[39m=\u001b[32m\"0 0 256 256\"\u001b[39m\n            \u001b[33mwidth\u001b[39m=\u001b[32m\"17\"\u001b[39m\n            \u001b[33mxmlns\u001b[39m=\u001b[32m\"http://www.w3.org/2000/svg\"\u001b[39m\n          \u001b[36m>\u001b[39m\n            \u001b[36m<path\u001b[39m\n              \u001b[33md\u001b[39m=\u001b[32m\"M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z\"\u001b[39m\n            \u001b[36m/>\u001b[39m\n          \u001b[36m</svg>\u001b[39m\n          \u001b[0m约 5–8 分钟\u001b[0m\n          \u001b[0m · 约\u001b[0m\n          \u001b[0m \u001b[0m\n          \u001b[0m6\u001b[0m\n          \u001b[0m 轮\u001b[0m\n        \u001b[36m</div>\u001b[39m\n      \u001b[36m</header>\u001b[39m\n      \u001b[36m<p\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"_summary_48ff96\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[0m自然开启、延续并结束轻松对话。\u001b[0m\n      \u001b[36m</p>\u001b[39m\n      \u001b[36m<fieldset\u001b[39m\n        \u001b[33mclass\u001b[39m=\u001b[32m\"_lengths_48ff96\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[36m<legend>\u001b[39m\n          \u001b[0m选择练习长度\u001b[0m\n        \u001b[36m</legend>\u001b[39m\n        \u001b[36m<label>\u001b[39m\n          \u001b[36m<input\u001b[39m\n            \u001b[33mname\u001b[39m=\u001b[32m\"length\"\u001b[39m\n            \u001b[33mtype\u001b[39m=\u001b[32m\"radio\"\u001b[39m\n            \u001b[33mvalue\u001b[39m=\u001b[32m\"short\"\u001b[39m\n          \u001b[36m/>\u001b[39m\n          \u001b[36m<span>\u001b[39m\n            \u001b[0m简短\u001b[0m\n            \u001b[0m · 约 \u001b[0m\n            \u001b[0m3\u001b[0m\n            \u001b[0m \u001b[0m\n            \u001b[0m轮\u001b[0m\n            \u001b[36m<br />\u001b[39m\n            \u001b[0m约 3–5 分钟\u001b[0m\n          \u001b[36m</span>\u001b[39m\n        \u001b[36m</label>\u001b[39m\n        \u001b[36m<label>\u001b[39m\n          \u001b[36m<input\u001b[39m\n            \u001b[33mchecked\u001b[39m=\u001b[32m\"\"\u001b[39m\n            \u001b[33mname\u001b[39m=\u001b[32m\"length\"\u001b[39m\n            \u001b[33mtype\u001b[39m=\u001b[32m\"radio\"\u001b[39m\n            \u001b[33mvalue\u001b[39m=\u001b[32m\"standard\"\u001b[39m\n          \u001b[36m/>\u001b[39m\n          \u001b[36m<span>\u001b[39m\n            \u001b[0m标准\u001b[0m\n            \u001b[0m · 约 \u001b[0m\n            \u001b[0m6\u001b[0m\n            \u001b[0m \u001b[0m\n            \u001b[0m轮\u001b[0m\n            \u001b[36m<br />\u001b[39m\n            \u001b[0m约 5–8 分钟\u001b[0m\n          \u001b[36m</span>\u001b[39m\n        \u001b[36m</label>\u001b[39m\n        \u001b[36m<label>\u001b[39m\n          \u001b[36m<input\u001b[39m\n            \u001b[33mname\u001b[39m=\u001b[32m\"length\"\u001b[39m\n            \u001b[33mtype\u001b[39m=\u001b[32m\"radio\"\u001b[39m\n            \u001b[33mvalue\u001b[39m=\u001b[32m\"extended\"\u001b[39m\n          \u001b[36m/>\u001b[39m\n          \u001b[36m<span>\u001b[39m\n            \u001b[0m深入\u001b[0m\n            \u001b[0m · 约 \u001b[0m\n            \u001b[0m10\u001b[0m\n            \u001b[0m \u001b[0m\n            \u001b[0m轮\u001b[0m\n            \u001b[36m<br />\u001b[39m\n            \u001b[0m约 8–12 分钟\u001b[0m\n          \u001b[36m</span>\u001b[39m\n        \u001b[36m</label>\u001b[39m\n      \u001b[36m</fieldset>\u001b[39m\n      \u001b[36m<p\u001b[39m\n        \u001b[33mrole\u001b[39m=\u001b[32m\"status\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[0m开发模式：资料可用于本地开发，不代表已通过生产离线验证。\u001b[0m\n        \u001b[0m页面离线准备尚未确认。\u001b[0m\n        \u001b[0m \u001b[0m\n        \u001b[0m此分类离线缓存尚未确认。\u001b[0m\n        \u001b[0m \u001b[0m\n        \u001b[0m缓存可能被浏览器清理；已保存的对话快照与公开分类下载分别管理。\u001b[0m\n      \u001b[36m</p>\u001b[39m\n      \u001b[36m<p\u001b[39m\n        \u001b[33mrole\u001b[39m=\u001b[32m\"status\"\u001b[39m\n      \u001b[36m>\u001b[39m\n        \u001b[0m正在下载或读取此公开分类，不发送你的文字或录音…\u001b[0m\n      \u001b[36m</p>\u001b[39m\n    \u001b[36m</article>\u001b[39m\n  \u001b[36m</div>\u001b[39m\n\u001b[36m</body>\u001b[39m\n    at Object.getElementError (D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3\\node_modules\\.pnpm\\@testing-library+dom@10.4.1\\node_modules\\@testing-library\\dom\\dist\\config.js:37:19)\n    at D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3\\node_modules\\.pnpm\\@testing-library+dom@10.4.1\\node_modules\\@testing-library\\dom\\dist\\query-helpers.js:76:38\n    at D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3\\node_modules\\.pnpm\\@testing-library+dom@10.4.1\\node_modules\\@testing-library\\dom\\dist\\query-helpers.js:52:17\n    at D:\\Codex-chat\\SpeakMate\\.worktrees\\speakmate-3\\node_modules\\.pnpm\\@testing-library+dom@10.4.1\\node_modules\\@testing-library\\dom\\dist\\query-helpers.js:95:19\n    at D:/Codex-chat/SpeakMate/.worktrees/speakmate-3/src/features/scenes/scene-library.test.tsx:632:29\n    at file:///D:/Codex-chat/SpeakMate/.worktrees/speakmate-3/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:302:11\n    at file:///D:/Codex-chat/SpeakMate/.worktrees/speakmate-3/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:1903:26\n    at file:///D:/Codex-chat/SpeakMate/.worktrees/speakmate-3/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2326:20\n    at new Promise (<anonymous>)\n    at runWithCancel (file:///D:/Codex-chat/SpeakMate/.worktrees/speakmate-3/node_modules/.pnpm/@vitest+runner@4.1.11/node_modules/@vitest/runner/dist/chunk-artifact.js:2323:10)"
+        ]
+      }
+    ],
+    "correction": "Only obsolete accessible-name expectation updated; full scene-library file 25PASS/25.29s. No second full-suite run per controller."
+  },
+  "network": [
+    {
+      "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-chromium-mobile/network.json",
+      "requests": 394,
+      "invalid": 0,
+      "errors": null,
+      "pageErrorEvidence": "Not serialized: task7-learning.spec.ts asserts its pageerror list before writing this request-only array."
+    },
+    {
+      "path": "outputs/qa/task7/final-chromium/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-chromium-mobile/network.json",
+      "requests": 337,
+      "invalid": 0,
+      "errors": null,
+      "pageErrorEvidence": "Not serialized: task7-learning.spec.ts asserts its pageerror list before writing this request-only array."
+    },
+    {
+      "path": "outputs/qa/task7/final-webkit/task7-learning-A-G-online--ededf-imulation-→-35-point-backup-webkit-iphone/network.json",
+      "requests": 261,
+      "invalid": 0,
+      "errors": null,
+      "pageErrorEvidence": "Not serialized: task7-learning.spec.ts asserts its pageerror list before writing this request-only array."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/network.json",
+      "requests": 536,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-1-network.json",
+      "requests": 12,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-3-network.json",
+      "requests": 12,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-corrupt-network.json",
+      "requests": 12,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-incomplete-network.json",
+      "requests": 12,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/rejected-null-network.json",
+      "requests": 12,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-recovery-webkit/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/unknown-registration-network.json",
+      "requests": 26,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/final-webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/network.json",
+      "requests": 320,
+      "invalid": 0,
+      "errors": null,
+      "pageErrorEvidence": "Not serialized: task7-learning.spec.ts asserts its pageerror list before writing this request-only array."
+    },
+    {
+      "path": "outputs/qa/task7/final-communication-03/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/network.json",
+      "requests": 274,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/fh-complete-01/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/network.json",
+      "requests": 487,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-71868-recovery-cannot-undo-submit-chromium-mobile/network.json",
+      "requests": 198,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-74b3c-l-recovery-cannot-undo-edit-chromium-mobile/network.json",
+      "requests": 196,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/fh-complete-01/task7-phase-browser-F-nati-a83d4-recovery-cannot-undo-cancel-chromium-mobile/network.json",
+      "requests": 196,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/native-scroll-04/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/network.json",
+      "requests": 302,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/coverage-02/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/network.json",
+      "requests": 191,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/coverage-02/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/restored-network.json",
+      "requests": 164,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-F--c74b3-mposes-and-explicitly-stops-chromium-mobile/network.json",
+      "requests": 216,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-F--fea75-mposes-and-explicitly-stops-chromium-mobile/network.json",
+      "requests": 216,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/simulation-return-01/task7-simulation-return-H--3b7d8-ins-independently-reachable-chromium-mobile/network.json",
+      "requests": 397,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-1b32c-l-recovery-cannot-undo-edit-chromium-mobile/network.json",
+      "requests": 196,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-8500c-recovery-cannot-undo-cancel-chromium-mobile/network.json",
+      "requests": 196,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/phase-01/task7-phase-browser-F-nati-eb752-recovery-cannot-undo-submit-chromium-mobile/network.json",
+      "requests": 196,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/cache-privacy-02/task7-cache-privacy-SW-pri-8dc69-nts-images-remain-available-chromium-mobile/network.json",
+      "requests": 712,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/controller-fault-04/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/network.json",
+      "requests": 208,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/network.json",
+      "requests": 122,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/update-capture-06/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/network.json",
+      "requests": 519,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/legacy-micro-03/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/network.json",
+      "requests": 158,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/retained-05/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/network.json",
+      "requests": 136,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/cap-legacy-red/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/network.json",
+      "requests": 190,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    },
+    {
+      "path": "outputs/qa/task7/in2-fh/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/network.json",
+      "requests": 604,
+      "invalid": 0,
+      "errors": [],
+      "pageErrorEvidence": "Serialized errors array checked."
+    }
+  ],
+  "inventory": {
+    "count": 115,
+    "bytes": 21119696,
+    "selectedCount": 113,
+    "selectedBytes": 8273124
+  }
+}

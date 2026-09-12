@@ -13,8 +13,17 @@ describe('GET /api/v1/health', () => {
 
     expect(body).toMatchObject({
       status: 'ok',
-      version: '2.3.0',
+      version: '3.0.0',
+      mode: 'local-learning',
       buildSha: 'a668452-rele',
+    })
+  })
+  it('labels the compiled recovery configuration without claiming a learning service', async () => {
+    vi.stubEnv('NEXT_PUBLIC_RECOVERY_ONLY', 'true')
+    expect(await GET().json()).toMatchObject({
+      version: '3.0.0',
+      mode: 'recovery-readonly',
+      aiMode: 'local',
     })
   })
 })

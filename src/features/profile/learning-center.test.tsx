@@ -13,6 +13,10 @@ import { describe, expect, it, vi } from 'vitest'
 import { createMemoryRepositories } from '@/infrastructure/persistence/repositories'
 
 import { LearningCenter } from './learning-center'
+import {
+  goalFixture,
+  completeWarmup,
+} from '@/infrastructure/persistence/goal-fixtures'
 
 const repositoryState = vi.hoisted(() => ({ value: undefined as unknown }))
 
@@ -31,6 +35,24 @@ vi.mock(
 )
 
 describe('LearningCenter session routes', () => {
+  it('shows actual earned points separately from the non-writing example ranking', async () => {
+    const repo = createMemoryRepositories()
+    const { plan } = await goalFixture(repo)
+    await completeWarmup(repo, plan)
+    const before = await repo.exportLearnerData()
+    render(<LearningCenter repositories={repo} />)
+    const actual = await screen.findByRole('region', { name: '本机个人成绩' })
+    expect(
+      within(actual).getByText('累计获得 10 · 可兑换余额 10'),
+    ).toBeVisible()
+    expect(
+      within(screen.getByRole('region', { name: '示例榜单' })).getByText(
+        '示例数据，非真实好友排名',
+      ),
+    ).toBeVisible()
+    const after = await repo.exportLearnerData()
+    expect({ ...after, exportedAt: before.exportedAt }).toEqual(before)
+  })
   it('keeps large retained history reachable with no eager transcripts and one selected read at a time', async () => {
     const repo = createMemoryRepositories()
     const backup = historicalIdBackup('旧的完整记录')

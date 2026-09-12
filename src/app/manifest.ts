@@ -5,7 +5,8 @@ export default function manifest(): MetadataRoute.Manifest {
     name: 'SpeakMate｜口语搭子',
     short_name: 'SpeakMate',
     description: '随时随地练习真实场景英语口语。',
-    start_url: '/practice',
+    start_url:
+      process.env.NEXT_PUBLIC_RECOVERY_ONLY === 'true' ? '/recovery' : '/',
     scope: '/',
     display: 'standalone',
     orientation: 'portrait-primary',
@@ -33,21 +34,24 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: 'maskable',
       },
     ],
-    shortcuts: [
-      {
-        name: '继续练习',
-        short_name: '练习',
-        description: '打开今天的英语口语练习',
-        url: '/practice/today',
-        icons: [{ src: '/icons/icon-192.png', sizes: '192x192' }],
-      },
-      {
-        name: '浏览场景',
-        short_name: '场景',
-        description: '从全部英语对话场景中选择',
-        url: '/scenes',
-        icons: [{ src: '/icons/icon-192.png', sizes: '192x192' }],
-      },
-    ],
+    shortcuts:
+      process.env.NEXT_PUBLIC_RECOVERY_ONLY === 'true'
+        ? []
+        : [
+            {
+              name: '继续练习',
+              short_name: '练习',
+              description: '打开今天的英语口语练习',
+              url: '/practice/today',
+              icons: [{ src: '/icons/icon-192.png', sizes: '192x192' }],
+            },
+            {
+              name: '浏览场景',
+              short_name: '场景',
+              description: '从全部英语对话场景中选择',
+              url: '/scenes',
+              icons: [{ src: '/icons/icon-192.png', sizes: '192x192' }],
+            },
+          ],
   }
 }

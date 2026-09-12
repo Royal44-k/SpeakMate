@@ -1,6 +1,7 @@
 docs/
 design-system/
-scripts/
+scripts/*
+!scripts/offline-manifest.mjs
 tests/
 design-qa.md
 APP_SPEC.md
@@ -9,3 +10,15 @@ test-results/
 test-results-new-round/
 coverage/
 artifacts/
+.superpowers/
+.agents/
+.codex/
+.git/
+.vercel/
+.next/
+.next-recovery/
+node_modules/
+.env*
+outputs/
+*.zip
+*.tar.gz

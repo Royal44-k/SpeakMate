@@ -108,6 +108,7 @@
 }
 .notice {
   margin: 16px;
+  margin-bottom: max(16px, var(--practice-dock-space, var(--footer-height, 0px)));
   padding: 16px;
   border: 1px solid #627785;
   border-radius: 16px;

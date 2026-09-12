@@ -2,9 +2,7 @@ export type SpeechRate = 0.8 | 1 | 1.15
 
 const SPEECH_RATES: SpeechRate[] = [0.8, 1, 1.15]
 let speechGeneration = 0
-let activePlayback:
-  | { generation: number; cancel: () => void }
-  | undefined
+let activePlayback: { generation: number; cancel: () => void } | undefined
 
 export function normalizeSpeechRate(value: number): SpeechRate {
   return SPEECH_RATES.reduce((nearest, rate) =>
@@ -18,8 +16,7 @@ export function selectEnglishVoice(
 ): SpeechSynthesisVoice | undefined {
   const localEnglishVoices = voices.filter(
     (voice) =>
-      voice.localService === true &&
-      voice.lang.toLowerCase().startsWith('en'),
+      voice.localService === true && voice.lang.toLowerCase().startsWith('en'),
   )
   const exact = localEnglishVoices.find(
     (voice) => voice.lang.toLowerCase() === locale.toLowerCase(),
@@ -33,7 +30,6 @@ async function loadVoices(synth: SpeechSynthesis, locale: string) {
 
   return new Promise<SpeechSynthesisVoice[]>((resolve) => {
     let settled = false
-    let fallbackTimer: ReturnType<typeof setTimeout> | undefined
     const finish = () => {
       if (settled) return
       settled = true
@@ -42,7 +38,7 @@ async function loadVoices(synth: SpeechSynthesis, locale: string) {
       resolve(synth.getVoices())
     }
     synth.addEventListener?.('voiceschanged', finish, { once: true })
-    fallbackTimer = setTimeout(finish, 250)
+    const fallbackTimer = setTimeout(finish, 250)
   })
 }
 

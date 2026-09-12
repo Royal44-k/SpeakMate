@@ -629,7 +629,7 @@ describe('SceneLibrary', () => {
       />,
     )
 
-    const backLink = screen.getByRole('link', { name: '返回初次寒暄' })
+    const backLink = screen.getByRole('link', { name: '返回场景库' })
     expect(backLink).toHaveAttribute('href', '/scenes?level=B1&category=social')
     expect(screen.getByText('SCENE BRIEF')).toBeVisible()
     expect(backLink.closest('header')?.nextElementSibling).toContainElement(

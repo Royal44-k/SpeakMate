@@ -4,8 +4,8 @@ import { Suspense, type ReactNode } from 'react'
 import '@fontsource/barlow-condensed/400.css'
 import '@fontsource/barlow-condensed/700.css'
 import '@fontsource/barlow-condensed/800.css'
-import { RouteCoordinator } from '@/components/app-shell/route-coordinator'
-import { ServiceWorkerRegistration } from '@/components/install-prompt/service-worker-registration'
+import { ApplicationRuntime } from '@/components/app-shell/application-runtime'
+import { RecoveryPage } from '@/features/recovery/recovery-page'
 
 import './globals.css'
 
@@ -30,15 +30,22 @@ export const viewport: Viewport = {
   themeColor: '#123b5d',
 }
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default function RootLayout({
+  children,
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="zh-CN">
       <body>
-        {children}
-        <Suspense fallback={null}>
-          <RouteCoordinator />
-        </Suspense>
-        <ServiceWorkerRegistration />
+        {process.env.NEXT_PUBLIC_RECOVERY_ONLY === 'true' ? (
+          <RecoveryPage />
+        ) : (
+          <>
+            {children}
+            <Suspense fallback={null}>
+              <ApplicationRuntime />
+            </Suspense>
+          </>
+        )}
       </body>
     </html>
   )

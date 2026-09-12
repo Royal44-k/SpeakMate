@@ -1,9 +1,10 @@
 import type { NextConfig } from 'next'
 
-const syncOrigin = process.env.NEXT_PUBLIC_SYNC_ENABLED === 'true'
-  && process.env.NEXT_PUBLIC_SUPABASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin
-  : undefined
+const syncOrigin =
+  process.env.NEXT_PUBLIC_SYNC_ENABLED === 'true' &&
+  process.env.NEXT_PUBLIC_SUPABASE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).origin
+    : undefined
 const scriptSources = ["'self'", "'unsafe-inline'"]
 if (process.env.NODE_ENV !== 'production') scriptSources.push("'unsafe-eval'")
 const contentSecurityPolicy = [
@@ -38,6 +39,10 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  distDir:
+    process.env.NEXT_PUBLIC_RECOVERY_ONLY === 'true'
+      ? '.next-recovery'
+      : '.next',
   images: {
     formats: ['image/avif', 'image/webp'],
   },

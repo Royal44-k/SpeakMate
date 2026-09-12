@@ -321,14 +321,22 @@ describe('graded coffee contract and state machine', () => {
     })
     if (loaded.status !== 'available') throw Error('missing')
     const pack = loaded.pack
-    pack.questions[0].answers[0].acceptedForms.push(
+    pack.questions[0].answers[0].text =
+      'An Americano with an extra shot, please.'
+    pack.questions[0].answers[0].acceptedForms = [
       'An Americano with an extra shot, please.',
-    )
+    ]
     pack.questions[0].answers[0].effects.push({ key: 'shot', value: 'extra' })
     const opening = createDialogue(pack, {
       mode: 'short',
       variantId: 'counter',
     })
+    const omitted = advanceDialogue(opening.snapshot, {
+      text: 'An Americano, please.',
+    })
+    expect(
+      omitted.snapshot.state.facts.some((fact) => fact.key === 'shot'),
+    ).toBe(false)
     const matched = advanceDialogue(opening.snapshot, {
       text: 'An Americano with an extra shot, please.',
     })

@@ -1,0 +1,36 @@
+{
+  "online": {
+    "controller": "http://127.0.0.1:3130/sw.js?v=3.0.0",
+    "status": 200,
+    "type": "basic",
+    "url": "http://127.0.0.1:3130/install",
+    "bytes": 18204,
+    "headers": {
+      "cache-control": "s-maxage=31536000",
+      "connection": "keep-alive",
+      "content-encoding": "gzip",
+      "content-security-policy": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; media-src 'self' blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'",
+      "content-type": "text/html; charset=utf-8",
+      "date": "Sat, 12 Sep 2026 06:30:11 GMT",
+      "etag": "\"13sml8whpcadb0\"",
+      "keep-alive": "timeout=5",
+      "permissions-policy": "camera=(), geolocation=(), microphone=(self)",
+      "referrer-policy": "strict-origin-when-cross-origin",
+      "transfer-encoding": "chunked",
+      "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch, Accept-Encoding",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY",
+      "x-nextjs-cache": "HIT",
+      "x-nextjs-prerender": "1, 1",
+      "x-nextjs-stale-time": "300"
+    }
+  },
+  "offlineCache": {
+    "online": false,
+    "bytes": 18204
+  },
+  "offlineNavigation": {
+    "error": "Error: page.reload: WebKit encountered an internal error\nCall log:\n\u001b[2m  - waiting for navigation until \"domcontentloaded\"\u001b[22m\n"
+  },
+  "restored": "安装到手机"
+}

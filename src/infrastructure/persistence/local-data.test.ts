@@ -107,28 +107,53 @@ describe('v1 upgrade safety', () => {
     old.close()
     const db = await getDatabase()
     expect(db.version).toBe(2)
-    expect(await db.get('profile', 'guest_migration_fixture')).toMatchObject({
-      level: 'C1',
-      dailyMinutes: 15,
-    })
-    expect(await db.get('sessions', 'session_migration_fixture')).toMatchObject(
-      { status: 'active', sceneId: 'dining-01' },
-    )
-    expect(await db.get('settings', 'settings')).toMatchObject({
-      speechRate: 0.85,
-      autoPlayAi: false,
-      feedbackExpanded: true,
-    })
+    async function exactOriginals(database: typeof db) {
+      expect(await database.getAll('profile')).toEqual([golden.profile])
+      expect(await database.getAll('settings')).toEqual([golden.settings])
+      expect(await database.getAll('sessions')).toEqual(golden.sessions)
+      expect(await database.getAll('turns')).toEqual(golden.turns)
+      expect(await database.getAll('favorites')).toEqual(golden.favorites)
+      expect(await database.getAll('outbox')).toEqual([])
+    }
+    await exactOriginals(db)
     const notes = await db.getAll('notebook')
     expect(notes).toHaveLength(1)
-    expect(notes[0]).toMatchObject({
+    expect(notes[0]).toEqual({
+      id: '13:favorite-note|26:favorite_migration_fixture',
+      profileId: 'guest_migration_fixture',
+      kind: 'sentence',
       text: 'Could I get an oat-milk latte to go, please?',
+      normalizedText: 'could i get an oat-milk latte to go, please',
+      translationZh: '请给我一杯燕麦奶拿铁，外带。',
+      notes: '',
+      tags: [],
       favoriteIds: ['favorite_migration_fixture'],
+      sources: [
+        {
+          id: 'favorite_migration_fixture',
+          kind: 'favorite',
+          originalText: 'Could I get an oat-milk latte to go, please?',
+          translationZh: '请给我一杯燕麦奶拿铁，外带。',
+          sceneId: 'dining-01',
+          turnId: 'session_migration_fixture:turn:0',
+          sessionId: 'session_migration_fixture',
+          level: 'C1',
+          sceneTitleZh: undefined,
+          learnerText: 'Could I have an oat-milk latte to go, please?',
+          correctedText: 'Could I have an oat-milk latte to go, please?',
+          naturalText: 'Could I get an oat-milk latte to go, please?',
+          explanationZh: '这是礼貌的点单表达。',
+          createdAt: '2026-09-08T15:58:10.000Z',
+        },
+      ],
+      createdAt: '2026-09-08T15:58:10.000Z',
+      updatedAt: '2026-09-08T15:58:10.000Z',
     })
     db.close()
     vi.resetModules()
     const reopened = await (await import('./db')).getDatabase()
-    expect(await reopened.getAll('notebook')).toHaveLength(1)
+    await exactOriginals(reopened)
+    expect(await reopened.getAll('notebook')).toEqual(notes)
     reopened.close()
   })
 

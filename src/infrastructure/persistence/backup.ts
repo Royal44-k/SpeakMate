@@ -102,18 +102,25 @@ export function createBackupPort(storage: LocalStoragePort) {
       })
     },
     exportLearnerData(): Promise<LearnerDataExportV2> {
-      return storage.read((state) => {
-        validateState(state)
-        const data = exportState(state)
-        // The exact downloaded representation must pass the same import boundary.
-        const json = JSON.stringify(data)
-        if (byteLength(json) > MAX_BACKUP_BYTES)
-          throw new Error(
-            'BACKUP_TOO_LARGE: 当前数据超过 10 MB，未生成无法恢复的备份。',
-          )
-        backupSchema.parse(JSON.parse(json))
-        return data
-      })
+      return exportLearnerData(storage)
     },
   }
+}
+
+/** Normal and recovery builds share the complete, bounded backup boundary. */
+export function exportLearnerData(
+  storage: Pick<LocalStoragePort, 'read'>,
+): Promise<LearnerDataExportV2> {
+  return storage.read((state) => {
+    validateState(state)
+    const data = exportState(state)
+    // The exact downloaded representation must pass the same import boundary.
+    const json = JSON.stringify(data)
+    if (byteLength(json) > MAX_BACKUP_BYTES)
+      throw new Error(
+        'BACKUP_TOO_LARGE: 当前数据超过 10 MB，未生成无法恢复的备份。',
+      )
+    backupSchema.parse(JSON.parse(json))
+    return data
+  })
 }

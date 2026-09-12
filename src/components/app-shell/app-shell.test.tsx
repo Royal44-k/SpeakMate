@@ -95,14 +95,15 @@ describe('AppShell', () => {
     expect((await axe(container)).violations).toEqual([])
   })
 
-  it('names the mobile back link after its page heading without accessibility violations', async () => {
+  it('names the mobile back link after its destination without accessibility violations', async () => {
     const { container } = render(
       <MobilePageHeader title="隐私与数据" fallbackHref="/me" />,
     )
 
-    expect(
-      screen.getByRole('link', { name: '返回隐私与数据' }),
-    ).toHaveAttribute('href', '/me')
+    expect(screen.getByRole('link', { name: '返回我的练习' })).toHaveAttribute(
+      'href',
+      '/me',
+    )
     expect(screen.getByRole('heading', { name: '隐私与数据' })).toHaveAttribute(
       'data-page-title',
     )
@@ -132,7 +133,21 @@ describe('AppShell', () => {
       ]),
     )
     render(<SmartBackLink fallbackHref="/notebook" ariaLabel="返回来源" />)
-    fireEvent.click(screen.getByRole('link', { name: '返回来源' }))
+    const link = screen.getByRole('link', { name: '返回来源' })
+    expect(link).toHaveAttribute('href', '/notebook')
+    let preventedByApp: boolean | undefined
+    // Observe after React's root handler, then intercept only jsdom's unsupported
+    // document navigation. The production fallback must remain a native anchor.
+    document.addEventListener(
+      'click',
+      (event) => {
+        preventedByApp = event.defaultPrevented
+        event.preventDefault()
+      },
+      { once: true },
+    )
+    fireEvent.click(link)
+    expect(preventedByApp).toBe(false)
     expect(routerBack).not.toHaveBeenCalled()
   })
 
@@ -142,7 +157,7 @@ describe('AppShell', () => {
     visitRoute('/scenes/prepare?scene=hotel-check-in')
     render(<MobilePageHeader title="酒店入住" fallbackHref="/scenes" />)
 
-    fireEvent.click(screen.getByRole('link', { name: '返回酒店入住' }))
+    fireEvent.click(screen.getByRole('link', { name: '返回场景库' }))
 
     expect(routerBack).toHaveBeenCalledTimes(1)
   })

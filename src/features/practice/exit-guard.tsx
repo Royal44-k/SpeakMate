@@ -67,10 +67,12 @@ function removeSentinel(state: unknown, id: string) {
 
 function GuardedExit({
   fallbackHref,
+  ariaLabel,
   onConfirmExit,
   state,
 }: {
   fallbackHref: string
+  ariaLabel: string
   onConfirmExit?: () => void
   state: ExitGuardState
 }) {
@@ -457,7 +459,7 @@ function GuardedExit({
         ref={triggerRef}
         className={styles.exitLink}
         href={fallbackHref}
-        aria-label="退出本次练习"
+        aria-label={ariaLabel}
         onClick={requestExit}
       >
         <ArrowLeft aria-hidden size={23} />
@@ -508,26 +510,35 @@ function GuardedExit({
 export function ExitGuard({
   state,
   fallbackHref,
+  ariaLabel = '退出本次练习',
   onConfirmExit,
 }: {
   state: ExitGuardState
   fallbackHref: string
+  ariaLabel?: string
   onConfirmExit?: () => void
 }) {
   if (state === 'clean') {
-    return <CleanExit fallbackHref={fallbackHref} />
+    return <CleanExit fallbackHref={fallbackHref} ariaLabel={ariaLabel} />
   }
 
   return (
     <GuardedExit
       state={state}
+      ariaLabel={ariaLabel}
       fallbackHref={fallbackHref}
       onConfirmExit={onConfirmExit}
     />
   )
 }
 
-function CleanExit({ fallbackHref }: { fallbackHref: string }) {
+function CleanExit({
+  fallbackHref,
+  ariaLabel,
+}: {
+  fallbackHref: string
+  ariaLabel: string
+}) {
   const router = useRouter()
 
   function exit(event: MouseEvent<HTMLAnchorElement>) {
@@ -554,7 +565,7 @@ function CleanExit({ fallbackHref }: { fallbackHref: string }) {
     <a
       className={styles.exitLink}
       href={fallbackHref}
-      aria-label="退出本次练习"
+      aria-label={ariaLabel}
       onClick={exit}
     >
       <ArrowLeft aria-hidden size={23} />

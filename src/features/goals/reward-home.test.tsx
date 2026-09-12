@@ -123,6 +123,11 @@ it('provides actual reward and guide static route consumers', async () => {
     'page',
   )
   expect(screen.getAllByRole('main')).toHaveLength(1)
+  await screen.findByRole('article', { name: '深海个人卡' })
+  expect(screen.queryByRole('link', { name: '退出本次练习' })).toBeNull()
+  expect(
+    screen.getAllByRole('link', { name: '返回今日目标' })[0],
+  ).toHaveAttribute('href', '/')
   rewards.unmount()
   render(<GuidePage />)
   expect(

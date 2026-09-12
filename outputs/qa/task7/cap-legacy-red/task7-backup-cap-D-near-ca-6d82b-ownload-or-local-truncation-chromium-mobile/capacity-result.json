@@ -1,0 +1,7 @@
+{
+  "nearBytes": 9917267,
+  "nearNotes": 481,
+  "overNotes": 551,
+  "downloads": 0,
+  "error": "数据导出没有完成，请稍后重试。BACKUP_TOO_LARGE: 当前数据超过 10 MB，未生成无法恢复的备份。"
+}

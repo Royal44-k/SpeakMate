@@ -130,7 +130,9 @@ export function presentGradedPractice(
     outcome: snapshot.state.outcome,
     canAnswer: !!currentQuestion,
     canFinish:
-      session.status === 'active' && !!flow.basis && !session.provenance,
+      session.status === 'active' &&
+      !!flow.basis &&
+      (!session.simulation || !!session.simulation.composition),
     situationZh: snapshot.pack.variants.find(
       (variant) => variant.id === snapshot.state.variantId,
     )!.situationZh,

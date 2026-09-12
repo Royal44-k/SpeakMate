@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type {
   DailyPlan,
   DailyPlanTask,
@@ -33,6 +33,11 @@ export function WarmupFlow({
   const [texts, setTexts] = useState<string[]>(materials.map(() => '')),
     [runId] = useState(() => `warmup_${crypto.randomUUID()}`)
   const pending = useRef<LearningEvent>(undefined)
+  const heading = useRef<HTMLHeadingElement>(null)
+  useEffect(() => {
+    heading.current?.focus({ preventScroll: true })
+    heading.current?.scrollIntoView?.({ block: 'start', behavior: 'instant' })
+  }, [])
   const [hasPending, setHasPending] = useState(false)
   useGoalInteraction(busy || (!done && texts.some((text) => !!text.trim())))
   const foreground = useForegroundTime(
@@ -86,7 +91,9 @@ export function WarmupFlow({
         fallbackHref={buildGoalHref(plan.dateKey, task.slot)}
         onConfirmExit={() => setTexts(materials.map(() => ''))}
       />
-      <h2>表达热身</h2>
+      <h2 ref={heading} tabIndex={-1}>
+        表达热身
+      </h2>
       <a data-return-to-source href={buildGoalHref(plan.dateKey, task.slot)}>
         返回目标列表
       </a>

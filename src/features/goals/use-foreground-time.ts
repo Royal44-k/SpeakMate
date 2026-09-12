@@ -8,6 +8,8 @@ export function useForegroundTime(
   runId: string | undefined,
   active: boolean,
 ) {
+  const activeRef = useRef(active)
+  const updateVisibility = useRef<(() => void) | undefined>(undefined)
   const [error, setError] = useState(''),
     recorder = useRef<ReturnType<typeof createForegroundRecorder> | undefined>(
       undefined,
@@ -35,26 +37,34 @@ export function useForegroundTime(
         })
     }
     const visibility = () => {
-      tracker.setVisible(active && document.visibilityState === 'visible')
+      tracker.setVisible(
+        activeRef.current && document.visibilityState === 'visible',
+      )
       flush()
     }
     const pagehide = () => {
       tracker.setVisible(false)
       flush()
     }
+    updateVisibility.current = visibility
     visibility()
     document.addEventListener('visibilitychange', visibility)
     window.addEventListener('pagehide', pagehide)
     const timer = setInterval(flush, 15000)
     return () => {
       mounted = false
+      updateVisibility.current = undefined
       clearInterval(timer)
       document.removeEventListener('visibilitychange', visibility)
       window.removeEventListener('pagehide', pagehide)
       tracker.setVisible(false)
       flush()
     }
-  }, [repo, profileId, runId, active])
+  }, [repo, profileId, runId])
+  useEffect(() => {
+    activeRef.current = active
+    updateVisibility.current?.()
+  }, [active])
   return {
     error,
     retry: () => {
