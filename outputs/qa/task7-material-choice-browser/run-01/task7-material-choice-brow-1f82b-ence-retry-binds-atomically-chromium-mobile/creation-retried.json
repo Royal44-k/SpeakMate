@@ -1,0 +1,488 @@
+{
+  "dailyPlans": [
+    {
+      "id": "10:daily-plan|42:guest_8e0033de-b966-49d6-939c-43d8dee972a3|10:2026-09-10",
+      "profileId": "guest_8e0033de-b966-49d6-939c-43d8dee972a3",
+      "dateKey": "2026-09-10",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_8e0033de-b966-49d6-939c-43d8dee972a3|10:2026-09-10|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_8e0033de-b966-49d6-939c-43d8dee972a3|10:2026-09-10|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-06",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-06"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_8e0033de-b966-49d6-939c-43d8dee972a3|10:2026-09-10|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "主动回忆并造句，完成所选 3 次提交的应用流程后确认结束",
+          "target": {
+            "kind": "simulation",
+            "noteIds": [
+              "3d7773b8-ec75-4a97-8453-c7282ab8f3e6"
+            ],
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "noteId": "3d7773b8-ec75-4a97-8453-c7282ab8f3e6",
+              "sourceId": "81bc9455-6e7d-4a4a-b61c-88404f7b6bb2",
+              "sourceLevel": "A2",
+              "descriptorId": "micro.coffee.word.black.A2",
+              "descriptorVersion": 1,
+              "sourceContentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": [
+              "3d7773b8-ec75-4a97-8453-c7282ab8f3e6"
+            ],
+            "sceneId": "dining-01"
+          },
+          "progress": 0,
+          "startedAt": "2026-09-10T02:00:00.000Z"
+        }
+      ],
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "favorites": [],
+  "learningEvents": [],
+  "notebook": [
+    {
+      "id": "3d7773b8-ec75-4a97-8453-c7282ab8f3e6",
+      "profileId": "guest_8e0033de-b966-49d6-939c-43d8dee972a3",
+      "kind": "word",
+      "text": "black",
+      "normalizedText": "black",
+      "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+      "notes": "",
+      "tags": [],
+      "sources": [
+        {
+          "id": "81bc9455-6e7d-4a4a-b61c-88404f7b6bb2",
+          "kind": "scene",
+          "originalText": "black",
+          "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "createdAt": "2026-09-10T02:00:00.000Z"
+        },
+        {
+          "id": "d932300b-182b-4b76-b8a5-7a12bd503c64",
+          "kind": "scene",
+          "originalText": "black",
+          "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "createdAt": "2026-09-10T02:00:00.000Z"
+        }
+      ],
+      "favoriteIds": [],
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "outbox": [],
+  "pointsLedger": [],
+  "profile": [
+    {
+      "id": "guest_8e0033de-b966-49d6-939c-43d8dee972a3",
+      "level": "A2",
+      "goals": [
+        "travel"
+      ],
+      "dailyMinutes": 5,
+      "onboardingCompleted": true,
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "reviews": [],
+  "rewardUnlocks": [],
+  "sessions": [
+    {
+      "id": "simulation_272f858b-8fad-4c54-a210-ffb9af069331",
+      "profileId": "guest_8e0033de-b966-49d6-939c-43d8dee972a3",
+      "sceneId": "dining-01",
+      "sceneVersion": 1,
+      "level": "A2",
+      "status": "active",
+      "startedAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z",
+      "completedGoals": [],
+      "openingText": "We have Americanos and filter coffee. What would you like today?",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_8e0033de-b966-49d6-939c-43d8dee972a3|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_8e0033de-b966-49d6-939c-43d8dee972a3|10:2026-09-10|13:consolidation",
+        "planDate": "2026-09-10",
+        "sourceNoteId": "3d7773b8-ec75-4a97-8453-c7282ab8f3e6",
+        "returnTo": "/?date=2026-09-10&task=consolidation"
+      },
+      "gradedDialogue": {
+        "schemaVersion": 1,
+        "pack": {
+          "schemaVersion": 1,
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "sceneId": "dining-01",
+          "category": "dining",
+          "level": "A2",
+          "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+          "rationale": {
+            "canDoZh": "处理常见柜台交换，在点单中表达简单偏好及下一步安排。",
+            "complexityZh": "连接选择与一个日常原因，区分制作时间、取餐方式及实际付款。",
+            "scaffoldingZh": "问题给出可用选项；参考回答提供 because 或简单补充句，不要求即兴论证。",
+            "registerZh": "友好、直接且礼貌，可婉拒推销或提出个人安排。",
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ]
+          },
+          "questions": [
+            {
+              "id": "coffee.A2.drink",
+              "text": "We have Americanos and filter coffee. What would you like today?",
+              "intent": "order",
+              "objective": "drink",
+              "hintZh": "选一种在售咖啡，可补充简单原因。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.drink.a",
+                  "text": "An Americano, please. I like a strong coffee.",
+                  "acceptedForms": [
+                    "An Americano, please. I like a strong coffee."
+                  ],
+                  "effects": [
+                    {
+                      "key": "drink",
+                      "value": "americano"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.drink.b",
+                  "text": "I would like a filter coffee today, please.",
+                  "acceptedForms": [
+                    "I would like a filter coffee today, please."
+                  ],
+                  "effects": [
+                    {
+                      "key": "drink",
+                      "value": "filter"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            },
+            {
+              "id": "coffee.A2.size",
+              "text": "Would you prefer a small drink or a large one?",
+              "intent": "quantity",
+              "objective": "size",
+              "hintZh": "按需要选择杯型，不改变饮品种类。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.size.a",
+                  "text": "A small one, please. I do not have much time.",
+                  "acceptedForms": [
+                    "A small one, please. I do not have much time."
+                  ],
+                  "effects": [
+                    {
+                      "key": "size",
+                      "value": "small"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.size.b",
+                  "text": "A large one, please. I have a long morning ahead.",
+                  "acceptedForms": [
+                    "A large one, please. I have a long morning ahead."
+                  ],
+                  "effects": [
+                    {
+                      "key": "size",
+                      "value": "large"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            },
+            {
+              "id": "coffee.A2.milk",
+              "text": "Would you like to keep it black, or add some oat milk?",
+              "intent": "customize",
+              "objective": "milk",
+              "hintZh": "black 在这里是不加奶；不要按颜色泛解。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.milk.a",
+                  "text": "Black, please. I do not usually have milk in coffee.",
+                  "acceptedForms": [
+                    "Black, please. I do not usually have milk in coffee."
+                  ],
+                  "effects": [
+                    {
+                      "key": "milk",
+                      "value": "none"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.milk.b",
+                  "text": "Some oat milk, please. I like a milder taste.",
+                  "acceptedForms": [
+                    "Some oat milk, please. I like a milder taste."
+                  ],
+                  "effects": [
+                    {
+                      "key": "milk",
+                      "value": "oat"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            }
+          ],
+          "variants": [
+            {
+              "id": "counter",
+              "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                },
+                "standard": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                },
+                "extended": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+              }
+            }
+          ],
+          "repairs": {
+            "clarify": "Of course. Here are the choices again.",
+            "struggle": "Take your time. Start with one of the example answers.",
+            "offTopic": "We can come back to that later. Let us finish this drink choice.",
+            "unknown": "Your words are saved for this practice, but this local lesson cannot confirm their meaning.",
+            "changed": "That earlier choice has been updated.",
+            "refusedClosing": "That is fine. We will stop this practice without completing the order."
+          }
+        },
+        "state": {
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "mode": "short",
+          "variantId": "counter",
+          "currentQuestionId": "coffee.A2.drink",
+          "facts": [],
+          "completedObjectives": [],
+          "completedIntents": [],
+          "askedQuestionIds": [
+            "coffee.A2.drink"
+          ],
+          "turns": [],
+          "outcome": "active",
+          "reply": "We have Americanos and filter coffee. What would you like today?",
+          "confirmation": "none"
+        }
+      },
+      "presentation": {
+        "schemaVersion": 1,
+        "counterpartZh": "咖啡师角色",
+        "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+      },
+      "simulation": {
+        "schemaVersion": 1,
+        "noteIds": [
+          "3d7773b8-ec75-4a97-8453-c7282ab8f3e6"
+        ],
+        "source": {
+          "noteId": "3d7773b8-ec75-4a97-8453-c7282ab8f3e6",
+          "sourceId": "81bc9455-6e7d-4a4a-b61c-88404f7b6bb2",
+          "snapshot": {
+            "id": "81bc9455-6e7d-4a4a-b61c-88404f7b6bb2",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          },
+          "noteText": "black",
+          "noteKind": "word"
+        },
+        "returnTo": "/notebook/note?id=3d7773b8-ec75-4a97-8453-c7282ab8f3e6",
+        "descriptor": {
+          "schemaVersion": 1,
+          "id": "micro.coffee.word.black.A2",
+          "analysisEntryId": "coffee.word.black",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "sourceContentVersion": 1,
+          "sourceVariantId": "counter",
+          "targetQuestionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.milk"
+          ],
+          "questionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.size",
+            "coffee.A2.milk"
+          ],
+          "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+          "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made.",
+          "review": {
+            "state": "model-reviewed",
+            "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+          },
+          "version": 1
+        },
+        "target": {
+          "coverage": "exact",
+          "text": "black",
+          "kind": "word",
+          "meaningZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "example": "I usually have my coffee black.",
+          "substitution": "I usually have milk in my coffee."
+        }
+      }
+    }
+  ],
+  "settings": [],
+  "turns": []
+}

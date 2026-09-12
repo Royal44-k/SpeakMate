@@ -1,0 +1,311 @@
+{
+  "buildId": "in2pG1ng-2S7-GB53eqAC",
+  "fault": {
+    "armed": false,
+    "aborted": true,
+    "attemptedSessionId": "simulation_c7b9c27c-1dc4-43a8-8c7b-849d62331171",
+    "attemptedPlanId": "10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10"
+  },
+  "before": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10",
+        "profileId": "guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53",
+        "dateKey": "2026-09-10",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-03",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "counter",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-03"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-10T02:00:00.000Z",
+        "updatedAt": "2026-09-10T02:00:00.000Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [
+      {
+        "id": "36890bf0-3f82-441f-95dc-ce920e45ce7b",
+        "profileId": "guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53",
+        "kind": "word",
+        "text": "black",
+        "normalizedText": "black",
+        "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "cf2de342-39f0-480b-a9c7-fa9890ff4750",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          },
+          {
+            "id": "a6a15bff-eda2-4a50-884c-e631d04d7eb7",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-10T02:00:00.000Z",
+        "updatedAt": "2026-09-10T02:00:00.000Z"
+      }
+    ],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-10T02:00:00.000Z",
+        "updatedAt": "2026-09-10T02:00:00.000Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [],
+    "settings": [],
+    "turns": []
+  },
+  "failed": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10",
+        "profileId": "guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53",
+        "dateKey": "2026-09-10",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-03",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "counter",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-03"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53|10:2026-09-10|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-10T02:00:00.000Z",
+        "updatedAt": "2026-09-10T02:00:00.000Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [
+      {
+        "id": "36890bf0-3f82-441f-95dc-ce920e45ce7b",
+        "profileId": "guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53",
+        "kind": "word",
+        "text": "black",
+        "normalizedText": "black",
+        "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "cf2de342-39f0-480b-a9c7-fa9890ff4750",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          },
+          {
+            "id": "a6a15bff-eda2-4a50-884c-e631d04d7eb7",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-10T02:00:00.000Z",
+        "updatedAt": "2026-09-10T02:00:00.000Z"
+      }
+    ],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_98bdc8a5-48b9-4c26-b317-ea85f014bd53",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-10T02:00:00.000Z",
+        "updatedAt": "2026-09-10T02:00:00.000Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [],
+    "settings": [],
+    "turns": []
+  }
+}
