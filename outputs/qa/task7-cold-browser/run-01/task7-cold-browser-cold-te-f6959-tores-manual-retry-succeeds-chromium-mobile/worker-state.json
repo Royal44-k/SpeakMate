@@ -1,0 +1,14 @@
+{
+  "supported": true,
+  "controller": "http://127.0.0.1:3135/sw.js?v=3.0.0",
+  "registrations": [
+    {
+      "scope": "http://127.0.0.1:3135/",
+      "active": "http://127.0.0.1:3135/sw.js?v=3.0.0"
+    }
+  ],
+  "caches": [
+    "speakmate-build-v1-in2pG1ng-2S7-GB53eqAC"
+  ],
+  "alerts": []
+}

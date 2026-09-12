@@ -1,0 +1,166 @@
+{
+  "build": "in2pG1ng-2S7-GB53eqAC",
+  "legacySha256": "781e3b246b7edcec11098b66f7883ba168b5436df21ebcfdd84340f0b35d50d3",
+  "transport": [
+    {
+      "method": "GET",
+      "path": "/welcome",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/35vtzgf4r-0ee.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200
+    }
+  ]
+}

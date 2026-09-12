@@ -1,0 +1,17 @@
+{
+  "supported": true,
+  "controller": "http://127.0.0.1:3135/sw.js?v=2.3.0",
+  "registrations": [
+    {
+      "scope": "http://127.0.0.1:3135/",
+      "active": "http://127.0.0.1:3135/sw.js?v=2.3.0",
+      "waiting": "http://127.0.0.1:3135/sw.js?v=3.0.0"
+    }
+  ],
+  "caches": [
+    "speakmate-v2.3.0-shell-r1"
+  ],
+  "alerts": [
+    "资料准备或本机保存失败。所选任务保持原样，请重试；也可先完成更新。重新读取查看离线与更新"
+  ]
+}

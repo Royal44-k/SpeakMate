@@ -1,0 +1,708 @@
+{
+  "build": "in2pG1ng-2S7-GB53eqAC",
+  "legacySha256": "781e3b246b7edcec11098b66f7883ba168b5436df21ebcfdd84340f0b35d50d3",
+  "transport": [
+    {
+      "method": "GET",
+      "path": "/welcome",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sw.js?v=3.0.0",
+      "fault": "503 only for native service-worker script request",
+      "status": 503
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/35vtzgf4r-0ee.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sw.js?v=3.0.0",
+      "fault": "503 only for native service-worker script request",
+      "status": 503
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/35vtzgf4r-0ee.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/sw.js?v=3.0.0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/offline-build.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/install",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/practice",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/me",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/privacy",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/session/report",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/prepare",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/notebook",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/notebook/note",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/notebook/simulation",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/rewards",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/guide",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/welcome",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/auth",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/05sjr8pmbtsur.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0byem7pgxo8tl.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0gymv9ybqx8aj.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0j8ei7txik68j.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0kh157s6n9m85.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0p9yvsyvmmfeq.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0s_qzh3tmpjuq.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ty9k-pko4_kb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0ua11xoxryjca.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0uk8jt_1s-e95.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/0zamryq0l0hvx.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/13s1ysi9udn9g.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/15xbu68-4kmdd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1cr_w82fr6hzp.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1f-tjzvjph-kz.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1k6xx-rl81k0c.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/1t63d5j5ybktp.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/26pr3y298l-c7.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ctnbfx2eluvn.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2ka0totmurnj1.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2kdyww1yqxlnf.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2lxrl8ozb4bpf.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/2quitcivzi819.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3_usd5ad8fosk.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/32tn7a1d0dfka.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/35vtzgf4r-0ee.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/369v10xz-wfzd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3975li07a8vmd.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3f__1h-j75apl.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3f_y3kur09m-m.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3i70920u9gqmy.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3rbmq3v81gqvb.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/3snsmalxbiba2.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/444ijkz8o2hp6.css",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/chunks/turbopack-0amjhcr75c_13.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/in2pG1ng-2S7-GB53eqAC/_buildManifest.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/in2pG1ng-2S7-GB53eqAC/_clientMiddlewareManifest.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/in2pG1ng-2S7-GB53eqAC/_ssgManifest.js",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-400-normal.1y9apvljb2g4s.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-400-normal.3966srz6ua9nl.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.1on3xg---ibgx.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-700-normal.21s4tc4km7afu.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.2yhcvw6l_9tek.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-800-normal.3lg-gfem2skt4.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-ext-400-normal.0rpobyvjmamnh.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-ext-400-normal.3yj28lypgqt1q.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-ext-700-normal.1qvxqej4sgmo7.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-ext-700-normal.2ujo9d6x5hgkq.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2ilznutl-gkih.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-latin-ext-800-normal.2qbk6mf928vn4.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-vietnamese-400-normal.24d76vaxd5do6.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-vietnamese-400-normal.2xfe7s8liyrco.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-vietnamese-700-normal.30aknk5meqo_4.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-vietnamese-700-normal.3f_ld5jwq496k.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0bnijc5a116ah.woff2",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/_next/static/media/barlow-condensed-vietnamese-800-normal.0x2bwntxagcoi.woff",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/icons/icon-192.png",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/icons/icon-512.png",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/icons/icon-maskable-512.png",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/icons/speakmate-icon-master.png",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/icons/speakmate-maskable-master.png",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/travel.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/dining.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/daily.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/work.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/social.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/study.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/emergency.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/scenes/hotel.webp",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/content/v1/dining",
+      "status": 200
+    }
+  ]
+}

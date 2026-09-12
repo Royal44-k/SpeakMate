@@ -1,0 +1,9 @@
+{
+  "supported": false,
+  "controller": null,
+  "registrations": [],
+  "caches": [],
+  "alerts": [
+    "资料准备或本机保存失败。所选任务保持原样，请重试；也可先完成更新。重新读取查看离线与更新"
+  ]
+}

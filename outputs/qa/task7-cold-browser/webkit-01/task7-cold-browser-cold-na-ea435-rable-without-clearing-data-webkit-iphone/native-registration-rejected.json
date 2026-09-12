@@ -1,0 +1,244 @@
+{
+  "beforeWorker": {
+    "supported": true,
+    "controller": null,
+    "registrations": [],
+    "caches": [],
+    "alerts": []
+  },
+  "elapsedMs": 10519,
+  "before": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12",
+        "profileId": "guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-05",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "counter",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-05"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T08:13:33.127Z",
+        "updatedAt": "2026-09-12T08:13:33.127Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T08:13:30.381Z",
+        "updatedAt": "2026-09-12T08:13:32.015Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [],
+    "settings": [],
+    "turns": []
+  },
+  "after": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12",
+        "profileId": "guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-05",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "counter",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-05"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T08:13:33.127Z",
+        "updatedAt": "2026-09-12T08:13:33.127Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_8984ccd4-5f30-4f8c-8a29-674ef66ee9c5",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T08:13:30.381Z",
+        "updatedAt": "2026-09-12T08:13:32.015Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [],
+    "settings": [],
+    "turns": []
+  }
+}

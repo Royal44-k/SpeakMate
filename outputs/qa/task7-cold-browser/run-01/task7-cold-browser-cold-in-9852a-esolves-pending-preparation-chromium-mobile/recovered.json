@@ -1,0 +1,168 @@
+{
+  "dailyPlans": [
+    {
+      "id": "10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12",
+      "profileId": "guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9",
+      "dateKey": "2026-09-12",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-12T08:11:47.288Z",
+          "completedAt": "2026-09-12T08:11:47.502Z",
+          "completionEventId": "16:warmup-completed|43:warmup_6475cce9-c335-4d51-b9ea-8fd1a1207996"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-05",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-05"
+          },
+          "progress": 0
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "not-started",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+          "target": {
+            "kind": "simulation-choice"
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": []
+          },
+          "progress": 0
+        }
+      ],
+      "createdAt": "2026-09-12T08:11:45.631Z",
+      "updatedAt": "2026-09-12T08:11:47.502Z"
+    }
+  ],
+  "favorites": [],
+  "learningEvents": [
+    {
+      "id": "16:warmup-completed|43:warmup_6475cce9-c335-4d51-b9ea-8fd1a1207996",
+      "profileId": "guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9",
+      "occurredAt": "2026-09-12T08:11:47.502Z",
+      "dateKey": "2026-09-12",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12",
+        "sourceTaskId": "73:10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12|6:warmup",
+        "planDate": "2026-09-12",
+        "returnTo": "/?date=2026-09-12&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_6475cce9-c335-4d51-b9ea-8fd1a1207996",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I would like my coffee black, please."
+        }
+      ]
+    },
+    {
+      "id": "42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|80:warmup_6475cce9-c335-4d51-b9ea-8fd1a1207996_e123996a-6edb-4c85-9b43-af6890fa24a4|1:0",
+      "profileId": "guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9",
+      "occurredAt": "2026-09-12T08:11:47.313Z",
+      "dateKey": "2026-09-12",
+      "type": "foreground-time-recorded",
+      "runId": "warmup_6475cce9-c335-4d51-b9ea-8fd1a1207996_e123996a-6edb-4c85-9b43-af6890fa24a4",
+      "segmentId": "0",
+      "startedAt": "2026-09-12T08:11:47.313Z",
+      "endedAt": "2026-09-12T08:11:47.526Z",
+      "durationMs": 213
+    }
+  ],
+  "notebook": [],
+  "outbox": [],
+  "pointsLedger": [
+    {
+      "id": "73:10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12|85:73:10:daily-plan|42:guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9|10:2026-09-12|6:warmup|9:goal-core",
+      "profileId": "guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9",
+      "eventId": "16:warmup-completed|43:warmup_6475cce9-c335-4d51-b9ea-8fd1a1207996",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-12T08:11:47.502Z"
+    }
+  ],
+  "profile": [
+    {
+      "id": "guest_d40be733-71a6-4d5d-89e6-e3a44486bcd9",
+      "level": "A2",
+      "goals": [
+        "travel"
+      ],
+      "dailyMinutes": 5,
+      "onboardingCompleted": true,
+      "createdAt": "2026-09-12T08:11:45.077Z",
+      "updatedAt": "2026-09-12T08:11:45.410Z"
+    }
+  ],
+  "reviews": [],
+  "rewardUnlocks": [],
+  "sessions": [],
+  "settings": [],
+  "turns": []
+}
