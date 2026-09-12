@@ -1,0 +1,357 @@
+{
+  "fixBase": "6d8d9188ed09eb24cfb13adb4a86cd5b79a18ab8",
+  "buildId": "k0yzzgwBqGIzDUEhQ1m3Y",
+  "offlineManifestSha256": "f949f41480a18745f8b59cb619c92942a9a6942de33f6d9906a3120af609f985",
+  "networks": [
+    {
+      "path": "combined-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/network.json",
+      "requests": 302,
+      "errors": []
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/network.json",
+      "requests": 199,
+      "errors": []
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/network.json",
+      "requests": 466,
+      "errors": []
+    },
+    {
+      "path": "combined-chromium/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/network.json",
+      "requests": 178,
+      "errors": []
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/network.json",
+      "requests": 390,
+      "errors": []
+    }
+  ],
+  "requestCount": 1535,
+  "histories": [
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/source-phase-history.json",
+      "reportUrl": "http://127.0.0.1:3130/session/report?id=simulation_95787314-3746-44f3-86a9-771719583353",
+      "backUrl": "http://127.0.0.1:3130/session/report?id=simulation_95787314-3746-44f3-86a9-771719583353",
+      "returnedUrl": "http://127.0.0.1:3130/notebook",
+      "listPosition": 2081,
+      "forwardPosition": 2081,
+      "contrast": 14.721709639145121,
+      "reportAppearance": {
+        "width": 95.609375,
+        "height": 44,
+        "top": 248.328125,
+        "bottom": 292.328125,
+        "viewportHeight": 844,
+        "linkColor": "rgb(255, 255, 255)",
+        "headingColor": "rgb(255, 255, 255)",
+        "background": "rgb(11, 42, 67)",
+        "outline": "solid"
+      }
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/source-phase-history.json",
+      "reportUrl": "http://127.0.0.1:3130/session/report?id=simulation_3700aaa1-a053-49d3-8f0d-7b9fc8ca45c1",
+      "backUrl": "http://127.0.0.1:3130/session/report?id=simulation_3700aaa1-a053-49d3-8f0d-7b9fc8ca45c1",
+      "returnedUrl": "http://127.0.0.1:3130/notebook",
+      "listPosition": 2269,
+      "forwardPosition": 2269,
+      "contrast": 14.721709639145121,
+      "reportAppearance": {
+        "width": 95.609375,
+        "height": 44,
+        "top": 248.140625,
+        "bottom": 292.140625,
+        "viewportHeight": 664,
+        "linkColor": "rgb(255, 255, 255)",
+        "headingColor": "rgb(255, 255, 255)",
+        "background": "rgb(11, 42, 67)",
+        "outline": "solid"
+      }
+    }
+  ],
+  "selected": [
+    {
+      "path": "combined-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/native-scroll.json",
+      "bytes": 48341,
+      "sha256": "a7301a151236d88ada26eb3daa7e69bb14c62a5258dc60fa2dc0f32094993955"
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/network.json",
+      "bytes": 33635,
+      "sha256": "b1ed7ac4593cf0bd4c5a4d89a6c2cb3151d02c73497c78a36e119a27f5b7374a"
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/nonzero-restored.png",
+      "bytes": 96202,
+      "sha256": "8b1a97b54fb8c8b81623eea9c2a87031ea000980149421801fe054f5bf3a9c2d"
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading-complete.json",
+      "bytes": 103457,
+      "sha256": "dd5b81491579865a36920fad4bdeabe9c03c40eedb707453731562a90ecacad9"
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading-restored.png",
+      "bytes": 100846,
+      "sha256": "c6e5b3811b1d432536119245317a73486933d17348929c8731eefc0e493b3f53"
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading.json",
+      "bytes": 5672,
+      "sha256": "aa678ce3f3d2b372b60e6c02e1cedc16ea8d8a3371e56bab88a0de43cacc2a13"
+    },
+    {
+      "path": "combined-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/network.json",
+      "bytes": 22261,
+      "sha256": "304758c8088d4737472fe2da33125054aa6bb6a77cbccfb3e7e95259931be26b"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/navigation-stages.json",
+      "bytes": 10853,
+      "sha256": "fe8a163a2498e5dbba49497c8a40c52161f9c8e8ddf8dc39e6d7b5153ef3f115"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/network.json",
+      "bytes": 52183,
+      "sha256": "5d2f12aa58a1521f86622b62e0d6c4a6a4aafca151900b6f183186d4300cf5f7"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-direct-return.png",
+      "bytes": 256437,
+      "sha256": "c1dedb7aa4c3316e5b3258d0cb33c33221967c03acc6adac9e3734bdf5780aed"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-outcome-320-100.png",
+      "bytes": 138456,
+      "sha256": "0fa4cc38daf8fa4947c71e682edf1979c91a2ea5de3a1aa46c9d29c8f2f677d3"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-outcome-390-100.png",
+      "bytes": 251538,
+      "sha256": "57c87079b8b83140863d243c8f148905280db7ce022976dc1f37266376e34850"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-outcome-390-200.png",
+      "bytes": 213883,
+      "sha256": "6b162688ad0656af2c5dd719b3033df7b364a46e22ade933285c70f4051eea72"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-typography.json",
+      "bytes": 2524,
+      "sha256": "2302d50804a099aeb30012f355c11b4b77f34bda0213f895dd6118a197f182a5"
+    },
+    {
+      "path": "combined-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/source-phase-history.json",
+      "bytes": 118374,
+      "sha256": "c130213c1875c77e2579886dd95741c33cfdf75767cf99bc03dd1c6d96382d7d"
+    },
+    {
+      "path": "combined-chromium/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/native-placeholder.json",
+      "bytes": 1764,
+      "sha256": "1172d076e93143ed40d663810b1780e8a354fdd8022d1f46710b5e54bd2891b5"
+    },
+    {
+      "path": "combined-chromium/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/network.json",
+      "bytes": 19953,
+      "sha256": "421b327ae2ad85d272197f33ea50c531753884b61c37db8a9a754ed53d1fa6e5"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/navigation-stages.json",
+      "bytes": 36275,
+      "sha256": "fbaddec368de22c347bf45a5b8a70d90e8f77a58f6a4667756c85a0b7a72854f"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/network.json",
+      "bytes": 43301,
+      "sha256": "5e5f1afb2b328f2b292b6299cba9d017cd8f37fed329813885c3208d7e1fa334"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-direct-return.png",
+      "bytes": 149344,
+      "sha256": "fbc0b5f1ee0bebe41e6a2f20c6e06f88132721aea440d4589d0def8166b32317"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-outcome-320-100.png",
+      "bytes": 115612,
+      "sha256": "861a6153e25433541e0065e0e1a98c94f7ce20ba38d3c0b5bcbc3d6a213917a2"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-outcome-390-100.png",
+      "bytes": 194513,
+      "sha256": "723f4eeb09047d4a50288aa97c73cddc4f62141cffbad410f1a18e43d11e8aad"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-outcome-390-200.png",
+      "bytes": 178710,
+      "sha256": "fd2410a391175c7c69904ef935efeea2185e0c3bd8ec1204d897c9442c38acd9"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-typography.json",
+      "bytes": 2550,
+      "sha256": "9bb3a78d0b1d2fdffc2c8c6fcad37dc716c70837756e4cee04941f319bcc2e29"
+    },
+    {
+      "path": "combined-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/source-phase-history.json",
+      "bytes": 117784,
+      "sha256": "fee6bca8eba3132101c24aa5868263ca5f85155521316d993b73d926285b7188"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/native-scroll.json",
+      "bytes": 48341,
+      "sha256": "ea90572769c9f9e2e2602f182452dfc400da5b4a099aa65e8bb1e9df7cb92f23"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/network.json",
+      "bytes": 33635,
+      "sha256": "80c5347904730c969017c949b1aefb2f62f3be57b09a636e0a2e48a40346706c"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/nonzero-restored.png",
+      "bytes": 95225,
+      "sha256": "443deb93a35eed8b6d0b9382a257baf0c929c19aa00c003861a6ee88d50e8212"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading-complete.json",
+      "bytes": 103487,
+      "sha256": "38428de3c3dc3d1c9d11e20f571fd77573bc265b8e70e472c19f8b5acc0ca73e"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading-restored.png",
+      "bytes": 96012,
+      "sha256": "a982b8697ae5d4a3dfb3b0e57017ac984aa57d8bd336143989d24fe98f9f2977"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading.json",
+      "bytes": 5702,
+      "sha256": "e90c5b6ab30d15c9c4bee99e22fb3673b651b0ed767b015eb7fb5162f598b0ab"
+    },
+    {
+      "path": "final-chromium/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/network.json",
+      "bytes": 22261,
+      "sha256": "f34029eeb0cd30219493e1c7bf5f9836496cb99dbd751133ae287cc77df01a57"
+    },
+    {
+      "path": "final-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/network.json",
+      "bytes": 52183,
+      "sha256": "0237b2ee4b7caad0ae4f66b1da3134e7476bc84bcfdb095ca174176f4ae99365"
+    },
+    {
+      "path": "final-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-direct-return.png",
+      "bytes": 217660,
+      "sha256": "639d05c2d2d1114402b19fe6a49555d04a5f0460f15cce9211495ed0e821c84a"
+    },
+    {
+      "path": "final-chromium/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/source-phase-history.json",
+      "bytes": 115575,
+      "sha256": "72264047fa95a31c702b9ad9bdb150da35e3e4a442440394c0b3e2c6b2d1f0d7"
+    },
+    {
+      "path": "final-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/error-context.md",
+      "bytes": 7999,
+      "sha256": "3fcfd4f2dc0db7ccab2acd69fc9b29a168cd93274533da1d18ed466496dba8b4"
+    },
+    {
+      "path": "final-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-direct-return.png",
+      "bytes": 178002,
+      "sha256": "60ac64064ed96515e5b1cd0e6e57a5a7a8f937b169b0da97f8a8b08f2e152609"
+    },
+    {
+      "path": "final-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/test-failed-1.png",
+      "bytes": 137060,
+      "sha256": "7eb059283ee878e2864e37a19d4f7cc9e1a64de48e9a44a407b06c1af08583e9"
+    },
+    {
+      "path": "history-01/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/error-context.md",
+      "bytes": 12732,
+      "sha256": "a5291af1d4a5402b43eb29ebbe0bb4227ff6ab8efa03f46d781ee1f6847432de"
+    },
+    {
+      "path": "history-01/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/test-failed-1.png",
+      "bytes": 217869,
+      "sha256": "30b1fe9c12d1cbe85e0220a34954fe46fafe9a9c6b847dbf3d7f806f65c21100"
+    },
+    {
+      "path": "native-leading-01/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/error-context.md",
+      "bytes": 9879,
+      "sha256": "04eef4ceea49fc2b028889568fb99c568bb8b74beed84f4128f02bcb145d8866"
+    },
+    {
+      "path": "native-leading-01/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/test-failed-1.png",
+      "bytes": 131039,
+      "sha256": "d87a3702159f5ba99b975b0bb96b2886ebbf6ce2f65124aa305440a9c94e07bb"
+    },
+    {
+      "path": "native-leading-02/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading-complete.json",
+      "bytes": 7312,
+      "sha256": "b5ec558cf932dd6b7631a9a58616cd7507a15031ecc7f98054430eff5dcf0ad0"
+    },
+    {
+      "path": "native-leading-02/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading-restored.png",
+      "bytes": 101250,
+      "sha256": "19df4018991e429321c554d696e6acab6588443ef2798355efd0c687b66edb0f"
+    },
+    {
+      "path": "native-leading-02/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/native-leading.json",
+      "bytes": 5702,
+      "sha256": "1d72d7a81e0df2b6218ef3f49b465d6a99eb6bdf4b174aa6e4fd8c2ed5557927"
+    },
+    {
+      "path": "native-leading-02/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/network.json",
+      "bytes": 22261,
+      "sha256": "d818c494c51235ae5557164353af01a280c02d62b58b4a10c4a62e241d12e803"
+    },
+    {
+      "path": "typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/error-context.md",
+      "bytes": 20767,
+      "sha256": "87519cfb7311e1085921917c5ce9b3bcf3f5ca3f7fd28454f2abb33ef86a9bc7"
+    },
+    {
+      "path": "typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-outcome-320-100.png",
+      "bytes": 122417,
+      "sha256": "b9ce6f0e62d909cdf876382306720cac9837478b76c4443087b89358f4ae8ded"
+    },
+    {
+      "path": "typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-outcome-390-100.png",
+      "bytes": 262694,
+      "sha256": "6b9a78d31fb22b5a0716aa29f3800e89eeb5ab5bf7ca94c1afa9d2ae17e3cdfb"
+    },
+    {
+      "path": "typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-outcome-390-200.png",
+      "bytes": 86829,
+      "sha256": "b5ae2c5c2759908ca548ea1e9c2ea275ef9ed41b8cef2c2506963d434fd8fc76"
+    },
+    {
+      "path": "typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/report-typography.json",
+      "bytes": 3748,
+      "sha256": "758b96b74e4519a6f98f2358c318ab072cb35a240cc784ad074e735d4b6db08e"
+    },
+    {
+      "path": "typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/test-failed-1.png",
+      "bytes": 86829,
+      "sha256": "b5ae2c5c2759908ca548ea1e9c2ea275ef9ed41b8cef2c2506963d434fd8fc76"
+    },
+    {
+      "path": "webkit-diagnostic-02/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/error-context.md",
+      "bytes": 8035,
+      "sha256": "0f4961da643d737208bad5f9a6a4d8a3c0b2c2515f96bc5f9e455a6141dc3eed"
+    },
+    {
+      "path": "webkit-diagnostic-02/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/navigation-stages.json",
+      "bytes": 52541,
+      "sha256": "9ea682b10f6045cbce9651bf4effda2f8e66df17cb264f3e9d989a44daf37c38"
+    },
+    {
+      "path": "webkit-diagnostic-02/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/report-direct-return.png",
+      "bytes": 178002,
+      "sha256": "60ac64064ed96515e5b1cd0e6e57a5a7a8f937b169b0da97f8a8b08f2e152609"
+    },
+    {
+      "path": "webkit-diagnostic-02/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/test-failed-1.png",
+      "bytes": 137060,
+      "sha256": "7eb059283ee878e2864e37a19d4f7cc9e1a64de48e9a44a407b06c1af08583e9"
+    }
+  ]
+}

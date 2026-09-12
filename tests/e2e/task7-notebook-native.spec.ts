@@ -48,7 +48,18 @@ test('F/H: canonical two-source note, source A2 vs current B2, five-question rea
   await listLink.focus()
   const listPosition = await page.evaluate(() => scrollY)
   expect(listPosition).toBeGreaterThan(300)
+  const navigationSnapshots = []
+  const navigationSnapshot = () =>
+    page.evaluate(() => ({
+      url: location.href,
+      position: scrollY,
+      focus: document.activeElement?.outerHTML,
+      stack: sessionStorage.getItem('speakmate-route-stack'),
+      scrolls: sessionStorage.getItem('speakmate-route-scroll-v1'),
+    }))
+  navigationSnapshots.push(await navigationSnapshot())
   await listLink.click()
+  navigationSnapshots.push(await navigationSnapshot())
   const noteUrl = page.url()
   const sourceSelect = page.getByLabel('解析所用来源')
   await sourceSelect.selectOption(merged.sources[1].id)
@@ -149,21 +160,166 @@ test('F/H: canonical two-source note, source A2 vs current B2, five-question rea
   expect(state.pointsLedger).toEqual([])
   await page.getByRole('link', { name: '查看本次复盘' }).click()
   const reportUrl = page.url()
-  await page.getByRole('link', { name: '返回词句或记录簿' }).last().click()
-  await expect(page).toHaveURL(noteUrl)
+  navigationSnapshots.push(await navigationSnapshot())
+  const originalViewport = page.viewportSize()!
+  const typography = []
+  const outcomeHeading = page.getByRole('heading', {
+    name: '所选目标已确认 · 已确认结束并保存',
+    exact: true,
+  })
+  for (const [width, height, textScale] of [
+    [320, 568, 100],
+    [390, 844, 100],
+    [390, 844, 200],
+  ]) {
+    await page.setViewportSize({ width, height })
+    await page.evaluate(
+      (percent) => (document.documentElement.style.fontSize = `${percent}%`),
+      textScale,
+    )
+    await outcomeHeading.scrollIntoViewIfNeeded()
+    const measurement = await outcomeHeading.evaluate((heading) => {
+      const style = getComputedStyle(heading)
+      const range = document.createRange()
+      range.selectNodeContents(heading)
+      const box = heading.getBoundingClientRect()
+      return {
+        text: heading.textContent,
+        fontSize: Number.parseFloat(style.fontSize),
+        lineHeight: Number.parseFloat(style.lineHeight),
+        overflow: style.overflow,
+        box: {
+          left: box.left,
+          right: box.right,
+          top: box.top,
+          bottom: box.bottom,
+        },
+        rects: Array.from(range.getClientRects()).map((rect) => ({
+          top: rect.top,
+          bottom: rect.bottom,
+          left: rect.left,
+          right: rect.right,
+        })),
+        clientWidth: document.documentElement.clientWidth,
+        scrollWidth: document.documentElement.scrollWidth,
+      }
+    })
+    typography.push({ width, height, textScale, ...measurement })
+    await page.screenshot({
+      path: info.outputPath(`report-outcome-${width}-${textScale}.png`),
+    })
+  }
+  await writeFile(
+    info.outputPath('report-typography.json'),
+    JSON.stringify(typography, null, 2),
+  )
+  for (const measurement of typography) {
+    expect(measurement.lineHeight).toBeGreaterThanOrEqual(
+      measurement.fontSize * 1.2,
+    )
+    expect(measurement.scrollWidth).toBeLessThanOrEqual(measurement.clientWidth)
+    expect(measurement.overflow).toBe('visible')
+    for (const rect of measurement.rects) {
+      expect(rect.left).toBeGreaterThanOrEqual(measurement.box.left - 1)
+      expect(rect.right).toBeLessThanOrEqual(measurement.box.right + 1)
+      expect(rect.top).toBeGreaterThanOrEqual(measurement.box.top - 1)
+      expect(rect.bottom).toBeLessThanOrEqual(measurement.box.bottom + 1)
+    }
+    const lines = Array.from(
+      new Set(measurement.rects.map((rect) => rect.top)),
+    ).sort((a, b) => a - b)
+    for (let line = 1; line < lines.length; line++) {
+      const previousBottom = Math.max(
+        ...measurement.rects
+          .filter((rect) => rect.top === lines[line - 1])
+          .map((rect) => rect.bottom),
+      )
+      expect(lines[line]).toBeGreaterThanOrEqual(previousBottom - 0.5)
+    }
+  }
+  await page.evaluate(() =>
+    document.documentElement.style.removeProperty('font-size'),
+  )
+  await page.setViewportSize(originalViewport)
+  const listReturn = page.getByRole('link', { name: '返回记录簿', exact: true })
+  await listReturn.scrollIntoViewIfNeeded()
+  await listReturn.focus()
+  await expect(listReturn).toBeFocused()
+  const reportAppearance = await listReturn.evaluate((link) => {
+    const rect = link.getBoundingClientRect()
+    const section = link.closest('section')!
+    const heading = section.querySelector('h2')!
+    return {
+      width: rect.width,
+      height: rect.height,
+      top: rect.top,
+      bottom: rect.bottom,
+      viewportHeight: innerHeight,
+      linkColor: getComputedStyle(link).color,
+      headingColor: getComputedStyle(heading).color,
+      background: getComputedStyle(section.closest('header')!).backgroundColor,
+      outline: getComputedStyle(link).outlineStyle,
+    }
+  })
+  expect(reportAppearance.height).toBeGreaterThanOrEqual(44)
+  expect(reportAppearance.width).toBeGreaterThanOrEqual(44)
+  expect(reportAppearance.top).toBeGreaterThanOrEqual(0)
+  expect(reportAppearance.bottom).toBeLessThanOrEqual(
+    reportAppearance.viewportHeight,
+  )
+  expect(reportAppearance.linkColor).toBe('rgb(255, 255, 255)')
+  expect(reportAppearance.headingColor).toBe(reportAppearance.linkColor)
+  expect(reportAppearance.outline).toBe('solid')
+  const luminance = (color: string) =>
+    color
+      .match(/\d+/g)!
+      .slice(0, 3)
+      .map(Number)
+      .map((part) => part / 255)
+      .map((part) =>
+        part <= 0.04045 ? part / 12.92 : ((part + 0.055) / 1.055) ** 2.4,
+      )
+      .reduce(
+        (sum, value, index) => sum + value * [0.2126, 0.7152, 0.0722][index],
+        0,
+      )
+  const contrast =
+    (luminance(reportAppearance.linkColor) + 0.05) /
+    (luminance(reportAppearance.background) + 0.05)
+  expect(contrast).toBeGreaterThanOrEqual(4.5)
+  await page.screenshot({ path: info.outputPath('report-direct-return.png') })
+  await expect(
+    page.getByRole('link', { name: '返回词句或记录簿' }).last(),
+  ).toHaveAttribute('href', new URL(noteUrl).pathname + new URL(noteUrl).search)
   await page.getByRole('link', { name: '返回记录簿', exact: true }).click()
   await expect(
     page.getByRole('textbox', { name: '搜索词句与备注' }),
   ).toHaveValue('for example')
+  navigationSnapshots.push(await navigationSnapshot())
+  await writeFile(
+    info.outputPath('navigation-stages.json'),
+    JSON.stringify(navigationSnapshots, null, 2),
+  )
   await expect(listLink).toBeFocused()
   expect(
     Math.abs((await page.evaluate(() => scrollY)) - listPosition),
   ).toBeLessThan(3)
   const returnedUrl = page.url()
   await page.goBack()
-  await expect(page).not.toHaveURL(returnedUrl)
+  const backUrl = page.url()
+  await info.attach('actual-back-url', {
+    body: JSON.stringify({ reportUrl, returnedUrl, backUrl }),
+    contentType: 'application/json',
+  })
+  await expect(page).toHaveURL(reportUrl)
   await page.goForward()
   await expect(page).toHaveURL(returnedUrl)
+  await expect(
+    page.getByRole('textbox', { name: '搜索词句与备注' }),
+  ).toHaveValue('for example')
+  await expect(listLink).toBeFocused()
+  const forwardPosition = await page.evaluate(() => scrollY)
+  expect(Math.abs(forwardPosition - listPosition)).toBeLessThan(3)
   expect(
     (await localState(page)).sessions.filter((session) => session.simulation),
   ).toHaveLength(1)
@@ -176,9 +332,14 @@ test('F/H: canonical two-source note, source A2 vs current B2, five-question rea
         noteUrl,
         simulationUrl,
         reportUrl,
+        backUrl,
+        forwardPosition,
         returnedUrl,
         listPosition,
         actualAnswers,
+        reportAppearance,
+        contrast,
+        typography,
       },
       null,
       2,

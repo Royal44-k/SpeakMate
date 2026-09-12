@@ -73,19 +73,30 @@ export function RouteCoordinator() {
   const searchParams = useSearchParams()
   const announcementRef = useRef<HTMLSpanElement>(null)
   const traversalPending = useRef(false)
+  const clickedSource = useRef<
+    { href: string; entryId: string; event: MouseEvent } | undefined
+  >(undefined)
   const [traversal, setTraversal] = useState(0)
   useEffect(() => {
+    const clearClickedSource = () => {
+      clickedSource.current = undefined
+    }
+    const cancelIntent = () => {
+      clearClickedSource()
+      cancelRouteNavigation()
+    }
     const changed = () => {
       traversalPending.current = true
-      cancelRouteNavigation()
+      cancelIntent()
       setTraversal((value) => value + 1)
     }
     const leaving = (event: BeforeUnloadEvent) => {
       queueMicrotask(() => {
-        if (event.defaultPrevented) cancelRouteNavigation()
+        if (event.defaultPrevented) cancelIntent()
       })
     }
     const clicked = (event: MouseEvent) => {
+      clearClickedSource()
       if (
         event.defaultPrevented ||
         event.button ||
@@ -99,9 +110,21 @@ export function RouteCoordinator() {
         event.target instanceof Element
           ? event.target.closest<HTMLAnchorElement>('a[href]')
           : null
-      if (!link || link.target === '_blank' || link.hasAttribute('download'))
+      if (
+        !link ||
+        (link.target && link.target !== '_self') ||
+        link.hasAttribute('download')
+      )
         return
       const target = new URL(link.href, location.href)
+      const href =
+        target.origin === location.origin
+          ? safeSourceHref(target.pathname + target.search)
+          : undefined
+      const entryId = nativeEntryId()
+      // Touch activation need not focus anchors. Retain only this still-
+      // cancelable event, and recheck it at save time after all click listeners.
+      if (href && entryId) clickedSource.current = { href, entryId, event }
       prepareRouteNavigation(
         target.origin === location.origin
           ? target.pathname + target.search
@@ -114,17 +137,20 @@ export function RouteCoordinator() {
     window.addEventListener('pageshow', changed)
     document.addEventListener('click', clicked)
     window.addEventListener('pagehide', commitPendingNavigation)
-    window.addEventListener('pointerdown', cancelRouteNavigation, true)
-    window.addEventListener('keydown', cancelRouteNavigation, true)
+    window.addEventListener('pointerdown', cancelIntent, true)
+    window.addEventListener('keydown', cancelIntent, true)
+    window.addEventListener('wheel', clearClickedSource, { passive: true })
     window.addEventListener('beforeunload', leaving)
     return () => {
       window.removeEventListener('popstate', changed)
       window.removeEventListener('pageshow', changed)
       document.removeEventListener('click', clicked)
       window.removeEventListener('pagehide', commitPendingNavigation)
-      window.removeEventListener('pointerdown', cancelRouteNavigation, true)
-      window.removeEventListener('keydown', cancelRouteNavigation, true)
+      window.removeEventListener('pointerdown', cancelIntent, true)
+      window.removeEventListener('keydown', cancelIntent, true)
+      window.removeEventListener('wheel', clearClickedSource)
       window.removeEventListener('beforeunload', leaving)
+      clearClickedSource()
     }
   }, [])
   const search = searchParams.toString()
@@ -153,12 +179,21 @@ export function RouteCoordinator() {
     const saveScroll = () => {
       if (restoring) return
       const top = Math.max(0, Math.min(1000000, window.scrollY))
+      const candidate = clickedSource.current
+      const clickedHref =
+        candidate &&
+        !candidate.event.defaultPrevented &&
+        candidate.entryId === entryId &&
+        nativeEntryId() === entryId
+          ? candidate.href
+          : undefined
       const focused =
-        document.activeElement instanceof HTMLAnchorElement
+        clickedHref ??
+        (document.activeElement instanceof HTMLAnchorElement
           ? safeSourceHref(
               document.activeElement.getAttribute('href') ?? undefined,
             )
-          : undefined
+          : undefined)
       try {
         window.sessionStorage.setItem(
           SCROLL_KEY,
@@ -179,7 +214,11 @@ export function RouteCoordinator() {
         /* Explicit return still works without position storage. */
       }
     }
-    window.addEventListener('pagehide', saveScroll)
+    const saveBeforeLeaving = () => {
+      saveScroll()
+      clickedSource.current = undefined
+    }
+    window.addEventListener('pagehide', saveBeforeLeaving)
     window.addEventListener('scroll', saveScroll, { passive: true })
     window.addEventListener('pointerdown', stopRestoring, { once: true })
     window.addEventListener('keydown', stopRestoring, { once: true })
@@ -189,11 +228,13 @@ export function RouteCoordinator() {
     })
     const dispose = () => {
       stopRestoring()
-      window.removeEventListener('pagehide', saveScroll)
+      window.removeEventListener('pagehide', saveBeforeLeaving)
       window.removeEventListener('scroll', saveScroll)
       window.removeEventListener('pointerdown', stopRestoring)
       window.removeEventListener('keydown', stopRestoring)
       window.removeEventListener('wheel', stopRestoring)
+      if (clickedSource.current?.entryId === entryId)
+        clickedSource.current = undefined
     }
     if (nextHistory.kind === 'same') return dispose
     if (nextHistory.kind === 'traverse' || nextHistory.kind === 'return') {

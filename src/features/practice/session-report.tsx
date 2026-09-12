@@ -268,15 +268,24 @@ export function SessionReportView({
                 {record.session.simulation.descriptor.version}；来源语料 v
                 {record.session.simulation.descriptor.sourceContentVersion}。
               </p>
-              <a
-                data-return-to-source
-                href={record.session.simulation.returnTo}
-              >
-                返回词句或记录簿
-              </a>
+              <div className={styles.sourceActions}>
+                <a
+                  data-return-to-source
+                  href={record.session.simulation.returnTo}
+                >
+                  {record.session.simulation.returnTo === '/notebook'
+                    ? '返回记录簿'
+                    : '返回词句或记录簿'}
+                </a>
+                {record.session.simulation.returnTo !== '/notebook' ? (
+                  <a data-return-to-source href="/notebook">
+                    返回记录簿
+                  </a>
+                ) : null}
+              </div>
             </section>
           ) : null}
-          <h2>
+          <h2 className={styles.outcome}>
             {outcome} · {workflow}
           </h2>
           <p>

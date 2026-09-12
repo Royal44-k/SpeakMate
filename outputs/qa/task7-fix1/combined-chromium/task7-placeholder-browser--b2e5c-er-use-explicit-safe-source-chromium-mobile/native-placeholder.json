@@ -1,0 +1,72 @@
+{
+  "clean": {
+    "url": "http://127.0.0.1:3130/session?id=session_365c2486-b6f2-497b-8d23-af28574db8cb&scene=coffee-order&level=A2&mode=short&from=%2Fscenes%3Flevel%3DA2",
+    "state": {
+      "__PRIVATE_NEXTJS_INTERNALS_TREE": {
+        "tree": [
+          "",
+          {
+            "children": [
+              "session",
+              {
+                "children": [
+                  "__PAGE__",
+                  {},
+                  null,
+                  null,
+                  4608
+                ]
+              },
+              null,
+              null,
+              4608
+            ]
+          },
+          null,
+          null,
+          4624
+        ],
+        "renderedSearch": ""
+      },
+      "__speakmateRouteEntry": "f4002606-f8e4-499e-8c2d-b7bb946b541f",
+      "__NA": true
+    },
+    "length": 5
+  },
+  "placeholder": {
+    "url": "http://127.0.0.1:3130/session?id=session_365c2486-b6f2-497b-8d23-af28574db8cb&scene=coffee-order&level=A2&mode=short&from=%2Fscenes%3Flevel%3DA2",
+    "state": {
+      "__PRIVATE_NEXTJS_INTERNALS_TREE": {
+        "tree": [
+          "",
+          {
+            "children": [
+              "session",
+              {
+                "children": [
+                  "__PAGE__",
+                  {},
+                  null,
+                  null,
+                  4608
+                ]
+              },
+              null,
+              null,
+              4608
+            ]
+          },
+          null,
+          null,
+          4624
+        ],
+        "renderedSearch": ""
+      },
+      "__speakmateRouteEntry": "f4002606-f8e4-499e-8c2d-b7bb946b541f",
+      "__NA": true,
+      "__speakmateRoutePlaceholder": true
+    },
+    "length": 5
+  },
+  "returned": "http://127.0.0.1:3130/scenes?level=A2"
+}

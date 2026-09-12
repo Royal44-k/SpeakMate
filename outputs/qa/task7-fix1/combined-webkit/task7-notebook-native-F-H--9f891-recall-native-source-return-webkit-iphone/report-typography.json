@@ -1,0 +1,131 @@
+[
+  {
+    "width": 320,
+    "height": 568,
+    "textScale": 100,
+    "text": "所选目标已确认 · 已确认结束并保存",
+    "fontSize": 24,
+    "lineHeight": 33.599998,
+    "overflow": "visible",
+    "box": {
+      "left": 22,
+      "right": 298,
+      "top": 364.078125,
+      "bottom": 431.265625
+    },
+    "rects": [
+      {
+        "top": 364.875,
+        "bottom": 396.875,
+        "left": 22,
+        "right": 190
+      },
+      {
+        "top": 364.875,
+        "bottom": 396.875,
+        "left": 190,
+        "right": 209.74609375
+      },
+      {
+        "top": 364.875,
+        "bottom": 396.875,
+        "left": 209.74609375,
+        "right": 281.74609375
+      },
+      {
+        "top": 398.46875,
+        "bottom": 430.46875,
+        "left": 22,
+        "right": 142
+      }
+    ],
+    "clientWidth": 320,
+    "scrollWidth": 320
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "textScale": 100,
+    "text": "所选目标已确认 · 已确认结束并保存",
+    "fontSize": 24,
+    "lineHeight": 33.599998,
+    "overflow": "visible",
+    "box": {
+      "left": 22,
+      "right": 368,
+      "top": 344.140625,
+      "bottom": 411.328125
+    },
+    "rects": [
+      {
+        "top": 344.9375,
+        "bottom": 376.9375,
+        "left": 22,
+        "right": 190
+      },
+      {
+        "top": 344.9375,
+        "bottom": 376.9375,
+        "left": 190,
+        "right": 209.74609375
+      },
+      {
+        "top": 344.9375,
+        "bottom": 376.9375,
+        "left": 209.74609375,
+        "right": 353.74609375
+      },
+      {
+        "top": 378.53125,
+        "bottom": 410.53125,
+        "left": 22,
+        "right": 70
+      }
+    ],
+    "clientWidth": 390,
+    "scrollWidth": 390
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "textScale": 200,
+    "text": "所选目标已确认 · 已确认结束并保存",
+    "fontSize": 48,
+    "lineHeight": 67.199997,
+    "overflow": "visible",
+    "box": {
+      "left": 22,
+      "right": 368,
+      "top": 622.28125,
+      "bottom": 823.84375
+    },
+    "rects": [
+      {
+        "top": 623.875,
+        "bottom": 687.875,
+        "left": 22,
+        "right": 358
+      },
+      {
+        "top": 691.0625,
+        "bottom": 755.0625,
+        "left": 22,
+        "right": 48.25
+      },
+      {
+        "top": 691.0625,
+        "bottom": 755.0625,
+        "left": 48.25,
+        "right": 336.25
+      },
+      {
+        "top": 758.25,
+        "bottom": 822.25,
+        "left": 22,
+        "right": 118
+      }
+    ],
+    "clientWidth": 390,
+    "scrollWidth": 390
+  }
+]

@@ -3,6 +3,14 @@ design-system/
 scripts/*
 !scripts/offline-manifest.mjs
 tests/
+# Colocated tests reference development fixtures; they are not build inputs.
+src/**/*.test.ts
+src/**/*.test.tsx
+src/test/
+vitest.config.ts
+playwright.config.ts
+# Next regenerates this file and its .next type references before type checking.
+next-env.d.ts
 design-qa.md
 APP_SPEC.md
 playwright-report/

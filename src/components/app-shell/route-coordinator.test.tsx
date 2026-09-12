@@ -42,6 +42,127 @@ afterEach(() => {
   Object.defineProperty(window, 'scrollY', { configurable: true, value: 0 })
 })
 describe('minimum local route restoration', () => {
+  it.each([
+    'external',
+    'target',
+    'download',
+    'modifier',
+    'prevented',
+    'entry-change',
+    'traversal',
+    'pageshow',
+  ] as const)(
+    'does not capture an ineligible or invalidated unfocused source: %s',
+    (boundary) => {
+      route.pathname = '/notebook'
+      route.query = ''
+      history.replaceState(null, '', '/notebook')
+      const view = render(
+        <>
+          <RouteCoordinator />
+          <a href="/notebook/note?id=A">A</a>
+        </>,
+      )
+      const link = view.getByText('A')
+      const entryId = history.state.__speakmateRouteEntry
+      Object.defineProperty(window, 'scrollY', {
+        configurable: true,
+        value: 650,
+      })
+      if (boundary === 'external')
+        link.setAttribute('href', 'https://example.invalid/')
+      if (boundary === 'target') link.setAttribute('target', 'another-window')
+      if (boundary === 'download') link.setAttribute('download', '')
+      const event = new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+        metaKey: boundary === 'modifier',
+      })
+      Object.defineProperty(event, 'target', { value: link })
+      if (boundary === 'prevented') event.preventDefault()
+      fireEvent(document, event)
+      if (boundary === 'entry-change')
+        history.replaceState(
+          { ...history.state, __speakmateRouteEntry: 'different-entry' },
+          '',
+        )
+      if (boundary === 'traversal')
+        fireEvent(
+          window,
+          new PopStateEvent('popstate', { state: history.state }),
+        )
+      if (boundary === 'pageshow')
+        fireEvent(
+          window,
+          new PageTransitionEvent('pageshow', { persisted: true }),
+        )
+      fireEvent(window, new Event('pagehide'))
+      expect(
+        JSON.parse(sessionStorage.getItem('speakmate-route-scroll-v1')!),
+      ).toContainEqual(['/notebook', 650, '', entryId])
+    },
+  )
+  it.each([
+    'pagehide',
+    'late-cancel',
+    'pointer',
+    'key',
+    'wheel',
+    'next-click',
+  ] as const)(
+    'captures an unfocused clicked source only for its allowed current-entry navigation: %s',
+    (boundary) => {
+      route.pathname = '/notebook'
+      route.query = ''
+      history.replaceState(null, '', '/notebook')
+      const view = render(
+        <>
+          <RouteCoordinator />
+          <a href="/notebook/note?id=A">A</a>
+          <a href="/notebook/note?id=B">B</a>
+        </>,
+      )
+      const entryId = history.state.__speakmateRouteEntry
+      Object.defineProperty(window, 'scrollY', {
+        configurable: true,
+        value: 650,
+      })
+      // Deliver a unit event at the document listener with the actual anchor
+      // target, without jsdom's unsupported document activation/default focus.
+      const clicked = (link: HTMLElement) => {
+        const event = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+        })
+        Object.defineProperty(event, 'target', { value: link })
+        fireEvent(document, event)
+        return event
+      }
+      const event = clicked(view.getByText('A'))
+      expect(document.activeElement).toBe(document.body)
+      if (boundary === 'late-cancel') event.preventDefault()
+      if (boundary === 'pointer') fireEvent.pointerDown(window)
+      if (boundary === 'key') fireEvent.keyDown(window)
+      if (boundary === 'wheel') fireEvent.wheel(window)
+      if (boundary === 'next-click') clicked(view.getByText('B'))
+      fireEvent(window, new Event('pagehide'))
+      const source =
+        boundary === 'pagehide'
+          ? '/notebook/note?id=A'
+          : boundary === 'next-click'
+            ? '/notebook/note?id=B'
+            : ''
+      expect(
+        JSON.parse(sessionStorage.getItem('speakmate-route-scroll-v1')!),
+      ).toContainEqual(['/notebook', 650, source, entryId])
+      // A canceled/consumed candidate cannot poison the next legitimate click.
+      clicked(view.getByText('B'))
+      fireEvent(window, new Event('pagehide'))
+      expect(
+        JSON.parse(sessionStorage.getItem('speakmate-route-scroll-v1')!),
+      ).toContainEqual(['/notebook', 650, '/notebook/note?id=B', entryId])
+    },
+  )
   it('waits for the native destination hook transition and late source DOM before consuming traversal restoration', async () => {
     history.replaceState(null, '', '/notebook')
     visitRoute('/notebook')

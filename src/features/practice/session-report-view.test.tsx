@@ -8,12 +8,79 @@ import { createMemoryRepositories } from '@/infrastructure/persistence/repositor
 import { SessionReportView } from './session-report'
 import { localContentProvider } from '@/content/dialogues/graded/provider'
 import { createDialogue } from '@/domain/ai/graded-dialogue'
+import { GET } from '@/app/content/v1/[category]/route'
+import {
+  newSimulation,
+  simulationOptions,
+} from '@/features/notebook/simulation-material'
 
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ back: vi.fn() }),
 }))
 
 describe('SessionReportView', () => {
+  it.each(['/notebook/note?id=source-note', '/notebook'])(
+    'returns directly from a simulation report to the notebook without duplicating or replacing source %s',
+    async (returnTo) => {
+      const repositories = createMemoryRepositories()
+      const profile = await repositories.profiles.ensureGuestProfile()
+      const source = {
+        id: 'source',
+        kind: 'turn' as const,
+        originalText: 'Could we test that assumption?',
+        sceneId: 'work-05',
+        level: 'C1' as const,
+        questionId: 'meeting-disagreement.C1.assumption',
+        createdAt: '2026-09-12T00:00:00.000Z',
+      }
+      const note = await repositories.notebook.save({
+        id: 'source-note',
+        profileId: profile.id,
+        text: source.originalText,
+        kind: 'sentence',
+        normalizedText: '',
+        notes: '',
+        tags: [],
+        favoriteIds: [],
+        sources: [source],
+        createdAt: source.createdAt,
+        updatedAt: source.createdAt,
+      })
+      const [option] = await simulationOptions(note, source, async () =>
+        GET(new Request('https://local.test'), {
+          params: Promise.resolve({ category: 'work' }),
+        }),
+      )
+      const session = newSimulation(note, source, option)
+      session.simulation!.returnTo = returnTo
+      const { record } = await repositories.practice.commit({
+        kind: 'create',
+        session,
+        simulationMaterial: option,
+      })
+      const before = await repositories.exportLearnerData()
+      render(
+        <SessionReportView
+          sessionId={record.session.id}
+          repositories={repositories}
+        />,
+      )
+      await screen.findByText('定向模拟练习记录')
+      expect(
+        screen.getByRole('link', { name: '返回记录簿' }),
+      ).toHaveAttribute('href', '/notebook')
+      expect(
+        screen.getByRole('link', { name: '返回记录簿' }),
+      ).toHaveAttribute('data-return-to-source')
+      expect(
+        screen.getAllByRole('link', { name: '返回词句或记录簿' }).at(-1),
+      ).toHaveAttribute('href', returnTo)
+      expect(await repositories.exportLearnerData()).toEqual({
+        ...before,
+        exportedAt: expect.any(String),
+      })
+    },
+  )
   it('reports partial coverage truthfully and never finishes on report open or reload', async () => {
     const repositories = createMemoryRepositories()
     const profile = await repositories.profiles.ensureGuestProfile()

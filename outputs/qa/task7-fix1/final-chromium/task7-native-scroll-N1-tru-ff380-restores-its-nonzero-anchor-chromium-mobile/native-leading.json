@@ -1,0 +1,63 @@
+{
+  "original": {
+    "url": "http://127.0.0.1:3130/notebook",
+    "state": {
+      "__NA": true,
+      "__PRIVATE_NEXTJS_INTERNALS_TREE": {
+        "tree": [
+          "",
+          {
+            "children": [
+              "notebook",
+              {
+                "children": [
+                  "__PAGE__",
+                  {},
+                  null,
+                  null,
+                  4608
+                ]
+              },
+              null,
+              null,
+              4608
+            ]
+          },
+          null,
+          null,
+          4624
+        ],
+        "renderedSearch": ""
+      },
+      "__speakmateRouteEntry": "19d4ebca-2695-4c08-ae42-cf4c668ffae7"
+    },
+    "position": 1791,
+    "stack": "{\"version\":1,\"entries\":[{\"entryId\":\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\",\"route\":\"/\"},{\"entryId\":\"f99ed0c8-db15-46f6-a624-d1ea877fe488\",\"route\":\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\"},{\"entryId\":\"8ce8633e-db1a-48b9-859f-b51188cb0825\",\"route\":\"/scenes?level=A2\"},{\"entryId\":\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\",\"route\":\"/notebook\"}],\"cursor\":3}",
+    "scrolls": "[[\"/welcome\",0,\"\",\"0490ed7d-7bfa-4296-a27f-37d6bb5d2ed5\"],[\"/\",0,\"\",\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\"],[\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\",8,\"/session?id=new&scene=ask-teacher&level=A2&mode=short\",\"f99ed0c8-db15-46f6-a624-d1ea877fe488\"],[\"/session?id=session_f6810a80-add2-461e-8843-66deea6906ad&scene=ask-teacher&level=A2&mode=short\",0,\"/scenes?level=A2\",\"d73abfec-20b9-4890-a5e7-2c8b89bb8a54\"],[\"/scenes?level=A2\",0,\"\",\"8ce8633e-db1a-48b9-859f-b51188cb0825\"],[\"/notebook\",1791,\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\",\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\"]]"
+  },
+  "before": {
+    "url": "http://127.0.0.1:3130/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7",
+    "stack": "{\"version\":1,\"entries\":[{\"entryId\":\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\",\"route\":\"/\"},{\"entryId\":\"f99ed0c8-db15-46f6-a624-d1ea877fe488\",\"route\":\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\"},{\"entryId\":\"8ce8633e-db1a-48b9-859f-b51188cb0825\",\"route\":\"/scenes?level=A2\"},{\"entryId\":\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\",\"route\":\"/notebook\"},{\"entryId\":\"281431d1-a5b8-4ff3-9b46-42754c948512\",\"route\":\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\"}],\"cursor\":4}",
+    "scrolls": "[[\"/welcome\",0,\"\",\"0490ed7d-7bfa-4296-a27f-37d6bb5d2ed5\"],[\"/\",0,\"\",\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\"],[\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\",8,\"/session?id=new&scene=ask-teacher&level=A2&mode=short\",\"f99ed0c8-db15-46f6-a624-d1ea877fe488\"],[\"/session?id=session_f6810a80-add2-461e-8843-66deea6906ad&scene=ask-teacher&level=A2&mode=short\",0,\"/scenes?level=A2\",\"d73abfec-20b9-4890-a5e7-2c8b89bb8a54\"],[\"/scenes?level=A2\",0,\"\",\"8ce8633e-db1a-48b9-859f-b51188cb0825\"],[\"/notebook\",1791,\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\",\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\"],[\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\",759,\"\",\"281431d1-a5b8-4ff3-9b46-42754c948512\"]]"
+  },
+  "leading": {
+    "url": "http://127.0.0.1:3130/notebook",
+    "entry": "19d4ebca-2695-4c08-ae42-cf4c668ffae7",
+    "title": "synthetic example number 7",
+    "stack": "{\"version\":1,\"entries\":[{\"entryId\":\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\",\"route\":\"/\"},{\"entryId\":\"f99ed0c8-db15-46f6-a624-d1ea877fe488\",\"route\":\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\"},{\"entryId\":\"8ce8633e-db1a-48b9-859f-b51188cb0825\",\"route\":\"/scenes?level=A2\"},{\"entryId\":\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\",\"route\":\"/notebook\"},{\"entryId\":\"281431d1-a5b8-4ff3-9b46-42754c948512\",\"route\":\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\"}],\"cursor\":4}",
+    "scrolls": "[[\"/welcome\",0,\"\",\"0490ed7d-7bfa-4296-a27f-37d6bb5d2ed5\"],[\"/\",0,\"\",\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\"],[\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\",8,\"/session?id=new&scene=ask-teacher&level=A2&mode=short\",\"f99ed0c8-db15-46f6-a624-d1ea877fe488\"],[\"/session?id=session_f6810a80-add2-461e-8843-66deea6906ad&scene=ask-teacher&level=A2&mode=short\",0,\"/scenes?level=A2\",\"d73abfec-20b9-4890-a5e7-2c8b89bb8a54\"],[\"/scenes?level=A2\",0,\"\",\"8ce8633e-db1a-48b9-859f-b51188cb0825\"],[\"/notebook\",1791,\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\",\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\"],[\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\",806,\"\",\"281431d1-a5b8-4ff3-9b46-42754c948512\"]]",
+    "native": [
+      {
+        "trusted": true,
+        "url": "http://127.0.0.1:3130/notebook",
+        "entry": "19d4ebca-2695-4c08-ae42-cf4c668ffae7",
+        "title": "synthetic example number 7",
+        "stack": "{\"version\":1,\"entries\":[{\"entryId\":\"7ef6bdfe-62ac-442c-a171-3ba7124164a3\",\"route\":\"/\"},{\"entryId\":\"f99ed0c8-db15-46f6-a624-d1ea877fe488\",\"route\":\"/scenes/prepare?scene=ask-teacher&level=A2&mode=short\"},{\"entryId\":\"8ce8633e-db1a-48b9-859f-b51188cb0825\",\"route\":\"/scenes?level=A2\"},{\"entryId\":\"19d4ebca-2695-4c08-ae42-cf4c668ffae7\",\"route\":\"/notebook\"},{\"entryId\":\"281431d1-a5b8-4ff3-9b46-42754c948512\",\"route\":\"/notebook/note?id=fdceeac6-4c8e-4dc7-9b8b-b71000e063a7\"}],\"cursor\":4}"
+      }
+    ],
+    "nextHandlers": 1,
+    "nextSources": [
+      "e=>{if(e.state){if(!e.state.__NA)return void window.location.reload();(0,o.startTransition)(()=>{(0,S.dispatchTraverseAction)(window.location.href,e.state.__PRIVATE_NEXTJS_INTERNALS_TREE)})}}"
+    ]
+  }
+}

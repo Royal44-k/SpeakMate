@@ -1,0 +1,191 @@
+[
+  {
+    "width": 320,
+    "height": 568,
+    "textScale": 100,
+    "text": "所选目标已确认 · 已确认结束并保存",
+    "fontSize": 83.2,
+    "lineHeight": 71.552,
+    "overflow": "visible",
+    "box": {
+      "left": 22,
+      "right": 298,
+      "top": 118.296875,
+      "bottom": 547.578125
+    },
+    "rects": [
+      {
+        "top": 103.296875,
+        "bottom": 203.296875,
+        "left": 22,
+        "right": 261.625
+      },
+      {
+        "top": 174.84375,
+        "bottom": 274.84375,
+        "left": 22,
+        "right": 261.625
+      },
+      {
+        "top": 246.390625,
+        "bottom": 346.390625,
+        "left": 22,
+        "right": 101.875
+      },
+      {
+        "top": 246.390625,
+        "bottom": 346.390625,
+        "left": 101.875,
+        "right": 143.90625
+      },
+      {
+        "top": 246.390625,
+        "bottom": 346.390625,
+        "left": 143.90625,
+        "right": 223.78125
+      },
+      {
+        "top": 317.9375,
+        "bottom": 417.9375,
+        "left": 22,
+        "right": 261.625
+      },
+      {
+        "top": 389.484375,
+        "bottom": 489.484375,
+        "left": 22,
+        "right": 261.625
+      },
+      {
+        "top": 461.03125,
+        "bottom": 561.03125,
+        "left": 22,
+        "right": 101.875
+      }
+    ],
+    "clientWidth": 320,
+    "scrollWidth": 320
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "textScale": 100,
+    "text": "所选目标已确认 · 已确认结束并保存",
+    "fontSize": 83.2,
+    "lineHeight": 71.552,
+    "overflow": "visible",
+    "box": {
+      "left": 22,
+      "right": 368,
+      "top": 118.328125,
+      "bottom": 404.515625
+    },
+    "rects": [
+      {
+        "top": 103.328125,
+        "bottom": 203.328125,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 174.875,
+        "bottom": 274.875,
+        "left": 22,
+        "right": 261.625
+      },
+      {
+        "top": 174.875,
+        "bottom": 274.875,
+        "left": 261.625,
+        "right": 290.34375
+      },
+      {
+        "top": 246.421875,
+        "bottom": 346.421875,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 317.96875,
+        "bottom": 417.96875,
+        "left": 22,
+        "right": 341.5
+      }
+    ],
+    "clientWidth": 390,
+    "scrollWidth": 390
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "textScale": 200,
+    "text": "所选目标已确认 · 已确认结束并保存",
+    "fontSize": 166.4,
+    "lineHeight": 143.104,
+    "overflow": "visible",
+    "box": {
+      "left": 22,
+      "right": 368,
+      "top": 0.3125,
+      "bottom": 1145.1875
+    },
+    "rects": [
+      {
+        "top": -27.6875,
+        "bottom": 171.3125,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 115.421875,
+        "bottom": 314.421875,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 258.53125,
+        "bottom": 457.53125,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 401.640625,
+        "bottom": 600.640625,
+        "left": 22,
+        "right": 181.75
+      },
+      {
+        "top": 401.640625,
+        "bottom": 600.640625,
+        "left": 181.75,
+        "right": 239.171875
+      },
+      {
+        "top": 544.75,
+        "bottom": 743.75,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 687.859375,
+        "bottom": 886.859375,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 830.96875,
+        "bottom": 1029.96875,
+        "left": 22,
+        "right": 341.5
+      },
+      {
+        "top": 974.078125,
+        "bottom": 1173.078125,
+        "left": 22,
+        "right": 341.5
+      }
+    ],
+    "clientWidth": 390,
+    "scrollWidth": 390
+  }
+]

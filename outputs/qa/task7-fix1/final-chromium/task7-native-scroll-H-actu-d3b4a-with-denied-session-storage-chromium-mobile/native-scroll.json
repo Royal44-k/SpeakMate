@@ -1,0 +1,1116 @@
+{
+  "position": 1792,
+  "delayed": true,
+  "pendingPosition": 73,
+  "returnedPosition": 1792,
+  "noteUrl": "http://127.0.0.1:3130/notebook/note?id=f0f09a3c-7700-4eaa-8585-0ba45ec7634a",
+  "state": {
+    "dailyPlans": [
+      {
+        "id": "10:daily-plan|42:guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19|10:2026-09-12",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "dateKey": "2026-09-12",
+        "snapshot": {
+          "level": "A2",
+          "interests": [
+            "travel"
+          ],
+          "dailyMinutes": 5
+        },
+        "tasks": [
+          {
+            "id": "73:10:daily-plan|42:guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19|10:2026-09-12|6:warmup",
+            "slot": "warmup",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "先回忆一条熟悉的表达",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+            "target": {
+              "kind": "warmup",
+              "noteIds": [],
+              "starterExpressionIds": [
+                "coffee.word.black"
+              ],
+              "requiredRecallCount": 1
+            },
+            "source": {
+              "reason": "starter",
+              "noteIds": [],
+              "sceneId": "dining-01"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19|10:2026-09-12|5:scene",
+            "slot": "scene",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把表达用在真实情境演练中",
+            "estimatedMinutes": 3,
+            "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+            "target": {
+              "kind": "scene",
+              "sceneId": "travel-05",
+              "sceneVersion": 1,
+              "requiredUserTurns": 3,
+              "selection": {
+                "schemaVersion": 1,
+                "level": "A2",
+                "mode": "short",
+                "variantId": "assistance",
+                "contentVersion": 1
+              }
+            },
+            "source": {
+              "reason": "interests",
+              "noteIds": [],
+              "sceneId": "travel-05"
+            },
+            "progress": 0
+          },
+          {
+            "id": "73:10:daily-plan|42:guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19|10:2026-09-12|13:consolidation",
+            "slot": "consolidation",
+            "optional": false,
+            "enabled": true,
+            "status": "not-started",
+            "swapUsed": false,
+            "purposeZh": "把记录簿中的表达变成自己的话",
+            "estimatedMinutes": 1,
+            "completionConditionZh": "先明确选择支持的材料，再完成回忆、造句和定向应用",
+            "target": {
+              "kind": "simulation-choice"
+            },
+            "source": {
+              "reason": "today-expressions",
+              "noteIds": []
+            },
+            "progress": 0
+          }
+        ],
+        "createdAt": "2026-09-12T09:55:29.694Z",
+        "updatedAt": "2026-09-12T09:55:29.694Z"
+      }
+    ],
+    "favorites": [],
+    "learningEvents": [],
+    "notebook": [
+      {
+        "id": "134cdd32-27f4-4d08-bca1-d9436038a4b1",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 3",
+        "normalizedText": "synthetic example number 3",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "102d11bf-de4d-400c-a56b-819c381eefa1",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:32.011Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:32.011Z",
+        "updatedAt": "2026-09-12T09:55:32.011Z"
+      },
+      {
+        "id": "53aa8644-bd9b-4c01-9944-e8075a6df6e1",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 5",
+        "normalizedText": "synthetic example number 5",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "d75c8861-4dae-491b-9fe4-86d6183d4157",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:32.464Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:32.464Z",
+        "updatedAt": "2026-09-12T09:55:32.464Z"
+      },
+      {
+        "id": "583079f2-8468-4e36-95d9-d43b85aaf6a6",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 6",
+        "normalizedText": "synthetic example number 6",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "a1f09038-64c5-4bbe-80bf-4965dc146d1c",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:32.678Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:32.678Z",
+        "updatedAt": "2026-09-12T09:55:32.678Z"
+      },
+      {
+        "id": "5aa5bbf9-e70b-4282-84bb-960ff2f296b9",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "for example",
+        "normalizedText": "for example",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "fa875388-b833-4fa5-a2a8-2e992897e0d0",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:31.077Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:31.077Z",
+        "updatedAt": "2026-09-12T09:55:31.077Z"
+      },
+      {
+        "id": "7db2bbba-13f2-47af-a92f-ad28c4afb7e2",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 4",
+        "normalizedText": "synthetic example number 4",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "c24fd3e5-48d5-40e4-bd78-9f6bccb8276a",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:32.244Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:32.244Z",
+        "updatedAt": "2026-09-12T09:55:32.244Z"
+      },
+      {
+        "id": "7edac802-d067-4f28-afd9-35004411d7ae",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 0",
+        "normalizedText": "synthetic example number 0",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "d7045b10-a2b8-45f2-b8c4-dab4ea2ef970",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:31.310Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:31.310Z",
+        "updatedAt": "2026-09-12T09:55:31.310Z"
+      },
+      {
+        "id": "9dd4bc6f-51b1-42c6-bcd8-b9c53fa654cf",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 1",
+        "normalizedText": "synthetic example number 1",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "2295025d-4ea0-4081-a330-0958d17f8ff0",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:31.528Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:31.528Z",
+        "updatedAt": "2026-09-12T09:55:31.528Z"
+      },
+      {
+        "id": "a3552ebd-c420-4d59-8b81-63f4d0b529da",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 2",
+        "normalizedText": "synthetic example number 2",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "a7634d9a-814d-4f7a-b4da-f17c351711de",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:31.778Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:31.778Z",
+        "updatedAt": "2026-09-12T09:55:31.778Z"
+      },
+      {
+        "id": "f0f09a3c-7700-4eaa-8585-0ba45ec7634a",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "kind": "phrase",
+        "text": "synthetic example number 7",
+        "normalizedText": "synthetic example number 7",
+        "notes": "",
+        "tags": [],
+        "sources": [
+          {
+            "id": "c2f74c28-5ba7-4f25-b055-65e5677f2197",
+            "kind": "turn",
+            "originalText": "What would you like help with on this sheet?",
+            "sceneId": "study-02",
+            "level": "A2",
+            "sessionId": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+            "questionId": "ask-teacher.A2.focus",
+            "createdAt": "2026-09-12T09:55:32.914Z"
+          }
+        ],
+        "favoriteIds": [],
+        "createdAt": "2026-09-12T09:55:32.914Z",
+        "updatedAt": "2026-09-12T09:55:32.914Z"
+      }
+    ],
+    "outbox": [],
+    "pointsLedger": [],
+    "profile": [
+      {
+        "id": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "level": "A2",
+        "goals": [
+          "travel"
+        ],
+        "dailyMinutes": 5,
+        "onboardingCompleted": true,
+        "createdAt": "2026-09-12T09:55:28.801Z",
+        "updatedAt": "2026-09-12T09:55:29.387Z"
+      }
+    ],
+    "reviews": [],
+    "rewardUnlocks": [],
+    "sessions": [
+      {
+        "id": "session_2ca936a9-1b6e-4d21-9cbe-718ef8d6ff6e",
+        "profileId": "guest_1ef1308c-d323-42c8-8dd7-6fc4f7221d19",
+        "sceneId": "study-02",
+        "sceneVersion": 1,
+        "level": "A2",
+        "status": "active",
+        "startedAt": "2026-09-12T09:55:30.701Z",
+        "updatedAt": "2026-09-12T09:55:30.701Z",
+        "completedGoals": [],
+        "openingText": "What would you like help with on this sheet?",
+        "gradedDialogue": {
+          "schemaVersion": 1,
+          "pack": {
+            "schemaVersion": 1,
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "sceneId": "study-02",
+            "category": "study",
+            "level": "A2",
+            "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-10",
+            "rationale": {
+              "canDoZh": "核查两步指令，选择示范并说明需要查看的部分。",
+              "complexityZh": "熟悉词句的小任务，允许说明一个具体信息缺口。",
+              "scaffoldingZh": "题目直接给出例句和数量，不依赖未提供的讲义。",
+              "registerZh": "简短直接的师生求助与确认。",
+              "sourceBasis": [
+                "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+              ]
+            },
+            "questions": [
+              {
+                "id": "ask-teacher.A2.focus",
+                "text": "What would you like help with on this sheet?",
+                "intent": "identify-gap",
+                "objective": "focus",
+                "hintZh": "指出一个需要帮助的环节。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.focus.a",
+                    "text": "I need help reading the new words.",
+                    "acceptedForms": [
+                      "I need help reading the new words."
+                    ],
+                    "effects": [
+                      {
+                        "key": "focus",
+                        "value": "words"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.focus"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.focus.b",
+                    "text": "I can read the words, but making a sentence is hard.",
+                    "acceptedForms": [
+                      "I can read the words, but making a sentence is hard."
+                    ],
+                    "effects": [
+                      {
+                        "key": "focus",
+                        "value": "sentence"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.focus"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.focus"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.instruction",
+                "text": "What comes first in the instruction I gave?",
+                "intent": "check-instruction",
+                "objective": "instruction",
+                "hintZh": "核查已给的两步顺序，也可坦承不确定。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.instruction.a",
+                    "text": "First, we circle one word.",
+                    "acceptedForms": [
+                      "First, we circle one word."
+                    ],
+                    "effects": [
+                      {
+                        "key": "instruction",
+                        "value": "circle"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.instruction"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.instruction.b",
+                    "text": "I am not sure which step comes first.",
+                    "acceptedForms": [
+                      "I am not sure which step comes first."
+                    ],
+                    "effects": [
+                      {
+                        "key": "instruction",
+                        "value": "uncertain"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.instruction"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.instruction"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.example",
+                "text": "Would a complete example or just a starting phrase help you?",
+                "intent": "request-example",
+                "objective": "example",
+                "hintZh": "选择支架程度。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.example.a",
+                    "text": "A complete example would help me understand the task.",
+                    "acceptedForms": [
+                      "A complete example would help me understand the task."
+                    ],
+                    "effects": [
+                      {
+                        "key": "example",
+                        "value": "complete"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.example"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.example.b",
+                    "text": "Just a starting phrase, please. I want to finish it myself.",
+                    "acceptedForms": [
+                      "Just a starting phrase, please. I want to finish it myself."
+                    ],
+                    "effects": [
+                      {
+                        "key": "example",
+                        "value": "start"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.example"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.example"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.meaning",
+                "text": "On this sheet, “circle” is an action. Is its meaning clear?",
+                "intent": "check-word-meaning",
+                "objective": "meaning",
+                "hintZh": "指令中的用法已明确。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.meaning.a",
+                    "text": "Yes, it means drawing a circle around a word.",
+                    "acceptedForms": [
+                      "Yes, it means drawing a circle around a word."
+                    ],
+                    "effects": [
+                      {
+                        "key": "meaning",
+                        "value": "clear"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.meaning"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.meaning.b",
+                    "text": "Not yet. Could you show me on the card?",
+                    "acceptedForms": [
+                      "Not yet. Could you show me on the card?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "meaning",
+                        "value": "show"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.meaning"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.meaning"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.attempt",
+                "text": "Which sentence would you like to try writing?",
+                "intent": "choose-word",
+                "objective": "attempt",
+                "hintZh": "两句均为可尝试的目标。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.attempt.a",
+                    "text": "I would like to write “I have an apple.”",
+                    "acceptedForms": [
+                      "I would like to write “I have an apple.”"
+                    ],
+                    "effects": [
+                      {
+                        "key": "attempt",
+                        "value": "apple"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.attempt"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.attempt.b",
+                    "text": "I would like to write “This is my book.”",
+                    "acceptedForms": [
+                      "I would like to write “This is my book.”"
+                    ],
+                    "effects": [
+                      {
+                        "key": "attempt",
+                        "value": "book"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.attempt"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.attempt"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.check",
+                "text": "Which part of your writing would you like me to check first?",
+                "intent": "request-check",
+                "objective": "check",
+                "hintZh": "选择反馈焦点。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.check.a",
+                    "text": "Could you check the spelling first?",
+                    "acceptedForms": [
+                      "Could you check the spelling first?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "check",
+                        "value": "spelling"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.check"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.check.b",
+                    "text": "Please check the order of the words.",
+                    "acceptedForms": [
+                      "Please check the order of the words."
+                    ],
+                    "effects": [
+                      {
+                        "key": "check",
+                        "value": "order"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.check"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.check"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.contrast",
+                "text": "Look at “a book” and “two books”. What do you notice?",
+                "intent": "compare-examples",
+                "objective": "contrast",
+                "hintZh": "例子就在题中，可观察也可求助。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.contrast.a",
+                    "text": "The second example has an s at the end.",
+                    "acceptedForms": [
+                      "The second example has an s at the end."
+                    ],
+                    "effects": [
+                      {
+                        "key": "contrast",
+                        "value": "s"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.contrast"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.contrast.b",
+                    "text": "I see a difference, but I need help explaining it.",
+                    "acceptedForms": [
+                      "I see a difference, but I need help explaining it."
+                    ],
+                    "effects": [
+                      {
+                        "key": "contrast",
+                        "value": "help"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.contrast"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.contrast"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.apply",
+                "text": "Could you make a new example using “apple”?",
+                "intent": "apply-example",
+                "objective": "apply",
+                "hintZh": "将已给数量例子用于熟悉词。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.apply.a",
+                    "text": "Yes: “one apple”.",
+                    "acceptedForms": [
+                      "Yes: “one apple”."
+                    ],
+                    "effects": [
+                      {
+                        "key": "apply",
+                        "value": "one"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.apply"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.apply.b",
+                    "text": "Yes: “two apples”.",
+                    "acceptedForms": [
+                      "Yes: “two apples”."
+                    ],
+                    "effects": [
+                      {
+                        "key": "apply",
+                        "value": "two"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.apply"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.apply"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.scope",
+                "text": "Would you like to check how much writing this exercise needs?",
+                "intent": "check-amount",
+                "objective": "scope",
+                "hintZh": "可询问数量，也可引用已知指令。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.scope.a",
+                    "text": "Yes. Do we need more than one sentence?",
+                    "acceptedForms": [
+                      "Yes. Do we need more than one sentence?"
+                    ],
+                    "effects": [
+                      {
+                        "key": "scope",
+                        "value": "ask"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.scope"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.scope.b",
+                    "text": "No, I understand that it is one sentence.",
+                    "acceptedForms": [
+                      "No, I understand that it is one sentence."
+                    ],
+                    "effects": [
+                      {
+                        "key": "scope",
+                        "value": "one"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.scope"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.scope"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.next",
+                "text": "How would you like to begin your own attempt?",
+                "intent": "choose-next-step",
+                "objective": "next",
+                "hintZh": "不假设帮助请求已经得到回应。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.next.a",
+                    "text": "I will read the card and try a sentence.",
+                    "acceptedForms": [
+                      "I will read the card and try a sentence."
+                    ],
+                    "effects": [
+                      {
+                        "key": "next",
+                        "value": "card"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.next"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.next.b",
+                    "text": "I would like to wait for a demonstration.",
+                    "acceptedForms": [
+                      "I would like to wait for a demonstration."
+                    ],
+                    "effects": [
+                      {
+                        "key": "next",
+                        "value": "wait"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.next"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.next"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.repeat",
+                "text": "Which part of my spoken instruction would you like to hear again?",
+                "intent": "request-repeat",
+                "objective": "repeat",
+                "hintZh": "请求重说真实给过的部分或表示无需重说。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.repeat.a",
+                    "text": "Please repeat the part after circling a word.",
+                    "acceptedForms": [
+                      "Please repeat the part after circling a word."
+                    ],
+                    "effects": [
+                      {
+                        "key": "repeat",
+                        "value": "second"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.repeat"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.repeat.b",
+                    "text": "I do not need it repeated; I heard both steps.",
+                    "acceptedForms": [
+                      "I do not need it repeated; I heard both steps."
+                    ],
+                    "effects": [
+                      {
+                        "key": "repeat",
+                        "value": "none"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.repeat"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.repeat"
+                }
+              },
+              {
+                "id": "ask-teacher.A2.format",
+                "text": "Would it be easier to follow a written example or a slow demonstration?",
+                "intent": "choose-demonstration",
+                "objective": "format",
+                "hintZh": "选择形式。",
+                "requires": [],
+                "answers": [
+                  {
+                    "id": "ask-teacher.A2.format.a",
+                    "text": "A written example would be easier for me.",
+                    "acceptedForms": [
+                      "A written example would be easier for me."
+                    ],
+                    "effects": [
+                      {
+                        "key": "format",
+                        "value": "written"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.format"
+                    }
+                  },
+                  {
+                    "id": "ask-teacher.A2.format.b",
+                    "text": "A slow demonstration would help more.",
+                    "acceptedForms": [
+                      "A slow demonstration would help more."
+                    ],
+                    "effects": [
+                      {
+                        "key": "format",
+                        "value": "demo"
+                      }
+                    ],
+                    "review": {
+                      "state": "model-reviewed",
+                      "record": "study-review.md: ask-teacher.A2.format"
+                    }
+                  }
+                ],
+                "sourceBasis": [
+                  "CEFR2020 Companion Volume, overall oral interaction pp.70–71 and information exchange, goal-oriented cooperation and clarification scales; https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4. Design interpretation: docs/research/2026-09-09-local-learning-evidence.md. Original fictional study practice, not certification."
+                ],
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2.format"
+                }
+              }
+            ],
+            "variants": [
+              {
+                "id": "tutorial",
+                "situationZh": "虚构课堂，老师 Lee 与你看一张小练习纸，内容全部在题目中给出。桌上有铅笔、蓝笔和写着 apple / book 的图卡。Lee 已说：“Circle one word, then write a sentence.” 这是真正可请求重说的已给指令；尚未解释答案、批改或答应课后帮助。每道题引入自己的小例子，不要求外部课程知识。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "ask-teacher.A2.focus",
+                      "ask-teacher.A2.example",
+                      "ask-teacher.A2.next"
+                    ],
+                    "achievedClosing": "This question practice is complete. Requests for explanation remain requests; no marking or extra help has been promised.",
+                    "partialClosing": "We will stop here with some learning choices unconfirmed. You can keep your question for later practice."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "ask-teacher.A2.focus",
+                      "ask-teacher.A2.instruction",
+                      "ask-teacher.A2.example",
+                      "ask-teacher.A2.meaning",
+                      "ask-teacher.A2.attempt",
+                      "ask-teacher.A2.next"
+                    ],
+                    "achievedClosing": "This question practice is complete. Requests for explanation remain requests; no marking or extra help has been promised.",
+                    "partialClosing": "We will stop here with some learning choices unconfirmed. You can keep your question for later practice."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "ask-teacher.A2.focus",
+                      "ask-teacher.A2.instruction",
+                      "ask-teacher.A2.example",
+                      "ask-teacher.A2.meaning",
+                      "ask-teacher.A2.attempt",
+                      "ask-teacher.A2.check",
+                      "ask-teacher.A2.contrast",
+                      "ask-teacher.A2.apply",
+                      "ask-teacher.A2.scope",
+                      "ask-teacher.A2.next"
+                    ],
+                    "achievedClosing": "This question practice is complete. Requests for explanation remain requests; no marking or extra help has been promised.",
+                    "partialClosing": "We will stop here with some learning choices unconfirmed. You can keep your question for later practice."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2 variants"
+                }
+              },
+              {
+                "id": "workshop",
+                "situationZh": "虚构课堂的图卡练习角，老师 Lee 想先确认你需要怎样的示范。桌上有铅笔、蓝笔和 apple / book 图卡。Lee 已说：“Circle one word, then write a sentence.” 可以请求说明，也可以尝试自己做；没有默认你做错了，也没有假设老师已回答你的请求。题内的小例子均为原创练习材料。",
+                "modes": {
+                  "short": {
+                    "questionIds": [
+                      "ask-teacher.A2.focus",
+                      "ask-teacher.A2.repeat",
+                      "ask-teacher.A2.next"
+                    ],
+                    "achievedClosing": "This question practice is complete. Requests for explanation remain requests; no marking or extra help has been promised.",
+                    "partialClosing": "We will stop here with some learning choices unconfirmed. You can keep your question for later practice."
+                  },
+                  "standard": {
+                    "questionIds": [
+                      "ask-teacher.A2.focus",
+                      "ask-teacher.A2.repeat",
+                      "ask-teacher.A2.format",
+                      "ask-teacher.A2.meaning",
+                      "ask-teacher.A2.attempt",
+                      "ask-teacher.A2.next"
+                    ],
+                    "achievedClosing": "This question practice is complete. Requests for explanation remain requests; no marking or extra help has been promised.",
+                    "partialClosing": "We will stop here with some learning choices unconfirmed. You can keep your question for later practice."
+                  },
+                  "extended": {
+                    "questionIds": [
+                      "ask-teacher.A2.focus",
+                      "ask-teacher.A2.repeat",
+                      "ask-teacher.A2.format",
+                      "ask-teacher.A2.meaning",
+                      "ask-teacher.A2.attempt",
+                      "ask-teacher.A2.check",
+                      "ask-teacher.A2.contrast",
+                      "ask-teacher.A2.apply",
+                      "ask-teacher.A2.scope",
+                      "ask-teacher.A2.next"
+                    ],
+                    "achievedClosing": "This question practice is complete. Requests for explanation remain requests; no marking or extra help has been promised.",
+                    "partialClosing": "We will stop here with some learning choices unconfirmed. You can keep your question for later practice."
+                  }
+                },
+                "review": {
+                  "state": "model-reviewed",
+                  "record": "study-review.md: ask-teacher.A2 variants"
+                }
+              }
+            ],
+            "repairs": {
+              "clarify": "You can ask about the current example or instruction.",
+              "struggle": "You can use a short question or either example answer.",
+              "offTopic": "We can return to the small exercise on this sheet.",
+              "unknown": "I have not matched that wording to a covered answer or confirmed understanding.",
+              "changed": "Your new response replaces your earlier choice.",
+              "refusedClosing": "We will stop this exercise. Asking for help is optional."
+            }
+          },
+          "state": {
+            "engineVersion": 1,
+            "contentVersion": 1,
+            "mode": "short",
+            "variantId": "tutorial",
+            "currentQuestionId": "ask-teacher.A2.focus",
+            "facts": [],
+            "completedObjectives": [],
+            "completedIntents": [],
+            "askedQuestionIds": [
+              "ask-teacher.A2.focus"
+            ],
+            "turns": [],
+            "outcome": "active",
+            "reply": "What would you like help with on this sheet?",
+            "confirmation": "none"
+          }
+        },
+        "presentation": {
+          "schemaVersion": 1,
+          "counterpartZh": "老师 Lee",
+          "frameZh": "这是已编写的课堂角色与回应演练（A2）；部分问题是在排练如何回应，并非角色逐字发言。完整文字材料在情境说明中；文字提到图表、图片或口头指令，不表示本页已提供对应图像或音频。"
+        }
+      }
+    ],
+    "settings": [],
+    "turns": []
+  },
+  "deniedStorage": "explicit safe return; no precise position claimed"
+}
