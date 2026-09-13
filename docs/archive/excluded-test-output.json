@@ -1,0 +1,2787 @@
+[
+  {
+    "path": "outputs/qa/final-fix/baseline-chromium/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-chromium/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile/trace.zip",
+    "bytes": 109679,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-control-chromium/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-control-chromium/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile/trace.zip",
+    "bytes": 5659877,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-report-chromium/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-report-chromium/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile/trace.zip",
+    "bytes": 5961898,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-retry-chromium/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/baseline-retry-chromium/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile/trace.zip",
+    "bytes": 5621175,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/final/.last-run.json",
+    "bytes": 145,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/final/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile/trace.zip",
+    "bytes": 6610225,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/final/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-webkit-iphone/trace.zip",
+    "bytes": 2846200,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/final-corrected/.last-run.json",
+    "bytes": 145,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/final-corrected/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-chromium-mobile/trace.zip",
+    "bytes": 6164240,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/final-corrected/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-webkit-iphone/trace.zip",
+    "bytes": 2511276,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/last/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/last/final-fix-consecutive-revi-9ea53-ew-undo-and-notebook-source-webkit-iphone/trace.zip",
+    "bytes": 1535344,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/settled/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/final-fix/source-ready/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/backup-cap-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/backup-cap-01/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/actual-near-cap-backup.json",
+    "bytes": 9299054,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/backup-cap-01/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/trace.zip",
+    "bytes": 5309823,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-01/task7-cache-privacy-SW-pri-8dc69-nts-images-remain-available-chromium-mobile/trace.zip",
+    "bytes": 6711558,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-02/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/offline-service-worker-she-0e914-privacy-safe-offline-routes-chromium-mobile/trace.zip",
+    "bytes": 25103,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/cap-legacy-red/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/actual-near-cap-backup.json",
+    "bytes": 9917267,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/.last-run.json",
+    "bytes": 145,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/trace.zip",
+    "bytes": 4162852,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/trace.zip",
+    "bytes": 4202384,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-02/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/trace.zip",
+    "bytes": 4279216,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-03/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-03/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/trace.zip",
+    "bytes": 4143051,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-04/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/trace.zip",
+    "bytes": 6690013,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-02/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/fh-complete-01/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-chromium/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-01/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/trace.zip",
+    "bytes": 6258462,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-02/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-02/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/trace.zip",
+    "bytes": 6232218,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-03/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-pwa-webkit/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-recovery-webkit/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-unit-results.json",
+    "bytes": 2244956,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit/pwa-shows-iPhone-add-to-home-screen-instructions-webkit-iphone/trace.zip",
+    "bytes": 460961,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/final-webkit-server-down/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-fh/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-fh/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/trace.zip",
+    "bytes": 5498321,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-five-v2/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-five-v2/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/trace.zip",
+    "bytes": 14147511,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-green/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-green/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/trace.zip",
+    "bytes": 11794398,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/trace.zip",
+    "bytes": 9460068,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-01/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/trace.zip",
+    "bytes": 10474,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-02/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-02/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/trace.zip",
+    "bytes": 5241864,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-03/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-offline-final/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-offline-green/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-offline-green/offline-visited-scene-libr-c5ef6-ssion-shell-recover-offline-chromium-mobile/trace.zip",
+    "bytes": 4141538,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-01/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/trace.zip",
+    "bytes": 5814094,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-03/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-03/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/trace.zip",
+    "bytes": 6300862,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-04/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/.last-run.json",
+    "bytes": 145,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/trace.zip",
+    "bytes": 4980058,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-03/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/trace.zip",
+    "bytes": 4778274,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/7a3ed01e71d3bacaa156-935cfed8f3debe339261.network",
+    "bytes": 385761,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/7a3ed01e71d3bacaa156-935cfed8f3debe339261.trace",
+    "bytes": 188439,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/05ba48a1a6621b8a5f0c9735aaffd0e9577797e5.woff2",
+    "bytes": 22444,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/107312ad3d127abd2d8fdb4514d618bc43437954.js",
+    "bytes": 228924,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/13a04249ea97e25ab53867ebd22bf6ee51d38ded.js",
+    "bytes": 36135,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/19f166f014338678e3f697d67aec9f8faafe5653.woff",
+    "bytes": 11988,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/1b3dbef9dbe3fad0321691b7062674dfa1024b33.css",
+    "bytes": 10180,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/23bf2d518c9e303f47fab7d7ce9a9292e044d555.js",
+    "bytes": 12929,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/2ae719625ba3e72a801e69e01a4f1b0a71127087.js",
+    "bytes": 53951,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/352c606398c83fc6e30b5295e4cc6b87bf84de41.woff2",
+    "bytes": 14640,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/379416a886df7471b01f025a9908be1aa121bd06.js",
+    "bytes": 54387,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/39176504af5cf91a2dfb3d6147439dd1e1e1c4d6.woff",
+    "bytes": 11916,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/3dc87f045ecf3bb35b66be97a117b5bc63834f1b.woff",
+    "bytes": 18824,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/3e0ebc949a379700627c234da067629306db1e55.js",
+    "bytes": 45425,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/3e46610c6e96e182721d0bd4edb5d350169d147a.woff",
+    "bytes": 18724,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/3f4899d0f1d29d89df1ae015f694c8714284cfb0.js",
+    "bytes": 112594,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/3f4f145c79b71948881931c668f423a152a8f8d8.html",
+    "bytes": 10046,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/438d52ebf680ebcf6eb71a2477942585f1ec32cd.js",
+    "bytes": 84661,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/44cca078b99e4753374f67474337a8a923a5b516.js",
+    "bytes": 40231,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4698a83bc168fcd7adb5a75e055a0600d3d3225c.css",
+    "bytes": 56522,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4a1dbf3c5457e3c668d31be52cc75b39d16857a4.html",
+    "bytes": 10576,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4a7bff1309b264d957d81a897147706cd32f8c34.js",
+    "bytes": 31734,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4c2c59ebbb1ba599b2799677ca241a9be70a6679.css",
+    "bytes": 3009,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4d889e2d361f8138bf2e28d0cb1722e53b1873bb.js",
+    "bytes": 432537,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4ddb8525ab02a49b4055bd9b65612d1cbb3d2bf2.js",
+    "bytes": 9721,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/4ed189752a5f9b09d97892df85c0b95bdebdb839.js",
+    "bytes": 28681,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/515b98fd42a48359170cf8b71b4bf25b791c98eb.woff2",
+    "bytes": 7636,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/560309bc70debeb72ede21fdfe8ddc31e83e5963.js",
+    "bytes": 119,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/57ec2f6df8af308879036aab6d1aaa437248a9d7.js",
+    "bytes": 969,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/5a10a5215a6ac74c2233be1d825f48510e28a4a3.html",
+    "bytes": 12769,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/5cdec2c6fe5d19ab4c46b823b170d24adc870b44.html",
+    "bytes": 12379,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/5d8bf176b43b60bbe61d95bed69792836e22a3c5.woff",
+    "bytes": 18516,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/6437503e6b7206f481d65305a11d3fde87c901f5.woff2",
+    "bytes": 21164,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/64c7edd2a798d8dfb964ceb78e0f0890cfc188ed.js",
+    "bytes": 48218,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/64e9f8bc461b91d0305f1d5d356299ddabfb96c8.html",
+    "bytes": 18198,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/6e3f67df6a37d7365007ac97335f8a6df6ea1623.js",
+    "bytes": 29334,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/7349dfb6e49a47e9d48808e35f2936cabaa18dbc.woff",
+    "bytes": 6096,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/7616e105d544896113805f7d9400cbe992ae0de1.css",
+    "bytes": 5243,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/7b3e041a5dbd751cb79996055b62de97d8fbe579.js",
+    "bytes": 4978,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/87ee1a6e1d63af158caf80186cf1e7be12d8819a.woff2",
+    "bytes": 7808,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/88aa3e1b044ca874f7ca2e8055d3f8dbdace2d92.js",
+    "bytes": 37957,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/9163028035645b09905b936c57da8406c1f34c29.html",
+    "bytes": 9649,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/91a58f853ee463fe8333ed7b348f83098cf58ec5.woff",
+    "bytes": 11860,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/93adb38506cd26cf814611bbb9535232214afca4.html",
+    "bytes": 14276,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/94a28eca4c64d11b5dc44b16e13d3dec6c2cf76b.js",
+    "bytes": 31665,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/979913b4efe02ece6859da89b72f9922a3f419b3.css",
+    "bytes": 4401,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/9ae8c9aa991e3f34f0594f8c728c7fcc9fbb6f3d.js",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/9f4f2e16b6b31347de90bfed477cab1e368cbe90.js",
+    "bytes": 40491,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/a1ca006dcfde41c23df75cc428babaf7d0c82534.js",
+    "bytes": 691,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/a7087a5f8e19b5fbc6c338e66e511fa90f50bd96.woff2",
+    "bytes": 13924,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/b0c8b2d49b738a46ae25d6c9208cd2adb2a01ba7.html",
+    "bytes": 14004,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/b2e8c09dad73b7ed08dfd5c8a8b368bc01c806c5.html",
+    "bytes": 20855,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/b432a54340da20d2823952cb1b20d39e3def5e92.js",
+    "bytes": 14836,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/b71060bea0a68e6b32210fa45430253c97d52c44.html",
+    "bytes": 18225,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/bcdca21549e189bde3ce31bdd1a45d98265e1c10.woff",
+    "bytes": 6180,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/bde797d06d01749422c5c160df559aa7635a35c1.html",
+    "bytes": 12085,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/bdee50f11591f60fae356f1ea80249db5c3d4fd7.js",
+    "bytes": 14376,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/be859aa538d5fec5e35e9500f4149103a0743cb6.js",
+    "bytes": 23435,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/c14a590879b65c5bbe454534c0e89da2fcfdc6ad.js",
+    "bytes": 81559,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/c4c52e1b8255a812be630653bde55fd36b48b297.html",
+    "bytes": 9630,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/c4e420b89ec16fd212112ec13a3fd7993288bf7c.js",
+    "bytes": 155463,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/c6a3d4d885ce3e8662f0cee815b0c6912fed950f.html",
+    "bytes": 23961,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/d2c048420e552d078567aae8ffcf40496e4eb7f0.css",
+    "bytes": 2572,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/d7510dee57565c07f8314063fd2dc81c732e8831.js",
+    "bytes": 53021,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/d7ecf0ec675e0e36cbc1bd84f6ac26e4ce10afc5.js",
+    "bytes": 27500,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/da6727c30f50d132fc0602fbb8ef6d768055aea2.woff",
+    "bytes": 6040,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/db5ae3568cf2002039d81d4bd5ea1162adf40a26.woff2",
+    "bytes": 22464,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/ddb67a6c0ba731144bf014db6d09bc35c462dadf.html",
+    "bytes": 14147,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/de7ea430e8897c65f6a2a0aa04261ccc108a53e6.html",
+    "bytes": 10527,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/dfb2e1d4126127dbbb6e690b6463036b52b47051.js",
+    "bytes": 41080,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/e7487e134da56dd9f7bee5d93d655dfbe93d8cc7.woff2",
+    "bytes": 14548,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/e8cf7adcc68be2b4cb8913d46b913ab4a71668bc.js",
+    "bytes": 219,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/e9dd43fb940a67c7efe719ea7006525cdb0d91e4.js",
+    "bytes": 27703,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/efa9e2a53574e6437bc034363345a0dffd58b64e.html",
+    "bytes": 10538,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/f3d73573f71600578e820b67f81c61010b65b159.js",
+    "bytes": 17376,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/f5f97d991f480a927d456f5490283f8f9f4e6240.woff2",
+    "bytes": 7496,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510121.jpeg",
+    "bytes": 12772,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510142.jpeg",
+    "bytes": 12671,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510154.jpeg",
+    "bytes": 12671,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510367.jpeg",
+    "bytes": 41775,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510427.jpeg",
+    "bytes": 32189,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510528.jpeg",
+    "bytes": 34043,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510671.jpeg",
+    "bytes": 33542,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510679.jpeg",
+    "bytes": 34043,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510843.jpeg",
+    "bytes": 5240,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510984.jpeg",
+    "bytes": 5240,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197510985.jpeg",
+    "bytes": 8111,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511064.jpeg",
+    "bytes": 39899,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511085.jpeg",
+    "bytes": 39742,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511341.jpeg",
+    "bytes": 3785,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511471.jpeg",
+    "bytes": 39377,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511513.jpeg",
+    "bytes": 57830,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511524.jpeg",
+    "bytes": 58128,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511659.jpeg",
+    "bytes": 55549,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511712.jpeg",
+    "bytes": 55385,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511770.jpeg",
+    "bytes": 55311,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511905.jpeg",
+    "bytes": 4230,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197511913.jpeg",
+    "bytes": 3306,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512013.jpeg",
+    "bytes": 11638,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512044.jpeg",
+    "bytes": 3306,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512051.jpeg",
+    "bytes": 9467,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512130.jpeg",
+    "bytes": 49750,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512146.jpeg",
+    "bytes": 49750,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512265.jpeg",
+    "bytes": 37545,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512282.jpeg",
+    "bytes": 37523,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512300.jpeg",
+    "bytes": 38692,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512310.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197512848.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197513364.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197513917.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197514434.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197514967.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197515500.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197516047.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197516563.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197517087.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197517606.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197518139.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197518673.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197519207.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197519738.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197520268.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197520801.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197521325.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197521860.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197522405.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197522910.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197523444.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197523979.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197524510.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197525030.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197525564.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197526098.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197526628.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197527152.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197527683.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197528219.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197528738.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197529270.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197529804.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197530336.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197530871.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197531388.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197531922.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197532456.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197532978.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197533509.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197534042.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197534567.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197535094.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197535628.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197536161.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197536696.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197537227.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197537749.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197538282.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197538814.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197539349.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197539869.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197540401.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197540934.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197541468.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197542002.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197542522.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197543055.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197543589.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197544137.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197544644.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197545176.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197545710.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197546245.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197546792.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197547298.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197547830.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197548363.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197548885.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197549415.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197549949.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197550482.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197551034.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197551533.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197552066.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197552600.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197553130.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197553652.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197554186.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197554719.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197555254.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197555773.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197556305.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197556837.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197557372.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197557892.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197558426.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197558958.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197559476.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197560010.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197560544.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197561079.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197561611.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197562130.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197562665.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197563199.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197563731.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197564253.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197564784.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197565318.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197565851.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197566384.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197566902.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197567437.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197567972.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197568507.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197569025.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197569559.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197570094.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197570621.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197571143.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197571678.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197572200.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197572733.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197573266.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197573804.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197574332.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197574867.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197575390.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197575918.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197576452.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197576988.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197577506.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197578038.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197578573.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197579106.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197579641.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197580159.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197580692.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197581227.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197581747.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197582277.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197582812.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197583345.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197583863.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197584397.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197584931.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197585459.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197585984.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197586515.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197587050.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197587576.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197588101.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197588635.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197589172.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197589717.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197590230.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197590755.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197591291.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197591822.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197592343.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197592876.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197593409.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197593942.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197594463.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197594995.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197595528.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197596062.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197596590.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197597115.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197597647.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197598181.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197598709.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197599232.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197599768.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197600302.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197600835.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197601359.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197601890.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197602421.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197602955.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197603491.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197604006.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197604539.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197605060.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197605591.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197606127.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197606660.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197607179.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197607714.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197608244.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197608778.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197609299.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197609831.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197610368.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197610899.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197611431.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197611956.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197612484.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197613019.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197613543.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197614069.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197614606.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197615139.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197615673.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197616207.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197616739.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197617261.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197617791.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197618323.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197618847.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197619379.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197619912.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197620444.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197620962.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197621495.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197622032.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197622560.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197623081.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197623615.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197624139.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197624667.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197625202.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197625736.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197626283.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197626793.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197627325.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197627856.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197628390.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197628923.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197629458.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197629979.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197630518.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197631044.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197631591.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197632105.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197632638.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197633164.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197633697.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197634217.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197634749.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197635281.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197635816.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197636340.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197636870.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197637401.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197637935.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197638454.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197638998.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197639502.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197640037.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197640570.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197641106.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197641638.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197642171.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197642694.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197643214.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197643746.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197644287.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197644813.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197645347.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197645880.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197646429.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197646947.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197647465.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197647999.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197648546.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197649054.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197649585.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197650120.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197650641.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197651187.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197651705.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197652240.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197652774.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197653306.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197653824.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197654359.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197654892.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197655425.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197655944.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197656477.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197657011.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197657546.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197658078.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197658597.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197659119.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197659648.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197660183.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197660717.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197661238.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197661769.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197662303.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197662843.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197663359.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197663891.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197664421.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197664955.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197665489.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197666008.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197666540.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197667074.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197667608.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197668144.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197668660.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197669197.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197669730.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197670249.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197670781.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197671315.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197671850.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197672367.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197672899.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197673433.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197673970.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197674499.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197675020.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197675551.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197676086.jpeg",
+    "bytes": 35366,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/page@e7d06bfadbe70a739558d9a1297025b2-1789197676619.jpeg",
+    "bytes": 35434,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-02/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-02/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/trace.zip",
+    "bytes": 5071754,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-04/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/phase-01/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/recall-reload-harness/trace.zip",
+    "bytes": 6377559,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-core-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/owned-servers.log",
+    "bytes": 633,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-deep-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/owned-servers.log",
+    "bytes": 634,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-webkit-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/owned-servers.log",
+    "bytes": 634,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-01/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/trace.zip",
+    "bytes": 4314011,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-02/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-02/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/trace.zip",
+    "bytes": 4314187,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-03/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-03/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/trace.zip",
+    "bytes": 4930137,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-04/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-04/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/trace.zip",
+    "bytes": 4970254,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-05/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/retained-05/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/actual-121-session-backup.json",
+    "bytes": 2929305,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/simulation-return-01/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/terminal-red/trace.zip",
+    "bytes": 5648797,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-01/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-04/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-04/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/trace.zip",
+    "bytes": 12737037,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-05/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-capture-06/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/.last-run.json",
+    "bytes": 145,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/trace.zip",
+    "bytes": 5365243,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/trace.zip",
+    "bytes": 12909407,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/trace.zip",
+    "bytes": 7167838,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-offline-red/public-shell-trace.zip",
+    "bytes": 527609,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-offline-red/trace.zip",
+    "bytes": 894476,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/owned-server.log",
+    "bytes": 316,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-cold-browser/run-01/task7-cold-browser-cold-ex-cdf50-f-timeout-never-starts-task-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-cold-browser/webkit-01/task7-cold-browser-cold-ex-cdf50-f-timeout-never-starts-task-webkit-iphone/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/combined-chromium/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/combined-webkit/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/final-chromium/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/final-webkit/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/final-webkit/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/trace.zip",
+    "bytes": 6472543,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/history-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/history-01/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/trace.zip",
+    "bytes": 10001926,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/native-leading-01/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/native-leading-01/task7-native-scroll-N1-tru-ff380-restores-its-nonzero-anchor-chromium-mobile/trace.zip",
+    "bytes": 5936035,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/native-leading-02/.last-run.json",
+    "bytes": 45,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/typography-red/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/typography-red/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/trace.zip",
+    "bytes": 10236040,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/webkit-diagnostic-02/.last-run.json",
+    "bytes": 96,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-fix1/webkit-diagnostic-02/task7-notebook-native-F-H--9f891-recall-native-source-return-webkit-iphone/trace.zip",
+    "bytes": 6526449,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-material-choice-browser/fixture-final/task7-material-choice-brow-6f5f2-nner-recall-and-composition-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/final-chromium/task7-settlement-browser-E-ad78a-al-100-200-300-applications-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/final-chromium/task7-settlement-browser-E-ad78a-al-100-200-300-applications-chromium-mobile/trace.zip",
+    "bytes": 18425088,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/final-reward/task7-settlement-browser-E-ad78a-al-100-200-300-applications-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/final-reward/task7-settlement-browser-E-ad78a-al-100-200-300-applications-chromium-mobile/trace.zip",
+    "bytes": 4166558,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/reward-ready/task7-settlement-browser-E-ad78a-al-100-200-300-applications-chromium-mobile/owned-server.log",
+    "bytes": 316,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-02/task7-settlement-browser-B-f2246-reserve-one-terminal-result-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-03/task7-settlement-browser-E-ad78a-al-100-200-300-applications-chromium-mobile/owned-server.log",
+    "bytes": 316,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-04/task7-settlement-browser-C-25eb8--new-plan-stays-independent-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-04/task7-settlement-browser-C-25eb8--new-plan-stays-independent-chromium-mobile/trace.zip",
+    "bytes": 6640308,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-05/task7-settlement-browser-C-25eb8--new-plan-stays-independent-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-05/task7-settlement-browser-C-25eb8--new-plan-stays-independent-chromium-mobile/trace.zip",
+    "bytes": 5644371,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  },
+  {
+    "path": "outputs/qa/task7-settlement-browser/run-06/task7-settlement-browser-C-25eb8--new-plan-stays-independent-chromium-mobile/owned-server.log",
+    "bytes": 317,
+    "reason": "runtime trace, last-run state, large synthetic fixture, or non-allowlisted extension; retained locally"
+  }
+]

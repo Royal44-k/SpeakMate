@@ -30,3 +30,8 @@ node_modules/
 outputs/
 *.zip
 *.tar.gz
+*.bundle
+README.md
+NOTICE.md
+SECURITY.md
+CONTRIBUTING.md

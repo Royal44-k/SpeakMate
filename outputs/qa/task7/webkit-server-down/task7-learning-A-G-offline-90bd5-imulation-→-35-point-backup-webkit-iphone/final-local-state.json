@@ -1,0 +1,1588 @@
+{
+  "dailyPlans": [
+    {
+      "id": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "dateKey": "2026-09-10",
+      "snapshot": {
+        "level": "A2",
+        "interests": [
+          "travel"
+        ],
+        "dailyMinutes": 5
+      },
+      "tasks": [
+        {
+          "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|6:warmup",
+          "slot": "warmup",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "先回忆一条熟悉的表达",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "先隐藏参考，主动写出回忆，再确认完成",
+          "target": {
+            "kind": "warmup",
+            "noteIds": [],
+            "starterExpressionIds": [
+              "coffee.word.black"
+            ],
+            "requiredRecallCount": 1
+          },
+          "source": {
+            "reason": "starter",
+            "noteIds": [],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-10T02:00:00.000Z",
+          "completedAt": "2026-09-10T02:00:00.000Z",
+          "completionEventId": "16:warmup-completed|43:warmup_e4a350b3-dd8a-4e32-92c6-d39859ad9073"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|5:scene",
+          "slot": "scene",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "把表达用在真实情境演练中",
+          "estimatedMinutes": 3,
+          "completionConditionZh": "完成所选 3 次提交流程（可使用帮助），再确认结束",
+          "target": {
+            "kind": "scene",
+            "sceneId": "travel-02",
+            "sceneVersion": 1,
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "level": "A2",
+              "mode": "short",
+              "variantId": "counter",
+              "contentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "interests",
+            "noteIds": [],
+            "sceneId": "travel-02"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-10T02:00:00.000Z",
+          "completedAt": "2026-09-10T02:00:00.000Z",
+          "completionEventId": "17:session-completed|49:goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68"
+        },
+        {
+          "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|13:consolidation",
+          "slot": "consolidation",
+          "optional": false,
+          "enabled": true,
+          "status": "completed",
+          "swapUsed": false,
+          "purposeZh": "把记录簿中的表达变成自己的话",
+          "estimatedMinutes": 1,
+          "completionConditionZh": "主动回忆并造句，完成所选 3 次提交的应用流程后确认结束",
+          "target": {
+            "kind": "simulation",
+            "noteIds": [
+              "9f3384a7-0e00-4706-b447-442ade877e70"
+            ],
+            "requiredUserTurns": 3,
+            "selection": {
+              "schemaVersion": 1,
+              "noteId": "9f3384a7-0e00-4706-b447-442ade877e70",
+              "sourceId": "ed357c9e-3183-4121-baff-bc84728a424d",
+              "sourceLevel": "A2",
+              "descriptorId": "micro.coffee.word.black.A2",
+              "descriptorVersion": 1,
+              "sourceContentVersion": 1
+            }
+          },
+          "source": {
+            "reason": "today-expressions",
+            "noteIds": [
+              "9f3384a7-0e00-4706-b447-442ade877e70"
+            ],
+            "sceneId": "dining-01"
+          },
+          "progress": 1,
+          "startedAt": "2026-09-10T02:00:00.000Z",
+          "completedAt": "2026-09-10T02:00:00.000Z",
+          "completionEventId": "20:simulation-completed|47:simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a"
+        }
+      ],
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "favorites": [],
+  "learningEvents": [
+    {
+      "id": "16:warmup-completed|43:warmup_e4a350b3-dd8a-4e32-92c6-d39859ad9073",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|6:warmup",
+        "planDate": "2026-09-10",
+        "returnTo": "/?date=2026-09-10&task=warmup"
+      },
+      "type": "warmup-completed",
+      "runId": "warmup_e4a350b3-dd8a-4e32-92c6-d39859ad9073",
+      "recalledNoteIds": [],
+      "recalledStarterExpressionIds": [
+        "coffee.word.black"
+      ],
+      "recallResponses": [
+        {
+          "id": "coffee.word.black",
+          "kind": "starter",
+          "text": "I remember black coffee."
+        }
+      ]
+    },
+    {
+      "id": "17:session-completed|49:goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|5:scene",
+        "planDate": "2026-09-10",
+        "returnTo": "/?date=2026-09-10&task=scene"
+      },
+      "sessionId": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "evidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+        "sceneId": "travel-02",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 1,
+        "outcome": "partial",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      },
+      "type": "session-completed"
+    },
+    {
+      "id": "20:simulation-completed|47:simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|13:consolidation",
+        "planDate": "2026-09-10",
+        "sourceNoteId": "9f3384a7-0e00-4706-b447-442ade877e70",
+        "returnTo": "/?date=2026-09-10&task=consolidation"
+      },
+      "sessionId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "evidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+        "sceneId": "dining-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 3,
+        "outcome": "achieved",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      },
+      "type": "simulation-completed",
+      "runId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "noteIds": [
+        "9f3384a7-0e00-4706-b447-442ade877e70"
+      ],
+      "recallCompleted": true,
+      "compositionText": "I would like black coffee, please.",
+      "completedUserTurns": 3,
+      "selection": {
+        "schemaVersion": 1,
+        "noteId": "9f3384a7-0e00-4706-b447-442ade877e70",
+        "sourceId": "ed357c9e-3183-4121-baff-bc84728a424d",
+        "sourceLevel": "A2",
+        "descriptorId": "micro.coffee.word.black.A2",
+        "descriptorVersion": 1,
+        "sourceContentVersion": 1
+      }
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|20:daily-plan-completed",
+      "type": "daily-plan-completed",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "planId": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+      "occurredAt": "2026-09-10T02:00:00.000Z",
+      "dateKey": "2026-09-10"
+    }
+  ],
+  "notebook": [
+    {
+      "id": "9f3384a7-0e00-4706-b447-442ade877e70",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "kind": "word",
+      "text": "black",
+      "normalizedText": "black",
+      "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+      "notes": "",
+      "tags": [],
+      "sources": [
+        {
+          "id": "ed357c9e-3183-4121-baff-bc84728a424d",
+          "kind": "scene",
+          "originalText": "black",
+          "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "createdAt": "2026-09-10T02:00:00.000Z"
+        }
+      ],
+      "favoriteIds": [],
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "outbox": [],
+  "pointsLedger": [
+    {
+      "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|13:goal-all-core",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "eventId": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|20:daily-plan-completed",
+      "ruleId": "goal-all-core",
+      "ruleVersion": 1,
+      "delta": 5,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|84:73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|5:scene|9:goal-core",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "eventId": "17:session-completed|49:goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|85:73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|6:warmup|9:goal-core",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "eventId": "16:warmup-completed|43:warmup_e4a350b3-dd8a-4e32-92c6-d39859ad9073",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|93:73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|13:consolidation|9:goal-core",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "eventId": "20:simulation-completed|47:simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "ruleId": "goal-core",
+      "ruleVersion": 1,
+      "delta": 10,
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "profile": [
+    {
+      "id": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "level": "A2",
+      "goals": [
+        "travel"
+      ],
+      "dailyMinutes": 5,
+      "onboardingCompleted": true,
+      "createdAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z"
+    }
+  ],
+  "reviews": [],
+  "rewardUnlocks": [],
+  "sessions": [
+    {
+      "id": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "sceneId": "travel-02",
+      "sceneVersion": 1,
+      "level": "A2",
+      "status": "completed",
+      "startedAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z",
+      "completedGoals": [],
+      "openingText": "What would help you follow the screening steps?",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|5:scene",
+        "planDate": "2026-09-10",
+        "returnTo": "/?date=2026-09-10&task=scene"
+      },
+      "gradedDialogue": {
+        "schemaVersion": 1,
+        "pack": {
+          "schemaVersion": 1,
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "sceneId": "travel-02",
+          "category": "travel",
+          "level": "A2",
+          "author": "SpeakMate original authoring — Codex implementation agent, 2026-09-09 to 2026-09-10",
+          "rationale": {
+            "canDoZh": "在常见安检交换中说明物品位置并请求具体帮助。",
+            "complexityZh": "按次序处理物件，区别听懂与已经完成。",
+            "scaffoldingZh": "明确虚构通道条件，允许重复示范和短理由。",
+            "registerZh": "简短直接的礼貌协作，不假装懂得未给规则。",
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+            ]
+          },
+          "questions": [
+            {
+              "id": "security-screening.A2.pace",
+              "text": "What would help you follow the screening steps?",
+              "intent": "request-pace",
+              "objective": "pace",
+              "hintZh": "选择慢说或演示。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.pace.a",
+                  "text": "Please speak more slowly so I can follow.",
+                  "acceptedForms": [
+                    "Please speak more slowly so I can follow."
+                  ],
+                  "effects": [
+                    {
+                      "key": "pace",
+                      "value": "slow"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.pace, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.pace.b",
+                  "text": "Could you show me one step at a time?",
+                  "acceptedForms": [
+                    "Could you show me one step at a time?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "pace",
+                      "value": "show"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.pace, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.pace, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.laptop",
+              "text": "Can you explain where the laptop should go in this exercise?",
+              "intent": "clarify-rule",
+              "objective": "laptop",
+              "hintZh": "电脑独立盘，允许再问。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.laptop.a",
+                  "text": "It should go in a separate tray.",
+                  "acceptedForms": [
+                    "It should go in a separate tray."
+                  ],
+                  "effects": [
+                    {
+                      "key": "laptop",
+                      "value": "clear"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.laptop, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.laptop.b",
+                  "text": "Do you mean a tray with nothing else in it?",
+                  "acceptedForms": [
+                    "Do you mean a tray with nothing else in it?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "laptop",
+                      "value": "check"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.laptop, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.laptop, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.bottle",
+              "text": "What kind of empty bottle are you carrying?",
+              "intent": "describe",
+              "objective": "bottle",
+              "hintZh": "只能描述，非准许判断。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.bottle.a",
+                  "text": "I have an empty plastic bottle.",
+                  "acceptedForms": [
+                    "I have an empty plastic bottle."
+                  ],
+                  "effects": [
+                    {
+                      "key": "bottle",
+                      "value": "plastic"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.bottle, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.bottle.b",
+                  "text": "Mine is an empty metal bottle.",
+                  "acceptedForms": [
+                    "Mine is an empty metal bottle."
+                  ],
+                  "effects": [
+                    {
+                      "key": "bottle",
+                      "value": "metal"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.bottle, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.bottle, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.pockets",
+              "text": "Which pocket item will you put in a tray first?",
+              "intent": "organise",
+              "objective": "pockets",
+              "hintZh": "手机钥匙均存在。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.pockets.a",
+                  "text": "I will take out my phone first.",
+                  "acceptedForms": [
+                    "I will take out my phone first."
+                  ],
+                  "effects": [
+                    {
+                      "key": "pockets",
+                      "value": "phone"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.pockets, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.pockets.b",
+                  "text": "I will put my keys in first.",
+                  "acceptedForms": [
+                    "I will put my keys in first."
+                  ],
+                  "effects": [
+                    {
+                      "key": "pockets",
+                      "value": "keys"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.pockets, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.pockets, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.tray",
+              "text": "Have you got enough trays for the items we have discussed?",
+              "intent": "ask-equipment",
+              "objective": "tray",
+              "hintZh": "可请求多一只。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.tray.a",
+                  "text": "Could I have another tray, please?",
+                  "acceptedForms": [
+                    "Could I have another tray, please?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "tray",
+                      "value": "extra"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.tray, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.tray.b",
+                  "text": "Yes, these trays are enough for me.",
+                  "acceptedForms": [
+                    "Yes, these trays are enough for me."
+                  ],
+                  "effects": [
+                    {
+                      "key": "tray",
+                      "value": "enough"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.tray, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.tray, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.bag",
+              "text": "Where have you put the backpack while we talk?",
+              "intent": "locate",
+              "objective": "bag",
+              "hintZh": "位置不暗示已经扫描。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.bag.a",
+                  "text": "I have kept it beside me.",
+                  "acceptedForms": [
+                    "I have kept it beside me."
+                  ],
+                  "effects": [
+                    {
+                      "key": "bag",
+                      "value": "beside"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.bag, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.bag.b",
+                  "text": "I have put it on the table.",
+                  "acceptedForms": [
+                    "I have put it on the table."
+                  ],
+                  "effects": [
+                    {
+                      "key": "bag",
+                      "value": "table"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.bag, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.bag, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.coat",
+              "text": "Do you need any information about handling your coat?",
+              "intent": "check-instruction",
+              "objective": "coat",
+              "hintZh": "询问不同于执行。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.coat.a",
+                  "text": "Yes, do I need to remove it in this lane?",
+                  "acceptedForms": [
+                    "Yes, do I need to remove it in this lane?"
+                  ],
+                  "effects": [
+                    {
+                      "key": "coat",
+                      "value": "ask"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.coat, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.coat.b",
+                  "text": "No, thanks. I already have it in my hand.",
+                  "acceptedForms": [
+                    "No, thanks. I already have it in my hand."
+                  ],
+                  "effects": [
+                    {
+                      "key": "coat",
+                      "value": "carry"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.coat, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.coat, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.wait",
+              "text": "Would pointing out the waiting line make the next step clearer?",
+              "intent": "follow-sequence",
+              "objective": "wait",
+              "hintZh": "只问是否需要指示。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.wait.a",
+                  "text": "Yes, I am not sure which line you mean.",
+                  "acceptedForms": [
+                    "Yes, I am not sure which line you mean."
+                  ],
+                  "effects": [
+                    {
+                      "key": "wait",
+                      "value": "yes"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.wait, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.wait.b",
+                  "text": "No, I can see the line clearly now.",
+                  "acceptedForms": [
+                    "No, I can see the line clearly now."
+                  ],
+                  "effects": [
+                    {
+                      "key": "wait",
+                      "value": "no"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.wait, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.wait, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.repeat",
+              "text": "Would you like the empty-bottle instruction repeated?",
+              "intent": "repair-hearing",
+              "objective": "repeat",
+              "hintZh": "空瓶放包里为场景事实。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.repeat.a",
+                  "text": "Yes, I missed that part of the explanation.",
+                  "acceptedForms": [
+                    "Yes, I missed that part of the explanation."
+                  ],
+                  "effects": [
+                    {
+                      "key": "repeat",
+                      "value": "yes"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.repeat, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.repeat.b",
+                  "text": "No, I heard that it stays in my bag.",
+                  "acceptedForms": [
+                    "No, I heard that it stays in my bag."
+                  ],
+                  "effects": [
+                    {
+                      "key": "repeat",
+                      "value": "no"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.repeat, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.repeat, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.ready",
+              "text": "Would you like a moment before asking what to do next?",
+              "intent": "confirm-next",
+              "objective": "ready",
+              "hintZh": "不发出通行保证。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.ready.a",
+                  "text": "Yes, I need a moment to organise my things.",
+                  "acceptedForms": [
+                    "Yes, I need a moment to organise my things."
+                  ],
+                  "effects": [
+                    {
+                      "key": "ready",
+                      "value": "moment"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.ready, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.ready.b",
+                  "text": "No, I am ready to ask for the next step.",
+                  "acceptedForms": [
+                    "No, I am ready to ask for the next step."
+                  ],
+                  "effects": [
+                    {
+                      "key": "ready",
+                      "value": "ready"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.ready, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.ready, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.claim",
+              "text": "What will help you recognise your backpack when collecting it?",
+              "intent": "identify-items",
+              "objective": "claim",
+              "hintZh": "标记与位置分开。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.claim.a",
+                  "text": "It is blue with a small white label.",
+                  "acceptedForms": [
+                    "It is blue with a small white label."
+                  ],
+                  "effects": [
+                    {
+                      "key": "claim",
+                      "value": "blue"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.claim, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.claim.b",
+                  "text": "It is red with a black handle.",
+                  "acceptedForms": [
+                    "It is red with a black handle."
+                  ],
+                  "effects": [
+                    {
+                      "key": "claim",
+                      "value": "red"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.claim, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.claim, Codex postdraft reading 2026-09-10"
+              }
+            },
+            {
+              "id": "security-screening.A2.privacy",
+              "text": "Would you prefer to discuss your question somewhere quieter?",
+              "intent": "set-boundary",
+              "objective": "privacy",
+              "hintZh": "可以拒绝换地方。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "security-screening.A2.privacy.a",
+                  "text": "Yes, it is hard to hear beside the queue.",
+                  "acceptedForms": [
+                    "Yes, it is hard to hear beside the queue."
+                  ],
+                  "effects": [
+                    {
+                      "key": "privacy",
+                      "value": "private"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.privacy, Codex postdraft reading 2026-09-10"
+                  }
+                },
+                {
+                  "id": "security-screening.A2.privacy.b",
+                  "text": "No, thank you. I can ask it here.",
+                  "acceptedForms": [
+                    "No, thank you. I can ask it here."
+                  ],
+                  "effects": [
+                    {
+                      "key": "privacy",
+                      "value": "here"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "travel-review.md#security-screening — security-screening.A2.privacy, Codex postdraft reading 2026-09-10"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — CEFR2020 oral interaction pp.70–71, information exchange, goods/services and clarification scales; approved local evidence note. Original task design, not certification or travel advice."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — security-screening.A2.privacy, Codex postdraft reading 2026-09-10"
+              }
+            }
+          ],
+          "variants": [
+            {
+              "id": "counter",
+              "situationZh": "虚构安检练习。你带一个背包、一台笔记本电脑、一只空水瓶和外套，口袋里有手机和钥匙。桌上已有两个托盘，周围比较嘈杂。此练习通道要求电脑单独放盘，空瓶留包内；其他步骤先问工作人员，不推断真实机场规则。你可要求慢说或保留对额外问题的回应。短练只练习理解指示，不代表已通过安检。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "security-screening.A2.pace",
+                    "security-screening.A2.laptop",
+                    "security-screening.A2.bottle"
+                  ],
+                  "achievedClosing": "This screening communication practice is complete. We have discussed instructions and requests, not cleared you or your belongings through security.",
+                  "partialClosing": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance."
+                },
+                "standard": {
+                  "questionIds": [
+                    "security-screening.A2.pace",
+                    "security-screening.A2.laptop",
+                    "security-screening.A2.bottle",
+                    "security-screening.A2.pockets",
+                    "security-screening.A2.tray",
+                    "security-screening.A2.bag"
+                  ],
+                  "achievedClosing": "This screening communication practice is complete. We have discussed instructions and requests, not cleared you or your belongings through security.",
+                  "partialClosing": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance."
+                },
+                "extended": {
+                  "questionIds": [
+                    "security-screening.A2.pace",
+                    "security-screening.A2.laptop",
+                    "security-screening.A2.bottle",
+                    "security-screening.A2.pockets",
+                    "security-screening.A2.tray",
+                    "security-screening.A2.bag",
+                    "security-screening.A2.coat",
+                    "security-screening.A2.wait",
+                    "security-screening.A2.repeat",
+                    "security-screening.A2.ready"
+                  ],
+                  "achievedClosing": "This screening communication practice is complete. We have discussed instructions and requests, not cleared you or your belongings through security.",
+                  "partialClosing": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+              }
+            },
+            {
+              "id": "assistance",
+              "situationZh": "虚构安检协助通道。你带背包、笔记本电脑、空水瓶和外套，口袋有手机和钥匙。桌上已有两个托盘，周围有噪音。此练习要求电脑单独放盘、空瓶留包内；你不熟悉流程，需要额外问清物品认领和隐私协助。不是现实安检指南，没有任何物品已获许可或已检查。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "security-screening.A2.pace",
+                    "security-screening.A2.laptop",
+                    "security-screening.A2.bottle"
+                  ],
+                  "achievedClosing": "This screening communication practice is complete. We have discussed instructions and requests, not cleared you or your belongings through security.",
+                  "partialClosing": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance."
+                },
+                "standard": {
+                  "questionIds": [
+                    "security-screening.A2.pace",
+                    "security-screening.A2.laptop",
+                    "security-screening.A2.bottle",
+                    "security-screening.A2.pockets",
+                    "security-screening.A2.tray",
+                    "security-screening.A2.bag"
+                  ],
+                  "achievedClosing": "This screening communication practice is complete. We have discussed instructions and requests, not cleared you or your belongings through security.",
+                  "partialClosing": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance."
+                },
+                "extended": {
+                  "questionIds": [
+                    "security-screening.A2.pace",
+                    "security-screening.A2.laptop",
+                    "security-screening.A2.bottle",
+                    "security-screening.A2.pockets",
+                    "security-screening.A2.tray",
+                    "security-screening.A2.bag",
+                    "security-screening.A2.coat",
+                    "security-screening.A2.wait",
+                    "security-screening.A2.claim",
+                    "security-screening.A2.privacy"
+                  ],
+                  "achievedClosing": "This screening communication practice is complete. We have discussed instructions and requests, not cleared you or your belongings through security.",
+                  "partialClosing": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "travel-review.md#security-screening — A2 counter/assistance situations, paths, endings and repairs read 2026-09-10"
+              }
+            }
+          ],
+          "repairs": {
+            "clarify": "I can repeat the current instruction question without assuming you understood it.",
+            "struggle": "Take one item at a time. You may ask for help with the current question.",
+            "offTopic": "Let us return to the screening instruction we are practising.",
+            "unknown": "This local exercise does not recognise that wording. No screening step has been confirmed.",
+            "changed": "Your response has been revised in the practice record only.",
+            "refusedClosing": "We will stop the practice. This does not describe an actual security decision."
+          }
+        },
+        "state": {
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "mode": "short",
+          "variantId": "counter",
+          "currentQuestionId": null,
+          "facts": [
+            {
+              "key": "pace",
+              "value": "slow",
+              "questionId": "security-screening.A2.pace",
+              "answerId": "security-screening.A2.pace.a",
+              "turnIndex": 0
+            }
+          ],
+          "completedObjectives": [
+            "pace"
+          ],
+          "completedIntents": [
+            "request-pace"
+          ],
+          "askedQuestionIds": [
+            "security-screening.A2.pace",
+            "security-screening.A2.laptop"
+          ],
+          "turns": [
+            {
+              "action": "answer",
+              "text": "Please speak more slowly so I can follow.",
+              "suggestionId": "security-screening.A2.pace.a"
+            },
+            {
+              "action": "struggle",
+              "text": ""
+            },
+            {
+              "action": "struggle",
+              "text": ""
+            }
+          ],
+          "outcome": "partial",
+          "reply": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance.",
+          "confirmation": "repair"
+        }
+      },
+      "presentation": {
+        "schemaVersion": 1,
+        "counterpartZh": "安检工作人员角色",
+        "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+      },
+      "completedAt": "2026-09-10T02:00:00.000Z",
+      "completionEvidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+        "sceneId": "travel-02",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 1,
+        "outcome": "partial",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      }
+    },
+    {
+      "id": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "profileId": "guest_01586672-0d24-4969-8f11-6e213905ac23",
+      "sceneId": "dining-01",
+      "sceneVersion": 1,
+      "level": "A2",
+      "status": "completed",
+      "startedAt": "2026-09-10T02:00:00.000Z",
+      "updatedAt": "2026-09-10T02:00:00.000Z",
+      "completedGoals": [],
+      "openingText": "We have Americanos and filter coffee. What would you like today?",
+      "provenance": {
+        "planId": "10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10",
+        "sourceTaskId": "73:10:daily-plan|42:guest_01586672-0d24-4969-8f11-6e213905ac23|10:2026-09-10|13:consolidation",
+        "planDate": "2026-09-10",
+        "sourceNoteId": "9f3384a7-0e00-4706-b447-442ade877e70",
+        "returnTo": "/?date=2026-09-10&task=consolidation"
+      },
+      "gradedDialogue": {
+        "schemaVersion": 1,
+        "pack": {
+          "schemaVersion": 1,
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "sceneId": "dining-01",
+          "category": "dining",
+          "level": "A2",
+          "author": "SpeakMate original authoring — Codex model-assisted, 2026-09-09",
+          "rationale": {
+            "canDoZh": "处理常见柜台交换，在点单中表达简单偏好及下一步安排。",
+            "complexityZh": "连接选择与一个日常原因，区分制作时间、取餐方式及实际付款。",
+            "scaffoldingZh": "问题给出可用选项；参考回答提供 because 或简单补充句，不要求即兴论证。",
+            "registerZh": "友好、直接且礼貌，可婉拒推销或提出个人安排。",
+            "sourceBasis": [
+              "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+            ]
+          },
+          "questions": [
+            {
+              "id": "coffee.A2.drink",
+              "text": "We have Americanos and filter coffee. What would you like today?",
+              "intent": "order",
+              "objective": "drink",
+              "hintZh": "选一种在售咖啡，可补充简单原因。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.drink.a",
+                  "text": "An Americano, please. I like a strong coffee.",
+                  "acceptedForms": [
+                    "An Americano, please. I like a strong coffee."
+                  ],
+                  "effects": [
+                    {
+                      "key": "drink",
+                      "value": "americano"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.drink.b",
+                  "text": "I would like a filter coffee today, please.",
+                  "acceptedForms": [
+                    "I would like a filter coffee today, please."
+                  ],
+                  "effects": [
+                    {
+                      "key": "drink",
+                      "value": "filter"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            },
+            {
+              "id": "coffee.A2.size",
+              "text": "Would you prefer a small drink or a large one?",
+              "intent": "quantity",
+              "objective": "size",
+              "hintZh": "按需要选择杯型，不改变饮品种类。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.size.a",
+                  "text": "A small one, please. I do not have much time.",
+                  "acceptedForms": [
+                    "A small one, please. I do not have much time."
+                  ],
+                  "effects": [
+                    {
+                      "key": "size",
+                      "value": "small"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.size.b",
+                  "text": "A large one, please. I have a long morning ahead.",
+                  "acceptedForms": [
+                    "A large one, please. I have a long morning ahead."
+                  ],
+                  "effects": [
+                    {
+                      "key": "size",
+                      "value": "large"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            },
+            {
+              "id": "coffee.A2.milk",
+              "text": "Would you like to keep it black, or add some oat milk?",
+              "intent": "customize",
+              "objective": "milk",
+              "hintZh": "black 在这里是不加奶；不要按颜色泛解。",
+              "requires": [],
+              "answers": [
+                {
+                  "id": "coffee.A2.milk.a",
+                  "text": "Black, please. I do not usually have milk in coffee.",
+                  "acceptedForms": [
+                    "Black, please. I do not usually have milk in coffee."
+                  ],
+                  "effects": [
+                    {
+                      "key": "milk",
+                      "value": "none"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                },
+                {
+                  "id": "coffee.A2.milk.b",
+                  "text": "Some oat milk, please. I like a milder taste.",
+                  "acceptedForms": [
+                    "Some oat milk, please. I like a milder taste."
+                  ],
+                  "effects": [
+                    {
+                      "key": "milk",
+                      "value": "oat"
+                    }
+                  ],
+                  "review": {
+                    "state": "model-reviewed",
+                    "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+                  }
+                }
+              ],
+              "sourceBasis": [
+                "https://rm.coe.int/cefr-companion-volume-with-new-descriptors-2020/16809ea0d4 — overall oral interaction pp.70–71; obtaining goods/services and clarification scales; task-design reference only, all English original."
+              ],
+              "review": {
+                "state": "model-reviewed",
+                "record": "src/content/dialogues/graded/coffee-order/coffee-pilot-review.md#a2 — Codex implementation agent, model-assisted reading, 2026-09-09; teacher reads 0"
+              }
+            }
+          ],
+          "variants": [
+            {
+              "id": "counter",
+              "situationZh": "现场点单：美式和滴滤均有货，默认热饮、不加奶不加糖。短练确认饮品、杯型及堂食/外带；标准练加个性化和支付方式；拓展再确定收据、取餐称呼、降温及点心。只是练习，不代表真实支付或出单。",
+              "modes": {
+                "short": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                },
+                "standard": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                },
+                "extended": {
+                  "questionIds": [
+                    "coffee.A2.drink",
+                    "coffee.A2.size",
+                    "coffee.A2.milk"
+                  ],
+                  "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+                  "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made."
+                }
+              },
+              "review": {
+                "state": "model-reviewed",
+                "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+              }
+            }
+          ],
+          "repairs": {
+            "clarify": "Of course. Here are the choices again.",
+            "struggle": "Take your time. Start with one of the example answers.",
+            "offTopic": "We can come back to that later. Let us finish this drink choice.",
+            "unknown": "Your words are saved for this practice, but this local lesson cannot confirm their meaning.",
+            "changed": "That earlier choice has been updated.",
+            "refusedClosing": "That is fine. We will stop this practice without completing the order."
+          }
+        },
+        "state": {
+          "engineVersion": 1,
+          "contentVersion": 1,
+          "mode": "short",
+          "variantId": "counter",
+          "currentQuestionId": null,
+          "facts": [
+            {
+              "key": "drink",
+              "value": "americano",
+              "questionId": "coffee.A2.drink",
+              "answerId": "coffee.A2.drink.a",
+              "turnIndex": 0
+            },
+            {
+              "key": "size",
+              "value": "small",
+              "questionId": "coffee.A2.size",
+              "answerId": "coffee.A2.size.a",
+              "turnIndex": 1
+            },
+            {
+              "key": "milk",
+              "value": "none",
+              "questionId": "coffee.A2.milk",
+              "answerId": "coffee.A2.milk.a",
+              "turnIndex": 2
+            }
+          ],
+          "completedObjectives": [
+            "drink",
+            "size",
+            "milk"
+          ],
+          "completedIntents": [
+            "order",
+            "quantity",
+            "customize"
+          ],
+          "askedQuestionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.size",
+            "coffee.A2.milk"
+          ],
+          "turns": [
+            {
+              "action": "answer",
+              "text": "An Americano, please. I like a strong coffee.",
+              "suggestionId": "coffee.A2.drink.a"
+            },
+            {
+              "action": "answer",
+              "text": "A small one, please. I do not have much time.",
+              "suggestionId": "coffee.A2.size.a"
+            },
+            {
+              "action": "answer",
+              "text": "Black, please. I do not usually have milk in coffee.",
+              "suggestionId": "coffee.A2.milk.a"
+            }
+          ],
+          "outcome": "achieved",
+          "reply": "This short practice is complete. No real service or decision has been made.",
+          "confirmation": "exact"
+        }
+      },
+      "presentation": {
+        "schemaVersion": 1,
+        "counterpartZh": "咖啡师角色",
+        "frameZh": "这是已编写的本地角色与回应演练，不是实时人员服务。请先阅读所选情境；问题可能包含排练提示，所有交易、安排与材料只属于练习。"
+      },
+      "simulation": {
+        "schemaVersion": 1,
+        "noteIds": [
+          "9f3384a7-0e00-4706-b447-442ade877e70"
+        ],
+        "source": {
+          "noteId": "9f3384a7-0e00-4706-b447-442ade877e70",
+          "sourceId": "ed357c9e-3183-4121-baff-bc84728a424d",
+          "snapshot": {
+            "id": "ed357c9e-3183-4121-baff-bc84728a424d",
+            "kind": "scene",
+            "originalText": "black",
+            "translationZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+            "sceneId": "dining-01",
+            "level": "A2",
+            "createdAt": "2026-09-10T02:00:00.000Z"
+          },
+          "noteText": "black",
+          "noteKind": "word"
+        },
+        "returnTo": "/notebook/note?id=9f3384a7-0e00-4706-b447-442ade877e70",
+        "descriptor": {
+          "schemaVersion": 1,
+          "id": "micro.coffee.word.black.A2",
+          "analysisEntryId": "coffee.word.black",
+          "sceneId": "dining-01",
+          "level": "A2",
+          "sourceContentVersion": 1,
+          "sourceVariantId": "counter",
+          "targetQuestionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.milk"
+          ],
+          "questionIds": [
+            "coffee.A2.drink",
+            "coffee.A2.size",
+            "coffee.A2.milk"
+          ],
+          "achievedClosing": "This short practice is complete. No real service or decision has been made.",
+          "partialClosing": "This short practice has ended with some goals still open. No real service or decision has been made.",
+          "review": {
+            "state": "model-reviewed",
+            "record": "micro-practice-review.md#dining: A2 coffee.word.black; complete authored path review, not teacher certification"
+          },
+          "version": 1
+        },
+        "target": {
+          "coverage": "exact",
+          "text": "black",
+          "kind": "word",
+          "meaningZh": "咖啡点单中指不加奶的；并不自动表示不加糖。这是情境义，不是 black 的全部词义。",
+          "example": "I usually have my coffee black.",
+          "substitution": "I usually have milk in my coffee."
+        },
+        "recall": {
+          "text": "black",
+          "completedAt": "2026-09-10T02:00:00.000Z"
+        },
+        "composition": {
+          "text": "I would like black coffee, please.",
+          "completedAt": "2026-09-10T02:00:00.000Z"
+        }
+      },
+      "completedAt": "2026-09-10T02:00:00.000Z",
+      "completionEvidence": {
+        "schemaVersion": 1,
+        "ruleVersion": 1,
+        "sessionId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+        "sceneId": "dining-01",
+        "sceneVersion": 1,
+        "level": "A2",
+        "contentVersion": 1,
+        "engineVersion": 1,
+        "mode": "short",
+        "variantId": "counter",
+        "requiredUserTurns": 3,
+        "submittedTurns": 3,
+        "expressionTurns": 3,
+        "outcome": "achieved",
+        "basis": "path-cap",
+        "confirmedAt": "2026-09-10T02:00:00.000Z"
+      }
+    }
+  ],
+  "settings": [],
+  "turns": [
+    {
+      "id": "turn_524286aa-ece1-49b3-a116-9a91f049fa69",
+      "sessionId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "index": 2,
+      "learnerText": "Black, please. I do not usually have milk in coffee.",
+      "aiText": "This short practice is complete. No real service or decision has been made.",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_710485ef-98df-4048-8c24-e300de0c02e5",
+      "sessionId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "index": 0,
+      "learnerText": "An Americano, please. I like a strong coffee.",
+      "aiText": "Would you prefer a small drink or a large one?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_7e8c9931-04e5-4cdd-9966-b23a7881561f",
+      "sessionId": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "index": 1,
+      "learnerText": "",
+      "aiText": "Take one item at a time. You may ask for help with the current question.\n电脑独立盘，允许再问。\nCan you explain where the laptop should go in this exercise?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_879aec2a-3caf-4238-ba80-c1dcb00f57f3",
+      "sessionId": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "index": 0,
+      "learnerText": "Please speak more slowly so I can follow.",
+      "aiText": "Can you explain where the laptop should go in this exercise?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_9bfa846e-b09f-492d-a752-9d4d66ab90b6",
+      "sessionId": "simulation_1ca3aac9-30c0-4199-8f8d-767f6577594a",
+      "index": 1,
+      "learnerText": "A small one, please. I do not have much time.",
+      "aiText": "Would you like to keep it black, or add some oat milk?",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "turn_b2de1956-98b5-4c98-b81f-34c42e97305e",
+      "sessionId": "goal-session_99df66af-8496-4a5f-9a56-cdc5cf79fe68",
+      "index": 2,
+      "learnerText": "",
+      "aiText": "We will pause the practice with some screening details still unconfirmed. This is not a security clearance.",
+      "createdAt": "2026-09-10T02:00:00.000Z"
+    }
+  ]
+}

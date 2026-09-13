@@ -1,0 +1,21 @@
+{
+  "sourceCommit": "9b61835b873a64782242ef0d10eff1ed6bcc62c0",
+  "commits": 214,
+  "gitBlobs": 1798,
+  "gitBlobBytes": 48958743,
+  "trackedFiles": 961,
+  "trackedBytes": 44363806,
+  "reviewedHistoricalPaths": [
+    ".superpowers/sdd/2026-09-09-speakmate-3/task-1-report.md",
+    ".superpowers/sdd/2026-09-09-speakmate-3/task-3i-report.md",
+    ".superpowers/sdd/2026-09-09-speakmate-3/task-3i-production-check.mjs"
+  ],
+  "forbiddenHistoryPaths": [],
+  "forbiddenCurrentPaths": [],
+  "findings": [],
+  "exclusions": {
+    "untrackedQaFiles": 697,
+    "untrackedQaBytes": 365180837
+  },
+  "scope": "Pattern and forbidden-path checks of all reachable Git blobs and tracked working files. Not proof of absence of every secret or screenshot PII."
+}

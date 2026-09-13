@@ -1,0 +1,14 @@
+{
+  "type": "OFFLINE_STATUS",
+  "buildId": "o3l7OUHwGtKTlz9pnpxMi",
+  "shellReady": true,
+  "categories": {
+    "travel": true,
+    "dining": true,
+    "daily": false,
+    "work": false,
+    "social": false,
+    "study": false,
+    "emergency": false
+  }
+}

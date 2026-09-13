@@ -1,0 +1,1016 @@
+[
+  {
+    "path": "APP_SPEC.md",
+    "origin": "3.0 working documentation",
+    "bytes": 15323,
+    "sha256": "f96b8a8544aca1badbbf9015c188b98a59faf6614a5b056d696a14e0354b9ea5"
+  },
+  {
+    "path": "docs/releases/3.0.0-verification.md",
+    "origin": "3.0 working documentation",
+    "bytes": 62519,
+    "sha256": "7934f0c8248df715847a6d522e24ab445ccd0eb1518c0b876be0a198f3ef6342"
+  },
+  {
+    "path": "docs/releases/3.0.0-deployment-2026-09-13.md",
+    "origin": "3.0 working documentation",
+    "bytes": 7338,
+    "sha256": "e4c2766a4c5f0abc3b2d6013db97d96b2717a4f4ce9ec49ac508a89564f07bed"
+  },
+  {
+    "path": "outputs/qa/task7/backup-cap-01/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 7816,
+    "sha256": "c30de549f8a422cfa43e520a074e83530fd28abd2190fc459300ca924aba36dc"
+  },
+  {
+    "path": "outputs/qa/task7/backup-cap-01/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 331069,
+    "sha256": "b052e549c22f1b84095e9db9e6352de8162c6d15f31ea22f7d0087bf43ae435d"
+  },
+  {
+    "path": "outputs/qa/task7/backup-cap-01/task7-backup-cap-D-near-ca-6d82b-ownload-or-local-truncation-chromium-mobile/test-failed-2.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 7359,
+    "sha256": "35167d1c29a6c606378822ed32152019319a2ae61b8ceafd10dcc17829f7354b"
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-01/task7-cache-privacy-SW-pri-8dc69-nts-images-remain-available-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 10168,
+    "sha256": "9cee8a6fdd16ed34d807ad25f020ed8a9df42f01c0ad700f386583771278ab0d"
+  },
+  {
+    "path": "outputs/qa/task7/cache-privacy-01/task7-cache-privacy-SW-pri-8dc69-nts-images-remain-available-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 771427,
+    "sha256": "c17b937d9962db8d5e98dbe4c5efdbac265255a4eb5dc978264f04e75415c1fb"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 10445,
+    "sha256": "2972a2ba23fda68e3b0d6e45355f64455b8862e11aa9da2ff85b175d39aa6494"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 169985,
+    "sha256": "066e7a399448977a5dae3165ed4b250e23b704ea3cb7e995e409f2380313d43b"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 10441,
+    "sha256": "9c673763f6f1d03359bfd2871686d9fec8cbb7ba5e9d6c99fe80a9233adbaa59"
+  },
+  {
+    "path": "outputs/qa/task7/category-fault-01/task7-update-browser-SW-na-73d7b-ithout-late-learning-writes-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 169985,
+    "sha256": "066e7a399448977a5dae3165ed4b250e23b704ea3cb7e995e409f2380313d43b"
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-03/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 655,
+    "sha256": "7b5a4b0cee9783bbca5b1ed6a3578f4c89824ce1de1af70f8eddd1c0056d406f"
+  },
+  {
+    "path": "outputs/qa/task7/controller-fault-03/task7-update-browser-SW-na-22762-ithout-late-learning-writes-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 160529,
+    "sha256": "2f7af53bd23937b6273c053d2c6f5925bc93d134f0da6dfe2ff3a9e7334eef1f"
+  },
+  {
+    "path": "outputs/qa/task7/core-online-green/synthetic-completed-backup.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 46320,
+    "sha256": "874782551be40c2fb998ab597dc26b24eeb3ada8982453b1e2e67242e1173af6"
+  },
+  {
+    "path": "outputs/qa/task7/core-online-green/warmup-entered.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 169985,
+    "sha256": "066e7a399448977a5dae3165ed4b250e23b704ea3cb7e995e409f2380313d43b"
+  },
+  {
+    "path": "outputs/qa/task7/core-webkit-green/synthetic-completed-backup.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 47776,
+    "sha256": "efc91dc601ba845881f572aa415975caf53b7303dece3ffe64cdc44d24ac7168"
+  },
+  {
+    "path": "outputs/qa/task7/core-webkit-green/warmup-entered.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 117035,
+    "sha256": "8a45860450938c15a93407af97057f12cd57a323872eb9f0a9709696afe1cdd6"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/actual-before-collision.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 25674,
+    "sha256": "d0c7e71b86ec60dabd8c6efb3eb222105927347ac0364d9d8a564265f3293f11"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 7816,
+    "sha256": "753148bf280a1db3f62c7fc353a416bf0e1b9e09ba417a3ff7bc104e1fe99a7d"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 331069,
+    "sha256": "b052e549c22f1b84095e9db9e6352de8162c6d15f31ea22f7d0087bf43ae435d"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/test-failed-2.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 7466,
+    "sha256": "365f7252e2acccd331d3221cb258d28c4f9064e46449b92873d60ad1a4ce6c3a"
+  },
+  {
+    "path": "outputs/qa/task7/coverage-01/task7-coverage-browser-F-p-8a506-f-review-without-simulation-chromium-mobile/test-failed-3.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 174168,
+    "sha256": "1c9d700c238b3b1e8943798a7ce1ea74d3747cf1e637aaba14f2244dee620b5d"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-01/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 5032,
+    "sha256": "d3d5c14dc9bf1930d57d209e85748f89ba9797df9bdc98c7033e3b1667f6b5e4"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-01/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 104246,
+    "sha256": "6089d56acf77c1c19330ac120d09667fc0b2b16cc6473662c81c99d3fcbb2c71"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-02/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 8353,
+    "sha256": "1695250bc4c7655fd0bcdf88604974109f3f396710dedf801c0f7abcaa7b6398"
+  },
+  {
+    "path": "outputs/qa/task7/final-communication-02/task7-communication-browse-dc474--navigation-data-stays-safe-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 145498,
+    "sha256": "2ea813daf22cafc958606aa50bf6361177436958d98afc13f36bd957bc22195e"
+  },
+  {
+    "path": "outputs/qa/task7/in2-five-v2/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 8643,
+    "sha256": "267322703154849d5ffbfac85bffa971fd1c9860e772ec269212ac4ddfedc721"
+  },
+  {
+    "path": "outputs/qa/task7/in2-five-v2/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 147297,
+    "sha256": "13d2388c66c2ea60042da4d17b448e274625de743d054f0a80787f8955cf705c"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-green/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 7999,
+    "sha256": "6710b954364349702492934c680e83f453d80c22a93f8b1831ecdf0d86062c65"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-green/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 147297,
+    "sha256": "13d2388c66c2ea60042da4d17b448e274625de743d054f0a80787f8955cf705c"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 7962,
+    "sha256": "9d269735927ddf36eeee6254068feef7b838e337ac66d3721bd54d71b67d71a0"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-micro-v2-F-five-actu-8ae86-arate-versus-omitted-chilli-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 139712,
+    "sha256": "413ee442a11b24e5ee9a795693db2b7b70291026e4f842be2b23496fbe361514"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/me-390.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 375634,
+    "sha256": "0caf49d7d3d5a9ceacedb140b03125a886185cbaf6b356989974767228484c4a"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/me-text-200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 220437,
+    "sha256": "fd8590fb9a59cae54c8fa4ca30476c6aba8770bf60a8307ea32acaf9538a206f"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/measurements.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 42962,
+    "sha256": "9cc9015cbb8127d84f80277726a42ee6ce96d63b511e355c5a5c70f99fa648f7"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/question-320-568.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 145105,
+    "sha256": "f217f21084bd4dbfb6ff9e89e8e4aedb173b53499b5212c8aa9067952cee6eff"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/question-390-430.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 120150,
+    "sha256": "0231dad87bc31ddfc2248567dedd4f51aed0afad136914cae4c172e5968a8088"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/question-390-844.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 196836,
+    "sha256": "49a65f09e8fbd893514157a82b0aecb74503790d4936e119fc8cf8b4102415a7"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/typing-320-568.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 128295,
+    "sha256": "bdf2dd877d100f8045c39296948cfb2fe71ff6456b336f76d6cd5eb1c05d4df2"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/typing-390-430.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 108805,
+    "sha256": "dcfd407cbc6d9960f5c707d6b9ef615cb8d28156f44bdd57bcc98416dcc13a4e"
+  },
+  {
+    "path": "outputs/qa/task7/in2-micro-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/typing-390-844.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 195896,
+    "sha256": "ba3853b93f8b63b2f7d779ac8513692b6b0ad2a6818ca10317896b87eafc045a"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-01/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 5144,
+    "sha256": "d3cde97687954658fd84fb0286b0f3037134ff4ceddd0d47a7509d7779af3fe1"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-01/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 11214,
+    "sha256": "b2be83031faf477431d28b8bf239affaf9980fea4818d9d1bd092e5c440062d8"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-02/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 5932,
+    "sha256": "dfde6be5db7823e327fa1af486a25bfe4ca7d453d2b05b9bc41ef8e920fa53b4"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-micro-02/task7-legacy-micro-F-impor-85379--the-current-v2-replacement-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 104977,
+    "sha256": "5b7976e99e8590aebc75fab3a2ac4983cfff24cd4bd25d95fafdc72d6ff210eb"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-offline-green/offline-visited-scene-libr-c5ef6-ssion-shell-recover-offline-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 9039,
+    "sha256": "5603581c3d76b00b914c7b3667dadb6d40d73e927fd6ac8de91b91be88ab4009"
+  },
+  {
+    "path": "outputs/qa/task7/legacy-offline-green/offline-visited-scene-libr-c5ef6-ssion-shell-recover-offline-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 186494,
+    "sha256": "a4cd21a9236db345f2a972fe2e635e9d0df3fed90210b033c317a0281c0a63c9"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/me-390.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 318194,
+    "sha256": "fcbd91fd5a3eb4b3c8ae8ef10d562f951be3dd6c1c72aafe6e08cbce1d9eae3b"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/me-text-200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 178499,
+    "sha256": "9ad8448a3b90e393e7eab9582a7cde853c5624c8fe501ea4c588064bc6d3a0e7"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/measurements.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 31552,
+    "sha256": "5b2af052271eb3310ba139be33ec59ccfbf1494161c86a187c57df0eba10dbb1"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/question-320-568.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 136137,
+    "sha256": "cd98f5aa2d8680af35aa6726d36a9f0ce72fd716f1eb7d043d32d92d8edf8c1b"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/question-390-430.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 128098,
+    "sha256": "3f9547c1440266102dddb056a678002dede5f4d567b5697d8a2cb999c4a5e9ca"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/question-390-844.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 188698,
+    "sha256": "e7d4644da303ed0ebf4f9d02f5c3da19c06149b160ca9659f44820fc89376bf5"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/typing-320-568.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 112660,
+    "sha256": "619b1b5377da6bcc4b1e4199b7c526aaa73145f761ccd896cb27abf9556f7a14"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/typing-390-430.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 98992,
+    "sha256": "6bf59ba5174bcf9c52cb3e684520fa834af217774197c926dda2306abaeb61b0"
+  },
+  {
+    "path": "outputs/qa/task7/mobile-webkit/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-webkit-iphone/typing-390-844.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 164386,
+    "sha256": "1d86f3ce6f45ebcabba2d94dbdf0a28b1c08265398e0ec0c23dff862fe7fcd95"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-01/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 9164,
+    "sha256": "f4261f4c71586dca4cde5d9432b1db5dd6c76cd737c7918b0982eedb46d90773"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-01/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 101925,
+    "sha256": "5696e7d6f74b30dbc4076261d72febc5acc70c4b58a7005652924ee8b1b30467"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-03/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 10709,
+    "sha256": "1f3cf0b9d0fa563382af09a2b698e474c05acff6e39ae33b451b97ee075a9f43"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-03/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/nonzero-restored.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 101293,
+    "sha256": "bf1052540536d6560cebbaec103d7e5ac657e4038dccec0a1c4447570394b57a"
+  },
+  {
+    "path": "outputs/qa/task7/native-scroll-03/task7-native-scroll-H-actu-d3b4a-with-denied-session-storage-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 128024,
+    "sha256": "15ef4b4eee7cd3fce7da1551776408bb1ffbbac24e15894f12fb95ae5e3f6a06"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/1650ad44257030001fd8d0d5b5593f99edecef75.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 27816,
+    "sha256": "756a4618ed1f2a4b6169304a51e12e5f6c2cefbbde587cf4be84637140e08405"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/53c3e22bc9fe0dc022c4bcb4489470b02e3c2f83.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 954917,
+    "sha256": "5c958bb7623c682b5aa2035b16501fe741f379ad5e02fdc450c3770a77215ca2"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/5792035d9fef888aa7da07b3580a7212c9c2ed12.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 17150,
+    "sha256": "1943dc932837d542318fe1aa5f626ad9e18a47b34fc6f0dc30ef53228334e88e"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/6313bacd090b8b422e4cf7f587d6a558e8f73990.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 11890,
+    "sha256": "b3492ce5871d4bd5056a0fa55a9b71dfa60869a37d6156c7bce8a30f380fb713"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/6aa1ca5d10735c83c5ba417823538b2c514406ae.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 22724,
+    "sha256": "eb7cd700a4fbc632e6105eabc3e1918e6ca6dc472e1c8feb0b4919008b087574"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/94a4c55631217f8b27f30f4ea0186f23e6549973.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 21950,
+    "sha256": "4a063e593d9091411384a4f9deaf84f8eb2d4e080f258ef0b1bf7c340a7c43f5"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/992e59c106b8ac6d9af156fb124800d150010db5.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 22644,
+    "sha256": "b7916f1c65d7d385b1623ade687f9b98b40b879a34e0d14b4842bf38cbcfc5a2"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/ae602d8d140a2ad35e084b1f0595815992fc9a23.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 28034,
+    "sha256": "305b23554679689b4b0b8c66566dbcf3cf80d315b56f1b3fcc2dea52aa50e9c9"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/b3f796effb448d905d5c4859eb49b9e9f176f39c.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 1029328,
+    "sha256": "db42e4d8c3a3645230549598dcd00d443eb9ce786b71e83860ea81bf1d5516f1"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/b6de31d7f479f900cc96afa268de800c14224dd8.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 40308,
+    "sha256": "4c399a9abddabd35cce9610c8f2f86960888d00e08f3894dcbafef065e16573e"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/da14131e19e65a15d68055faa04777d3c4126b04.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 219967,
+    "sha256": "85441f7eb27769dbb1237bb5d29838d20e98aa1489b498b0040ca600b7f9111c"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/e8e600e84a55b3fc81159d138400e0c26a37f2c7.webp",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 30820,
+    "sha256": "5c4fbb2dce1df7dd91db164e8d33cf2368ee5157fb202bd8f1137bc08f84d30c"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/eaa6026c6455f4f69d64475cba3b3ec404e07cb2.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 230784,
+    "sha256": "d5079841e1dfbe3ef2774c297f6a64d590d9c2dd052ff64aae78fad49e66e4b9"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-01/.playwright-artifacts-0/traces/resources/fe08367c99b76786e56f40d55516c3ebb9392883.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 687260,
+    "sha256": "23f21bc7951bcf369b245008c192ccfe948718a0e3815f1769a777389f91a39f"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-02/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 8922,
+    "sha256": "a88897c726f3ab6e81357599c4cb5fd5b00f2fd6a7c18e793f2438fcac7d65fe"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-02/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 159377,
+    "sha256": "95902272791b6967255c368195d47b222b29cc71fdd4f2141fe531b8c43185cc"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-04/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/network.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 51423,
+    "sha256": "ea962631418a7c4f371128dff46032ec12d58726b28a9daa2492f811d49782f7"
+  },
+  {
+    "path": "outputs/qa/task7/notebook-native-04/task7-notebook-native-F-H--9f891-recall-native-source-return-chromium-mobile/source-phase-history.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 111916,
+    "sha256": "af1c2cb0429042fa65076229677d1e18e7133b4a84d4ef41e0798736cfbf9ef9"
+  },
+  {
+    "path": "outputs/qa/task7/recall-reload-harness/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 174198,
+    "sha256": "5e3c9cf2bb08abdbf9e0f18d2edf018c5d901ba0e03432675ee291b659bdae48"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-core-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/normal-before-recovery.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 41191,
+    "sha256": "97d9a1704bce7b022a2f34dc46676ec374abac59f1b77a55b4942ae72f4ce8dd"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-core-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/recovery-complete.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 41191,
+    "sha256": "29415cc036c8169e155d11eee0924a302a050615e95e74395d527bda1f7549d4"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-core-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/same-origin-all12.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 60764,
+    "sha256": "d06fcd983b4b1a15457563ddd0b1e8e25a15d16463f778e7ea8396d52bb9431d"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-core-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/server-down-shell.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 116,
+    "sha256": "23e5f6abc80a5d421fe6225c1231a93de1988228a234635bcba5c41f1287e0a6"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-deep-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/deep-entry-first-frame-audit.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 5452,
+    "sha256": "f324dc71ac0cb0c1da572983ec9d23f34ccdfea358e00e1f34d11adbca1851f8"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-deep-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/normal-before-recovery.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 41191,
+    "sha256": "c2109a5d0b2d309c717222f33a17112fd93b7b8784008dec609f7d41d5cbf44a"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-deep-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/recovery-complete.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 41191,
+    "sha256": "44c4cbcd53dd393cc5ed3d480cf38dbc9aa1c0dc3668d7a407719243f83de644"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-deep-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/same-origin-all12.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 60764,
+    "sha256": "f5bd09a8472ca1042290591130064af2412a46351c47a0dd0c4d8669a3c19da4"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-deep-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-chromium-mobile/server-down-shell.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 116,
+    "sha256": "23e5f6abc80a5d421fe6225c1231a93de1988228a234635bcba5c41f1287e0a6"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-webkit-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/deep-entry-first-frame-audit.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 5452,
+    "sha256": "f324dc71ac0cb0c1da572983ec9d23f34ccdfea358e00e1f34d11adbca1851f8"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-webkit-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/normal-before-recovery.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 40399,
+    "sha256": "b387178da0279bc3cfe893a1f54b8c36e145e8c868c44ecc58e778281d13e688"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-webkit-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/recovery-complete.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 40399,
+    "sha256": "5f6f2228795e535d13024e72d450f04768b0d3e5b3dd6b0f59e982489906b05e"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-webkit-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/same-origin-all12.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 59597,
+    "sha256": "b47ca2c199cc9b6a6610a09ba4459079e078f59a8018fcfd02799ffae5285b5e"
+  },
+  {
+    "path": "outputs/qa/task7/recovery-webkit-green/task7-recovery-build-Rulin-506bd-→-complete-unchanged-backup-webkit-iphone/server-down-shell.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 116,
+    "sha256": "23e5f6abc80a5d421fe6225c1231a93de1988228a234635bcba5c41f1287e0a6"
+  },
+  {
+    "path": "outputs/qa/task7/retained-01/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 9979,
+    "sha256": "ca493ae10b6779931ed2459c1e5e1a193c79525fa2860e33353d4170b37fef38"
+  },
+  {
+    "path": "outputs/qa/task7/retained-01/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 344815,
+    "sha256": "68393cf520883f32a835a66d55b681702dac180e2cc531ae06aabddcde099a7d"
+  },
+  {
+    "path": "outputs/qa/task7/retained-02/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 10233,
+    "sha256": "1b5a68e877546c4ff7edecf25fd526c068845252e34cdc6c3cc441359cce0986"
+  },
+  {
+    "path": "outputs/qa/task7/retained-02/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 344828,
+    "sha256": "049f30292a23754c26c63e62cb56686b5da40f724a9fa3a9f3e420b261e3120a"
+  },
+  {
+    "path": "outputs/qa/task7/retained-03/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 9834,
+    "sha256": "e6befe0022917387af4d61ec30eb34c331a8ce51703487fce24390cc44d27b9e"
+  },
+  {
+    "path": "outputs/qa/task7/retained-03/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 165378,
+    "sha256": "b9551f58f4e0a8ac153c6bec612279b71517a1105e5151ff659de2754b27d36e"
+  },
+  {
+    "path": "outputs/qa/task7/retained-04/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 9851,
+    "sha256": "3c010d10c2f1bc13e3a884feddbbe15bd659e22d1a72e8118ce0baa7d02eae03"
+  },
+  {
+    "path": "outputs/qa/task7/retained-04/task7-retained-history-H-D-09b07-ble-undoable-and-exportable-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 165378,
+    "sha256": "b9551f58f4e0a8ac153c6bec612279b71517a1105e5151ff659de2754b27d36e"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/me-390.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 375634,
+    "sha256": "0caf49d7d3d5a9ceacedb140b03125a886185cbaf6b356989974767228484c4a"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/me-text-200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 220437,
+    "sha256": "fd8590fb9a59cae54c8fa4ca30476c6aba8770bf60a8307ea32acaf9538a206f"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/measurements.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 37517,
+    "sha256": "48e35e75292a57a0d9dbd0e3e55761d82019ee14fc9fc9a9f73f70aaa5e28e08"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/question-320-568.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 145105,
+    "sha256": "f217f21084bd4dbfb6ff9e89e8e4aedb173b53499b5212c8aa9067952cee6eff"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/question-390-430.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 120074,
+    "sha256": "e46605ea8a595ff3ba817b6d380dea0e86828187a5336715da54e3dd0ccddc8d"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/question-390-844.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 196836,
+    "sha256": "49a65f09e8fbd893514157a82b0aecb74503790d4936e119fc8cf8b4102415a7"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/typing-320-568.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 128295,
+    "sha256": "bdf2dd877d100f8045c39296948cfb2fe71ff6456b336f76d6cd5eb1c05d4df2"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/typing-390-430.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 108805,
+    "sha256": "dcfd407cbc6d9960f5c707d6b9ef615cb8d28156f44bdd57bcc98416dcc13a4e"
+  },
+  {
+    "path": "outputs/qa/task7/running-mobile/task7-mobile-fixes-C1-firs-fd5f0-th-large-text-touch-targets-chromium-mobile/typing-390-844.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 195896,
+    "sha256": "ba3853b93f8b63b2f7d779ac8513692b6b0ad2a6818ca10317896b87eafc045a"
+  },
+  {
+    "path": "outputs/qa/task7/storage-green/after-source-delete.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 21878,
+    "sha256": "95e0efeb2907435d572ecf49692d97c78e99af58b0f91ce7da198c70b5fe58f8"
+  },
+  {
+    "path": "outputs/qa/task7/storage-green/retained-state.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 31229,
+    "sha256": "6b8e649b7f7b1d9e2cd1a6fb3e31858e2fc16f7a360d5e90505cb674ca7db2ad"
+  },
+  {
+    "path": "outputs/qa/task7/update-01/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/network.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 45171,
+    "sha256": "33061ce7fd6b801445a889370c556853cc510253017c1425f12438520e54639e"
+  },
+  {
+    "path": "outputs/qa/task7/update-01/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/real-update.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 93239,
+    "sha256": "d6ec8f1b48854722f2423e4f22f49c36e5f5c98692e5ccf16fe290f54da930cc"
+  },
+  {
+    "path": "outputs/qa/task7/update-01/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/waiting-update-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 250823,
+    "sha256": "7bfba0626211c141f017cf945fcb05b3a74dbfa36412e0fcae028333f7ffe2a0"
+  },
+  {
+    "path": "outputs/qa/task7/update-04/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 11024,
+    "sha256": "59c77b840549f698068f3a84895c4fc06aaeae03bb2ec1db027314f151164434"
+  },
+  {
+    "path": "outputs/qa/task7/update-04/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 273436,
+    "sha256": "00a4f0aacdad59a20b2da19d504afd393eafb2fed5340d3a1c647afdceeb1c07"
+  },
+  {
+    "path": "outputs/qa/task7/update-04/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/update-top-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 633178,
+    "sha256": "dd0d40ac52d2e3dc5d575c49db743a16b73dd696ec11db09ae4b65f4dd46bef9"
+  },
+  {
+    "path": "outputs/qa/task7/update-04/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/waiting-update-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 250823,
+    "sha256": "7bfba0626211c141f017cf945fcb05b3a74dbfa36412e0fcae028333f7ffe2a0"
+  },
+  {
+    "path": "outputs/qa/task7/update-05/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/network.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 54075,
+    "sha256": "55189122230b81918a3cb5ade7d0aaad16c5b6043c9fd616335461ac176b704a"
+  },
+  {
+    "path": "outputs/qa/task7/update-05/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/real-update.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 109648,
+    "sha256": "095ef64d20da542e524d57ddd87e143d7428c4ac035c2216a95d3954a511a44b"
+  },
+  {
+    "path": "outputs/qa/task7/update-05/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/update-top-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 633178,
+    "sha256": "dd0d40ac52d2e3dc5d575c49db743a16b73dd696ec11db09ae4b65f4dd46bef9"
+  },
+  {
+    "path": "outputs/qa/task7/update-05/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/waiting-update-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 250823,
+    "sha256": "7bfba0626211c141f017cf945fcb05b3a74dbfa36412e0fcae028333f7ffe2a0"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 20440,
+    "sha256": "43912042f9fe8fd38a3f05bd034d5f12c8ddf5d80a2a249b3a7adc82432e4a9e"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 512735,
+    "sha256": "1304c063c5411a7d6201856b21a3511f2963bee79c54872d9e531f99e8d1ee6f"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 10016,
+    "sha256": "361abcfd063dc41b772fd70d0ccc4309a6a3b6ed03757f5840c484535c92f052"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 188326,
+    "sha256": "1e73b99f0190f4250921c2b92c89e3f74dc9ade6be0423047c42939f129d86a4"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/update-top-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 606832,
+    "sha256": "94aa0248639215de95275889a5bc0ed1e606418a42ac1447fc357b48aefd2428"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-02/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/waiting-update-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 250823,
+    "sha256": "7bfba0626211c141f017cf945fcb05b3a74dbfa36412e0fcae028333f7ffe2a0"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/native-placeholder.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 1764,
+    "sha256": "f7358522cc7ba7442c060fd62a20eaf570d7809051e279dd5e7847b7161604f9"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-placeholder-browser--b2e5c-er-use-explicit-safe-source-chromium-mobile/network.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 19953,
+    "sha256": "8ecead5c93e6ac82a197aba3ab1baf5807a7f2351ee628ae96d7b0455ce1724d"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/error-context.md",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 30097,
+    "sha256": "17597f431fa0d966255bfd9b01d914cd7b0c31396db9f0ce00de223b335d12fd"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/test-failed-1.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 314195,
+    "sha256": "dc086f51d41ebee7236e27e62bef10d4391c9fe7245aa739f1ae706ecbe968f9"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/test-failed-2.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 123962,
+    "sha256": "d345b3a5267b98dd8af5ad9b9c12f87a7913521a8e1464a18f8724751110109e"
+  },
+  {
+    "path": "outputs/qa/task7/update-native-03/task7-update-browser-SW-re-1b9cb-es-with-enlarged-navigation-chromium-mobile/waiting-update-text200.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 250822,
+    "sha256": "0b6e8df350222f452f3305785d9c6a0f0d53c617acf32501c9d47c37dff7a2d1"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/final-local-state.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 69726,
+    "sha256": "e2e9e00995cb4447276833ae67076a3c80b2122d4e8897d8cc801bdabbf62b8b"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/network.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 39281,
+    "sha256": "7b2fa983ce8088d935c6cac17ca6ce14cce9360b9db802fbf63577c2d4b9ff58"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/prepared-readiness.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 256,
+    "sha256": "21a7cd159b7b472ef8bfaf2e4c7fef01abe6e460357c4bc9b76434fab44117b6"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/server-unreachable.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 83,
+    "sha256": "7a190e9a416d213adc5bb464caf42593930e129aec873395e611bfac99994dfa"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/synthetic-completed-backup.json",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 45753,
+    "sha256": "84c2ae6bae8d30a3eba6333ae27fce63fd568e5c7dcb25e7de9957e8bdc16885"
+  },
+  {
+    "path": "outputs/qa/task7/webkit-server-down/task7-learning-A-G-offline-90bd5-imulation-→-35-point-backup-webkit-iphone/warmup-entered.png",
+    "origin": "authorized isolated synthetic QA; supplement",
+    "bytes": 117035,
+    "sha256": "8a45860450938c15a93407af97057f12cd57a323872eb9f0a9709696afe1cdd6"
+  },
+  {
+    "path": "docs/history/screenshots/2.3.0/exit-detail-1280.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 238404,
+    "sha256": "d01a52efdebe316326e871c3fce38ae1dde2b69e3bcf21d5279489d9181c126a"
+  },
+  {
+    "path": "docs/history/screenshots/2.3.0/home-390.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 146572,
+    "sha256": "a0335a53596f83efde2c0f433c7bcd97d9bd11d7570526062eec0941f99323b9"
+  },
+  {
+    "path": "docs/history/screenshots/2.3.0/home-resume-390.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 146572,
+    "sha256": "a0335a53596f83efde2c0f433c7bcd97d9bd11d7570526062eec0941f99323b9"
+  },
+  {
+    "path": "docs/history/screenshots/2.3.0/next-reply-390.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 140803,
+    "sha256": "b22e0a4e00009b5f19db9fd061ff4ce2d04b11b41740613aab8609a50c82bcd2"
+  },
+  {
+    "path": "docs/history/screenshots/2.3.0/next-reply-scrolled-390.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 52078,
+    "sha256": "8c7e9eee08458e92bcee5ddc4f5bfdf07f62d9b53cb10f6411df0d999aa06b56"
+  },
+  {
+    "path": "docs/history/screenshots/2.3.0/search-390.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 162982,
+    "sha256": "fad6e9f8864f9a45b3045ac01be0dff22293646bc8f3922372d6d77513f707a6"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/01-landing.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 31923,
+    "sha256": "9a10e1be629095686af0afe91b5370378d6f033a7ae864d96658a6e62e7eb865"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/02-onboarding-level.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 28913,
+    "sha256": "f8d7e4ca2a2858599c59a2c17fb9fca1ef2abffe695d1542602b2fd72b9c5bcf"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/03-onboarding-goal.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 23136,
+    "sha256": "e34003bf48f75a7e82999085702b63d02687899b7fe6ed09772e9aa411f47d12"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/04-onboarding-duration.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 24303,
+    "sha256": "1e8d3bb941fcecea60f79664623d492a41215e1ba8d1651cfdac23ff8c6f82e3"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/05-practice-home.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 41664,
+    "sha256": "511c9985fefea6d5d9877a22e086799cdc186739da252ef7219bd4d5df971498"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/06-scene-library.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 39915,
+    "sha256": "b27a6eb1af9e85ce411da98c6acd7e319abbc405a23bc98bdd7b1bb9fe3e29f4"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/07-scene-filters-scrolled.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 39349,
+    "sha256": "a6c18b7b0e2d7a4ff899bec00cfcf3c257b4c02466ab1a85aee60916643d532d"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/08-scene-preparation.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 42228,
+    "sha256": "14414d8eb62547affbaf35a4e3c522ddd35dacbba6919a2a24fa56300dc720bd"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/09-dialogue-stage.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 42583,
+    "sha256": "03b48dd348efc1f2525eecdb8ded42ac6ee84a52197da8826feb62619ce6f773"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/10-keyboard-review.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 44010,
+    "sha256": "d92e61c09d4d7ed72870cb2cfcf188d4a1cf64e71b83ed72a90bcef3abefcaf1"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/11-learning-center.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 34004,
+    "sha256": "e8f4f4e04c9e88f65b3d348b854f4e8961f5dc07b4eb75b3af5248a51f025a48"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/12-privacy-data.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 44607,
+    "sha256": "707eeab3a2d2e7f763cd8d5a23265bb38ba8c988273d0a96c3bfbfdec0af1ba6"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/13-install.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 19312,
+    "sha256": "44e765a1bfd76f2b69550bd86ed21a1283dc0c4ebfa041e0355a183ef0b68ff8"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/14-turn-feedback-collapsed.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 48132,
+    "sha256": "b961302eb80c3e8a5a4ec60017199759608513d30d94c6d0e42bd840f105d20c"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/15-turn-feedback-expanded.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 48392,
+    "sha256": "f47230a0b362b417d09ac80aaae1452f3f3c0c9b07d6a758eeaeb3ad3a62d186"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/16-feedback-scrolled.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 46792,
+    "sha256": "d2cc78824c1003ef06e847fdd5d06cfb646c93483f7f08fb4e2d0e188a0afb77"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/17-session-complete.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 20247,
+    "sha256": "6eabbc89cb810eb83f68810611e7aa2498866793a89834b133e1b746519fed53"
+  },
+  {
+    "path": "docs/history/screenshots/ux-audit-2026-09-05/18-session-report.png",
+    "origin": "legacy local UI QA capture",
+    "bytes": 37995,
+    "sha256": "8a9a98cf084be06480f1ccd5eddb0cda9ae140579b472ba396d00f0803614304"
+  },
+  {
+    "path": "docs/history/specs/2026-09-03-first-pwa-spec.md",
+    "origin": "deb7e0d:APP_SPEC.md",
+    "bytes": 39541,
+    "sha256": "d41a26bac96ac934c69be53fe04f312135329706f222900166d2419003dfc6d7"
+  },
+  {
+    "path": "docs/history/specs/2026-09-09-2.3-readme.md",
+    "origin": "aacbffd:README.md",
+    "bytes": 3066,
+    "sha256": "f950f1bee378100107b5595925de80360bdc9bfe7df0e7fe05810a008c5d9d97"
+  }
+]

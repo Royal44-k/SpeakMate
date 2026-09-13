@@ -1,0 +1,254 @@
+[
+  {
+    "route": "/",
+    "finalUrl": "http://127.0.0.1:3131/",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/install",
+    "finalUrl": "http://127.0.0.1:3131/install",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/scenes",
+    "finalUrl": "http://127.0.0.1:3131/scenes",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/practice",
+    "finalUrl": "http://127.0.0.1:3131/practice",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/me",
+    "finalUrl": "http://127.0.0.1:3131/me",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/privacy",
+    "finalUrl": "http://127.0.0.1:3131/privacy",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session",
+    "finalUrl": "http://127.0.0.1:3131/session",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session/report",
+    "finalUrl": "http://127.0.0.1:3131/session/report",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/scenes/prepare",
+    "finalUrl": "http://127.0.0.1:3131/scenes/prepare",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/notebook",
+    "finalUrl": "http://127.0.0.1:3131/notebook",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/notebook/note",
+    "finalUrl": "http://127.0.0.1:3131/notebook/note",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/notebook/simulation",
+    "finalUrl": "http://127.0.0.1:3131/notebook/simulation",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/rewards",
+    "finalUrl": "http://127.0.0.1:3131/rewards",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/guide",
+    "finalUrl": "http://127.0.0.1:3131/guide",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/welcome",
+    "finalUrl": "http://127.0.0.1:3131/welcome",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/auth",
+    "finalUrl": "http://127.0.0.1:3131/auth",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/recovery",
+    "finalUrl": "http://127.0.0.1:3131/recovery",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/practice/today?date=2026-09-10",
+    "finalUrl": "http://127.0.0.1:3131/practice/today?date=2026-09-10",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/offline/session",
+    "finalUrl": "http://127.0.0.1:3131/offline/session",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session?id=new&scene=coffee-order&level=C1&mode=short",
+    "finalUrl": "http://127.0.0.1:3131/session?id=new&scene=coffee-order&level=C1&mode=short",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session?id=session_migration_fixture",
+    "finalUrl": "http://127.0.0.1:3131/session?id=session_migration_fixture",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session/session_migration_fixture",
+    "finalUrl": "http://127.0.0.1:3131/session/session_migration_fixture",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session/session_migration_fixture/report",
+    "finalUrl": "http://127.0.0.1:3131/session/session_migration_fixture/report",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/scenes/coffee-order?level=C1",
+    "finalUrl": "http://127.0.0.1:3131/scenes/coffee-order?level=C1",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/notebook/note?id=unknown",
+    "finalUrl": "http://127.0.0.1:3131/notebook/note?id=unknown",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/notebook/simulation?id=new&source=unknown",
+    "finalUrl": "http://127.0.0.1:3131/notebook/simulation?id=new&source=unknown",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/session?id=&scene=&level=&mode=",
+    "finalUrl": "http://127.0.0.1:3131/session?id=&scene=&level=&mode=",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  },
+  {
+    "route": "/missing-task7-page",
+    "finalUrl": "http://127.0.0.1:3131/missing-task7-page",
+    "audit": {
+      "openings": [],
+      "modes": [],
+      "writerSurface": false
+    }
+  }
+]

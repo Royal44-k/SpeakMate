@@ -17,3 +17,14 @@ test-results-new-round/
 Thumbs.db
 tsconfig.tsbuildinfo
 public/offline-build.js
+
+# Local agent/CLI runtimes are never assets. Three existing tracked historical
+# reports/scripts remain in Git; this does not allow their sibling files.
+.superpowers/
+.agents/
+.codex/
+*.bundle
+**/trace.zip
+**/.last-run.json
+browser-profile/
+personal-backups/

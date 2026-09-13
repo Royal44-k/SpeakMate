@@ -1,5 +1,7 @@
 # SpeakMate Figma handoff
 
+> Historical 2.x design handoff, not a completed Figma implementation. The 3.0 app has five tabs and its current contract is documented in [3.0 interaction contracts](3.0-interaction-contracts.md). No complete `.fig` export was found during the 2026-09-13 archive.
+
 ## File
 
 - Draft file: https://www.figma.com/design/4jL93nZEN69WJm8bGRVrft

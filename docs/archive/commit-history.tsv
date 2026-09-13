@@ -1,0 +1,214 @@
+deb7e0dfe8223296b285facea89bd539ddc26643	2026-09-03T15:32:58+08:00	docs: define SpeakMate PWA product specification
+5640afd41be3d2b7a27d02622deb8b353a297c37	2026-09-03T15:47:54+08:00	docs: add SpeakMate PWA implementation plan
+30ce058d820539041382eddb1238ad2a63ce790c	2026-09-03T16:24:28+08:00	build: scaffold SpeakMate PWA foundation
+5cdcde7fe58e8b2c61df989b5265cdadccae6465	2026-09-03T16:41:14+08:00	feat: add adaptive forty-two scene catalog
+9c084c86400351f39024e7134e6a9efeb591d618	2026-09-03T16:44:55+08:00	feat: add guest-first local persistence
+e03c68834136acaf555eba3cac7bc68900059d21	2026-09-03T16:54:27+08:00	feat: add installable offline PWA shell
+88e35ae597c5272c67ab43f90677ebdfbbb537b5	2026-09-03T19:25:43+08:00	feat: establish Dialogue Stage design system
+f4edeccacffb6d1efd401f4aaa38137a4e1cec3f	2026-09-03T19:45:08+08:00	feat: add onboarding and adaptive scene discovery
+18b43af59edc5af7e61d1165704a12eac939eaa7	2026-09-03T19:58:29+08:00	feat: complete local speaking practice loop
+9be46aee516f735327f8a027b8e081c21ccb9b35	2026-09-03T20:09:40+08:00	feat: add zero-billing cloud AI fallback
+4ff3086db7c5b5f5646d6386af71f1a2d7aac58f	2026-09-03T20:21:17+08:00	feat: add reports privacy controls and optional sync
+e0dc4b9d4ad5a780c2c1ce0f0ccf35a08f3a5f6f	2026-09-03T21:32:25+08:00	test: verify mobile PWA experience
+2f55d1dfbe8dbf5b29bcc0f959c6adc20cbefe2b	2026-09-03T22:03:40+08:00	docs: add zero-billing Vercel deployment
+3206089af5a906ddf33dfc02022a6198a83bfed0	2026-09-03T22:09:53+08:00	docs: record production deployment evidence
+39923a173a01cec898e376624cc8f3969ea13788	2026-09-03T22:41:13+08:00	fix: personalize practice and restore versioned sessions
+38045173902d9de0d9446dfe67146a158705e582	2026-09-04T21:41:59+08:00	fix: make audio turns and local data resilient
+04504b154ac57b21274bd8ea88046f3d0901a8a4	2026-09-04T21:56:15+08:00	fix: harden PWA security and release gates
+35a61e593f2a9bb7dc135e59c9e660a5081eddf7	2026-09-04T22:39:17+08:00	fix: stabilize PWA release lifecycle
+c0889b64a58137072b86530b14c1a7156b773fca	2026-09-05T10:20:10+08:00	fix: harden goal progress and offline recovery
+a668452aeb6108c5efe3dbb7e0c6a005ce8889b3	2026-09-05T10:53:21+08:00	fix: isolate private offline sessions
+c44cabc49ce24d1e6f6ef2b94241c1aaeef71e00	2026-09-05T11:02:55+08:00	fix: report manual release revision
+3e4d937dc82f89cd650a19aa1734c0480f59dfba	2026-09-05T11:09:54+08:00	docs: record SpeakMate 2.1.1 production release
+505ce61f47afa2e58cb6f9c83b89ccf9e5fb2928	2026-09-05T12:22:19+08:00	docs: define mobile UX consistency upgrade
+de1fa4c6e8e496bc0a2c3d07608eeee9e068f4ce	2026-09-05T12:58:37+08:00	docs: plan mobile UX consistency upgrade
+92b67a15ee1205708f6280fbb1aad687d64b54e7	2026-09-05T13:05:53+08:00	chore: ignore local worktrees
+e576847c8cc609f618ea8e8c9a2403792c0b8fae	2026-09-05T13:32:18+08:00	feat: add mobile navigation foundation
+02709bee9127bf954592eba6e675ccb870da9e48	2026-09-05T13:47:09+08:00	fix: address mobile navigation review
+14a0910834620b9b073541f9bb6d963d63d03b76	2026-09-05T14:07:30+08:00	feat: persist scene filters in the URL
+e0ae0ac00b34bf09b751bfed55f007a21f835c98	2026-09-05T14:21:31+08:00	test: cover scene filter URL state
+fe3dc0adbac056257c4dad61aafc0e6fe694349f	2026-09-05T14:54:57+08:00	feat: improve mobile scene discovery
+3583ba2e312259d4d146226568345fcf23b99458	2026-09-05T15:09:58+08:00	test: cover scene detail return routes
+1cc79e9e7b1534445b913d567ba74dbf50cf466e	2026-09-05T15:31:23+08:00	fix: keep PWA updates clear of mobile content
+7dd06164d697c0f26104249179a6f71b29abe204	2026-09-05T15:53:11+08:00	fix: reserve space for PWA update notices
+ab2c94a1b5676eee1b78fd37700cf37281d89b57	2026-09-05T16:14:02+08:00	feat: complete mobile secondary pages
+3508dc7a43508cee1564a5e5bf96114197d10b28	2026-09-05T16:29:42+08:00	feat: standardize onboarding navigation
+b13aeebe704e849ac904d470980499ac1828fd1c	2026-09-05T16:39:31+08:00	fix: confirm saved onboarding selections
+791d524d10980db4123f65cae4a2f59be0e58c9e	2026-09-05T17:26:38+08:00	fix: keep practice controls visible on mobile
+7437447b3d4673ba5f080a9dad01de52d9ea3d21	2026-09-05T17:43:00+08:00	fix: avoid welcome loading effect state update
+3a4dc717d3536d1119c7b9ce9365648ee06e0c9b	2026-09-05T18:16:45+08:00	fix: harden guarded exit lifecycle
+881794680e155db62ea3c2bcd919335dae069f3e	2026-09-05T18:53:57+08:00	feat: standardize completion and report exits
+a6d93fab1f0509554ce2a6aed75f9cca0c034901	2026-09-05T19:13:27+08:00	fix: close completion review accessibility gaps
+36ec18512013f3a67e87c3a2227af089d2c609fc	2026-09-07T17:07:19+08:00	test: cover mobile UX consistency
+648bf0e142d859745ce03fef64dbbaa6e7d8bf99	2026-09-08T11:22:27+08:00	fix: close mobile UX regression gaps
+93682b1e60821df931c6f69ffcd01a7d8dd60983	2026-09-08T12:18:10+08:00	release: prepare SpeakMate 2.2.0
+dcaf18701891a77f59b2d58042823f173e2b7b0f	2026-09-08T13:02:40+08:00	test: record SpeakMate 2.2.0 visual QA
+d90f3ee274ca5ed4f4ac34712058f463081ac922	2026-09-08T13:39:26+08:00	docs: record SpeakMate 2.2.0 production release
+8b9834fb84ffa8d32c7d78094db61f5b4239299b	2026-09-08T14:01:03+08:00	docs: align SpeakMate 2.2.0 release status
+83fe5916c0ea72076042b44152a049eeb9252cbf	2026-09-08T15:31:28+08:00	fix: close final mobile UX review findings
+7fb6077fc4fc5607248654812ed02158bfed6b79	2026-09-08T19:04:54+08:00	docs: record SpeakMate 2.2.0 remediation release
+670aee2eee05ee27dfa7329fa010ee4be8cbaeb1	2026-09-08T19:57:15+08:00	chore: ignore nested worktrees in lint
+eb2a6e7f76a6d24446e59bec6a0abc86731801d8	2026-09-09T11:57:05+08:00	fix: restore mobile layout and varied guided dialogue in 2.3.0
+aacbffdd2bc38085d91a5eb41837acd28cb63359	2026-09-09T12:05:40+08:00	docs: record 2.3.0 production verification and device limits
+a5ccc29ee3cb0f5168d78dc15ef47903cf7841d1	2026-09-09T15:38:20+08:00	docs: establish approved SpeakMate 3.0 local-first specification
+e31d349b1582942a7a4dd9fe5e09183af7384809	2026-09-09T16:24:37+08:00	feat: enforce strict local practice runtime
+6e44baebd4009afc08b1ab774779d1c25fade386	2026-09-09T16:26:04+08:00	docs: record mobile contracts and local learning evidence
+1ac9686efc89757d12ef5bcfa3c158c0f34c5069	2026-09-09T16:47:37+08:00	fix: cancel pending local audio operations
+7587855e0ce76a7e35f140417bd2ee4e8729bcaf	2026-09-09T16:49:36+08:00	docs: tighten corpus and data-safe rollback gates
+ecabf9dd66a6e1774dcda273ccbb815473776d60	2026-09-09T17:56:53+08:00	feat: add local notebook learning storage and safe backup restore
+5d9387e29744a7f3606cd0ec6e153380a916a59f	2026-09-09T19:20:07+08:00	docs: preserve local data and staged corpus handoff
+ddce4d1fc837299fbd622bdbac30926f0612ef76	2026-09-09T19:34:51+08:00	docs: record Node 22 evidence and data review findings
+3b32c654bc40367edc638804558cee72df1d8bce	2026-09-09T19:37:47+08:00	fix: validate notebook merges and preserve migration failures
+1994275fb231a64f08909334281245ed00c49ce6	2026-09-09T19:39:32+08:00	docs: clarify mobile focus and return recovery contracts
+0c848cd2278394bf18ed156aa91b366fc897dae5	2026-09-09T19:47:31+08:00	docs: record local data review gate completion
+b7ef8ef7c1ca979258c55e9c328f76ba505c13c7	2026-09-09T19:55:25+08:00	docs: define notebook capture review and simulation interactions
+b9e86fd9f466fc2f2a348889b0ec01f41eab1b69	2026-09-09T20:18:07+08:00	docs: distinguish scene slugs from persistent identifiers
+cfb0e409f74314c1a44acaf7caa19a6186199d7d	2026-09-09T20:26:17+08:00	feat: add graded coffee pilot and deterministic local learning runtime
+23a835592203896c27a64929e8beb70eceb512a2	2026-09-09T20:30:23+08:00	docs: record graded pilot validation pending review
+d65f79c1c79e8f05c5b8ce3c6d9613ee4aec7275	2026-09-09T20:33:49+08:00	docs: explain local practice feedback boundaries
+1bc50c49bd3e063b603f273cd186adab8b5442c2	2026-09-09T20:38:16+08:00	docs: record pilot review findings and fix gate
+cd4290eb5432c9ed4cdfd7fea7caa574ac69355e	2026-09-09T20:42:59+08:00	docs: place release metadata before final verification
+3f7ca0cb96ae15afc1556081ad6ae147116ab0dc	2026-09-09T20:45:01+08:00	fix: separate scene versions and gate restored dialogue content
+025d0c42a0854e6876b714eb2f0c216ee7d95da6	2026-09-09T20:52:10+08:00	docs: record completed pilot review gate
+6acfb88a965a7ef5c4340e62718bdbef3dd482fa	2026-09-09T21:09:25+08:00	docs: ground iPhone selection and storage boundaries in primary sources
+858f3ac8b917869a4ba823662f9030c0f3119f07	2026-09-09T21:29:26+08:00	docs: define offline-safe client route and navigation contract
+e91b5b0672d8bcaae9c33a047a8993c307e7a3d6	2026-09-09T21:40:48+08:00	feat: author reviewed remaining dining corpus and local analyses
+32758410bf7a78d49e10765f3c87cbf105c8051e	2026-09-09T21:44:06+08:00	docs: record dining validation and health communication boundaries
+3c26fe90e9423ec9cb1e1f39b79d83ffd927c6d7	2026-09-09T21:49:19+08:00	docs: separate code-stage progress from release acceptance
+ee0e7ac476c22890778861c5c8d8286cd7510882	2026-09-09T22:02:44+08:00	fix: keep restaurant timing unresolved through bread choices
+aeac23cfe770ac4c11abe156851729a0e6afe70f	2026-09-09T22:12:33+08:00	docs: close dining review gate and preserve verification boundaries
+201fa824968e76feef5b0dcff18b2e41f161e491	2026-09-09T22:19:46+08:00	docs: keep free-text scene searches out of navigation requests
+e830d7a8d1d16a08be51c6ba9f3f95a79aec141c	2026-09-10T10:22:24+08:00	docs: record resumed travel authoring without release claims
+bf0196c9f1d1d3006e229d65fa9ab1fb6ccd2856	2026-09-10T10:29:29+08:00	docs: align local practice completion and atomic reward contracts
+779d9ed750e80b437db0680346ccc7f20384c333	2026-09-10T10:50:23+08:00	feat: add model-reviewed travel corpus and bounded local analyses
+b5f0544db9a222ff1ccb9814682672f34d1f04b0	2026-09-10T10:52:45+08:00	docs: record travel implementation tests before independent review
+3d383c5bc54dc5ecfdb92dfb27602508d8de6bd9	2026-09-10T11:06:54+08:00	docs: track travel coherence and naturalness fixes
+6ef62db69209388ccd670c6902bf8a5ee2f32677	2026-09-10T11:21:03+08:00	fix: correct travel branch wording and upper-level dialogue
+1cb3c45317d10267c5c4d238104e24d9eea64041	2026-09-10T11:32:38+08:00	docs: record travel fix verification evidence
+fb0ebfa0c76b41f772dda4d81ab49aff03da306c	2026-09-10T11:38:01+08:00	docs: record completed travel corpus review gate
+4eddebe8a9650584fadb68b02b13717f970b18df	2026-09-10T11:46:28+08:00	docs: detail local learning acceptance stories
+414ff28192aa4ef6422514a5e6d7eca4690ddc44	2026-09-10T11:51:14+08:00	docs: mark daily corpus implementation in progress
+12e26d342be442dd92b844864774f925a51ca6c3	2026-09-10T12:07:45+08:00	docs: clarify notebook multi-source context flow
+60c22a1bfd11a4a5a2b3602fa3f01b8e37c60434	2026-09-10T12:23:21+08:00	feat: add reviewed daily-life dialogue corpus and local analyses
+4e0bbce4225790487147355fee2dd5236c434417	2026-09-10T12:26:39+08:00	docs: record daily corpus implementation verification
+e774607bd188a62b87a7d2de0498671f9abfe56c	2026-09-10T12:39:10+08:00	docs: record daily corpus review findings
+fb160c8467ec46f902a069e471ef14b29529c5a8	2026-09-10T12:49:40+08:00	fix: ground daily hearing repair and simplify service reports
+e2136004f877ead3fd54046af8af5083bc38e88f	2026-09-10T12:59:21+08:00	docs: record daily corpus fix verification
+87f39eaad899f509ae337c76b673f30b4b219cae	2026-09-10T13:03:45+08:00	docs: accept daily corpus review gate
+ace9d8fba9d0a2db736db3cdff287ddbf3e837ad	2026-09-10T13:06:32+08:00	docs: explain completion recovery and offline boundaries
+9f5909e47ef842e6fdb3bf579223b8244692b6db	2026-09-10T13:28:21+08:00	docs: add source-checked iPhone setup and acceptance guide
+4fa01fd1279449b3519139400a308258f3bc0293	2026-09-10T13:30:36+08:00	docs: record workplace stage and iPhone guide status
+421500593709fd39a805443c0220a85616b86e13	2026-09-10T13:49:43+08:00	feat: add model-reviewed workplace corpus and local analyses
+42ee564fcf289313598897d3e5659c53836f6216	2026-09-10T13:54:06+08:00	docs: record workplace implementation verification
+ab52490a8ff8043cedcb859167d0b88fa1c6754a	2026-09-10T13:57:42+08:00	docs: distinguish per-message notebook source context
+2a9752520afb7820c6e835a79c40d113f3d5e8b5	2026-09-10T14:14:09+08:00	docs: record workplace coherence review and fix gate
+7551a020e90afbf79b50972a87251a5e651524b9	2026-09-10T14:21:53+08:00	fix: keep standup evidence and handover premises prospective
+3af8efda364b5f3c7b11dace64f9c0ed71fd685e	2026-09-10T14:25:19+08:00	docs: record focused standup fix verification
+5dc83a101c65a3a4a789ae5bcb9627f0ae34c7a7	2026-09-10T14:35:51+08:00	docs: accept workplace corpus scoped review
+620112968d574e93f019d6adbc98d106110ca74b	2026-09-10T14:43:05+08:00	docs: track social corpus implementation stage
+a48f43c8d69774ddfb3862b770f93cae00be317f	2026-09-10T14:48:22+08:00	docs: explain local goal and digital reward rules
+4c56f8cb1560e6df0aec0e533560494b616b997d	2026-09-10T14:57:02+08:00	docs: distinguish refusal practice from stopping a session
+cbbf1ebbaa33893dcb6b1259f16bbcd935c9b8fb	2026-09-10T15:06:03+08:00	docs: use explicit stop-practice wording
+8e9c1170066cfb0a78771089c5daa9cd5077f1bb	2026-09-10T15:18:14+08:00	feat: add model-reviewed social corpus and local analyses
+0edd54b1ee50b62c551fc9d6e5eaaf4478487f88	2026-09-10T15:21:51+08:00	docs: record social corpus implementation verification
+86eebf6d339adb708504fe19424fa185ef80a329	2026-09-10T15:41:03+08:00	docs: record social corpus review findings
+4388db0571bbf8eacf6a6c0bfb6dfb5884e65693	2026-09-10T15:57:04+08:00	fix: address social corpus premise and A1 review findings
+c48000dd284adba3f40b067008ae989c355c7814	2026-09-10T16:00:27+08:00	docs: record scoped social corpus fix verification
+2ec1228f8fc4318fc6d686fa1c4f957d0abe186a	2026-09-10T16:19:15+08:00	docs: record social scoped review and remaining acknowledgement fix
+bba0359494834723513bd184ff13ed3ace565559	2026-09-10T16:24:04+08:00	fix: make A1 apology own missed book return
+5a3e06f96b1e92e8e2daa4265ea5d310808ae09f	2026-09-10T16:26:33+08:00	docs: record social second fix validation
+34466bba19551241bb5fbcb8f291c902fe42d002	2026-09-10T16:33:11+08:00	docs: accept social corpus scoped review gate
+95c8af16733644c4aa3a2e9f1532ceb811161448	2026-09-10T16:40:06+08:00	docs: record study corpus implementation start
+fc46eb1f338e3956bcecb94287be421d74331c78	2026-09-10T16:49:10+08:00	docs: consolidate implementation decisions and tradeoffs
+c97fd06fa62142d56069fc68d91c26ef4a0dfbff	2026-09-10T16:58:01+08:00	docs: record study corpus drafting milestone
+69c0c827dba7a4aa73684f2f3ceb69145fce6ab5	2026-09-10T17:03:32+08:00	docs: distinguish local 3.0 guidance from legacy cloud deployment notes
+e462f1a2af2bfee7db399053332a520f3a5ea547	2026-09-10T17:04:43+08:00	docs: clarify unverified physical-device evidence boundary
+d5f034ebf158b9c9e0755d5c09ee4de2e69acb80	2026-09-10T17:14:57+08:00	feat: add model-reviewed study corpus and local analyses
+56127c52dd86dc17dc721389e5086d83c5d18b5f	2026-09-10T17:18:25+08:00	docs: record study corpus verification and independent review
+4e26387e9c83702d0b3f3e79dfc95e1a38665ff1	2026-09-10T17:29:25+08:00	docs: record study review finding and integration obligations
+2d1fb4f409041c65f5290d7fbd898da755240dc4	2026-09-10T17:36:18+08:00	fix: keep study help requests unconfirmed across examples
+ebb51770c55a8f914663c43d02c7300401591773	2026-09-10T17:39:13+08:00	docs: record study focused fix verification
+f8c3f828d6e27dbec200a0847991d82b2b4d0efa	2026-09-10T19:04:29+08:00	docs: record clean study corpus review gate
+9dca14456be1bfa1e1276cf2bcf8401dac1842ff	2026-09-10T19:11:46+08:00	docs: track emergency corpus implementation start
+ba39f07bd96479c2ef653bbf3e23a29b57c84658	2026-09-10T19:15:12+08:00	docs: clarify local feedback and simulated service boundaries
+be521fef2eb81e7b842e0071384ab350dbe3d988	2026-09-10T19:33:59+08:00	docs: distinguish emergency drafts from reviewed corpus
+d122cf64adcbe44603d4a33ab1906213d90fe2e4	2026-09-10T19:53:21+08:00	feat: add reviewed emergency communication corpus
+7993876308fe2c163327cd68c73292143f538c0a	2026-09-10T19:58:25+08:00	docs: record emergency corpus verification evidence
+9786ff4198d8b536c6735cd14b1b1123c84b6a0e	2026-09-10T20:09:31+08:00	docs: record emergency corpus review findings
+5dd73bdde8ed2e276112fdef9c6e62ae33c31f39	2026-09-10T20:23:51+08:00	fix: preserve emergency corpus branch premises
+a6b2de7d4e5109f711f45929cfdf3133ee826fa1	2026-09-10T20:26:51+08:00	docs: record scoped emergency corpus fix evidence
+e37836bc778508226497016bed05b7e0c2164916	2026-09-10T20:31:05+08:00	docs: align mobile design baseline with approved 3.0 scope
+4bb343404306298ebfa8c520832b78491504de0b	2026-09-10T20:37:56+08:00	docs: record completed graded corpus category gates
+d497339d2ddf81fa2d1d580980bd2ab65a2cc30a	2026-09-10T20:54:52+08:00	docs: pin graded practice presentation contract
+55346ced46b7932b1b4639950391629ada2e4094	2026-09-10T20:58:25+08:00	docs: define bounded offline asset and update contract
+8cba26a0c66689730c4fef57044a3a71525f6694	2026-09-10T21:01:53+08:00	docs: preserve on-demand public category downloads
+d5dff419ac98ace3bd0aae9e82d4deb2f81bd319	2026-09-10T21:03:57+08:00	docs: record graded UI integration in progress
+ff0b3a9a68bac6a47531ec6c0bdcca5652a51563	2026-09-10T21:19:41+08:00	docs: distinguish historical verification milestones
+9308debcac1ddb24e04570f0e56ecc406f648dea	2026-09-10T21:44:05+08:00	docs: specify fixed offline scene images
+145a3da6a03ff3514ea775261a2aa0aed7c1080e	2026-09-11T09:46:05+08:00	docs: record resumed practice integration
+6aca4b1975c956be69315c4493f1d9174935147f	2026-09-11T10:14:27+08:00	docs: clarify conservative offline cache retention
+86f120d81f72bba52a7781acec72b6db23d268b0	2026-09-11T10:44:36+08:00	docs: bind first-use content to verified offline controller
+338c47b3d3ae68373e1032f67da4cd779ec5f11f	2026-09-11T10:47:46+08:00	docs: record corpus integration verification milestones
+15f65eee6c7d0ea6ce7d37f4b2c29df99e49dfc2	2026-09-11T11:02:40+08:00	feat: integrate reviewed graded practice and verified offline content
+ed5481c5760ce005b18ab7d0eedd646fe45ffe09	2026-09-11T11:03:41+08:00	docs: record Task 3I integration evidence and API handoffs
+59d54f77f09216f5369757e4dd8730cae506eddd	2026-09-11T11:09:59+08:00	docs: record committed integration and pending independent review
+5c4149d089aac8531de5e60d669777f8b1e3c11a	2026-09-11T11:27:46+08:00	docs: preserve access to historical non-route identifiers
+51df5ff707f089a519514508b10f67bdccfacc27	2026-09-11T11:35:04+08:00	docs: record integration review findings and scoped fix gate
+f0c17383ad403a45995f9989297d5d70b456da38	2026-09-11T11:37:38+08:00	docs: explain non-destructive historical record access
+288fdf772ce4005848c9cdd0b63ea305d5cfdd8c	2026-09-11T11:50:39+08:00	fix: close graded practice initialization and recovery review gaps
+172126d13a995c6739b55c50f536fc4526b77713	2026-09-11T11:51:19+08:00	docs: record Task 3I review fix evidence
+2fb76a107c1fbaab30c901fb14423e4cc165b63f	2026-09-11T11:54:27+08:00	docs: record first integration fix validation and rereview
+2d3ddb6b06095699cbd1e4319bed60bf15fb525f	2026-09-11T12:01:54+08:00	docs: close integration correction gate for notebook handoff
+1e2f2fd1fdf9c75e5dbf97246a2056d8683d4d09	2026-09-11T12:12:46+08:00	docs: define reviewed source-bound notebook micro practice
+22338405d545904ee8a849e10bcd3c240607017a	2026-09-11T12:19:28+08:00	docs: bind simulation progress to canonical note context
+2d3a793b91703e7a0526a9d0637ca9e119bfe16e	2026-09-11T12:21:35+08:00	docs: record notebook implementation boundary
+a9d469c695542c0606f7d833106664e93744d1d2	2026-09-11T12:57:01+08:00	docs: detail source-bound notebook acceptance flow
+cfc406fa01866ac9efe992a34780ea5b283e0384	2026-09-11T13:19:28+08:00	docs: record notebook flow checkpoints and pending gates
+a922c7209c1993b4978491b93522ce524f0e65ab	2026-09-11T14:03:31+08:00	feat: add local notebook capture review and targeted simulations
+7230b1e6b46d00901c5a7e5f3f263ce70d28be25	2026-09-11T14:09:21+08:00	docs: record notebook implementation review gate
+47499c226fc7d91170b4a9018cb4a07ccfaa1d4b	2026-09-11T14:49:19+08:00	docs: scope notebook review fixes and preserve legacy material
+1c0c4f70cb90a2ca497f7f72199094faec61645f	2026-09-11T14:50:18+08:00	docs: add notebook recovery and target meaning acceptance cases
+98b7bf5f53c3fb578618d956ad1126bf23f14f87	2026-09-11T15:10:15+08:00	fix: preserve simulation drafts and dining target meanings
+29675bed5e05e66070235d40cd6e0a82831f8654	2026-09-11T15:13:09+08:00	docs: record notebook fix validation and scoped review gate
+441d5b21b1d97d2519d3a7213fd99e2ff737628b	2026-09-11T15:22:26+08:00	docs: close notebook review gate and begin goals stage
+3695eeec493d67876123e6ddaa6e8430449e0100	2026-09-11T15:31:26+08:00	docs: define atomic task launch and verified path selection
+fb03428deac93c098e31dc0733eb1acd44a984f1	2026-09-11T15:33:32+08:00	docs: cover first consolidation launch and material mismatch
+14cdc87d8b58bbcb536ead740b014f31b7281876	2026-09-11T17:06:35+08:00	feat(goals): add atomic daily plans and local digital rewards
+98ef641edacded759d3d9c687a44288d23c46805	2026-09-11T17:10:00+08:00	docs: record goals validation and independent review gate
+800dcabf04848e5928db85015ca9e6659f2bf57d	2026-09-11T17:19:58+08:00	docs: record goals review findings and scoped fix gate
+df87d082feda0d6fe970d436742925a87c1adfd4	2026-09-11T17:37:14+08:00	fix(goals): recover stopped tasks and guard fresh reward evidence
+885dd0477755bcac267d1a517535d7189fce6c94	2026-09-11T17:40:02+08:00	docs: record goals fixes and scoped verification evidence
+772cf4991019339def20dc9b4a158b2f427b20a0	2026-09-11T17:47:15+08:00	docs: close goals review gate and begin mobile integration
+328f6b127fd29c3f3078d87d8fe365e78e64b8ad	2026-09-11T19:25:35+08:00	docs: define safe selected history deletion and undo
+78456fa837704001e41707f0692849b10cda00f4	2026-09-11T19:33:20+08:00	docs: record read-only release preflight and packaging gate
+16b4997c3852b518e139c94ccfacb43156d41af8	2026-09-11T19:46:15+08:00	docs: clarify retained learning evidence after history removal
+bc86ebc2aee95461f04ab5881f0e1e048dee08df	2026-09-11T20:21:06+08:00	docs: record mobile integration verification boundary
+b41089bd93dcfa8aeb55b5d472f7ec7eaaa1d7ca	2026-09-11T20:32:10+08:00	feat: integrate SpeakMate 3 mobile learning shell
+850cd1eee1312a1c34e9ec79660d5b22ebcd62af	2026-09-11T20:49:29+08:00	docs: specify native navigation entry identity
+aec26f9d85c5a0d8ac7e91b0aa185c6bff5301ab	2026-09-11T20:51:53+08:00	docs: record mobile review findings and preliminary capture
+36c1fde2f75534e05b50abb4e6f2083f477d25af	2026-09-11T21:07:40+08:00	docs: clarify confirmed return intent cancellation boundary
+52ff48c9687a6a923f5a1b056252b0cf2da86d56	2026-09-11T21:15:07+08:00	docs: specify owned exit sentinel release on saved navigation
+7bad13361ae253295577aea7a8f042fafccb74fb	2026-09-11T21:18:20+08:00	docs: add full navigation and retained-history acceptance story
+e1f9a66469f79946ea217a9151b033600fe396ad	2026-09-11T21:39:21+08:00	docs: require explicit source return from retained history placeholders
+159d7825eeac6c32fed49cfe7e74c3c99c0399e3	2026-09-11T21:48:09+08:00	fix: preserve source returns and bounded native history
+d4c1c9d8bc0cd86ae687d7cb1d1d5f000489594b	2026-09-11T21:53:00+08:00	docs: record mobile-shell fix verification and scoped review gate
+64757f5e30c210f8a9644ad7da668ad65aa533be	2026-09-11T22:10:02+08:00	docs: record five-step browser observation and navigation re-review findings
+4d16e30d5bbf050ecc0f45af0a5946973a290ef1	2026-09-11T22:18:54+08:00	fix: defer traversal restoration and mark released placeholders
+02b54952a740b5a071d24fa342c1170f7dfaf1d5	2026-09-11T22:30:40+08:00	docs: record second navigation fix evidence and pending review
+e5031035725900669c51e4cb6f6741bcdef35ca6	2026-09-11T22:32:26+08:00	docs: close navigation source review gate
+e6946e1952bb52778ca81f6a49cec5f2c45fe1d4	2026-09-11T22:43:18+08:00	docs: define read-only schema-compatible recovery build
+594ed5ae3266221304914e7d6ddbb7af1303f7a4	2026-09-11T22:49:48+08:00	docs: capture warmup entry visibility regression
+2cb224fdf4a411d860747415ed5d1e5cf9f37135	2026-09-11T23:12:00+08:00	docs: bind recovery unregister to verified worker URLs
+f383d437307528ca32269c35b96afd85c0fcb7f9	2026-09-12T14:15:51+08:00	docs: record partial task 7 browser acceptance evidence
+e018ad272bc28146fdce80fe8da753e0a2092ade	2026-09-12T14:50:36+08:00	docs(qa): retain mobile audit and acceptance limits
+ae3a70f66e7ee7fe827b953180e43dcb06a98a7d	2026-09-12T14:54:30+08:00	docs(ios): clarify device acceptance and task completion
+e4301e26961aa6318adb8895b2d37be5de549843	2026-09-12T15:37:35+08:00	test(qa): verify local settlement and digital rewards
+31b6a95d6c6af73c5b105fa544befd920fca0eba	2026-09-12T15:38:58+08:00	docs(qa): record browser settlement evidence and open gates
+7fae115155f8159aa47410532a7230916de6c7f7	2026-09-12T15:43:04+08:00	docs(qa): distinguish WebKit visual proof from open checks
+50b784d14fdaf95acfe33e7c74d636013f48bde7	2026-09-12T16:03:05+08:00	test(qa): cover atomic material choice and source races
+624989c1e3acca5e4247cc708f0992f906f9a877	2026-09-12T16:20:18+08:00	test: verify cold-start recovery in Chromium and WebKit
+6d8d9188ed09eb24cfb13adb4a86cd5b79a18ab8	2026-09-12T17:13:03+08:00	feat: verify local learning flow and add read-only recovery build
+ab2dcbca151d421b8a00373728b54cc3e3700973	2026-09-12T18:22:25+08:00	fix: close release packaging and native notebook return gates
+d73b698c3ea8a352c2561ee7c2148134453a14b1	2026-09-12T18:41:11+08:00	docs: record Task7 scoped acceptance and remaining release gates
+c2af5485bf8b73a22242594ae17504deac01c717	2026-09-12T20:17:29+08:00	fix: preserve reviewed round and notebook consumer contracts
+9b61835b873a64782242ef0d10eff1ed6bcc62c0	2026-09-12T20:32:00+08:00	docs: close SpeakMate 3 scoped source review gate
