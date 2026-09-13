@@ -13,6 +13,8 @@
 | 看已完成与未验证事项 | [3.0 验证记录](releases/3.0.0-verification.md)、[实际候选部署](releases/3.0.0-deployment-2026-09-13.md) |
 | 看素材与历史 | [演进年表](history/EVOLUTION.md)、[资产清单](archive/ASSET_INVENTORY.md)、[完整历史交接](archive/GITHUB_HANDOFF.md) |
 
+本次实际归档上传结果见 [2026-09-13 交付记录](archive/2026-09-13-delivery-record.md)。
+
 ## 产品、设计与语料
 
 - [设计系统](../design-system/speakmate/MASTER.md)、[界面交互契约](design/3.0-interaction-contracts.md)、[29 项实施决策](design/3.0-implementation-decisions.md)。

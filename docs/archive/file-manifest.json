@@ -98,8 +98,13 @@
     },
     {
       "path": "docs/README.md",
-      "bytes": 2928,
-      "sha256": "3a777ed3c035ddb321e364f30cefad561067a9ab40422e2918d1f4576b91a03b"
+      "bytes": 3031,
+      "sha256": "d037a405da1df02dc823993a60e903cabaeb8f6c68cfdb3b35fc13c76481aefa"
+    },
+    {
+      "path": "docs/archive/2026-09-13-delivery-record.md",
+      "bytes": 3519,
+      "sha256": "0a0906b165659e84002bd2ce4d84298f4539974a703f078564b192077b26a70d"
     },
     {
       "path": "docs/archive/ASSET_INVENTORY.md",
@@ -108,8 +113,8 @@
     },
     {
       "path": "docs/archive/GITHUB_HANDOFF.md",
-      "bytes": 3574,
-      "sha256": "71ff64cb976818afd493167a7e27460627f7b47ee72fc9b16c66bde4a8cd41e7"
+      "bytes": 3807,
+      "sha256": "b6d31312676f997ab8626766ecbe67899eb4a54704f9f2440152192cb2626c92"
     },
     {
       "path": "docs/archive/commit-history.tsv",
@@ -448,8 +453,8 @@
     },
     {
       "path": "docs/superpowers/plans/2026-09-13-asset-archive.md",
-      "bytes": 2840,
-      "sha256": "bb383f9d0fe873c77893be6ff2583f273b5ea9fa55ed73a94f6b5078e355cf57"
+      "bytes": 2884,
+      "sha256": "4375f0ba2e430a35a19713ca082c030dfb3b59179278c03ce3e71c853697f8d9"
     },
     {
       "path": "docs/superpowers/specs/2026-09-05-speakmate-mobile-ux-consistency-design.md",
