@@ -2,6 +2,8 @@
 
 更新：2026-09-13。当前功能以 3.0 源码和开发规格为准；历史文档中的“当前”“待执行”只代表当时，不覆盖新版发布记录。
 
+当前入口：[新版 3.0](https://speakmate-v3.vercel.app/) · [旧版 2.3（保留）](https://speakmate-pwa.vercel.app/)。新版独立发布，不覆盖旧网址；本地记录不自动共享。域名与验证依据见[独立网址发布记录](releases/3.0.0-independent-url-2026-09-13.md)。
+
 ## 按阅读目的进入
 
 | 想做什么 | 从这里开始 |
@@ -10,7 +12,7 @@
 | 理解规则与限制 | [本地学习助手](guides/3.0-local-practice-assistant.md)、[数据与备份](guides/3.0-local-data-and-backup.md) |
 | 接手产品与开发 | [完整规格](../APP_SPEC.md)、[架构与数据](engineering/ARCHITECTURE.md)、[开发手册](engineering/DEVELOPMENT.md) |
 | 测试、上线、应急 | [测试](engineering/TESTING.md)、[3.0 部署](engineering/DEPLOYMENT_3.md)、[只读恢复设计](design/3.0-recovery-build.md) |
-| 看已完成与未验证事项 | [3.0 验证记录](releases/3.0.0-verification.md)、[实际候选部署](releases/3.0.0-deployment-2026-09-13.md) |
+| 看已完成与未验证事项 | [独立网址发布](releases/3.0.0-independent-url-2026-09-13.md)、[3.0 验证记录](releases/3.0.0-verification.md)、[历史候选部署](releases/3.0.0-deployment-2026-09-13.md) |
 | 看素材与历史 | [演进年表](history/EVOLUTION.md)、[资产清单](archive/ASSET_INVENTORY.md)、[完整历史交接](archive/GITHUB_HANDOFF.md) |
 
 本次实际归档上传结果见 [2026-09-13 交付记录](archive/2026-09-13-delivery-record.md)。

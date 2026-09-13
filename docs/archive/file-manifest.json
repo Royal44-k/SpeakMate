@@ -53,8 +53,8 @@
     },
     {
       "path": "APP_SPEC.md",
-      "bytes": 15667,
-      "sha256": "4f310f0548dec93f4d05cbac39b755d534e60bb5c2166fc7b35ca4b6c2d20a9e"
+      "bytes": 16043,
+      "sha256": "2ca29f8ee802c8c6ebeac9efd68d643f6729669d574acdecd1df173f61ffc512"
     },
     {
       "path": "CLAUDE.md",
@@ -73,8 +73,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 6143,
-      "sha256": "28059ccffea54cc51f0ae3739d60bb0db4785973d03eaab6c930af0bd8163571"
+      "bytes": 7021,
+      "sha256": "0f0a0d2207de663bbe1cf9f522ad9a1a5617d3d9e5fe0453db2d5e8cfaa0247d"
     },
     {
       "path": "SECURITY.md",
@@ -98,8 +98,8 @@
     },
     {
       "path": "docs/README.md",
-      "bytes": 3031,
-      "sha256": "d037a405da1df02dc823993a60e903cabaeb8f6c68cfdb3b35fc13c76481aefa"
+      "bytes": 3400,
+      "sha256": "596dac6ff774cd6a0bfdbe5c3effc2db75bb79634569ba3eac987156fe80a82b"
     },
     {
       "path": "docs/archive/2026-09-13-delivery-record.md",
@@ -218,8 +218,8 @@
     },
     {
       "path": "docs/engineering/DEPLOYMENT_3.md",
-      "bytes": 6340,
-      "sha256": "03b1c352e49cbf825754d7698754b07128800fb682cb399ae2a08c2029feca8a"
+      "bytes": 9526,
+      "sha256": "93e826fd53ed623ba03ce455373ec60f53410b6acc163fb945453334bec5c3de"
     },
     {
       "path": "docs/engineering/DEVELOPMENT.md",
@@ -233,13 +233,13 @@
     },
     {
       "path": "docs/guides/3.0-iphone-setup-and-checks.md",
-      "bytes": 7300,
-      "sha256": "00fde872fb452c996f471dd42f307ec3b1d272cc7a213dd9dc6765acdcd8b9ba"
+      "bytes": 7855,
+      "sha256": "4299fe320363889da2341f527e0c2ee820f3c7eba37b8dbf68a4e38434aa0554"
     },
     {
       "path": "docs/guides/3.0-local-data-and-backup.md",
-      "bytes": 6016,
-      "sha256": "66d2a35c4969d26d7d51b0fea128d6e5095d454279e69fa6265a69436bffba04"
+      "bytes": 6889,
+      "sha256": "c3678f1c10f0015e6c1e770fc7f3fa5820507e2f5ec52a41cc771b6854938d69"
     },
     {
       "path": "docs/guides/3.0-local-practice-assistant.md",
@@ -248,8 +248,8 @@
     },
     {
       "path": "docs/guides/USER_GUIDE.md",
-      "bytes": 5610,
-      "sha256": "0ad9ec46ec014d5554a7fc2d9bd17fcbf416aefcefbe870005fd0539f12cd87e"
+      "bytes": 6042,
+      "sha256": "ad203a5ee05b67764a340709f90b1eb0c126a0beae49832e90b784ce8631227f"
     },
     {
       "path": "docs/history/EVOLUTION.md",
@@ -413,13 +413,23 @@
     },
     {
       "path": "docs/releases/3.0.0-deployment-2026-09-13.md",
-      "bytes": 7755,
-      "sha256": "01154988167bfa1512b25c20a9c0c56a5b9f3ebe91c8445bb18571ba7e52ef2c"
+      "bytes": 8309,
+      "sha256": "0d603cdc6a20a7850d88517ef6c4e6ddb11d888328b6c77b569104c48d1052eb"
+    },
+    {
+      "path": "docs/releases/3.0.0-independent-url-2026-09-13.md",
+      "bytes": 7037,
+      "sha256": "c69e4f665c2aeb94524355d87d7a924f685db033ff8548ea34394f0b808d11d8"
     },
     {
       "path": "docs/releases/3.0.0-verification.md",
-      "bytes": 62789,
-      "sha256": "04c7948f09c69176ab05f7dc11eccb0b019eb7ba65b37df9fea9d285aa80d4fb"
+      "bytes": 63219,
+      "sha256": "fd3c78ed4008eb5b1e9b4c7d723f29249b6e5ae8ae5520f59b5bf78394f508ff"
+    },
+    {
+      "path": "docs/releases/tools/verify-independent-urls.ps1",
+      "bytes": 5154,
+      "sha256": "a5d58bf457ddca8ac3d3f8d862dec5e7dc093b07ce5a2d3ffee3dcc69b3ee037"
     },
     {
       "path": "docs/research/2026-09-09-health-corpus-boundaries.md",
@@ -1110,6 +1120,11 @@
       "path": "outputs/qa/final-fix/typecheck.json",
       "bytes": 366,
       "sha256": "1262aac10b86cf9dd64bfe7a0d321e5044bdbc31a4c43692703e79666718184b"
+    },
+    {
+      "path": "outputs/qa/independent-url-2026-09-13/http-verification.json",
+      "bytes": 35479,
+      "sha256": "cf05dacac63ba4d60e8b9b276ed9693d43b02743fc69741308b9cd7b5b12a848"
     },
     {
       "path": "outputs/qa/task7-cold-browser/README.md",

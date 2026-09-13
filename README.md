@@ -4,7 +4,8 @@
 
 面向 A1–C1 学习者的移动端英语口语 PWA。无需微信登录或原生安装包；学习在设备本地进行。3.0 将目标、场景对话、记录簿、复习和数字奖励连接成一套学习流程。
 
-- 常用入口：[SpeakMate](https://speakmate-pwa.vercel.app/)
+- 新版 3.0：[SpeakMate 新版](https://speakmate-v3.vercel.app/)
+- 旧版 2.3：[SpeakMate 旧版（保留，不覆盖）](https://speakmate-pwa.vercel.app/)
 - 目标仓库：[Royal44-k/SpeakMate](https://github.com/Royal44-k/SpeakMate)
 - 阅读入口：[文档中心](docs/README.md) · [使用教程](docs/guides/USER_GUIDE.md) · [iPhone 安装](docs/guides/3.0-iphone-setup-and-checks.md) · [开发规格](APP_SPEC.md)
 
@@ -12,7 +13,9 @@
 
 本交付对应 **3.0.0**。应用源码基准 `c2af548`，后续 `9b61835` 为审查状态文档；本次归档只补充文档、资产和交付工具，不改动应用逻辑。
 
-2026-09-13 普通版及只读应急版 Vercel 候选均已 READY。用户随后反馈“可以访问新版”；这是用户反馈，不替代正式域名指向、所有在线资源或实体 iPhone 验收。上次部署接口检查时正式域名仍指向 2.3，归档期间未执行推广。完整事实见[部署记录](docs/releases/3.0.0-deployment-2026-09-13.md)及[验证记录](docs/releases/3.0.0-verification.md)。
+2026-09-13，新版已在 **`speakmate-v3.vercel.app` 独立上线**，旧版 **`speakmate-pwa.vercel.app` 保持 2.3.0，不覆盖、不重定向**。两个入口的匿名首页及健康接口均返回 HTTP 200；新版线上 16 个页面壳、70 个静态资源、7 类语料包共 93 项与其构建清单的大小和 SHA256 全部一致。详见[独立网址发布记录](docs/releases/3.0.0-independent-url-2026-09-13.md)；历史构建与测试范围见[候选记录](docs/releases/3.0.0-deployment-2026-09-13.md)及[验证记录](docs/releases/3.0.0-verification.md)。这不是实体 iPhone 或中国大陆所有网络已通过的结论。
+
+**新旧网址的本地记录不自动共享。** 有旧数据时先在旧版导出备份，再到新版“我的”中预览、确认恢复；不要删除旧入口或清空旧数据。iPhone 请从新版网址另行添加主屏幕入口，可命名为“SpeakMate 3.0”。详见[迁移与备份](docs/guides/3.0-local-data-and-backup.md)。
 
 ## 能做什么
 
@@ -49,7 +52,7 @@ pnpm install --frozen-lockfile
 pnpm dev
 ```
 
-访问 `http://localhost:3000`。仓库尚未上传时可直接解压本次源码包，在解压根目录执行版本检查及安装命令。
+访问 `http://localhost:3000`。也可解压交付源码包，在解压根目录执行版本检查及安装命令；归档包保留其对应提交时点，不会随 GitHub 后续更新自动变化。
 
 ```bash
 # 生产构建（包括离线清单生成）
@@ -70,7 +73,7 @@ pnpm test:e2e
 - 原始录音仅当前练习临时使用，不进入长期备份。没有确认的本地英语音色时，不暗中切到远程朗读。
 - 本地记录可能因清除数据或系统回收丢失。设备之间不自动同步，备份含私人内容，**不要把个人备份提交到 GitHub**。
 - 积分用于自我激励；数字奖励不是实物，好友榜持续标注示例。未来真实后台不能直接信任本地余额。
-- 保留现有免费 Vercel 项目，不开新服务、不自动部署、不购买套餐。免费托管有适用范围与额度，详见部署手册；不承诺中国大陆所有网络均可达。
+- 新旧入口共用现有免费 Vercel 项目，但分别绑定不同部署；没有新增项目、付费服务或自动部署。后续发布只更新新版域名，禁止整体 Promote 或不带 `--skip-domain` 的生产发布覆盖旧入口。免费托管有适用范围与额度，详见部署手册；不承诺中国大陆所有网络均可达。
 
 ## 项目结构
 

@@ -1,6 +1,8 @@
 # SpeakMate 3.0 使用教程
 
-适用：本次 3.0 源码及候选部署。确认访问版本后操作；不要仅凭旧网址推断已更新。应用是 PWA，不需要微信账号、苹果开发者账号或 MySQL。
+适用：[新版 SpeakMate 3.0](https://speakmate-v3.vercel.app/)。[旧版 2.3](https://speakmate-pwa.vercel.app/)保持原网址，不覆盖、不重定向。应用是 PWA，不需要微信账号、苹果开发者账号或 MySQL。
+
+新旧网址的学习记录不会自动共享。已有旧记录时，先在旧版“我的”导出备份，保存好文件，再到新版预览、确认恢复；保留旧数据及入口。iPhone 从新版网址另行添加主屏幕图标，可命名“SpeakMate 3.0”。完整步骤见[安装指南](3.0-iphone-setup-and-checks.md)与[数据迁移](3.0-local-data-and-backup.md)。
 
 ## 1. 初次设置
 

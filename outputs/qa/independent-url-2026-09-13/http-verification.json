@@ -1,0 +1,990 @@
+{
+  "startedAtUtc": "2026-09-13T03:54:45.7513094+00:00",
+  "completedAtUtc": "2026-09-13T03:55:17.4479622+00:00",
+  "method": "Anonymous HTTPS GET via PowerShell Invoke-WebRequest; no auth headers, cookies or learning writes.",
+  "newOrigin": "https://speakmate-v3.vercel.app",
+  "oldOrigin": "https://speakmate-pwa.vercel.app",
+  "oldBefore": {
+    "status": "ok",
+    "version": "2.3.0",
+    "aiMode": "local",
+    "buildSha": "eb2a6e7f76a6"
+  },
+  "oldAfter": {
+    "status": "ok",
+    "version": "2.3.0",
+    "aiMode": "local",
+    "buildSha": "eb2a6e7f76a6"
+  },
+  "oldUnchanged": true,
+  "newHealth": {
+    "status": "ok",
+    "version": "3.0.0",
+    "mode": "local-learning",
+    "aiMode": "local",
+    "buildSha": "9b61835b873a"
+  },
+  "newExpected": true,
+  "buildId": "MT7REtpdsjw4wZzxLgBzF",
+  "shells": 16,
+  "assets": 70,
+  "categories": 7,
+  "checkedResources": 93,
+  "failedResources": 0,
+  "smoke": [
+    {
+      "path": "/manifest.webmanifest",
+      "status": 200,
+      "contentType": "application/manifest+json; charset=utf-8",
+      "error": null
+    },
+    {
+      "path": "/sw.js",
+      "status": 200,
+      "contentType": "application/javascript; charset=utf-8",
+      "error": null
+    },
+    {
+      "path": "/api/v1/capabilities",
+      "status": 200,
+      "contentType": "application/json",
+      "error": null
+    }
+  ],
+  "resources": [
+    {
+      "path": "/",
+      "status": 200,
+      "expectedBytes": 10210,
+      "bytes": 10210,
+      "expectedSha256": "e94f23320310fd14715fe394a053817d0ee1b0656951aaf3de7427ef8685a4cf",
+      "sha256": "e94f23320310fd14715fe394a053817d0ee1b0656951aaf3de7427ef8685a4cf",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/02gmb99999_vk.js",
+      "status": 200,
+      "expectedBytes": 85501,
+      "bytes": 85501,
+      "expectedSha256": "d78f84eed117ccbf357f5b2788e3188db7d6f43de5f9393ca67b39db26b28e59",
+      "sha256": "d78f84eed117ccbf357f5b2788e3188db7d6f43de5f9393ca67b39db26b28e59",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/03qi7m4jo3449.js",
+      "status": 200,
+      "expectedBytes": 81924,
+      "bytes": 81924,
+      "expectedSha256": "620dea41c3f80ccdf86bbc23d2763dc57e451e3e0cd4122cf88b147164276130",
+      "sha256": "620dea41c3f80ccdf86bbc23d2763dc57e451e3e0cd4122cf88b147164276130",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/07ytf4xa9xx7b.js",
+      "status": 200,
+      "expectedBytes": 42834,
+      "bytes": 42834,
+      "expectedSha256": "9b128e21ac8b32fde85a3bb261e442660925a4d78d48f9f130979bd0426a6d5d",
+      "sha256": "9b128e21ac8b32fde85a3bb261e442660925a4d78d48f9f130979bd0426a6d5d",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "status": 200,
+      "expectedBytes": 112594,
+      "bytes": 112594,
+      "expectedSha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/0ephb3a5funyj.js",
+      "status": 200,
+      "expectedBytes": 48218,
+      "bytes": 48218,
+      "expectedSha256": "471ab4d84514dd9df1427cf96c02998a7b29d2ab3331f240b04699dae1c8c39b",
+      "sha256": "471ab4d84514dd9df1427cf96c02998a7b29d2ab3331f240b04699dae1c8c39b",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/0hsqvcztsjh6i.js",
+      "status": 200,
+      "expectedBytes": 53951,
+      "bytes": 53951,
+      "expectedSha256": "d7644d9af1177d772bb5b47f1acba36417039d4aba6ea232a6b483faa7039058",
+      "sha256": "d7644d9af1177d772bb5b47f1acba36417039d4aba6ea232a6b483faa7039058",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/0iswuzz2vwg37.js",
+      "status": 200,
+      "expectedBytes": 14836,
+      "bytes": 14836,
+      "expectedSha256": "b33b0396d32e05d44c85e6153d077b9005c871e702d66cd624f96a23d9288631",
+      "sha256": "b33b0396d32e05d44c85e6153d077b9005c871e702d66cd624f96a23d9288631",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/0mp1vhnzsycjp.css",
+      "status": 200,
+      "expectedBytes": 10180,
+      "bytes": 10180,
+      "expectedSha256": "c21209742ee9b2fae6d001f85babb7464fc97fdbcd5f37a40a5dee3847d507f5",
+      "sha256": "c21209742ee9b2fae6d001f85babb7464fc97fdbcd5f37a40a5dee3847d507f5",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/0r_82bxmazjij.js",
+      "status": 200,
+      "expectedBytes": 691,
+      "bytes": 691,
+      "expectedSha256": "46b457758016ac3f7dfc17acf4ced5637396ecefdad0748da7009ce5d0018ff8",
+      "sha256": "46b457758016ac3f7dfc17acf4ced5637396ecefdad0748da7009ce5d0018ff8",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/1-24_h35v-n-b.js",
+      "status": 200,
+      "expectedBytes": 969,
+      "bytes": 969,
+      "expectedSha256": "b554e86cdb8e3aa47f38eeee945e412a1f5c3c74c2ab5c6ce823c688a8420832",
+      "sha256": "b554e86cdb8e3aa47f38eeee945e412a1f5c3c74c2ab5c6ce823c688a8420832",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/118tlhncvxvb9.js",
+      "status": 200,
+      "expectedBytes": 31665,
+      "bytes": 31665,
+      "expectedSha256": "800b0cb096b27806f29a739232f37f293111f1882ace1c5dbb3a0780e2ef8a63",
+      "sha256": "800b0cb096b27806f29a739232f37f293111f1882ace1c5dbb3a0780e2ef8a63",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/13pid5damdw7l.css",
+      "status": 200,
+      "expectedBytes": 57424,
+      "bytes": 57424,
+      "expectedSha256": "f89d2f47136a465746e9279fd2056eff5b3f1dc5ec461cbcd646d8e0f2748754",
+      "sha256": "f89d2f47136a465746e9279fd2056eff5b3f1dc5ec461cbcd646d8e0f2748754",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/1bzlyrb7se95k.js",
+      "status": 200,
+      "expectedBytes": 17371,
+      "bytes": 17371,
+      "expectedSha256": "150acd5d7d82a845aeb349c81fb280a92c0115a7b6647d06d098bacd0300f03a",
+      "sha256": "150acd5d7d82a845aeb349c81fb280a92c0115a7b6647d06d098bacd0300f03a",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/1jmrhwqmsd3_k.js",
+      "status": 200,
+      "expectedBytes": 50835,
+      "bytes": 50835,
+      "expectedSha256": "b22a81a1e341f19833967e01389239ea2e0e235821f40154f486161cfcc7b33b",
+      "sha256": "b22a81a1e341f19833967e01389239ea2e0e235821f40154f486161cfcc7b33b",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/1l3mjk2amu4eq.js",
+      "status": 200,
+      "expectedBytes": 38452,
+      "bytes": 38452,
+      "expectedSha256": "7b86620270b942eebd08bb6175425e9853e0a7d61577cda007f9f1b7ccee8b43",
+      "sha256": "7b86620270b942eebd08bb6175425e9853e0a7d61577cda007f9f1b7ccee8b43",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/2b3-mg01g8wms.js",
+      "status": 200,
+      "expectedBytes": 36135,
+      "bytes": 36135,
+      "expectedSha256": "e73ab0af26e71acf21658ff4cf42e09bfc3f746b466dd7524352f9b9746fec50",
+      "sha256": "e73ab0af26e71acf21658ff4cf42e09bfc3f746b466dd7524352f9b9746fec50",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/2d-tk0zwst2sk.js",
+      "status": 200,
+      "expectedBytes": 27703,
+      "bytes": 27703,
+      "expectedSha256": "6c551431eec034e1049b0d1c5dc4c74dcf1d9fe36c5fb1f7b9bd46e525693699",
+      "sha256": "6c551431eec034e1049b0d1c5dc4c74dcf1d9fe36c5fb1f7b9bd46e525693699",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/2e78rzdxjafhr.js",
+      "status": 200,
+      "expectedBytes": 155464,
+      "bytes": 155464,
+      "expectedSha256": "9f96f73c3757bd7ac0a9482b8d4685d723897217119074863900bd29d2d60d04",
+      "sha256": "9f96f73c3757bd7ac0a9482b8d4685d723897217119074863900bd29d2d60d04",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/2i2b3yi4bjsda.js",
+      "status": 200,
+      "expectedBytes": 49257,
+      "bytes": 49257,
+      "expectedSha256": "6c7c47ab959b8ad911fa64266af2a751d743cbe7b0de89224023870ec37e7d1e",
+      "sha256": "6c7c47ab959b8ad911fa64266af2a751d743cbe7b0de89224023870ec37e7d1e",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/2thxhqn0uhcoz.js",
+      "status": 200,
+      "expectedBytes": 4966,
+      "bytes": 4966,
+      "expectedSha256": "b931c970688526f7c87fed428563beba915dbd98293914f749f54a7a5948ef5a",
+      "sha256": "b931c970688526f7c87fed428563beba915dbd98293914f749f54a7a5948ef5a",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/2x5t-ccotmnw5.js",
+      "status": 200,
+      "expectedBytes": 41456,
+      "bytes": 41456,
+      "expectedSha256": "bdd5129f8bbe13e14de8d04a12fead01b729ffd6fb9d436cccefb85ffd6370ef",
+      "sha256": "bdd5129f8bbe13e14de8d04a12fead01b729ffd6fb9d436cccefb85ffd6370ef",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/33r_40-oqbwwy.js",
+      "status": 200,
+      "expectedBytes": 36807,
+      "bytes": 36807,
+      "expectedSha256": "fc355c654270d77b60f00279232790db5d86bc88bfb8c16eca14909890ce8c23",
+      "sha256": "fc355c654270d77b60f00279232790db5d86bc88bfb8c16eca14909890ce8c23",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/37b3_459zqjs9.css",
+      "status": 200,
+      "expectedBytes": 4401,
+      "bytes": 4401,
+      "expectedSha256": "13bf169638a172c181ac268995bbfd59db337e4b61f42a2ef1879305e0806e6c",
+      "sha256": "13bf169638a172c181ac268995bbfd59db337e4b61f42a2ef1879305e0806e6c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/37m0n95kbu-cd.js",
+      "status": 200,
+      "expectedBytes": 28681,
+      "bytes": 28681,
+      "expectedSha256": "e9634a657e467d3954bb88a8def2a937a85e4a8386298aaf26b3c8c087ce2280",
+      "sha256": "e9634a657e467d3954bb88a8def2a937a85e4a8386298aaf26b3c8c087ce2280",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/38cjq0nr1f_g9.css",
+      "status": 200,
+      "expectedBytes": 3009,
+      "bytes": 3009,
+      "expectedSha256": "165d6f8f96f8abccbdd294aee4cc480106073d925e8253f206df9a2cb8f482ab",
+      "sha256": "165d6f8f96f8abccbdd294aee4cc480106073d925e8253f206df9a2cb8f482ab",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/38so314ihalic.js",
+      "status": 200,
+      "expectedBytes": 23435,
+      "bytes": 23435,
+      "expectedSha256": "b7951c1e34261bbb22a89dfba2f76ec4e093e6a5520f2eee230dbf34c9bb7d05",
+      "sha256": "b7951c1e34261bbb22a89dfba2f76ec4e093e6a5520f2eee230dbf34c9bb7d05",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/398zi2t23h7ej.js",
+      "status": 200,
+      "expectedBytes": 40235,
+      "bytes": 40235,
+      "expectedSha256": "c2bd2480c83c8bffe17899458f9cece13d4862d5f9c076f378de1ea3a555e395",
+      "sha256": "c2bd2480c83c8bffe17899458f9cece13d4862d5f9c076f378de1ea3a555e395",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/39cvo2k3m6inn.css",
+      "status": 200,
+      "expectedBytes": 2572,
+      "bytes": 2572,
+      "expectedSha256": "6556f3e9c42f35b7ebba876c31a5d608cf128afddaaf0b3600d6fb22092acc9d",
+      "sha256": "6556f3e9c42f35b7ebba876c31a5d608cf128afddaaf0b3600d6fb22092acc9d",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/3i9pme880g_z6.js",
+      "status": 200,
+      "expectedBytes": 27572,
+      "bytes": 27572,
+      "expectedSha256": "0a1cceb25e9dd9404ff3f037d44c99771ee205a1d5898f54c3b23e38fc70bb05",
+      "sha256": "0a1cceb25e9dd9404ff3f037d44c99771ee205a1d5898f54c3b23e38fc70bb05",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/3s8ba5btydwm0.js",
+      "status": 200,
+      "expectedBytes": 432537,
+      "bytes": 432537,
+      "expectedSha256": "e2cf88679775be9cd8dfe4a48599144b545954dbd327ddcacd840e474cfac386",
+      "sha256": "e2cf88679775be9cd8dfe4a48599144b545954dbd327ddcacd840e474cfac386",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/3usyqo-ofe9_t.js",
+      "status": 200,
+      "expectedBytes": 45780,
+      "bytes": 45780,
+      "expectedSha256": "2f9b7b380487cfaecbf0950a186639528ad16f618c772993c4fe5bc29bc075cc",
+      "sha256": "2f9b7b380487cfaecbf0950a186639528ad16f618c772993c4fe5bc29bc075cc",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/3zd5w7m8x_fca.js",
+      "status": 200,
+      "expectedBytes": 31734,
+      "bytes": 31734,
+      "expectedSha256": "2f154009e87fbebda840af17a234b8502bb122dbc34ea2f49288296ba564d543",
+      "sha256": "2f154009e87fbebda840af17a234b8502bb122dbc34ea2f49288296ba564d543",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/43a0bqq1p6wrg.js",
+      "status": 200,
+      "expectedBytes": 229399,
+      "bytes": 229399,
+      "expectedSha256": "9e7b31141b38159ae7dd549f20d92f3b442c6a58ce1342895730fe5f83549079",
+      "sha256": "9e7b31141b38159ae7dd549f20d92f3b442c6a58ce1342895730fe5f83549079",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/44imcnuermcn7.css",
+      "status": 200,
+      "expectedBytes": 5243,
+      "bytes": 5243,
+      "expectedSha256": "eefd606e66c0dee8e169ecfbe652dc9f906a801976c84d6864c4f518771cff4c",
+      "sha256": "eefd606e66c0dee8e169ecfbe652dc9f906a801976c84d6864c4f518771cff4c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/454zq74wimcum.js",
+      "status": 200,
+      "expectedBytes": 14378,
+      "bytes": 14378,
+      "expectedSha256": "ba3129939d4e29decefcaff090c0521bb29e03501d64f2850465a2724d033529",
+      "sha256": "ba3129939d4e29decefcaff090c0521bb29e03501d64f2850465a2724d033529",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/chunks/turbopack-1c6w_sm_2bndy.js",
+      "status": 200,
+      "expectedBytes": 9761,
+      "bytes": 9761,
+      "expectedSha256": "cb06af09dda63224b6dbcf074ee298c9a6fe79203dd0b25ebc925cb53c28d924",
+      "sha256": "cb06af09dda63224b6dbcf074ee298c9a6fe79203dd0b25ebc925cb53c28d924",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-400-normal.3eck2fk3exmex.woff2",
+      "status": 200,
+      "expectedBytes": 21164,
+      "bytes": 21164,
+      "expectedSha256": "7fff1bb22e5773f0d1a55d3093068b6dac4539e8bb3ac23fb9f0a729df2c7bb4",
+      "sha256": "7fff1bb22e5773f0d1a55d3093068b6dac4539e8bb3ac23fb9f0a729df2c7bb4",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-400-normal.3pnfuj59albpm.woff",
+      "status": 200,
+      "expectedBytes": 18516,
+      "bytes": 18516,
+      "expectedSha256": "d990cc7e8f51893d4ba74c18fb0ca04e31d9c791c2c0dfbe95b7fa8e64c0b2c2",
+      "sha256": "d990cc7e8f51893d4ba74c18fb0ca04e31d9c791c2c0dfbe95b7fa8e64c0b2c2",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-700-normal.31l4qbhx6zok2.woff",
+      "status": 200,
+      "expectedBytes": 18824,
+      "bytes": 18824,
+      "expectedSha256": "bd414ee6698edb13ec58b3084b68c1804eeb55acb6b65f628822320dcd1e5431",
+      "sha256": "bd414ee6698edb13ec58b3084b68c1804eeb55acb6b65f628822320dcd1e5431",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-700-normal.3hmancrpg57x4.woff2",
+      "status": 200,
+      "expectedBytes": 22444,
+      "bytes": 22444,
+      "expectedSha256": "3787a5a419171630e6890cfa47c4da067474d005cd0ff8dc11ec090fdc3ee2b8",
+      "sha256": "3787a5a419171630e6890cfa47c4da067474d005cd0ff8dc11ec090fdc3ee2b8",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-800-normal.3djb9aq_mafq5.woff2",
+      "status": 200,
+      "expectedBytes": 22464,
+      "bytes": 22464,
+      "expectedSha256": "2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce",
+      "sha256": "2515494e8cc2ca07c86ea78766cfa104b796aa6ed5d66821c01d51dbb0b52bce",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-800-normal.3r87gr0di6ox9.woff",
+      "status": 200,
+      "expectedBytes": 18724,
+      "bytes": 18724,
+      "expectedSha256": "8ac1acb3ce8849a2fb0160f778099fc48a440d4f50b6121cd66e628816c2fb2b",
+      "sha256": "8ac1acb3ce8849a2fb0160f778099fc48a440d4f50b6121cd66e628816c2fb2b",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-ext-400-normal.21pn0abfc0_p-.woff2",
+      "status": 200,
+      "expectedBytes": 13924,
+      "bytes": 13924,
+      "expectedSha256": "1eb62753e2922d13801bed22f0a35af396035da04958d4d7fcead522fbaae4ea",
+      "sha256": "1eb62753e2922d13801bed22f0a35af396035da04958d4d7fcead522fbaae4ea",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-ext-400-normal.2553c3wac85a0.woff",
+      "status": 200,
+      "expectedBytes": 11860,
+      "bytes": 11860,
+      "expectedSha256": "45609841ea21cbe16e61681ab0e32fce48234556e7f3f2c2e88ba59a372e62a1",
+      "sha256": "45609841ea21cbe16e61681ab0e32fce48234556e7f3f2c2e88ba59a372e62a1",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-ext-700-normal.28iwym1vpi4ti.woff2",
+      "status": 200,
+      "expectedBytes": 14640,
+      "bytes": 14640,
+      "expectedSha256": "9d351bd9222bfab90f943850f8039aa73cdb40e0a6cfe4127308a48bef59d5f5",
+      "sha256": "9d351bd9222bfab90f943850f8039aa73cdb40e0a6cfe4127308a48bef59d5f5",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-ext-700-normal.2hkqehxqksiuo.woff",
+      "status": 200,
+      "expectedBytes": 11988,
+      "bytes": 11988,
+      "expectedSha256": "8d78002905fb21f0e72ec892f8d6d435a793991c480eb421901fd15046500470",
+      "sha256": "8d78002905fb21f0e72ec892f8d6d435a793991c480eb421901fd15046500470",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-ext-800-normal.0u7a-eu7b5fpt.woff",
+      "status": 200,
+      "expectedBytes": 11916,
+      "bytes": 11916,
+      "expectedSha256": "58d8c3f5d736b15a3d7f4c429a10b1c8526bb0cedd5a9173d6427664ed38d6b2",
+      "sha256": "58d8c3f5d736b15a3d7f4c429a10b1c8526bb0cedd5a9173d6427664ed38d6b2",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-latin-ext-800-normal.38jfrv2bw8ham.woff2",
+      "status": 200,
+      "expectedBytes": 14548,
+      "bytes": 14548,
+      "expectedSha256": "22539b785b3cbcee08e0722ff37fa16a18e71e4482d9078f7da79da1258e7614",
+      "sha256": "22539b785b3cbcee08e0722ff37fa16a18e71e4482d9078f7da79da1258e7614",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-vietnamese-400-normal.05-k3pm9nf46_.woff2",
+      "status": 200,
+      "expectedBytes": 7496,
+      "bytes": 7496,
+      "expectedSha256": "9e7e7207af0d66872b3d480231a7f767fbc3424d42c46b41d372b40c3f0b423a",
+      "sha256": "9e7e7207af0d66872b3d480231a7f767fbc3424d42c46b41d372b40c3f0b423a",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-vietnamese-400-normal.1ujg8lu8l-2e_.woff",
+      "status": 200,
+      "expectedBytes": 6040,
+      "bytes": 6040,
+      "expectedSha256": "268a53178e7d0a13860827dc5e1b13069a6e9214201a35fd0b607601455898b6",
+      "sha256": "268a53178e7d0a13860827dc5e1b13069a6e9214201a35fd0b607601455898b6",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-vietnamese-700-normal.0qq2rbf8hr6cv.woff",
+      "status": 200,
+      "expectedBytes": 6096,
+      "bytes": 6096,
+      "expectedSha256": "48655769b329d1902e1bb76a6af596323ae438ec293bb149289ec7d6da12453f",
+      "sha256": "48655769b329d1902e1bb76a6af596323ae438ec293bb149289ec7d6da12453f",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-vietnamese-700-normal.312nbn3hifl_p.woff2",
+      "status": 200,
+      "expectedBytes": 7636,
+      "bytes": 7636,
+      "expectedSha256": "6c554f2decc277ef760244c5ee6b5a85840862966e2ad4d02a1bdcdfefb9afa2",
+      "sha256": "6c554f2decc277ef760244c5ee6b5a85840862966e2ad4d02a1bdcdfefb9afa2",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-vietnamese-800-normal.2re921o3v8kxr.woff",
+      "status": 200,
+      "expectedBytes": 6180,
+      "bytes": 6180,
+      "expectedSha256": "f2fcbe27267e2f68442b7fb77baf146e51eb85162e417291138436743b62d00c",
+      "sha256": "f2fcbe27267e2f68442b7fb77baf146e51eb85162e417291138436743b62d00c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/immutable/media/barlow-condensed-vietnamese-800-normal.3n535lzyn34rn.woff2",
+      "status": 200,
+      "expectedBytes": 7808,
+      "bytes": 7808,
+      "expectedSha256": "87b35049bcb491c02a45d740cb88abd709e73cda023fbe5e28eefbff6649cdfe",
+      "sha256": "87b35049bcb491c02a45d740cb88abd709e73cda023fbe5e28eefbff6649cdfe",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/MT7REtpdsjw4wZzxLgBzF/_buildManifest.js",
+      "status": 200,
+      "expectedBytes": 219,
+      "bytes": 219,
+      "expectedSha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+      "sha256": "9476e0afd3f9da68a64e6ec58631191fd3eaca62c9f5a377e7517fe9a89e59ea",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/MT7REtpdsjw4wZzxLgBzF/_clientMiddlewareManifest.js",
+      "status": 200,
+      "expectedBytes": 96,
+      "bytes": 96,
+      "expectedSha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+      "sha256": "5483e3295dc35dfe29ea932efc85341c916f10ff78ff5b0e965e003710893a4a",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/_next/static/MT7REtpdsjw4wZzxLgBzF/_ssgManifest.js",
+      "status": 200,
+      "expectedBytes": 119,
+      "bytes": 119,
+      "expectedSha256": "815683a8e5a0be0be4defaf3fa6210dc5ac482f408ad79e24d6a8c05b617b14c",
+      "sha256": "815683a8e5a0be0be4defaf3fa6210dc5ac482f408ad79e24d6a8c05b617b14c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/auth",
+      "status": 200,
+      "expectedBytes": 14787,
+      "bytes": 14787,
+      "expectedSha256": "3b1899d53f5ad85c743f85940f0b60d056277c19e4044e951a84d9ade380069d",
+      "sha256": "3b1899d53f5ad85c743f85940f0b60d056277c19e4044e951a84d9ade380069d",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/daily",
+      "status": 200,
+      "expectedBytes": 761324,
+      "bytes": 761324,
+      "expectedSha256": "d1d093f3db88828db92a31d9e2816e9d39904b405a83d6925f2feb22aaa32dd9",
+      "sha256": "d1d093f3db88828db92a31d9e2816e9d39904b405a83d6925f2feb22aaa32dd9",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/dining",
+      "status": 200,
+      "expectedBytes": 859537,
+      "bytes": 859537,
+      "expectedSha256": "5c848ed89aae124a64bc51a7b5f51a2dda491b1e225723908649ba6906c10ef1",
+      "sha256": "5c848ed89aae124a64bc51a7b5f51a2dda491b1e225723908649ba6906c10ef1",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/emergency",
+      "status": 200,
+      "expectedBytes": 808499,
+      "bytes": 808499,
+      "expectedSha256": "4e2576835cd98630f43db973e332257bfbf2c5b49d0b7c718e3e80334a4b1510",
+      "sha256": "4e2576835cd98630f43db973e332257bfbf2c5b49d0b7c718e3e80334a4b1510",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/social",
+      "status": 200,
+      "expectedBytes": 670297,
+      "bytes": 670297,
+      "expectedSha256": "5d9bcd428b89a7146a5354c95e7e80cd0fe0c12f46d4a5caf353057b4f654b67",
+      "sha256": "5d9bcd428b89a7146a5354c95e7e80cd0fe0c12f46d4a5caf353057b4f654b67",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/study",
+      "status": 200,
+      "expectedBytes": 687260,
+      "bytes": 687260,
+      "expectedSha256": "23f21bc7951bcf369b245008c192ccfe948718a0e3815f1769a777389f91a39f",
+      "sha256": "23f21bc7951bcf369b245008c192ccfe948718a0e3815f1769a777389f91a39f",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/travel",
+      "status": 200,
+      "expectedBytes": 754091,
+      "bytes": 754091,
+      "expectedSha256": "b7d16486976853f0583d41f9ad9d86cb47b753c338fde3ae61f4fcd74b788817",
+      "sha256": "b7d16486976853f0583d41f9ad9d86cb47b753c338fde3ae61f4fcd74b788817",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/content/v1/work",
+      "status": 200,
+      "expectedBytes": 870083,
+      "bytes": 870083,
+      "expectedSha256": "0ad9ddecdb0f338027a4f67012ddfe1f24ff443236f96612d0361b8dd2ad8dc4",
+      "sha256": "0ad9ddecdb0f338027a4f67012ddfe1f24ff443236f96612d0361b8dd2ad8dc4",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/guide",
+      "status": 200,
+      "expectedBytes": 18672,
+      "bytes": 18672,
+      "expectedSha256": "9b3732c330339f2227a84673deb64410b239a3500a439db75261c66ea1516781",
+      "sha256": "9b3732c330339f2227a84673deb64410b239a3500a439db75261c66ea1516781",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/icons/icon-192.png",
+      "status": 200,
+      "expectedBytes": 40308,
+      "bytes": 40308,
+      "expectedSha256": "4c399a9abddabd35cce9610c8f2f86960888d00e08f3894dcbafef065e16573e",
+      "sha256": "4c399a9abddabd35cce9610c8f2f86960888d00e08f3894dcbafef065e16573e",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/icons/icon-512.png",
+      "status": 200,
+      "expectedBytes": 219967,
+      "bytes": 219967,
+      "expectedSha256": "85441f7eb27769dbb1237bb5d29838d20e98aa1489b498b0040ca600b7f9111c",
+      "sha256": "85441f7eb27769dbb1237bb5d29838d20e98aa1489b498b0040ca600b7f9111c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/icons/icon-maskable-512.png",
+      "status": 200,
+      "expectedBytes": 230784,
+      "bytes": 230784,
+      "expectedSha256": "d5079841e1dfbe3ef2774c297f6a64d590d9c2dd052ff64aae78fad49e66e4b9",
+      "sha256": "d5079841e1dfbe3ef2774c297f6a64d590d9c2dd052ff64aae78fad49e66e4b9",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/icons/speakmate-icon-master.png",
+      "status": 200,
+      "expectedBytes": 1029328,
+      "bytes": 1029328,
+      "expectedSha256": "db42e4d8c3a3645230549598dcd00d443eb9ce786b71e83860ea81bf1d5516f1",
+      "sha256": "db42e4d8c3a3645230549598dcd00d443eb9ce786b71e83860ea81bf1d5516f1",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/icons/speakmate-maskable-master.png",
+      "status": 200,
+      "expectedBytes": 954917,
+      "bytes": 954917,
+      "expectedSha256": "5c958bb7623c682b5aa2035b16501fe741f379ad5e02fdc450c3770a77215ca2",
+      "sha256": "5c958bb7623c682b5aa2035b16501fe741f379ad5e02fdc450c3770a77215ca2",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/install",
+      "status": 200,
+      "expectedBytes": 18739,
+      "bytes": 18739,
+      "expectedSha256": "8fe25991cfa4ba2b994f569102c3c47b95ea329ef8f7480bc8507b264e263531",
+      "sha256": "8fe25991cfa4ba2b994f569102c3c47b95ea329ef8f7480bc8507b264e263531",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/me",
+      "status": 200,
+      "expectedBytes": 21336,
+      "bytes": 21336,
+      "expectedSha256": "76a52e5187067f45294dcc44c436296a4fbd7b4bce68f5c890e44e12e07caae5",
+      "sha256": "76a52e5187067f45294dcc44c436296a4fbd7b4bce68f5c890e44e12e07caae5",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/notebook",
+      "status": 200,
+      "expectedBytes": 14645,
+      "bytes": 14645,
+      "expectedSha256": "93eab9db6e7b9ffbcce65f57dcc211d7bfe19451d09402c2807c946c61bc4896",
+      "sha256": "93eab9db6e7b9ffbcce65f57dcc211d7bfe19451d09402c2807c946c61bc4896",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/notebook/note",
+      "status": 200,
+      "expectedBytes": 14788,
+      "bytes": 14788,
+      "expectedSha256": "c175a96a1c6c3ccded7ebd6ac35d2f8102a2dfe8fb31a41c89c3b57526aad65a",
+      "sha256": "c175a96a1c6c3ccded7ebd6ac35d2f8102a2dfe8fb31a41c89c3b57526aad65a",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/notebook/simulation",
+      "status": 200,
+      "expectedBytes": 11117,
+      "bytes": 11117,
+      "expectedSha256": "8109df1b5fff5f17379cff5879f238cee72e6aa411aee336e990d4bb0ba361c7",
+      "sha256": "8109df1b5fff5f17379cff5879f238cee72e6aa411aee336e990d4bb0ba361c7",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/practice",
+      "status": 200,
+      "expectedBytes": 12566,
+      "bytes": 12566,
+      "expectedSha256": "da4ed20a5342669f9dd1e8336b2d1aff7e4ebfa04d10fc96bad57fc5b945f06c",
+      "sha256": "da4ed20a5342669f9dd1e8336b2d1aff7e4ebfa04d10fc96bad57fc5b945f06c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/privacy",
+      "status": 200,
+      "expectedBytes": 24565,
+      "bytes": 24565,
+      "expectedSha256": "9af299332e57280866cbfb39ecb7c2cff817c49c9274f38464e5064500d49249",
+      "sha256": "9af299332e57280866cbfb39ecb7c2cff817c49c9274f38464e5064500d49249",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/rewards",
+      "status": 200,
+      "expectedBytes": 12870,
+      "bytes": 12870,
+      "expectedSha256": "6f5b5911029a969339f86cb84b00ca8e00561496c1a09367dac452a53b4e7d0b",
+      "sha256": "6f5b5911029a969339f86cb84b00ca8e00561496c1a09367dac452a53b4e7d0b",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes",
+      "status": 200,
+      "expectedBytes": 13300,
+      "bytes": 13300,
+      "expectedSha256": "12846d611730e6adeec78f3da2a78edb5cc6857c10cf1e85181e28b48face642",
+      "sha256": "12846d611730e6adeec78f3da2a78edb5cc6857c10cf1e85181e28b48face642",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/daily.webp",
+      "status": 200,
+      "expectedBytes": 27816,
+      "bytes": 27816,
+      "expectedSha256": "756a4618ed1f2a4b6169304a51e12e5f6c2cefbbde587cf4be84637140e08405",
+      "sha256": "756a4618ed1f2a4b6169304a51e12e5f6c2cefbbde587cf4be84637140e08405",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/dining.webp",
+      "status": 200,
+      "expectedBytes": 30820,
+      "bytes": 30820,
+      "expectedSha256": "5c4fbb2dce1df7dd91db164e8d33cf2368ee5157fb202bd8f1137bc08f84d30c",
+      "sha256": "5c4fbb2dce1df7dd91db164e8d33cf2368ee5157fb202bd8f1137bc08f84d30c",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/emergency.webp",
+      "status": 200,
+      "expectedBytes": 21950,
+      "bytes": 21950,
+      "expectedSha256": "4a063e593d9091411384a4f9deaf84f8eb2d4e080f258ef0b1bf7c340a7c43f5",
+      "sha256": "4a063e593d9091411384a4f9deaf84f8eb2d4e080f258ef0b1bf7c340a7c43f5",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/hotel.webp",
+      "status": 200,
+      "expectedBytes": 28034,
+      "bytes": 28034,
+      "expectedSha256": "305b23554679689b4b0b8c66566dbcf3cf80d315b56f1b3fcc2dea52aa50e9c9",
+      "sha256": "305b23554679689b4b0b8c66566dbcf3cf80d315b56f1b3fcc2dea52aa50e9c9",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/prepare",
+      "status": 200,
+      "expectedBytes": 11068,
+      "bytes": 11068,
+      "expectedSha256": "985b47326a3e61db8b251d8b5a6879b55c7b0208923485c7863e2abb2175b830",
+      "sha256": "985b47326a3e61db8b251d8b5a6879b55c7b0208923485c7863e2abb2175b830",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/social.webp",
+      "status": 200,
+      "expectedBytes": 11890,
+      "bytes": 11890,
+      "expectedSha256": "b3492ce5871d4bd5056a0fa55a9b71dfa60869a37d6156c7bce8a30f380fb713",
+      "sha256": "b3492ce5871d4bd5056a0fa55a9b71dfa60869a37d6156c7bce8a30f380fb713",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/study.webp",
+      "status": 200,
+      "expectedBytes": 22644,
+      "bytes": 22644,
+      "expectedSha256": "b7916f1c65d7d385b1623ade687f9b98b40b879a34e0d14b4842bf38cbcfc5a2",
+      "sha256": "b7916f1c65d7d385b1623ade687f9b98b40b879a34e0d14b4842bf38cbcfc5a2",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/travel.webp",
+      "status": 200,
+      "expectedBytes": 17150,
+      "bytes": 17150,
+      "expectedSha256": "1943dc932837d542318fe1aa5f626ad9e18a47b34fc6f0dc30ef53228334e88e",
+      "sha256": "1943dc932837d542318fe1aa5f626ad9e18a47b34fc6f0dc30ef53228334e88e",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/scenes/work.webp",
+      "status": 200,
+      "expectedBytes": 22724,
+      "bytes": 22724,
+      "expectedSha256": "eb7cd700a4fbc632e6105eabc3e1918e6ca6dc472e1c8feb0b4919008b087574",
+      "sha256": "eb7cd700a4fbc632e6105eabc3e1918e6ca6dc472e1c8feb0b4919008b087574",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/session",
+      "status": 200,
+      "expectedBytes": 10587,
+      "bytes": 10587,
+      "expectedSha256": "8dbe7238e78b644abec99a2cb6e9e993d7d569c750d968d87a4f471deae9c273",
+      "sha256": "8dbe7238e78b644abec99a2cb6e9e993d7d569c750d968d87a4f471deae9c273",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/session/report",
+      "status": 200,
+      "expectedBytes": 11079,
+      "bytes": 11079,
+      "expectedSha256": "194c27f398762189deba06646016e9d39d52ad6e61350ee6fbf4766e529de2eb",
+      "sha256": "194c27f398762189deba06646016e9d39d52ad6e61350ee6fbf4766e529de2eb",
+      "passed": true,
+      "error": null
+    },
+    {
+      "path": "/welcome",
+      "status": 200,
+      "expectedBytes": 10101,
+      "bytes": 10101,
+      "expectedSha256": "50bf66daa67ab3c38f444fdafc63f1606b1138da88d9e2c1308dc5348445ab7e",
+      "sha256": "50bf66daa67ab3c38f444fdafc63f1606b1138da88d9e2c1308dc5348445ab7e",
+      "passed": true,
+      "error": null
+    }
+  ],
+  "limitations": [
+    "HTTP artifact checks, not browser interaction or Service Worker installation tests.",
+    "No physical iPhone, microphone, keyboard, personal backup or carrier coverage test."
+  ]
+}
